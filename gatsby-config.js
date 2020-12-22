@@ -29,6 +29,60 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-source-bigcommerce",
+      options: {
+        // REQUIRED
+        accessToken: process.env.BIGCOMMERCE_ACCESS_TOKEN,
+        clientId: process.env.BIGCOMMERCE_CLIENT_ID,
+        secret: process.env.BIGCOMMERCE_CLIENT_SECRET,
+        storeHash: process.env.BIGCOMMERCE_STORE_HASH,
+
+        // endpoint: "/catalog/products",
+
+        // OPTIONAL
+        logLevel: "info",
+        // nodeName: "BigCommerceNode",
+        apiVersion: "v3",
+
+        // Multiple endpoints in an object.
+        endpoints: {
+          BigCommerceProducts: "/catalog/products",
+          BigCommerceCategories: "/catalog/categories",
+          // BigCommerceStore: "/catalog/store",
+        },
+
+        preview: true
+      },
+    },
+    {
+      resolve: `gatsby-source-contentstack`,
+      options: {
+        // Required: API Key is a unique key assigned to each stack.
+        api_key: process.env.CONTENTSTACK_API_KEY,
+
+        // Required: Delivery Token is a read-only credential.
+        delivery_token: process.env.CONTENTSTACK_DELIVERY_TOKEN,
+
+        // Required: Environment where you published your data.
+        environment: process.env.CONTENTSTACK_ENVIRONMENT,
+
+        // Optional: CDN set this to point to other cdn end point. For eg: https://eu-cdn.contentstack.com/v3
+        cdn: `https://eu-cdn.contentstack.com/v3`,
+
+        // Optional: expediteBuild set this to either true or false
+        expediteBuild: true,
+
+        // Optional: Specify true if you want to generate custom schema
+        enableSchemaGeneration: true,
+
+        // Optional: Specify a different prefix for types. This is useful in cases where you have multiple instances of the plugin to be connected to different stacks.
+        type_prefix: `Contentstack`, // (default)
+
+        // Optional: Specify true if you want to download all your contentstack images locally
+        downloadImages: false,
+      },
+    },
   ],
 }
