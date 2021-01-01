@@ -1,5 +1,5 @@
-import React from "react"
 import { PageProps, Link, graphql } from "gatsby"
+import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -56,33 +56,26 @@ export const ProductListings: React.FC<PageProps<DataProps>> = ({ data, path }) 
   <Layout>
     <SEO title="Using TypeScript" />
     <h1>BigCommerce Product Listings for {path}</h1>
-    <p>
-      {data.allBigCommerceCategories.edges.map(({node}, index) => (
-        <article key={index}>
-          <h1>{node.name}</h1>
-        </article>
-      ))}
-    </p>
-    <p>
-      {data.allBigCommerceProducts.edges.map(({node}, index) => (
-        <article key={index}>
-          <h1>{node.name}</h1>
-        </article>
-      ))}
-    </p>
-    <p>
-      {data.allContentstackProducts.edges.map(({node}, index) => (
-        <article key={index}>
-          <h1>{node.title}</h1>
-        </article>
-      ))}
-    </p>
+    {data.allBigCommerceCategories.edges.map(({node}, index) => (
+      <article key={index}>
+        <h1>{node.name}</h1>
+      </article>
+    ))}
+    {data.allBigCommerceProducts.edges.map(({node}, index) => (
+      <article key={index}>
+        <h1>{node.name}</h1>
+      </article>
+    ))}
+    {data.allContentstackProducts.edges.map(({node}, index) => (
+      <article key={index}>
+        <h1>{node.title}</h1>
+      </article>
+    ))}
     <p>
       To learn more, head over to our{" "}
       <a href="https://www.gatsbyjs.com/docs/typescript/">
         documentation about TypeScript
       </a>
-      .
     </p>
     <Link to="/">Go back to the homepage</Link>
   </Layout>
