@@ -2,6 +2,8 @@ import React, { ReactElement } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import PropTypes, { InferProps } from "prop-types"
 
+import Search from "./search"
+
 type CategoryEdgeProps = {
   node: {
     custom_url: {
@@ -22,6 +24,9 @@ type CategoryEdgeProps = {
 type HeaderData = {
   allBigCommerceCategories: {
     edges: CategoryEdgeProps[]
+  }
+  siteSearchIndex: {
+    index: {}
   }
 }
 
@@ -51,11 +56,19 @@ export const Header = (
           }
         }
       }
+      siteSearchIndex {
+        index
+      }
     }
   `)
 
   return (
-    <header>
+    <header
+      style={{
+        background: `rebeccapurple`,
+        marginBottom: `1.45rem`,
+      }}
+    >
       <Link to="/">Go back to the homepage</Link>
       <ul>
         {data.allBigCommerceCategories.edges.map(({ node }, index) => (
@@ -64,6 +77,7 @@ export const Header = (
           </li>
         ))}
       </ul>
+      <Search searchIndex={data.siteSearchIndex.index} />
     </header>
   )
 }
