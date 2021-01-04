@@ -9,7 +9,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
+import Banner from "./Banner"
+import Header from "./Header"
+import SiteSelector from "./SiteSelector"
+
 import "./layout.css"
 
 const Layout = ({ children }) => {
@@ -24,8 +27,10 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+    <React.Fragment>
+      <SiteSelector />
+      <Banner />
+      <Header siteTitle={data.site.siteMetadata?.title || `Title`} active />
       <div
         style={{
           margin: `0 auto`,
@@ -42,7 +47,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.com">Gatsby</a>
         </footer>
       </div>
-    </>
+    </React.Fragment>
   )
 }
 

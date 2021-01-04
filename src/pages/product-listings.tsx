@@ -4,6 +4,8 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+import Breadcrumbs from "../components/Breadcrumbs"
+
 type BigCommerceCategoryEdgeProps = {
   node: {
     name: string
@@ -55,6 +57,7 @@ type DataProps = {
 export const ProductListings: React.FC<PageProps<DataProps>> = ({ data, path }) => (
   <Layout>
     <SEO title="Using TypeScript" />
+    <Breadcrumbs />
     <h1>BigCommerce Product Listings for {path}</h1>
     {data.allBigCommerceCategories.edges.map(({node}, index) => (
       <article key={index}>
