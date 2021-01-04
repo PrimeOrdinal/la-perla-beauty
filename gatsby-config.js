@@ -108,6 +108,7 @@ module.exports = {
           BigCommerceProducts: {
             title: node => node.name,
             sku: node => node.sku,
+            path: node => node.custom_url.url,
           }
         },
         // Optional filter to limit indexed nodes
