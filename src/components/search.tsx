@@ -4,13 +4,6 @@ import PropTypes, { InferProps } from "prop-types"
 import React, { ReactElement, useState } from "react"
 import styled from "styled-components"
 
-type Page = {
-  id: string
-  path: string
-  title: string
-  tags: string[]
-}
-
 const StyledResults = styled.ul`
   align-items: center;
   display: grid;
@@ -31,7 +24,7 @@ export const Search = (
 ): ReactElement => {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState([])
-  const [index, setIndex] = useState(Index.load(searchIndex))
+  const [index] = useState(Index.load(searchIndex))
 
   const search = event => {
     setQuery(event.target.value)
@@ -48,6 +41,7 @@ export const Search = (
       <StyledResults>
         {results.map((page: Page) => (
           <li key={page.id}>
+            <img alt={page.title} src={page.image_url} />
             <Link to={page.path}>{page.title}</Link>
           </li>
         ))}

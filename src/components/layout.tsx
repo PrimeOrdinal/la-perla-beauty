@@ -8,12 +8,35 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import styled from "styled-components";
 
 import Banner from "./Banner"
 import Header from "./Header"
 import SiteSelector from "./SiteSelector"
 
 import "./layout.css"
+
+const StyledSiteContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
+const StyledPageContainer = styled.div`
+  display: flex;
+  flex: 1;
+`;
+
+const StyledMain = styled.div`
+  flex-basis: 100%;
+`;
+
+const StyledFooter = styled.div`
+  background-color: lightgrey;
+  display: grid;
+  padding: 1rem;
+  place-items: center;
+`;
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -27,27 +50,17 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <React.Fragment>
+    <StyledSiteContainer>
       <SiteSelector />
       <Banner />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} active />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer style={{
-          marginTop: `2rem`
-        }}>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </React.Fragment>
+      <StyledPageContainer>
+        <StyledMain>{children}</StyledMain>
+      </StyledPageContainer>
+      <StyledFooter>
+        <span>© {new Date().getFullYear()} La Perla Beauty</span>
+      </StyledFooter>
+    </StyledSiteContainer>
   )
 }
 

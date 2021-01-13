@@ -1,4 +1,4 @@
-import PropTypes, { InferProps } from "prop-types"
+import { InferProps } from "prop-types"
 import React, { ReactElement } from "react"
 import styled from "styled-components"
 

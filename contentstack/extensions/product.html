@@ -1,0 +1,242 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://www.contentstack.com/sdks/contentstack-ui-extensions/dist/latest/ui-extension-sdk.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+    <script src="https://www.contentstack.com/sdks/contentstack-ui-extensions/dist/latest/ui-extension-sdk.js"></script>
+    <style>
+      #product-picker-input {
+        margin-block-end: 1rem;
+      }
+
+      .product-preview {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 2fr;
+      }
+
+      .product-preview img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+      }
+
+      a {
+        align-content: center;
+        align-items: center;
+        display: flex;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <datalist id="product-picker-datalist"></datalist>
+
+    <div>
+      <input
+        type="text"
+        id="product-picker-input"
+        list="product-picker-datalist"
+        onchange="onChange()"
+        onclick="setFocus()"
+      />
+
+      <button id="clear">Clear</button>
+    </div>
+
+    <ul id="matched-products"></ul>
+
+    <template id="product-previews">
+      <li class="product-preview">
+        <div>
+          <img />
+        </div>
+        <div>
+          <h1></h1>
+          <div id="description"></div>
+
+          <ul>
+            <li>
+              <a id="link-store" rel="noopener noreferrer" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M11.5 9C10.12 9 9 10.12 9 11.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S12.88 9 11.5 9zM20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-3.21 14.21l-2.91-2.91c-.69.44-1.51.7-2.39.7C9.01 16 7 13.99 7 11.5S9.01 7 11.5 7 16 9.01 16 11.5c0 .88-.26 1.69-.7 2.39l2.91 2.9-1.42 1.42z"/></svg>
+                <span>View in store</span>
+              </a>
+            </li>
+          </ul>
+          <a id="link-manage" rel="noopener noreferrer" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            <span>Manage product data in BigCommerce</span>
+          </a>
+        </div>
+      </li>
+    </template>
+
+    <script>
+      const apiBaseURL = "https://laperla-contentstack.azure-api.net";
+      const headers = new Headers();
+
+      let products = [];
+
+      headers.set(
+        "Ocp-Apim-Subscription-Key",
+        "e5fb58c4c2ae4e7d877b4279c2ed2d94"
+      );
+
+      // initialise Field Extension
+      window.extensionField = {};
+
+      // find product input element
+      const productPickerInput = document.getElementById(
+        "product-picker-input"
+      );
+
+      const productPickerDatalist = document.getElementById(
+        "product-picker-datalist"
+      );
+
+      const matchedProducts = document.getElementById("matched-products");
+
+      const productPreviews = document.getElementById("product-previews");
+
+      const clearButton= document.getElementById("clear");
+
+      ContentstackUIExtension.init().then(async function (extension) {
+        // make extension object globally available
+        extensionField = extension;
+
+        // update the field height
+        extensionField.window.updateHeight();
+
+        // Set default product in Contentstack
+        // const defaultProduct = "idspispopd";
+        // if (!extensionField.field.getData().length) {
+        //   extensionField.field.setData(defaultProduct);
+        // }
+
+        products = await getProductList();
+
+        populateDatalist(products, extensionField);
+
+        // Get current product field value from Contentstack and update the product picker input element
+        productPickerInput.value = extensionField.field.getData() || null;
+
+        clearButton.addEventListener("click", clearProductData);
+      });
+
+      function clearProductData() {
+          productPickerInput.value = null;
+          extensionField.field.setData(productPickerInput?.value);
+          matchedProducts.innerHTML = "";
+      }
+
+      // On product change event, pass new value to Contentstack
+      async function onChange() {
+        extensionField.field.setFocus();
+        extensionField.field.setData(productPickerInput?.value);
+
+        const product = products.find(
+          ({ id }) => parseInt(id) === parseInt(productPickerInput?.value)
+        );
+
+        if (product) {
+          matchedProducts.innerHTML = "";
+
+          await populateMatchedProduct(product);
+        }
+      }
+
+      function setFocus() {
+        extensionField.field.setFocus();
+      }
+
+      function populateDatalist(products, extensionField) {
+        const fragment = document.createDocumentFragment();
+
+        products?.forEach((product) => {
+          const option = document.createElement("option");
+
+          option.setAttribute("value", product?.id);
+          option.textContent = product?.name;
+
+          fragment.appendChild(option);
+        });
+
+        productPickerDatalist.appendChild(fragment);
+      }
+
+      async function populateMatchedProduct(product) {
+        const clone = productPreviews.content.cloneNode(true);
+
+        const img = clone.querySelector("img");
+        const h1 = clone.querySelector("h1");
+        const description = clone.querySelector("#description");
+        const linkManage = clone.querySelector("#link-manage");
+        const linkStore = clone.querySelector("#link-store");
+
+        const image = await getProductImage(product?.id);
+
+        h1.textContent = product?.name;
+
+        description.innerHTML = product?.description;
+
+        img.setAttribute("src", image?.url_thumbnail);
+
+        linkManage.setAttribute(
+          "href",
+          `https://store-dyjfj7mvsb.mybigcommerce.com/manage/products/edit/${product?.id}`
+        );
+
+        linkStore.setAttribute(
+          "href",
+          `https://grensons-sb1.mybigcommerce.com${product?.custom_url?.url}?showHidden=true`
+        );
+
+        matchedProducts.appendChild(clone);
+
+        // update the field height
+        extensionField.window.updateHeight();
+
+        setInterval(() => {
+          extensionField.window.updateHeight();
+        }, 500);
+      }
+
+      async function getProductImage(product_id) {
+        const image_id = 0;
+
+        // const uri = new URL(`/v3/catalog/products/${product_id}/images/${image_id}`, apiBaseURL);
+        const uri = new URL(
+          `/v3/catalog/products/${product_id}/images`,
+          apiBaseURL
+        );
+
+        const response = await (
+          await fetch(uri.toString(), {
+            headers,
+            method: "GET",
+          })
+        ).json();
+
+        return response?.data[0];
+      }
+
+      async function getProductList() {
+        const uri = new URL("/v3/catalog/products", apiBaseURL);
+
+        const response = await (
+          await fetch(uri.toString(), {
+            headers,
+            method: "GET",
+          })
+        ).json();
+
+        return response?.data;
+      }
+    </script>
+  </body>
+</html>

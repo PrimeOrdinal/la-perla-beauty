@@ -1,11 +1,13 @@
-import React, { ReactElement } from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
-import PropTypes, { InferProps } from "prop-types"
-import styled from "styled-components"
+import React, { ReactElement } from "react";
+import { Link, graphql, useStaticQuery } from "gatsby";
+import PropTypes, { InferProps } from "prop-types";
+import styled from "styled-components";
 
-import Logo from "../images/logo.svg"
+import { useHover } from "../hooks/useHover";
 
-import Search from "./Search"
+import Logo from "../images/logo.svg";
+
+import Search from "./Search";
 
 type CategoryEdgeProps = {
   node: {
@@ -42,15 +44,15 @@ const StyledHeader = styled.header`
   padding-block-start: 1rem;
   position: sticky;
   text-align: center;
-`;
+`
 
 const StyledLogo = styled(Logo)`
   height: 40px;
-`;
+`
 
 const StyledLogoLink = styled(Link)`
   grid-area: logo;
-`;
+`
 
 const StyledMenu = styled.ul`
   align-items: center;
@@ -61,53 +63,50 @@ const StyledMenu = styled.ul`
   li {
     margin-block-end: 0;
   }
-`;
+`
 
 const StyledMenuPrimary = styled(StyledMenu)`
   grid-auto-flow: column;
   grid-area: menu-primary;
-`;
+`
 
 const StyledMenuSecondary = styled(StyledMenu)`
   grid-auto-flow: column;
   grid-area: menu-secondary;
-`;
+`
 
 const StyledMenuMain = styled.div`
   grid-area: menu-main;
-`;
+`
 
 const StyledMenuMainExpanded = styled.div`
-  display: ${props => (props.active ? "grid" : "none")};
-  list-style: none;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
+  display: ${props => (props.active ? "block" : "none")};
   padding-block-end: 1rem;
   padding-block-start: 1rem;
-`;
+`
 
 const StyledMenuMainExpandedList = styled(StyledMenu)`
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
   list-style: none;
-`;
+`
 
 const StyledMenuMainHeadings = styled(StyledMenu)`
-  display: grid;
-  list-style: none;
   gap: 1rem;
   grid-template-columns: repeat(4, 1fr);
   padding-block-end: 1rem;
   padding-block-start: 1rem;
-`;
+`
 
 const StyledSearchContainer = styled.div`
   display: grid;
   gap: 1rem;
   grid-area: search;
   padding: 1rem;
-`;
+`
 
 export const Header = (
-  { active, siteTitle }: InferProps<typeof Header.propTypes> = {
+  { siteTitle }: InferProps<typeof Header.propTypes> = {
     active: false,
     siteTitle: "Site Title",
   }
@@ -136,11 +135,17 @@ export const Header = (
         index
       }
     }
-  `)
+  `);
+
+  const [hoverRef, isHovered] = useHover();
 
   return (
-    <StyledHeader>
-      <StyledLogoLink id="header-logo" title={`Go back to the homepage for ${siteTitle}`} to="/">
+    <StyledHeader ref={hoverRef}>
+      <StyledLogoLink
+        id="header-logo"
+        title={`Go back to the homepage for ${siteTitle}`}
+        to="/"
+      >
         <StyledLogo />
       </StyledLogoLink>
       <StyledMenuPrimary id="header-menu-primary">
@@ -168,47 +173,25 @@ export const Header = (
       <StyledMenuMain id="header-menu-main">
         <StyledMenuMainHeadings id="header-menu-main-headings">
           <li>
-            <a href="#">Item 1</a>
+            <Link to="/products/">Products</Link>
           </li>
           <li>
-            <a href="#">Item 2</a>
+            <a href="#">Category 2</a>
           </li>
           <li>
-            <a href="#">Item 3</a>
+            <a href="#">Category 3</a>
           </li>
           <li>
-            <a href="#">Item 4</a>
+            <a href="#">Category 4</a>
           </li>
         </StyledMenuMainHeadings>
-        <StyledMenuMainExpanded id="header-menu-main-expanded" active={active}>
-        <StyledMenuMainExpandedList>
-          {data.allBigCommerceCategories.edges.map(({ node }, index) => (
-            <li key={index}>
-              <a href={node.custom_url.url}>{node.name}</a>
-            </li>
-          ))}
-        </StyledMenuMainExpandedList>
+        <StyledMenuMainExpanded id="header-menu-main-expanded" active={isHovered}>
           <StyledMenuMainExpandedList>
-            <li>
-              <a href="#">Item 1</a>
-            </li>
-            <li>
-              <a href="#">Item 2</a>
-            </li>
-            <li>
-              <a href="#">Item 3</a>
-            </li>
-          </StyledMenuMainExpandedList>
-          <StyledMenuMainExpandedList>
-            <li>
-              <a href="#">Item 1</a>
-            </li>
-            <li>
-              <a href="#">Item 2</a>
-            </li>
-            <li>
-              <a href="#">Item 3</a>
-            </li>
+            {data.allBigCommerceCategories.edges.map(({ node }, index) => (
+              <li key={index}>
+                <a href={node.custom_url.url}>{node.name}</a>
+              </li>
+            ))}
           </StyledMenuMainExpandedList>
         </StyledMenuMainExpanded>
       </StyledMenuMain>

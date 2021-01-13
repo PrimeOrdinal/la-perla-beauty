@@ -17,9 +17,9 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /images/ // See below to configure properly
-        }
-      }
+          include: /images/, // See below to configure properly
+        },
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -32,7 +32,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.svg`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
@@ -61,7 +61,7 @@ module.exports = {
           // BigCommerceStore: "/catalog/store",
         },
 
-        preview: true
+        preview: true,
       },
     },
     {
@@ -92,6 +92,31 @@ module.exports = {
         downloadImages: false,
       },
     },
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     typeName: "ContentstackGraphQLAPI",
+    //     fieldName: "ContentstackGraphQL",
+    //     createLink: () =>
+    //       createHttpLink({
+    //         uri: `https://eu-graphql.contentstack.com/stacks/${process.env.CONTENTSTACK_API_KEY}?environment=${process.env.CONTENTSTACK_ENVIRONMENT}`,
+    //         headers: {
+    //           Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+    //           CONTENTSTACK_DELIVERY_TOKEN
+              
+    //         },
+    //         fetch,
+    //       }),
+    //   },
+    // },
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     typeName: "BigCommerceGraphQLAPI",
+    //     fieldName: "BigCommerceGraphQL",
+    //     url: `https://store-${process.env.BIGCOMMERCE_STORE_HASH}.mybigcommerce.com/graphql`,
+    //   },
+    // },
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
@@ -99,20 +124,73 @@ module.exports = {
         fields: [`title`, `tags`],
         // How to resolve each field`s value for a supported node type
         resolvers: {
-          // For any node of type MarkdownRemark, list how to resolve the fields` values
-          // MarkdownRemark: {
-          //   title: node => node.frontmatter.title,
-          //   tags: node => node.frontmatter.tags,
-          //   path: node => node.frontmatter.path,
-          // },
+          // List how to resolve the fields` values
           BigCommerceProducts: {
-            title: node => node.name,
-            sku: node => node.sku,
+            image_url: node => node.image_url,
             path: node => node.custom_url.url,
-          }
+            sku: node => node.sku,
+            title: node => node.name,
+          },
         },
         // Optional filter to limit indexed nodes
         filter: (node, getNode) => node.tags !== "exempt",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-breadcrumb`,
+      options: {
+        // useAutoGen: required 'true' to use autogen
+        useAutoGen: true,
+        // autoGenHomeLabel: optional 'Home' is default
+        autoGenHomeLabel: `Home`,
+        // exlude: optional, include this array to overwrite paths you don't want to
+        // generate breadcrumbs for.
+        exclude: [
+          `/dev-404-page/`,
+          `/404/`,
+          `/404.html`,
+          `/offline-plugin-app-shell-fallback/`,
+        ],
+        // crumbLabelUpdates: optional, update specific crumbLabels in the path
+        // crumbLabelUpdates: [
+        //   {
+        //     pathname: '/book',
+        //     crumbLabel: 'Books'
+        //   }
+        // ],
+        // trailingSlashes: optional, will add trailing slashes to the end
+        // of crumb pathnames. default is false
+        trailingSlashes: true,
+        // usePathPrefix: optional, if you are using pathPrefix above
+        // usePathPrefix: '/blog',
+      },
+    },
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "YOUR_GOOGLE_TAGMANAGER_ID",
+
+        // Include GTM in development.
+        //
+        // Defaults to false meaning GTM will only be loaded in production.
+        includeInDevelopment: false,
+
+        // datalayer to be set before GTM is loaded
+        // should be an object or a function that is executed in the browser
+        //
+        // Defaults to null
+        defaultDataLayer: { platform: "gatsby" },
+
+        // Specify optional GTM environment details.
+        gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING",
+        gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME",
+        dataLayerName: "YOUR_DATA_LAYER_NAME",
+
+        // Name of the event that is triggered
+        // on every Gatsby route change.
+        //
+        // Defaults to gatsby-route-change
+        routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
       },
     },
   ],
