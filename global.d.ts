@@ -88,7 +88,6 @@ type ContentstackProductEdgeProps = {
         childImageSharp: {}
       }
     }
-    created_at: string
   }
 }
 

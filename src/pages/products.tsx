@@ -92,7 +92,6 @@ export const query = graphql`
     allContentstackProducts {
       edges {
         node {
-          created_at
           id
           product_id
           rich_text_editor
