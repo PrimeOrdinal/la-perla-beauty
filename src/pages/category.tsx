@@ -9,10 +9,10 @@ export const Category: React.FC<PageProps<null, PageContextCategory>> = ({ pageC
   console.log(category)
   return (
     <Layout>
-      <SEO title={`Category page for ${category.title}`} />
+      <SEO title={`Category page for ${category?.title}`} />
       <div>
-        Name: {category.title}
-        Description: {category.description}
+        Name: {category?.title}
+        Description: {category?.description}
       </div>
     </Layout>
   )

@@ -50,66 +50,66 @@ export const Product: React.FC<PageProps<null, PageContextProduct>> = ({
 
   return (
     <Layout>
-      <SEO title={`Category page for ${product.title}`} />
+      <SEO title={`Product page for ${product?.title}`} />
       <StyledProduct>
         <section id="images">
-          <img alt={product.title} src="https://via.placeholder.com/250" />
+          <img alt={product?.title} src="https://via.placeholder.com/250" />
           <ul>
             <li>
-              <img alt={product.title} src="https://via.placeholder.com/250" />
+              <img alt={product?.title} src="https://via.placeholder.com/250" />
             </li>
             <li>
-              <img alt={product.title} src="https://via.placeholder.com/250" />
+              <img alt={product?.title} src="https://via.placeholder.com/250" />
             </li>
             <li>
-              <img alt={product.title} src="https://via.placeholder.com/250" />
+              <img alt={product?.title} src="https://via.placeholder.com/250" />
             </li>
             <li>
-              <img alt={product.title} src="https://via.placeholder.com/250" />
+              <img alt={product?.title} src="https://via.placeholder.com/250" />
             </li>
             <li>
-              <img alt={product.title} src="https://via.placeholder.com/250" />
+              <img alt={product?.title} src="https://via.placeholder.com/250" />
             </li>
           </ul>
         </section>
         <section id="sidebar">
           <header>
-            <h1>{product.title}</h1>
+            <h1>{product?.title}</h1>
             <div
               dangerouslySetInnerHTML={{
-                __html: product.description,
+                __html: product?.description,
               }}
             />
           </header>
           <dl>
             <dt>ID</dt>
-            <dd>{product.id}</dd>
+            <dd>{product?.id}</dd>
             <dt>Price</dt>
-            <dd>{product.price}</dd>
+            <dd>{product?.price}</dd>
             <dt>Calculated Price</dt>
-            <dd>{product.calculated_price}</dd>
+            <dd>{product?.calculated_price}</dd>
             <dt>Availability</dt>
-            <dd>{product.availability}</dd>
+            <dd>{product?.availability}</dd>
             <dt>GTIN</dt>
-            <dd>{product.gtin}</dd>
+            <dd>{product?.gtin}</dd>
             <dt>MPN</dt>
-            <dd>{product.mpn}</dd>
+            <dd>{product?.mpn}</dd>
             <dt>Sale Price</dt>
-            <dd>{product.sale_price}</dd>
+            <dd>{product?.sale_price}</dd>
             <dt>SKU</dt>
-            <dd>{product.sku}</dd>
+            <dd>{product?.sku}</dd>
             <dt>UPC</dt>
-            <dd>{product.upc}</dd>
+            <dd>{product?.upc}</dd>
           </dl>
           <form>
-            <button data-id={product.id}>Add to bag</button>
-            <button data-id={product.id}>Add to wishlist</button>
+            <button data-id={product?.id}>Add to bag</button>
+            <button data-id={product?.id}>Add to wishlist</button>
           </form>
         </section>
-        {product.categories &&
-          product.categories.map(category => {
+        {/* {product?.categories &&
+          product?.categories.map(category => {
             console.log(category)
-          })}
+          })} */}
       </StyledProduct>
       <Helmet>
         <script type="application/ld+json">{structuredJSON}</script>

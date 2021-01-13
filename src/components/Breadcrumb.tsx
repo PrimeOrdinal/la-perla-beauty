@@ -19,8 +19,6 @@ const StyledGatsbyPluginBreadcrumb = styled(GatsbyPluginBreadcrumb)`
   }
 `;
 
-const customCrumbLabel = location.pathname.toLowerCase().replace("-", " ");
-
 export const Breadcrumb = (props: InferProps<
   typeof Breadcrumb.propTypes
 >): ReactElement => {
@@ -64,7 +62,7 @@ export const Breadcrumb = (props: InferProps<
   //   </StyledOrderedList>
   // )
 
-  return (<StyledGatsbyPluginBreadcrumb {...props} crumbLabel={customCrumbLabel} crumbSeparator=" - " />);
+  return (<StyledGatsbyPluginBreadcrumb {...props} crumbSeparator=" - " />);
 }
 
 export default Breadcrumb

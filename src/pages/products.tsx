@@ -13,10 +13,10 @@ import { transformContentstackProduct } from "../utils/transformContentstackProd
 export const ProductListings: React.FC<
   PageProps<DataTypeAllSources, PageContextTypeBreadcrumb>
 > = ({ pageContext, location, data, path }) => {
-  console.log("pageContext", pageContext)
-  console.log("location", location)
-  console.log("data", data)
-  console.log("path", path)
+  // console.log("pageContext", pageContext)
+  // console.log("location", location)
+  // console.log("data", data)
+  // console.log("path", path)
 
   const {
     breadcrumb: { crumbs },
