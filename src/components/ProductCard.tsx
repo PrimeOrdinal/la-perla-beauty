@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 const StyledProductCard = styled.article`
   background-color: #eeeeee;
@@ -11,13 +11,13 @@ const StyledProductCard = styled.article`
   div {
     padding: 1rem;
   }
-`;
+`
 
-export const ProductCard = (
-  { product } : {
-    product: Product
-  }
-): ReactElement => (
+export const ProductCard = ({
+  product,
+}: {
+  product: ProductCustom
+}): ReactElement => (
   <StyledProductCard data-id={product.id}>
     <img alt={product.title} src="https://via.placeholder.com/250" />
     <div>

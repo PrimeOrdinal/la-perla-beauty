@@ -1,13 +1,14 @@
-import React, { ReactElement } from "react";
-import { Link, graphql, useStaticQuery } from "gatsby";
-import PropTypes, { InferProps } from "prop-types";
-import styled from "styled-components";
+import React, { ReactElement } from "react"
+import { Link, graphql, useStaticQuery } from "gatsby"
+import PropTypes, { InferProps } from "prop-types"
+import styled from "@emotion/styled"
+import { Styled } from "theme-ui"
 
-import { useHover } from "../hooks/useHover";
+import { useHover } from "../hooks/useHover"
 
-import Logo from "../images/logo.svg";
+import Logo from "../images/logo.svg"
 
-import Search from "./Search";
+import Search from "./Search"
 
 type CategoryEdgeProps = {
   node: {
@@ -31,7 +32,7 @@ type HeaderData = {
     edges: CategoryEdgeProps[]
   }
   siteSearchIndex: {
-    index: {}
+    index: Record<string, unknown>
   }
 }
 
@@ -135,12 +136,13 @@ export const Header = (
         index
       }
     }
-  `);
+  `)
 
-  const [hoverRef, isHovered] = useHover();
+  const [hoverRef, isHovered] = useHover()
 
   return (
     <StyledHeader ref={hoverRef}>
+      <Styled.h2 as="div">Hello!</Styled.h2>
       <StyledLogoLink
         id="header-logo"
         title={`Go back to the homepage for ${siteTitle}`}
@@ -185,7 +187,10 @@ export const Header = (
             <a href="#">Category 4</a>
           </li>
         </StyledMenuMainHeadings>
-        <StyledMenuMainExpanded id="header-menu-main-expanded" active={isHovered}>
+        <StyledMenuMainExpanded
+          id="header-menu-main-expanded"
+          active={isHovered}
+        >
           <StyledMenuMainExpandedList>
             {data.allBigCommerceCategories.edges.map(({ node }, index) => (
               <li key={index}>

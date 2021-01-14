@@ -1,7 +1,10 @@
+import styled from "@emotion/styled"
 import React from "react"
-import styled from "styled-components"
+import { Button } from "rebass"
+// import { jsx } from 'theme-ui'
 
-import Layout from "../components/layout"
+// import Button from "../components/Button"
+import Layout from "../components/Layout"
 import SEO from "../components/seo"
 
 import Logo from "../images/logo.svg"
@@ -45,10 +48,23 @@ const StyledGrid = styled.div`
   margin: 0;
 `
 
-const IndexPage = () => (
+const IndexPage = (): JSX.Element => (
   <Layout>
     <SEO title="Home" />
     <h1>Homepage</h1>
+    <Button variant="primary" mr={2}>
+      Primary
+    </Button>
+    <Button variant="secondary">Secondary</Button>
+    <div
+      sx={{
+        fontWeight: "bold",
+        fontSize: 4, // picks up value from `theme.fontSizes[4]`
+        color: "primary", // picks up value from `theme.colors.primary`
+      }}
+    >
+      Hello
+    </div>
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Logo />
     </div>
@@ -56,19 +72,27 @@ const IndexPage = () => (
       <h1>Section 1</h1>
       <StyledGrid>
         <StyledArticle>
-          <div><h1>Article 1</h1></div>
+          <div>
+            <h1>Article 1</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
         <StyledArticle>
-          <div><h1>Article 2</h1></div>
+          <div>
+            <h1>Article 2</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
         <StyledArticle>
-          <div><h1>Article 3</h1></div>
+          <div>
+            <h1>Article 3</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
         <StyledArticle>
-          <div><h1>Article 4</h1></div>
+          <div>
+            <h1>Article 4</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
       </StyledGrid>
@@ -77,19 +101,27 @@ const IndexPage = () => (
       <h1>Section 2</h1>
       <StyledGrid>
         <StyledArticle>
-          <div><h1>Article 1</h1></div>
+          <div>
+            <h1>Article 1</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
         <StyledArticle>
-          <div><h1>Article 2</h1></div>
+          <div>
+            <h1>Article 2</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
         <StyledArticle>
-          <div><h1>Article 3</h1></div>
+          <div>
+            <h1>Article 3</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
         <StyledArticle>
-          <div><h1>Article 4</h1></div>
+          <div>
+            <h1>Article 4</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
       </StyledGrid>
@@ -99,19 +131,27 @@ const IndexPage = () => (
       <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
       <StyledGrid>
         <StyledArticle>
-          <div><h1>Article 1</h1></div>
+          <div>
+            <h1>Article 1</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
         <StyledArticle>
-          <div><h1>Article 2</h1></div>
+          <div>
+            <h1>Article 2</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
         <StyledArticle>
-          <div><h1>Article 3</h1></div>
+          <div>
+            <h1>Article 3</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
         <StyledArticle>
-          <div><h1>Article 4</h1></div>
+          <div>
+            <h1>Article 4</h1>
+          </div>
           <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
         </StyledArticle>
       </StyledGrid>

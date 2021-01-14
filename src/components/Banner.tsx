@@ -1,6 +1,6 @@
 import { InferProps } from "prop-types"
 import React, { ReactElement } from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 const StyledBanner = styled.div`
   background-color: #efeee9;

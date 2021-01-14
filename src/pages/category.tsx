@@ -1,12 +1,14 @@
 import { PageProps } from "gatsby"
 import React from "react"
 
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import SEO from "../components/seo"
 
-export const Category: React.FC<PageProps<null, PageContextCategory>> = ({ pageContext }) => {
+export const Category: React.FC<PageProps<null, PageContextCategory>> = ({
+  pageContext,
+}) => {
   const { category } = pageContext
-  console.log(category)
+
   return (
     <Layout>
       <SEO title={`Category page for ${category?.title}`} />

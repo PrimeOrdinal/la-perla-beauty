@@ -1,11 +1,11 @@
-export function transformContentstackProduct (edge) {
-    const { node } = edge;
+export function transformContentstackProduct(edge) {
+  const { node } = edge
 
-    const transformed = {
-        node: {
-            ...node
-        }
-    };
+  const transformed = {
+    node: {
+      ...node,
+    },
+  }
 
-    return transformed;
+  return transformed
 }

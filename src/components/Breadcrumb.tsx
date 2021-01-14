@@ -1,9 +1,9 @@
 import { Breadcrumb as GatsbyPluginBreadcrumb } from "gatsby-plugin-breadcrumb"
 import { InferProps } from "prop-types"
 import React, { ReactElement } from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
-import 'gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css'
+import "gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css"
 
 // const StyledOrderedList = styled.div`
 //   background-color: #efeee9;
@@ -17,11 +17,11 @@ const StyledGatsbyPluginBreadcrumb = styled(GatsbyPluginBreadcrumb)`
   .breadcrumb__list {
     color: red;
   }
-`;
+`
 
-export const Breadcrumb = (props: InferProps<
-  typeof Breadcrumb.propTypes
->): ReactElement => {
+export const Breadcrumb = (
+  props: InferProps<typeof Breadcrumb.propTypes>
+): ReactElement => {
   // return (
   //   <StyledOrderedList itemScope itemType="https://schema.org/BreadcrumbList">
   //     <li
@@ -62,7 +62,7 @@ export const Breadcrumb = (props: InferProps<
   //   </StyledOrderedList>
   // )
 
-  return (<StyledGatsbyPluginBreadcrumb {...props} crumbSeparator=" - " />);
+  return <StyledGatsbyPluginBreadcrumb {...props} crumbSeparator=" - " />
 }
 
 export default Breadcrumb

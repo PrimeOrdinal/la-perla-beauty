@@ -1,9 +1,9 @@
 import { graphql, PageProps } from "gatsby"
 import { Helmet } from "react-helmet"
 import React from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import SEO from "../components/seo"
 
 import { createProductStructuredJSON } from "../utils/createStructuredJSON"
@@ -43,7 +43,7 @@ export const Product: React.FC<PageProps<null, PageContextProduct>> = ({
   const {
     product,
   }: {
-    product: Product
+    product: ProductCustom
   } = pageContext
 
   const structuredJSON = createProductStructuredJSON(product)

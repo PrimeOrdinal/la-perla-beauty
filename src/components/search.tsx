@@ -2,7 +2,7 @@ import { Index } from "elasticlunr"
 import { Link } from "gatsby"
 import PropTypes, { InferProps } from "prop-types"
 import React, { ReactElement, useState } from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 const StyledResults = styled.ul`
   align-items: center;
@@ -13,7 +13,7 @@ const StyledResults = styled.ul`
   li {
     margin-block-end: 0;
   }
-`;
+`
 
 export const Search = (
   { searchIndex }: InferProps<typeof Search.propTypes> = {
@@ -37,11 +37,16 @@ export const Search = (
 
   return (
     <React.Fragment>
-      <input type="text" value={query} onChange={search} placeholder="Search site" />
+      <input
+        type="text"
+        value={query}
+        onChange={search}
+        placeholder="Search site"
+      />
       <StyledResults>
-        {results.map((page: Page) => (
+        {results.map((page: SearchPage) => (
           <li key={page.id}>
-            <img alt={page.title} src={page.image_url} />
+            {/* <img alt={page.title} src={page.image_url} /> */}
             <Link to={page.path}>{page.title}</Link>
           </li>
         ))}

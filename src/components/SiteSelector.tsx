@@ -1,10 +1,10 @@
 import clsx from "clsx"
 import { InferProps } from "prop-types"
 import React, { ReactElement } from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 const StyledA = styled.a`
-  background-color: ${props => (props.href ? "white" : "lightgrey")};
+  background-color: ${props => (props.href ? "white" : "grey")};
   color: ${props => (props.href ? "grey" : "white")};
   padding: 0.25rem 1rem;
   text-decoration: none;

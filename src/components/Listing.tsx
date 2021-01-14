@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react"
 import { Helmet } from "react-helmet"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 import { ProductCard } from "../components/ProductCard"
 
@@ -32,11 +32,11 @@ export const Listing = ({
   edges,
 }: {
   edges: Array<{
-    node: Product
+    node: ProductCustom
   }>
 }): ReactElement => (
   <StyledResults>
-    {edges.map(({ node }: { node: Product }, index) => {
+    {edges.map(({ node }: { node: ProductCustom }, index) => {
       const structuredJSON = createProductStructuredJSON(node)
 
       return (

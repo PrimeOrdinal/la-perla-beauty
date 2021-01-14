@@ -1,6 +1,8 @@
 import { Product, WithContext } from "schema-dts"
 
-export function createProductStructuredJSON(product) {
+export function createProductStructuredJSON(
+  product: ProductCustom
+): ProductLeaf {
   const data: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",

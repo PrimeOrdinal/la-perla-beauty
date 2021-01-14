@@ -1,26 +1,26 @@
-import clsx from "clsx";
-import { PageProps, graphql } from "gatsby";
-import React from "react";
+import clsx from "clsx"
+import { PageProps, graphql } from "gatsby"
+import React from "react"
 
-import Breadcrumb from "../components/Breadcrumb";
-import Layout from "../components/layout";
-import Listing from "../components/Listing";
-import SEO from "../components/seo";
+import Breadcrumb from "../components/Breadcrumb"
+import Layout from "../components/Layout"
+import Listing from "../components/Listing"
+import SEO from "../components/seo"
 
-import { transformBigCommerceProduct } from "../utils/transformBigCommerceProduct";
-import { transformContentstackProduct } from "../utils/transformContentstackProduct";
+import { transformBigCommerceProduct } from "../utils/transformBigCommerceProduct"
+import { transformContentstackProduct } from "../utils/transformContentstackProduct"
 
 export const ProductListings: React.FC<
   PageProps<DataTypeAllSources, PageContextTypeBreadcrumb>
 > = ({ pageContext, location, data, path }) => {
-  // console.log("pageContext", pageContext)
-  // console.log("location", location)
-  // console.log("data", data)
-  // console.log("path", path)
+  console.log("pageContext", pageContext)
+  console.log("location", location)
+  console.log("data", data)
+  console.log("path", path)
 
   const {
     breadcrumb: { crumbs },
-  } = pageContext;
+  } = pageContext
 
   return (
     <Layout>
@@ -29,18 +29,26 @@ export const ProductListings: React.FC<
       <h1>Product Listings</h1>
       <section className={clsx("Contentstack")}>
         <h1>Contentstack Product Listings</h1>
-        <Listing edges={data.allContentstackProducts.edges.map((edge) => transformContentstackProduct(edge))} />
+        <Listing
+          edges={data.allContentstackProducts.edges.map(edge =>
+            transformContentstackProduct(edge)
+          )}
+        />
       </section>
 
       <section className={clsx("BigCommerce")}>
         <h1>BigCommerce Product Listings</h1>
-        <Listing edges={data.allBigCommerceProducts.edges.map((edge) => transformBigCommerceProduct(edge))} />
+        <Listing
+          edges={data.allBigCommerceProducts.edges.map(edge =>
+            transformBigCommerceProduct(edge)
+          )}
+        />
       </section>
     </Layout>
   )
-};
+}
 
-export default ProductListings;
+export default ProductListings
 
 export const query = graphql`
   {
@@ -101,4 +109,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`
