@@ -6,6 +6,8 @@ module.exports = {
     siteUrl: process.env.SITE_URL,
   },
   plugins: [
+    `gatsby-plugin-eslint`,
+    `gatsby-plugin-lint-queries`,
     `gatsby-plugin-react-helmet`,
     // `gatsby-plugin-emotion`,
     `gatsby-plugin-theme-ui`,
