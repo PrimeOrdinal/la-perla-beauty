@@ -24,20 +24,29 @@ function SEO({
   }>
   title: string
 }): JSX.Element {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          buildTime(formatString: "YYYY-MM-DD hh:mm a z")
-          siteMetadata {
-            title
-            description
-            author
-          }
+  const data: {
+    site: {
+      buildTime: Date
+      siteMetadata: {
+        title: string
+        description: string
+        author: string
+      }
+    }
+  } = useStaticQuery(graphql`
+    query siteInformationQuery {
+      site {
+        buildTime(formatString: "YYYY-MM-DD hh:mm a z")
+        siteMetadata {
+          title
+          description
+          author
         }
       }
-    `
-  )
+    }
+  `)
+
+  const { site } = data
 
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
@@ -84,7 +93,7 @@ function SEO({
         },
         {
           name: `date`,
-          content: site.buildTime,
+          content: site.buildTime.toString(),
         },
         ...meta,
       ]}
