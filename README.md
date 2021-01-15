@@ -1,3 +1,19 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a24bb729-2aa2-4565-942a-f5c0cef6e809/deploy-status)](https://app.netlify.com/sites/la-perla-beauty/deploys)
+
+# Repository Settings
+
+`git config core.ignorecase false`
+
+# Research
+
+https://www.fourkitchens.com/blog/development/graphql-leveler-controlling-shape-query/
+https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/
+https://github.com/gatsbyjs/store.gatsbyjs.org
+
+react-icons
+gatsby-plugin-layout
+react-onclickoutside
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.com">
