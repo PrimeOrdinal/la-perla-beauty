@@ -71,7 +71,16 @@ const globalStyles = css`
 // }
 
 const Layout: FunctionComponent = ({ children }): JSX.Element => {
-  const data = useStaticQuery(graphql`
+  const data: {
+    site: {
+      buildTime: Date
+      siteMetadata: {
+        title: string
+        description: string
+        author: string
+      }
+    }
+  } = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
         siteMetadata {
