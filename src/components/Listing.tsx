@@ -4,7 +4,7 @@ import styled from "@emotion/styled"
 
 import { ProductCard } from "../components/ProductCard"
 
-import { createProductStructuredJSON } from "../utils/createStructuredJSON"
+import { createProductStructuredProductJSON } from "../utils/createStructuredJSON"
 
 const StyledResults = styled.ul`
   align-items: start;
@@ -37,7 +37,7 @@ export const Listing = ({
 }): ReactElement => (
   <StyledResults>
     {edges.map(({ node }: { node: ProductCustom }, index) => {
-      const structuredJSON = createProductStructuredJSON(node)
+      const structuredJSON = createProductStructuredProductJSON(node)
 
       return (
         <li key={index}>
