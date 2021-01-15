@@ -1,8 +1,8 @@
 import { Product, WithContext } from "schema-dts"
 
-export function createProductStructuredJSON(
+export function createProductStructuredProductJSON(
   product: ProductCustom
-): ProductLeaf {
+): Product {
   const data: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -11,9 +11,9 @@ export function createProductStructuredJSON(
     url: product?.url,
     offers: {
       "@type": "Offer",
-      priceCurrency: product?.currency,
-      price: product?.price ? `${parseFloat(product?.price)}` : 0,
-      availability: product?.availability,
+      // priceCurrency: product?.,
+      price: product?.price ? product?.price : 0,
+      // availability: product?.availability,
       seller: {
         "@type": "Organization",
         name: "TopMotoPro",
@@ -21,9 +21,9 @@ export function createProductStructuredJSON(
     },
   }
 
-  if (product?.images?.length) {
-    data.image = product?.images.map(image => image)
-  }
+  // if (product?.images?.length) {
+  //   data.image = product?.images.map(image => image)
+  // }
 
-  return JSON.stringify(data)
+  return data
 }

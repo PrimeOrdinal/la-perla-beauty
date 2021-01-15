@@ -6,7 +6,7 @@ import styled from "@emotion/styled"
 import Layout from "../components/Layout"
 import SEO from "../components/seo"
 
-import { createProductStructuredJSON } from "../utils/createStructuredJSON"
+import { createProductStructuredProductJSON } from "../utils/createStructuredJSON"
 
 const StyledProduct = styled.article`
   align-items: start;
@@ -46,7 +46,7 @@ export const Product: React.FC<PageProps<null, PageContextProduct>> = ({
     product: ProductCustom
   } = pageContext
 
-  const structuredJSON = createProductStructuredJSON(product)
+  const structuredJSON = createProductStructuredProductJSON(product)
 
   return (
     <Layout>
