@@ -10,7 +10,7 @@ import { Button as RButton } from "@rebass/preset"
 //   grid-auto-flow: column;
 // `
 
-export const Button = ({}: { someProp?: string }): ReactElement => {
+export const Button = (): ReactElement => {
   // const theme = useTheme()
 
   return (
