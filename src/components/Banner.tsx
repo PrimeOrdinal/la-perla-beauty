@@ -1,6 +1,5 @@
-import { InferProps } from "prop-types"
 import React, { ReactElement } from "react"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 
 const StyledBanner = styled.div`
   background-color: #efeee9;
@@ -9,11 +8,9 @@ const StyledBanner = styled.div`
   grid-auto-flow: column;
 `
 
-export const Banner = ({}: InferProps<
-  typeof Banner.propTypes
-> = {}): ReactElement => {
+export const Banner = (): ReactElement => {
   return (
-    <StyledBanner className="banner">
+    <StyledBanner>
       <a href="https://laperla.com">Lorem ipsum dolor sit amet</a>
     </StyledBanner>
   )

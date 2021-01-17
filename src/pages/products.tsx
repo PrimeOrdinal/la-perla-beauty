@@ -5,12 +5,12 @@ import React from "react"
 import Breadcrumb from "../components/Breadcrumb"
 import Layout from "../components/Layout"
 import Listing from "../components/Listing"
-import SEO from "../components/seo"
+import SEO from "../components/SEO"
 
-import { transformBigCommerceProduct } from "../utils/transformBigCommerceProduct"
-import { transformContentstackProduct } from "../utils/transformContentstackProduct"
+import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
+import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
 
-export const ProductListings: React.FC<
+export const Products: React.FC<
   PageProps<DataTypeAllSources, PageContextTypeBreadcrumb>
 > = ({ pageContext, location, data, path }) => {
   console.log("pageContext", pageContext)
@@ -30,25 +30,21 @@ export const ProductListings: React.FC<
       <section className={clsx("Contentstack")}>
         <h1>Contentstack Product Listings</h1>
         <Listing
-          edges={data.allContentstackProducts.edges.map(edge =>
-            transformContentstackProduct(edge)
-          )}
+          edges={data.allContentstackProducts.edges.map(({ node }) => ({ node: standardiseContentstackProduct(node)}))}
         />
       </section>
 
       <section className={clsx("BigCommerce")}>
         <h1>BigCommerce Product Listings</h1>
         <Listing
-          edges={data.allBigCommerceProducts.edges.map(edge =>
-            transformBigCommerceProduct(edge)
-          )}
+          edges={data.allBigCommerceProducts.edges.map(({ node }) => ({ node: standardiseBigCommerceProduct(node)}))}
         />
       </section>
     </Layout>
   )
 }
 
-export default ProductListings
+export default Products
 
 export const query = graphql`
   {

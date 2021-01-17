@@ -6,6 +6,8 @@
 
 # Research
 
+https://github.com/system-ui/theme-specification
+https://styled-system.com/
 https://www.fourkitchens.com/blog/development/graphql-leveler-controlling-shape-query/
 https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/
 https://github.com/gatsbyjs/store.gatsbyjs.org

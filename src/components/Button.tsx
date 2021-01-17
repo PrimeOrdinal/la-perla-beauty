@@ -1,23 +1,17 @@
-// import { useTheme } from "@emotion/react"
-// import styled from "@emotion/styled"
-import React, { ReactElement } from "react"
-import { Button as RButton } from "@rebass/preset"
+import styled from 'styled-components'
+import { space, layout, color, compose } from 'styled-system'
 
-// const StyledButton = styled.div`
-//   background-color: #efeee9;
-//   display: grid;
-//   text-align: center;
-//   grid-auto-flow: column;
-// `
+const ButtonBase = styled.button`
+  background-color: ${props => props.theme.buttons.primary.bg};
+  padding: ${props => props.theme.space[4]};
+`
 
-export const Button = (): ReactElement => {
-  // const theme = useTheme()
-
-  return (
-    <RButton variant="primary" mr={2}>
-      Button
-    </RButton>
+const Button = styled(ButtonBase)(
+  compose(
+    space,
+    layout,
+    color
   )
-}
+)
 
 export default Button

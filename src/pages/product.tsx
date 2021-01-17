@@ -1,12 +1,12 @@
+import type { Product } from "schema-dts"
+
 import { graphql, PageProps } from "gatsby"
 import { Helmet } from "react-helmet"
 import React from "react"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 
 import Layout from "../components/Layout"
-import SEO from "../components/seo"
-
-import { createProductStructuredProductJSON } from "../utils/createStructuredJSON"
+import SEO from "../components/SEO"
 
 const StyledProduct = styled.article`
   align-items: start;
@@ -37,73 +37,77 @@ const StyledProduct = styled.article`
   }
 `
 
-export const Product: React.FC<PageProps<null, PageContextProduct>> = ({
+type PageContextProduct = PageContextTypeBreadcrumb & {
+  product: Product
+}
+
+export const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
   pageContext,
 }) => {
   const {
     product,
   }: {
-    product: ProductCustom
+    product: Product
   } = pageContext
 
-  const structuredJSON = createProductStructuredProductJSON(product)
+  const name = product?.name as string
 
   return (
     <Layout>
-      <SEO title={`Product page for ${product?.title}`} />
+      <SEO title={`Product page for ${name}`} />
       <StyledProduct>
         <section id="images">
-          <img alt={product?.title} src="https://via.placeholder.com/250" />
+          <img alt={name} src="https://via.placeholder.com/250" />
           <ul>
             <li>
-              <img alt={product?.title} src="https://via.placeholder.com/250" />
+              <img alt={name} src="https://via.placeholder.com/250" />
             </li>
             <li>
-              <img alt={product?.title} src="https://via.placeholder.com/250" />
+              <img alt={name} src="https://via.placeholder.com/250" />
             </li>
             <li>
-              <img alt={product?.title} src="https://via.placeholder.com/250" />
+              <img alt={name} src="https://via.placeholder.com/250" />
             </li>
             <li>
-              <img alt={product?.title} src="https://via.placeholder.com/250" />
+              <img alt={name} src="https://via.placeholder.com/250" />
             </li>
             <li>
-              <img alt={product?.title} src="https://via.placeholder.com/250" />
+              <img alt={name} src="https://via.placeholder.com/250" />
             </li>
           </ul>
         </section>
         <section id="sidebar">
           <header>
-            <h1>{product?.title}</h1>
+            <h1>{name}</h1>
             <div
               dangerouslySetInnerHTML={{
-                __html: product?.description,
+                __html: (product?.description as string),
               }}
             />
           </header>
           <dl>
             <dt>ID</dt>
-            <dd>{product?.id}</dd>
-            <dt>Price</dt>
+            <dd>{product?.["id"]}</dd>
+            <dt>SKU</dt>
+            <dd>{product?.sku}</dd>
+            <dt>GTIN</dt>
+            <dd>{product?.gtin}</dd>
+            <dt>MPN</dt>
+            <dd>{product?.mpn}</dd>
+            {/* <dt>Price</dt>
             <dd>{product?.price}</dd>
             <dt>Calculated Price</dt>
             <dd>{product?.calculated_price}</dd>
             <dt>Availability</dt>
             <dd>{product?.availability}</dd>
-            <dt>GTIN</dt>
-            <dd>{product?.gtin}</dd>
-            <dt>MPN</dt>
-            <dd>{product?.mpn}</dd>
             <dt>Sale Price</dt>
             <dd>{product?.sale_price}</dd>
-            <dt>SKU</dt>
-            <dd>{product?.sku}</dd>
             <dt>UPC</dt>
-            <dd>{product?.upc}</dd>
+            <dd>{product?.upc}</dd> */}
           </dl>
           <form>
-            <button data-id={product?.id}>Add to bag</button>
-            <button data-id={product?.id}>Add to wishlist</button>
+            <button data-id={product?.["id"]}>Add to bag</button>
+            <button data-id={product?.["id"]}>Add to wishlist</button>
           </form>
         </section>
         {/* {product?.categories &&
@@ -112,13 +116,13 @@ export const Product: React.FC<PageProps<null, PageContextProduct>> = ({
           })} */}
       </StyledProduct>
       <Helmet>
-        <script type="application/ld+json">{structuredJSON}</script>
+        <script type="application/ld+json">{JSON.stringify(product)}</script>
       </Helmet>
     </Layout>
   )
 }
 
-export default Product
+export default ProductPage
 
 export const query = graphql`
   {
@@ -136,17 +140,16 @@ export const query = graphql`
           id
           price
           sku
-          title: name
+          name
         }
       }
     }
     allContentstackProducts {
       edges {
         node {
-          id
-          product_id
+          id: product_id
           rich_text_editor
-          title
+          name: title
           url
         }
       }

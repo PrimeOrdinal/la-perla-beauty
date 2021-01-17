@@ -5,19 +5,30 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import { css, Global } from "@emotion/react"
-import styled from "@emotion/styled"
-// import theme from '@rebass/preset'
 import { useStaticQuery, graphql } from "gatsby"
 import React, { FunctionComponent } from "react"
-// import { Button } from 'rebass'
-import { ThemeProvider } from "theme-ui"
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
+// import type {} from 'styled-components/cssprop'
+import { color } from "styled-system"
 
-import theme from "../theme"
+import { theme } from "../theme"
 
 import Banner from "./Banner"
+import Button from "./Button"
+import Footer from "./Footer"
 import Header from "./Header"
 import SiteSelector from "./SiteSelector"
+
+const Box = styled.div`
+  ${color}
+`
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: ${props => (props.theme === "purple" ? "purple" : "white")};
+    margin: 0;
+  }
+`
 
 const StyledSiteContainer = styled.div`
   display: flex;
@@ -33,42 +44,6 @@ const StyledPageContainer = styled.div`
 const StyledMain = styled.div`
   flex-basis: 100%;
 `
-
-const StyledFooter = styled.div`
-  background-color: lightgrey;
-  display: grid;
-  padding: 1rem;
-  place-items: center;
-`
-
-// Create styles for the Global component
-const globalStyles = css`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  html,
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-      "Roboto Light", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-      "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-  }
-  body {
-    background-color: red;
-  }
-`
-
-// function SomeText (props) {
-//   const theme = useTheme()
-//   return (
-//     <section
-//       css={{ backgroundColor: theme.colors.primary, color: theme.colors.gray }}
-//       {...props}
-//     />
-//   )
-// }
 
 const Layout: FunctionComponent = ({ children }): JSX.Element => {
   const data: {
@@ -92,18 +67,27 @@ const Layout: FunctionComponent = ({ children }): JSX.Element => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Global styles={globalStyles} />
-      {/* <SomeText>some text</SomeText> */}
       <StyledSiteContainer>
+        <GlobalStyle theme={theme} />
         <SiteSelector />
         <Banner />
-        <Header siteTitle={data.site.siteMetadata?.title || `Title`} active />
+        <Button>
+          Default
+        </Button>
+        <Button color="#fff" bg="orange" padding={1}>
+          Override
+        </Button>
+        <Box color="black" bg="blue">
+          Blue Box
+        </Box>
+        <Box color="black" bg="primary">
+          Primary Theme Colour Box
+        </Box>
+        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
         <StyledPageContainer>
           <StyledMain>{children}</StyledMain>
         </StyledPageContainer>
-        <StyledFooter>
-          <span>© {new Date().getFullYear()} La Perla Beauty</span>
-        </StyledFooter>
+        <Footer />
       </StyledSiteContainer>
     </ThemeProvider>
   )

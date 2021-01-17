@@ -1,8 +1,8 @@
+// import type { Dispatch, SetStateAction } from "react"
 import { Index } from "elasticlunr"
 import { Link } from "gatsby"
-import PropTypes, { InferProps } from "prop-types"
 import React, { ReactElement, useState } from "react"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 
 const StyledResults = styled.ul`
   align-items: center;
@@ -16,13 +16,12 @@ const StyledResults = styled.ul`
 `
 
 export const Search = (
-  { searchIndex }: InferProps<typeof Search.propTypes> = {
-    searchIndex: {
-      index: {},
-    },
+  { searchIndex }: {
+    searchIndex: Record<string, unknown>
   }
 ): ReactElement => {
   const [query, setQuery] = useState("")
+  // const [results, setResults]: [results: SearchResult[], setResults: Dispatch<SetStateAction<SearchResult[]>>] = useState([])
   const [results, setResults] = useState([])
   const [index] = useState(Index.load(searchIndex))
 
@@ -44,7 +43,7 @@ export const Search = (
         placeholder="Search site"
       />
       <StyledResults>
-        {results.map((page: SearchPage) => (
+        {(results as SearchResult[]).map((page) => (
           <li key={page.id}>
             {/* <img alt={page.title} src={page.image_url} /> */}
             <Link to={page.path}>{page.title}</Link>
@@ -53,10 +52,6 @@ export const Search = (
       </StyledResults>
     </React.Fragment>
   )
-}
-
-Search.propTypes = {
-  searchIndex: PropTypes.object,
 }
 
 export default Search

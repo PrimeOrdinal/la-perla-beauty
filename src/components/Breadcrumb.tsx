@@ -1,6 +1,6 @@
 import { Breadcrumb as GatsbyPluginBreadcrumb } from "gatsby-plugin-breadcrumb"
 import React, { ReactElement } from "react"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 
 import "gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css"
 

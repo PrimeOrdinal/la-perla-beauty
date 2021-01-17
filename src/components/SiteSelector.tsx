@@ -1,7 +1,6 @@
 import clsx from "clsx"
-import { InferProps } from "prop-types"
 import React, { ReactElement } from "react"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 
 const StyledA = styled.a`
   background-color: ${props => (props.href ? "white" : "grey")};
@@ -17,9 +16,7 @@ const StyledNav = styled.nav`
   grid-auto-flow: column;
 `
 
-export const SiteSelector = ({}: InferProps<
-  typeof SiteSelector.propTypes
-> = {}): ReactElement => {
+export const SiteSelector = (): ReactElement => {
   return (
     <StyledNav className="site-selector">
       <StyledA
@@ -38,7 +35,5 @@ export const SiteSelector = ({}: InferProps<
     </StyledNav>
   )
 }
-
-SiteSelector.propTypes = {}
 
 export default SiteSelector

@@ -1,5 +1,10 @@
+import type { Offer, Product } from "schema-dts"
+
+import getSymbolFromCurrency from "currency-symbol-map"
 import React, { ReactElement } from "react"
-import styled from "@emotion/styled"
+import styled from "styled-components"
+
+import { isSimpleType } from "../utils/isSimpleType"
 
 const StyledProductCard = styled.article`
   background-color: #eeeeee;
@@ -16,17 +21,59 @@ const StyledProductCard = styled.article`
 export const ProductCard = ({
   product,
 }: {
-  product: ProductCustom
-}): ReactElement => (
-  <StyledProductCard data-id={product.id}>
-    <img alt={product.title} src="https://via.placeholder.com/250" />
-    <div>
-      <a href={product.url}>
-        <h1>{product.title}</h1>
+  product: Product
+}): ReactElement => {
+  const offer = product.offers as Offer
+
+  return (
+    <StyledProductCard
+      data-id={product["@id"]}
+      itemScope
+      itemType="https://schema.org/Product"
+    >
+      <img
+        alt={isSimpleType(product.name)}
+        itemProp="image"
+        src="https://via.placeholder.com/250"
+      />
+      <a itemProp="url" href={isSimpleType(product.url)}>
+        <span itemProp="name">{product.brand}</span>
       </a>
-      <span>€{product.price}</span>
-    </div>
-  </StyledProductCard>
-)
+      <div
+        itemProp="aggregateRating"
+        itemScope
+        itemType="https://schema.org/AggregateRating"
+      >
+        <span itemProp="ratingValue">87</span>
+        out of <span itemProp="bestRating">100</span>
+        based on <span itemProp="ratingCount">24</span> user ratings
+      </div>
+      <div
+        itemProp="offers"
+        itemScope
+        itemType="https://schema.org/AggregateOffer"
+      >
+        {offer && (
+          <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
+            {/* <span
+              itemProp="acceptedPaymentMethod"
+              content={offer?.acceptedPaymentMethod}
+            >
+              {offer?.acceptedPaymentMethod}
+            </span> */}
+            <span itemProp="priceCurrency" content={offer?.priceCurrency as string}>
+              {getSymbolFromCurrency(offer?.priceCurrency)}
+            </span>
+            <span itemProp="price" content={offer?.price as number}>
+              1,000.00
+            </span>
+            <link itemProp="availability" href="https://schema.org/InStock" />
+            In stock
+          </div>
+        )}
+      </div>
+    </StyledProductCard>
+  )
+}
 
 export default ProductCard

@@ -1,11 +1,9 @@
-import styled from "@emotion/styled"
 import React from "react"
-import { Button } from "rebass"
-// import { jsx } from 'theme-ui'
+import styled from "styled-components"
 
 // import Button from "../components/Button"
 import Layout from "../components/Layout"
-import SEO from "../components/seo"
+import SEO from "../components/SEO"
 
 import Logo from "../images/logo.svg"
 
@@ -52,19 +50,6 @@ const IndexPage = (): JSX.Element => (
   <Layout>
     <SEO title="Home" />
     <h1>Homepage</h1>
-    <Button variant="primary" mr={2}>
-      Primary
-    </Button>
-    <Button variant="secondary">Secondary</Button>
-    <div
-      sx={{
-        fontWeight: "bold",
-        fontSize: 4, // picks up value from `theme.fontSizes[4]`
-        color: "primary", // picks up value from `theme.colors.primary`
-      }}
-    >
-      Hello
-    </div>
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Logo />
     </div>

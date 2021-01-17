@@ -1,7 +1,7 @@
 import { Product, WithContext } from "schema-dts"
 
-export function createProductStructuredProductJSON(
-  product: ProductCustom
+export function standardiseContentstackProduct(
+  product: ContentstackProduct
 ): Product {
   const data: WithContext<Product> = {
     "@context": "https://schema.org",
@@ -9,16 +9,6 @@ export function createProductStructuredProductJSON(
     name: product?.title,
     description: product?.description,
     url: product?.url,
-    offers: {
-      "@type": "Offer",
-      // priceCurrency: product?.,
-      price: product?.price ? product?.price : 0,
-      // availability: product?.availability,
-      seller: {
-        "@type": "Organization",
-        name: "TopMotoPro",
-      },
-    },
   }
 
   // if (product?.images?.length) {

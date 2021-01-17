@@ -1,40 +1,12 @@
-import React, { ReactElement } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import PropTypes, { InferProps } from "prop-types"
-import styled from "@emotion/styled"
-import { Styled } from "theme-ui"
+import React, { ReactElement } from "react"
+import styled from "styled-components"
 
 import { useHover } from "../hooks/useHover"
 
 import Logo from "../images/logo.svg"
 
 import Search from "./Search"
-
-type CategoryEdgeProps = {
-  node: {
-    custom_url: {
-      url: string
-    }
-    description: string
-    id: string
-    is_visible: boolean
-    meta_description: string
-    meta_keywords: string[]
-    name: string
-    page_title: string
-    parent_id: string
-    search_keywords: string[]
-  }
-}
-
-type HeaderData = {
-  allBigCommerceCategories: {
-    edges: CategoryEdgeProps[]
-  }
-  siteSearchIndex: {
-    index: Record<string, unknown>
-  }
-}
 
 const StyledHeader = styled.header`
   background-color: #ffffff;
@@ -106,13 +78,23 @@ const StyledSearchContainer = styled.div`
   padding: 1rem;
 `
 
+type queryHeader = {
+  allBigCommerceCategories: {
+    edges: CategoryEdgeProps[]
+  }
+  siteSearchIndex: {
+    index: Record<string, unknown>
+  }
+}
+
 export const Header = (
-  { siteTitle }: InferProps<typeof Header.propTypes> = {
-    active: false,
+  { siteTitle }: {
+    siteTitle: string
+  } = {
     siteTitle: "Site Title",
   }
 ): ReactElement => {
-  const data: HeaderData = useStaticQuery(graphql`
+  const data: queryHeader = useStaticQuery(graphql`
     query Header {
       allBigCommerceCategories {
         edges {
@@ -142,7 +124,6 @@ export const Header = (
 
   return (
     <StyledHeader ref={hoverRef}>
-      <Styled.h2 as="div">Hello!</Styled.h2>
       <StyledLogoLink
         id="header-logo"
         title={`Go back to the homepage for ${siteTitle}`}
@@ -205,11 +186,6 @@ export const Header = (
       </StyledSearchContainer>
     </StyledHeader>
   )
-}
-
-Header.propTypes = {
-  active: PropTypes.bool,
-  siteTitle: PropTypes.string,
 }
 
 export default Header

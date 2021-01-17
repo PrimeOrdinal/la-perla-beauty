@@ -2,7 +2,11 @@ import { PageProps } from "gatsby"
 import React from "react"
 
 import Layout from "../components/Layout"
-import SEO from "../components/seo"
+import SEO from "../components/SEO"
+
+type PageContextCategory = PageContextTypeBreadcrumb & {
+  category: Category
+}
 
 export const Category: React.FC<PageProps<null, PageContextCategory>> = ({
   pageContext,

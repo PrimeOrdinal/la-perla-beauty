@@ -1,22 +1,23 @@
+// import { linkToExecutor } from `@graphql-tools/links`
+// import { wrapSchema } from `@graphql-tools/wrap`
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `La Perla Beauty`,
+    description: `Lorem ipsum dolor sit amet`,
+    author: `@laperlabeauty`,
     siteUrl: process.env.SITE_URL,
   },
   plugins: [
     `gatsby-plugin-eslint`,
     `gatsby-plugin-lint-queries`,
     `gatsby-plugin-react-helmet`,
-    // `gatsby-plugin-emotion`,
-    `gatsby-plugin-theme-ui`,
-    // {
-    //   resolve: `gatsby-plugin-styled-components`,
-    //   options: {
-    //     // Add any options here
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -102,33 +103,24 @@ module.exports = {
 
         // Optional: Specify true if you want to download all your contentstack images locally
         downloadImages: false,
+
+        // transformSchema: ({
+        //   schema,
+        //   link,
+        //   resolver,
+        //   defaultTransforms,
+        //   options,
+        // }) => {
+        //   return wrapSchema(
+        //     {
+        //       schema,
+        //       executor: linkToExecutor(link),
+        //     },
+        //     defaultTransforms
+        //   )
+        // }
       },
     },
-    // {
-    //   resolve: "gatsby-source-graphql",
-    //   options: {
-    //     typeName: "ContentstackGraphQLAPI",
-    //     fieldName: "ContentstackGraphQL",
-    //     createLink: () =>
-    //       createHttpLink({
-    //         uri: `https://eu-graphql.contentstack.com/stacks/${process.env.CONTENTSTACK_API_KEY}?environment=${process.env.CONTENTSTACK_ENVIRONMENT}`,
-    //         headers: {
-    //           Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
-    //           CONTENTSTACK_DELIVERY_TOKEN
-              
-    //         },
-    //         fetch,
-    //       }),
-    //   },
-    // },
-    // {
-    //   resolve: "gatsby-source-graphql",
-    //   options: {
-    //     typeName: "BigCommerceGraphQLAPI",
-    //     fieldName: "BigCommerceGraphQL",
-    //     url: `https://store-${process.env.BIGCOMMERCE_STORE_HASH}.mybigcommerce.com/graphql`,
-    //   },
-    // },
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {

@@ -2,22 +2,27 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
-    "lib": ["esnext", "dom"],
+    "lib": ["dom", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
+    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "dist",
+    "paths": {
+      "*": ["node_modules/@types/*", "types/*"]
+    },
     "strict": true,
     "target": "es2020",
-    "typeRoots": ["types"]
+    "typeRoots": ["types", "node_modules/@types"]
   },
-  "include": ["src/**/*.*", "index.d.ts"],
-  "exclude": []
+  "include": ["src/**/*.*", "types/**/*.*"]
+  // "exclude": ["node_modules", "types"]
 }

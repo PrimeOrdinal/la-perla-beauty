@@ -1,10 +1,10 @@
+import type { Product } from "schema-dts"
+
 import React, { ReactElement } from "react"
 import { Helmet } from "react-helmet"
-import styled from "@emotion/styled"
+import styled from "styled-components"
 
 import { ProductCard } from "../components/ProductCard"
-
-import { createProductStructuredProductJSON } from "../utils/createStructuredJSON"
 
 const StyledResults = styled.ul`
   align-items: start;
@@ -32,22 +32,18 @@ export const Listing = ({
   edges,
 }: {
   edges: Array<{
-    node: ProductCustom
+    node: Product
   }>
 }): ReactElement => (
   <StyledResults>
-    {edges.map(({ node }: { node: ProductCustom }, index) => {
-      const structuredJSON = createProductStructuredProductJSON(node)
-
-      return (
-        <li key={index}>
-          <ProductCard product={node} />
-          <Helmet>
-            <script type="application/ld+json">{structuredJSON}</script>
-          </Helmet>
-        </li>
-      )
-    })}
+    {edges.map(({ node: product }: { node: Product }, index) => (
+      <li key={index}>
+        <ProductCard product={product} />
+        <Helmet>
+          <script type="application/ld+json">{JSON.stringify(product)}</script>
+        </Helmet>
+      </li>
+    ))}
   </StyledResults>
 )
 
