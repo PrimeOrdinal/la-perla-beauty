@@ -33,7 +33,7 @@ export function SEO({
       }
     }
   } = useStaticQuery(graphql`
-    query siteInformationQuery {
+    query SiteInformationQuery {
       site {
         buildTime(formatString: "YYYY-MM-DD hh:mm a z")
         siteMetadata {
