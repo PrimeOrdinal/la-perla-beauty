@@ -11,5 +11,3 @@ type PageContextTypeBreadcrumb = {
     hiddenCrumbs?: string[]
   }
 }
-
-
