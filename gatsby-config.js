@@ -13,6 +13,13 @@ module.exports = {
     `gatsby-plugin-lint-queries`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: "gatsby-plugin-i18n",
+      options: {
+        langKeyDefault: "en",
+        useLangKeyLayout: false,
+      },
+    },
+    {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         // Add any options here
