@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ReactElement } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
@@ -21,7 +21,7 @@ type queryImage = {
   }
 }
 
-const Image = () => {
+const Image = (): ReactElement => {
   const data: queryImage = useStaticQuery(graphql`
     query PlaceholderImageQuery {
       placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {

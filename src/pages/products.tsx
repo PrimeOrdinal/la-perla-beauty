@@ -12,11 +12,16 @@ import { standardiseContentstackProduct } from "../utils/standardiseContentstack
 
 export const Products: React.FC<
   PageProps<DataTypeAllSources, PageContextTypeBreadcrumb>
-> = ({ pageContext, location, data, path }) => {
-  console.log("pageContext", pageContext)
-  console.log("location", location)
-  console.log("data", data)
-  console.log("path", path)
+> = ({
+  data,
+  // location,
+  pageContext,
+  // path
+}) => {
+  // console.log("pageContext", pageContext)
+  // console.log("location", location)
+  // console.log("data", data)
+  // console.log("path", path)
 
   const {
     breadcrumb: { crumbs },
@@ -30,14 +35,18 @@ export const Products: React.FC<
       <section className={clsx("Contentstack")}>
         <h1>Contentstack Product Listings</h1>
         <Listing
-          edges={data.allContentstackProducts.edges.map(({ node }) => ({ node: standardiseContentstackProduct(node)}))}
+          edges={data.allContentstackProducts.edges.map(({ node }) => ({
+            node: standardiseContentstackProduct(node),
+          }))}
         />
       </section>
 
       <section className={clsx("BigCommerce")}>
         <h1>BigCommerce Product Listings</h1>
         <Listing
-          edges={data.allBigCommerceProducts.edges.map(({ node }) => ({ node: standardiseBigCommerceProduct(node)}))}
+          edges={data.allBigCommerceProducts.edges.map(({ node }) => ({
+            node: standardiseBigCommerceProduct(node),
+          }))}
         />
       </section>
     </Layout>

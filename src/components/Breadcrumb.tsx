@@ -18,9 +18,16 @@ const StyledGatsbyPluginBreadcrumb = styled(GatsbyPluginBreadcrumb)`
   }
 `
 
-export const Breadcrumb = (
-  props
-): ReactElement => {
+export const Breadcrumb = (props: {
+  crumbs: {
+    pathname: "string"
+    location: Record<string, unknown>
+  }[]
+  // crumbLabel: string
+  // crumbSeparator: string
+  // location: string
+  // title: string
+}): ReactElement => {
   // return (
   //   <StyledOrderedList itemScope itemType="https://schema.org/BreadcrumbList">
   //     <li

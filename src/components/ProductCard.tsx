@@ -4,8 +4,6 @@ import getSymbolFromCurrency from "currency-symbol-map"
 import React, { ReactElement } from "react"
 import styled from "styled-components"
 
-import { isSimpleType } from "../utils/isSimpleType"
-
 const StyledProductCard = styled.article`
   background-color: #eeeeee;
 
@@ -32,11 +30,11 @@ export const ProductCard = ({
       itemType="https://schema.org/Product"
     >
       <img
-        alt={isSimpleType(product.name)}
+        alt={product.name as string}
         itemProp="image"
         src="https://via.placeholder.com/250"
       />
-      <a itemProp="url" href={isSimpleType(product.url)}>
+      <a itemProp="url" href={product.url as string}>
         <span itemProp="name">{product.brand}</span>
       </a>
       <div
@@ -61,7 +59,10 @@ export const ProductCard = ({
             >
               {offer?.acceptedPaymentMethod}
             </span> */}
-            <span itemProp="priceCurrency" content={offer?.priceCurrency as string}>
+            <span
+              itemProp="priceCurrency"
+              content={offer?.priceCurrency as string}
+            >
               {getSymbolFromCurrency(offer?.priceCurrency)}
             </span>
             <span itemProp="price" content={offer?.price as number}>

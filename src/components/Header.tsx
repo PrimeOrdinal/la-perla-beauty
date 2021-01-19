@@ -88,7 +88,9 @@ type queryHeader = {
 }
 
 export const Header = (
-  { siteTitle }: {
+  {
+    siteTitle,
+  }: {
     siteTitle: string
   } = {
     siteTitle: "Site Title",

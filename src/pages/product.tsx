@@ -81,7 +81,7 @@ export const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             <h1>{name}</h1>
             <div
               dangerouslySetInnerHTML={{
-                __html: (product?.description as string),
+                __html: product?.description as string,
               }}
             />
           </header>

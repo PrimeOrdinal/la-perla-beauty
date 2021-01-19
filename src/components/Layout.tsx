@@ -71,9 +71,7 @@ const Layout: FunctionComponent = ({ children }): JSX.Element => {
         <GlobalStyle theme={theme} />
         <SiteSelector />
         <Banner />
-        <Button>
-          Default
-        </Button>
+        <Button>Default</Button>
         <Button color="#fff" bg="orange" padding={1}>
           Override
         </Button>

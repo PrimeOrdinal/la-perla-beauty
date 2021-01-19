@@ -15,11 +15,11 @@ const StyledResults = styled.ul`
   }
 `
 
-export const Search = (
-  { searchIndex }: {
-    searchIndex: Record<string, unknown>
-  }
-): ReactElement => {
+export const Search = ({
+  searchIndex,
+}: {
+  searchIndex: Record<string, unknown>
+}): ReactElement => {
   const [query, setQuery] = useState("")
   // const [results, setResults]: [results: SearchResult[], setResults: Dispatch<SetStateAction<SearchResult[]>>] = useState([])
   const [results, setResults] = useState([])
@@ -43,7 +43,7 @@ export const Search = (
         placeholder="Search site"
       />
       <StyledResults>
-        {(results as SearchResult[]).map((page) => (
+        {(results as SearchResult[]).map(page => (
           <li key={page.id}>
             {/* <img alt={page.title} src={page.image_url} /> */}
             <Link to={page.path}>{page.title}</Link>
