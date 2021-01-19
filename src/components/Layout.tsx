@@ -7,11 +7,12 @@
 
 import { useStaticQuery, graphql } from "gatsby"
 import React, { FunctionComponent } from "react"
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
+import styled, { ThemeProvider } from "styled-components"
 // import type {} from 'styled-components/cssprop'
 import { color } from "styled-system"
 
 import { theme } from "../theme"
+import { GlobalStyle } from "../styles/GlobalStyle"
 
 import Banner from "./Banner"
 import Button from "./Button"
@@ -21,13 +22,6 @@ import SiteSelector from "./SiteSelector"
 
 const Box = styled.div`
   ${color}
-`
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    color: ${props => (props.theme === "purple" ? "purple" : "white")};
-    margin: 0;
-  }
 `
 
 const StyledSiteContainer = styled.div`
