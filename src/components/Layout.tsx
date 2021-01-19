@@ -50,9 +50,9 @@ const Layout: FunctionComponent = ({ children }): JSX.Element => {
     site: {
       buildTime: Date
       siteMetadata: {
-        title: string
-        description: string
         author: string
+        description: string
+        title: string
       }
     }
   } = useStaticQuery(graphql`

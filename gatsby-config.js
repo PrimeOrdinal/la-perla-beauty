@@ -3,10 +3,10 @@
 
 module.exports = {
   siteMetadata: {
-    title: `La Perla Beauty`,
-    description: `Lorem ipsum dolor sit amet`,
-    author: `@laperlabeauty`,
+    author: process.env.SITE_AUTHOR,
+    description: process.env.SITE_DESCRIPTION,
     siteUrl: process.env.SITE_URL,
+    title: process.env.SITE_TITLE,
   },
   plugins: [
     `gatsby-plugin-eslint`,

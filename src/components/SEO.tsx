@@ -27,9 +27,9 @@ export function SEO({
     site: {
       buildTime: Date
       siteMetadata: {
-        title: string
-        description: string
         author: string
+        description: string
+        title: string
       }
     }
   } = useStaticQuery(graphql`
@@ -37,9 +37,9 @@ export function SEO({
       site {
         buildTime(formatString: "YYYY-MM-DD hh:mm a z")
         siteMetadata {
-          title
-          description
           author
+          description
+          title
         }
       }
     }
