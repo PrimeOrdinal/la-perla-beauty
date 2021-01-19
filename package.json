@@ -1,158 +1,161 @@
 {
-	"author": {
-		"email": "karl.podger@primeordinal.com",
-		"name": "Karl Podger",
-		"url": "https://www.primeordinal.com"
-	},
-	"bugs": {
-		"url": "https://github.com/gatsbyjs/gatsby/issues"
-	},
-	"dependencies": {
-		"@date-io/dayjs": "2.10.6",
-		"@gatsby-contrib/gatsby-plugin-elasticlunr-search": "2.4.2",
-		"@mapbox/geo-viewport": "0.4.1",
-		"@react-icons/all-files": "4.1.0",
-		"@styled-system/css": "5.1.5",
-		"@turf/turf": "6.2.0",
-		"apollo-boost": "0.4.9",
-		"clsx": "1.1.1",
-		"currency-symbol-map": "4.0.4",
-		"dayjs": "1.10.3",
-		"formik": "2.2.6",
-		"gatsby": "2.30.3",
-		"gatsby-image": "2.9.0",
-		"gatsby-image-background-slider": "0.0.4",
-		"gatsby-plugin-breadcrumb": "11.0.0",
-		"gatsby-plugin-emotion": "5.2.0",
-		"gatsby-plugin-feed": "2.11.0",
-		"gatsby-plugin-google-tagmanager": "2.9.0",
-		"gatsby-plugin-i18n": "1.0.1",
-		"gatsby-plugin-manifest": "2.10.0",
-		"gatsby-plugin-offline": "3.8.0",
-		"gatsby-plugin-purgecss": "5.0.0",
-		"gatsby-plugin-react-helmet": "3.8.0",
-		"gatsby-plugin-react-svg": "3.0.0",
-		"gatsby-plugin-robots-txt": "1.5.5",
-		"gatsby-plugin-sharp": "2.12.2",
-		"gatsby-plugin-sitemap": "2.10.0",
-		"gatsby-plugin-styled-components": "3.8.0",
-		"gatsby-source-bigcommerce": "0.3.7",
-		"gatsby-source-contentstack": "2.3.1",
-		"gatsby-source-filesystem": "2.9.1",
-		"gatsby-source-graphql": "2.12.0",
-		"gatsby-transformer-sharp": "2.10.1",
-		"graphql-iso-date": "3.6.1",
-		"react": "17.0.1",
-		"react-apollo": "3.1.5",
-		"react-dom": "17.0.1",
-		"react-helmet": "6.1.0",
-		"schema-dts": "0.8.2",
-		"styled-components": "5.2.1",
-		"styled-system": "5.1.5",
-		"svg-react-loader": "0.4.6",
-		"uuid": "8.3.2"
-	},
-	"description": "Website for beautybylaperla.com",
-	"devDependencies": {
-		"@babel/core": "7.12.10",
-		"@babel/plugin-proposal-optional-chaining": "7.12.7",
-		"@babel/preset-typescript": "7.12.7",
-		"@mapbox/togeojson": "0.16.0",
-		"@types/jest": "26.0.20",
-		"@types/node": "14.14.21",
-		"@types/prop-types": "15.7.3",
-		"@types/react": "17.0.0",
-		"@types/react-dom": "17.0.0",
-		"@types/react-helmet": "6.1.0",
-		"@types/react-test-renderer": "17.0.0",
-		"@types/request": "2.48.5",
-		"@typescript-eslint/eslint-plugin": "^4.14.0",
-		"@typescript-eslint/parser": "^4.14.0",
-		"babel-jest": "26.6.3",
-		"babel-plugin-import": "1.13.3",
-		"babel-plugin-styled-components": "1.12.0",
-		"babel-preset-gatsby": "0.10.0",
-		"docz": "2.3.1",
-		"eslint": "7.18.0",
-		"eslint-config-prettier": "^7.2.0",
-		"eslint-import-resolver-typescript": "2.3.0",
-		"eslint-plugin-formatjs": "2.10.3",
-		"eslint-plugin-graphql": "4.0.0",
-		"eslint-plugin-import": "2.22.1",
-		"eslint-plugin-json": "2.1.2",
-		"eslint-plugin-jsx-a11y": "6.4.1",
-		"eslint-plugin-prettier": "3.3.1",
-		"eslint-plugin-react": "7.22.0",
-		"gatsby-plugin-eslint": "2.0.8",
-		"gatsby-plugin-lint-queries": "0.0.3",
-		"gatsby-source-modular-graphql": "^1.1.0",
-		"graphql-schema-linter": "2.0.1",
-		"husky": "4.3.8",
-		"jest": "26.6.3",
-		"lint-staged": "10.5.3",
-		"prettier": "2.2.1",
-		"react-test-renderer": "17.0.1",
-		"stylelint": "13.8.0",
-		"stylelint-config-prettier": "^8.0.2",
-		"stylelint-config-recommended": "3.0.0",
-		"stylelint-config-styled-components": "0.1.1",
-		"stylelint-processor-styled-components": "1.10.0",
-		"ts-jest": "26.4.4",
-		"typescript": "4.1.3"
-	},
-	"graphql-schema-linter": {
-		"rules": [
-			"enum-values-sorted-alphabetically"
-		]
-	},
-	"homepage": "https://github.com/karlito-who-else/williamslynch.co.uk#readme",
-	"husky": {
-		"hooks": {
-			"postinstall": "husky install",
-			"pre-commit": "lint-staged",
-			"pre-push": "npm run-script test"
-		}
-	},
-	"keywords": [
-		"gatsby"
-	],
-	"license": "UNLICENSE",
-	"lint-staged": {
-		"*.{cjs,js,mjs,ts,tsx}": [
-			"npm run-script lint:css",
-			"git add"
-		],
-		"*.{cjs,js,json,mjs,ts,tsx}": [
-			"npm run-script lint:js",
-			"git add"
-		],
-		"*.graphql": [
-			"npm run-script lint:graphql",
-			"git add"
-		]
-	},
-	"name": "la-perla-beauty",
-	"private": true,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/gatsbyjs/gatsby-starter-default"
-	},
-	"scripts": {
-		"build": "gatsby build",
-		"clean": "gatsby clean",
-		"develop": "gatsby develop -p 8000",
-		"docz:dev": "docz dev",
-		"docz:build": "docz build",
-		"docz:serve": "docz build && docz serve",
-		"format": "prettier --write \"**/*.{cjs,js,json,mjs,ts,tsx}\"",
-		"lint:css": "stylelint './src/**/*.{cjs,js,mjs,ts,tsx}'",
-		"lint:css:fix": "npm run lint:css --",
-		"lint:js": "eslint '*/**/*.{cjs,js,json,mjs,ts,tsx}'",
-		"lint:js:fix": "npm run lint:js -- --fix",
-		"serve": "gatsby serve",
-		"start": "npm run develop",
-		"test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-		"type-check": "tsc --noEmit"
-	},
-	"version": "0.1.0"
+  "author": "La Perla",
+  "bugs": {
+    "url": "https://github.com/PrimeOrdinal/la-perla-beauty/issues"
+  },
+  "dependencies": {
+    "@date-io/dayjs": "2.10.6",
+    "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "2.4.2",
+    "@mapbox/geo-viewport": "0.4.1",
+    "@react-icons/all-files": "4.1.0",
+    "@styled-system/css": "5.1.5",
+    "@turf/turf": "6.2.0",
+    "apollo-boost": "0.4.9",
+    "clsx": "1.1.1",
+    "currency-symbol-map": "4.0.4",
+    "dayjs": "1.10.3",
+    "formik": "2.2.6",
+    "gatsby": "2.30.3",
+    "gatsby-image": "2.9.0",
+    "gatsby-image-background-slider": "0.0.4",
+    "gatsby-plugin-breadcrumb": "11.0.0",
+    "gatsby-plugin-emotion": "5.2.0",
+    "gatsby-plugin-feed": "2.11.0",
+    "gatsby-plugin-google-tagmanager": "2.9.0",
+    "gatsby-plugin-i18n": "1.0.1",
+    "gatsby-plugin-manifest": "2.10.0",
+    "gatsby-plugin-offline": "3.8.0",
+    "gatsby-plugin-purgecss": "5.0.0",
+    "gatsby-plugin-react-helmet": "3.8.0",
+    "gatsby-plugin-react-svg": "3.0.0",
+    "gatsby-plugin-robots-txt": "1.5.5",
+    "gatsby-plugin-sharp": "2.12.2",
+    "gatsby-plugin-sitemap": "2.10.0",
+    "gatsby-plugin-styled-components": "3.8.0",
+    "gatsby-source-bigcommerce": "0.3.7",
+    "gatsby-source-contentstack": "2.3.1",
+    "gatsby-source-filesystem": "2.9.1",
+    "gatsby-source-graphql": "2.12.0",
+    "gatsby-transformer-sharp": "2.10.1",
+    "graphql-iso-date": "3.6.1",
+    "react": "17.0.1",
+    "react-apollo": "3.1.5",
+    "react-dom": "17.0.1",
+    "react-helmet": "6.1.0",
+    "schema-dts": "0.8.2",
+    "styled-components": "5.2.1",
+    "styled-system": "5.1.5",
+    "svg-react-loader": "0.4.6",
+    "uuid": "8.3.2"
+  },
+  "description": "Website for beautybylaperla.com",
+  "devDependencies": {
+    "@babel/core": "7.12.10",
+    "@babel/plugin-proposal-optional-chaining": "7.12.7",
+    "@babel/preset-typescript": "7.12.7",
+    "@mapbox/togeojson": "0.16.0",
+    "@storybook/addon-actions": "6.1.14",
+    "@storybook/addon-essentials": "6.1.14",
+    "@storybook/addon-links": "6.1.14",
+    "@storybook/react": "6.1.14",
+    "@types/jest": "26.0.20",
+    "@types/node": "14.14.21",
+    "@types/prop-types": "15.7.3",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "@types/react-helmet": "6.1.0",
+    "@types/react-test-renderer": "17.0.0",
+    "@types/request": "2.48.5",
+    "@typescript-eslint/eslint-plugin": "4.14.0",
+    "@typescript-eslint/parser": "4.14.0",
+    "babel-jest": "26.6.3",
+    "babel-loader": "8.2.2",
+    "babel-plugin-import": "1.13.3",
+    "babel-plugin-styled-components": "1.12.0",
+    "babel-preset-gatsby": "0.10.0",
+    "docz": "2.3.1",
+    "eslint": "7.18.0",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-import-resolver-typescript": "2.3.0",
+    "eslint-plugin-formatjs": "2.10.3",
+    "eslint-plugin-graphql": "4.0.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-json": "2.1.2",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-react": "7.22.0",
+    "gatsby-plugin-eslint": "2.0.8",
+    "gatsby-plugin-lint-queries": "0.0.3",
+    "gatsby-source-modular-graphql": "1.1.0",
+    "graphql-schema-linter": "2.0.1",
+    "husky": "4.3.8",
+    "jest": "26.6.3",
+    "lint-staged": "10.5.3",
+    "prettier": "2.2.1",
+    "react-test-renderer": "17.0.1",
+    "stylelint": "13.8.0",
+    "stylelint-config-prettier": "8.0.2",
+    "stylelint-config-recommended": "3.0.0",
+    "stylelint-config-styled-components": "0.1.1",
+    "stylelint-processor-styled-components": "1.10.0",
+    "ts-jest": "26.4.4",
+    "typescript": "4.1.3"
+  },
+  "graphql-schema-linter": {
+    "rules": [
+      "enum-values-sorted-alphabetically"
+    ]
+  },
+  "homepage": "https://github.com/PrimeOrdinal/la-perla-beauty#readme",
+  "husky": {
+    "hooks": {
+      "postinstall": "husky install",
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run-script test"
+    }
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "UNLICENSE",
+  "lint-staged": {
+    "*.{cjs,js,mjs,ts,tsx}": [
+      "npm run-script lint:css",
+      "git add"
+    ],
+    "*.{cjs,js,json,mjs,ts,tsx}": [
+      "npm run-script lint:js",
+      "git add"
+    ],
+    "*.graphql": [
+      "npm run-script lint:graphql",
+      "git add"
+    ]
+  },
+  "name": "la-perla-beauty",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PrimeOrdinal/la-perla-beauty"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "build-storybook": "build-storybook",
+    "clean": "gatsby clean",
+    "develop": "gatsby develop -p 8000",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "docz:serve": "docz build && docz serve",
+    "format": "prettier --write \"**/*.{cjs,js,json,mjs,ts,tsx}\"",
+    "lint:css": "stylelint './src/**/*.{cjs,js,mjs,ts,tsx}'",
+    "lint:css:fix": "npm run lint:css --",
+    "lint:js": "eslint '*/**/*.{cjs,js,json,mjs,ts,tsx}'",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "serve": "gatsby serve",
+    "start": "npm run develop",
+    "storybook": "start-storybook -p 6006",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "type-check": "tsc --noEmit"
+  },
+  "version": "0.1.0"
 }
