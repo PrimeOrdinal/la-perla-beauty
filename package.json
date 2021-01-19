@@ -11,12 +11,12 @@
 		"@date-io/dayjs": "2.10.6",
 		"@gatsby-contrib/gatsby-plugin-elasticlunr-search": "2.4.2",
 		"@mapbox/geo-viewport": "0.4.1",
-		"@react-icons/all-files": "^4.1.0",
-		"@styled-system/css": "^5.1.5",
+		"@react-icons/all-files": "4.1.0",
+		"@styled-system/css": "5.1.5",
 		"@turf/turf": "6.2.0",
 		"apollo-boost": "0.4.9",
 		"clsx": "1.1.1",
-		"currency-symbol-map": "^4.0.4",
+		"currency-symbol-map": "4.0.4",
 		"dayjs": "1.10.3",
 		"formik": "2.2.6",
 		"gatsby": "2.30.3",
@@ -47,7 +47,7 @@
 		"react-helmet": "6.1.0",
 		"schema-dts": "0.8.2",
 		"styled-components": "5.2.1",
-		"styled-system": "^5.1.5",
+		"styled-system": "5.1.5",
 		"svg-react-loader": "0.4.6",
 		"uuid": "8.3.2"
 	},
@@ -65,15 +65,15 @@
 		"@types/react-helmet": "6.1.0",
 		"@types/react-test-renderer": "17.0.0",
 		"@types/request": "2.48.5",
-		"@typescript-eslint/eslint-plugin": "4.13.0",
-		"@typescript-eslint/parser": "4.13.0",
+		"@typescript-eslint/eslint-plugin": "^4.14.0",
+		"@typescript-eslint/parser": "^4.14.0",
 		"babel-jest": "26.6.3",
 		"babel-plugin-import": "1.13.3",
 		"babel-plugin-styled-components": "1.12.0",
 		"babel-preset-gatsby": "0.10.0",
 		"docz": "2.3.1",
 		"eslint": "7.18.0",
-		"eslint-config-prettier": "7.1.0",
+		"eslint-config-prettier": "^7.2.0",
 		"eslint-import-resolver-typescript": "2.3.0",
 		"eslint-plugin-graphql": "4.0.0",
 		"eslint-plugin-import": "2.22.1",
@@ -90,10 +90,11 @@
 		"lint-staged": "10.5.3",
 		"prettier": "2.2.1",
 		"react-test-renderer": "17.0.1",
-		"stylelint": "^13.8.0",
-		"stylelint-config-recommended": "^3.0.0",
-		"stylelint-config-styled-components": "^0.1.1",
-		"stylelint-processor-styled-components": "^1.10.0",
+		"stylelint": "13.8.0",
+		"stylelint-config-prettier": "^8.0.2",
+		"stylelint-config-recommended": "3.0.0",
+		"stylelint-config-styled-components": "0.1.1",
+		"stylelint-processor-styled-components": "1.10.0",
 		"ts-jest": "26.4.4",
 		"typescript": "4.1.3"
 	},
@@ -105,6 +106,7 @@
 	"homepage": "https://github.com/karlito-who-else/williamslynch.co.uk#readme",
 	"husky": {
 		"hooks": {
+			"postinstall": "husky install",
 			"pre-commit": "lint-staged",
 			"pre-push": "npm run-script test"
 		}
@@ -114,16 +116,17 @@
 	],
 	"license": "UNLICENSE",
 	"lint-staged": {
-		"*.{cjs,js,md,mdx,mjs,ts,tsx}": [
-			"git add",
-			"npm run-script lint:css"
+		"*.{cjs,js,mjs,ts,tsx}": [
+			"npm run-script lint:css",
+			"git add"
 		],
-		"*.{cjs,js,json,md,mdx,mjs,ts,tsx}": [
-			"git add",
-			"npm run-script lint:js"
+		"*.{cjs,js,json,mjs,ts,tsx}": [
+			"npm run-script lint:js",
+			"git add"
 		],
 		"*.graphql": [
-			"npm run-script lint-schema"
+			"npm run-script lint:graphql",
+			"git add"
 		]
 	},
 	"name": "la-perla-beauty",
@@ -139,9 +142,11 @@
 		"docz:dev": "docz dev",
 		"docz:build": "docz build",
 		"docz:serve": "docz build && docz serve",
-		"format": "prettier --write \"**/*.{cjs,js,json,md,mdx,mjs,ts,tsx}\"",
-		"lint:css": "stylelint './src/**/*.{cjs,js,md,mdx,mjs,ts,tsx}'",
-		"lint:js": "eslint . --ext .cjs,.js,.json,.md,.mdx,.mjs,.ts,.tsx",
+		"format": "prettier --write \"**/*.{cjs,js,json,mjs,ts,tsx}\"",
+		"lint:css": "stylelint './src/**/*.{cjs,js,mjs,ts,tsx}'",
+		"lint:css:fix": "npm run lint:css --",
+		"lint:js": "eslint '*/**/*.{cjs,js,json,mjs,ts,tsx}'",
+		"lint:js:fix": "npm run lint:js -- --fix",
 		"serve": "gatsby serve",
 		"start": "npm run develop",
 		"test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
