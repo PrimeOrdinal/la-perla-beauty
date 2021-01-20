@@ -9,13 +9,24 @@ module.exports = {
     title: process.env.SITE_TITLE,
   },
   plugins: [
-    `gatsby-plugin-eslint`,
+    {
+      resolve: `gatsby-plugin-eslint`,
+      options: {
+        test: /\.ts$|\.tsx$/,
+        exclude: /(node_modules|.cache|public)/,
+        stages: ['develop'],
+        options: {
+          emitWarning: true,
+          failOnError: false
+        }
+      }
+    },
     `gatsby-plugin-lint-queries`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: "gatsby-plugin-i18n",
+      resolve: `gatsby-plugin-i18n`,
       options: {
-        langKeyDefault: "en",
+        langKeyDefault: `en`,
         useLangKeyLayout: false,
       },
     },
@@ -33,7 +44,7 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: `gatsby-plugin-react-svg`,
       options: {
         rule: {
           include: /images/, // See below to configure properly
@@ -59,7 +70,7 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
     {
-      resolve: "gatsby-source-bigcommerce",
+      resolve: `gatsby-source-bigcommerce`,
       options: {
         // REQUIRED
         accessToken: process.env.BIGCOMMERCE_ACCESS_TOKEN,
@@ -67,18 +78,18 @@ module.exports = {
         secret: process.env.BIGCOMMERCE_CLIENT_SECRET,
         storeHash: process.env.BIGCOMMERCE_STORE_HASH,
 
-        // endpoint: "/catalog/products",
+        // endpoint: `/catalog/products`,
 
         // OPTIONAL
-        logLevel: "info",
-        // nodeName: "BigCommerceNode",
-        apiVersion: "v3",
+        logLevel: `info`,
+        // nodeName: `BigCommerceNode`,
+        apiVersion: `v3`,
 
         // Multiple endpoints in an object.
         endpoints: {
-          BigCommerceProducts: "/catalog/products",
-          BigCommerceCategories: "/catalog/categories",
-          // BigCommerceStore: "/catalog/store",
+          BigCommerceProducts: `/catalog/products`,
+          BigCommerceCategories: `/catalog/categories`,
+          // BigCommerceStore: `/catalog/store`,
         },
 
         preview: true,
@@ -144,7 +155,7 @@ module.exports = {
           },
         },
         // Optional filter to limit indexed nodes
-        filter: (node, getNode) => node.tags !== "exempt",
+        filter: (node, getNode) => node.tags !== `exempt`,
       },
     },
     {
@@ -177,9 +188,9 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-google-tagmanager",
+      resolve: `gatsby-plugin-google-tagmanager`,
       options: {
-        id: "YOUR_GOOGLE_TAGMANAGER_ID",
+        id: `YOUR_GOOGLE_TAGMANAGER_ID`,
 
         // Include GTM in development.
         //
@@ -190,18 +201,18 @@ module.exports = {
         // should be an object or a function that is executed in the browser
         //
         // Defaults to null
-        defaultDataLayer: { platform: "gatsby" },
+        defaultDataLayer: { platform: `gatsby` },
 
         // Specify optional GTM environment details.
-        gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING",
-        gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME",
-        dataLayerName: "YOUR_DATA_LAYER_NAME",
+        gtmAuth: `YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING`,
+        gtmPreview: `YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME`,
+        dataLayerName: `YOUR_DATA_LAYER_NAME`,
 
         // Name of the event that is triggered
         // on every Gatsby route change.
         //
         // Defaults to gatsby-route-change
-        routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
+        routeChangeEventName: `YOUR_ROUTE_CHANGE_EVENT_NAME`,
       },
     },
   ],

@@ -5,3 +5,5 @@ public
 # don't lint nyc coverage output
 coverage
 .cache
+.storybook
+static
