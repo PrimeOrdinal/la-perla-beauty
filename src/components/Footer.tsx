@@ -9,6 +9,8 @@ import Logo from "../images/logo.svg"
 
 import { ListPlain } from "../styles/ListPlain"
 
+import { NewsletterSignup } from "./NewsletterSignup"
+
 const StyledFooter = styled.footer`
   background-color: #efeee9;
   display: grid;
@@ -33,15 +35,7 @@ export const Footer = (): ReactElement => {
     <StyledFooter>
       <div className="primary">
         <Logo />
-        <form>
-          <label htmlFor="email-address">Sign up to our newsletter</label>
-          <input
-            id="email-address"
-            name="email-address"
-            placeholder="Enter your email address"
-            type="email"
-          />
-        </form>
+        <NewsletterSignup />
       </div>
       <div className="secondary"></div>
       <div className="tertiary">
