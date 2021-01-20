@@ -1,20 +1,154 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a24bb729-2aa2-4565-942a-f5c0cef6e809/deploy-status)](https://app.netlify.com/sites/la-perla-beauty/deploys)
 
-# Repository Settings
+### Research
 
-`git config core.ignorecase false`
-
-# Research
+Lorem ipsum
 
 https://github.com/system-ui/theme-specification
+
 https://styled-system.com/
+
 https://www.fourkitchens.com/blog/development/graphql-leveler-controlling-shape-query/
+
 https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/
+
 https://github.com/gatsbyjs/store.gatsbyjs.org
 
 react-icons
 gatsby-plugin-layout
 react-onclickoutside
+
+# Repository Settings
+
+On a MacOS system, run `git config core.ignorecase false` in order to use this repository with case sensitive file names which otherwise may result in diferences in behaviour to the Linux-based deployment tools.
+
+# Tools
+
+## Local Development
+
+### Storybook
+
+<a href="https://www.gatsbyjs.com">
+  <img alt="Storybook" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="32" />
+</a>
+
+Lorem ipsum
+
+### Docz
+
+<a href="https://www.gatsbyjs.com">
+  <img alt="Storybook" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="32" />
+</a>
+
+Lorem ipsum
+
+### npm scripts
+
+#### build
+
+Lorem ipsum
+
+#### build-storybook
+
+Lorem ipsum
+
+#### chromatic
+
+Lorem ipsum
+
+#### clean
+
+Lorem ipsum
+
+#### develop
+
+Lorem ipsum
+
+#### doc
+
+Lorem ipsum
+
+#### doc
+
+Lorem ipsum
+
+#### doc
+
+Lorem ipsum
+
+#### format
+
+Lorem ipsum
+
+#### lin
+
+Lorem ipsum
+
+#### lin
+
+Lorem ipsum
+
+#### lin
+
+Lorem ipsum
+
+#### lin
+
+Lorem ipsum
+
+#### serve
+
+Lorem ipsum
+
+#### start
+
+Lorem ipsum
+
+#### storybook
+
+Lorem ipsum
+
+#### test
+
+Lorem ipsum
+
+#### type-check
+
+Lorem ipsum
+
+## Hosted Tools
+
+### Chromatic
+
+<a href="https://www.gatsbyjs.com">
+  <img alt="Chromatic" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="32" />
+</a>
+
+Preview, collaborate and sign-off on Storybook stories on the Chromatic instance at https://www.chromatic.com/builds?appId=6007a1c87c54a50021ea7e5c
+
+### Contentack
+
+<a href="https://www.gatsbyjs.com">
+  <img alt="Contentack" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="32" />
+</a>
+
+Content Management System
+
+### Gatsby Cloud
+
+<a href="https://www.gatsbyjs.com">
+  <img alt="Gatsby Cloud" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="32" />
+</a>
+
+Lorem ipsum
+
+### Netlify
+
+<a href="https://www.gatsbyjs.com">
+  <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="32" />
+</a>
+
+Lorem ipsum
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
