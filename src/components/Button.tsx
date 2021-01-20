@@ -1,11 +1,38 @@
 import styled from "styled-components"
-import { space, layout, color, compose } from "styled-system"
+import { color, compose, layout, space, variant } from "styled-system"
 
-const ButtonBase = styled.button`
+export const Button = styled.button`
+  appearance: "none";
   background-color: ${props => props.theme.buttons.primary.bg};
-  padding: ${props => props.theme.space[4]};
+  border: none;
+  cursor: pointer;
+  font-family: "inherit";
+  padding: ${props => props.theme.space[2]}px;
+
+  ${variant({
+    variants: {
+      primary: {
+        color: "white",
+        bg: "primary",
+      },
+      secondary: {
+        color: "white",
+        bg: "secondary",
+      },
+      tertiary: {
+        color: "white",
+        bg: "tertiary",
+      },
+    },
+  })}
+
+  ${compose(color, layout, space)}
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
-
-const Button = styled(ButtonBase)(compose(space, layout, color))
-
-export default Button

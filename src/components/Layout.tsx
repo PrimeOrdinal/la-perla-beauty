@@ -14,11 +14,11 @@ import { color } from "styled-system"
 import { theme } from "../theme"
 import { GlobalStyle } from "../styles/GlobalStyle"
 
-import Banner from "./Banner"
-import Button from "./Button"
-import Footer from "./Footer"
-import Header from "./Header"
-import SiteSelector from "./SiteSelector"
+import { Banner } from "./Banner"
+import { Button } from "./Button"
+import { Footer } from "./Footer"
+import { Header } from "./Header"
+import { SiteSelector } from "./SiteSelector"
 
 const Box = styled.div`
   ${color}
@@ -66,9 +66,19 @@ const Layout: FunctionComponent = ({ children }): JSX.Element => {
         <SiteSelector />
         <Banner />
         <Button>Default</Button>
-        <Button color="#fff" bg="orange" padding={1}>
+        <Button space="1" variant="primary">
+          Primary
+        </Button>
+        <Button space="2" variant="secondary">
+          Secondary
+        </Button>
+        <Button space="4" variant="tertiary">
+          Tertiary
+        </Button>
+        <Button p={2} color="#fff" bg="orange" padding={1}>
           Override
         </Button>
+        <Button disabled>Override</Button>
         <Box color="black" bg="blue">
           Blue Box
         </Box>
