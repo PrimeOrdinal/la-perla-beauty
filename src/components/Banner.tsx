@@ -17,5 +17,3 @@ export const Banner = (): ReactElement => {
 }
 
 Banner.propTypes = {}
-
-export default Banner

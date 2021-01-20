@@ -30,7 +30,15 @@ const SocialLinkList = styled(ListPlain)`
   grid-auto-flow: column;
 `
 
-export const Footer = (): ReactElement => {
+export const Footer = (
+  {
+    siteTitle,
+  }: {
+    siteTitle: string
+  } = {
+    siteTitle: "Site Title",
+  }
+): ReactElement => {
   return (
     <StyledFooter>
       <div className="primary">
@@ -43,34 +51,33 @@ export const Footer = (): ReactElement => {
           <span>Follow us</span>
           <SocialLinkList>
             <li>
-              <a href="#">
+              <a href="https://www.facebook.com/BeautyByLaPerla/">
                 <FaFacebook />
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://www.instagram.com/BeautyByLaPerla/">
                 <FaInstagram />
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://twitter.com/BeautyByLaPerla">
                 <FaTwitter />
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://www.youtube.com/channel/EJo0TYlRfn6rYQUCAxW1XT0i">
                 <FaYoutube />
               </a>
             </li>
           </SocialLinkList>
         </SocialContainer>
-        <span>© {new Date().getFullYear()} La Perla Beauty</span>
+        <span>
+          © {new Date().getFullYear()} {siteTitle}
+        </span>
       </div>
-      <a href="https://laperla.com">Lorem ipsum dolor sit amet</a>
     </StyledFooter>
   )
 }
 
 Footer.propTypes = {}
-
-export default Footer

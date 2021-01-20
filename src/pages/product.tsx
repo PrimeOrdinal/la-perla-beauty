@@ -5,8 +5,8 @@ import { Helmet } from "react-helmet"
 import React from "react"
 import styled from "styled-components"
 
-import Layout from "../components/Layout"
-import SEO from "../components/SEO"
+import { Layout } from "../components/Layout"
+import { SEO } from "../components/SEO"
 
 const StyledProduct = styled.article`
   align-items: start;

@@ -46,5 +46,3 @@ export const Listing = ({
     ))}
   </StyledResults>
 )
-
-export default Listing

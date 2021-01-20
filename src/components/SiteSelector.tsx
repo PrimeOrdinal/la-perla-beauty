@@ -35,5 +35,3 @@ export const SiteSelector = (): ReactElement => {
     </StyledNav>
   )
 }
-
-export default SiteSelector

@@ -21,7 +21,7 @@ type queryImage = {
   }
 }
 
-const Image = (): ReactElement => {
+export const Image = (): ReactElement => {
   const data: queryImage = useStaticQuery(graphql`
     query PlaceholderImageQuery {
       placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
@@ -40,5 +40,3 @@ const Image = (): ReactElement => {
 
   return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
 }
-
-export default Image

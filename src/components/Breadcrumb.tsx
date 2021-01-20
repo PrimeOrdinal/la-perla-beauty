@@ -70,5 +70,3 @@ export const Breadcrumb = (props: {
 
   return <StyledGatsbyPluginBreadcrumb {...props} crumbSeparator=" - " />
 }
-
-export default Breadcrumb

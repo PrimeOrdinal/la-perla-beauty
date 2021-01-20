@@ -11,8 +11,9 @@ import styled, { ThemeProvider } from "styled-components"
 // import type {} from 'styled-components/cssprop'
 import { color } from "styled-system"
 
-import { theme } from "../theme"
 import { GlobalStyle } from "../styles/GlobalStyle"
+
+import { theme } from "../theme"
 
 import { Banner } from "./Banner"
 import { Button } from "./Button"
@@ -39,7 +40,7 @@ const StyledMain = styled.div`
   flex-basis: 100%;
 `
 
-const Layout: FunctionComponent = ({ children }): JSX.Element => {
+export const Layout: FunctionComponent = ({ children }): JSX.Element => {
   const data: {
     site: {
       buildTime: Date
@@ -89,10 +90,8 @@ const Layout: FunctionComponent = ({ children }): JSX.Element => {
         <StyledPageContainer>
           <StyledMain>{children}</StyledMain>
         </StyledPageContainer>
-        <Footer />
+        <Footer siteTitle={data.site.siteMetadata?.title || `Title`} />
       </StyledSiteContainer>
     </ThemeProvider>
   )
 }
-
-export default Layout

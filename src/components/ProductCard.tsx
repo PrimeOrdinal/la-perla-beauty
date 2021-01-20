@@ -76,5 +76,3 @@ export const ProductCard = ({
     </StyledProductCard>
   )
 }
-
-export default ProductCard

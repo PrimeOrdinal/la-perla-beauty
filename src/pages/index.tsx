@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
-// import Button from "../components/Button"
-import Layout from "../components/Layout"
-import SEO from "../components/SEO"
+// import {Button} from "../components/Button"
+import { Layout } from "../components/Layout"
+import { SEO } from "../components/SEO"
 
 import Logo from "../images/logo.svg"
 
@@ -46,7 +46,7 @@ const StyledGrid = styled.div`
   margin: 0;
 `
 
-const IndexPage = (): JSX.Element => (
+export const IndexPage = (): JSX.Element => (
   <Layout>
     <SEO title="Home" />
     <h1>Homepage</h1>

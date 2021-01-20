@@ -6,7 +6,7 @@ import { useHover } from "../hooks/useHover"
 
 import Logo from "../images/logo.svg"
 
-import Search from "./Search"
+import { Search } from "./Search"
 
 const StyledHeader = styled.header`
   background-color: #ffffff;
@@ -135,24 +135,24 @@ export const Header = (
       </StyledLogoLink>
       <StyledMenuPrimary id="header-menu-primary">
         <li>
-          <a href="#">Item 1</a>
+          <a href="/">Item 1</a>
         </li>
         <li>
-          <a href="#">Item 2</a>
+          <a href="/">Item 2</a>
         </li>
         <li>
-          <a href="#">Item 3</a>
+          <a href="/">Item 3</a>
         </li>
       </StyledMenuPrimary>
       <StyledMenuSecondary id="header-menu-secondary">
         <li>
-          <a href="#">Item 1</a>
+          <a href="/">Item 1</a>
         </li>
         <li>
-          <a href="#">Item 2</a>
+          <a href="/">Item 2</a>
         </li>
         <li>
-          <a href="#">Item 3</a>
+          <a href="/">Item 3</a>
         </li>
       </StyledMenuSecondary>
       <StyledMenuMain id="header-menu-main">
@@ -161,13 +161,13 @@ export const Header = (
             <Link to="/products/">Products</Link>
           </li>
           <li>
-            <a href="#">Category 2</a>
+            <a href="/">Category 2</a>
           </li>
           <li>
-            <a href="#">Category 3</a>
+            <a href="/">Category 3</a>
           </li>
           <li>
-            <a href="#">Category 4</a>
+            <a href="/">Category 4</a>
           </li>
         </StyledMenuMainHeadings>
         <StyledMenuMainExpanded
@@ -189,5 +189,3 @@ export const Header = (
     </StyledHeader>
   )
 }
-
-export default Header

@@ -53,5 +53,3 @@ export const Search = ({
     </React.Fragment>
   )
 }
-
-export default Search
