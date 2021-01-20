@@ -14,10 +14,7 @@ export const theme: DefaultTheme = {
     },
     primary: {
       color: "background",
-      // bg: colors.primary,
-      // bg: primary,
-      // bg: "primary",
-      bg: "red",
+      bg: "primary",
       "&:hover": {
         bg: "text",
       },
@@ -26,18 +23,24 @@ export const theme: DefaultTheme = {
       color: "background",
       bg: "secondary",
     },
+    tertiary: {
+      color: "background",
+      bg: "tertiary",
+    },
   },
   colors: {
     text: "#000",
     background: "#fff",
     primary: "#07c",
     secondary: "#609",
+    tertiary: "#906",
     modes: {
       dark: {
         text: "#fff",
         background: "#222",
         primary: "#0cf",
         secondary: "#90c",
+        tertiary: "#c09",
       },
     },
   },
