@@ -1,7 +1,7 @@
 // import type { Dispatch, SetStateAction } from "react"
 import { Index } from "elasticlunr"
 import { Link } from "gatsby"
-import React, { ReactElement, useState } from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 
 const StyledResults = styled.ul`
@@ -15,11 +15,11 @@ const StyledResults = styled.ul`
   }
 `
 
-export const Search = ({
-  searchIndex,
-}: {
+export type SearchProps = {
   searchIndex: Record<string, unknown>
-}): ReactElement => {
+}
+
+export const Search: React.FC<SearchProps> = ({ searchIndex }) => {
   const [query, setQuery] = useState("")
   // const [results, setResults]: [results: SearchResult[], setResults: Dispatch<SetStateAction<SearchResult[]>>] = useState([])
   const [results, setResults] = useState([])

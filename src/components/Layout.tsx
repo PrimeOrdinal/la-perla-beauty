@@ -6,7 +6,7 @@
  */
 
 import { useStaticQuery, graphql } from "gatsby"
-import React, { FunctionComponent } from "react"
+import React from "react"
 import styled, { ThemeProvider } from "styled-components"
 // import type {} from 'styled-components/cssprop'
 import { color } from "styled-system"
@@ -40,7 +40,7 @@ const StyledMain = styled.div`
   flex-basis: 100%;
 `
 
-export const Layout: FunctionComponent = ({ children }): JSX.Element => {
+export const Layout: React.FC = ({ children }) => {
   const data: {
     site: {
       buildTime: Date

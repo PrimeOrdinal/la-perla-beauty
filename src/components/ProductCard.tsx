@@ -1,7 +1,7 @@
 import type { Offer, Product } from "schema-dts"
 
 import getSymbolFromCurrency from "currency-symbol-map"
-import React, { ReactElement } from "react"
+import React from "react"
 import styled from "styled-components"
 
 const StyledProductCard = styled.article`
@@ -16,11 +16,7 @@ const StyledProductCard = styled.article`
   }
 `
 
-export const ProductCard = ({
-  product,
-}: {
-  product: Product
-}): ReactElement => {
+export const ProductCard: React.FC = ({ product }: { product: Product }) => {
   const offer = product.offers as Offer
 
   return (

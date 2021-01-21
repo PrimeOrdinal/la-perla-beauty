@@ -22,7 +22,7 @@ export function SEO({
     name: string
   }>
   title: string
-}): JSX.Element {
+}): React.FC {
   const data: {
     site: {
       buildTime: Date

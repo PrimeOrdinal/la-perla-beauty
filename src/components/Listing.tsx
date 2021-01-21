@@ -1,6 +1,6 @@
 import type { Product } from "schema-dts"
 
-import React, { ReactElement } from "react"
+import React from "react"
 import { Helmet } from "react-helmet"
 import styled from "styled-components"
 
@@ -28,13 +28,13 @@ const StyledResults = styled.ul`
   }
 `
 
-export const Listing = ({
+export const Listing: React.FC = ({
   edges,
 }: {
   edges: Array<{
     node: Product
   }>
-}): ReactElement => (
+}) => (
   <StyledResults>
     {edges.map(({ node: product }: { node: Product }, index) => (
       <li key={index}>

@@ -1,5 +1,5 @@
 import { Breadcrumb as GatsbyPluginBreadcrumb } from "gatsby-plugin-breadcrumb"
-import React, { ReactElement } from "react"
+import React from "react"
 import styled from "styled-components"
 
 import "gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css"
@@ -18,7 +18,7 @@ const StyledGatsbyPluginBreadcrumb = styled(GatsbyPluginBreadcrumb)`
   }
 `
 
-export const Breadcrumb = (props: {
+export const Breadcrumb: React.FC = (props: {
   crumbs: {
     pathname: "string"
     location: Record<string, unknown>
@@ -27,7 +27,7 @@ export const Breadcrumb = (props: {
   // crumbSeparator: string
   // location: string
   // title: string
-}): ReactElement => {
+}) => {
   // return (
   //   <StyledOrderedList itemScope itemType="https://schema.org/BreadcrumbList">
   //     <li

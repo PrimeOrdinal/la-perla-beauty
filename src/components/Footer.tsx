@@ -2,7 +2,7 @@ import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook"
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram"
 import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter"
 import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube"
-import React, { ReactElement } from "react"
+import React from "react"
 import styled from "styled-components"
 
 import Logo from "../images/logo.svg"
@@ -30,7 +30,7 @@ const SocialLinkList = styled(ListPlain)`
   grid-auto-flow: column;
 `
 
-export const Footer = (
+export const Footer: React.FC = (
   {
     siteTitle,
   }: {
@@ -38,7 +38,7 @@ export const Footer = (
   } = {
     siteTitle: "Site Title",
   }
-): ReactElement => {
+) => {
   return (
     <StyledFooter>
       <div className="primary">

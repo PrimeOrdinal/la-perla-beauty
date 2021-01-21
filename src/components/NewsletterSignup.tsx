@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react"
+import React from "react"
 
-export const NewsletterSignup = (): ReactElement => {
+export const NewsletterSignup: React.FC = () => {
   return (
     <form>
       <label htmlFor="email-address">Sign up to our newsletter</label>

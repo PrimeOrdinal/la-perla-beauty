@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react"
+import React from "react"
 import styled from "styled-components"
 
 const StyledBanner = styled.div`
@@ -8,7 +8,7 @@ const StyledBanner = styled.div`
   grid-auto-flow: column;
 `
 
-export const Banner = (): ReactElement => {
+export const Banner: React.FC = () => {
   return (
     <StyledBanner>
       <a href="https://laperla.com">Lorem ipsum dolor sit amet</a>

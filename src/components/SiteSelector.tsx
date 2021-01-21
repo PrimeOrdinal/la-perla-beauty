@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React, { ReactElement } from "react"
+import React from "react"
 import styled from "styled-components"
 
 const StyledA = styled.a`
@@ -16,7 +16,7 @@ const StyledNav = styled.nav`
   grid-auto-flow: column;
 `
 
-export const SiteSelector = (): ReactElement => {
+export const SiteSelector: React.FC = () => {
   return (
     <StyledNav className="site-selector">
       <StyledA

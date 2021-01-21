@@ -1,5 +1,5 @@
 import { Link, graphql, useStaticQuery } from "gatsby"
-import React, { ReactElement } from "react"
+import React from "react"
 import styled from "styled-components"
 
 import { useHover } from "../hooks/useHover"
@@ -87,7 +87,7 @@ type queryHeader = {
   }
 }
 
-export const Header = (
+export const Header: React.FC = (
   {
     siteTitle,
   }: {
@@ -95,7 +95,7 @@ export const Header = (
   } = {
     siteTitle: "Site Title",
   }
-): ReactElement => {
+) => {
   const data: queryHeader = useStaticQuery(graphql`
     query Header {
       allBigCommerceCategories {

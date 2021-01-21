@@ -46,7 +46,7 @@ const StyledGrid = styled.div`
   margin: 0;
 `
 
-export const IndexPage = (): JSX.Element => (
+export const IndexPage: React.FC = () => (
   <Layout>
     <SEO title="Home" />
     <h1>Homepage</h1>
