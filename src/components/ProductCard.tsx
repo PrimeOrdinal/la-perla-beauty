@@ -16,7 +16,9 @@ const StyledProductCard = styled.article`
   }
 `
 
-export const ProductCard: React.FC = ({ product }: { product: Product }) => {
+type ProductCardProps = { product: Product }
+
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const offer = product.offers as Offer
 
   return (

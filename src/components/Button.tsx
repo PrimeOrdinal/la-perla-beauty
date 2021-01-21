@@ -1,7 +1,29 @@
 import styled from "styled-components"
-import { color, compose, layout, space, variant } from "styled-system"
+import {
+  color,
+  compose,
+  layout,
+  space,
+  variant,
+  ColorProps,
+  LayoutProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
 
-export const Button: React.FC = styled.button`
+export type ButtonProps = ColorProps &
+  LayoutProps &
+  SpaceProps &
+  VariantProps & {
+    // bg?: string
+    // color?: string
+    disabled?: boolean
+    // padding?: number
+    // space?: number
+    // variant?: "primary" | "secondary" | "tertiary"
+  }
+
+export const Button: React.FC<ButtonProps> = styled.button`
   appearance: "none";
   background-color: ${props => props.theme.buttons.primary.bg};
   border: none;

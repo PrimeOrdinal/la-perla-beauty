@@ -9,20 +9,18 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-export function SEO({
-  description,
-  lang,
-  meta,
-  title,
-}: {
-  description: string
-  lang: string
-  meta: Array<{
-    content: string
-    name: string
-  }>
+type metaProp =
+  | { name: string; content: string; property?: undefined }
+  | { property: string; content: string; name?: undefined }
+
+type SEOProps = {
+  description?: string
+  lang?: string
+  meta?: metaProp
   title: string
-}): React.FC {
+}
+
+export const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
   const data: {
     site: {
       buildTime: Date
@@ -50,6 +48,49 @@ export function SEO({
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
+  const metaArray: metaProp[] = [
+    {
+      name: `description`,
+      content: metaDescription,
+    },
+    {
+      property: `og:title`,
+      content: title,
+    },
+    {
+      property: `og:description`,
+      content: metaDescription,
+    },
+    {
+      property: `og:type`,
+      content: `website`,
+    },
+    {
+      name: `twitter:card`,
+      content: `summary`,
+    },
+    {
+      name: `twitter:creator`,
+      content: site.siteMetadata?.author || ``,
+    },
+    {
+      name: `twitter:title`,
+      content: title,
+    },
+    {
+      name: `twitter:description`,
+      content: metaDescription,
+    },
+    {
+      name: `date`,
+      content: site.buildTime.toString(),
+    },
+  ]
+
+  if (meta) {
+    metaArray.push(meta)
+  }
+
   return (
     <Helmet
       htmlAttributes={{
@@ -57,53 +98,9 @@ export function SEO({
       }}
       title={title}
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          name: `date`,
-          content: site.buildTime.toString(),
-        },
-        ...meta,
-      ]}
+      meta={metaArray}
     />
   )
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
 }
 
 export default SEO

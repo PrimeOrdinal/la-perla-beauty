@@ -28,13 +28,13 @@ const StyledResults = styled.ul`
   }
 `
 
-export const Listing: React.FC = ({
-  edges,
-}: {
+type ListingProps = {
   edges: Array<{
     node: Product
   }>
-}) => (
+}
+
+export const Listing: React.FC<ListingProps> = ({ edges }) => (
   <StyledResults>
     {edges.map(({ node: product }: { node: Product }, index) => (
       <li key={index}>

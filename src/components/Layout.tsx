@@ -67,23 +67,23 @@ export const Layout: React.FC = ({ children }) => {
         <SiteSelector />
         <Banner />
         <Button>Default</Button>
-        <Button space="1" variant="primary">
+        <Button space={1} variant="primary">
           Primary
         </Button>
-        <Button space="2" variant="secondary">
+        <Button space={2} variant="secondary">
           Secondary
         </Button>
-        <Button space="4" variant="tertiary">
+        <Button space={4} variant="tertiary">
           Tertiary
         </Button>
-        <Button p={2} color="#fff" bg="orange" padding={1}>
+        <Button bg="orange" color="#fff" padding={1}>
           Override
         </Button>
         <Button disabled>Override</Button>
-        <Box color="black" bg="blue">
+        <Box bg="blue" color="black">
           Blue Box
         </Box>
-        <Box color="black" bg="primary">
+        <Box bg="primary" color="black">
           Primary Theme Colour Box
         </Box>
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />

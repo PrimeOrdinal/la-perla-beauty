@@ -1,7 +1,7 @@
 import { Link, graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import css from "@styled-system/css" // eslint-disable-line
+// import css from "@styled-system/css" // eslint-disable-line
 
 import { MenuActions } from "./MenuActions"
 
@@ -85,12 +85,11 @@ type queryHeader = {
   }
 }
 
-export const Header: React.FC = (
-  {
-    siteTitle,
-  }: {
-    siteTitle: string
-  } = {
+export type HeaderProps = {
+  siteTitle?: string
+}
+export const Header: React.FC<HeaderProps> = (
+  { siteTitle } = {
     siteTitle: "Site Title",
   }
 ) => {
@@ -124,14 +123,10 @@ export const Header: React.FC = (
 
   return (
     <StyledHeader ref={hoverRef}>
-      <StyledLogoLink
-        id="header-logo"
-        title={`Go back to the homepage for ${siteTitle}`}
-        to="/"
-      >
+      <StyledLogoLink title={`Go back to the homepage for ${siteTitle}`} to="/">
         <StyledLogo />
       </StyledLogoLink>
-      <StyledMenuPrimary id="header-menu-primary">
+      <StyledMenuPrimary>
         <li>
           <a href="/">Item 1</a>
         </li>
@@ -143,13 +138,12 @@ export const Header: React.FC = (
         </li>
       </StyledMenuPrimary>
       <MenuActions
-        id="header-menu-secondary"
         css={{
           gridArea: "menu-secondary",
         }}
       />
-      <StyledMenuMain id="header-menu-main">
-        <StyledMenuMainHeadings id="header-menu-main-headings">
+      <StyledMenuMain>
+        <StyledMenuMainHeadings>
           <li>
             <Link to="/products/">Products</Link>
           </li>
@@ -163,10 +157,7 @@ export const Header: React.FC = (
             <a href="/">Category 4</a>
           </li>
         </StyledMenuMainHeadings>
-        <StyledMenuMainExpanded
-          id="header-menu-main-expanded"
-          active={isHovered}
-        >
+        <StyledMenuMainExpanded active={isHovered}>
           <StyledMenuMainExpandedList>
             {data.allBigCommerceCategories.edges.map(({ node }, index) => (
               <li key={index}>
