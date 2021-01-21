@@ -1,6 +1,9 @@
 import { Link, graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
+import css from "@styled-system/css" // eslint-disable-line
+
+import { MenuActions } from "./MenuActions"
 
 import { useHover } from "../hooks/useHover"
 
@@ -41,11 +44,6 @@ const StyledMenu = styled.ul`
 const StyledMenuPrimary = styled(StyledMenu)`
   grid-auto-flow: column;
   grid-area: menu-primary;
-`
-
-const StyledMenuSecondary = styled(StyledMenu)`
-  grid-auto-flow: column;
-  grid-area: menu-secondary;
 `
 
 const StyledMenuMain = styled.div`
@@ -144,17 +142,12 @@ export const Header: React.FC = (
           <a href="/">Item 3</a>
         </li>
       </StyledMenuPrimary>
-      <StyledMenuSecondary id="header-menu-secondary">
-        <li>
-          <a href="/">Item 1</a>
-        </li>
-        <li>
-          <a href="/">Item 2</a>
-        </li>
-        <li>
-          <a href="/">Item 3</a>
-        </li>
-      </StyledMenuSecondary>
+      <MenuActions
+        id="header-menu-secondary"
+        css={{
+          gridArea: "menu-secondary",
+        }}
+      />
       <StyledMenuMain id="header-menu-main">
         <StyledMenuMainHeadings id="header-menu-main-headings">
           <li>
