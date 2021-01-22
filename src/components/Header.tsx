@@ -3,7 +3,6 @@ import type { HeaderQuery } from "../../graphql-types"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-// import css from "@styled-system/css" // eslint-disable-line
 
 import { MenuActions } from "./MenuActions"
 

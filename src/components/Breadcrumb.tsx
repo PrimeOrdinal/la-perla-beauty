@@ -4,13 +4,6 @@ import styled from "styled-components"
 
 import "gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css"
 
-// const StyledOrderedList = styled.div`
-//   background-color: #efeee9;
-//   display: grid;
-//   text-align: center;
-//   grid-auto-flow: column;
-// `;
-
 const StyledGatsbyPluginBreadcrumb = styled(GatsbyPluginBreadcrumb)`
   background-color: #efeee9;
   .breadcrumb__list {
@@ -23,10 +16,6 @@ export type BreadcrumbProps = {
     pathname: "string"
     location: Record<string, unknown>
   }[]
-  // crumbLabel: string
-  // crumbSeparator: string
-  // location: string
-  // title: string
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = props => {
