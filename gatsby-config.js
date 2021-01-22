@@ -185,8 +185,8 @@ module.exports = {
         // crumbLabelUpdates: optional, update specific crumbLabels in the path
         // crumbLabelUpdates: [
         //   {
-        //     pathname: `/book`,
-        //     crumbLabel: `Books`
+        //     pathname: `  /book`  ,
+        //     crumbLabel: `  Books`  
         //   }
         // ],
         // trailingSlashes: optional, will add trailing slashes to the end
