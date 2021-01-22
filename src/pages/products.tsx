@@ -1,3 +1,8 @@
+import type {
+  BigCommerceProducts,
+  ProductsPageQuery,
+} from "../../graphql-types"
+
 import clsx from "clsx"
 import { PageProps, graphql } from "gatsby"
 import React from "react"
@@ -10,8 +15,8 @@ import { SEO } from "../components/SEO"
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
 
-export const Products: React.FC<
-  PageProps<DataTypeAllSources, PageContextTypeBreadcrumb>
+export const ProductsPage: React.FC<
+  PageProps<ProductsPageQuery, PageContextTypeBreadcrumb>
 > = ({
   data,
   // location,
@@ -45,7 +50,9 @@ export const Products: React.FC<
         <h1>BigCommerce Product Listings</h1>
         <Listing
           edges={data.allBigCommerceProducts.edges.map(({ node }) => ({
-            node: standardiseBigCommerceProduct(node),
+            node: standardiseBigCommerceProduct(
+              (node as unknown) as BigCommerceProducts
+            ),
           }))}
         />
       </section>
@@ -53,10 +60,10 @@ export const Products: React.FC<
   )
 }
 
-export default Products
+export default ProductsPage
 
-export const query = graphql`
-  {
+export const data = graphql`
+  query ProductsPage {
     allBigCommerceCategories {
       edges {
         node {

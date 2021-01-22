@@ -5,6 +5,8 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
+import type { LayoutQuery } from "../../graphql-types"
+
 import { useStaticQuery, graphql } from "gatsby"
 import React from "react"
 import styled, { ThemeProvider } from "styled-components"
@@ -41,17 +43,8 @@ const StyledMain = styled.div`
 `
 
 export const Layout: React.FC = ({ children }) => {
-  const data: {
-    site: {
-      buildTime: Date
-      siteMetadata: {
-        author: string
-        description: string
-        title: string
-      }
-    }
-  } = useStaticQuery(graphql`
-    query SiteTitleQuery {
+  const data: LayoutQuery = useStaticQuery(graphql`
+    query Layout {
       site {
         siteMetadata {
           title
@@ -86,11 +79,11 @@ export const Layout: React.FC = ({ children }) => {
         <Box bg="primary" color="black">
           Primary Theme Colour Box
         </Box>
-        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <Header siteTitle={data?.site?.siteMetadata?.title || `Title`} />
         <StyledPageContainer>
           <StyledMain>{children}</StyledMain>
         </StyledPageContainer>
-        <Footer siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} />
       </StyledSiteContainer>
     </ThemeProvider>
   )

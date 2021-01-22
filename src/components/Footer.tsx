@@ -1,8 +1,10 @@
+import type { FooterQuery } from "../../graphql-types"
+
 import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook"
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram"
 import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter"
 import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube"
-import { graphql } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
@@ -40,13 +42,56 @@ export const Footer: React.FC<FooterProps> = (
     siteTitle: "Site Title",
   }
 ) => {
+  const data: FooterQuery = useStaticQuery(graphql`
+  query Footer {
+    allContentstackMenus(
+      filter: {
+        slot: {
+          in: ["secondary-1", "secondary-2", "secondary-3", "tertiary-1"]
+        }
+      }
+    ) {
+      edges {
+        node {
+          ...Contentstack_menusFragment
+        }
+      }
+    }
+  }
+
+  fragment Contentstack_menusFragment on Contentstack_menus {
+    id
+    title
+    slot
+    links {
+      text
+      url {
+        href
+        title
+      }
+    }
+  }
+`)
+
   return (
     <StyledFooter>
       <div className="primary">
         <Logo />
         <NewsletterSignup />
       </div>
-      <div className="secondary"></div>
+      <div className="secondary">
+        {data.allContentstackMenus.edges.map(({ node: menu }) => (
+          <ul id={menu?.slot as string} key={menu.id}>
+            {menu?.links?.map((link, index) => (
+              <li key={index}>
+                <a href={link?.url?.href as string} title={link?.url?.title as string}>
+                  {link?.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
       <div className="tertiary">
         <SocialContainer>
           <span>Follow us</span>
@@ -80,64 +125,3 @@ export const Footer: React.FC<FooterProps> = (
     </StyledFooter>
   )
 }
-
-export const query = graphql`
-  {
-    allBigCommerceCategories {
-      edges {
-        node {
-          name
-          id
-        }
-      }
-    }
-    allBigCommerceProducts {
-      edges {
-        node {
-          custom_url {
-            url
-          }
-          availability
-          calculated_price
-          categories
-          depth
-          description
-          fixed_cost_shipping_price
-          gtin
-          height
-          id
-          inventory_level
-          inventory_warning_level
-          is_featured
-          is_free_shipping
-          is_preorder_only
-          is_price_hidden
-          is_visible
-          mpn
-          order_quantity_maximum
-          order_quantity_minimum
-          preorder_message
-          price
-          price_hidden_label
-          sale_price
-          sku
-          title: name
-          upc
-          weight
-          width
-        }
-      }
-    }
-    allContentstackProducts {
-      edges {
-        node {
-          id
-          product_id
-          rich_text_editor
-          title
-          url
-        }
-      }
-    }
-  }
-`

@@ -1,8 +1,10 @@
+import type { PlaceholderImageQuery } from "../../graphql-types"
+
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 
-import type { GatsbyImageFluidProps } from "gatsby-image"
+// import type { GatsbyImageFluidProps } from "gatsby-image"
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -15,19 +17,19 @@ import type { GatsbyImageFluidProps } from "gatsby-image"
  * - `useStaticQuery`: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-type queryImage = {
-  placeholderImage: {
-    childImageSharp: GatsbyImageFluidProps
-  }
-}
+// type queryImage = {
+//   placeholderImage: {
+//     childImageSharp: GatsbyImageFluidProps
+//   }
+// }
 
 export type ImageProps = {
   path: string
 }
 
 export const Image: React.FC<ImageProps> = () => {
-  const data: queryImage = useStaticQuery(graphql`
-    query PlaceholderImageQuery {
+  const data: PlaceholderImageQuery = useStaticQuery(graphql`
+    query PlaceholderImage {
       placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
         childImageSharp {
           fluid(maxWidth: 300) {
@@ -42,5 +44,10 @@ export const Image: React.FC<ImageProps> = () => {
     return <div>Picture not found</div>
   }
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  return (
+    <Img
+      fluid={data?.placeholderImage?.childImageSharp?.fluid as FluidObject}
+    />
+  )
 }
+// GatsbyImageSharpFluidFragment

@@ -124,33 +124,13 @@ export const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 
 export default ProductPage
 
-export const query = graphql`
-  {
+export const data = graphql`
+  query ProductPage {
     allBigCommerceCategories {
       edges {
         node {
           name
           id
-        }
-      }
-    }
-    allBigCommerceProducts {
-      edges {
-        node {
-          id
-          price
-          sku
-          name
-        }
-      }
-    }
-    allContentstackProducts {
-      edges {
-        node {
-          id: product_id
-          rich_text_editor
-          name: title
-          url
         }
       }
     }

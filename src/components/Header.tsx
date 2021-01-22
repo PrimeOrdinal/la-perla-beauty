@@ -1,3 +1,5 @@
+import type { HeaderQuery } from "../../graphql-types"
+
 import { Link, graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
@@ -76,14 +78,14 @@ const StyledSearchContainer = styled.div`
   padding: 1rem;
 `
 
-type queryHeader = {
-  allBigCommerceCategories: {
-    edges: CategoryEdgeProps[]
-  }
-  siteSearchIndex: {
-    index: Record<string, unknown>
-  }
-}
+// type HeaderQuery = {
+//   allBigCommerceCategories: {
+//     edges: CategoryEdgeProps[]
+//   }
+//   siteSearchIndex: {
+//     index: Record<string, unknown>
+//   }
+// }
 
 export type HeaderProps = {
   siteTitle?: string
@@ -93,7 +95,7 @@ export const Header: React.FC<HeaderProps> = (
     siteTitle: "Site Title",
   }
 ) => {
-  const data: queryHeader = useStaticQuery(graphql`
+  const data: HeaderQuery = useStaticQuery(graphql`
     query Header {
       allBigCommerceCategories {
         edges {
@@ -161,14 +163,14 @@ export const Header: React.FC<HeaderProps> = (
           <StyledMenuMainExpandedList>
             {data.allBigCommerceCategories.edges.map(({ node }, index) => (
               <li key={index}>
-                <a href={node.custom_url.url}>{node.name}</a>
+                <a href={node?.custom_url?.url as string | undefined}>{node.name}</a>
               </li>
             ))}
           </StyledMenuMainExpandedList>
         </StyledMenuMainExpanded>
       </StyledMenuMain>
       <StyledSearchContainer>
-        <Search searchIndex={data.siteSearchIndex.index} />
+        <Search searchIndex={data?.siteSearchIndex?.index} />
       </StyledSearchContainer>
     </StyledHeader>
   )

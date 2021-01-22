@@ -22,6 +22,7 @@ module.exports = {
       }
     },
     `gatsby-plugin-lint-queries`,
+    `gatsby-plugin-graphql-codegen`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-i18n`,

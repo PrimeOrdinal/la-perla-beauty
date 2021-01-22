@@ -5,6 +5,8 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
+import type { SeoQuery } from "../../graphql-types"
+
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
@@ -13,25 +15,16 @@ type metaProp =
   | { name: string; content: string; property?: undefined }
   | { property: string; content: string; name?: undefined }
 
-type SEOProps = {
+type SeoProps = {
   description?: string
   lang?: string
   meta?: metaProp
   title: string
 }
 
-export const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
-  const data: {
-    site: {
-      buildTime: Date
-      siteMetadata: {
-        author: string
-        description: string
-        title: string
-      }
-    }
-  } = useStaticQuery(graphql`
-    query SiteInformationQuery {
+export const SEO: React.FC<SeoProps> = ({ description, lang, meta, title }) => {
+  const data: SeoQuery = useStaticQuery(graphql`
+    query SEO {
       site {
         buildTime(formatString: "YYYY-MM-DD hh:mm a z")
         siteMetadata {
@@ -43,10 +36,11 @@ export const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
     }
   `)
 
-  const { site } = data
-
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const metaDescription =
+    description ||
+    data?.site?.siteMetadata?.description ||
+    "Site description missing"
+  const defaultTitle = data?.site?.siteMetadata?.title
 
   const metaArray: metaProp[] = [
     {
@@ -71,7 +65,7 @@ export const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
     },
     {
       name: `twitter:creator`,
-      content: site.siteMetadata?.author || ``,
+      content: data?.site?.siteMetadata?.author || ``,
     },
     {
       name: `twitter:title`,
@@ -83,7 +77,7 @@ export const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
     },
     {
       name: `date`,
-      content: site.buildTime.toString(),
+      content: data?.site?.buildTime.toString(),
     },
   ]
 
