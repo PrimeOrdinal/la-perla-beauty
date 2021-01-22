@@ -45,6 +45,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-web-font-loader`,
+      options: {
+        google: {
+          families: [`Quicksand`]
+        }
+      }
+    },
+    {
       resolve: `gatsby-plugin-react-svg`,
       options: {
         rule: {
@@ -177,15 +185,15 @@ module.exports = {
         // crumbLabelUpdates: optional, update specific crumbLabels in the path
         // crumbLabelUpdates: [
         //   {
-        //     pathname: '/book',
-        //     crumbLabel: 'Books'
+        //     pathname: `/book`,
+        //     crumbLabel: `Books`
         //   }
         // ],
         // trailingSlashes: optional, will add trailing slashes to the end
         // of crumb pathnames. default is false
         trailingSlashes: true,
         // usePathPrefix: optional, if you are using pathPrefix above
-        // usePathPrefix: '/blog',
+        // usePathPrefix: `/blog`,
       },
     },
     {
