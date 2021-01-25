@@ -156,7 +156,7 @@
     "lint:js:fix": "npm run lint:js -- --fix",
     "serve": "gatsby serve",
     "start": "npm run develop",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./static -p 6006",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "type-check": "tsc --noEmit"
   },
