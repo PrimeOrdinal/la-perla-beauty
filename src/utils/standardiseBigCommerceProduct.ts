@@ -3,9 +3,6 @@ import type { BigCommerceProducts } from "../../graphql-types"
 // import getSymbolFromCurrency from "currency-symbol-map"
 import { Product, WithContext } from "schema-dts"
 
-import { product as productPath } from "../utils/paths"
-import { stripSlashes } from "../utils/stripSlashes"
-
 export function standardiseBigCommerceProduct(
   product: BigCommerceProducts
 ): Product {
@@ -22,9 +19,7 @@ export function standardiseBigCommerceProduct(
     },
   }
 
-  data.url = product?.custom_url?.url
-    ? stripSlashes(`${productPath}/${product?.custom_url?.url}`)
-    : undefined
+  data.url = product?.custom_url?.url ? product?.custom_url?.url : undefined
 
   // if (product?.images?.length) {
   //   data.image = product?.images.map(image => image)
