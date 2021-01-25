@@ -62,7 +62,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               itemProp="priceCurrency"
               content={offer?.priceCurrency as string}
             >
-              {getSymbolFromCurrency(offer?.priceCurrency)}
+              {getSymbolFromCurrency(offer.priceCurrency as string)}
             </span>
             <span itemProp="price" content={offer?.price as number}>
               1,000.00

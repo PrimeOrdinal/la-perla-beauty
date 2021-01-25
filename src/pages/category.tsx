@@ -18,12 +18,10 @@ type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceCategories
 }
 
-export const CategoryPage: React.FC<
+const CategoryPage: React.FC<
   PageProps<CategoryPageQuery, PageContextCategory>
 > = ({ pageContext, data }) => {
   const { category } = pageContext
-
-  console.log(data)
 
   return (
     <Layout>
@@ -53,7 +51,7 @@ export const CategoryPage: React.FC<
 
 export default CategoryPage
 
-export const query = graphql`
+graphql`
   query CategoryPage($id: Int) {
     allBigCommerceProducts(filter: { categories: { eq: $id } }) {
       edges {
