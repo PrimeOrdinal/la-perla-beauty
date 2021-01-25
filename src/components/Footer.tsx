@@ -5,7 +5,7 @@ import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram"
 import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter"
 import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube"
 import { graphql, useStaticQuery, Link } from "gatsby"
-import Img, { FluidObject } from "gatsby-image"
+// import Img, { FluidObject } from "gatsby-image"
 import React from "react"
 import styled from "styled-components"
 
@@ -78,7 +78,7 @@ export const Footer: React.FC<FooterProps> = (
               <li key={index}>
                 <Link to={link?.url?.href as string} title={link?.url?.title as string}>
                   {link?.text}
-                  {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />}
+                  {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
                 </Link>
               </li>
             ))}

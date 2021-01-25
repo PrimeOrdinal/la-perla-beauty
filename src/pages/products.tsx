@@ -15,7 +15,7 @@ import { SEO } from "../components/SEO"
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
 
-export const ProductsPage: React.FC<
+const ProductsPage: React.FC<
   PageProps<ProductsPageQuery, PageContextTypeBreadcrumb>
 > = ({
   data,
@@ -62,7 +62,7 @@ export const ProductsPage: React.FC<
 
 export default ProductsPage
 
-export const query = graphql`
+graphql`
   query ProductsPage {
     allBigCommerceCategories {
       edges {
