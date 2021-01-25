@@ -31,3 +31,9 @@ Secondary.args = {
 Secondary.argTypes = {
   onClick: { action: "Button with secondary style clicked" },
 }
+
+export const Tertiary = Template.bind({})
+Tertiary.args = {
+  children: "Third button style",
+  variant: "tertiary",
+}

@@ -112,8 +112,7 @@
   "husky": {
     "hooks": {
       "postinstall": "husky install",
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run-script test"
+      "pre-commit": "lint-staged"
     }
   },
   "keywords": [
@@ -122,16 +121,13 @@
   "license": "UNLICENSE",
   "lint-staged": {
     "*.{cjs,js,mjs,ts,tsx}": [
-      "npm run-script lint:css",
-      "git add"
+      "npm run-script lint:css"
     ],
     "*.{cjs,js,json,mjs,ts,tsx}": [
-      "npm run-script lint:js",
-      "git add"
+      "npm run-script lint:js"
     ],
     "*.graphql": [
-      "npm run-script lint:graphql",
-      "git add"
+      "npm run-script lint:graphql"
     ]
   },
   "name": "la-perla-beauty",

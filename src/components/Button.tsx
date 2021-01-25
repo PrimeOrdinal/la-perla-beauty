@@ -24,11 +24,10 @@ export const Button: React.FC<ButtonProps> = styled.button`
   appearance: "none";
   border: none;
   cursor: pointer;
-  font-family: "inherit";
 
-  &:disabled: {
-    color: "disabled",
-    cursor: "not-allowed",
+  &:disabled {
+    color: "disabled";
+    cursor: "not-allowed";
   }
 
   ${variant({

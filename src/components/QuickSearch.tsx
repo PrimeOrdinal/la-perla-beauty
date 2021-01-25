@@ -20,7 +20,7 @@ import {
 
 const QuickSearchStyles = styled.div`
   align-items: center;
-  bg: ${props => props.theme.colors.background};
+  background-color: ${props => props.theme.colors.background};
   display: grid;
   padding: ${props => props.theme.space[2]}px;
 
