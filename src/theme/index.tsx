@@ -45,18 +45,18 @@ export const theme: DefaultTheme = {
   // },
   buttons: {
     primary: {
-      color: "background",
+      color: "whitesmoke",
       backgroundColor: "primary",
       // "&:disabled": {
       //   backgroundColor: "tertiary",
       //   cursor: "not-allowed",
       // },
       "&:hover": {
-        color: "text",
+        // color: "text",
       },
     },
     secondary: {
-      color: "text",
+      color: "#363139",
       backgroundColor: "secondary",
       "&:hover": {
         color: "background",
@@ -74,11 +74,11 @@ export const theme: DefaultTheme = {
     banner: "#000",
     disabled: "#ccc",
     text: "#000",
-    background: "#ff0000",
-    primary: "#ff0000",
-    secondary: "#00ff00",
-    tertiary: "#0000ff",
-    quarternary: "#ff0000",
+    background: "#f5f5f5",
+    primary: "#363139",
+    secondary: "#FEEBDD",
+    tertiary: "#EFEEE9",
+    quarternary: "#D3CBD6",
     modes: {
       dark: {
         text: "#fff",
