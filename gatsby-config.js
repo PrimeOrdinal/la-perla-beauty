@@ -24,13 +24,13 @@ module.exports = {
     `gatsby-plugin-lint-queries`,
     `gatsby-plugin-graphql-codegen`,
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-i18n`,
-      options: {
-        langKeyDefault: `en`,
-        useLangKeyLayout: false,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-i18n`,
+    //   options: {
+    //     langKeyDefault: `en`,
+    //     useLangKeyLayout: false,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {
@@ -129,7 +129,7 @@ module.exports = {
         type_prefix: `Contentstack`, // (default)
 
         // Optional: Specify true if you want to download all your contentstack images locally
-        downloadImages: false,
+        downloadImages: true,
 
         // transformSchema: ({
         //   schema,
