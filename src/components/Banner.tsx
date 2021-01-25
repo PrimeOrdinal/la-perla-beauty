@@ -15,5 +15,3 @@ export const Banner: React.FC = () => {
     </StyledBanner>
   )
 }
-
-Banner.propTypes = {}
