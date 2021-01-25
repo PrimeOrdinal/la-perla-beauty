@@ -6,6 +6,8 @@
 
 const path = require("path")
 
+const stripSlashes = (text) => text.replace(/([^:]\/)\/+/g, "$1")
+
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -17,7 +19,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       query AllProducts {
         allBigCommerceCategories {
           edges {
-            node {              
+            node {
+              bigcommerce_id
               custom_url {
                 url
               }
@@ -26,23 +29,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               id
               image_url
               is_visible
+              layout_file
               meta_description
               meta_keywords
+              name
+              page_title
               parent_id
+              search_keywords
               sort_order
-              title: name
+              views
             }
           }
         }
         allBigCommerceProducts {
           edges {
             node {
-              custom_url {
-                url
-              }
               availability
               calculated_price
               categories
+              custom_url {
+                url
+              }
               depth
               description
               fixed_cost_shipping_price
@@ -57,6 +64,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               is_price_hidden
               is_visible
               mpn
+              name
               order_quantity_maximum
               order_quantity_minimum
               preorder_message
@@ -64,10 +72,49 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               price_hidden_label
               sale_price
               sku
-              title: name
               upc
               weight
               width
+            }
+          }
+        }
+        allContentstackPages {
+          edges {
+            node {
+              template
+              title
+              url
+              locale
+              publish_details {
+                time
+                user
+                environment
+              }
+              modular_blocks {
+                article_card {
+                  paragraph
+                  title
+                  title_primary
+                  title_secondary
+                }
+                article_cards {
+                  group {
+                    paragraph
+                    title
+                    title_primary
+                    title_secondary
+                  }
+                }
+                image_with_overlay {
+                  title_secondary
+                  title_primary
+                  paragraph
+                  link {
+                    title
+                    href
+                  }
+                }
+              }
             }
           }
         }
@@ -81,35 +128,52 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  // Create pages for categories.
-  const categoryTemplate = path.resolve(`src/pages/category.tsx`)
-  
-  result.data.allBigCommerceCategories.edges.forEach(({ node }) => {
-    const path = node.custom_url.url
+  // Create pages for pages.
+  result.data.allContentstackPages.edges.forEach(({ node }) => {
+    const pagePath = node.url
 
     createPage({
-      path,
+      path: pagePath,
+      component: path.resolve(`src/pages/${node.template}.tsx`),
+      // In your template's graphql query, you can use pagePath
+      // as a GraphQL variable to query for data from the API.
+      context: {
+        page: node,
+      },
+    })
+  })
+
+  // Create pages for categories.
+  const categoryTemplate = path.resolve(`src/pages/category.tsx`)
+
+  result.data.allBigCommerceCategories.edges.forEach(({ node }) => {
+    const pagePath = stripSlashes(`category/${node.custom_url.url}`)
+
+    createPage({
+      path: pagePath,
       component: categoryTemplate,
       // In your template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the API.
       context: {
-        category: node
+        category: node,
+        id: node.bigcommerce_id
       },
     })
   })
 
   // Create pages for products.
   const productTemplate = path.resolve(`src/pages/product.tsx`)
+
   result.data.allBigCommerceProducts.edges.forEach(({ node }) => {
-    const path = node.custom_url.url
+    const pagePath = stripSlashes(`product/${node.custom_url.url}`)
 
     createPage({
-      path,
+      path: pagePath,
       component: productTemplate,
       // In your template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the API.
       context: {
-        product: node
+        product: node,
       },
     })
   })
