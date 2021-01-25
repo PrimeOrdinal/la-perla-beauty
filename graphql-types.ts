@@ -7569,6 +7569,11 @@ export type SeoQuery = { site?: Maybe<(
     & { siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'author' | 'description' | 'title'>> }
   )> };
 
+export type BigCommerceProductsFragmentFragment = (
+  Pick<BigCommerceProducts, 'availability' | 'calculated_price' | 'categories' | 'depth' | 'description' | 'fixed_cost_shipping_price' | 'gtin' | 'height' | 'id' | 'inventory_level' | 'inventory_warning_level' | 'is_featured' | 'is_free_shipping' | 'is_preorder_only' | 'is_price_hidden' | 'is_visible' | 'mpn' | 'name' | 'order_quantity_maximum' | 'preorder_message' | 'price' | 'price_hidden_label' | 'sale_price' | 'sku' | 'upc' | 'weight' | 'width'>
+  & { custom_url?: Maybe<Pick<BigCommerceProductsCustom_Url, 'url'>> }
+);
+
 export type Contentstack_MenusFragmentFragment = (
   Pick<Contentstack_Menus, 'id' | 'title' | 'slot'>
   & { links?: Maybe<Array<Maybe<(
@@ -7601,11 +7606,7 @@ export type ProductPageQuery = { allBigCommerceCategories: { edges: Array<{ node
 export type ProductsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductsPageQuery = { allBigCommerceCategories: { edges: Array<{ node: Pick<BigCommerceCategories, 'name' | 'id'> }> }, allBigCommerceProducts: { edges: Array<{ node: (
-        Pick<BigCommerceProducts, 'availability' | 'calculated_price' | 'categories' | 'depth' | 'description' | 'fixed_cost_shipping_price' | 'gtin' | 'height' | 'id' | 'inventory_level' | 'inventory_warning_level' | 'is_featured' | 'is_free_shipping' | 'is_preorder_only' | 'is_price_hidden' | 'is_visible' | 'mpn' | 'order_quantity_maximum' | 'order_quantity_minimum' | 'preorder_message' | 'price' | 'price_hidden_label' | 'sale_price' | 'sku' | 'upc' | 'weight' | 'width'>
-        & { title: BigCommerceProducts['name'] }
-        & { custom_url?: Maybe<Pick<BigCommerceProductsCustom_Url, 'url'>> }
-      ) }> }, allContentstackProducts: { edges: Array<{ node: Pick<Contentstack_Products, 'id' | 'product_id' | 'rich_text_editor' | 'title' | 'url'> }> } };
+export type ProductsPageQuery = { allBigCommerceCategories: { edges: Array<{ node: Pick<BigCommerceCategories, 'name' | 'id'> }> }, allBigCommerceProducts: { edges: Array<{ node: BigCommerceProductsFragmentFragment }> }, allContentstackProducts: { edges: Array<{ node: Pick<Contentstack_Products, 'id' | 'product_id' | 'rich_text_editor' | 'title' | 'url'> }> } };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

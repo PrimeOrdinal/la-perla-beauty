@@ -65,8 +65,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               is_visible
               mpn
               name
-              order_quantity_maximum
-              order_quantity_minimum
               preorder_message
               price
               price_hidden_label

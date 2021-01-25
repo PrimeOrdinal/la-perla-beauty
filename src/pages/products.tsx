@@ -75,37 +75,7 @@ export const query = graphql`
     allBigCommerceProducts {
       edges {
         node {
-          custom_url {
-            url
-          }
-          availability
-          calculated_price
-          categories
-          depth
-          description
-          fixed_cost_shipping_price
-          gtin
-          height
-          id
-          inventory_level
-          inventory_warning_level
-          is_featured
-          is_free_shipping
-          is_preorder_only
-          is_price_hidden
-          is_visible
-          mpn
-          order_quantity_maximum
-          order_quantity_minimum
-          preorder_message
-          price
-          price_hidden_label
-          sale_price
-          sku
-          title: name
-          upc
-          weight
-          width
+          ...BigCommerceProductsFragment
         }
       }
     }
