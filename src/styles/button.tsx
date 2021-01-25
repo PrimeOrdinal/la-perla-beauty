@@ -1,5 +1,3 @@
-import styled from 'styled-components'
-
 export const button = `
     button {
         appearance: unset;
@@ -8,11 +6,11 @@ export const button = `
         cursor: pointer;
         padding: unset;
         padding: 13px;
-        font-family: Quicksand;
-        font-size: 16px;
+        font-family: 'Quicksand';
         border-radius: 12px;
         text-transform: uppercase;
         letter-spacing: 1px;
         width: 100%;   
+        text-align: center;
     }
 `

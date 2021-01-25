@@ -20,11 +20,9 @@ export type MiniBagProps = ColorProps &
   VariantProps
 
 export const MiniBagStyled: React.FC<MiniBagProps> = styled.div`
-  font-family: "inherit";
-
-  &:disabled: {
-    color: "disabled",
-    cursor: "not-allowed",
+  &:disabled {
+    color: "disabled";
+    cursor: "not-allowed";
   }
 
   ${compose(color, layout, position, space)}
