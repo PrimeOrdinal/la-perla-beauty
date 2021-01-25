@@ -1,38 +1,79 @@
 import { FaBriefcase } from "@react-icons/all-files/fa/FaBriefcase"
 import { FaSearch } from "@react-icons/all-files/fa/FaSearch"
 import { FaUser } from "@react-icons/all-files/fa/FaUser"
+import { Link } from "gatsby"
 import React from "react"
 
 import styled from "styled-components"
+import {
+  compose,
+  grid,
+  layout,
+  space,
+  GridProps,
+  LayoutProps,
+  SpaceProps,
+} from "styled-system"
 
-import { ListPlain } from "../styles/ListPlain"
+import { ListPlain } from "./ListPlain"
+
+import {
+  bag as bagPath,
+  myAccount as myAccountPath,
+  search as searchPath,
+} from "../utils/paths"
 
 export const MenuActionsStyle = styled(ListPlain)`
   display: grid;
   gap: 1rem;
   grid-auto-flow: column;
-
   justify-content: end;
-
   padding: ${props => props.theme.space[2]}px;
+
+  ${compose(grid, layout, space)}
 `
 
-export const MenuActions: React.FC = () => (
-  <MenuActionsStyle>
+type MenuActionsProps = GridProps &
+  LayoutProps &
+  SpaceProps & {
+    toggleMiniBagVisibility: React.DispatchWithoutAction
+    toggleQuickSearchVisibility: React.DispatchWithoutAction
+  }
+
+export const MenuActions: React.FC<MenuActionsProps> = ({
+  toggleMiniBagVisibility,
+  toggleQuickSearchVisibility,
+  ...props
+}) => (
+  <MenuActionsStyle {...props}>
     <li>
-      <a href="/">
+      <Link
+        to={searchPath}
+        onClick={event => {
+          // TODO: Only intercept link on desktop
+          toggleQuickSearchVisibility()
+          event?.preventDefault()
+        }}
+      >
         <FaSearch />
-      </a>
+      </Link>
     </li>
     <li>
-      <a href="/">
+      <Link to={myAccountPath}>
         <FaUser />
-      </a>
+      </Link>
     </li>
     <li>
-      <a href="/">
+      <Link
+        to={bagPath}
+        onClick={event => {
+          // TODO: Only intercept link on desktop
+          toggleMiniBagVisibility()
+          event?.preventDefault()
+        }}
+      >
         <FaBriefcase />
-      </a>
+      </Link>
     </li>
   </MenuActionsStyle>
 )

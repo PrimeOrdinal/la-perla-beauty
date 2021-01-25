@@ -1,60 +1,57 @@
 import styled from "styled-components"
 import {
+  buttonStyle,
   color,
   compose,
   layout,
   space,
   variant,
+  ButtonStyleProps,
   ColorProps,
   LayoutProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-export type ButtonProps = ColorProps &
+type ButtonProps = React.HTMLProps<HTMLButtonElement> &
+  ButtonStyleProps &
+  ColorProps &
   LayoutProps &
   SpaceProps &
-  VariantProps & {
-    // bg?: string
-    // color?: string
-    disabled?: boolean
-    // padding?: number
-    // space?: number
-    // variant?: "primary" | "secondary" | "tertiary"
-  }
+  VariantProps
 
 export const Button: React.FC<ButtonProps> = styled.button`
   appearance: "none";
-  background-color: ${props => props.theme.buttons.primary.bg};
   border: none;
   cursor: pointer;
   font-family: "inherit";
-  padding: ${props => props.theme.space[2]}px;
+
+  &:disabled: {
+    color: "disabled",
+    cursor: "not-allowed",
+  }
 
   ${variant({
+    scale: "buttons",
     variants: {
       primary: {
-        color: "white",
-        bg: "primary",
+        // color: "white",
+        // bg: "primary",
+        // "&:disabled": {
+        //   bg: "tertiary",
+        //   cursor: "not-allowed",
+        // },
       },
       secondary: {
-        color: "white",
-        bg: "secondary",
+        // color: "white",
+        // bg: "secondary",
       },
       tertiary: {
-        color: "white",
-        bg: "tertiary",
+        // color: "white",
+        // bg: "tertiary",
       },
     },
   })}
 
-  ${compose(color, layout, space)}
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-
-  &:hover {
-    opacity: 0.8;
-  }
+  ${compose(buttonStyle, color, layout, space)}
 `

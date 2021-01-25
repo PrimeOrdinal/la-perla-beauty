@@ -33,8 +33,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         src="https://via.placeholder.com/250"
       />
       <a itemProp="url" href={product.url as string}>
-        <span itemProp="name">{product.brand}</span>
+        <span itemProp="name">{product.name}</span>
       </a>
+      <span itemProp="brand">{product.brand}</span>
       <div
         itemProp="aggregateRating"
         itemScope

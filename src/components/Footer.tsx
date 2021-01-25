@@ -4,14 +4,14 @@ import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook"
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram"
 import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter"
 import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
+import Img, { FluidObject } from "gatsby-image"
 import React from "react"
 import styled from "styled-components"
 
 import Logo from "../images/logo.svg"
 
-import { ListPlain } from "../styles/ListPlain"
-
+import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
 
 const StyledFooter = styled.footer`
@@ -43,35 +43,22 @@ export const Footer: React.FC<FooterProps> = (
   }
 ) => {
   const data: FooterQuery = useStaticQuery(graphql`
-  query Footer {
-    allContentstackMenus(
-      filter: {
-        slot: {
-          in: ["secondary-1", "secondary-2", "secondary-3", "tertiary-1"]
+    query Footer {
+      allContentstackMenus(
+        filter: {
+          slot: {
+            in: ["secondary-1", "secondary-2", "secondary-3", "tertiary-1"]
+          }
         }
-      }
-    ) {
-      edges {
-        node {
-          ...Contentstack_menusFragment
+      ) {
+        edges {
+          node {
+            ...Contentstack_menusFragment
+          }
         }
       }
     }
-  }
-
-  fragment Contentstack_menusFragment on Contentstack_menus {
-    id
-    title
-    slot
-    links {
-      text
-      url {
-        href
-        title
-      }
-    }
-  }
-`)
+  `)
 
   return (
     <StyledFooter>
@@ -84,9 +71,10 @@ export const Footer: React.FC<FooterProps> = (
           <ul id={menu?.slot as string} key={menu.id}>
             {menu?.links?.map((link, index) => (
               <li key={index}>
-                <a href={link?.url?.href as string} title={link?.url?.title as string}>
+                <Link to={link?.url?.href as string} title={link?.url?.title as string}>
                   {link?.text}
-                </a>
+                  {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />}
+                </Link>
               </li>
             ))}
           </ul>

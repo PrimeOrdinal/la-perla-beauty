@@ -5,3 +5,5 @@
  */
 
 // You can delete this file if you're not using it
+
+// See https://flaviocopes.com/gatsby-load-external-js/

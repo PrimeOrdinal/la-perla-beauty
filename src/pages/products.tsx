@@ -62,7 +62,7 @@ export const ProductsPage: React.FC<
 
 export default ProductsPage
 
-export const data = graphql`
+export const query = graphql`
   query ProductsPage {
     allBigCommerceCategories {
       edges {

@@ -3,39 +3,44 @@ import type { Product } from "schema-dts"
 import React from "react"
 import { Helmet } from "react-helmet"
 import styled from "styled-components"
+import {
+  compose,
+  grid,
+  layout,
+  space,
+  GridProps,
+  LayoutProps,
+  SpaceProps,
+} from "styled-system"
 
-import { ProductCard } from "../components/ProductCard"
+import { ProductCard } from "./ProductCard"
+import { ListPlain } from "./ListPlain"
 
-const StyledResults = styled.ul`
-  align-items: start;
+const StyledListing = styled(ListPlain)`
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
-  list-style: none;
-  margin: 0;
-  padding: 1rem;
 
-  li {
-    margin-block-end: 0;
-  }
-
-  article {
-    display: ;
-  }
-
-  h1 {
-    font-size: 1rem;
-  }
+  ${compose(grid, layout, space)}
 `
 
-type ListingProps = {
-  edges: Array<{
-    node: Product
-  }>
-}
+type ListingProps = GridProps &
+  LayoutProps &
+  SpaceProps & {
+    edges: Array<{
+      node: Product
+    }>
+  }
 
 export const Listing: React.FC<ListingProps> = ({ edges }) => (
-  <StyledResults>
+  <StyledListing
+    gridAutoFlow="row"
+    gridGap={{ _: 2, sm: 1, md: 2, lg: 4 }}
+    gridTemplateColumns={{
+      _: "1fr",
+      sm: "repeat(2, 1fr)",
+      md: "repeat(4, 1fr)",
+      xl: "repeat(6, 1fr)",
+    }}
+  >
     {edges.map(({ node: product }: { node: Product }, index) => (
       <li key={index}>
         <ProductCard product={product} />
@@ -44,5 +49,5 @@ export const Listing: React.FC<ListingProps> = ({ edges }) => (
         </Helmet>
       </li>
     ))}
-  </StyledResults>
+  </StyledListing>
 )

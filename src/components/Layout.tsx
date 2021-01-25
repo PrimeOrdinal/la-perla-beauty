@@ -10,22 +10,16 @@ import type { LayoutQuery } from "../../graphql-types"
 import { useStaticQuery, graphql } from "gatsby"
 import React from "react"
 import styled, { ThemeProvider } from "styled-components"
-// import type {} from 'styled-components/cssprop'
-import { color } from "styled-system"
+// import type {} from "styled-components/cssprop"
 
 import { GlobalStyle } from "../styles/GlobalStyle"
 
 import { theme } from "../theme"
 
 import { Banner } from "./Banner"
-import { Button } from "./Button"
 import { Footer } from "./Footer"
 import { Header } from "./Header"
 import { SiteSelector } from "./SiteSelector"
-
-const Box = styled.div`
-  ${color}
-`
 
 const StyledSiteContainer = styled.div`
   display: flex;
@@ -59,31 +53,11 @@ export const Layout: React.FC = ({ children }) => {
         <GlobalStyle theme={theme} />
         <SiteSelector />
         <Banner />
-        <Button>Default</Button>
-        <Button space={1} variant="primary">
-          Primary
-        </Button>
-        <Button space={2} variant="secondary">
-          Secondary
-        </Button>
-        <Button space={4} variant="tertiary">
-          Tertiary
-        </Button>
-        <Button bg="orange" color="#fff" padding={1}>
-          Override
-        </Button>
-        <Button disabled>Override</Button>
-        <Box bg="blue" color="black">
-          Blue Box
-        </Box>
-        <Box bg="primary" color="black">
-          Primary Theme Colour Box
-        </Box>
         <Header siteTitle={data?.site?.siteMetadata?.title || `Title`} />
         <StyledPageContainer>
           <StyledMain>{children}</StyledMain>
         </StyledPageContainer>
-        <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} />
+        {/* <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} /> */}
       </StyledSiteContainer>
     </ThemeProvider>
   )

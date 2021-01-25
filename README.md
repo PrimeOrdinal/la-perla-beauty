@@ -29,7 +29,7 @@ On a MacOS system, run `git config core.ignorecase false` in order to use this r
 ### Storybook
 
 <a href="https://www.gatsbyjs.com">
-  <img alt="Storybook" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="32" />
+  <img alt="Storybook" src="https://simpleicons.org/icons/storybook.svg" width="32" />
 </a>
 
 Lorem ipsum
@@ -121,7 +121,7 @@ Lorem ipsum
 ### Chromatic
 
 <a href="https://www.gatsbyjs.com">
-  <img alt="Chromatic" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="32" />
+  <img alt="Chromatic" src="https://simpleicons.org/icons/storybook.svg" width="32" />
 </a>
 
 Preview, collaborate and sign-off on Storybook stories on the Chromatic instance at https://www.chromatic.com/builds?appId=6007a1c87c54a50021ea7e5c
@@ -145,7 +145,7 @@ Lorem ipsum
 ### Netlify
 
 <a href="https://www.gatsbyjs.com">
-  <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="32" />
+  <img alt="Gatsby" src="https://simpleicons.org/icons/netlify.svg" width="32" />
 </a>
 
 Lorem ipsum
