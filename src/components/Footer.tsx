@@ -73,10 +73,13 @@ export const Footer: React.FC<FooterProps> = (
       </div>
       <div className="secondary">
         {data.allContentstackMenus.edges.map(({ node: menu }) => (
-          <ul id={menu?.slot as string} key={menu.id}>
+          <ul id={menu.slot as string} key={menu.id}>
             {menu?.links?.map((link, index) => (
               <li key={index}>
-                <Link to={link?.url?.href as string} title={link?.url?.title as string}>
+                <Link
+                  to={link?.url?.href as string}
+                  title={link?.url?.title as string}
+                >
                   {link?.text}
                   {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
                 </Link>
