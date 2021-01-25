@@ -3,8 +3,31 @@ import { Index } from "elasticlunr"
 import { Link } from "gatsby"
 import React, { useState } from "react"
 import styled from "styled-components"
+import {
+  color,
+  compose,
+  grid,
+  layout,
+  position,
+  space,
+  ColorProps,
+  GridProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
 
-const StyledResults = styled.ul`
+const QuickSearchStyles = styled.div`
+  align-items: center;
+  bg: ${props => props.theme.colors.background};
+  display: grid;
+  padding: ${props => props.theme.space[2]}px;
+
+  ${compose(color, grid, layout, position, space)}
+`
+
+const ResultsStyles = styled.ul`
   align-items: center;
   display: grid;
   list-style: none;
@@ -15,11 +38,19 @@ const StyledResults = styled.ul`
   }
 `
 
-export type SearchProps = {
-  searchIndex: Record<string, unknown>
-}
+export type QuickSearchProps = ColorProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
+    searchIndex: Record<string, unknown>
+  }
 
-export const Search: React.FC<SearchProps> = ({ searchIndex }) => {
+export const QuickSearch: React.FC<QuickSearchProps> = ({
+  searchIndex,
+  ...props
+}) => {
   const [query, setQuery] = useState("")
   // const [results, setResults]: [results: SearchResult[], setResults: Dispatch<SetStateAction<SearchResult[]>>] = useState([])
   const [results, setResults] = useState([])
@@ -35,21 +66,21 @@ export const Search: React.FC<SearchProps> = ({ searchIndex }) => {
   }
 
   return (
-    <React.Fragment>
+    <QuickSearchStyles {...props}>
       <input
         type="text"
         value={query}
         onChange={search}
         placeholder="Search site"
       />
-      <StyledResults>
+      <ResultsStyles>
         {(results as SearchResult[]).map(page => (
           <li key={page.id}>
             {/* <img alt={page.title} src={page.image_url} /> */}
             <Link to={page.path}>{page.title}</Link>
           </li>
         ))}
-      </StyledResults>
-    </React.Fragment>
+      </ResultsStyles>
+    </QuickSearchStyles>
   )
 }

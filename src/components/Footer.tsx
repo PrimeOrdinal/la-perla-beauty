@@ -14,23 +14,28 @@ import Logo from "../images/logo.svg"
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
 
-const StyledFooter = styled.footer`
+const LogoStyle = styled(Logo)`
+  height: 40px;
+  width: auto;
+`
+
+const SocialContainerStyle = styled.div`
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: column;
+`
+
+const SocialLinkListStyle = styled(ListPlain)`
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: column;
+`
+
+const FooterStyle = styled.footer`
   background-color: #efeee9;
   display: grid;
   gap: 2rem;
   padding: 1rem;
-`
-
-const SocialContainer = styled.div`
-  display: grid;
-  gap: 1rem;
-  grid-auto-flow: column;
-`
-
-const SocialLinkList = styled(ListPlain)`
-  display: grid;
-  gap: 1rem;
-  grid-auto-flow: column;
 `
 
 export type FooterProps = {
@@ -61,9 +66,9 @@ export const Footer: React.FC<FooterProps> = (
   `)
 
   return (
-    <StyledFooter>
+    <FooterStyle>
       <div className="primary">
-        <Logo />
+        <LogoStyle />
         <NewsletterSignup />
       </div>
       <div className="secondary">
@@ -81,9 +86,9 @@ export const Footer: React.FC<FooterProps> = (
         ))}
       </div>
       <div className="tertiary">
-        <SocialContainer>
+        <SocialContainerStyle>
           <span>Follow us</span>
-          <SocialLinkList>
+          <SocialLinkListStyle>
             <li>
               <a href="https://www.facebook.com/BeautyByLaPerla/">
                 <FaFacebook />
@@ -104,12 +109,12 @@ export const Footer: React.FC<FooterProps> = (
                 <FaYoutube />
               </a>
             </li>
-          </SocialLinkList>
-        </SocialContainer>
+          </SocialLinkListStyle>
+        </SocialContainerStyle>
         <span>
           © {new Date().getFullYear()} {siteTitle}
         </span>
       </div>
-    </StyledFooter>
+    </FooterStyle>
   )
 }

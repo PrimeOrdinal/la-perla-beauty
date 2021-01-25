@@ -6,6 +6,7 @@ const StyledBanner = styled.div`
   display: grid;
   text-align: center;
   grid-auto-flow: column;
+  padding: ${props => props.theme.space[2]}px;
 `
 
 export const Banner: React.FC = () => {

@@ -36,20 +36,6 @@ const StyledMenuMainExpanded = styled.div`
   padding-block-start: 1rem;
 `
 
-// const StyledMenuMainExpandedList = styled(StyledMenu)`
-//   gap: 1rem;
-//   grid-template-columns: repeat(4, 1fr);
-//   list-style: none;
-// `
-
-// const MenuNavigationStyle = styled(ListPlain)`
-//   display: grid;
-//   gap: 1rem;
-//   grid-auto-flow: column;
-//   justify-content: end;
-//   padding: ${props => props.theme.space[2]}px;
-// `
-
 const StyledMenuMainHeadings = styled(ListPlain)`
   display: grid;
   gap: 1rem;
@@ -82,7 +68,7 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = props => {
   const [hoverRef, isHovered] = useHover()
 
   return (
-    <StyledMenu {...props} ref={hoverRef}>
+    <StyledMenu ref={hoverRef} {...props}>
       <StyledMenuMainHeadings>
         <li>
           <Link to="/products/">Products</Link>

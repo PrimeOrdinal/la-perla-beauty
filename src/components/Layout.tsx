@@ -57,7 +57,7 @@ export const Layout: React.FC = ({ children }) => {
         <StyledPageContainer>
           <StyledMain>{children}</StyledMain>
         </StyledPageContainer>
-        {/* <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} /> */}
+        <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} />
       </StyledSiteContainer>
     </ThemeProvider>
   )
