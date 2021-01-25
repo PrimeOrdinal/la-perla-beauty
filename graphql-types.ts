@@ -5409,8 +5409,6 @@ export type QueryAllDirectoryArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -5922,8 +5920,6 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
-  port?: Maybe<Scalars['Int']>;
-  host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -6127,8 +6123,6 @@ export type SiteFieldsEnum =
   | 'siteMetadata___description'
   | 'siteMetadata___author'
   | 'siteMetadata___siteUrl'
-  | 'port'
-  | 'host'
   | 'polyfill'
   | 'pathPrefix'
   | 'id'
@@ -6221,8 +6215,6 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -6478,8 +6470,6 @@ export type SitePageContextProduct = {
   is_visible?: Maybe<Scalars['Boolean']>;
   mpn?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  order_quantity_maximum?: Maybe<Scalars['Int']>;
-  order_quantity_minimum?: Maybe<Scalars['Int']>;
   preorder_message?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Float']>;
   price_hidden_label?: Maybe<Scalars['String']>;
@@ -6518,8 +6508,6 @@ export type SitePageContextProductFilterInput = {
   is_visible?: Maybe<BooleanQueryOperatorInput>;
   mpn?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
-  order_quantity_maximum?: Maybe<IntQueryOperatorInput>;
-  order_quantity_minimum?: Maybe<IntQueryOperatorInput>;
   preorder_message?: Maybe<StringQueryOperatorInput>;
   price?: Maybe<FloatQueryOperatorInput>;
   price_hidden_label?: Maybe<StringQueryOperatorInput>;
@@ -6677,8 +6665,6 @@ export type SitePageFieldsEnum =
   | 'context___product___is_visible'
   | 'context___product___mpn'
   | 'context___product___name'
-  | 'context___product___order_quantity_maximum'
-  | 'context___product___order_quantity_minimum'
   | 'context___product___preorder_message'
   | 'context___product___price'
   | 'context___product___price_hidden_label'
