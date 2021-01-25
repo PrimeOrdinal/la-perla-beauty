@@ -10,7 +10,7 @@ type PageContextPage = PageContextTypeBreadcrumb & {
   page: Contentstack_Pages
 }
 
-export const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
+const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
   pageContext,
 }) => {
   const { page } = pageContext

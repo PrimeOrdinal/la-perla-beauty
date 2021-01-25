@@ -41,7 +41,7 @@ type PageContextProduct = PageContextTypeBreadcrumb & {
   product: Product
 }
 
-export const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
+const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
   pageContext,
 }) => {
   const {
@@ -124,7 +124,7 @@ export const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 
 export default ProductPage
 
-export const query = graphql`
+graphql`
   query ProductPage {
     allBigCommerceCategories {
       edges {

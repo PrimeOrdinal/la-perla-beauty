@@ -3,7 +3,7 @@ import React from "react"
 import { Layout } from "../components/Layout"
 import { SEO } from "../components/SEO"
 
-export const RegisterPage: React.FC = () => (
+const RegisterPage: React.FC = () => (
   <Layout>
     <SEO title="Register" />
     <h1>Register</h1>
