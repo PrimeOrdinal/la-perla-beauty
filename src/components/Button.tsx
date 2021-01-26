@@ -13,7 +13,7 @@ import {
   VariantProps,
 } from "styled-system"
 
-type ButtonProps = React.HTMLProps<HTMLButtonElement> &
+export type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   ButtonStyleProps &
   ColorProps &
   LayoutProps &

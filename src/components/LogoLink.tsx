@@ -24,7 +24,7 @@ const LogoLinkStyle = styled(Link)`
   ${compose(grid, layout, space)}
 `
 
-type LogoLinkProps = GridProps &
+export type LogoLinkProps = GridProps &
   LayoutProps &
   SpaceProps & {
     siteTitle: string
