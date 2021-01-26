@@ -124,7 +124,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 
 export default ProductPage
 
-graphql`
+export const query = graphql`
   query ProductPage {
     allBigCommerceCategories {
       edges {
