@@ -10,31 +10,9 @@ export const Contentstack_menusFragment = graphql`
         href
         title
       }
-      image {
+      icon {
         id
         url
-        children {
-          ... on ImageSharp {
-            id
-            fluid {
-              base64
-              aspectRatio
-              originalImg
-              originalName
-              sizes
-              src
-              srcSet
-              presentationWidth
-              presentationHeight
-              tracedSVG
-              srcWebp
-              srcSetWebp
-            }
-            children {
-              id
-            }
-          }
-        }
       }
     }
   }
