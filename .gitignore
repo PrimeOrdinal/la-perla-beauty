@@ -72,3 +72,5 @@ yarn-error.log
 graphql-types.ts
 
 schema.json
+
+.netlify/functions
