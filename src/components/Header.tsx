@@ -29,8 +29,8 @@ export type HeaderProps = {
   siteTitle?: string
 }
 
-export const HeaderPure: React.FC<HeaderProps> = (
-  { data, siteTitle } = {
+export const Header: React.FC<HeaderProps> = (
+  { siteTitle } = {
     siteTitle: "Site Title",
   }
 ) => {
