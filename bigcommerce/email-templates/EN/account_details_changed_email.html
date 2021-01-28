@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html style="background-color: #f9f7f5; margin: 0; padding: 0;" lang="en">
+<head>
+<link
+            href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"
+            rel="stylesheet"
+            type="text/css"
+        />
+    <meta charset="UTF-8">
+    <title>Account Change Details Email Template</title>
+<style>
+            @font-face {
+                font-family: "Tiempos";
+                font-style: normal;
+                font-weight: normal;
+                /* not sure these will persist and the fonts should probably be hosted elsewhere */
+                src: url("%%GLOBAL_ShopPathSSL%%/content/fonts/tiempos-fine-web-light.woff2")
+                        format("woff2"),
+                    url("%%GLOBAL_ShopPathSSL%%/content/fonts/tiempos-fine-web-light.woff")
+                        format("woff");
+            }
+            * {
+                box-sizing: border-box;
+                font-family: "Quicksand", Arial, sam-serif;
+                font-size: 12px;
+                line-height: 1.5;
+            }
+            h2,
+            h3,
+            h4 {
+                font-family: "Tiempos", Times, serif;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 18px;
+            }
+            h4 {
+                font-size: 16px;
+            }
+            h5 {
+                font-size: 14px;
+                font-weight: normal;
+            }
+            p{
+                font-size: 14px;
+                margin: 2rem 0;
+            }
+            /* Sledgehammer to hide the "Fiscal Code" and "PCCC" fields, which seem to be the only <dl> */
+            dl {
+                display: none;
+            }
+            .signIn-button{
+                padding: 1rem 4rem;
+                text-transform: uppercase;
+                border: 1px solid;
+                color: #000000;
+                text-decoration: none;
+                margin: 2rem 0;
+            }
+        </style>
+</head>
+<body style="background-color: #f9f7f5; margin: 0; padding: 0;">
+
+<div style="background-color: #ffffff;
+border: 1rem solid #ffffff;
+margin: 1rem auto;
+max-width: 600px;">
+<div style="padding: 16px 0; text-align: center; width: 100%;">
+    <img
+        src="https://cdn11.bigcommerce.com/s-6d2qgjarzj/images/stencil/250x100/laperla2x_1587030696__15598.original.png"
+        width="250"
+    />
+</div>
+<p style="background-color: #f9f7f5; padding: 24px; font-size: 16px;">Changes to your account</p>
+<div style="padding: 0 24px;">
+        <p>Dear %%GLOBAL_CustomerName%%</p>
+        <p>We wanted to let you know that the following details have been changed on your %%GLOBAL_StoreDomainName%%
+        </p>
+        <p>%%GLOBAL_ChangedCustomerFields%%</p>
+        <p>If you made the changes yourself, please disregard this email. If not, please contact us immediately at <a href="mailto:customercare@laperla.com">customercare@laperla.com</a>
+        </p>
+        <p><a href="%%GLOBAL_ShopPathSSL%%/login.php" class="signIn-button">Sign in to my account</a></p>
+    </div>
+    %%GLOBAL_EmailFooter%%
+</div>
+</body>
+</html>

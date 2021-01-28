@@ -1,0 +1,146 @@
+<html style="background-color: #f9f7f5; margin: 0; padding: 0;">
+    <head>
+        <link
+            href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <style>
+            @font-face {
+                font-family: "Tiempos";
+                font-style: normal;
+                font-weight: normal;
+                /* not sure these will persist and the fonts should probably be hosted elsewhere */
+                src: url("https://laperla-uk.likedigital.build/content/fonts/tiempos-fine-web-light.woff2")
+                        format("woff2"),
+                    url("https://laperla-uk.likedigital.build/content/fonts/tiempos-fine-web-light.woff")
+                        format("woff");
+            }
+            * {
+                box-sizing: border-box;
+                font-family: "Quicksand", Arial, sam-serif;
+                font-size: 12px;
+                line-height: 1.5;
+            }
+            h2,
+            h3,
+            h4 {
+                font-family: "Tiempos", Times, serif;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 18px;
+            }
+            h4 {
+                font-size: 16px;
+            }
+            h5 {
+                font-size: 14px;
+                font-weight: normal;
+            }
+            /* Sledgehammer to hide the "Fiscal Code" and "PCCC" fields, which seem to be the only <dl> */
+            dl {
+                display: none;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            ul li {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+        <title>Return Request Email Template</title>
+    </head>
+    <body style="background-color: #f9f7f5; margin: 0; padding: 0;">
+        <div
+            style="
+                background-color: #ffffff;
+                border: 1rem solid #ffffff;
+                margin: 1rem auto;
+                max-width: 600px;
+            "
+        >
+            <!-- Email Header -->
+            <div style="padding: 16px 0; text-align: center; width: 100%;">
+                <img
+                    src="https://cdn11.bigcommerce.com/s-6d2qgjarzj/images/stencil/250x100/laperla2x_1587030696__15598.original.png"
+                    width="250"
+                />
+            </div>
+            <!-- /Email Header -->
+            <!-- Email Hero -->
+            <div
+                style="
+                    background-color: #f6f0f0;
+                    padding: 24px 16px;
+                    width: 100%;
+                "
+            >
+                <h4>
+                    %%LNG_NotificationConfirmationForReturn%%
+                    #%%GLOBAL_OrderId%%
+                </h4>
+                <p>
+                    %%LNG_NotificationAReturnSummaryIsShownBelow%%
+                    <!--<a href="%%GLOBAL_ShopPath%%/account.php?view=returns"
+                        >%%LNG_ClickHere%%</a
+                    >-->.
+                </p>
+                <p>We have received your return request and you will be contacted once this has been reviewed.</p>
+                <p>For further details on our returns procedure, please read our <a href="%%GLOBAL_ShopPathSSL%%/returns">Returns & Exchanges</a> policy, or check the documents enclosed in your delivery.
+                If you have any questions about your return, please contact us at <a href="mailto:returns@laperla.com">returns@laperla.com</a></p>
+            </div>
+            <!-- /Email Hero -->
+            <!-- Emain Body -->
+            <div id="mailBody" style="padding: 24px;">
+                <table width="100%" cellspacing="0" cellpadding="4">
+                    <tr>
+                        <td
+                            style="font-weight: bold;"
+                            nowrap="nowrap"
+                            width="25%"
+                        >
+                            %%LNG_ReturnReason%%:
+                        </td>
+                        <td>%%GLOBAL_ReturnReason%%</td>
+                    </tr>
+                    <tr style="display: %%GLOBAL_HideReturnAction%%;">
+                        <td
+                            style="font-weight: bold;"
+                            nowrap="nowrap"
+                            width="25%"
+                        >
+                            %%LNG_ReturnAction%%:
+                        </td>
+                        <td>%%GLOBAL_ReturnAction%%</td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="font-weight: bold;"
+                            nowrap="nowrap"
+                            valign="top"
+                        >
+                            %%LNG_YourComments%%:
+                        </td>
+                        <td>%%GLOBAL_ReturnComments%%</td>
+                    </tr>
+                </table>
+
+                <h4>%%LNG_NotificationYourReturnContainsTheFollowingItems%%</h4>
+
+                <h5 style="background-color: #f6f0f0; padding: 16px;">
+                    %%LNG_ReturnItems%%
+                </h5>
+
+                %%SNIPPET_ReturnItems%%
+            </div>
+            <!-- /EmailBody -->
+            %%GLOBAL_EmailFooter%%
+        </div>
+    </body>
+</html>
