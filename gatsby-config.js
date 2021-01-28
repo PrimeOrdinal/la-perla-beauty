@@ -223,6 +223,12 @@ module.exports = {
         routeChangeEventName: `YOUR_ROUTE_CHANGE_EVENT_NAME`,
       },
     },
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: `8556131572`,
+      },
+    },
     `gatsby-plugin-netlify`,
   ],
   // developMiddleware: app => {
