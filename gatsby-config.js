@@ -224,12 +224,13 @@ module.exports = {
         routeChangeEventName: `YOUR_ROUTE_CHANGE_EVENT_NAME`,
       },
     },
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: `8556131572`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-instagram`,
+    //   options: {
+    //     username: `8556131572`,
+    //   },
+    // },
+    `gatsby-plugin-a11y-report`,
     `gatsby-plugin-netlify`,
   ],
   // developMiddleware: app => {
