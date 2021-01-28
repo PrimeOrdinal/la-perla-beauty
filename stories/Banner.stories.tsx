@@ -2,34 +2,34 @@ import React from "react"
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from "@storybook/react"
 
-import { Button, ButtonProps } from "../components/Button"
+import { Banner, BannerProps } from "../src/components/Banner"
 
 export default {
-  title: "Button",
-  component: Button,
+  title: "Banner",
+  component: Banner,
   argTypes: {
     bg: { control: "color" },
   },
 } as Meta
 
-const Template: Story<ButtonProps> = args => <Button {...args} />
+const Template: Story<BannerProps> = args => <Banner {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-  children: "Button with primary style",
+  children: "Banner with primary style",
   variant: "primary",
 }
 Primary.argTypes = {
-  onClick: { action: "Button with primary style clicked" },
+  onClick: { action: "Banner with primary style clicked" },
 }
 
 export const Secondary = Template.bind({})
 Secondary.args = {
-  children: "Button with secondary style",
+  children: "Banner with secondary style",
   variant: "secondary",
 }
 Secondary.argTypes = {
-  onClick: { action: "Button with secondary style clicked" },
+  onClick: { action: "Banner with secondary style clicked" },
 }
 
 export const Tertiary = Template.bind({})
