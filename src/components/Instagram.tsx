@@ -25,7 +25,7 @@ export const Instagram: React.FC<InstagramProps> = (
 ) => {
   const data: InstagramQuery = useStaticQuery(graphql`
     query Instagram {
-      allInstaNode {
+      allInstaNode(limit: 4) {
         edges {
           node {
             caption

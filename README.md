@@ -14,6 +14,8 @@ https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/
 
 https://github.com/gatsbyjs/store.gatsbyjs.org
 
+node_modules/@types/aws-lambda/handler.d.ts
+
 react-icons
 gatsby-plugin-layout
 react-onclickoutside
