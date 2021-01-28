@@ -225,12 +225,47 @@ module.exports = {
       },
     },
     // {
+    //   resolve: 'gatsby-plugin-a11y-report',
+    //   options: {
+    //     showInProduction: false,
+    //     toastAutoClose: false,
+    //     query: `
+    //       {
+    //         allSitePage(
+    //           filter: {
+    //             path: { regex: "/^(?!/404/|/404.html|/dev-404-page/)/" }
+    //           }
+    //         ) {
+    //           edges {
+    //             node {
+    //               path
+    //             }
+    //           }
+    //         }
+    //       }
+    //     `,
+    //     ignoreCheck: [
+    //       '/404*',
+    //       '/tag/*'
+    //     ],
+    //     serverOptions: {
+    //       host: 'localhost',
+    //       port: '8341'
+    //     },
+    //     axeOptions: {
+    //       locale: 'en',
+    //     },
+    //     loggingOptions: {
+    //       result: ['violations', 'incomplete']
+    //     }
+    //   },
+    // },
+    // {
     //   resolve: `gatsby-source-instagram`,
     //   options: {
     //     username: `8556131572`,
     //   },
     // },
-    `gatsby-plugin-a11y-report`,
     `gatsby-plugin-netlify`,
   ],
   // developMiddleware: app => {
