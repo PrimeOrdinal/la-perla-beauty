@@ -9,7 +9,7 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
-import Logo from "../images/logo.svg"
+import { ReactComponent as Logo } from "../images/Logo.svg"
 
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
@@ -142,7 +142,7 @@ export const Footer: React.FC<FooterProps> = (
         </div>
         <div className="secondary">
           {data.allContentstackMenus.edges
-            .filter(item => item.node.slot.startsWith("secondary"))
+            .filter(({ node }) => node.slot?.startsWith("secondary"))
             .map(({ node: menu }) => (
               <>
                 <ul id={menu.slot as string} key={menu.id}>

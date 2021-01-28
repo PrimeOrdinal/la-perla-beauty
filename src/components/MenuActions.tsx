@@ -1,6 +1,6 @@
-import Basket from "../images/Basket.svg"
-import Search from "../images/Search.svg"
-import Profile from "../images/Profile.svg"
+import { ReactComponent as Basket } from "../images/Basket.svg"
+import { ReactComponent as Profile } from "../images/Profile.svg"
+import { ReactComponent as Search } from "../images/Search.svg"
 import { Link } from "gatsby"
 import React from "react"
 

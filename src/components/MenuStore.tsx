@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
-import UKFlag from "../images/UKFlag.svg"
-import DownArrow from "../images/DownArrow.svg"
+import { ReactComponent as DownArrow } from "../images/DownArrow.svg"
+import { ReactComponent as UKFlag } from "../images/UKFlag.svg"
 
 import styled from "styled-components"
 import {

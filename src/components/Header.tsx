@@ -33,40 +33,15 @@ const StyledContainer = styled.div`
 `
 
 export type HeaderProps = {
+  data?: HeaderQuery
   siteTitle?: string
 }
 
-export const Header: React.FC<HeaderProps> = (
-  { siteTitle } = {
+export const HeaderPure: React.FC<HeaderProps> = (
+  { data, siteTitle } = {
     siteTitle: "Site Title",
   }
 ) => {
-  const data: HeaderQuery = useStaticQuery(graphql`
-    query Header {
-      allBigCommerceCategories {
-        edges {
-          node {
-            custom_url {
-              url
-            }
-            description
-            id
-            is_visible
-            meta_description
-            meta_keywords
-            name
-            page_title
-            parent_id
-            search_keywords
-          }
-        }
-      }
-      siteSearchIndex {
-        index
-      }
-    }
-  `)
-
   const [miniBagVisibility, toggleMiniBagVisibility] = useToggle()
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
@@ -103,4 +78,34 @@ export const Header: React.FC<HeaderProps> = (
       </StyledContainer>
     </StyledWrapper>
   )
+}
+
+export const Header: React.FC<HeaderProps> = props => {
+  const data: HeaderQuery = useStaticQuery(graphql`
+    query Header {
+      allBigCommerceCategories {
+        edges {
+          node {
+            custom_url {
+              url
+            }
+            description
+            id
+            is_visible
+            meta_description
+            meta_keywords
+            name
+            page_title
+            parent_id
+            search_keywords
+          }
+        }
+      }
+      siteSearchIndex {
+        index
+      }
+    }
+  `)
+
+  return <HeaderPure data={data} {...props} />
 }
