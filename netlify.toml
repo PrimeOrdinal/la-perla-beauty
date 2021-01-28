@@ -1,2 +1,7 @@
 [build]
-  functions = ".netlify/functions"
+  functions = ".netlify/functions/dist"
+
+[[redirects]]
+  from = "/functions"
+  to = "/.netlify/functions/dist"
+  status = 200

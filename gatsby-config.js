@@ -225,15 +225,15 @@ module.exports = {
     },
     `gatsby-plugin-netlify`,
   ],
-  developMiddleware: app => {
-    app.use(
-      "/.netlify/functions/",
-      proxy({
-        target: process.env.SITE_URL,
-        pathRewrite: {
-          "/.netlify/functions/dist": "",
-        },
-      })
-    )
-  },
+  // developMiddleware: app => {
+  //   app.use(
+  //     "/functions",
+  //     proxy({
+  //       target: process.env.SITE_URL,
+  //       pathRewrite: {
+  //         "/.netlify/functions/dist": "",
+  //       },
+  //     })
+  //   )
+  // },
 }

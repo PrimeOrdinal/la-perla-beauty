@@ -73,4 +73,6 @@ graphql-types.ts
 
 schema.json
 
-.netlify/functions
+# Local Netlify folder
+.netlify
+.netlify/functions/dist
