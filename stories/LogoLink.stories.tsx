@@ -15,6 +15,4 @@ export default {
 const Template: Story = args => <LogoLink {...args} />
 
 export const Example = Template.bind({})
-Example.args = {
-  // children: <React.Fragment></React.Fragment>,
-}
+Example.args = {}
