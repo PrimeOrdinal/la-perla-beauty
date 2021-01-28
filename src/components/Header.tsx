@@ -15,21 +15,19 @@ import { QuickSearch } from "./QuickSearch"
 
 const StyledHeader = styled.header`
   background-color: #ffffff;
-  display: grid;
-  grid-template-areas: "menu-primary logo menu-secondary" "menu-navigation menu-navigation menu-navigation" "quick-search quick-search quick-search";
-  grid-template-columns: 1fr 2fr 1fr;
-  padding-block-start: 1rem;
-  position: sticky;
-  text-align: center;
-  top: 0;
-`
-const StyledWrapper = styled.div`
   border-bottom: 0.5px solid gray;
+  position: sticky;
+  top: 0;
 `
 
 const StyledContainer = styled.div`
-  width: 90%;
+  display: grid;
+  grid-template-areas: "menu-primary logo menu-secondary" "menu-navigation menu-navigation menu-navigation" "quick-search quick-search quick-search";
+  grid-template-columns: 1fr 2fr 1fr;
   margin: auto;
+  padding-block-start: 1rem;
+  text-align: center;
+  width: 90%;
 `
 
 export type HeaderProps = {
@@ -46,37 +44,35 @@ export const HeaderPure: React.FC<HeaderProps> = (
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
   return (
-    <StyledWrapper>
+    <StyledHeader>
       <StyledContainer>
-        <StyledHeader>
-          <LogoLink gridArea="logo" siteTitle={siteTitle} />
-          <MenuStore
-            display={{ _: "none", md: "flex" }}
-            gridArea="menu-primary"
+        <LogoLink gridArea="logo" siteTitle={siteTitle} />
+        <MenuStore
+          display={{ _: "none", md: "flex" }}
+          gridArea="menu-primary"
+        />
+        <MenuActions
+          gridArea="menu-secondary"
+          toggleMiniBagVisibility={toggleMiniBagVisibility}
+          toggleQuickSearchVisibility={toggleQuickSearchVisibility}
+        />
+        {quickSearchVisibility !== true && (
+          <MenuNavigation
+            display={{ _: "none", md: "block" }}
+            gridArea="menu-navigation"
           />
-          <MenuActions
-            gridArea="menu-secondary"
-            toggleMiniBagVisibility={toggleMiniBagVisibility}
-            toggleQuickSearchVisibility={toggleQuickSearchVisibility}
+        )}
+        {miniBagVisibility && (
+          <MiniBag position="absolute" right="5rem" top="5rem" />
+        )}
+        {quickSearchVisibility && (
+          <QuickSearch
+            gridArea="quick-search"
+            searchIndex={data?.siteSearchIndex?.index}
           />
-          {quickSearchVisibility !== true && (
-            <MenuNavigation
-              display={{ _: "none", md: "block" }}
-              gridArea="menu-navigation"
-            />
-          )}
-          {miniBagVisibility && (
-            <MiniBag position="absolute" right="5rem" top="5rem" />
-          )}
-          {quickSearchVisibility && (
-            <QuickSearch
-              gridArea="quick-search"
-              searchIndex={data?.siteSearchIndex?.index}
-            />
-          )}
-        </StyledHeader>
+        )}
       </StyledContainer>
-    </StyledWrapper>
+    </StyledHeader>
   )
 }
 
