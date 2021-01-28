@@ -1,5 +1,4 @@
-// import { linkToExecutor } from `@graphql-tools/links`
-// import { wrapSchema } from `@graphql-tools/wrap`
+const proxy = require("http-proxy-middleware")
 
 module.exports = {
   siteMetadata: {
@@ -14,12 +13,12 @@ module.exports = {
       options: {
         test: /\.ts$|\.tsx$/,
         exclude: /(node_modules|.cache|public)/,
-        stages: ['develop'],
+        stages: ["develop"],
         options: {
           emitWarning: true,
-          failOnError: false
-        }
-      }
+          failOnError: false,
+        },
+      },
     },
     `gatsby-plugin-lint-queries`,
     `gatsby-plugin-graphql-codegen`,
@@ -48,9 +47,9 @@ module.exports = {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
-          families: [`Quicksand`]
-        }
-      }
+          families: [`Quicksand`],
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-react-svg`,
@@ -96,7 +95,7 @@ module.exports = {
 
         // Multiple endpoints in an object.
         endpoints: {
-          BigCommerceProducts: `/catalog/products`,
+          BigCommerceProducts: `/catalog/products?include=images`,
           BigCommerceCategories: `/catalog/categories`,
           // BigCommerceStore: `/catalog/store`,
         },
@@ -186,7 +185,7 @@ module.exports = {
         // crumbLabelUpdates: [
         //   {
         //     pathname: `  /book`  ,
-        //     crumbLabel: `  Books`  
+        //     crumbLabel: `  Books`
         //   }
         // ],
         // trailingSlashes: optional, will add trailing slashes to the end
@@ -224,5 +223,23 @@ module.exports = {
         routeChangeEventName: `YOUR_ROUTE_CHANGE_EVENT_NAME`,
       },
     },
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: `8556131572`,
+      },
+    },
+    `gatsby-plugin-netlify`,
   ],
+  // developMiddleware: app => {
+  //   app.use(
+  //     "/functions",
+  //     proxy({
+  //       target: process.env.SITE_URL,
+  //       pathRewrite: {
+  //         "/.netlify/functions/dist": "",
+  //       },
+  //     })
+  //   )
+  // },
 }

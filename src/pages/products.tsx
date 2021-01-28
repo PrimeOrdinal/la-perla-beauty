@@ -39,11 +39,13 @@ const ProductsPage: React.FC<
       <h1>Product Listings</h1>
       <section className={clsx("Contentstack")}>
         <h1>Contentstack Product Listings</h1>
-        <Listing
-          edges={data.allContentstackProducts.edges.map(({ node }) => ({
-            node: standardiseContentstackProduct(node),
-          }))}
-        />
+        {data.allContentstackProducts && (
+          <Listing
+            edges={data.allContentstackProducts.edges.map(({ node }) => ({
+              node: standardiseContentstackProduct(node),
+            }))}
+          />
+        )}
       </section>
 
       <section className={clsx("BigCommerce")}>
@@ -62,7 +64,7 @@ const ProductsPage: React.FC<
 
 export default ProductsPage
 
-graphql`
+export const query = graphql`
   query ProductsPage {
     allBigCommerceCategories {
       edges {

@@ -51,7 +51,7 @@ const CategoryPage: React.FC<
 
 export default CategoryPage
 
-graphql`
+export const query = graphql`
   query CategoryPage($id: Int) {
     allBigCommerceProducts(filter: { categories: { eq: $id } }) {
       edges {

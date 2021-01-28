@@ -33,7 +33,7 @@ export const MenuActionsStyle = styled(ListPlain)`
   ${compose(grid, layout, space)}
 `
 
-type MenuActionsProps = GridProps &
+export type MenuActionsProps = GridProps &
   LayoutProps &
   SpaceProps & {
     toggleMiniBagVisibility: React.DispatchWithoutAction

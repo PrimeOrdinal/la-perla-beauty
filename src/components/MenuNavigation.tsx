@@ -44,7 +44,7 @@ const StyledMenuMainHeadings = styled(ListPlain)`
   padding-block-start: 1rem;
 `
 
-type MenuNavigationProps = GridProps & LayoutProps & SpaceProps
+export type MenuNavigationProps = GridProps & LayoutProps & SpaceProps
 
 export const MenuNavigation: React.FC<MenuNavigationProps> = props => {
   const data: MenuNavigationQuery = useStaticQuery(graphql`

@@ -22,7 +22,7 @@ const StyledListing = styled(ListPlain)`
   ${compose(grid, layout, space)}
 `
 
-type ListingProps = GridProps &
+export type ListingProps = GridProps &
   LayoutProps &
   SpaceProps & {
     edges: Array<{

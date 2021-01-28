@@ -1,13 +1,17 @@
 import type { Contentstack_Pages } from "../../graphql-types"
 
 import { PageProps } from "gatsby"
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { color } from "styled-system"
 
 import { Button } from "../components/Button"
+import { Instagram } from "../components/Instagram"
 import { Layout } from "../components/Layout"
 import { SEO } from "../components/SEO"
+
+import { signIn as signInPath } from "../utils/paths"
 
 const Box = styled.div`
   ${color}
@@ -34,6 +38,7 @@ const IndexPage: React.FC<PageProps<null, PageContextPage>> = ({
       <section>
         <h1>Section</h1>
         <button>Default</button>
+        <Link to={signInPath}>Sign in</Link>
         <Button>Styled</Button>
         <Button space={1} variant="primary" disabled>
           Primary
@@ -54,6 +59,7 @@ const IndexPage: React.FC<PageProps<null, PageContextPage>> = ({
         <Box bg="primary" color="black">
           Primary Theme Colour Box
         </Box>
+        <Instagram />
       </section>
       <section>
         <h1>Section</h1>

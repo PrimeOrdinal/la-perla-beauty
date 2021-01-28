@@ -26,6 +26,20 @@ On a MacOS system, run `git config core.ignorecase false` in order to use this r
 
 ## Local Development
 
+### Netlify CLI
+
+https://cli.netlify.com/
+
+#### Log in
+
+#### Link
+
+#### Status
+
+##### Hooks
+
+status:hooks
+
 ### Storybook
 
 <a href="https://www.gatsbyjs.com">

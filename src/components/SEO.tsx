@@ -11,11 +11,11 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-type metaProp =
+export type metaProp =
   | { name: string; content: string; property?: undefined }
   | { property: string; content: string; name?: undefined }
 
-type SeoProps = {
+export type SeoProps = {
   description?: string
   lang?: string
   meta?: metaProp

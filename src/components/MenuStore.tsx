@@ -24,7 +24,7 @@ export const MenuStoreStyle = styled(ListPlain)`
   ${compose(grid, layout, space)}
 `
 
-type MenuStoreProps = GridProps & LayoutProps & SpaceProps
+export type MenuStoreProps = GridProps & LayoutProps & SpaceProps
 
 export const MenuStore: React.FC<MenuStoreProps> = props => (
   <MenuStoreStyle {...props}>

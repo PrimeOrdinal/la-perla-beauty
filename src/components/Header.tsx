@@ -28,6 +28,7 @@ const StyledHeader = styled.header`
 export type HeaderProps = {
   siteTitle?: string
 }
+
 export const Header: React.FC<HeaderProps> = (
   { siteTitle } = {
     siteTitle: "Site Title",
