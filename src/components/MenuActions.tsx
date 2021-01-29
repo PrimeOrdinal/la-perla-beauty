@@ -1,4 +1,3 @@
-import { themeGet } from "@styled-system/theme-get"
 import { ReactComponent as Basket } from "../images/Basket.svg"
 import { ReactComponent as Profile } from "../images/Profile.svg"
 import { ReactComponent as Search } from "../images/Search.svg"
