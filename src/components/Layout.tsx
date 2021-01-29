@@ -44,6 +44,40 @@ export const Layout: React.FC = ({ children }) => {
           title
         }
       }
+      allBigCommerceCategories {
+        edges {
+          node {
+            custom_url {
+              url
+            }
+            description
+            id
+            is_visible
+            meta_description
+            meta_keywords
+            name
+            page_title
+            parent_id
+            search_keywords
+          }
+        }
+      }
+      allContentstackMenus(
+        filter: {
+          slot: {
+            in: ["secondary-1", "secondary-2", "secondary-3", "tertiary-1"]
+          }
+        }
+      ) {
+        edges {
+          node {
+            ...Contentstack_menusFragment
+          }
+        }
+      }
+      siteSearchIndex {
+        index
+      }
     }
   `)
 
@@ -53,11 +87,11 @@ export const Layout: React.FC = ({ children }) => {
         <GlobalStyle theme={theme} />
         <SiteSelector />
         <Banner>Lorem ipsum dolor sit amet</Banner>
-        <Header siteTitle={data?.site?.siteMetadata?.title || `Title`} />
+        <Header siteTitle={data?.site?.siteMetadata?.title || `Title`} data={data} />
         <StyledPageContainer>
           <StyledMain>{children}</StyledMain>
         </StyledPageContainer>
-        <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} />
+        <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} data={data} />
       </StyledSiteContainer>
     </ThemeProvider>
   )

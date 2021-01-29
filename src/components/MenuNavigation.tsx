@@ -67,27 +67,16 @@ const StyledMenuMainExpanded = styled.div`
   }
 `
 
-export type MenuNavigationProps = GridProps & LayoutProps & SpaceProps
+export type MenuNavigationProps = GridProps &
+  LayoutProps &
+  SpaceProps & {
+    data?: MenuNavigationQuery
+  }
 
-export const MenuNavigation: React.FC<MenuNavigationProps> = props => {
-  const data: MenuNavigationQuery = useStaticQuery(graphql`
-    query MenuNavigation {
-      allContentstackMenus(
-        filter: {
-          slot: {
-            in: ["secondary-1", "secondary-2", "secondary-3", "tertiary-1"]
-          }
-        }
-      ) {
-        edges {
-          node {
-            ...Contentstack_menusFragment
-          }
-        }
-      }
-    }
-  `)
-
+export const MenuNavigation: React.FC<MenuNavigationProps> = ({
+  data,
+  ...props
+}) => {
   const [hoverRef, isHovered] = useHover()
 
   return (
@@ -107,7 +96,7 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = props => {
         </li>
       </StyledMenuMainHeadings>
       <StyledMenuMainExpanded active={isHovered}>
-        {data.allContentstackMenus.edges.map(({ node: menu }) => (
+        {data?.allContentstackMenus?.edges?.map(({ node: menu }) => (
           <ul id={menu.slot as string} key={menu.id}>
             {menu?.links?.map((link, index) => (
               <li key={index}>

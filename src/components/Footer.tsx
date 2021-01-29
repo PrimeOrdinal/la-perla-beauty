@@ -108,68 +108,50 @@ const FooterStyle = styled.footer`
 `
 
 export type FooterProps = {
+  data?: FooterQuery
   siteTitle?: string
 }
 
 export const Footer: React.FC<FooterProps> = (
-  { siteTitle } = {
+  { data, siteTitle } = {
     siteTitle: "Site Title",
   }
-) => {
-  const data: FooterQuery = useStaticQuery(graphql`
-    query Footer {
-      allContentstackMenus(
-        filter: {
-          slot: {
-            in: ["secondary-1", "secondary-2", "secondary-3", "tertiary-1"]
-          }
-        }
-      ) {
-        edges {
-          node {
-            ...Contentstack_menusFragment
-          }
-        }
-      }
-    }
-  `)
-
-  return (
-    <FooterStyle>
-      <div className="container">
-        <div className="primary">
-          <LogotypeStyle />
-          <NewsletterSignup />
-        </div>
-        <div className="secondary">
-          {data.allContentstackMenus.edges
-            .filter(({ node }) => node.slot?.startsWith("secondary"))
-            .map(({ node: menu }) => (
-              <>
-                <ul id={menu.slot as string} key={menu.id}>
-                  <h3>{menu.title}</h3>
-
-                  {menu?.links?.map((link, index) => (
-                    <li key={index}>
-                      <Link
-                        to={link?.url?.href as string}
-                        title={link?.url?.title as string}
-                      >
-                        {link?.text}
-                        {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ))}
-        </div>
+) => (
+  <FooterStyle>
+    <div className="container">
+      <div className="primary">
+        <LogotypeStyle />
+        <NewsletterSignup />
       </div>
-      <div className="tertiary">
-        <div className="container tertiary-wrapper">
-          <SocialContainerStyle>
-            <span>Follow us</span>
-            {/* {data.allContentstackMenus.edges
+      <div className="secondary">
+        {data?.allContentstackMenus?.edges
+          .filter(({ node }) => node.slot?.startsWith("secondary"))
+          .map(({ node: menu }) => (
+            <>
+              <ul id={menu.slot as string} key={menu.id}>
+                <h3>{menu.title}</h3>
+
+                {menu?.links?.map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      to={link?.url?.href as string}
+                      title={link?.url?.title as string}
+                    >
+                      {link?.text}
+                      {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ))}
+      </div>
+    </div>
+    <div className="tertiary">
+      <div className="container tertiary-wrapper">
+        <SocialContainerStyle>
+          <span>Follow us</span>
+          {/* {data.allContentstackMenus.edges
               .filter(item => item.node.slot.startsWith("tertiary"))
               .map(({ node: menu }) => (
                 <>
@@ -190,34 +172,33 @@ export const Footer: React.FC<FooterProps> = (
                   </ul>
                 </>
               ))} */}
-            <SocialLinkListStyle>
-              <li>
-                <a href="https://www.facebook.com/BeautyByLaPerla/">
-                  <FaFacebook />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com/BeautyByLaPerla/">
-                  <FaInstagram />
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com/BeautyByLaPerla">
-                  <FaTwitter />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/channel/EJo0TYlRfn6rYQUCAxW1XT0i">
-                  <FaYoutube />
-                </a>
-              </li>
-            </SocialLinkListStyle>
-          </SocialContainerStyle>
-          <p>
-            © {new Date().getFullYear()} {siteTitle}
-          </p>
-        </div>
+          <SocialLinkListStyle>
+            <li>
+              <a href="https://www.facebook.com/BeautyByLaPerla/">
+                <FaFacebook />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/BeautyByLaPerla/">
+                <FaInstagram />
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/BeautyByLaPerla">
+                <FaTwitter />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/channel/EJo0TYlRfn6rYQUCAxW1XT0i">
+                <FaYoutube />
+              </a>
+            </li>
+          </SocialLinkListStyle>
+        </SocialContainerStyle>
+        <p>
+          © {new Date().getFullYear()} {siteTitle}
+        </p>
       </div>
-    </FooterStyle>
-  )
-}
+    </div>
+  </FooterStyle>
+)

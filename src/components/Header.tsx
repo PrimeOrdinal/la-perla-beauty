@@ -8,7 +8,7 @@ import { useToggle } from "../hooks/useToggle"
 
 import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
-import { MenuNavigation } from "./MenuNavigation"
+import { MenuNavigation as MenuNavigation } from "./MenuNavigation"
 import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
@@ -35,7 +35,7 @@ export type HeaderProps = {
   siteTitle?: string
 }
 
-export const HeaderPure: React.FC<HeaderProps> = (
+export const Header: React.FC<HeaderProps> = (
   { data, siteTitle } = {
     siteTitle: "Site Title",
   }
@@ -60,6 +60,7 @@ export const HeaderPure: React.FC<HeaderProps> = (
           <MenuNavigation
             display={{ _: "none", md: "block" }}
             gridArea="menu-navigation"
+            data={data}
           />
         )}
         {miniBagVisibility && (
@@ -74,34 +75,4 @@ export const HeaderPure: React.FC<HeaderProps> = (
       </StyledContainer>
     </StyledHeader>
   )
-}
-
-export const Header: React.FC<HeaderProps> = props => {
-  const data: HeaderQuery = useStaticQuery(graphql`
-    query Header {
-      allBigCommerceCategories {
-        edges {
-          node {
-            custom_url {
-              url
-            }
-            description
-            id
-            is_visible
-            meta_description
-            meta_keywords
-            name
-            page_title
-            parent_id
-            search_keywords
-          }
-        }
-      }
-      siteSearchIndex {
-        index
-      }
-    }
-  `)
-
-  return <HeaderPure data={data} {...props} />
 }
