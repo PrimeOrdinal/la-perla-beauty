@@ -125,7 +125,8 @@
   "husky": {
     "hooks": {
       "postinstall": "husky install",
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "lint-staged"
     }
   },
   "keywords": [

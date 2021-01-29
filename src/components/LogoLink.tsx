@@ -11,31 +11,31 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ReactComponent as Logo } from "../images/Logo.svg"
+import { ReactComponent as Logotype } from "../images/Logotype.svg"
 
 import { home as homePath } from "../utils/paths"
 
-const LogoStyle = styled(Logo)`
+const LogotypeStyle = styled(Logotype)`
   height: 40px;
   width: auto;
 `
 
-const LogoLinkStyle = styled(Link)`
+const LogotypeLinkStyle = styled(Link)`
   ${compose(grid, layout, space)}
 `
 
-export type LogoLinkProps = GridProps &
+export type LogotypeLinkProps = GridProps &
   LayoutProps &
   SpaceProps & {
     siteTitle: string
   }
 
-export const LogoLink: React.FC<LogoLinkProps> = ({ siteTitle, ...props }) => (
-  <LogoLinkStyle
+export const LogotypeLink: React.FC<LogotypeLinkProps> = ({ siteTitle, ...props }) => (
+  <LogotypeLinkStyle
     title={`Return to the ${siteTitle} homepage`}
     to={homePath}
     {...props}
   >
-    <LogoStyle />
-  </LogoLinkStyle>
+    <LogotypeStyle />
+  </LogotypeLinkStyle>
 )
