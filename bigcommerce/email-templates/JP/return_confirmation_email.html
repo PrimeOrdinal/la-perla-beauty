@@ -1,0 +1,143 @@
+<html style="background-color: #f9f7f5; margin: 0; padding: 0;">
+    <head>
+        <link
+            href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <style>
+            @font-face {
+                font-family: "Tiempos";
+                font-style: normal;
+                font-weight: normal;
+                /* not sure these will persist and the fonts should probably be hosted elsewhere */
+                src: url("https://laperla-uk.likedigital.build/content/fonts/tiempos-fine-web-light.woff2")
+                        format("woff2"),
+                    url("https://laperla-uk.likedigital.build/content/fonts/tiempos-fine-web-light.woff")
+                        format("woff");
+            }
+            * {
+                box-sizing: border-box;
+                font-family: "Quicksand", Arial, sam-serif;
+                font-size: 12px;
+                line-height: 1.5;
+            }
+            h2,
+            h3,
+            h4 {
+                font-family: "Tiempos", Times, serif;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 18px;
+            }
+            h4 {
+                font-size: 16px;
+            }
+            h5 {
+                font-size: 14px;
+                font-weight: normal;
+            }
+            /* Sledgehammer to hide the "Fiscal Code" and "PCCC" fields, which seem to be the only <dl> */
+            dl {
+                display: none;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            ul li {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+        <title>Return Request Email Template</title>
+    </head>
+    <body style="background-color: #f9f7f5; margin: 0; padding: 0;">
+        <div
+            style="
+                background-color: #ffffff;
+                border: 1rem solid #ffffff;
+                margin: 1rem auto;
+                max-width: 600px;
+            "
+        >
+            <!-- Email Header -->
+            <div style="padding: 16px 0; text-align: center; width: 100%;">
+                <img
+                    src="https://cdn11.bigcommerce.com/s-6d2qgjarzj/images/stencil/250x100/laperla2x_1587030696__15598.original.png"
+                    width="250"
+                />
+            </div>
+            <!-- /Email Header -->
+            <!-- Email Hero -->
+            <div
+                style="
+                    background-color: #f9f7f5;
+                    padding: 24px 16px;
+                    width: 100%;
+                "
+            >
+                <h4>
+                    ご注文 (#%%GLOBAL_OrderId%%) の返品リクエストを承りました
+                </h4>
+                <p>
+                    <!-- %%LNG_NotificationAReturnSummaryIsShownBelow%% -->
+                    返品の内容については以下をご覧ください。
+                    <a href="%%GLOBAL_ShopPath%%/account.php?view=returns">%%LNG_ClickHere%%</a>.
+                </p>
+                <p>お客様の返品リクエストを承りました。内容を確認した上で、改めてご連絡いたします。</p>
+                <p>返品手続きの詳細に関しては、当社の <a href="%%GLOBAL_ShopPathSSL%%/returns">返品・交換</a>ポリシーをお読みいただくか、お届けした商品に添付されていた書類をご確認ください。返品に関してご質問がある場合は、<a href="mailto:contact_jp@laperla.com">contact_jp@laperla.co</a> までお問い合わせください。</p>
+            </div>
+            <!-- /Email Hero -->
+            <!-- Emain Body -->
+            <div id="mailBody" style="padding: 24px;">
+                <table width="100%" cellspacing="0" cellpadding="4">
+                    <tr>
+                        <td
+                            style="font-weight: bold;"
+                            nowrap="nowrap"
+                            width="25%"
+                        >
+                            返品の理由:
+                        </td>
+                        <td>%%GLOBAL_ReturnReason%%</td>
+                    </tr>
+                    <tr style="display: %%GLOBAL_HideReturnAction%%;">
+                        <td
+                            style="font-weight: bold;"
+                            nowrap="nowrap"
+                            width="25%"
+                        >
+                            返品:
+                        </td>
+                        <td>%%GLOBAL_ReturnAction%%</td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="font-weight: bold;"
+                            nowrap="nowrap"
+                            valign="top"
+                        >
+                            コメント:
+                        </td>
+                        <td>%%GLOBAL_ReturnComments%%</td>
+                    </tr>
+                </table>
+
+                <h4>返品リクエストの対象アイテム</h4>
+
+                <h5 style="background-color: #f6f0f0; padding: 16px;">
+                    %%LNG_ReturnItems%%
+                </h5>
+
+                %%SNIPPET_ReturnItems%%
+            </div>
+            <!-- /EmailBody -->
+            %%GLOBAL_EmailFooter%%
+        </div>
+    </body>
+</html>

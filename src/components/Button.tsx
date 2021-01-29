@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 import styled from "styled-components"
 import {
   buttonStyle,
@@ -21,33 +22,24 @@ export type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   VariantProps
 
 export const Button: React.FC<ButtonProps> = styled.button`
-  appearance: "none";
-  border: none;
-  cursor: pointer;
-
   &:disabled {
-    color: "disabled";
-    cursor: "not-allowed";
+    color: ${themeGet("colors.disabled", "grey")};
   }
 
   ${variant({
-    scale: "buttons",
+    prop: "buttons",
     variants: {
       primary: {
-        // color: "white",
-        // bg: "primary",
-        // "&:disabled": {
-        //   bg: "tertiary",
-        //   cursor: "not-allowed",
-        // },
+        color: "white",
+        bg: themeGet("colors.primary", "grey"),
       },
       secondary: {
-        // color: "white",
-        // bg: "secondary",
+        color: "white",
+        bg: themeGet("colors.secondary", "grey"),
       },
       tertiary: {
-        // color: "white",
-        // bg: "tertiary",
+        color: "white",
+        bg: themeGet("colors.tertiary", "grey"),
       },
     },
   })}

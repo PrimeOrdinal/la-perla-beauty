@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <link
+                    href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"
+                    rel="stylesheet"
+                    type="text/css"
+                />
+            <meta charset="UTF-8">
+            <title>Title</title>
+        <style>
+                    @font-face {
+                        font-family: "Tiempos";
+                        font-style: normal;
+                        font-weight: normal;
+                        /* not sure these will persist and the fonts should probably be hosted elsewhere */
+                        src: url("%%GLOBAL_ShopPathSSL%%/content/fonts/tiempos-fine-web-light.woff2")
+                                format("woff2"),
+                            url("%%GLOBAL_ShopPathSSL%%/content/fonts/tiempos-fine-web-light.woff")
+                                format("woff");
+                    }
+                    * {
+                        box-sizing: border-box;
+                        font-family: "Quicksand", Arial, sam-serif;
+                        font-size: 12px;
+                        line-height: 1.5;
+                    }
+                    h2,
+                    h3,
+                    h4 {
+                        font-family: "Tiempos", Times, serif;
+                    }
+                    h2 {
+                        font-size: 24px;
+                    }
+                    h3 {
+                        font-size: 18px;
+                    }
+                    h4 {
+                        font-size: 16px;
+                    }
+                    h5 {
+                        font-size: 14px;
+                        font-weight: normal;
+                    }
+                    p{
+                        font-size: 14px;
+                        margin: 2rem 0;
+                    }
+                    /* Sledgehammer to hide the "Fiscal Code" and "PCCC" fields, which seem to be the only <dl> */
+                    dl {
+                        display: none;
+                    }
+                   
+                </style>
+        </head>
+<body style="background-color: #ffffff;
+border: 1rem solid #ffffff;
+margin: 1rem auto;
+max-width: 600px;">
+
+	<div style="background-color: #ffffff;
+    border: 1rem solid #ffffff;
+    margin: 1rem auto;
+    max-width: 600px;">
+<div style="padding: 16px 0; text-align: center; width: 100%;">
+        <img
+            src="https://cdn11.bigcommerce.com/s-6d2qgjarzj/images/stencil/250x100/laperla2x_1587030696__15598.original.png"
+            width="250"
+        />
+    </div>
+        <!-- <h2 style="height:30px; border-bottom:dashed 1px gray">%%LNG_ThanksForRegisteringAt%% %%GLOBAL_StoreName%%</h2> -->
+        <h2 style="height:30px; border-bottom:dashed 1px gray">Thank you for registering at %%GLOBAL_StoreName%%</h2>
+
+		<p>Dear  %%GLOBAL_FirstName%%,</p>
+
+		<p>%%LNG_ThanksForRegisteringAtIntro%%</p>
+
+        <p><a href="%%GLOBAL_NewGuestAccountResetLink%%">%%GLOBAL_NewGuestAccountResetLink%%</a></p>
+
+		<p>%%LNG_ThanksForRegisteringEmailLogin%%</p>
+
+		%%GLOBAL_EmailFooter%%
+	</div>
+</body></html>

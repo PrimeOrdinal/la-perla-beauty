@@ -11,7 +11,7 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import Logo from "../images/logo.svg"
+import { ReactComponent as Logo } from "../images/Logo.svg"
 
 import { home as homePath } from "../utils/paths"
 

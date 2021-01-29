@@ -1,6 +1,6 @@
-import { FaBriefcase } from "@react-icons/all-files/fa/FaBriefcase"
-import { FaSearch } from "@react-icons/all-files/fa/FaSearch"
-import { FaUser } from "@react-icons/all-files/fa/FaUser"
+import { ReactComponent as Basket } from "../images/Basket.svg"
+import { ReactComponent as Profile } from "../images/Profile.svg"
+import { ReactComponent as Search } from "../images/Search.svg"
 import { Link } from "gatsby"
 import React from "react"
 
@@ -55,12 +55,12 @@ export const MenuActions: React.FC<MenuActionsProps> = ({
           event?.preventDefault()
         }}
       >
-        <FaSearch />
+        <Search />
       </Link>
     </li>
     <li>
       <Link to={myAccountPath}>
-        <FaUser />
+        <Profile />
       </Link>
     </li>
     <li>
@@ -72,7 +72,7 @@ export const MenuActions: React.FC<MenuActionsProps> = ({
           event?.preventDefault()
         }}
       >
-        <FaBriefcase />
+        <Basket />
       </Link>
     </li>
   </MenuActionsStyle>

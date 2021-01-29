@@ -30,18 +30,41 @@ const StyledMenu = styled.div`
   ${compose(grid, layout, space)}
 `
 
-const StyledMenuMainExpanded = styled.div`
-  display: ${props => (props.active ? "block" : "none")};
-  padding-block-end: 1rem;
-  padding-block-start: 1rem;
-`
-
 const StyledMenuMainHeadings = styled(ListPlain)`
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(4, 1fr);
   padding-block-end: 1rem;
   padding-block-start: 1rem;
+  li {
+    text-align: left;
+    a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+`
+
+const StyledMenuMainExpanded = styled.div`
+  display: ${props => (props.active ? "grid" : "none")};
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  padding-block-end: 1rem;
+  padding-block-start: 1rem;
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      text-align: left;
+      padding: 0.5rem 0;
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+  }
 `
 
 export type MenuNavigationProps = GridProps & LayoutProps & SpaceProps

@@ -1,0 +1,151 @@
+<html style="background-color: #f9f7f5; margin: 0; padding: 0;">
+    <head>
+        <link
+            href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <style>
+            @font-face {
+                font-family: "Tiempos";
+                font-style: normal;
+                font-weight: normal;
+                /* not sure these will persist and the fonts should probably be hosted elsewhere */
+                src: url("https://laperla-uk.likedigital.build/content/fonts/tiempos-fine-web-light.woff2")
+                        format("woff2"),
+                    url("https://laperla-uk.likedigital.build/content/fonts/tiempos-fine-web-light.woff")
+                        format("woff");
+            }
+            * {
+                box-sizing: border-box;
+                font-family: "Quicksand", Arial, sam-serif;
+                font-size: 12px;
+                line-height: 1.5;
+            }
+            h2,
+            h3,
+            h4 {
+                font-family: "Tiempos", Times, serif;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 18px;
+            }
+            h4 {
+                font-size: 16px;
+            }
+            h5 {
+                font-size: 14px;
+                font-weight: normal;
+            }
+            /* Sledgehammer to hide the "Fiscal Code" and "PCCC" fields, which seem to be the only <dl> */
+            dl {
+                display: none;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            ul li {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body style="background-color: #f9f7f5; margin: 0; padding: 0;">
+        <div
+            style="
+                background-color: #ffffff;
+                border: 1rem solid #ffffff;
+                margin: 1rem auto;
+                max-width: 600px;
+            "
+        >
+            <!-- Email Header -->
+            <div style="padding: 16px 0; text-align: center; width: 100%;">
+                <img
+                    src="https://cdn11.bigcommerce.com/s-6d2qgjarzj/images/stencil/250x100/laperla2x_1587030696__15598.original.png"
+                    width="250"
+                />
+            </div>
+            <!-- /Email Header -->
+            <!-- Email Hero -->
+            <h4
+                style="
+                    background-color: #f9f7f5;
+                    padding: 24px 16px;
+                    width: 100%;
+                "
+            >
+                <!-- %%LNG_OrderStatusChanged%% -->
+                ご注文のステータス変更
+            </h4>
+            <!-- /Email Hero -->
+            <!-- Emain Body -->
+            <div id="mailBody" style="padding: 8px 24px 16px;">
+                <!-- <p>%%GLOBAL_OrderStatusChangedHi%%</p> -->
+                <p>様</p>
+
+                <!-- <p>%%LNG_OrderStatusChangedIntro%%</p> -->
+                <p>当社ウェブサイトにて行っていただいたご注文のステータスが変更されました。</p>
+
+                <p>ご注文  %%GLOBAL_OrderNumberStatusChangedTo%% のステータスが「返金済み」に変更されました</p>
+
+                <h4 style="background-color: #f6f0f0; padding: 16px;">
+                    %%LNG_OrderDetails%%
+                </h4>
+                <table width="100%" style="padding: 16px;">
+                    <tr>
+                        <td
+                            style="font-weight: bold;"
+                            nowrap="nowrap"
+                            valign="top"
+                            width="25%"
+                        >
+                            %%LNG_OrderStatusChangedOrderTotal%%:
+                        </td>
+                        <td>
+                            %%GLOBAL_OrderTotal%%
+                        </td>
+                    </tr>
+                    %%SNIPPET_RefundedAmountRow%%
+                    <tr>
+                        <td
+                            style="font-weight: bold;"
+                            nowrap="nowrap"
+                            valign="top"
+                            width="25%"
+                        >
+                            %%LNG_OrderStatusChangedDatePlaced%%:
+                        </td>
+                        <td>
+                            %%GLOBAL_DatePlaced%%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="font-weight: bold;"
+                            nowrap="nowrap"
+                            valign="top"
+                            width="25%"
+                        >
+                            %%LNG_OrderStatusChangedPaymentMethod%%:
+                        </td>
+                        <td>
+                            %%GLOBAL_PaymentMethod%%
+                        </td>
+                    </tr>
+                </table>
+                %%SNIPPET_ShipmentTracking%%
+                <!-- <div style="padding: 16px;">
+                    %%SNIPPET_ShippedItems%% %%SNIPPET_ToBeShippedItems%%
+                    <p>%%GLOBAL_ViewOrderStatusLink%%</p>
+                </div> -->
+            </div>
+            %%GLOBAL_EmailFooter%%
+        </div>
+    </body>
+</html>

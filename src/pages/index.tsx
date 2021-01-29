@@ -7,7 +7,7 @@ import styled from "styled-components"
 import { color } from "styled-system"
 
 import { Button } from "../components/Button"
-import { Instagram } from "../components/Instagram"
+// import { Instagram } from "../components/Instagram.tsx"
 import { Layout } from "../components/Layout"
 import { SEO } from "../components/SEO"
 
@@ -59,7 +59,7 @@ const IndexPage: React.FC<PageProps<null, PageContextPage>> = ({
         <Box bg="primary" color="black">
           Primary Theme Colour Box
         </Box>
-        <Instagram />
+        {/* <Instagram /> */}
       </section>
       <section>
         <h1>Section</h1>

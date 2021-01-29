@@ -17,61 +17,37 @@ breakpoints.xl = breakpoints[3]
 
 export const theme: DefaultTheme = {
   borderRadius: "5px",
-  // buttons: {
-  //   danger: {
-  //     color: "white",
-  //     backgroundColor: "red",
-  //   },
-  //   outline: {
-  //     color: "primary",
-  //     bg: "transparent",
-  //     boxShadow: "inset 0 0 0 2px",
-  //   },
-  //   primary: {
-  //     color: "background",
-  //     bg: "primary",
-  //     "&:hover": {
-  //       bg: "text",
-  //     },
-  //   },
-  //   secondary: {
-  //     color: "background",
-  //     bg: "secondary",
-  //   },
-  //   tertiary: {
-  //     color: "background",
-  //     bg: "tertiary",
-  //   },
-  // },
   buttons: {
     primary: {
       color: "whitesmoke",
-      backgroundColor: "primary",
-      // "&:disabled": {
-      //   backgroundColor: "tertiary",
-      //   cursor: "not-allowed",
-      // },
+      backgroundColor: "#363139",
+      "&:disabled": {},
       "&:hover": {
-        // color: "text",
+        color: "background",
       },
     },
     secondary: {
       color: "#363139",
-      backgroundColor: "secondary",
+      backgroundColor: "#FEEBDD",
+      "&:disabled": {},
       "&:hover": {
         color: "background",
       },
     },
     tertiary: {
       color: "text",
-      backgroundColor: "tertiary",
+      backgroundColor: "#EFEEE9",
+      "&:disabled": {},
       "&:hover": {
         color: "background",
       },
     },
   },
   colors: {
-    banner: "#000",
+    banner: {
+      background: "#000",
+      text: "#fff",
+    },
     disabled: "#ccc",
     text: "#000",
     background: "#f5f5f5",

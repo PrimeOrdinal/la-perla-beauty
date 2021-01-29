@@ -11,9 +11,10 @@ export const Contentstack_menusFragment = graphql`
         title
       }
       icon {
-        id
+        title
         url
       }
     }
   }
 `
+console.log(Contentstack_menusFragment, "#########")
