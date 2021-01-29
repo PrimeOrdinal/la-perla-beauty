@@ -52,7 +52,7 @@ export const Layout: React.FC = ({ children }) => {
       <StyledSiteContainer>
         <GlobalStyle theme={theme} />
         <SiteSelector />
-        <Banner />
+        <Banner>Lorem ipsum dolor sit amet</Banner>
         <Header siteTitle={data?.site?.siteMetadata?.title || `Title`} />
         <StyledPageContainer>
           <StyledMain>{children}</StyledMain>

@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -5,7 +6,6 @@ import {
   compose,
   layout,
   space,
-  variant,
   ColorProps,
   LayoutProps,
   SpaceProps,
@@ -14,33 +14,13 @@ import {
 
 export type BannerProps = ColorProps & LayoutProps & SpaceProps & VariantProps
 
-export const Banner: React.FC<BannerProps> = styled.button`
-  background-color: #efeee9;
+export const Banner: React.FC<BannerProps> = styled.div`
+  background-color: ${themeGet("colors.banner.background", "black")};
+  color: ${themeGet("colors.banner.text", "white")};
   display: grid;
   text-align: center;
   grid-auto-flow: column;
-  padding: ${props => props.theme.space[2]}px;
-
-  ${variant({
-    variants: {
-      primary: {
-        // color: "white",
-        // bg: "primary",
-        // "&:disabled": {
-        //   bg: "tertiary",
-        //   cursor: "not-allowed",
-        // },
-      },
-      secondary: {
-        // color: "white",
-        // bg: "secondary",
-      },
-      tertiary: {
-        // color: "white",
-        // bg: "tertiary",
-      },
-    },
-  })}
+  padding: ${props => props.theme.space[3]}px;
 
   ${compose(color, layout, space)}
 `

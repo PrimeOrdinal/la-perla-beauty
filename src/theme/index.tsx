@@ -44,7 +44,10 @@ export const theme: DefaultTheme = {
     },
   },
   colors: {
-    banner: "#000",
+    banner: {
+      background: "#000",
+      text: "#fff",
+    },
     disabled: "#ccc",
     text: "#000",
     background: "#f5f5f5",
