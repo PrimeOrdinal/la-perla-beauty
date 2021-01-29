@@ -10,12 +10,12 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
-import { ReactComponent as Logo } from "../images/Logo.svg"
+import { ReactComponent as Logotype } from "../images/Logotype.svg"
 
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
 
-const LogoStyle = styled(Logo)`
+const LogotypeStyle = styled(Logotype)`
   height: 35px;
   object-fit: contain;
   width: auto;
@@ -138,7 +138,7 @@ export const Footer: React.FC<FooterProps> = (
     <FooterStyle>
       <div className="container">
         <div className="primary">
-          <LogoStyle />
+          <LogotypeStyle />
           <NewsletterSignup />
         </div>
         <div className="secondary">

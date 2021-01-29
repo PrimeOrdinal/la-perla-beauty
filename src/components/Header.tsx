@@ -6,7 +6,7 @@ import styled from "styled-components"
 
 import { useToggle } from "../hooks/useToggle"
 
-import { LogoLink } from "./LogoLink"
+import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
 import { MenuNavigation } from "./MenuNavigation"
 import { MenuStore } from "./MenuStore"
@@ -46,7 +46,7 @@ export const HeaderPure: React.FC<HeaderProps> = (
   return (
     <StyledHeader>
       <StyledContainer>
-        <LogoLink gridArea="logo" siteTitle={siteTitle} />
+        <LogotypeLink gridArea="logo" siteTitle={siteTitle} />
         <MenuStore
           display={{ _: "none", md: "flex" }}
           gridArea="menu-primary"
