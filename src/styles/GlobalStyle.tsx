@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components"
 
 import { body } from "./body"
 import { boxSizing } from "./boxSizing"
-import { button } from "./button"
+import { buttons } from "./buttons"
 import { fonts } from "./fonts"
 import { headings } from "./headings"
 
@@ -11,5 +11,5 @@ export const GlobalStyle = createGlobalStyle`
     ${boxSizing}
     ${body}
     ${headings}
-    ${button}
+    ${buttons}
 `

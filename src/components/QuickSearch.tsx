@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 // import type { Dispatch, SetStateAction } from "react"
 import { Index } from "elasticlunr"
 import { Link } from "gatsby"
@@ -20,7 +21,7 @@ import {
 
 const QuickSearchStyles = styled.div`
   align-items: center;
-  background-color: ${props => props.theme.colors.background};
+  background-color: ${themeGet("colors.background", "white")};
   display: grid;
   padding: ${props => props.theme.space[2]}px;
 

@@ -8,6 +8,7 @@
     "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "2.4.2",
     "@react-icons/all-files": "4.1.0",
     "@styled-system/css": "5.1.5",
+    "@styled-system/theme-get": "5.1.2",
     "@turf/turf": "6.3.0",
     "apollo-boost": "0.4.9",
     "clsx": "1.1.1",
