@@ -1,4 +1,4 @@
-const proxy = require("http-proxy-middleware")
+var proxy = require("http-proxy-middleware")
 
 module.exports = {
   siteMetadata: {
@@ -8,78 +8,86 @@ module.exports = {
     title: process.env.SITE_TITLE,
   },
   plugins: [
+    // {
+    //   resolve: "gatsby-plugin-eslint",
+    //   options: {
+    //     test: /\.ts$|\.tsx$/,
+    //     exclude: /(node_modules|.cache|public)/,
+    //     stages: ["develop"],
+    //     options: {
+    //       emitWarning: true,
+    //       failOnError: false,
+    //     },
+    //   },
+    // },
     {
-      resolve: `gatsby-plugin-eslint`,
+      resolve: "gatsby-plugin-typescript",
       options: {
-        test: /\.ts$|\.tsx$/,
-        exclude: /(node_modules|.cache|public)/,
-        stages: ["develop"],
-        options: {
-          emitWarning: true,
-          failOnError: false,
-        },
+        isTSX: true, // defaults to false
+        // jsxPragma: "jsx", // defaults to "React"
+        allExtensions: true, // defaults to false
       },
     },
-    `gatsby-plugin-lint-queries`,
-    `gatsby-plugin-graphql-codegen`,
-    `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-lint-queries",
+    "gatsby-plugin-graphql-codegen",
+    "gatsby-plugin-react-helmet",
     // {
-    //   resolve: `gatsby-plugin-i18n`,
+    //   resolve: "gatsby-plugin-i18n",
     //   options: {
-    //     langKeyDefault: `en`,
+    //     langKeyDefault: "en",
     //     useLangKeyLayout: false,
     //   },
     // },
     {
-      resolve: `gatsby-plugin-styled-components`,
+      resolve: "gatsby-plugin-styled-components",
       options: {
         // Add any options here
       },
     },
     // {
-    //   resolve: `gatsby-source-filesystem`,
+    //   resolve: "gatsby-source-filesystem",
     //   options: {
-    //     name: `images`,
-    //     path: `${__dirname}/src/images`,
+    //     name: "images",
+    //     path: "${__dirname}/src/images",
     //   },
     // },
     {
-      resolve: `gatsby-plugin-web-font-loader`,
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: [`Quicksand`],
+          families: ["Quicksand"],
         },
       },
     },
     // {
-    //   resolve: `gatsby-plugin-react-svg`,
+    //   resolve: "gatsby-plugin-react-svg",
     //   options: {
     //     rule: {
     //       include: /images/, // See below to configure properly
     //     },
     //   },
     // },
-    'gatsby-plugin-svgr',
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    "gatsby-plugin-svgr",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/favicon.svg`, // This path is relative to the root of the site.
+        name: "gatsby-starter-default",
+        short_name: "starter",
+        start_url: "/",
+        background_color: "#663399",
+        theme_color: "#663399",
+        display: "minimal-ui",
+        icon: "src/images/favicon.svg", // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-sitemap`,
+    "gatsby-plugin-sitemap",
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
+    "gatsby-plugin-offline",
     {
-      resolve: `gatsby-source-bigcommerce`,
+      resolve: "gatsby-source-bigcommerce",
       options: {
         // REQUIRED
         accessToken: process.env.BIGCOMMERCE_ACCESS_TOKEN,
@@ -87,25 +95,25 @@ module.exports = {
         secret: process.env.BIGCOMMERCE_CLIENT_SECRET,
         storeHash: process.env.BIGCOMMERCE_STORE_HASH,
 
-        // endpoint: `/catalog/products`,
+        // endpoint: "/catalog/products",
 
         // OPTIONAL
-        logLevel: `info`,
-        // nodeName: `BigCommerceNode`,
-        apiVersion: `v3`,
+        logLevel: "info",
+        // nodeName: "BigCommerceNode",
+        apiVersion: "v3",
 
         // Multiple endpoints in an object.
         endpoints: {
-          BigCommerceProducts: `/catalog/products?include=images`,
-          BigCommerceCategories: `/catalog/categories`,
-          // BigCommerceStore: `/catalog/store`,
+          BigCommerceProducts: "/catalog/products?include=images",
+          BigCommerceCategories: "/catalog/categories",
+          // BigCommerceStore: "/catalog/store",
         },
 
         preview: true,
       },
     },
     {
-      resolve: `gatsby-source-contentstack`,
+      resolve: "gatsby-source-contentstack",
       options: {
         // Required: API Key is a unique key assigned to each stack.
         api_key: process.env.CONTENTSTACK_API_KEY,
@@ -117,7 +125,7 @@ module.exports = {
         environment: process.env.CONTENTSTACK_ENVIRONMENT,
 
         // Optional: CDN set this to point to other cdn end point. For eg: https://eu-cdn.contentstack.com/v3
-        cdn: `https://eu-cdn.contentstack.com/v3`,
+        cdn: "https://eu-cdn.contentstack.com/v3",
 
         // Optional: expediteBuild set this to either true or false
         expediteBuild: true,
@@ -126,7 +134,7 @@ module.exports = {
         enableSchemaGeneration: true,
 
         // Optional: Specify a different prefix for types. This is useful in cases where you have multiple instances of the plugin to be connected to different stacks.
-        type_prefix: `Contentstack`, // (default)
+        type_prefix: "Contentstack", // (default)
 
         // Optional: Specify true if you want to download all your contentstack images locally
         downloadImages: true,
@@ -149,57 +157,67 @@ module.exports = {
       },
     },
     {
-      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      resolve: "@gatsby-contrib/gatsby-plugin-elasticlunr-search",
       options: {
         // Fields to index
-        fields: [`title`, `tags`],
-        // How to resolve each field`s value for a supported node type
+        fields: ["title", "tags"],
+        // How to resolve each field"s value for a supported node type
         resolvers: {
-          // List how to resolve the fields` values
+          // List how to resolve the fields" values
           BigCommerceProducts: {
-            image_url: node => node.image_url,
-            path: node => node.custom_url.url,
-            sku: node => node.sku,
-            title: node => node.name,
+            image_url: function (node) {
+              return node.image_url
+            },
+            path: function (node) {
+              return node.custom_url.url
+            },
+            sku: function (node) {
+              return node.sku
+            },
+            title: function (node) {
+              return node.name
+            },
           },
         },
         // Optional filter to limit indexed nodes
-        filter: (node, getNode) => node.tags !== `exempt`,
+        filter: function (node, getNode) {
+          return node.tags !== "exempt"
+        },
       },
     },
     {
-      resolve: `gatsby-plugin-breadcrumb`,
+      resolve: "gatsby-plugin-breadcrumb",
       options: {
         // useAutoGen: required 'true' to use autogen
         useAutoGen: true,
         // autoGenHomeLabel: optional 'Home' is default
-        autoGenHomeLabel: `Home`,
+        autoGenHomeLabel: "Home",
         // exlude: optional, include this array to overwrite paths you don't want to
         // generate breadcrumbs for.
         exclude: [
-          `/dev-404-page/`,
-          `/404/`,
-          `/404.html`,
-          `/offline-plugin-app-shell-fallback/`,
+          "/dev-404-page/",
+          "/404/",
+          "/404.html",
+          "/offline-plugin-app-shell-fallback/",
         ],
         // crumbLabelUpdates: optional, update specific crumbLabels in the path
         // crumbLabelUpdates: [
         //   {
-        //     pathname: `  /book`  ,
-        //     crumbLabel: `  Books`
+        //     pathname: "  /book"  ,
+        //     crumbLabel: "  Books"
         //   }
         // ],
         // trailingSlashes: optional, will add trailing slashes to the end
         // of crumb pathnames. default is false
         trailingSlashes: true,
         // usePathPrefix: optional, if you are using pathPrefix above
-        // usePathPrefix: `/blog`,
+        // usePathPrefix: "/blog",
       },
     },
     {
-      resolve: `gatsby-plugin-google-tagmanager`,
+      resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        id: `YOUR_GOOGLE_TAGMANAGER_ID`,
+        id: "YOUR_GOOGLE_TAGMANAGER_ID",
 
         // Include GTM in development.
         //
@@ -210,18 +228,18 @@ module.exports = {
         // should be an object or a function that is executed in the browser
         //
         // Defaults to null
-        defaultDataLayer: { platform: `gatsby` },
+        defaultDataLayer: { platform: "gatsby" },
 
         // Specify optional GTM environment details.
-        gtmAuth: `YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING`,
-        gtmPreview: `YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME`,
-        dataLayerName: `YOUR_DATA_LAYER_NAME`,
+        gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING",
+        gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME",
+        dataLayerName: "YOUR_DATA_LAYER_NAME",
 
         // Name of the event that is triggered
         // on every Gatsby route change.
         //
         // Defaults to gatsby-route-change
-        routeChangeEventName: `YOUR_ROUTE_CHANGE_EVENT_NAME`,
+        routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
       },
     },
     // {
@@ -229,7 +247,7 @@ module.exports = {
     //   options: {
     //     showInProduction: false,
     //     toastAutoClose: false,
-    //     query: `
+    //     query: "
     //       {
     //         allSitePage(
     //           filter: {
@@ -243,7 +261,7 @@ module.exports = {
     //           }
     //         }
     //       }
-    //     `,
+    //     ",
     //     ignoreCheck: [
     //       '/404*',
     //       '/tag/*'
@@ -261,12 +279,12 @@ module.exports = {
     //   },
     // },
     // {
-    //   resolve: `gatsby-source-instagram`,
+    //   resolve: "gatsby-source-instagram",
     //   options: {
-    //     username: `8556131572`,
+    //     username: "8556131572",
     //   },
     // },
-    `gatsby-plugin-netlify`,
+    "gatsby-plugin-netlify",
   ],
   // developMiddleware: app => {
   //   app.use(
