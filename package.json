@@ -163,7 +163,7 @@
     "format": "prettier --write \"**/*.{cjs,js,json,mjs,ts,tsx}\"",
     "lint:css": "stylelint './src/**/*.{cjs,js,mjs,ts,tsx}'",
     "lint:css:fix": "npm run lint:css --",
-    "lint:js": "eslint '*/**/*.{cjs,js,json,mjs,ts,tsx}'",
+    "lint:js": "eslint --config=eslint-config.js '*/**/*.{cjs,js,json,mjs,ts,tsx}'",
     "lint:js:fix": "npm run lint:js -- --fix",
     "postinstall": "netlify-lambda install .netlify/functions/src",
     "serve": "gatsby serve",
