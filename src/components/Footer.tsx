@@ -4,6 +4,7 @@ import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook"
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram"
 import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter"
 import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube"
+import { themeGet } from "@styled-system/theme-get"
 import { graphql, useStaticQuery, Link } from "gatsby"
 // import Img, { FluidObject } from "gatsby-image"
 import React from "react"
@@ -69,7 +70,7 @@ const FooterStyle = styled.footer`
       display: flex;
       justify-content: start;
       h3 {
-        font-family: "Quicksand";
+        font-family: ${themeGet("fonts.body", "Quicksand")};
         font-size: 14px;
         margin-bottom: 38px;
         text-transform: uppercase;
