@@ -96,9 +96,18 @@ module.exports = {
 
         // Multiple endpoints in an object.
         endpoints: {
-          BigCommerceProducts: "/catalog/products?include=images",
+          
+          BigCommerceBanners: "/banners",
           BigCommerceCategories: "/catalog/categories",
-          // BigCommerceStore: "/catalog/store",
+          BigCommerceCountries: "/countries",
+          BigCommerceCurrencies: "/currencies",
+          BigCommercePaymentsMethods: "/payments/methods",
+          BigCommerceProducts: "/catalog/products?include=images",
+          BigCommerceSiteInformation: "/sites/" + process.env.BIGCOMMERCE_SITE_ID,
+          BigCommerceStoreInformation: "/store",
+          BigCommerceStorefrontStatus: "/storefront/status",
+          BigCommerceFilterContexts: "/settings/search/filters/contexts",
+          // BigCommercehippingRates: "/providers/shipping-provider-api/shipping-provider/requestshippingrates",
         },
 
         preview: true,
