@@ -1,6 +1,6 @@
 import type { MenuNavigationQuery } from "../../graphql-types"
 
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import {
