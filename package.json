@@ -50,6 +50,7 @@
     "graphql-iso-date": "3.6.1",
     "node-fetch": "2.6.1",
     "react": "17.0.1",
+    "react-accessible-accordion": "^3.3.3",
     "react-apollo": "3.1.5",
     "react-dom": "17.0.1",
     "react-helmet": "6.1.0",
@@ -157,7 +158,7 @@
   "scripts": {
     "build:gatsby": "gatsby build",
     "build:lambda": "netlify-lambda build .netlify/functions/src",
-    "build:storybook": "NODE_ENV=production build-storybook",
+    "build-storybook": "NODE_ENV=production build-storybook",
     "build": "npm run build:gatsby && npm run build:lambda",
     "chromatic": "npx chromatic --project-token=dzp7tbz8xd7",
     "clean": "gatsby clean",

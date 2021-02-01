@@ -16,7 +16,9 @@ export type ImageGalleryProps =
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps
+  VariantProps & {
+    showPlayButton: boolean
+  }
 
 export const ImageGalleryStyled: React.FC<ImageGalleryProps> = styled(ReactImageGallery)`
   background: red;
@@ -25,6 +27,6 @@ export const ImageGalleryStyled: React.FC<ImageGalleryProps> = styled(ReactImage
 `
 
 export const ImageGallery: React.FC<ImageGalleryProps> = props => (
-  <ImageGalleryStyled {...props} showPlayButton={props.showPlayButton || false} />
+  <ImageGalleryStyled {...props} />
 )
  
