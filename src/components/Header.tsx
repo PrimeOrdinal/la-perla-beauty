@@ -1,4 +1,7 @@
-import type { HeaderQuery } from "../../graphql-types"
+import type {
+  // HeaderQuery
+  LayoutQuery
+} from "../../graphql-types"
 
 import React from "react"
 import styled from "styled-components"
@@ -30,7 +33,8 @@ const ContainerStyled = styled.div`
 `
 
 export type HeaderProps = {
-  data?: HeaderQuery
+  // data?: HeaderQuery
+  data?: LayoutQuery
   siteTitle?: string
 }
 

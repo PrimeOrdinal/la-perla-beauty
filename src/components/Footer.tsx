@@ -1,4 +1,7 @@
-import type { FooterQuery } from "../../graphql-types"
+import type {
+  // FooterQuery
+  LayoutQuery
+} from "../../graphql-types"
 
 import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook"
 import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram"
@@ -108,7 +111,8 @@ const FooterStyle = styled.footer`
 `
 
 export type FooterProps = {
-  data?: FooterQuery
+  // data?: FooterQuery
+  data?: LayoutQuery
   siteTitle?: string
 }
 
@@ -125,7 +129,7 @@ export const Footer: React.FC<FooterProps> = (
       </div>
       <div className="secondary">
         {data?.allContentstackMenus?.edges
-          .filter(({ node }) => node.slot?.startsWith("secondary"))
+          .filter(({ node }) => node.slot?.startsWith("footer-secondary"))
           .map(({ node: menu }) => (
             <>
               <ul id={menu.slot as string} key={menu.id}>
@@ -152,7 +156,7 @@ export const Footer: React.FC<FooterProps> = (
         <SocialContainerStyle>
           <span>Follow us</span>
           {/* {data.allContentstackMenus.edges
-              .filter(item => item.node.slot.startsWith("tertiary"))
+              .filter(item => item.node.slot.startsWith("footer-tertiary"))
               .map(({ node: menu }) => (
                 <>
                   <ul id={menu.slot as string} key={menu.id}>

@@ -36,7 +36,13 @@ const StyledMain = styled.div`
   flex-basis: 100%;
 `
 
-export const Layout: React.FC = ({ children }) => {
+export type LayoutProps = {
+  children?: React.ReactNode
+}
+
+export const Layout: React.FC = (
+  { children }
+) => {
   const data: LayoutQuery = useStaticQuery(graphql`
     query Layout {
       site {
@@ -65,7 +71,7 @@ export const Layout: React.FC = ({ children }) => {
       allContentstackMenus(
         filter: {
           slot: {
-            in: ["secondary-1", "secondary-2", "secondary-3", "tertiary-1"]
+            in: ["footer-secondary-1", "footer-secondary-2", "footer-secondary-3", "footer-tertiary-1"]
           }
         }
       ) {

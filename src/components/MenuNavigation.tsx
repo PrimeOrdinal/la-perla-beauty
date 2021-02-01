@@ -1,4 +1,7 @@
-import type { MenuNavigationQuery } from "../../graphql-types"
+import type {
+  // MenuNavigationQuery
+  LayoutQuery
+} from "../../graphql-types"
 
 import { Link } from "gatsby"
 import React from "react"
@@ -70,7 +73,8 @@ const StyledMenuMainExpanded = styled.div`
 export type MenuNavigationProps = GridProps &
   LayoutProps &
   SpaceProps & {
-    data?: MenuNavigationQuery
+    // data?: MenuNavigationQuery
+    data?: LayoutQuery
   }
 
 export const MenuNavigation: React.FC<MenuNavigationProps> = ({

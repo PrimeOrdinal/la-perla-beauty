@@ -1,7 +1,9 @@
-// import type {
+import type {
 //   BigCommerceProducts,
 //   ProductsPageQuery,
-// } from "../../graphql-types"
+  BigCommerceProductsFragmentFragment,
+  Contentstack_Products
+} from "../../graphql-types"
 
 import React from "react"
 import styled from "styled-components"
