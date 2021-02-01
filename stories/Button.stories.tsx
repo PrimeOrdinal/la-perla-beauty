@@ -33,6 +33,6 @@ Secondary.argTypes = {
 
 export const Tertiary = Template.bind({})
 Tertiary.args = {
-  children: "Third button style",
+  children: "Button with tertiary style",
   variant: "tertiary",
 }
