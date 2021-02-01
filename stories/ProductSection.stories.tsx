@@ -3,18 +3,17 @@ import type { Product } from "schema-dts"
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { ProductCard, ProductCardProps } from "../src/components/ProductCard"
+import { ProductSection, ProductSectionProps } from "../src/components/ProductSection"
 
 export default {
-  title: "ProductCard",
-  component: ProductCard,
+  title: "ProductSection",
+  component: ProductSection,
   argTypes: {
     backgroundColor: { control: "color" },
-    showImage: { control: "boolean" }
   },
 } as Meta
 
-const Template: Story<ProductCardProps> = args => <ProductCard {...args} />
+const Template: Story<ProductSectionProps> = args => <ProductSection {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
@@ -57,5 +56,4 @@ Primary.args = {
       availability: "https://schema.org/InStock",
     },
   } as Product,
-  width: { _: 1, sm: 1/2, md: 1/2, lg: 1/6 },
 }

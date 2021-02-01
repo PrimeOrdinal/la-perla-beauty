@@ -3,9 +3,12 @@ import type { Offer, Product } from "schema-dts"
 import getSymbolFromCurrency from "currency-symbol-map"
 import React from "react"
 import styled from "styled-components"
+import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 
-const StyledProductCard = styled.article`
+const ProductCardStyled = styled.article`
   background-color: #eeeeee;
+  display: grid;
+  padding: ${props => props.theme.space[3]}px;
 
   img {
     width: 100%;
@@ -14,28 +17,35 @@ const StyledProductCard = styled.article`
   div {
     padding: 1rem;
   }
+
+  ${compose(layout, space)}
 `
 
-export type ProductCardProps = { product: Product }
+export type ProductCardProps = LayoutProps & SpaceProps & { product: Product, showImage: boolean }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = (
+  { product, showImage = true, ...props }
+) => {
   const offer = product.offers as Offer
 
   return (
-    <StyledProductCard
-      data-id={product["@id"]}
+    <ProductCardStyled
       itemScope
       itemType="https://schema.org/Product"
+      data-id={product["@id"]}
+      {...props}
     >
-      <img
-        alt={product.name as string}
-        itemProp="image"
-        src="https://via.placeholder.com/250"
-      />
+      {showImage && (
+        <img
+          alt={product.name as string}
+          itemProp="image"
+          src="https://via.placeholder.com/250"
+        />
+      )}
       <a itemProp="url" href={product.url as string}>
         <span itemProp="name">{product.name}</span>
       </a>
-      <span itemProp="brand">{product.brand}</span>
+      <span itemProp="brand">{product.brand?.name}</span>
       <div
         itemProp="aggregateRating"
         itemScope
@@ -53,11 +63,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {offer && (
           <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
             {/* <span
-              itemProp="acceptedPaymentMethod"
-              content={offer?.acceptedPaymentMethod}
-            >
-              {offer?.acceptedPaymentMethod}
-            </span> */}
+                itemProp="acceptedPaymentMethod"
+                content={offer?.acceptedPaymentMethod}
+              >
+                {offer?.acceptedPaymentMethod}
+              </span> */}
             <span
               itemProp="priceCurrency"
               content={offer?.priceCurrency as string}
@@ -72,6 +82,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         )}
       </div>
-    </StyledProductCard>
+    </ProductCardStyled>
   )
 }
