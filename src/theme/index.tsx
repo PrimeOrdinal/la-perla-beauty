@@ -15,6 +15,13 @@ breakpoints.md = breakpoints[1]
 breakpoints.lg = breakpoints[2]
 breakpoints.xl = breakpoints[3]
 
+export const mediaQueries = {
+  small: `@media screen and (min-width: ${breakpoints[0]})`,
+  medium: `@media screen and (min-width: ${breakpoints[1]})`,
+  large: `@media screen and (min-width: ${breakpoints[2]})`,
+  xlarge: `@media screen and (min-width: ${breakpoints[3]})`,
+}
+
 export const theme: DefaultTheme = {
   borderRadius: "5px",
   buttons: {
