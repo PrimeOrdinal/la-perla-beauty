@@ -42,6 +42,18 @@ https://cli.netlify.com/
 
 status:hooks
 
+### Browser Extensions
+
+https://www.gatsbyjs.com/docs/conceptual/making-your-site-accessible/
+
+https://developers.google.com/web/tools/lighthouse/
+
+https://www.deque.com/axe/
+
+https://accessibilityinsights.io/docs/en/web/overview/
+
+https://chrome.google.com/webstore/detail/schema-builder-tester-for/klohjdodjjeocpbpadmkcndjoadijgjg
+
 ### Storybook
 
 <a href="https://www.gatsbyjs.com">
