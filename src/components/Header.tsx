@@ -1,6 +1,5 @@
 import type { HeaderQuery } from "../../graphql-types"
 
-import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
@@ -13,14 +12,14 @@ import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
 
-const StyledHeader = styled.header`
+const HeaderStyled = styled.header`
   background-color: #ffffff;
   border-bottom: 0.5px solid gray;
   position: sticky;
   top: 0;
 `
 
-const StyledContainer = styled.div`
+const ContainerStyled = styled.div`
   display: grid;
   grid-template-areas: "menu-primary logo menu-secondary" "menu-navigation menu-navigation menu-navigation" "quick-search quick-search quick-search";
   grid-template-columns: 1fr 2fr 1fr;
@@ -44,8 +43,8 @@ export const Header: React.FC<HeaderProps> = (
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
   return (
-    <StyledHeader>
-      <StyledContainer>
+    <HeaderStyled>
+      <ContainerStyled>
         <LogotypeLink gridArea="logo" siteTitle={siteTitle} />
         <MenuStore
           display={{ _: "none", md: "flex" }}
@@ -72,7 +71,7 @@ export const Header: React.FC<HeaderProps> = (
             searchIndex={data?.siteSearchIndex?.index}
           />
         )}
-      </StyledContainer>
-    </StyledHeader>
+      </ContainerStyled>
+    </HeaderStyled>
   )
 }
