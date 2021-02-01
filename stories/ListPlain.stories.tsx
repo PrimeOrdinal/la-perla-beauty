@@ -7,7 +7,7 @@ export default {
   title: "ListPlain",
   component: ListPlain,
   argTypes: {
-    bg: { control: "color" },
+    backgroundColor: { control: "color" },
   },
 } as Meta
 

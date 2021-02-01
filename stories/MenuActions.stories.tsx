@@ -7,7 +7,7 @@ export default {
   title: "MenuActions",
   component: MenuActions,
   argTypes: {
-    bg: { control: "color" },
+    backgroundColor: { control: "color" },
   },
 } as Meta
 

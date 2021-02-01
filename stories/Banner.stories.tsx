@@ -7,7 +7,7 @@ export default {
   title: "Banner",
   component: Banner,
   argTypes: {
-    bg: { control: "color" },
+    backgroundColor: { control: "color" },
   },
 } as Meta
 

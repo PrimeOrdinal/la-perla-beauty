@@ -7,7 +7,7 @@ export default {
   title: "Footer",
   component: Footer,
   argTypes: {
-    bg: { control: "color" },
+    backgroundColor: { control: "color" },
   },
 } as Meta
 

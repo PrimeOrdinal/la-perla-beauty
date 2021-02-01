@@ -7,7 +7,7 @@ export default {
   title: "LogotypeLink",
   component: LogotypeLink,
   argTypes: {
-    bg: { control: "color" },
+    backgroundColor: { control: "color" },
   },
 } as Meta
 

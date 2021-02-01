@@ -9,7 +9,7 @@ export default {
   title: "ProductCard",
   component: ProductCard,
   argTypes: {
-    bg: { control: "color" },
+    backgroundColor: { control: "color" },
   },
 } as Meta
 
