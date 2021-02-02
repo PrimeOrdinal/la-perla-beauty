@@ -8,8 +8,10 @@ import { form } from "./form"
 import { formField } from "./formField"
 import { formLabel } from "./formLabel"
 import { headings } from "./headings"
+import { html } from "./html"
 
 export const GlobalStyle = createGlobalStyle`
+    ${html}
     ${body}
     ${boxSizing}
     ${buttons}

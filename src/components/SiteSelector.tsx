@@ -5,8 +5,10 @@ import styled from "styled-components"
 const StyledA = styled.a`
   background-color: ${props => (props.href ? "white" : "grey")};
   color: ${props => (props.href ? "grey" : "white")};
-  padding: 0.25rem 1rem;
+  font-size: 1.075rem;
+  padding: 1rem 2rem;
   text-decoration: none;
+  text-transform: uppercase;
 `
 
 const StyledNav = styled.nav`
