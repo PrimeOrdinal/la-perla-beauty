@@ -92,7 +92,7 @@ export const Layout: React.FC = (
       <StyledSiteContainer>
         <GlobalStyle theme={theme} />
         <SiteSelector />
-        <Banner>Lorem ipsum dolor sit amet</Banner>
+        <Banner to="/shipping">Standard Shipping &amp; Returns Lorem Ipsum</Banner>
         <Header siteTitle={data?.site?.siteMetadata?.title || `Title`} data={data} />
         <StyledPageContainer>
           <StyledMain>{children}</StyledMain>
