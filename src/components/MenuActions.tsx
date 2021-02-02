@@ -29,6 +29,14 @@ export const MenuActionsStyle = styled(ListPlain)`
   grid-auto-flow: column;
   justify-content: end;
   padding: ${props => props.theme.space[2]}px;
+  li {
+    a {
+      svg {
+        height: 20px;
+        object-fit: contain;
+      }
+    }
+  }
 
   ${compose(grid, layout, space)}
 `

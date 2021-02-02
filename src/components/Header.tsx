@@ -1,10 +1,11 @@
 import type {
   // HeaderQuery
-  LayoutQuery
+  LayoutQuery,
 } from "../../graphql-types"
 
 import React from "react"
 import styled from "styled-components"
+import { theme } from "../theme"
 
 import { useToggle } from "../hooks/useToggle"
 
@@ -17,7 +18,7 @@ import { QuickSearch } from "./QuickSearch"
 
 const HeaderStyled = styled.header`
   background-color: #ffffff;
-  border-bottom: 0.5px solid gray;
+  border-bottom: 1px solid ${theme.colors.tertiary};
   position: sticky;
   top: 0;
 `

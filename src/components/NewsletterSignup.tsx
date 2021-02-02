@@ -1,37 +1,51 @@
 import React from "react"
 import styled from "styled-components"
+import { mediaQueries, theme } from "../theme"
 import { Button } from "./Button"
 
 const StyledNewsletter = styled.div`
-  form {
-    display: flex;
-    align-items: center;
+  ${mediaQueries.md} {
+    flex: 0.8;
     justify-content: end;
+  }
+  form {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: ${theme.space[3]}px;
+    ${mediaQueries.md} {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+    }
     label {
-      margin-right: 30px;
-      text-transform: uppercase;
-      font-weight: bold;
+      display: none;
+      ${mediaQueries.md} {
+        display: block;
+        font-size: ${theme.fontSizes[1]}px;
+        text-transform: uppercase;
+        margin-right: 14px;
+      }
     }
     input {
-      width: 27.230769231rem;
-      padding: 0.7rem;
-      border-radius: 6px;
-      border: 0.5px solid #858585;
-      margin-right: 15px;
-      font-size: 14px;
+      border: 1px solid ${theme.colors.tertiary};
+      border-radius: ${theme.space[2]}px;
+      font-size: ${theme.fontSizes[0]}px;
+      font-family: "Quicksand";
+      padding: 0.875rem 1.375rem;
+      gap: ${theme.space[3]}px;
+      ${mediaQueries.md} {
+        padding: 0.75rem 1.9375rem;
+      }
       &:focus {
         background: none;
         outline: none;
+        box-shadow: none;
       }
       &::selection {
         outline: none;
         background: none;
+        box-shadow: none;
       }
-    }
-    Button {
-      width: 9.461538462rem;
-      font-size: 14px;
-      text-transform: uppercase;
     }
   }
 `

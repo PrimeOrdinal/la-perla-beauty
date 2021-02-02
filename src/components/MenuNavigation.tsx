@@ -42,7 +42,8 @@ const StyledMenuMainHeadings = styled(ListPlain)`
 
   li {
     text-align: left;
-    
+    font-size: 14px;
+    font-weight: bold;
     a {
       color: inherit;
       text-decoration: none;

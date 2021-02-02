@@ -26,6 +26,10 @@ export const MenuStoreStyle = styled(ListPlain)`
   li {
     a {
       text-decoration: none;
+      svg {
+        height: 20px;
+        object-fit: contain;
+      }
     }
   }
 
