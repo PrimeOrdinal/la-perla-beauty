@@ -8,31 +8,22 @@ export default {
   component: Button,
   argTypes: {
     backgroundColor: { control: "color" },
+    variant: {
+      control: {
+        type: "inline-radio",
+        options: ["primary", "secondary", "tertiary"],
+      },
+    },
   },
 } as Meta
 
 const Template: Story<ButtonProps> = args => <Button {...args} />
 
-export const Primary = Template.bind({})
-Primary.args = {
-  children: "Button with primary style",
+export const Example = Template.bind({})
+Example.args = {
+  children: "Button",
   variant: "primary",
 }
-Primary.argTypes = {
-  onClick: { action: "Button with primary style clicked" },
-}
-
-export const Secondary = Template.bind({})
-Secondary.args = {
-  children: "Button with secondary style",
-  variant: "secondary",
-}
-Secondary.argTypes = {
-  onClick: { action: "Button with secondary style clicked" },
-}
-
-export const Tertiary = Template.bind({})
-Tertiary.args = {
-  children: "Button with tertiary style",
-  variant: "tertiary",
+Example.argTypes = {
+  onClick: { action: "Button clicked" },
 }
