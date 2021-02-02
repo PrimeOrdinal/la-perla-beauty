@@ -14,6 +14,8 @@ https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/
 
 https://github.com/gatsbyjs/store.gatsbyjs.org
 
+https://www.npmjs.com/package/react-image-gallery
+
 node_modules/@types/aws-lambda/handler.d.ts
 
 react-icons
