@@ -1,6 +1,6 @@
 import type {
   // FooterQuery
-  LayoutQuery
+  LayoutQuery,
 } from "../../graphql-types"
 
 import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook"
@@ -129,25 +129,23 @@ export const Footer: React.FC<FooterProps> = (
       </div>
       <div className="secondary">
         {data?.allContentstackMenus?.edges
-          .filter(({ node }) => node.slot?.startsWith("footer-secondary"))
+          .filter(({ node: menu }) => menu.slot?.startsWith("footer-secondary"))
           .map(({ node: menu }) => (
-            <>
-              <ul id={menu.slot as string} key={menu.id}>
-                <h3>{menu.title}</h3>
+            <ul id={menu.slot as string} key={menu.id}>
+              <h3>{menu.title}</h3>
 
-                {menu?.links?.map((link, index) => (
-                  <li key={index}>
-                    <Link
-                      to={link?.url?.href as string}
-                      title={link?.url?.title as string}
-                    >
-                      {link?.text}
-                      {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </>
+              {menu?.links?.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link?.url?.href as string}
+                    title={link?.url?.title as string}
+                  >
+                    {link?.text}
+                    {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           ))}
       </div>
     </div>

@@ -1,6 +1,6 @@
 import type {
   // MenuNavigationQuery
-  LayoutQuery
+  LayoutQuery,
 } from "../../graphql-types"
 
 import { Link } from "gatsby"
@@ -36,11 +36,13 @@ const StyledMenu = styled.div`
 const StyledMenuMainHeadings = styled(ListPlain)`
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
   padding-block-end: 1rem;
   padding-block-start: 1rem;
+
   li {
     text-align: left;
+    
     a {
       color: inherit;
       text-decoration: none;
@@ -85,20 +87,22 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
 
   return (
     <StyledMenu ref={hoverRef} {...props}>
-      <StyledMenuMainHeadings>
-        <li>
-          <Link to="/products/">Products</Link>
-        </li>
-        <li>
-          <a href="/">Category 2</a>
-        </li>
-        <li>
-          <a href="/">Category 3</a>
-        </li>
-        <li>
-          <a href="/">Category 4</a>
-        </li>
-      </StyledMenuMainHeadings>
+      {data?.allContentstackMenus?.edges
+        ?.filter(({ node: menu }) => menu.slot?.startsWith("header-navigation"))
+        .map(({ node: menu }) => (
+          <StyledMenuMainHeadings id={menu.slot as string} key={menu.id}>
+            {menu?.links?.map((link, index) => (
+              <li key={index}>
+                <Link
+                  to={link?.url?.href as string}
+                  title={link?.url?.title as string}
+                >
+                  {link?.text}
+                </Link>
+              </li>
+            ))}
+          </StyledMenuMainHeadings>
+        ))}
       <StyledMenuMainExpanded active={isHovered}>
         {data?.allContentstackMenus?.edges?.map(({ node: menu }) => (
           <ul id={menu.slot as string} key={menu.id}>
