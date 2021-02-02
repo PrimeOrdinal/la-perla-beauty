@@ -52,8 +52,8 @@ export const theme: DefaultTheme = {
   },
   colors: {
     banner: {
-      background: "#000",
-      text: "#fff",
+      background: "#D3CBD6",
+      text: "#363139",
     },
     disabled: "#ccc",
     text: "#000",
