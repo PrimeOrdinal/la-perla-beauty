@@ -132,13 +132,13 @@ module.exports = {
         expediteBuild: true,
 
         // Optional: Specify true if you want to generate custom schema
-        enableSchemaGeneration: true,
+        enableSchemaGeneration: false,
 
         // Optional: Specify a different prefix for types. This is useful in cases where you have multiple instances of the plugin to be connected to different stacks.
         type_prefix: "Contentstack", // (default)
 
         // Optional: Specify true if you want to download all your contentstack images locally
-        downloadImages: true,
+        downloadImages: false,
 
         // transformSchema: ({
         //   schema,
