@@ -20,56 +20,6 @@ Example.args = {
       edges: [
         {
           node: {
-            id: "6ac7fbe6-173f-5014-9c7c-d0fee6a77241",
-            title: "Follow Us",
-            slot: "footer-tertiary-1",
-            links: [
-              {
-                text: "",
-                url: {
-                  href:
-                    "https://www.youtube.com/channel/EJo0TYlRfn6rYQUCAxW1XT0i",
-                  title: "Follow us on YouTube",
-                },
-                icon: null,
-              },
-              {
-                text: "",
-                url: {
-                  href: "https://www.instagram.com/BeautyByLaPerla/",
-                  title: "Follow us on Instagram",
-                },
-                icon: null,
-              },
-              {
-                text: "",
-                url: {
-                  href: "https://www.facebook.com/BeautyByLaPerla/",
-                  title: "Follow us on Facebook",
-                },
-                icon: null,
-              },
-              {
-                text: "",
-                url: {
-                  href: "https://twitter.com/BeautyByLaPerla",
-                  title: "Follow us on Twitter",
-                },
-                icon: null,
-              },
-              {
-                text: "",
-                url: {
-                  href: "https://www.pinterest.com/laperla/",
-                  title: "Follow us on Pinterest",
-                },
-                icon: null,
-              },
-            ],
-          },
-        },
-        {
-          node: {
             id: "ae387fe1-21f0-5681-8cbc-f6713e550ef8",
             title: "About Us",
             slot: "footer-secondary-1",
@@ -97,38 +47,6 @@ Example.args = {
               {
                 text: "Clean Beauty",
                 url: { href: "/clean-beauty/", title: "Clean Beauty" },
-                icon: null,
-              },
-            ],
-          },
-        },
-        {
-          node: {
-            id: "87287b53-1ea7-55c3-89cb-f5454f4a52d2",
-            title: "Information & Help",
-            slot: "footer-secondary-3",
-            links: [
-              {
-                text: "Work With Us",
-                url: { href: "/work-with-us/", title: "Work With Us" },
-                icon: null,
-              },
-              {
-                text: "Store Locator/Stockists",
-                url: {
-                  href: "store-locator-stockists",
-                  title: "Store Locator/Stockists",
-                },
-                icon: null,
-              },
-              {
-                text: "FAQs",
-                url: { href: "/faqs/", title: "FAQs" },
-                icon: null,
-              },
-              {
-                text: "Contact Us",
-                url: { href: "/contact-us/", title: "Contact Us" },
                 icon: null,
               },
             ],
@@ -170,6 +88,81 @@ Example.args = {
                 text: "Data Protection",
                 url: { href: "/data-protection/", title: "Data Protection" },
                 icon: null,
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            id: "87287b53-1ea7-55c3-89cb-f5454f4a52d2",
+            title: "Information & Help",
+            slot: "footer-secondary-3",
+            links: [
+              {
+                text: "Work With Us",
+                url: { href: "/work-with-us/", title: "Work With Us" },
+                icon: null,
+              },
+              {
+                text: "Store Locator/Stockists",
+                url: {
+                  href: "store-locator-stockists",
+                  title: "Store Locator/Stockists",
+                },
+                icon: null,
+              },
+              {
+                text: "FAQs",
+                url: { href: "/faqs/", title: "FAQs" },
+                icon: null,
+              },
+              {
+                text: "Contact Us",
+                url: { href: "/contact-us/", title: "Contact Us" },
+                icon: null,
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            title: "Follow Us",
+            slot: "footer-tertiary-1",
+            links: [
+              {
+                icon: {
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blta5b46ebe32db0638/601012b833e08b0bf863165e/youtube.svg",
+                  title: "youtube.svg",
+                },
+              },
+              {
+                icon: {
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blt26448e2036f3e297/6010131a2206ca0c0330f7c2/instagram.svg",
+                  title: "instagram.svg",
+                },
+              },
+              {
+                icon: {
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blt120936cf45aa5baf/601013432206ca0c0330f7c4/facebook.svg",
+                  title: "facebook.svg",
+                },
+              },
+              {
+                icon: {
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blt906eec211b8f861c/6010132b3a3dc60c74cd7232/twitter.svg",
+                  title: "twitter.svg",
+                },
+              },
+              {
+                icon: {
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blt182262d963892965/600c35822118d00c7fcc7af5/375x500.png",
+                  title: "375x500.png",
+                },
               },
             ],
           },

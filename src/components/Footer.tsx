@@ -192,21 +192,22 @@ export const Footer: React.FC<FooterProps> = (
         {data?.allContentstackMenus?.edges
           .filter(({ node: menu }) => menu.slot?.startsWith("footer-secondary"))
           .map(({ node: menu }) => (
-            <ul id={menu.slot as string} key={menu.id}>
+            <React.Fragment>
               <h3>{menu.title}</h3>
-
-              {menu?.links?.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link?.url?.href as string}
-                    title={link?.url?.title as string}
-                  >
-                    {link?.text}
-                    {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              <ul id={menu.slot as string} key={menu.id}>
+                {menu?.links?.map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      to={link?.url?.href as string}
+                      title={link?.url?.title as string}
+                    >
+                      {link?.text}
+                      {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </React.Fragment>
           ))}
       </div>
     </ContainerStyled>
@@ -214,29 +215,33 @@ export const Footer: React.FC<FooterProps> = (
       <div className="footer-wrapper">
         <ContainerStyled className="footer-flex">
           <SocialContainerStyle>
-            <span>Follow us</span>
-            <SocialLinkListStyle>
-              <li>
-                <a href="https://www.facebook.com/BeautyByLaPerla/">
-                  <FaFacebook />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com/BeautyByLaPerla/">
-                  <FaInstagram />
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com/BeautyByLaPerla">
-                  <FaTwitter />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/channel/EJo0TYlRfn6rYQUCAxW1XT0i">
-                  <FaYoutube />
-                </a>
-              </li>
-            </SocialLinkListStyle>
+            {data?.allContentstackMenus?.edges
+              .filter(({ node: menu }) =>
+                menu.slot?.startsWith("footer-tertiary")
+              )
+              .map(({ node: menu }) => (
+                <React.Fragment>
+                  <h3>{menu.title}</h3>
+                  <SocialLinkListStyle id={menu.slot as string} key={menu.id}>
+                    {menu?.links?.map((link, index) => (
+                      <li key={index}>
+                        <a
+                          href={link?.url?.href as string}
+                          title={link?.url?.title as string}
+                        >
+                          {link?.text && <span>{link?.text}</span>}
+                          {link?.icon && (
+                            <img
+                              src={link?.icon?.url as string}
+                              title={link?.icon?.title as string}
+                            />
+                          )}
+                        </a>
+                      </li>
+                    ))}
+                  </SocialLinkListStyle>
+                </React.Fragment>
+              ))}
           </SocialContainerStyle>
           <p>
             © {new Date().getFullYear()} {siteTitle}
