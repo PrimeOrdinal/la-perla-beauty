@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components"
 import { body } from "./body"
 import { boxSizing } from "./boxSizing"
 import { buttons } from "./buttons"
+import { container } from "./container"
 import { fonts } from "./fonts"
 import { form } from "./form"
 import { formField } from "./formField"
@@ -16,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     ${body}
     ${boxSizing}
     ${buttons}
+    ${container}
     ${fonts}
     ${form}
     ${formField}

@@ -13,10 +13,12 @@ export const buttons = `
         text-align: center;
         text-transform: uppercase;
         font-size: 0.8125rem;
+        
         &:disabled {
             cursor: not-allowed;
         }
-        ${mediaQueries.md}{
+        
+        ${mediaQueries.md} {
             padding: 0.85rem 1.9375rem;
             font-size: 0.875rem;
         }
