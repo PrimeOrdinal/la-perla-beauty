@@ -126,6 +126,7 @@ Example.args = {
         },
         {
           node: {
+            id: "ae387fe1-21f0-8cbc-5681-f6713e550ef8",
             title: "Follow Us",
             slot: "footer-tertiary-1",
             links: [
@@ -157,19 +158,13 @@ Example.args = {
                   title: "twitter.svg",
                 },
               },
-              {
-                icon: {
-                  url:
-                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blt182262d963892965/600c35822118d00c7fcc7af5/375x500.png",
-                  title: "375x500.png",
-                },
-              },
             ],
           },
         },
       ],
     },
   },
+  siteTitle: "La Perla Beauty"
 }
 Example.argTypes = {
   onClick: { action: "Footer clicked" },

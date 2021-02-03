@@ -18,7 +18,7 @@ import {
   VariantProps,
 } from "styled-system"
 
-import "react-accessible-accordion/dist/fancy-example.css"
+import "./Accordion.css"
 
 export type AccordionProps = LayoutProps &
   PositionProps &
@@ -30,16 +30,24 @@ export type AccordionProps = LayoutProps &
 export const AccordionStyled: React.FC<AccordionProps> = styled(
   ReactAccessibleAccordion
 )`
-  background: red;
+  .accordion__button {
+    background-color: blue;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+  }
 
   ${compose(layout, position, space)}
 `
 
 export const Accordion: React.FC<AccordionProps> = props => (
-  <ReactAccessibleAccordion {...props}>
+  <AccordionStyled {...props}>
     <ReactAccessibleAccordionItem>
       <ReactAccessibleAccordionItemHeading>
-        <ReactAccessibleAccordionItemButton>
+        <ReactAccessibleAccordionItemButton className="accordion__button">
           What harsh truths do you prefer to ignore?
         </ReactAccessibleAccordionItemButton>
       </ReactAccessibleAccordionItemHeading>
@@ -53,7 +61,7 @@ export const Accordion: React.FC<AccordionProps> = props => (
     </ReactAccessibleAccordionItem>
     <ReactAccessibleAccordionItem>
       <ReactAccessibleAccordionItemHeading>
-        <ReactAccessibleAccordionItemButton>
+        <ReactAccessibleAccordionItemButton className="accordion__button">
           Is free will real or just an illusion?
         </ReactAccessibleAccordionItemButton>
       </ReactAccessibleAccordionItemHeading>
@@ -65,5 +73,5 @@ export const Accordion: React.FC<AccordionProps> = props => (
         </p>
       </ReactAccessibleAccordionItemPanel>
     </ReactAccessibleAccordionItem>
-  </ReactAccessibleAccordion>
+  </AccordionStyled>
 )

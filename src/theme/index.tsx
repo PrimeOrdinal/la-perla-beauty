@@ -22,11 +22,13 @@ export const mediaQueries = {
   xl: `@media screen and (min-width: ${breakpoints[3]})`,
 }
 
+const fontSizeBase = 16;
+
 export const theme: DefaultTheme = {
   borderRadius: "5px",
   buttons: {
     primary: {
-      color: "whitesmoke",
+      color: "#ffffff",
       backgroundColor: "#363139",
       "&:disabled": {},
       "&:hover": {
@@ -42,7 +44,7 @@ export const theme: DefaultTheme = {
       },
     },
     tertiary: {
-      color: "text",
+      color: "#858585",
       backgroundColor: "#EFEEE9",
       "&:disabled": {},
       "&:hover": {
@@ -56,12 +58,15 @@ export const theme: DefaultTheme = {
       text: "#363139",
     },
     disabled: "#ccc",
-    text: "#000",
+    text: "#363139",
     background: "#f5f5f5",
     primary: "#363139",
     secondary: "#FEEBDD",
     tertiary: "#EFEEE9",
     quarternary: "#D3CBD6",
+    // accent1: "",
+    // accent2: "",
+    // accent3: "",
     modes: {
       dark: {
         text: "#fff",
@@ -76,7 +81,7 @@ export const theme: DefaultTheme = {
     body: '"Quicksand", Helvetica, Arial, sans-serif',
     heading: "inherit",
   },
-  fontSizes: [12, 14, 16, 24, 32, 48, 64],
+  fontSizes: [12/fontSizeBase, 14/fontSizeBase, 16/fontSizeBase, 24/fontSizeBase, 32/fontSizeBase, 48/fontSizeBase, 64/fontSizeBase],
   lineHeights: {
     body: 1.5,
     heading: 1.125,

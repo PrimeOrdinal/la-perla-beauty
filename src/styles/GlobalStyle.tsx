@@ -9,6 +9,7 @@ import { formField } from "./formField"
 import { formLabel } from "./formLabel"
 import { headings } from "./headings"
 import { html } from "./html"
+import { input } from "./input"
 
 export const GlobalStyle = createGlobalStyle`
     ${html}
@@ -20,4 +21,5 @@ export const GlobalStyle = createGlobalStyle`
     ${formField}
     ${formLabel}
     ${headings}
+    ${input}
 `

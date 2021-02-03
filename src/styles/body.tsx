@@ -1,8 +1,9 @@
-import { mediaQueries } from "../theme"
+import { mediaQueries, theme } from "../theme"
+
 export const body = `
     body {
-        margin: 0;
+        color: ${theme.colors.text};
         font-size: 16px;
-        }
+        margin: 0;
     }
 `

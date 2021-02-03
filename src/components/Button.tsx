@@ -41,6 +41,10 @@ export const Button: React.FC<ButtonProps> = styled.button`
         color: "white",
         bg: themeGet("colors.tertiary", "grey"),
       },
+      quaternary: {
+        color: "white",
+        bg: themeGet("colors.quaternary", "grey"),
+      },
     },
   })}
 

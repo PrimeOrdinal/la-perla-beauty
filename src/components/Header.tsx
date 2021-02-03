@@ -27,10 +27,8 @@ const ContainerStyled = styled.div`
   display: grid;
   grid-template-areas: "menu-primary logo menu-secondary" "menu-navigation menu-navigation menu-navigation" "quick-search quick-search quick-search";
   grid-template-columns: 1fr 2fr 1fr;
-  margin: auto;
   padding-block-start: 1rem;
   text-align: center;
-  width: 90%;
 `
 
 export type HeaderProps = {

@@ -28,76 +28,104 @@ import { mediaQueries, theme } from "../theme"
 
 const LogotypeStyle = styled(Logotype)`
   display: none;
+
   ${mediaQueries.md} {
     display: block;
-    height: 32px;
-    object-fit: contain;
     flex: 0.2;
+    height: 2rem;
+    object-fit: contain;
   }
 `
 
-const SocialContainerStyle = styled.div`
+const SocialContainerStyled = styled.div`
   padding-top: 1.25rem;
+
   ${mediaQueries.md} {
-    display: flex;
     align-items: center;
+    display: flex;
   }
+
   span {
     display: none;
+
     ${mediaQueries.md} {
       display: block;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: bold;
       margin-right: 1rem;
     }
   }
 `
 
-const SocialLinkListStyle = styled(ListPlain)`
-  display: flex;
-  justify-content: center;
+const SocialLinkListStyled = styled(ListPlain)`
   align-items: center;
-  li {
-    padding: 1rem;
-    a {
-      font-size: 34px;
-      text-decoration: none;
-      color: inherit;
-    }
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: column;
+  justify-content: center;
+  padding-inline-start: 2rem;
+
+  a {
+    color: inherit;
+    font-size: 2.125rem;
+    text-decoration: none;
   }
 `
 
 const FooterStyle = styled.footer`
   border-top: 1px solid ${theme.colors.tertiary};
-  padding-top: 23px;
+  padding-top: 1.5rem;
+
   ${mediaQueries.md} {
-    padding-top: 35px;
+    padding-top: 2.25rem;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+      font-family: ${themeGet("fontFamily", "Quicksand")};
+      text-transform: uppercase;
+  }
+
   .footer-newsletter {
+    padding-bottom: 1rem;
+
     ${mediaQueries.md} {
+      align-items: center;
       display: grid;
       grid-template-columns: 1fr 4fr;
-      align-items: center;
-      padding-bottom: 35px;
+      padding-bottom: 2.25rem;
     }
   }
+
   .footer-nav-desktop {
     display: none;
+
     ${mediaQueries.md} {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 2fr;
-      gap: ${theme.space[4]}px;
       border-top: 1px solid ${theme.colors.tertiary};
+      display: grid;
+      gap: ${theme.space[4]/16}rem;
+      grid-template-columns: 1fr 1fr 1fr 2fr;
+      padding-block-start: 3rem;
+
+      h3 {
+        font-family: ${themeGet("fontFamily", "Quicksand")};
+        font-size: ${theme.fontSizes[1]}rem;
+        padding-block-end: 2rem;
+      }
+
       ul {
+        display: grid;
+        gap: 1.5rem;
         list-style: none;
         padding: 0;
-        h3 {
-          font-family: ${themeGet("fontFamily", "Quicksand")};
-          font-size: ${theme.fontSizes[1]}px;
-        }
+
         li {
-          padding-top: ${theme.space[3]}px;
-          font-size: ${theme.fontSizes[1]}px;
+          font-size: ${theme.fontSizes[1]}rem;
+
           a {
             text-decoration: none;
             color: inherit;
@@ -107,47 +135,56 @@ const FooterStyle = styled.footer`
       }
     }
   }
+
   .footer-nav-mobile {
-    /* display: block; */
     ${mediaQueries.md} {
       display: none;
     }
   }
+
   .footer-social {
     .footer-wrapper {
       border-top: 1px solid ${theme.colors.tertiary};
       border-bottom: 1px solid ${theme.colors.tertiary};
       margin-top: 1.45rem;
       margin-bottom: 2rem;
+
       ${mediaQueries.md} {
         border-bottom: none;
       }
     }
-    .footer-flex {
+
+    .container {
       ${mediaQueries.md} {
-        display: flex;
-        justify-content: space-between;
         align-items: center;
+        display: grid;
+        gap: 1rem;
+        grid-auto-flow: column;
+        justify-content: end;        
       }
+    }
+
+    section {
+      align-items: center;
+      display: grid;
+      grid-auto-flow: column;
     }
   }
 `
 const ContainerStyled = styled.div`
-  width: 90%;
-  margin: auto;
-
   h2 {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
+
     ${mediaQueries.md} {
       display: none;
     }
   }
+
   p {
     text-align: center;
-    font-size: 11px;
-    letter-spacing: 0.7px;
+
     ${mediaQueries.md} {
-      font-size: 12px;
+      font-size: 0.75rem;
     }
   }
 `
@@ -164,14 +201,16 @@ export const Footer: React.FC<FooterProps> = (
   }
 ) => (
   <FooterStyle>
-    <ContainerStyled>
+    <ContainerStyled className="container">
       <h2>Newsletter</h2>
+
       <div className="footer-newsletter">
         <LogotypeStyle />
         <NewsletterSignup />
       </div>
+
       <div className="footer-nav-mobile">
-        <ReactAccessibleAccordion />
+        <ReactAccessibleAccordion>
         {data?.allContentstackMenus?.edges
           .filter(({ node: menu }) => menu.slot?.startsWith("footer-secondary"))
           .map(({ node: menu }) => (
@@ -186,13 +225,14 @@ export const Footer: React.FC<FooterProps> = (
               </ReactAccessibleAccordionItemPanel>
             </ReactAccessibleAccordionItem>
           ))}
-        <ReactAccessibleAccordion />
+        </ReactAccessibleAccordion>
       </div>
+
       <div className="footer-nav-desktop">
         {data?.allContentstackMenus?.edges
           .filter(({ node: menu }) => menu.slot?.startsWith("footer-secondary"))
           .map(({ node: menu }) => (
-            <React.Fragment>
+            <section>
               <h3>{menu.title}</h3>
               <ul id={menu.slot as string} key={menu.id}>
                 {menu?.links?.map((link, index) => (
@@ -207,22 +247,22 @@ export const Footer: React.FC<FooterProps> = (
                   </li>
                 ))}
               </ul>
-            </React.Fragment>
+            </section>
           ))}
       </div>
     </ContainerStyled>
     <div className="footer-social">
       <div className="footer-wrapper">
-        <ContainerStyled className="footer-flex">
-          <SocialContainerStyle>
+        <ContainerStyled>
+          <SocialContainerStyled>
             {data?.allContentstackMenus?.edges
               .filter(({ node: menu }) =>
                 menu.slot?.startsWith("footer-tertiary")
               )
               .map(({ node: menu }) => (
-                <React.Fragment>
+                <section>
                   <h3>{menu.title}</h3>
-                  <SocialLinkListStyle id={menu.slot as string} key={menu.id}>
+                  <SocialLinkListStyled id={menu.slot as string} key={menu.id}>
                     {menu?.links?.map((link, index) => (
                       <li key={index}>
                         <a
@@ -239,11 +279,11 @@ export const Footer: React.FC<FooterProps> = (
                         </a>
                       </li>
                     ))}
-                  </SocialLinkListStyle>
-                </React.Fragment>
+                  </SocialLinkListStyled>
+                </section>
               ))}
-          </SocialContainerStyle>
-          <p>
+          </SocialContainerStyled>
+          <p className="small">
             © {new Date().getFullYear()} {siteTitle}
           </p>
         </ContainerStyled>
