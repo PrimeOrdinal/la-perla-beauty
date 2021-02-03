@@ -32,13 +32,14 @@ export type ListingProps = GridProps &
 
 export const Listing: React.FC<ListingProps> = ({ edges }) => (
   <StyledListing
+    className="container"
     gridAutoFlow="row"
     gridGap={{ _: 2, sm: 1, md: 2, lg: 4 }}
     gridTemplateColumns={{
       _: "1fr",
       sm: "repeat(2, 1fr)",
       md: "repeat(4, 1fr)",
-      xl: "repeat(6, 1fr)",
+      xl: "repeat(4, 1fr)",
     }}
   >
     {edges.map(({ node: product }: { node: Product }, index) => (
