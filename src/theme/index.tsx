@@ -20,7 +20,7 @@ type FontSizesProp = Array<number> & {
   heading4Mobile?: number
 }
 
-export const breakpoints: BreakpointsProp = ["40em", "52em", "64em", "80em"]
+export const breakpoints: BreakpointsProp = ["40rem", "60rem", "72rem", "100rem"]
 
 // aliases
 breakpoints.sm = breakpoints[0]
