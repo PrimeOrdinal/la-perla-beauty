@@ -20,16 +20,16 @@ export const Leaf: React.FC<LeafProps> = styled.button`
     prop: "colors",
     variants: {
       primary: {
-        color: "white",
-        bg: themeGet("colors.primary", "grey"),
+        backgroundColor: themeGet("leaf.primary.backgroundColor", "grey"),
+        color: themeGet("leaf.tertiary.color", "white"),
       },
       secondary: {
-        color: "white",
-        bg: themeGet("colors.secondary", "grey"),
+        backgroundColor: themeGet("leaf.secondary.backgroundColor", "grey"),
+        color: themeGet("leaf.tertiary.color", "white"),
       },
       tertiary: {
-        color: "white",
-        bg: themeGet("colors.tertiary", "grey"),
+        backgroundColor: themeGet("leaf.tertiary.backgroundColor", "grey"),
+        color: themeGet("leaf.tertiary.color", "white"),
       },
     },
   })}

@@ -1,4 +1,6 @@
 import type { Offer, Product } from "schema-dts"
+
+import { themeGet } from "@styled-system/theme-get"
 import { theme } from "../theme"
 import getSymbolFromCurrency from "currency-symbol-map"
 import React from "react"
@@ -10,40 +12,43 @@ import { ReactComponent as Plus } from "../images/Plus.svg"
 const ProductCardStyled = styled.article`
   background: none;
   display: grid;
-  grid-auto-flow: row;
   gap: 1rem;
-  /* padding: ${props => props.theme.space[3]}px; */
+  grid-auto-flow: row;
 
   img {
-    width: 100%;
     border-radius: 20px;
+    width: 100%;
   }
 
   .pre-order-banner {
-    display: block;
-    text-align: center;
-    background: ${theme.colors.secondary};
-    padding: 0.25rem;
+    background: ${themeGet("colors.pink")};
     border-radius: 5px;
+    display: block;
+    font-size: ${themeGet("fontSizes.small")}rem;
+    padding: 0.25rem;
+    text-align: center;
     text-transform: uppercase;
-    font-size: ${theme.fontSizes[0]}rem;
   }
+
   .product-type-wrapper {
-    display: flex;
     align-items: center;
+    display: flex;
+
     .product-type {
-      text-decoration: none;
       color: inherit;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
       flex: 0.8;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
     }
+
     svg {
+      cursor: pointer;
+      flex: 0.1;
       height: 18px;
       object-fit: contain;
-      flex: 0.1;
-      cursor: pointer;
+
       &:not(:last-child) {
         margin-right: 0.75rem;
       }
@@ -51,14 +56,15 @@ const ProductCardStyled = styled.article`
   }
 
   .product-brand {
-    font-family: "Tiempus";
-    font-size: 1.125rem;
-    font-weight: bold;
     align-self: end;
+    font-family: "Tiempus";
+    font-size: ${themeGet("fontSizes.5")}rem;
+    font-weight: bold;
   }
+
   .product-price {
     font-family: "Tiempus";
-    font-size: 1rem;
+    font-size: ${themeGet("fontSizes.body")}rem;
   }
 
   ${compose(layout, space)}

@@ -15,13 +15,15 @@ import { ReactComponent as Logotype } from "../images/Logotype.svg"
 
 import { home as homePath } from "../utils/paths"
 
+const LogotypeLinkStyle = styled(Link)`
+  text-align: center;
+
+  ${compose(grid, layout, space)}
+`
+
 const LogotypeStyle = styled(Logotype)`
   height: 40px;
   width: auto;
-`
-
-const LogotypeLinkStyle = styled(Link)`
-  ${compose(grid, layout, space)}
 `
 
 export type LogotypeLinkProps = GridProps &

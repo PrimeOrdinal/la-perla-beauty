@@ -1,8 +1,9 @@
 import { createGlobalStyle } from "styled-components"
 
 import { body } from "./body"
+import { border } from "./border"
 import { boxSizing } from "./boxSizing"
-import { buttons } from "./buttons"
+import { button } from "./button"
 import { container } from "./container"
 import { fonts } from "./fonts"
 import { form } from "./form"
@@ -15,8 +16,9 @@ import { input } from "./input"
 export const GlobalStyle = createGlobalStyle`
     ${html}
     ${body}
+    ${border}
     ${boxSizing}
-    ${buttons}
+    ${button}
     ${container}
     ${fonts}
     ${form}

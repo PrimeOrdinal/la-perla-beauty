@@ -37,7 +37,7 @@ const ProductsPage: React.FC<
       <SEO title="Product listings" />
       <Breadcrumb crumbs={crumbs} />
       <h1>Product Listings</h1>
-      <section className={clsx("Contentstack")}>
+      <section className={clsx("container", "Contentstack")}>
         <h1>Contentstack Product Listings</h1>
         {data.allContentstackProducts && (
           <Listing
@@ -48,7 +48,7 @@ const ProductsPage: React.FC<
         )}
       </section>
 
-      <section className={clsx("BigCommerce")}>
+      <section className={clsx("container", "BigCommerce")}>
         <h1>BigCommerce Product Listings</h1>
         <Listing
           edges={data.allBigCommerceProducts.edges.map(({ node }) => ({

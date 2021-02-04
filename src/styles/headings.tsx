@@ -1,3 +1,5 @@
+import { theme } from "../theme"
+
 export const headings = `
     h1,
     h2,
@@ -8,35 +10,27 @@ export const headings = `
         font-family: "Tiempos", Times, serif;
     }
 
-    h1 {
-        font-size: 24px;
+    .heading1 {
+        font-size: ${theme.fontSizes.heading1Desktop}rem;
         letter-spacing: 0.5px;
         line-height: 30px;
     }
 
-    h2 {
-        font-size: 20px;
+    .heading2 {
+        font-size: ${theme.fontSizes.heading2Desktop}rem;
         letter-spacing: 0.7px;
         line-height: 15px;
     }
 
-    h3 {
-        font-size: 11px;
+    .heading3 {
+        font-size: ${theme.fontSizes.heading3Desktop}rem;
         letter-spacing: 0.7px;
         line-height: 15px;
     }
 
-    h4 {
-        font-size: 11px;
+    .heading4 {
+        font-size: ${theme.fontSizes.heading4Desktop}rem;
         letter-spacing: 0.7px;
         line-height: 15px;
-    }
-
-    h5 {
-
-    }
-
-    h6 {
-        
     }
 `

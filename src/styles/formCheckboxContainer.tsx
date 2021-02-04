@@ -27,7 +27,7 @@ export const formCheckboxContainer = `
     .container input:checked ~ .checkbox {
         background-color: ${theme.colors.primary};
         &::after {
-        content: '';
+        content: "";
         position: absolute;
         left: 7px;
         top: 2px;

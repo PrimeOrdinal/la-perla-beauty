@@ -3,9 +3,9 @@ import type {
   LayoutQuery,
 } from "../../graphql-types"
 
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
-import { theme } from "../theme"
 
 import { useToggle } from "../hooks/useToggle"
 
@@ -18,7 +18,8 @@ import { QuickSearch } from "./QuickSearch"
 
 const HeaderStyled = styled.header`
   background-color: #ffffff;
-  border-bottom: 1px solid ${theme.colors.tertiary};
+  border-bottom-style: solid;
+  margin-block-end: ${themeGet("space.8")}rem;
   position: sticky;
   top: 0;
 `
@@ -27,7 +28,7 @@ const ContainerStyled = styled.div`
   display: grid;
   grid-template-areas: "menu-primary logo menu-secondary" "menu-navigation menu-navigation menu-navigation" "quick-search quick-search quick-search";
   grid-template-columns: 1fr 2fr 1fr;
-  padding-block-start: 1rem;
+  padding-block-start: ${themeGet("space.5")}rem;
   text-align: center;
 `
 
@@ -47,7 +48,7 @@ export const Header: React.FC<HeaderProps> = (
 
   return (
     <HeaderStyled>
-      <ContainerStyled>
+      <ContainerStyled className="container">
         <LogotypeLink gridArea="logo" siteTitle={siteTitle} />
         <MenuStore
           display={{ _: "none", md: "flex" }}

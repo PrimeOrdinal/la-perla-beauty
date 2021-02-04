@@ -16,18 +16,19 @@ import {
 
 import { ListPlain } from "./ListPlain"
 
-export const MenuStoreStyle = styled(ListPlain)`
+export const MenuStoreStyled = styled(ListPlain)`
+  align-items: center;
   display: grid;
   gap: 0.5rem;
   grid-auto-flow: row;
   justify-content: start;
-  align-items: center;
   padding: ${props => props.theme.space[2]}px;
+
   li {
     a {
       text-decoration: none;
+
       svg {
-        height: 20px;
         object-fit: contain;
       }
     }
@@ -36,13 +37,21 @@ export const MenuStoreStyle = styled(ListPlain)`
   ${compose(grid, layout, space)}
 `
 
+export const DownArrowStyled = styled(DownArrow)`
+  height: 10px;
+`
+
+export const UKFlagStyled = styled(UKFlag)`
+  height: 20px;
+`
+
 export type MenuStoreProps = GridProps & LayoutProps & SpaceProps
 
 export const MenuStore: React.FC<MenuStoreProps> = props => (
-  <MenuStoreStyle {...props}>
+  <MenuStoreStyled {...props}>
     <li>
       <Link to={"/"}>
-        <UKFlag />
+        <UKFlagStyled />
       </Link>
     </li>
     <li>
@@ -50,8 +59,8 @@ export const MenuStore: React.FC<MenuStoreProps> = props => (
     </li>
     <li>
       <Link to={"/"}>
-        <DownArrow />
+        <DownArrowStyled />
       </Link>
     </li>
-  </MenuStoreStyle>
+  </MenuStoreStyled>
 )

@@ -24,7 +24,7 @@ export const formRadioContainer = `
     .form-radio-container input:checked ~ .radio-button {
         background-color: ${theme.colors.background};
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           height: 15px;
           width: 15px;

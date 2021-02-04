@@ -1,6 +1,7 @@
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
-import { mediaQueries, theme } from "../theme"
+import { mediaQueries } from "../theme"
 import { Button } from "./Button"
 
 const StyledNewsletter = styled.div`
@@ -10,7 +11,7 @@ const StyledNewsletter = styled.div`
 
   form {
     display: grid;
-    gap: ${theme.space[3]}px;
+    gap: ${themeGet("space.3")}rem;
     grid-auto-flow: column;
 
     ${mediaQueries.md} {
@@ -26,10 +27,14 @@ const StyledNewsletter = styled.div`
 
       ${mediaQueries.md} {
         display: block;
-        font-size: ${theme.fontSizes[1]}rem;
+        font-size: ${themeGet("fontSizes.1")}rem;
         text-transform: uppercase;
         margin-right: 0.875rem;
       }
+    }
+
+    input {
+      min-width: 14rem;
     }
   }
 `

@@ -1,26 +1,25 @@
-import { mediaQueries } from "../theme"
+import { theme } from "../theme"
 
-export const buttons = `
+export const button = `
     button {
         appearance: unset;
         background: unset;
         border-radius: 12px;
         border: unset;
         cursor: pointer;
-        font-family: 'Quicksand';
+        font-family: "Quicksand";
+        font-size: ${theme.fontSizes.body}rem;
         letter-spacing: 1px;
-        padding: 0.975rem 1.375rem;
+        padding: ${theme.space[4]}rem ${theme.space[6]}rem;
         text-align: center;
         text-transform: uppercase;
-        font-size: 0.8125rem;
         
         &:disabled {
             cursor: not-allowed;
         }
         
-        ${mediaQueries.md} {
-            padding: 0.85rem 1.9375rem;
-            font-size: 0.875rem;
+        ${theme.mediaQueries.md} {
+            padding: ${theme.space[3]}rem ${theme.space[4]}rem;
         }
     }
 `

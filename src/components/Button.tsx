@@ -30,20 +30,12 @@ export const Button: React.FC<ButtonProps> = styled.button`
     prop: "buttons",
     variants: {
       primary: {
-        color: "white",
-        bg: themeGet("colors.primary", "grey"),
+        backgroundColor: themeGet("buttons.primary.backgroundColor", "white"),
+        color: themeGet("buttons.primary.color", "black"),
       },
       secondary: {
-        color: "white",
-        bg: themeGet("colors.secondary", "grey"),
-      },
-      tertiary: {
-        color: "white",
-        bg: themeGet("colors.tertiary", "grey"),
-      },
-      quaternary: {
-        color: "white",
-        bg: themeGet("colors.quaternary", "grey"),
+        backgroundColor: themeGet("buttons.secondary.backgroundColor", "black"),
+        color: themeGet("buttons.secondary.color", "white"),
       },
     },
   })}

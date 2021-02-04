@@ -16,16 +16,16 @@ import {
 export type BannerProps = ColorProps & LayoutProps & SpaceProps & VariantProps
 
 export const BannerStyled: React.FC<BannerProps> = styled.div`
-  background-color: ${themeGet("colors.banner.background", "grey")};
-  color: ${themeGet("colors.banner.text", "black")};
+  background-color: ${themeGet("banner.background", "grey")};
   display: grid;
+  font-size: ${themeGet("fontSizes.body")}rem;
   text-align: center;
   grid-auto-flow: column;
-  padding: ${props => props.theme.space[3]}px;
+  padding: ${themeGet("space.5")}rem;
   text-transform: uppercase;
 
   a {
-    color: ${themeGet("colors.banner.text", "black")};
+    color: ${themeGet("banner.text", "black")};
   }
 
   ${compose(color, layout, space)}

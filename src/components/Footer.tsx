@@ -2,6 +2,10 @@ import type {
   // FooterQuery
   LayoutQuery,
 } from "../../graphql-types"
+
+import { themeGet } from "@styled-system/theme-get"
+import { Link } from "gatsby"
+import React from "react"
 import {
   Accordion as ReactAccessibleAccordion,
   AccordionItem as ReactAccessibleAccordionItem,
@@ -9,22 +13,13 @@ import {
   AccordionItemButton as ReactAccessibleAccordionItemButton,
   AccordionItemPanel as ReactAccessibleAccordionItemPanel,
 } from "react-accessible-accordion"
-
-import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook"
-import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram"
-import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter"
-import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube"
-import { themeGet } from "@styled-system/theme-get"
-import { Link } from "gatsby"
-// import Img, { FluidObject } from "gatsby-image"
-import React from "react"
 import styled from "styled-components"
 
 import { ReactComponent as Logotype } from "../images/Logotype.svg"
 
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
-import { mediaQueries, theme } from "../theme"
+import { mediaQueries } from "../theme"
 
 const LogotypeStyle = styled(Logotype)`
   display: none;
@@ -38,8 +33,6 @@ const LogotypeStyle = styled(Logotype)`
 `
 
 const SocialContainerStyled = styled.div`
-  padding-top: 1.25rem;
-
   ${mediaQueries.md} {
     align-items: center;
     display: flex;
@@ -73,7 +66,8 @@ const SocialLinkListStyled = styled(ListPlain)`
 `
 
 const FooterStyle = styled.footer`
-  border-top: 1px solid ${theme.colors.tertiary};
+  border-top-style: solid;
+  margin-block-start: ${themeGet("space.8")}rem;
   padding-top: 1.5rem;
 
   ${mediaQueries.md} {
@@ -105,16 +99,17 @@ const FooterStyle = styled.footer`
     display: none;
 
     ${mediaQueries.md} {
-      border-top: 1px solid ${theme.colors.tertiary};
+      border-top-style: solid;
       display: grid;
-      gap: ${theme.space[4]/16}rem;
+      gap: ${themeGet("space.5")}rem;
       grid-template-columns: 1fr 1fr 1fr 2fr;
-      padding-block-start: 3rem;
+      padding-block-end: ${themeGet("space.6")}rem;
+      padding-block-start: ${themeGet("space.6")}rem;
 
       h3 {
         font-family: ${themeGet("fontFamily", "Quicksand")};
-        font-size: ${theme.fontSizes[1]}rem;
-        padding-block-end: 2rem;
+        font-size: ${themeGet("fontSizes.body")}rem;
+        padding-block-end: ${themeGet("space.7")}rem;
       }
 
       ul {
@@ -124,7 +119,7 @@ const FooterStyle = styled.footer`
         padding: 0;
 
         li {
-          font-size: ${theme.fontSizes[1]}rem;
+          font-size: ${themeGet("fontSizes.body")}rem;
 
           a {
             text-decoration: none;
@@ -143,24 +138,23 @@ const FooterStyle = styled.footer`
   }
 
   .footer-social {
-    .footer-wrapper {
-      border-top: 1px solid ${theme.colors.tertiary};
-      border-bottom: 1px solid ${theme.colors.tertiary};
-      margin-top: 1.45rem;
-      margin-bottom: 2rem;
+    border-bottom-style: solid;
+    border-top-style: solid;
 
-      ${mediaQueries.md} {
-        border-bottom: none;
-      }
+    ${mediaQueries.md} {
+      border-bottom-style: none;
     }
 
     .container {
+      padding-block-end: ${themeGet("space.6")}rem;
+      padding-block-start: ${themeGet("space.6")}rem;
+
       ${mediaQueries.md} {
         align-items: center;
         display: grid;
-        gap: 1rem;
+        gap: ${themeGet("space.5")}rem;
         grid-auto-flow: column;
-        justify-content: end;        
+        justify-content: space-between;
       }
     }
 
@@ -252,42 +246,40 @@ export const Footer: React.FC<FooterProps> = (
       </div>
     </ContainerStyled>
     <div className="footer-social">
-      <div className="footer-wrapper">
-        <ContainerStyled>
-          <SocialContainerStyled>
-            {data?.allContentstackMenus?.edges
-              .filter(({ node: menu }) =>
-                menu.slot?.startsWith("footer-tertiary")
-              )
-              .map(({ node: menu }) => (
-                <section>
-                  <h3>{menu.title}</h3>
-                  <SocialLinkListStyled id={menu.slot as string} key={menu.id}>
-                    {menu?.links?.map((link, index) => (
-                      <li key={index}>
-                        <a
-                          href={link?.url?.href as string}
-                          title={link?.url?.title as string}
-                        >
-                          {link?.text && <span>{link?.text}</span>}
-                          {link?.icon && (
-                            <img
-                              src={link?.icon?.url as string}
-                              title={link?.icon?.title as string}
-                            />
-                          )}
-                        </a>
-                      </li>
-                    ))}
-                  </SocialLinkListStyled>
-                </section>
-              ))}
-          </SocialContainerStyled>
-          <p className="small">
-            © {new Date().getFullYear()} {siteTitle}
-          </p>
-        </ContainerStyled>
-      </div>
+      <ContainerStyled className="container">
+        <SocialContainerStyled>
+          {data?.allContentstackMenus?.edges
+            .filter(({ node: menu }) =>
+              menu.slot?.startsWith("footer-tertiary")
+            )
+            .map(({ node: menu }) => (
+              <section>
+                <h3>{menu.title}</h3>
+                <SocialLinkListStyled id={menu.slot as string} key={menu.id}>
+                  {menu?.links?.map((link, index) => (
+                    <li key={index}>
+                      <a
+                        href={link?.url?.href as string}
+                        title={link?.url?.title as string}
+                      >
+                        {link?.text && <span>{link?.text}</span>}
+                        {link?.icon && (
+                          <img
+                            src={link?.icon?.url as string}
+                            title={link?.icon?.title as string}
+                          />
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </SocialLinkListStyled>
+              </section>
+            ))}
+        </SocialContainerStyled>
+        <p className="small">
+          © {new Date().getFullYear()} {siteTitle}
+        </p>
+      </ContainerStyled>
     </div>
   </FooterStyle>
 )

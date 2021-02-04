@@ -20,16 +20,16 @@ export const Tag: React.FC<TagProps> = styled.button`
     prop: "colors",
     variants: {
       primary: {
-        color: "white",
-        bg: themeGet("colors.primary", "grey"),
+        bg: themeGet("tag.primary.backgroundColor", "grey"),
+        color: themeGet("tag.primary.color", "white"),
       },
       secondary: {
-        color: "white",
-        bg: themeGet("colors.secondary", "grey"),
+        bg: themeGet("tag.secondary.backgroundColor", "grey"),
+        color: themeGet("tag.primary.color", "white"),
       },
       tertiary: {
-        color: "white",
-        bg: themeGet("colors.tertiary", "grey"),
+        bg: themeGet("tag.tertiary.backgroundColor", "grey"),
+        color: themeGet("tag.primary.color", "white"),
       },
     },
   })}

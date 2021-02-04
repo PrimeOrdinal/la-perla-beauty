@@ -1,16 +1,18 @@
-import { mediaQueries, theme } from "../theme"
+import { theme } from "../theme"
 
 export const input = `
     input {
-        border-radius: ${theme.space[2] / 16}rem;
-        border: 1px solid ${theme.colors.tertiary};
+        border-color: ${theme.border.color};
+        border-radius: ${theme.space[2]}rem;
+        border-style: solid;
+        border-width: ${theme.border.width};
         font-family: "Quicksand";
         font-size: ${theme.fontSizes[0]}rem;
-        gap: ${theme.space[3]}px;
-        padding: 0.875rem 1.375rem;
+        gap: ${theme.space[3]}rem;
+        padding: ${theme.space[4]}rem ${theme.space[7]}rem;
 
-        ${mediaQueries.md} {
-            padding: 0.75rem 1.9375rem;
+        ${theme.mediaQueries.md} {
+            padding: ${theme.space[3]}rem ${theme.space[8]}rem;
         }
 
         &:focus {
