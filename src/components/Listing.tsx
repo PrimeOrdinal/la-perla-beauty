@@ -13,11 +13,11 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ListPlain } from "./ListPlain"
 import { ProductCard } from "./ProductCard"
 
-const ListingStyled = styled(ListPlain)`
+const ListingStyled = styled.ul`
   display: grid;
+  list-style: none;
 
   ${compose(grid, layout, space)}
 `
