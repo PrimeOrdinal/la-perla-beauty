@@ -6,6 +6,7 @@ import {
   AccordionItemButton as ReactAccessibleAccordionItemButton,
   AccordionItemPanel as ReactAccessibleAccordionItemPanel,
 } from "react-accessible-accordion"
+import Plus from "../images/Plus.svg"
 import styled from "styled-components"
 import {
   compose,
@@ -44,33 +45,43 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__button {
-    background-color: red;
+    background-color: unset;
     color: #444;
     cursor: pointer;
     padding: 18px;
     width: 100%;
     text-align: left;
     border: none;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 
   .accordion__button:hover {
     background-color: unset;
   }
 
-  .accordion__button:before {
+  .accordion__button:after {
     display: inline-block;
     content: "";
+    position: absolute;
+    right: 10px;
     height: 10px;
     width: 10px;
     margin-right: 12px;
+    background: url(${Plus});
     border-bottom: 2px solid currentColor;
     border-right: 2px solid currentColor;
     transform: rotate(-45deg);
   }
 
-  .accordion__button[aria-expanded="true"]::before,
-  .accordion__button[aria-selected="true"]::before {
+  .accordion__button[aria-expanded="true"]::after,
+  .accordion__button[aria-selected="true"]::after {
     transform: rotate(45deg);
+  }
+
+  .accordion__button[aria-expanded="false"]::after,
+  .accordion__button[aria-selected="false"]::after {
+    transform: rotate(-45deg);
   }
 
   [hidden] {

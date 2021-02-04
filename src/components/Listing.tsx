@@ -18,7 +18,7 @@ import { ProductCard } from "./ProductCard"
 const ListingStyled = styled.ul`
   display: grid;
   list-style: none;
-
+  padding: 0;
   ${compose(grid, layout, space)}
 `
 
@@ -34,8 +34,8 @@ export const Listing: React.FC<ListingProps> = ({ edges }) => (
   <ListingStyled
     className="container"
     gridAutoFlow="row"
-    gridColumnGap={{ _: 2, sm: 4, md: 6, lg: 10 }}
-    gridRowGap={{ _: 4, sm: 2, md: 4, lg: 8 }}
+    gridColumnGap={{ _: 2, sm: 6, md: 8, lg: 10 }}
+    gridRowGap={{ _: 4, sm: 6, md: 8, lg: 10 }}
     gridTemplateColumns={{
       _: "1fr",
       sm: "repeat(2, 1fr)",
