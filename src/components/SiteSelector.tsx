@@ -3,7 +3,7 @@ import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
 
-const StyledA = styled.a`
+const AnchorStyled = styled.a`
   background-color: ${props => (props.href ? "white" : "grey")};
   color: ${props => (props.href ? "grey" : "white")};
   font-size: ${themeGet("fontSizes.body")}px;
@@ -12,7 +12,7 @@ const StyledA = styled.a`
   text-transform: uppercase;
 `
 
-const StyledNav = styled.nav`
+const NavStyled = styled.nav`
   background-color: #efeee9;
   display: grid;
   text-align: center;
@@ -21,20 +21,18 @@ const StyledNav = styled.nav`
 
 export const SiteSelector: React.FC = () => {
   return (
-    <StyledNav className="site-selector">
-      <StyledA
-        id="site-link--lingerie"
+    <NavStyled>
+      <AnchorStyled
         className={clsx("button--link")}
         href="https://laperla.com"
       >
         Lingerie
-      </StyledA>
-      <StyledA
-        id="site-link--beauty"
+      </AnchorStyled>
+      <AnchorStyled
         className={clsx("button--link", "current")}
       >
         Beauty
-      </StyledA>
-    </StyledNav>
+      </AnchorStyled>
+    </NavStyled>
   )
 }
