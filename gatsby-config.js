@@ -8,18 +8,6 @@ module.exports = {
     title: process.env.SITE_TITLE,
   },
   plugins: [
-    // {
-    //   resolve: "gatsby-plugin-eslint",
-    //   options: {
-    //     test: /\.ts$|\.tsx$/,
-    //     exclude: /(node_modules|.cache|public)/,
-    //     stages: ["develop"],
-    //     options: {
-    //       emitWarning: true,
-    //       failOnError: false,
-    //     },
-    //   },
-    // },
     {
       resolve: "gatsby-plugin-typescript",
       options: {
@@ -78,6 +66,21 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     "gatsby-plugin-offline",
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     // Arbitrary name for the remote schema Query type
+    //     typeName: "BigCommerceGQL",
+    //     // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+    //     fieldName: "bigcommercegql",
+    //     // Url to query from
+    //     url: "https://store-" + process.env.BIGCOMMERCE_STORE_HASH + ".mybigcommerce.com/graphql",
+    //     headers: {
+    //       // Learn about environment variables: https://gatsby.dev/env-vars
+    //       Authorization: "Bearer " + process.env.BIGCOMMERCE_ACCESS_TOKEN,
+    //     },
+    //   },
+    // },
     {
       resolve: "gatsby-source-bigcommerce",
       options: {
@@ -96,17 +99,17 @@ module.exports = {
 
         // Multiple endpoints in an object.
         endpoints: {
-          
-          BigCommerceBanners: "/banners",
+          // BigCommerceBanners: "/banners",
+          BigCommerceBrands: "/catalog/brands",
           BigCommerceCategories: "/catalog/categories",
-          BigCommerceCountries: "/countries",
-          BigCommerceCurrencies: "/currencies",
-          BigCommercePaymentsMethods: "/payments/methods",
+          // BigCommerceCountries: "/countries",
+          // BigCommerceCurrencies: "/currencies",
+          // BigCommercePaymentsMethods: "/payments/methods",
           BigCommerceProducts: "/catalog/products?include=images",
-          BigCommerceSiteInformation: "/sites/" + process.env.BIGCOMMERCE_SITE_ID,
-          BigCommerceStoreInformation: "/store",
-          BigCommerceStorefrontStatus: "/storefront/status",
-          BigCommerceFilterContexts: "/settings/search/filters/contexts",
+          // BigCommerceSiteInformation: "/sites/" + process.env.BIGCOMMERCE_SITE_ID,
+          // BigCommerceStoreInformation: "/store",
+          // BigCommerceStorefrontStatus: "/storefront/status",
+          // BigCommerceFilterContexts: "/settings/search/filters/contexts",
           // BigCommercehippingRates: "/providers/shipping-provider-api/shipping-provider/requestshippingrates",
         },
 

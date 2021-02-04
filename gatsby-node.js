@@ -88,31 +88,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 user
                 environment
               }
-              modular_blocks {
-                article_card {
-                  paragraph
-                  title
-                  title_primary
-                  title_secondary
-                }
-                article_cards {
-                  group {
-                    paragraph
-                    title
-                    title_primary
-                    title_secondary
-                  }
-                }
-                image_with_overlay {
-                  title_secondary
-                  title_primary
-                  paragraph
-                  link {
-                    title
-                    href
-                  }
-                }
-              }
             }
           }
         }

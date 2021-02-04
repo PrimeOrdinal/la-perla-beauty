@@ -3,43 +3,19 @@ import type {
   ProductsPageQuery,
 } from "../../graphql-types"
 
-import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import { PageProps, graphql } from "gatsby"
 import React from "react"
-import styled from "styled-components"
-import {
-  compose,
-  grid,
-  layout,
-  space,
-  GridProps,
-  LayoutProps,
-  SpaceProps,
-} from "styled-system"
 
 import { Breadcrumb } from "../components/Breadcrumb"
+import { CategoryHeader } from "../components/CategoryHeader"
 import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"
 import { SEO } from "../components/SEO"
+import { Tabs } from "../components/Tabs"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
-
-const CategoryHeaderStyled = styled.header`
-  display: grid;
-  justify-items: center;
-  margin-block-end: ${themeGet("space.10")}px;
-
-  ${compose(grid, layout, space)}
-`
-
-export type CategoryHeaderProps = GridProps &
-  LayoutProps &
-  SpaceProps & {
-    description: string
-    title: string
-  }
 
 const ProductsPage: React.FC<
   PageProps<ProductsPageQuery, PageContextTypeBreadcrumb>
@@ -64,12 +40,22 @@ const ProductsPage: React.FC<
 
       <div className={clsx("container")}>
         <Breadcrumb crumbs={crumbs} />
+
+        <CategoryHeader>
+          <h1>All beauty</h1>
+          <span>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, dot. Nullam
+            ac eleifend turpis.
+          </span>
+        </CategoryHeader>
       </div>
 
-      <CategoryHeaderStyled className={clsx("container")}>
-        <h1>All beauty</h1>
-        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, dot. Nullam ac eleifend turpis.</span>
-      </CategoryHeaderStyled>
+      <Tabs marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }}>
+        <a href="/products">All</a>
+        <a href="/fragrances">Fragrances</a>
+        <a href="/makeup">Makeup</a>
+        <a href="/body">Body</a>
+      </Tabs>
 
       <section className={clsx("container", "BigCommerce")}>
         <Listing

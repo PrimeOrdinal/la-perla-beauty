@@ -1,74 +1,117 @@
-import type { Contentstack_Pages } from "../../graphql-types"
+import type {
+  BigCommerceProducts,
+  Contentstack_Pages,
+  IndexPageQuery,
+} from "../../graphql-types"
 
-import { PageProps } from "gatsby"
-import { Link } from "gatsby"
+import clsx from "clsx"
+import { PageProps, graphql } from "gatsby"
 import React from "react"
-import styled from "styled-components"
-import { color } from "styled-system"
 
-import { Button } from "../components/Button"
-// import { Instagram } from "../components/Instagram.tsx"
+import { CategoryHeader } from "../components/CategoryHeader"
 import { Layout } from "../components/Layout"
+import { Listing } from "../components/Listing"
 import { SEO } from "../components/SEO"
+import { Tabs } from "../components/Tabs"
 
-import { signIn as signInPath } from "../utils/paths"
+import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
+import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
 
-const Box = styled.div`
-  ${color}
-`
+// import { signIn as signInPath } from "../utils/paths"
 
 type PageContextPage = PageContextTypeBreadcrumb & {
   page: Contentstack_Pages
 }
 
-const IndexPage: React.FC<PageProps<null, PageContextPage>> = ({
+const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
+  data,
+  // location,
   pageContext,
+  // path
 }) => {
   const { page } = pageContext
 
   return (
     <Layout>
-      <SEO title={page?.title} />
+      <div className={clsx("container")}>
+        <SEO title={page?.title} />
 
-      <h1>{page?.title}</h1>
+        <CategoryHeader>
+          <h1>All beauty</h1>
+          <span>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, dot. Nullam
+            ac eleifend turpis.
+          </span>
+        </CategoryHeader>
+      </div>
 
-      <section className="container">
-        <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
+      <Tabs marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }}>
+        <a href="/products">All</a>
+        <a href="/fragrances">Fragrances</a>
+        <a href="/makeup">Makeup</a>
+        <a href="/body">Body</a>
+      </Tabs>
+
+      <CategoryHeader className={clsx("container")}>
+        <h1>All beauty</h1>
+        <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, dot. Nullam
+          ac eleifend turpis.
+        </span>
+      </CategoryHeader>
+
+      <section className={clsx("container", "BigCommerce")}>
+        <Listing
+          edges={data.allBigCommerceProducts.edges.map(({ node }) => ({
+            node: standardiseBigCommerceProduct(
+              (node as unknown) as BigCommerceProducts
+            ),
+          }))}
+        />
       </section>
-      <section className="container">
-        <h1>Section</h1>
-        <button>Default</button>
-        <Link to={signInPath}>Sign in</Link>
-        <Button>Styled</Button>
-        <Button space={1} variant="primary" disabled>
-          Primary
-        </Button>
-        <Button space={2} variant="secondary">
-          Secondary
-        </Button>
-        <Button bg="orange" color="#fff" padding={1}>
-          Override
-        </Button>
-        <Button disabled>Override</Button>
-        <Box bg="blue" color="black">
-          Blue Box
-        </Box>
-        <Box bg="primary" color="black">
-          Primary Theme Colour Box
-        </Box>
-        {/* <Instagram /> */}
-      </section>
-      <section className="container">
-        <h1>Section</h1>
-      </section>
-      <section>
-        <h1>Section</h1>
-      </section>
-      <section>
-        <h1>Section</h1>
+
+      <section className={clsx("container", "Contentstack")}>
+        {data.allContentstackProducts && (
+          <Listing
+            edges={data.allContentstackProducts.edges.map(({ node }) => ({
+              node: standardiseContentstackProduct(node),
+            }))}
+          />
+        )}
       </section>
     </Layout>
   )
 }
 
 export default IndexPage
+
+export const query = graphql`
+  query IndexPage {
+    allBigCommerceCategories {
+      edges {
+        node {
+          name
+          id
+        }
+      }
+    }
+    allBigCommerceProducts {
+      edges {
+        node {
+          ...BigCommerceProductsFragment
+        }
+      }
+    }
+    allContentstackProducts {
+      edges {
+        node {
+          id
+          product_id
+          rich_text_editor
+          title
+          url
+        }
+      }
+    }
+  }
+`
