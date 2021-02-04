@@ -8,9 +8,9 @@ export const button = `
         border: unset;
         cursor: pointer;
         font-family: "Quicksand";
-        font-size: ${theme.fontSizes.body}rem;
+        font-size: ${theme.fontSizes.body}px;
         letter-spacing: 1px;
-        padding: ${theme.space[4]}rem ${theme.space[6]}rem;
+        padding: ${theme.space[4]}px ${theme.space[6]}px;
         text-align: center;
         text-transform: uppercase;
         
@@ -19,7 +19,7 @@ export const button = `
         }
         
         ${theme.mediaQueries.md} {
-            padding: ${theme.space[3]}rem ${theme.space[4]}rem;
+            padding: ${theme.space[3]}px ${theme.space[4]}px;
         }
     }
 `

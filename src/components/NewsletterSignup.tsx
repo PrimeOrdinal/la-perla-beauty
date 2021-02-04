@@ -11,12 +11,12 @@ const StyledNewsletter = styled.div`
 
   form {
     display: grid;
-    gap: ${themeGet("space.3")}rem;
+    gap: ${themeGet("space.3")}px;
     grid-auto-flow: column;
 
     ${mediaQueries.md} {
       align-items: center;
-      gap: 1rem;
+      gap: ${themeGet("space.5")}px;
       grid-auto-flow: column;
       grid-template-columns: unset;
       justify-content: end;
@@ -27,9 +27,9 @@ const StyledNewsletter = styled.div`
 
       ${mediaQueries.md} {
         display: block;
-        font-size: ${themeGet("fontSizes.1")}rem;
+        font-size: ${themeGet("fontSizes.1")}px;
         text-transform: uppercase;
-        margin-right: 0.875rem;
+        margin-right: ${themeGet("space.4")}px;
       }
     }
 
@@ -50,7 +50,7 @@ export const NewsletterSignup: React.FC = () => {
           placeholder="Enter your email address"
           type="email"
         />
-        <Button variant="tertiary">Sign up</Button>
+        <Button variant="secondary">Sign up</Button>
       </form>
     </StyledNewsletter>
   )

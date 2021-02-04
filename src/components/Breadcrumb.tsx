@@ -1,13 +1,48 @@
+import { themeGet } from "@styled-system/theme-get"
 import { Breadcrumb as GatsbyPluginBreadcrumb } from "gatsby-plugin-breadcrumb"
 import React from "react"
 import styled from "styled-components"
 
-import "gatsby-plugin-breadcrumb/gatsby-plugin-breadcrumb.css"
+const BreadcrumbStyled = styled.div`
+  .breadcrumb__title {
+    text-decoration: none;
+  }
 
-const StyledGatsbyPluginBreadcrumb = styled(GatsbyPluginBreadcrumb)`
-  background-color: #efeee9;
+  .breadcrumb {
+    font-size: ${themeGet("fontSizes.small")}px;
+  }
+
   .breadcrumb__list {
-    color: red;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    text-transform: uppercase;
+  }
+
+  .breadcrumb__list__item {
+    margin: 0 0.25em;
+  }
+
+  .breadcrumb__link {
+    color: ${themeGet("colors.darkgrey", "grey")};
+    text-decoration: none;
+  }
+
+  .breadcrumb__link__active {
+    text-decoration: none;
+  }
+
+  .breadcrumb__link__disabled {
+    text-decoration: none;
+  }
+
+  .breadcrumb__separator {
+  }
+
+  [aria-current="page"] {
+    color: ${themeGet("colors.black", "black")};
   }
 `
 
@@ -19,7 +54,7 @@ export type BreadcrumbProps = {
   crumbSeparator: string
 }
 
-export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
+export const Breadcrumb: React.FC<BreadcrumbProps> = props => {
   // return (
   //   <StyledOrderedList itemScope itemType="https://schema.org/BreadcrumbList">
   //     <li
@@ -61,6 +96,8 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
   // )
 
   return (
-    <StyledGatsbyPluginBreadcrumb {...props} />
+    <BreadcrumbStyled>
+      <GatsbyPluginBreadcrumb crumbSeparator="|" {...props} />
+    </BreadcrumbStyled>
   )
 }

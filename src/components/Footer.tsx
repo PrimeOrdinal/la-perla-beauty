@@ -67,7 +67,7 @@ const SocialLinkListStyled = styled(ListPlain)`
 
 const FooterStyle = styled.footer`
   border-top-style: solid;
-  margin-block-start: ${themeGet("space.8")}rem;
+  margin-block-start: ${themeGet("space.8")}px;
   padding-top: 1.5rem;
 
   ${mediaQueries.md} {
@@ -101,15 +101,15 @@ const FooterStyle = styled.footer`
     ${mediaQueries.md} {
       border-top-style: solid;
       display: grid;
-      gap: ${themeGet("space.5")}rem;
+      gap: ${themeGet("space.5")}px;
       grid-template-columns: 1fr 1fr 1fr 2fr;
-      padding-block-end: ${themeGet("space.6")}rem;
-      padding-block-start: ${themeGet("space.6")}rem;
+      padding-block-end: ${themeGet("space.6")}px;
+      padding-block-start: ${themeGet("space.6")}px;
 
       h3 {
         font-family: ${themeGet("fontFamily", "Quicksand")};
-        font-size: ${themeGet("fontSizes.body")}rem;
-        padding-block-end: ${themeGet("space.7")}rem;
+        font-size: ${themeGet("fontSizes.body")}px;
+        padding-block-end: ${themeGet("space.7")}px;
       }
 
       ul {
@@ -119,7 +119,7 @@ const FooterStyle = styled.footer`
         padding: 0;
 
         li {
-          font-size: ${themeGet("fontSizes.body")}rem;
+          font-size: ${themeGet("fontSizes.body")}px;
 
           a {
             text-decoration: none;
@@ -146,13 +146,13 @@ const FooterStyle = styled.footer`
     }
 
     .container {
-      padding-block-end: ${themeGet("space.6")}rem;
-      padding-block-start: ${themeGet("space.6")}rem;
+      padding-block-end: ${themeGet("space.6")}px;
+      padding-block-start: ${themeGet("space.6")}px;
 
       ${mediaQueries.md} {
         align-items: center;
         display: grid;
-        gap: ${themeGet("space.5")}rem;
+        gap: ${themeGet("space.5")}px;
         grid-auto-flow: column;
         justify-content: space-between;
       }

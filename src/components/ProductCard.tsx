@@ -24,7 +24,7 @@ const ProductCardStyled = styled.article`
     background: ${themeGet("colors.pink")};
     border-radius: 5px;
     display: block;
-    font-size: ${themeGet("fontSizes.small")}rem;
+    font-size: ${themeGet("fontSizes.small")}px;
     padding: 0.25rem;
     text-align: center;
     text-transform: uppercase;
@@ -58,13 +58,13 @@ const ProductCardStyled = styled.article`
   .product-brand {
     align-self: end;
     font-family: "Tiempus";
-    font-size: ${themeGet("fontSizes.5")}rem;
+    font-size: ${themeGet("fontSizes.5")}px;
     font-weight: bold;
   }
 
   .product-price {
     font-family: "Tiempus";
-    font-size: ${themeGet("fontSizes.body")}rem;
+    font-size: ${themeGet("fontSizes.body")}px;
   }
 
   ${compose(layout, space)}
@@ -103,9 +103,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <Plus />
       </div>
 
-      <span className="product-brand" itemProp="brand">
-        {product.name}
-      </span>
+      {product.brand && <span className="product-brand" itemProp="brand">{product.brand}</span>}
       {/* <div
         itemProp="aggregateRating"
         itemScope

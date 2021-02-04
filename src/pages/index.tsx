@@ -32,10 +32,10 @@ const IndexPage: React.FC<PageProps<null, PageContextPage>> = ({
 
       <h1>{page?.title}</h1>
 
-      <section>
+      <section className="container">
         <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
       </section>
-      <section>
+      <section className="container">
         <h1>Section</h1>
         <button>Default</button>
         <Link to={signInPath}>Sign in</Link>
@@ -45,9 +45,6 @@ const IndexPage: React.FC<PageProps<null, PageContextPage>> = ({
         </Button>
         <Button space={2} variant="secondary">
           Secondary
-        </Button>
-        <Button space={4} variant="tertiary">
-          Tertiary
         </Button>
         <Button bg="orange" color="#fff" padding={1}>
           Override
@@ -61,7 +58,7 @@ const IndexPage: React.FC<PageProps<null, PageContextPage>> = ({
         </Box>
         {/* <Instagram /> */}
       </section>
-      <section>
+      <section className="container">
         <h1>Section</h1>
       </section>
       <section>

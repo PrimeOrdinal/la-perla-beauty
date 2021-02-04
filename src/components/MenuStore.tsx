@@ -22,7 +22,6 @@ export const MenuStoreStyled = styled(ListPlain)`
   gap: 0.5rem;
   grid-auto-flow: row;
   justify-content: start;
-  padding: ${props => props.theme.space[2]}px;
 
   li {
     a {

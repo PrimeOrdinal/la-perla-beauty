@@ -28,9 +28,7 @@ breakpoints.md = breakpoints[1]
 breakpoints.lg = breakpoints[2]
 breakpoints.xl = breakpoints[3]
 
-const fontSizeBase = 16;
-
-export const fontSizes: FontSizesProp = [(11/fontSizeBase), (12/fontSizeBase), (13/fontSizeBase), 14/fontSizeBase, 16/fontSizeBase, 18/fontSizeBase, 24/fontSizeBase, 32/fontSizeBase]
+export const fontSizes: FontSizesProp = [(11), (12), (13), 14, 16, 18, 24, 32]
 
 fontSizes.small = fontSizes[0]
 fontSizes.body = fontSizes[1]
@@ -91,7 +89,7 @@ export const theme: DefaultTheme = {
     heading: 1.125,
   },
   mediaQueries,
-  space: [0, 4/16, 8/16, 12/16, 14/16, 16/16, 20/16, 24/16, 32/16, 48/16, 64/16, 80/16, 96/16, 128/16],
+  space: [0, 4, 8, 12, 14, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128],
 }
 
 theme.border = {
