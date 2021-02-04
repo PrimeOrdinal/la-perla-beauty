@@ -28,7 +28,7 @@ breakpoints.md = breakpoints[1]
 breakpoints.lg = breakpoints[2]
 breakpoints.xl = breakpoints[3]
 
-export const fontSizes: FontSizesProp = [(11), (12), (13), 14, 16, 18, 24, 32]
+export const fontSizes: FontSizesProp = [11, 12, 13, 14, 16, 18, 24, 32]
 
 fontSizes.small = fontSizes[0]
 fontSizes.body = fontSizes[1]
@@ -59,6 +59,7 @@ export const theme: DefaultTheme = {
     pink: "#d3cbd6",
     lightgreen: "#d3cbd6",
     beige: "#debf9b",
+    orange: "#FEEBDD",
     red: "#b74539",
     darkgrey: "#858585",
     disabled: "#ccc",
@@ -76,7 +77,7 @@ export const theme: DefaultTheme = {
         background: "#ffffff",
         primary: "#0cf",
         secondary: "#90c",
-      }
+      },
     },
   },
   fonts: {

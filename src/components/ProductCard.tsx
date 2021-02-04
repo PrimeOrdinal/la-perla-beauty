@@ -21,7 +21,7 @@ const ProductCardStyled = styled.article`
   }
 
   .pre-order-banner {
-    background: ${themeGet("colors.pink")};
+    background: ${themeGet("colors.orange")};
     border-radius: 5px;
     display: block;
     font-size: ${themeGet("fontSizes.small")}px;
@@ -32,11 +32,11 @@ const ProductCardStyled = styled.article`
 
   .product-type-wrapper {
     align-items: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
 
     .product-type {
       color: inherit;
-      flex: 0.8;
       font-size: 0.75rem;
       letter-spacing: 1px;
       text-decoration: none;
@@ -45,26 +45,23 @@ const ProductCardStyled = styled.article`
 
     svg {
       cursor: pointer;
-      flex: 0.1;
       height: 18px;
       object-fit: contain;
-
-      &:not(:last-child) {
-        margin-right: 0.75rem;
-      }
+      justify-self: end;
     }
   }
 
   .product-brand {
     align-self: end;
-    font-family: "Tiempus";
+    font-family: "Tiempos";
     font-size: ${themeGet("fontSizes.5")}px;
     font-weight: bold;
+    display: inline-block;
   }
 
   .product-price {
-    font-family: "Tiempus";
-    font-size: ${themeGet("fontSizes.body")}px;
+    font-family: "Tiempos";
+    font-size: ${themeGet("fontSizes.heading2Desktop")}px;
   }
 
   ${compose(layout, space)}
@@ -91,7 +88,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <img
           alt={product.name as string}
           itemProp="image"
-          src="https://via.placeholder.com/300"
+          src="https://via.placeholder.com/282"
         />
       )}
       <span className="pre-order-banner">Pre-Order</span>
@@ -103,7 +100,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <Plus />
       </div>
 
-      {product.brand && <span className="product-brand" itemProp="brand">{product.brand}</span>}
+      {product.brand && (
+        <span className="product-brand" itemProp="brand">
+          {product.brand}
+        </span>
+      )}
       {/* <div
         itemProp="aggregateRating"
         itemScope
@@ -138,7 +139,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               itemProp="price"
               content={offer?.price as number}
             >
-              {product.price}1,900.00
+              {product.price}50
             </span>
             <link itemProp="availability" href="https://schema.org/InStock" />
             {/* In stock */}

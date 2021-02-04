@@ -15,7 +15,7 @@ import {
   LayoutProps,
   SpaceProps,
 } from "styled-system"
-
+import { themeGet } from "@styled-system/theme-get"
 import { useHover } from "../hooks/useHover"
 
 import { ListPlain } from "./ListPlain"
@@ -35,19 +35,20 @@ const StyledMenu = styled.div`
 
 const StyledMenuMainHeadings = styled(ListPlain)`
   display: grid;
-  gap: 1rem;
+  gap: ${themeGet("space.10")}px;
   grid-auto-flow: column;
-  padding-block-end: 1rem;
-  padding-block-start: 1rem;
-
+  padding-block-end: 1.25rem;
+  padding-block-start: 1.25rem;
+  place-content: center;
   li {
     text-align: left;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+    font-weight: 600;
+    letter-spacing: 1px;
     a {
       color: inherit;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: inherit;
       text-transform: uppercase;
     }
   }

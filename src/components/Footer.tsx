@@ -19,7 +19,7 @@ import { ReactComponent as Logotype } from "../images/Logotype.svg"
 
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
-import { mediaQueries } from "../theme"
+import { fontSizes, mediaQueries } from "../theme"
 
 const LogotypeStyle = styled(Logotype)`
   display: none;
@@ -80,8 +80,8 @@ const FooterStyle = styled.footer`
   h4,
   h5,
   h6 {
-      font-family: ${themeGet("fontFamily", "Quicksand")};
-      text-transform: uppercase;
+    font-family: ${themeGet("fontFamily", "Quicksand")};
+    text-transform: uppercase;
   }
 
   .footer-newsletter {
@@ -108,7 +108,7 @@ const FooterStyle = styled.footer`
 
       h3 {
         font-family: ${themeGet("fontFamily", "Quicksand")};
-        font-size: ${themeGet("fontSizes.body")}px;
+        font-size: ${themeGet("fontSizes.heading3Desktop")}px;
         padding-block-end: ${themeGet("space.7")}px;
       }
 
@@ -117,9 +117,8 @@ const FooterStyle = styled.footer`
         gap: 1.5rem;
         list-style: none;
         padding: 0;
-
         li {
-          font-size: ${themeGet("fontSizes.body")}px;
+          font-size: ${themeGet("fontSizes.heading3Desktop")}px;
 
           a {
             text-decoration: none;
@@ -150,8 +149,8 @@ const FooterStyle = styled.footer`
       padding-block-start: ${themeGet("space.6")}px;
 
       ${mediaQueries.md} {
-        align-items: center;
         display: grid;
+        align-items: center;
         gap: ${themeGet("space.5")}px;
         grid-auto-flow: column;
         justify-content: space-between;
@@ -159,16 +158,33 @@ const FooterStyle = styled.footer`
     }
 
     section {
-      align-items: center;
       display: grid;
-      grid-auto-flow: column;
+      grid-auto-flow: row;
+      ${mediaQueries.md} {
+        align-items: center;
+        grid-auto-flow: column;
+        gap: ${themeGet("space.8")}px;
+      }
+      h3 {
+        display: none;
+        ${mediaQueries.md} {
+          display: block;
+          font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+        }
+      }
+      ul {
+        padding: 0;
+      }
     }
   }
 `
 const ContainerStyled = styled.div`
   h2 {
     margin-bottom: 1.25rem;
-
+    font-family: ${themeGet("fontFamily", "Tiempos")};
+    font-size: ${themeGet("fontSizes.heading1Mobile")}px;
+    font-weight: 100;
+    text-transform: capitalize;
     ${mediaQueries.md} {
       display: none;
     }
@@ -179,6 +195,7 @@ const ContainerStyled = styled.div`
 
     ${mediaQueries.md} {
       font-size: 0.75rem;
+      text-align: left;
     }
   }
 `
@@ -205,20 +222,22 @@ export const Footer: React.FC<FooterProps> = (
 
       <div className="footer-nav-mobile">
         <ReactAccessibleAccordion>
-        {data?.allContentstackMenus?.edges
-          .filter(({ node: menu }) => menu.slot?.startsWith("footer-secondary"))
-          .map(({ node: menu }) => (
-            <ReactAccessibleAccordionItem key={menu.id}>
-              <ReactAccessibleAccordionItemHeading>
-                <ReactAccessibleAccordionItemButton>
-                  {menu.title}
-                </ReactAccessibleAccordionItemButton>
-              </ReactAccessibleAccordionItemHeading>
-              <ReactAccessibleAccordionItemPanel>
-                <p>{menu?.title}</p>
-              </ReactAccessibleAccordionItemPanel>
-            </ReactAccessibleAccordionItem>
-          ))}
+          {data?.allContentstackMenus?.edges
+            .filter(({ node: menu }) =>
+              menu.slot?.startsWith("footer-secondary")
+            )
+            .map(({ node: menu }) => (
+              <ReactAccessibleAccordionItem key={menu.id}>
+                <ReactAccessibleAccordionItemHeading>
+                  <ReactAccessibleAccordionItemButton>
+                    {menu.title}
+                  </ReactAccessibleAccordionItemButton>
+                </ReactAccessibleAccordionItemHeading>
+                <ReactAccessibleAccordionItemPanel>
+                  <p>{menu?.title}</p>
+                </ReactAccessibleAccordionItemPanel>
+              </ReactAccessibleAccordionItem>
+            ))}
         </ReactAccessibleAccordion>
       </div>
 

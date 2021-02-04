@@ -44,7 +44,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__button {
-    background-color: unset;
+    background-color: red;
     color: #444;
     cursor: pointer;
     padding: 18px;

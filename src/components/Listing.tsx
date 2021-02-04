@@ -34,7 +34,7 @@ export const Listing: React.FC<ListingProps> = ({ edges }) => (
   <ListingStyled
     className="container"
     gridAutoFlow="row"
-    gridColumnGap={{ _: 2, sm: 1, md: 2, lg: 4 }}
+    gridColumnGap={{ _: 2, sm: 4, md: 6, lg: 10 }}
     gridRowGap={{ _: 4, sm: 2, md: 4, lg: 8 }}
     gridTemplateColumns={{
       _: "1fr",
