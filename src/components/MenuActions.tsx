@@ -1,9 +1,5 @@
-import { ReactComponent as Basket } from "../images/Basket.svg"
-import { ReactComponent as Profile } from "../images/Profile.svg"
-import { ReactComponent as Search } from "../images/Search.svg"
 import { Link } from "gatsby"
 import React from "react"
-
 import styled from "styled-components"
 import {
   compose,
@@ -14,6 +10,10 @@ import {
   LayoutProps,
   SpaceProps,
 } from "styled-system"
+
+import { ReactComponent as Basket } from "../images/Basket.svg"
+import { ReactComponent as Profile } from "../images/Profile.svg"
+import { ReactComponent as Search } from "../images/Search.svg"
 
 import { ListPlain } from "./ListPlain"
 
@@ -29,6 +29,7 @@ export const MenuActionsStyle = styled(ListPlain)`
   grid-auto-flow: column;
   justify-content: end;
   padding: ${props => props.theme.space[2]}px;
+
   li {
     a {
       svg {
