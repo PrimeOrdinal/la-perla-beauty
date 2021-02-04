@@ -1,4 +1,3 @@
-import { mediaQueries } from "../theme"
 export const html = `
     html {
         font-family: "Quicksand", Helvetica, Arial, sans-serif;

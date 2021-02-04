@@ -1,7 +1,6 @@
 import type { Offer, Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
-import { theme } from "../theme"
 import getSymbolFromCurrency from "currency-symbol-map"
 import React from "react"
 import styled from "styled-components"
