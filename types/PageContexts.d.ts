@@ -10,4 +10,5 @@ type PageContextTypeBreadcrumb = {
     disableLinks?: string[]
     hiddenCrumbs?: string[]
   }
+  page: any
 }
