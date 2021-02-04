@@ -19,12 +19,7 @@ import { standardiseContentstackProduct } from "../utils/standardiseContentstack
 
 const ProductsPage: React.FC<
   PageProps<ProductsPageQuery, PageContextTypeBreadcrumb>
-> = ({
-  data,
-  // location,
-  pageContext,
-  // path
-}) => {
+> = ({ data, pageContext }) => {
   // console.log("pageContext", pageContext)
   // console.log("location", location)
   // console.log("data", data)
@@ -32,6 +27,7 @@ const ProductsPage: React.FC<
 
   const {
     breadcrumb: { crumbs },
+    page,
   } = pageContext
 
   return (
@@ -42,11 +38,12 @@ const ProductsPage: React.FC<
         <Breadcrumb crumbs={crumbs} />
 
         <CategoryHeader>
-          <h1>All beauty</h1>
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, dot. Nullam
-            ac eleifend turpis.
-          </span>
+          <h1>{page?.name}</h1>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: page?.description as string,
+            }}
+          ></div>
         </CategoryHeader>
       </div>
 
