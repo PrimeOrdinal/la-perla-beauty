@@ -7,16 +7,23 @@ import {
   compose,
   layout,
   space,
+  variant,
   ColorProps,
   LayoutProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-export type BannerProps = ColorProps & LayoutProps & SpaceProps & VariantProps
+export type BannerProps = ColorProps &
+  LayoutProps &
+  SpaceProps &
+  VariantProps & {
+    children: React.ReactNode
+    to?: string
+  }
 
 export const BannerStyled: React.FC<BannerProps> = styled.div`
-  background-color: ${themeGet("banner.background", "grey")};
+  background-color: ${themeGet("banners.primary.backgroundColor", "grey")};
   display: grid;
   font-size: ${themeGet("fontSizes.body")}px;
   text-align: center;
@@ -25,15 +32,29 @@ export const BannerStyled: React.FC<BannerProps> = styled.div`
   text-transform: uppercase;
 
   a {
-    color: ${themeGet("banner.text", "black")};
+    color: ${themeGet("banners.primary.color", "black")};
     text-decoration: none;
   }
+
+  ${variant({
+    prop: "banners",
+    variants: {
+      primary: {
+        backgroundColor: themeGet("banners.primary.backgroundColor", "grey"),
+        color: themeGet("banners.primary.color", "black"),
+      },
+      secondary: {
+        backgroundColor: themeGet("banners.secondary.backgroundColor", "grey"),
+        color: themeGet("banners.secondary.color", "black"),
+      },
+    },
+  })}
 
   ${compose(color, layout, space)}
 `
 
 export const Banner: React.FC<BannerProps> = ({ children, ...props }) => (
-  <BannerStyled>
+  <BannerStyled {...props}>
     <Link {...props}>{children}</Link>
   </BannerStyled>
 )

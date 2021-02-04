@@ -116,9 +116,15 @@ theme.buttons = {
   },
 }
 
-theme.banner = {
-  background: theme.colors.pink,
-  color: theme.colors.text,
+theme.banners = {
+  primary: {
+    backgroundColor: theme.colors.pink,
+    color: theme.colors.darkgrey,
+  },
+  secondary: {
+    backgroundColor: theme.colors.lilac,
+    color: theme.colors.darkgrey,
+  },
 }
 
 theme.leaf = {
