@@ -172,11 +172,8 @@ const FooterStyle = styled.footer`
       }
     }
   }
-
-  .footer-secondary-accordion {
-    color: red;
-  }
 `
+
 const ContainerStyled = styled.div`
   h2 {
     margin-bottom: 1.25rem;

@@ -7,8 +7,6 @@ import {
   AccordionItemButton as ReactAccessibleAccordionItemButton,
   AccordionItemPanel as ReactAccessibleAccordionItemPanel,
 } from "react-accessible-accordion"
-import Plus from "../images/Plus.svg"
-import Minus from "../images/Minus.svg"
 import styled from "styled-components"
 import {
   compose,
@@ -20,6 +18,9 @@ import {
   SpaceProps,
   VariantProps,
 } from "styled-system"
+
+import Minus from "../images/Minus.svg"
+import Plus from "../images/Plus.svg"
 
 export type AccordionProps = LayoutProps &
   PositionProps &
@@ -45,16 +46,15 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__button {
-    background-color: unset;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    text-transform: uppercase;
+    align-content: center;
+    align-items: center;
+    display: grid;
     font-weight: bold;
-    position: relative;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    padding: 18px;
+    text-transform: uppercase;
+    width: 100%;
   }
 
   .accordion__button:hover {
@@ -62,16 +62,18 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__button:after {
-    display: inline-block;
+    background-image: url(${Minus});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
     content: "";
-    position: absolute;
-    right: 0;
+    display: block;
     height: 16px;
     width: 16px;
-    margin-right: 12px;
+  }
+
+  .accordion__button:not([aria-expanded="true"]):after {
     background-image: url(${Plus});
-    background-size: cover;
-    background-repeat: no-repeat;
   }
 
   .accordion__button[aria-expanded="true"]::after,
@@ -92,18 +94,18 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__panel ul {
-    padding: 0;
-    padding-block-end: 12px;
-    margin: 0;
-    list-style: none;
     font-size: 13px;
+    list-style: none;
+    margin: 0;
+    padding-block-end: 12px;
+    padding: 0;
   }
   .accordion__panel ul li {
     padding: 8px 0;
   }
   .accordion__panel ul li a {
-    text-decoration: none;
     color: #363139;
+    text-decoration: none;
   }
 
   /* -------------------------------------------------- */
