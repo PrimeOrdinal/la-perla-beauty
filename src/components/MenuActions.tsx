@@ -1,6 +1,5 @@
 import { Link } from "gatsby"
 import React from "react"
-import { mediaQueries } from "../theme"
 import styled from "styled-components"
 import {
   compose,
@@ -15,6 +14,8 @@ import {
 import { ReactComponent as Basket } from "../images/Basket.svg"
 import { ReactComponent as Profile } from "../images/Profile.svg"
 import { ReactComponent as Search } from "../images/Search.svg"
+
+import { mediaQueries } from "../theme"
 
 import { ListPlain } from "./ListPlain"
 

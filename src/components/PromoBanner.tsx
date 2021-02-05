@@ -4,6 +4,8 @@ import React from "react"
 import styled from "styled-components"
 import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 
+import { mediaQueries } from "../theme"
+
 const PromoBannerStyled = styled.aside`
   background-color: ${themeGet("colors.pink")};
   border-radius: ${themeGet("radii.4")}px;
@@ -12,9 +14,13 @@ const PromoBannerStyled = styled.aside`
   overflow: hidden;
 
   img {
-    aspect-ratio: 23 / 8;
+    aspect-ratio: 21 / 14;
     object-fit: cover;
     width: 100%;
+
+    ${mediaQueries.md} {
+      aspect-ratio: 23 / 8;
+    }
   }
 
   div {
