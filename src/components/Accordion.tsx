@@ -63,7 +63,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
     display: inline-block;
     content: "";
     position: absolute;
-    right: 10px;
+    right: 20px;
     height: 10px;
     width: 10px;
     margin-right: 12px;
@@ -88,8 +88,23 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__panel {
-    padding: 20px;
+    padding: 0 20px;
     animation: fadein 0.35s ease-in;
+  }
+
+  .accordion__panel ul {
+    padding: 0;
+    padding-block-end: 12px;
+    margin: 0;
+    list-style: none;
+    font-size: 13px;
+  }
+  .accordion__panel ul li {
+    padding: 8px 0;
+  }
+  .accordion__panel ul li a {
+    text-decoration: none;
+    color: #363139;
   }
 
   /* -------------------------------------------------- */
@@ -111,7 +126,6 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
 
 export const Accordion: React.FC<AccordionProps> = ({ items, ...props }) => (
   <AccordionStyled {...props}>
-    <script>{JSON.stringify(items)}</script>
     {items?.length &&
       items.map((item, index) => (
         <ReactAccessibleAccordionItem key={index}>
