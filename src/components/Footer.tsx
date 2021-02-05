@@ -6,20 +6,15 @@ import type {
 import { themeGet } from "@styled-system/theme-get"
 import { Link } from "gatsby"
 import React from "react"
-import {
-  Accordion as ReactAccessibleAccordion,
-  AccordionItem as ReactAccessibleAccordionItem,
-  AccordionItemHeading as ReactAccessibleAccordionItemHeading,
-  AccordionItemButton as ReactAccessibleAccordionItemButton,
-  AccordionItemPanel as ReactAccessibleAccordionItemPanel,
-} from "react-accessible-accordion"
 import styled from "styled-components"
 
 import { ReactComponent as Logotype } from "../images/Logotype.svg"
 
+import { mediaQueries } from "../theme"
+
+import { Accordion } from "./Accordion"
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
-import { fontSizes, mediaQueries } from "../theme"
 
 const LogotypeStyle = styled(Logotype)`
   display: none;
@@ -221,24 +216,29 @@ export const Footer: React.FC<FooterProps> = (
       </div>
 
       <div className="footer-nav-mobile">
-        <ReactAccessibleAccordion>
-          {data?.allContentstackMenus?.edges
+        <Accordion
+          items={data?.allContentstackMenus?.edges
             .filter(({ node: menu }) =>
               menu.slot?.startsWith("footer-secondary")
             )
-            .map(({ node: menu }) => (
-              <ReactAccessibleAccordionItem key={menu.id}>
-                <ReactAccessibleAccordionItemHeading>
-                  <ReactAccessibleAccordionItemButton>
-                    {menu.title}
-                  </ReactAccessibleAccordionItemButton>
-                </ReactAccessibleAccordionItemHeading>
-                <ReactAccessibleAccordionItemPanel>
-                  <p>{menu?.title}</p>
-                </ReactAccessibleAccordionItemPanel>
-              </ReactAccessibleAccordionItem>
-            ))}
-        </ReactAccessibleAccordion>
+            .map(({ node: menu }) => ({
+              heading: menu.title,
+              panel: (
+                <ul>
+                  {menu.links?.map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        to={link?.url?.href as string}
+                        title={link?.url?.title as string}
+                      >
+                        {link?.text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ),
+            }))}
+        />
       </div>
 
       <div className="footer-nav-desktop">
@@ -255,7 +255,6 @@ export const Footer: React.FC<FooterProps> = (
                       title={link?.url?.title as string}
                     >
                       {link?.text}
-                      {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
                     </Link>
                   </li>
                 ))}
