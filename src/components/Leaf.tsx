@@ -23,28 +23,39 @@ export type LeafProps = ColorProps &
   }
 
 export const LeafStyled: React.FC<LeafProps> = styled.div`
-  background-color: ${themeGet("colors.lilac")};
+  background-color: ${themeGet("colors.pink")};
+  border-radius: 100px 0px;
   color: ${themeGet("colors.black")};
   display: grid;
   font-size: ${themeGet("fontSizes.body")}px;
-  text-align: center;
-  grid-auto-flow: column;
-  padding: ${themeGet("space.6")}px;
+  grid-auto-flow:row;
+  justify-items: start;
+  left: 20vw;
+  padding: ${themeGet("space.10")}px;
+  position: relative;
   text-transform: uppercase;
+  width: 20vw;
 
   a {
     color: inherit;
     text-decoration: none;
   }
 
+  img {
+    left: -12.5vw;
+    position: relative;
+    width: 20vw;
+    z-index: 10;
+  }
+
   ${variant({
     variants: {
       primary: {
-        backgroundColor: "lilac",
+        backgroundColor: "pink",
         color: "black",
       },
       secondary: {
-        backgroundColor: "pink",
+        backgroundColor: "lilac",
         color: "black",
       },
     },
@@ -54,8 +65,5 @@ export const LeafStyled: React.FC<LeafProps> = styled.div`
 `
 
 export const Leaf: React.FC<LeafProps> = ({ children, ...props }) => (
-  <LeafStyled {...props}>
-    <img src="" />
-    <Link {...props}>{children}</Link>
-  </LeafStyled>
+  <LeafStyled {...props}>{children}</LeafStyled>
 )
