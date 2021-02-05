@@ -15,11 +15,10 @@ const Template: Story = args => <Breadcrumb {...args} />
 
 export const Example = Template.bind({})
 Example.args = {
-  crumbs: [{
-    pathname: "path/to/page",
-    location: [{
-      test: "aaa"
-    }]
-  }],
-  crumbSeparator: " - "
+  crumbLabel: "Test label",
+  crumbSeparator: " - ",
+  location: {
+    pathname: "/",
+  },
+  title: "Test title"
 }

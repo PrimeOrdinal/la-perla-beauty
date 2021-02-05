@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import {
   Accordion as ReactAccessibleAccordion,
@@ -19,8 +20,6 @@ import {
   VariantProps,
 } from "styled-system"
 
-// import "./Accordion.css"
-
 export type AccordionProps = LayoutProps &
   PositionProps &
   SpaceProps &
@@ -37,7 +36,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
 )`
   .accordion {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
+    border-radius: ${themeGet("radii.1")}px;
   }
 
   .accordion__item {

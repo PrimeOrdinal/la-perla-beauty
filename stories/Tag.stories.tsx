@@ -8,25 +8,22 @@ export default {
   component: Tag,
   argTypes: {
     backgroundColor: { control: "color" },
+    variant: {
+      control: {
+        type: "inline-radio",
+        options: ["primary", "secondary"],
+      },
+    },
   },
 } as Meta
 
 const Template: Story<TagProps> = args => <Tag {...args} />
 
-export const Primary = Template.bind({})
-Primary.args = {
-  children: "Tag with primary style",
+export const Example = Template.bind({})
+Example.args = {
+  children: "Pre-order",
   variant: "primary",
 }
-
-export const Secondary = Template.bind({})
-Secondary.args = {
-  children: "Tag with secondary style",
-  variant: "secondary",
-}
-
-export const Tertiary = Template.bind({})
-Tertiary.args = {
-  children: "Third button style",
-  variant: "tertiary",
+Example.argTypes = {
+  onClick: { action: "Tag clicked" },
 }

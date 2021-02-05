@@ -1,10 +1,12 @@
+import { themeGet } from "@styled-system/theme-get"
+
 import { theme } from "../theme"
 
 export const button = `
     button {
         appearance: unset;
         background: unset;
-        border-radius: 12px;
+        border-radius: ${themeGet("radii.3")}px;
         border: unset;
         cursor: pointer;
         font-family: "Quicksand";

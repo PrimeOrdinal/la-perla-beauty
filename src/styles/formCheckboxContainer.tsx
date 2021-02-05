@@ -1,3 +1,5 @@
+import { themeGet } from "@styled-system/theme-get"
+
 import { theme } from "../theme"
 
 export const formCheckboxContainer = `
@@ -18,7 +20,7 @@ export const formCheckboxContainer = `
           width: 20px;
           border: 1px solid black;
           cursor: pointer;
-          border-radius: 1px;
+          border-radius: ${themeGet("radii.1")}px;
           top: 0;
           right: 0;
         }

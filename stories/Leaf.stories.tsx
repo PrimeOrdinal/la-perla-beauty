@@ -11,7 +11,7 @@ export default {
     variant: {
       control: {
         type: "inline-radio",
-        options: ["primary", "secondary", "tertiary"],
+        options: ["primary", "secondary"],
       },
     },
   },
@@ -19,20 +19,11 @@ export default {
 
 const Template: Story<LeafProps> = args => <Leaf {...args} />
 
-export const Primary = Template.bind({})
-Primary.args = {
-  children: "Leaf with primary style",
+export const Example = Template.bind({})
+Example.args = {
+  children: "Leaf",
   variant: "primary",
 }
-
-export const Secondary = Template.bind({})
-Secondary.args = {
-  children: "Leaf with secondary style",
-  variant: "secondary",
-}
-
-export const Tertiary = Template.bind({})
-Tertiary.args = {
-  children: "Third button style",
-  variant: "tertiary",
+Example.argTypes = {
+  onClick: { action: "Leaf clicked" },
 }

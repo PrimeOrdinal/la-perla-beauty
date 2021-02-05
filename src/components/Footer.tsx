@@ -67,7 +67,7 @@ const SocialLinkListStyled = styled(ListPlain)`
 
 const FooterStyle = styled.footer`
   border-top-style: solid;
-  margin-block-start: ${themeGet("space.8")}px;
+  margin-block-start: ${themeGet("space.9")}px;
   padding-top: 1.5rem;
 
   ${mediaQueries.md} {
@@ -101,15 +101,15 @@ const FooterStyle = styled.footer`
     ${mediaQueries.md} {
       border-top-style: solid;
       display: grid;
-      gap: ${themeGet("space.5")}px;
+      gap: ${themeGet("space.6")}px;
       grid-template-columns: 1fr 1fr 1fr 2fr;
-      padding-block-end: ${themeGet("space.6")}px;
-      padding-block-start: ${themeGet("space.6")}px;
+      padding-block-end: ${themeGet("space.7")}px;
+      padding-block-start: ${themeGet("space.7")}px;
 
       h3 {
         font-family: ${themeGet("fontFamily", "Quicksand")};
         font-size: ${themeGet("fontSizes.heading3Desktop")}px;
-        padding-block-end: ${themeGet("space.7")}px;
+        padding-block-end: ${themeGet("space.8")}px;
       }
 
       ul {
@@ -145,13 +145,13 @@ const FooterStyle = styled.footer`
     }
 
     .container {
-      padding-block-end: ${themeGet("space.6")}px;
-      padding-block-start: ${themeGet("space.6")}px;
+      padding-block-end: ${themeGet("space.7")}px;
+      padding-block-start: ${themeGet("space.7")}px;
 
       ${mediaQueries.md} {
         display: grid;
         align-items: center;
-        gap: ${themeGet("space.5")}px;
+        gap: ${themeGet("space.6")}px;
         grid-auto-flow: column;
         justify-content: space-between;
       }
@@ -163,7 +163,7 @@ const FooterStyle = styled.footer`
       ${mediaQueries.md} {
         align-items: center;
         grid-auto-flow: column;
-        gap: ${themeGet("space.8")}px;
+        gap: ${themeGet("space.9")}px;
       }
       h3 {
         display: none;

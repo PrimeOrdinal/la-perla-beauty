@@ -1,4 +1,6 @@
 import { themeGet } from "@styled-system/theme-get"
+import { Link } from "gatsby"
+import React from "react"
 import styled from "styled-components"
 import {
   color,
@@ -12,27 +14,48 @@ import {
   VariantProps,
 } from "styled-system"
 
-export type LeafProps = ColorProps & LayoutProps & SpaceProps & VariantProps
+export type LeafProps = ColorProps &
+  LayoutProps &
+  SpaceProps &
+  VariantProps & {
+    children: React.ReactNode
+    to?: string
+  }
 
-export const Leaf: React.FC<LeafProps> = styled.button`
+export const LeafStyled: React.FC<LeafProps> = styled.div`
+  background-color: ${themeGet("colors.lilac")};
+  color: ${themeGet("colors.black")};
+  display: grid;
+  font-size: ${themeGet("fontSizes.body")}px;
+  text-align: center;
+  grid-auto-flow: column;
+  padding: ${themeGet("space.6")}px;
+  text-transform: uppercase;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
   ${variant({
-    prop: "colors",
     variants: {
       primary: {
-        backgroundColor: themeGet("leaf.primary.backgroundColor", "grey"),
-        color: themeGet("leaf.tertiary.color", "white"),
+        backgroundColor: "lilac",
+        color: "black",
       },
       secondary: {
-        backgroundColor: themeGet("leaf.secondary.backgroundColor", "grey"),
-        color: themeGet("leaf.tertiary.color", "white"),
-      },
-      tertiary: {
-        backgroundColor: themeGet("leaf.tertiary.backgroundColor", "grey"),
-        color: themeGet("leaf.tertiary.color", "white"),
+        backgroundColor: "pink",
+        color: "black",
       },
     },
   })}
 
   ${compose(color, layout, space)}
 `
+
+export const Leaf: React.FC<LeafProps> = ({ children, ...props }) => (
+  <LeafStyled {...props}>
+    <img src="" />
+    <Link {...props}>{children}</Link>
+  </LeafStyled>
+)

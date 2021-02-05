@@ -14,22 +14,41 @@ import {
 
 export type TagProps = ColorProps & LayoutProps & SpaceProps & VariantProps
 
-export const Tag: React.FC<TagProps> = styled.button`
+export const Tag: React.FC<TagProps> = styled.span`
+  background-color: ${themeGet("colors.orange")};
+  border-radius: ${themeGet("radii.2")}px;
+  display: block;
+  font-size: ${themeGet("fontSizes.small")}px;
+  padding: ${themeGet("space.1")}px;
+  text-align: center;
+  text-transform: uppercase;
 
   ${variant({
-    prop: "colors",
+    prop: "availability",
     variants: {
-      primary: {
-        bg: themeGet("tag.primary.backgroundColor", "grey"),
-        color: themeGet("tag.primary.color", "white"),
+      InStock: {
+        backgroundColor: "transparent",
+        color: "transparent",
       },
-      secondary: {
-        bg: themeGet("tag.secondary.backgroundColor", "grey"),
-        color: themeGet("tag.primary.color", "white"),
+      LimitedAvailability: {
+        backgroundColor: "orange",
+        color: "black",
       },
-      tertiary: {
-        bg: themeGet("tag.tertiary.backgroundColor", "grey"),
-        color: themeGet("tag.primary.color", "white"),
+      OnlineOnly: {
+        backgroundColor: "pink",
+        color: "black",
+      },
+      OutOfStock: {
+        backgroundColor: "lilac",
+        color: "black",
+      },
+      PreOrder: {
+        backgroundColor: "lightgreen",
+        color: "black",
+      },
+      SoldOut: {
+        backgroundColor: "beige",
+        color: "black",
       },
     },
   })}

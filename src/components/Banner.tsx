@@ -23,29 +23,33 @@ export type BannerProps = ColorProps &
   }
 
 export const BannerStyled: React.FC<BannerProps> = styled.div`
-  background-color: ${themeGet("banners.primary.backgroundColor", "grey")};
+  background-color: ${themeGet("colors.lilac")};
+  color: ${themeGet("colors.black")};
   display: grid;
   font-size: ${themeGet("fontSizes.body")}px;
   text-align: center;
   grid-auto-flow: column;
-  padding: ${themeGet("space.5")}px;
+  padding: ${themeGet("space.6")}px;
   text-transform: uppercase;
 
   a {
-    color: ${themeGet("banners.primary.color", "black")};
+    color: inherit;
     text-decoration: none;
   }
 
   ${variant({
-    prop: "banners",
     variants: {
       primary: {
-        backgroundColor: themeGet("banners.primary.backgroundColor", "grey"),
-        color: themeGet("banners.primary.color", "black"),
+        backgroundColor: "lilac",
+        color: "black",
       },
       secondary: {
-        backgroundColor: themeGet("banners.secondary.backgroundColor", "grey"),
-        color: themeGet("banners.secondary.color", "black"),
+        backgroundColor: "pink",
+        color: "black",
+      },
+      tertiary: {
+        backgroundColor: "beige",
+        color: "black",
       },
     },
   })}

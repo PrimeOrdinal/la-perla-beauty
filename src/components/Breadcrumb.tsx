@@ -51,7 +51,7 @@ export type BreadcrumbProps = {
     pathname: string
     location: Record<string, unknown>
   }[]
-  crumbSeparator?: string
+  crumbSeparator: string
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = props => {
@@ -96,7 +96,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = props => {
   // )
 
   return (
-    <BreadcrumbStyled>
+    <BreadcrumbStyled className="container">
       <GatsbyPluginBreadcrumb crumbSeparator="|" {...props} />
     </BreadcrumbStyled>
   )

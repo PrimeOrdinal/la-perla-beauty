@@ -21,6 +21,7 @@ export const formRadioContainer = `
             right: 0;
           }
     }
+
     .form-radio-container input:checked ~ .radio-button {
         background-color: ${theme.colors.background};
         &::after {

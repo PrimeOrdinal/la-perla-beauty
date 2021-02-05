@@ -19,7 +19,7 @@ import { QuickSearch } from "./QuickSearch"
 const HeaderStyled = styled.header`
   background-color: #ffffff;
   border-bottom-style: solid;
-  margin-block-end: ${themeGet("space.8")}px;
+  margin-block-end: ${themeGet("space.9")}px;
   position: sticky;
   top: 0;
 `
@@ -28,7 +28,7 @@ const ContainerStyled = styled.div`
   display: grid;
   grid-template-areas: "menu-primary logo menu-secondary" "menu-navigation menu-navigation menu-navigation" "quick-search quick-search quick-search";
   grid-template-columns: 1fr 2fr 1fr;
-  padding-block-start: ${themeGet("space.5")}px;
+  padding-block-start: ${themeGet("space.6")}px;
   text-align: center;
 `
 

@@ -11,7 +11,7 @@ export default {
     variant: {
       control: {
         type: "inline-radio",
-        options: ["primary", "secondary"],
+        options: ["primary", "secondary", "tertiary"],
       },
     },
   },
@@ -21,7 +21,7 @@ const Template: Story<BannerProps> = args => <Banner {...args} />
 
 export const Example = Template.bind({})
 Example.args = {
-  children: "Banner",
+  children: "Lorem ipsum dolor sit amet",
   variant: "primary",
 }
 Example.argTypes = {

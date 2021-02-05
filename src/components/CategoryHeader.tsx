@@ -20,7 +20,7 @@ export type CategoryHeaderProps = GridProps &
 export const CategoryHeaderStyled = styled.header`
   display: grid;
   justify-items: center;
-  margin-block-end: ${themeGet("space.10")}px;
+  margin-block-end: ${themeGet("space.20")}px;
 
   ${compose(grid, layout, space)}
 `

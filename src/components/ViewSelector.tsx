@@ -12,11 +12,11 @@ const StyledButton = styled.button`
   font-size: ${themeGet("fontSizes.body")}px;
   gap: 1rem;
   grid-auto-flow: column;
-  padding: ${themeGet("space.5")}px ${themeGet("space.8")}px;
+  padding: ${themeGet("space.6")}px ${themeGet("space.9")}px;
   text-transform: uppercase;
 
   svg {
-    width: ${themeGet("space.6")}px
+    width: ${themeGet("space.7")}px
   }
 `
 

@@ -5,52 +5,53 @@ import getSymbolFromCurrency from "currency-symbol-map"
 import React from "react"
 import styled from "styled-components"
 import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
+
 import { ReactComponent as Wishlist } from "../images/Wishlist.svg"
 import { ReactComponent as Plus } from "../images/Plus.svg"
 
+import { availabilitySchemaToHumanReadableText, availabilitySchemaToShortName } from "../utils/schema-org"
+
+import { Tag } from "./Tag"
+
 const ProductCardStyled = styled.article`
+  align-content: space-between;
   background: none;
   display: grid;
-  gap: 1rem;
-  grid-auto-flow: row;
+  gap: ${themeGet("space.5")}px;
 
   img {
-    border-radius: 20px;
+    border-radius: ${themeGet("radii.4")}px;
     width: 100%;
   }
 
-  .pre-order-banner {
-    background: ${themeGet("colors.orange")};
-    border-radius: 5px;
-    display: block;
-    font-size: ${themeGet("fontSizes.small")}px;
-    padding: 0.25rem;
-    text-align: center;
-    text-transform: uppercase;
+  .product-primary {
+    display: grid;
+    gap: ${themeGet("space.3")}px;
+    grid-template-rows: min-content 1fr;
   }
 
-  .product-type-wrapper {
+  .product-category-wrapper {
     align-items: center;
     display: grid;
     grid-template-columns: 4fr 1fr 1fr;
 
-    .product-type {
-      color: inherit;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
     svg {
       cursor: pointer;
-      height: 18px;
+      height: ${themeGet("space.4")}px;
       object-fit: contain;
       justify-self: end;
     }
   }
 
-  .product-brand {
+  .product-category {
+    color: inherit;
+    font-size: ${themeGet("fontSizes.body")}px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .product-name {
     align-self: end;
     font-family: "Tiempos";
     font-size: ${themeGet("fontSizes.5")}px;
@@ -74,45 +75,40 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   showImage = true,
   ...props
 }) => {
-  const offer = product.offers as Offer
+  const offer = product?.offers as Offer
 
   return (
     <ProductCardStyled
       itemScope
       itemType="https://schema.org/Product"
-      data-id={product["@id"]}
+      data-id={product?.["@id"]}
       {...props}
     >
       {showImage && (
         <img
-          alt={product.name as string}
+          alt={product?.name as string}
           itemProp="image"
           src="https://via.placeholder.com/282"
         />
       )}
-      <span className="pre-order-banner">Pre-Order</span>
-      <div className="product-type-wrapper">
-        <a className="product-type" itemProp="url" href={product.url as string}>
-          <span itemProp="name">{product.name}</span>
-        </a>
+      {offer?.availability && (<Tag className="availability" availability={availabilitySchemaToShortName(offer?.availability)}>{availabilitySchemaToHumanReadableText(offer?.availability)}</Tag>)}
+      <div className="product-category-wrapper">
+        {product?.category?.url && (<a className="product-category" itemProp="category" href={product?.category?.url as string}>
+          <span itemProp="name">{product?.name}</span>
+        </a>)}
+        {product?.brand?.name && (
+          <span className="product-brand" itemProp="brand">
+            {product?.brand?.name}
+          </span>
+        )}
         <Wishlist />
         <Plus />
       </div>
-
-      {product.brand && (
-        <span className="product-brand" itemProp="brand">
-          {product.brand}
+      {product?.name && (
+        <span className="product-name" itemProp="name">
+          {product?.name}
         </span>
       )}
-      {/* <div
-        itemProp="aggregateRating"
-        itemScope
-        itemType="https://schema.org/AggregateRating"
-      >
-        <span itemProp="ratingValue">87</span>
-        out of <span itemProp="bestRating">100</span>
-        based on <span itemProp="ratingCount">24</span> user ratings
-      </div> */}
       <div
         itemProp="offers"
         itemScope
@@ -120,28 +116,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       >
         {offer && (
           <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
-            {/* <span
-                itemProp="acceptedPaymentMethod"
-                content={offer?.acceptedPaymentMethod}
-              >
-                {offer?.acceptedPaymentMethod}
-              </span> */}
             <span
               itemProp="priceCurrency"
               content={offer?.priceCurrency as string}
               className="product-price"
             >
-              {getSymbolFromCurrency(offer.priceCurrency as string)}£
+              {getSymbolFromCurrency(offer?.priceCurrency as string)}
             </span>
             <span
               className="product-price"
               itemProp="price"
               content={offer?.price as number}
             >
-              {product.price}50
+              {offer?.price}
             </span>
             <link itemProp="availability" href="https://schema.org/InStock" />
-            {/* In stock */}
           </div>
         )}
       </div>

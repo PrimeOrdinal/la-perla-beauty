@@ -11,12 +11,12 @@ const StyledNewsletter = styled.div`
 
   form {
     display: grid;
-    gap: ${themeGet("space.3")}px;
+    gap: ${themeGet("space.4")}px;
     grid-auto-flow: column;
 
     ${mediaQueries.md} {
       align-items: center;
-      gap: ${themeGet("space.5")}px;
+      gap: ${themeGet("space.6")}px;
       grid-auto-flow: column;
       grid-template-columns: unset;
       justify-content: end;
@@ -29,7 +29,7 @@ const StyledNewsletter = styled.div`
         display: block;
         font-size: ${themeGet("fontSizes.1")}px;
         text-transform: uppercase;
-        margin-right: ${themeGet("space.4")}px;
+        margin-right: ${themeGet("space.5")}px;
       }
     }
 

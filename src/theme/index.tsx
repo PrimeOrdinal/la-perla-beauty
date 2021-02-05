@@ -56,10 +56,10 @@ export const theme: DefaultTheme = {
     white: "#ffffff",
     lightgrey: "#efeee9",
     lilac: "#d3cbd6",
-    pink: "#d3cbd6",
-    lightgreen: "#d3cbd6",
+    pink: "#fde7d5",
+    lightgreen: "#b2c594",
     beige: "#debf9b",
-    orange: "#FEEBDD",
+    orange: "#feebdd",
     red: "#b74539",
     darkgrey: "#858585",
     disabled: "#ccc",
@@ -90,13 +90,25 @@ export const theme: DefaultTheme = {
     heading: 1.125,
   },
   mediaQueries,
-  space: [0, 4, 8, 12, 14, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128],
+  radii: [0, 2, 5, 10, 20],
+  space: [0, 2, 4, 8, 12, 14, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128],
 }
 
 theme.border = {
   color: theme.colors.lightgrey,
   width: "1px",
 }
+
+// theme.banners = {
+//   primary: {
+//     backgroundColor: theme.colors.pink,
+//     color: theme.colors.darkgrey,
+//   },
+//   secondary: {
+//     backgroundColor: theme.colors.lilac,
+//     color: theme.colors.darkgrey,
+//   },
+// }
 
 theme.buttons = {
   primary: {
@@ -114,17 +126,6 @@ theme.buttons = {
     "&:hover": {
       color: "background",
     },
-  },
-}
-
-theme.banners = {
-  primary: {
-    backgroundColor: theme.colors.pink,
-    color: theme.colors.darkgrey,
-  },
-  secondary: {
-    backgroundColor: theme.colors.lilac,
-    color: theme.colors.darkgrey,
   },
 }
 
