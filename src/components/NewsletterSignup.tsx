@@ -34,7 +34,9 @@ const StyledNewsletter = styled.div`
     }
 
     input {
-      min-width: 14rem;
+      ${mediaQueries.md} {
+        min-width: 14rem;
+      }
     }
   }
 `
