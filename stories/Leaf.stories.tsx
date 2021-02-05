@@ -12,7 +12,7 @@ export default {
     variant: {
       control: {
         type: "inline-radio",
-        options: ["primary", "secondary"],
+        options: ["primary", "secondary", "tertiary"],
       },
     },
   },

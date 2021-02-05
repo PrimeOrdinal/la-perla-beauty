@@ -1,5 +1,4 @@
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -51,10 +50,14 @@ export const LeafStyled: React.FC<LeafProps> = styled.div`
   ${variant({
     variants: {
       primary: {
-        backgroundColor: "pink",
+        backgroundColor: "lightgreen",
         color: "black",
       },
       secondary: {
+        backgroundColor: "pink",
+        color: "black",
+      },
+      tertiary: {
         backgroundColor: "lilac",
         color: "black",
       },
