@@ -172,6 +172,10 @@ const FooterStyle = styled.footer`
       }
     }
   }
+
+  .footer-secondary-accordion {
+    color: red;
+  }
 `
 const ContainerStyled = styled.div`
   h2 {
@@ -217,6 +221,7 @@ export const Footer: React.FC<FooterProps> = (
 
       <div className="footer-nav-mobile">
         <Accordion
+          className="footer-secondary-accordion"
           items={data?.allContentstackMenus?.edges
             .filter(({ node: menu }) =>
               menu.slot?.startsWith("footer-secondary")
