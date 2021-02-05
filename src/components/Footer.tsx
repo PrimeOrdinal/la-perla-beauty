@@ -62,11 +62,15 @@ const SocialLinkListStyled = styled(ListPlain)`
 
 const FooterStyle = styled.footer`
   border-top-style: solid;
+  border-bottom-style: solid;
   margin-block-start: ${themeGet("space.9")}px;
+  margin-block-end: ${themeGet("space.9")}px;
   padding-top: 1.5rem;
 
   ${mediaQueries.md} {
     padding-top: 2.25rem;
+    border-bottom: none;
+    margin-block-end: initial;
   }
 
   h1,
@@ -141,7 +145,7 @@ const FooterStyle = styled.footer`
 
     .container {
       padding-block-end: ${themeGet("space.7")}px;
-      padding-block-start: ${themeGet("space.7")}px;
+      padding-block-start: ${themeGet("space.11")}px;
 
       ${mediaQueries.md} {
         display: grid;

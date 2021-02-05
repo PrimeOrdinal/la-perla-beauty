@@ -6,16 +6,18 @@ import type {
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
-
-import { useToggle } from "../hooks/useToggle"
+import { Link } from "gatsby"
 import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
+import { useToggle } from "../hooks/useToggle"
 import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
+import { Accordion } from "./Accordion"
 import { MenuNavigation as MenuNavigation } from "./MenuNavigation"
 import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
 import { mediaQueries } from "../theme"
+import HamburgerMenu from "./HamburgerMenu"
 
 const HeaderStyled = styled.header`
   background-color: #ffffff;
@@ -30,19 +32,11 @@ const ContainerStyled = styled.div`
   grid-template-areas: "menu-primary logo menu-secondary" "menu-navigation menu-navigation menu-navigation" "quick-search quick-search quick-search";
   grid-template-columns: 1fr 2fr 1fr;
   padding-block-start: ${themeGet("space.6")}px;
-  text-align: center;
   align-items: center;
   padding-block-end: ${themeGet("space.6")}px;
   ${mediaQueries.md} {
     padding-block-end: unset;
-  }
-  .hamburger {
-    cursor: pointer;
-    height: ${themeGet("space.5")}px;
-    object-fit: contain;
-    ${mediaQueries.md} {
-      display: none;
-    }
+    text-align: center;
   }
 `
 
@@ -68,7 +62,7 @@ export const Header: React.FC<HeaderProps> = (
           display={{ _: "none", md: "flex" }}
           gridArea="menu-primary"
         />
-        <Hamburger className="hamburger" />
+        <HamburgerMenu data={data} />
         <MenuActions
           gridArea="menu-secondary"
           toggleMiniBagVisibility={toggleMiniBagVisibility}
