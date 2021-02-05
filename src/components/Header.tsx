@@ -8,13 +8,14 @@ import React from "react"
 import styled from "styled-components"
 
 import { useToggle } from "../hooks/useToggle"
-
+import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
 import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
 import { MenuNavigation as MenuNavigation } from "./MenuNavigation"
 import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
+import { mediaQueries } from "../theme"
 
 const HeaderStyled = styled.header`
   background-color: #ffffff;
@@ -30,6 +31,19 @@ const ContainerStyled = styled.div`
   grid-template-columns: 1fr 2fr 1fr;
   padding-block-start: ${themeGet("space.6")}px;
   text-align: center;
+  align-items: center;
+  padding-block-end: ${themeGet("space.6")}px;
+  ${mediaQueries.md} {
+    padding-block-end: unset;
+  }
+  .hamburger {
+    cursor: pointer;
+    height: ${themeGet("space.5")}px;
+    object-fit: contain;
+    ${mediaQueries.md} {
+      display: none;
+    }
+  }
 `
 
 export type HeaderProps = {
@@ -54,6 +68,7 @@ export const Header: React.FC<HeaderProps> = (
           display={{ _: "none", md: "flex" }}
           gridArea="menu-primary"
         />
+        <Hamburger className="hamburger" />
         <MenuActions
           gridArea="menu-secondary"
           toggleMiniBagVisibility={toggleMiniBagVisibility}
