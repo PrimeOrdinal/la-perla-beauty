@@ -14,6 +14,8 @@ https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/
 
 https://github.com/gatsbyjs/store.gatsbyjs.org
 
+https://www.npmjs.com/package/react-image-gallery
+
 node_modules/@types/aws-lambda/handler.d.ts
 
 react-icons
@@ -41,6 +43,18 @@ https://cli.netlify.com/
 ##### Hooks
 
 status:hooks
+
+### Browser Extensions
+
+https://www.gatsbyjs.com/docs/conceptual/making-your-site-accessible/
+
+https://developers.google.com/web/tools/lighthouse/
+
+https://www.deque.com/axe/
+
+https://accessibilityinsights.io/docs/en/web/overview/
+
+https://chrome.google.com/webstore/detail/schema-builder-tester-for/klohjdodjjeocpbpadmkcndjoadijgjg
 
 ### Storybook
 

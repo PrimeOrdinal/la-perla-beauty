@@ -1,37 +1,40 @@
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
+import { mediaQueries } from "../theme"
 import { Button } from "./Button"
 
 const StyledNewsletter = styled.div`
-  form {
-    display: flex;
-    align-items: center;
+  ${mediaQueries.md} {
     justify-content: end;
+  }
+
+  form {
+    display: grid;
+    gap: ${themeGet("space.4")}px;
+    grid-auto-flow: column;
+
+    ${mediaQueries.md} {
+      align-items: center;
+      gap: ${themeGet("space.6")}px;
+      grid-auto-flow: column;
+      grid-template-columns: unset;
+      justify-content: end;
+    }
+
     label {
-      margin-right: 30px;
-      text-transform: uppercase;
-      font-weight: bold;
+      display: none;
+
+      ${mediaQueries.md} {
+        display: block;
+        font-size: ${themeGet("fontSizes.1")}px;
+        text-transform: uppercase;
+        margin-right: ${themeGet("space.5")}px;
+      }
     }
+
     input {
-      width: 27.230769231rem;
-      padding: 0.7rem;
-      border-radius: 6px;
-      border: 0.5px solid #858585;
-      margin-right: 15px;
-      font-size: 14px;
-      &:focus {
-        background: none;
-        outline: none;
-      }
-      &::selection {
-        outline: none;
-        background: none;
-      }
-    }
-    Button {
-      width: 9.461538462rem;
-      font-size: 14px;
-      text-transform: uppercase;
+      min-width: 14rem;
     }
   }
 `
@@ -47,7 +50,7 @@ export const NewsletterSignup: React.FC = () => {
           placeholder="Enter your email address"
           type="email"
         />
-        <Button variant="primary">Sign up</Button>
+        <Button variant="secondary">Sign up</Button>
       </form>
     </StyledNewsletter>
   )

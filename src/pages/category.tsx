@@ -4,12 +4,17 @@ import type {
   CategoryPageQuery,
 } from "../../graphql-types"
 
-import { graphql, PageProps } from "gatsby"
+import clsx from "clsx"
+import { PageProps, graphql } from "gatsby"
 import React from "react"
 
+import { Breadcrumb } from "../components/Breadcrumb"
+import { CategoryHeader } from "../components/CategoryHeader"
 import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"
 import { SEO } from "../components/SEO"
+import { Tabs } from "../components/Tabs"
+import { ViewSelector } from "../components/ViewSelector"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
@@ -20,16 +25,42 @@ type PageContextCategory = PageContextTypeBreadcrumb & {
 
 const CategoryPage: React.FC<
   PageProps<CategoryPageQuery, PageContextCategory>
-> = ({ pageContext, data }) => {
-  const { category } = pageContext
+> = ({ data, pageContext }) => {
+  const {
+    breadcrumb: { crumbs },
+    category,
+    page,
+  } = pageContext
 
   return (
     <Layout>
-      <SEO title={`Category page for ${category?.name}`} />
-      <script type="application/json">{JSON.stringify(category)}</script>
-      {category?.name && <h1>{category?.name}</h1>}
-      {category?.description && <span>{category?.description}</span>}
-      {data.allBigCommerceProducts && (
+      <SEO title={page?.title} />
+
+      <div className={clsx("container")}>
+        <Breadcrumb crumbs={crumbs} />
+
+        <CategoryHeader>
+          <h1>{category?.name}</h1>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: category?.description as string,
+            }}
+          ></div>
+        </CategoryHeader>
+      </div>
+
+      <Tabs marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }}>
+        <a href="/products">All</a>
+        <a href="/fragrances">Fragrances</a>
+        <a href="/makeup">Makeup</a>
+        <a href="/body">Body</a>
+      </Tabs>
+
+      <div className={clsx("container")}>
+          <ViewSelector />
+      </div>
+
+      <section className={clsx("container", "BigCommerce")}>
         <Listing
           edges={data.allBigCommerceProducts.edges.map(({ node }) => ({
             node: standardiseBigCommerceProduct(
@@ -37,14 +68,17 @@ const CategoryPage: React.FC<
             ),
           }))}
         />
-      )}
-      {data.allContentstackProducts && (
-        <Listing
-          edges={data.allContentstackProducts.edges.map(({ node }) => ({
-            node: standardiseContentstackProduct(node),
-          }))}
-        />
-      )}
+      </section>
+
+      <section className={clsx("container", "Contentstack")}>
+        {data.allContentstackProducts && (
+          <Listing
+            edges={data.allContentstackProducts.edges.map(({ node }) => ({
+              node: standardiseContentstackProduct(node),
+            }))}
+          />
+        )}
+      </section>
     </Layout>
   )
 }

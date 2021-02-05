@@ -7,7 +7,20 @@ type BreakpointsProp = Array<string> & {
   xl?: string
 }
 
-export const breakpoints: BreakpointsProp = ["40em", "52em", "64em", "80em"]
+type FontSizesProp = Array<number> & {
+  small?: number
+  body?: number
+  heading1Desktop?: number
+  heading2Desktop?: number
+  heading3Desktop?: number
+  heading4Desktop?: number
+  heading1Mobile?: number
+  heading2Mobile?: number
+  heading3Mobile?: number
+  heading4Mobile?: number
+}
+
+export const breakpoints: BreakpointsProp = ["40rem", "60rem", "72rem", "100rem"]
 
 // aliases
 breakpoints.sm = breakpoints[0]
@@ -15,53 +28,55 @@ breakpoints.md = breakpoints[1]
 breakpoints.lg = breakpoints[2]
 breakpoints.xl = breakpoints[3]
 
+export const fontSizes: FontSizesProp = [11, 12, 13, 14, 16, 18, 24, 32]
+
+fontSizes.small = fontSizes[0]
+fontSizes.body = fontSizes[1]
+fontSizes.heading4Desktop = fontSizes[2]
+fontSizes.heading3Desktop = fontSizes[3]
+fontSizes.heading2Desktop = fontSizes[4]
+fontSizes.heading1Desktop = fontSizes[5]
+fontSizes.heading4Mobile = fontSizes[0]
+fontSizes.heading3Mobile = fontSizes[3]
+fontSizes.heading2Mobile = fontSizes[4]
+fontSizes.heading1Mobile = fontSizes[5]
+
+export const mediaQueries = {
+  sm: `@media screen and (min-width: ${breakpoints[0]})`,
+  md: `@media screen and (min-width: ${breakpoints[1]})`,
+  lg: `@media screen and (min-width: ${breakpoints[2]})`,
+  xl: `@media screen and (min-width: ${breakpoints[3]})`,
+}
+
 export const theme: DefaultTheme = {
   borderRadius: "5px",
-  buttons: {
-    primary: {
-      color: "whitesmoke",
-      backgroundColor: "#363139",
-      "&:disabled": {},
-      "&:hover": {
-        color: "background",
-      },
-    },
-    secondary: {
-      color: "#363139",
-      backgroundColor: "#FEEBDD",
-      "&:disabled": {},
-      "&:hover": {
-        color: "background",
-      },
-    },
-    tertiary: {
-      color: "text",
-      backgroundColor: "#EFEEE9",
-      "&:disabled": {},
-      "&:hover": {
-        color: "background",
-      },
-    },
-  },
+  breakpoints,
   colors: {
-    banner: {
-      background: "#000",
-      text: "#fff",
-    },
+    black: "#363139",
+    white: "#ffffff",
+    lightgrey: "#efeee9",
+    lilac: "#d3cbd6",
+    pink: "#fde7d5",
+    lightgreen: "#b2c594",
+    beige: "#debf9b",
+    orange: "#feebdd",
+    red: "#b74539",
+    darkgrey: "#858585",
     disabled: "#ccc",
-    text: "#000",
+    text: "#363139",
     background: "#f5f5f5",
-    primary: "#363139",
-    secondary: "#FEEBDD",
-    tertiary: "#EFEEE9",
-    quarternary: "#D3CBD6",
     modes: {
       dark: {
-        text: "#fff",
-        background: "#222",
+        text: "#ffffff",
+        background: "#000000",
         primary: "#0cf",
         secondary: "#90c",
-        tertiary: "#c09",
+      },
+      light: {
+        text: "#000000",
+        background: "#ffffff",
+        primary: "#0cf",
+        secondary: "#90c",
       },
     },
   },
@@ -69,16 +84,58 @@ export const theme: DefaultTheme = {
     body: '"Quicksand", Helvetica, Arial, sans-serif',
     heading: "inherit",
   },
-  fontSizes: [12, 14, 16, 24, 32, 48, 64],
+  fontSizes,
   lineHeights: {
     body: 1.5,
     heading: 1.125,
   },
-  space: [0, 4, 8, 16, 32, 64],
-  breakpoints,
-  // mediaQueries: {
-  //   small: `@media screen and (min-width: ${breakpoints[0]})`,
-  //   medium: `@media screen and (min-width: ${breakpoints[1]})`,
-  //   large: `@media screen and (min-width: ${breakpoints[2]})`,
-  // },
+  mediaQueries,
+  radii: [0, 2, 5, 10, 20],
+  space: [0, 2, 4, 8, 12, 14, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128],
+}
+
+theme.border = {
+  color: theme.colors.lightgrey,
+  width: "1px",
+}
+
+// theme.banners = {
+//   primary: {
+//     backgroundColor: theme.colors.pink,
+//     color: theme.colors.darkgrey,
+//   },
+//   secondary: {
+//     backgroundColor: theme.colors.lilac,
+//     color: theme.colors.darkgrey,
+//   },
+// }
+
+theme.buttons = {
+  primary: {
+    backgroundColor: theme.colors.black,
+    color: theme.colors.white,
+    "&:disabled": {},
+    "&:hover": {
+      color: "background",
+    },
+  },
+  secondary: {
+    backgroundColor: theme.colors.lightgrey,
+    color: theme.colors.darkgrey,
+    "&:disabled": {},
+    "&:hover": {
+      color: "background",
+    },
+  },
+}
+
+theme.leaf = {
+  primary: {
+    backgroundColor: theme.colors.lightgreen,
+    color: theme.colors.white,
+  },
+  secondary: {
+    backgroundColor: theme.colors.lilac,
+    color: theme.colors.white,
+  },
 }

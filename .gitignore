@@ -56,7 +56,7 @@ typings/
 
 # gatsby files
 .cache/
-public
+public/
 
 # Mac files
 .DS_Store
@@ -74,5 +74,7 @@ graphql-types.ts
 schema.json
 
 # Local Netlify folder
-.netlify
 .netlify/functions/dist
+.netlify/plugins
+
+storybook-static/

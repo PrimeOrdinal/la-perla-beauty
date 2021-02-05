@@ -8,18 +8,6 @@ module.exports = {
     title: process.env.SITE_TITLE,
   },
   plugins: [
-    // {
-    //   resolve: "gatsby-plugin-eslint",
-    //   options: {
-    //     test: /\.ts$|\.tsx$/,
-    //     exclude: /(node_modules|.cache|public)/,
-    //     stages: ["develop"],
-    //     options: {
-    //       emitWarning: true,
-    //       failOnError: false,
-    //     },
-    //   },
-    // },
     {
       resolve: "gatsby-plugin-typescript",
       options: {
@@ -59,14 +47,6 @@ module.exports = {
         },
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-react-svg",
-    //   options: {
-    //     rule: {
-    //       include: /images/, // See below to configure properly
-    //     },
-    //   },
-    // },
     "gatsby-plugin-svgr",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
@@ -86,6 +66,21 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     "gatsby-plugin-offline",
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     // Arbitrary name for the remote schema Query type
+    //     typeName: "BigCommerceGQL",
+    //     // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+    //     fieldName: "bigcommercegql",
+    //     // Url to query from
+    //     url: "https://store-" + process.env.BIGCOMMERCE_STORE_HASH + ".mybigcommerce.com/graphql",
+    //     headers: {
+    //       // Learn about environment variables: https://gatsby.dev/env-vars
+    //       Authorization: "Bearer " + process.env.BIGCOMMERCE_ACCESS_TOKEN,
+    //     },
+    //   },
+    // },
     {
       resolve: "gatsby-source-bigcommerce",
       options: {
@@ -104,9 +99,18 @@ module.exports = {
 
         // Multiple endpoints in an object.
         endpoints: {
-          BigCommerceProducts: "/catalog/products?include=images",
+          // BigCommerceBanners: "/banners",
+          BigCommerceBrands: "/catalog/brands",
           BigCommerceCategories: "/catalog/categories",
-          // BigCommerceStore: "/catalog/store",
+          // BigCommerceCountries: "/countries",
+          // BigCommerceCurrencies: "/currencies",
+          // BigCommercePaymentsMethods: "/payments/methods",
+          BigCommerceProducts: "/catalog/products?include=images",
+          // BigCommerceSiteInformation: "/sites/" + process.env.BIGCOMMERCE_SITE_ID,
+          // BigCommerceStoreInformation: "/store",
+          // BigCommerceStorefrontStatus: "/storefront/status",
+          // BigCommerceFilterContexts: "/settings/search/filters/contexts",
+          // BigCommercehippingRates: "/providers/shipping-provider-api/shipping-provider/requestshippingrates",
         },
 
         preview: true,
@@ -131,13 +135,13 @@ module.exports = {
         expediteBuild: true,
 
         // Optional: Specify true if you want to generate custom schema
-        enableSchemaGeneration: true,
+        enableSchemaGeneration: false,
 
         // Optional: Specify a different prefix for types. This is useful in cases where you have multiple instances of the plugin to be connected to different stacks.
         type_prefix: "Contentstack", // (default)
 
         // Optional: Specify true if you want to download all your contentstack images locally
-        downloadImages: true,
+        downloadImages: false,
 
         // transformSchema: ({
         //   schema,

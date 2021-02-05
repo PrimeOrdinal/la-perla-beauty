@@ -1,6 +1,9 @@
-import type { MenuNavigationQuery } from "../../graphql-types"
+import type {
+  // MenuNavigationQuery
+  LayoutQuery,
+} from "../../graphql-types"
 
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -12,7 +15,7 @@ import {
   LayoutProps,
   SpaceProps,
 } from "styled-system"
-
+import { themeGet } from "@styled-system/theme-get"
 import { useHover } from "../hooks/useHover"
 
 import { ListPlain } from "./ListPlain"
@@ -32,16 +35,20 @@ const StyledMenu = styled.div`
 
 const StyledMenuMainHeadings = styled(ListPlain)`
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
-  padding-block-end: 1rem;
-  padding-block-start: 1rem;
+  gap: ${themeGet("space.20")}px;
+  grid-auto-flow: column;
+  padding-block-end: 1.25rem;
+  padding-block-start: 1.25rem;
+  place-content: center;
   li {
     text-align: left;
+    font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+    font-weight: 600;
+    letter-spacing: 1px;
     a {
       color: inherit;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: inherit;
       text-transform: uppercase;
     }
   }
@@ -67,47 +74,39 @@ const StyledMenuMainExpanded = styled.div`
   }
 `
 
-export type MenuNavigationProps = GridProps & LayoutProps & SpaceProps
+export type MenuNavigationProps = GridProps &
+  LayoutProps &
+  SpaceProps & {
+    // data?: MenuNavigationQuery
+    data?: LayoutQuery
+  }
 
-export const MenuNavigation: React.FC<MenuNavigationProps> = props => {
-  const data: MenuNavigationQuery = useStaticQuery(graphql`
-    query MenuNavigation {
-      allContentstackMenus(
-        filter: {
-          slot: {
-            in: ["secondary-1", "secondary-2", "secondary-3", "tertiary-1"]
-          }
-        }
-      ) {
-        edges {
-          node {
-            ...Contentstack_menusFragment
-          }
-        }
-      }
-    }
-  `)
-
+export const MenuNavigation: React.FC<MenuNavigationProps> = ({
+  data,
+  ...props
+}) => {
   const [hoverRef, isHovered] = useHover()
 
   return (
     <StyledMenu ref={hoverRef} {...props}>
-      <StyledMenuMainHeadings>
-        <li>
-          <Link to="/products/">Products</Link>
-        </li>
-        <li>
-          <a href="/">Category 2</a>
-        </li>
-        <li>
-          <a href="/">Category 3</a>
-        </li>
-        <li>
-          <a href="/">Category 4</a>
-        </li>
-      </StyledMenuMainHeadings>
+      {data?.allContentstackMenus?.edges
+        ?.filter(({ node: menu }) => menu.slot?.startsWith("header-navigation"))
+        .map(({ node: menu }) => (
+          <StyledMenuMainHeadings id={menu.slot as string} key={menu.id}>
+            {menu?.links?.map((link, index) => (
+              <li key={index}>
+                <Link
+                  to={link?.url?.href as string}
+                  title={link?.url?.title as string}
+                >
+                  {link?.text}
+                </Link>
+              </li>
+            ))}
+          </StyledMenuMainHeadings>
+        ))}
       <StyledMenuMainExpanded active={isHovered}>
-        {data.allContentstackMenus.edges.map(({ node: menu }) => (
+        {data?.allContentstackMenus?.edges?.map(({ node: menu }) => (
           <ul id={menu.slot as string} key={menu.id}>
             {menu?.links?.map((link, index) => (
               <li key={index}>

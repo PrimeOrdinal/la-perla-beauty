@@ -1,6 +1,9 @@
-import type { HeaderQuery } from "../../graphql-types"
+import type {
+  // HeaderQuery
+  LayoutQuery,
+} from "../../graphql-types"
 
-import { graphql, useStaticQuery } from "gatsby"
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 
@@ -8,34 +11,34 @@ import { useToggle } from "../hooks/useToggle"
 
 import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
-import { MenuNavigation } from "./MenuNavigation"
+import { MenuNavigation as MenuNavigation } from "./MenuNavigation"
 import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
 
-const StyledHeader = styled.header`
+const HeaderStyled = styled.header`
   background-color: #ffffff;
-  border-bottom: 0.5px solid gray;
+  border-bottom-style: solid;
+  margin-block-end: ${themeGet("space.9")}px;
   position: sticky;
   top: 0;
 `
 
-const StyledContainer = styled.div`
+const ContainerStyled = styled.div`
   display: grid;
   grid-template-areas: "menu-primary logo menu-secondary" "menu-navigation menu-navigation menu-navigation" "quick-search quick-search quick-search";
   grid-template-columns: 1fr 2fr 1fr;
-  margin: auto;
-  padding-block-start: 1rem;
+  padding-block-start: ${themeGet("space.6")}px;
   text-align: center;
-  width: 90%;
 `
 
 export type HeaderProps = {
-  data?: HeaderQuery
+  // data?: HeaderQuery
+  data?: LayoutQuery
   siteTitle?: string
 }
 
-export const HeaderPure: React.FC<HeaderProps> = (
+export const Header: React.FC<HeaderProps> = (
   { data, siteTitle } = {
     siteTitle: "Site Title",
   }
@@ -44,8 +47,8 @@ export const HeaderPure: React.FC<HeaderProps> = (
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
   return (
-    <StyledHeader>
-      <StyledContainer>
+    <HeaderStyled>
+      <ContainerStyled className="container">
         <LogotypeLink gridArea="logo" siteTitle={siteTitle} />
         <MenuStore
           display={{ _: "none", md: "flex" }}
@@ -60,6 +63,7 @@ export const HeaderPure: React.FC<HeaderProps> = (
           <MenuNavigation
             display={{ _: "none", md: "block" }}
             gridArea="menu-navigation"
+            data={data}
           />
         )}
         {miniBagVisibility && (
@@ -71,37 +75,7 @@ export const HeaderPure: React.FC<HeaderProps> = (
             searchIndex={data?.siteSearchIndex?.index}
           />
         )}
-      </StyledContainer>
-    </StyledHeader>
+      </ContainerStyled>
+    </HeaderStyled>
   )
-}
-
-export const Header: React.FC<HeaderProps> = props => {
-  const data: HeaderQuery = useStaticQuery(graphql`
-    query Header {
-      allBigCommerceCategories {
-        edges {
-          node {
-            custom_url {
-              url
-            }
-            description
-            id
-            is_visible
-            meta_description
-            meta_keywords
-            name
-            page_title
-            parent_id
-            search_keywords
-          }
-        }
-      }
-      siteSearchIndex {
-        index
-      }
-    }
-  `)
-
-  return <HeaderPure data={data} {...props} />
 }

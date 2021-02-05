@@ -19,7 +19,7 @@ import {
   VariantProps,
 } from "styled-system"
 
-const QuickSearchStyles = styled.div`
+const QuickSearchStyled = styled.div`
   align-items: center;
   background-color: ${themeGet("colors.background", "white")};
   display: grid;
@@ -28,7 +28,7 @@ const QuickSearchStyles = styled.div`
   ${compose(color, grid, layout, position, space)}
 `
 
-const ResultsStyles = styled.ul`
+const ResultsStyled = styled.ul`
   align-items: center;
   display: grid;
   list-style: none;
@@ -67,21 +67,21 @@ export const QuickSearch: React.FC<QuickSearchProps> = ({
   }
 
   return (
-    <QuickSearchStyles {...props}>
+    <QuickSearchStyled {...props}>
       <input
         type="text"
         value={query}
         onChange={search}
         placeholder="Search site"
       />
-      <ResultsStyles>
+      <ResultsStyled>
         {(results as SearchResult[]).map(page => (
           <li key={page.id}>
             {/* <img alt={page.title} src={page.image_url} /> */}
             <Link to={page.path}>{page.title}</Link>
           </li>
         ))}
-      </ResultsStyles>
-    </QuickSearchStyles>
+      </ResultsStyled>
+    </QuickSearchStyled>
   )
 }

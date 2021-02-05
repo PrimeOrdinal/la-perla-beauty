@@ -36,13 +36,53 @@ const StyledMain = styled.div`
   flex-basis: 100%;
 `
 
-export const Layout: React.FC = ({ children }) => {
+export type LayoutProps = {
+  children?: React.ReactNode
+}
+
+export const Layout: React.FC = (
+  { children }
+) => {
   const data: LayoutQuery = useStaticQuery(graphql`
     query Layout {
       site {
         siteMetadata {
           title
         }
+      }
+      allBigCommerceCategories {
+        edges {
+          node {
+            custom_url {
+              url
+            }
+            description
+            id
+            is_visible
+            meta_description
+            meta_keywords
+            name
+            page_title
+            parent_id
+            search_keywords
+          }
+        }
+      }
+      allContentstackMenus(
+        filter: {
+          slot: {
+            in: ["footer-secondary-1", "footer-secondary-2", "footer-secondary-3", "footer-tertiary-1", "header-navigation"]
+          }
+        }
+      ) {
+        edges {
+          node {
+            ...Contentstack_menusFragment
+          }
+        }
+      }
+      siteSearchIndex {
+        index
       }
     }
   `)
@@ -52,12 +92,12 @@ export const Layout: React.FC = ({ children }) => {
       <StyledSiteContainer>
         <GlobalStyle theme={theme} />
         <SiteSelector />
-        <Banner>Lorem ipsum dolor sit amet</Banner>
-        <Header siteTitle={data?.site?.siteMetadata?.title || `Title`} />
+        <Banner to="/shipping" variant="primary">Standard Shipping &amp; Returns Lorem Ipsum</Banner>
+        <Header siteTitle={data?.site?.siteMetadata?.title || `Title`} data={data} />
         <StyledPageContainer>
           <StyledMain>{children}</StyledMain>
         </StyledPageContainer>
-        <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} />
+        <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} data={data} />
       </StyledSiteContainer>
     </ThemeProvider>
   )

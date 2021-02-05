@@ -1,7 +1,6 @@
 import type { Product } from "schema-dts"
 
 import React from "react"
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from "@storybook/react"
 
 import { ProductCard, ProductCardProps } from "../src/components/ProductCard"
@@ -10,14 +9,22 @@ export default {
   title: "ProductCard",
   component: ProductCard,
   argTypes: {
-    bg: { control: "color" },
+    backgroundColor: { control: "color" },
+    showImage: { control: "boolean" },
+    availability: {
+      control: {
+        type: "inline-radio",
+        options: ["https://schema.org/InStock", "https://schema.org/LimitedAvailability", "https://schema.org/OnlineOnly", "https://schema.org/OutOfStock", "https://schema.org/PreOrder", "https://schema.org/SoldOut"],
+      },
+    },
   },
 } as Meta
 
 const Template: Story<ProductCardProps> = args => <ProductCard {...args} />
 
-export const Primary = Template.bind({})
-Primary.args = {
+export const InStock = Template.bind({})
+InStock.args = {
+  label: "In Stock",
   product: {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -49,12 +56,21 @@ Primary.args = {
     },
     offers: {
       "@type": "Offer",
-      url: "https://example.com/anvil",
-      priceCurrency: "USD",
-      price: "119.99",
-      priceValidUntil: "2020-11-20",
-      itemCondition: "https://schema.org/UsedCondition",
       availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/UsedCondition",
+      price: "119.99",
+      priceCurrency: "USD",
+      priceValidUntil: "2020-11-20",
+      url: "https://example.com/anvil",
     },
   } as Product,
+  width: { _: 1, sm: 1/2, md: 1/2, lg: 1/6 },
 }
+
+export const LimitedAvailability = Template.bind({});
+LimitedAvailability.args = {
+  ...InStock.args,
+}
+// LimitedAvailability.args = Object.assign(InStock.args)
+LimitedAvailability.args.label = "Limited Availability"
+LimitedAvailability.args.product.offers.availability = "https://schema.org/LimitedAvailability"

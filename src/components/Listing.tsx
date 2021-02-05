@@ -14,11 +14,11 @@ import {
 } from "styled-system"
 
 import { ProductCard } from "./ProductCard"
-import { ListPlain } from "./ListPlain"
 
-const StyledListing = styled(ListPlain)`
+const ListingStyled = styled.ul`
   display: grid;
-
+  list-style: none;
+  padding: 0;
   ${compose(grid, layout, space)}
 `
 
@@ -31,14 +31,16 @@ export type ListingProps = GridProps &
   }
 
 export const Listing: React.FC<ListingProps> = ({ edges }) => (
-  <StyledListing
+  <ListingStyled
+    className="container"
     gridAutoFlow="row"
-    gridGap={{ _: 2, sm: 1, md: 2, lg: 4 }}
+    gridColumnGap={{ _: 2, sm: 6, md: 8, lg: 10 }}
+    gridRowGap={{ _: 4, sm: 6, md: 8, lg: 10 }}
     gridTemplateColumns={{
       _: "1fr",
       sm: "repeat(2, 1fr)",
       md: "repeat(4, 1fr)",
-      xl: "repeat(6, 1fr)",
+      xl: "repeat(4, 1fr)",
     }}
   >
     {edges.map(({ node: product }: { node: Product }, index) => (
@@ -49,5 +51,5 @@ export const Listing: React.FC<ListingProps> = ({ edges }) => (
         </Helmet>
       </li>
     ))}
-  </StyledListing>
+  </ListingStyled>
 )

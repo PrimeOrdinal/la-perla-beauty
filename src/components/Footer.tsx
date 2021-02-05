@@ -1,223 +1,304 @@
-import type { FooterQuery } from "../../graphql-types"
+import type {
+  // FooterQuery
+  LayoutQuery,
+} from "../../graphql-types"
 
-import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook"
-import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram"
-import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter"
-import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube"
 import { themeGet } from "@styled-system/theme-get"
-import { graphql, useStaticQuery, Link } from "gatsby"
-// import Img, { FluidObject } from "gatsby-image"
+import { Link } from "gatsby"
 import React from "react"
+import {
+  Accordion as ReactAccessibleAccordion,
+  AccordionItem as ReactAccessibleAccordionItem,
+  AccordionItemHeading as ReactAccessibleAccordionItemHeading,
+  AccordionItemButton as ReactAccessibleAccordionItemButton,
+  AccordionItemPanel as ReactAccessibleAccordionItemPanel,
+} from "react-accessible-accordion"
 import styled from "styled-components"
 
 import { ReactComponent as Logotype } from "../images/Logotype.svg"
 
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
+import { fontSizes, mediaQueries } from "../theme"
 
 const LogotypeStyle = styled(Logotype)`
-  height: 35px;
-  object-fit: contain;
-  width: auto;
-`
+  display: none;
 
-const SocialContainerStyle = styled.div`
-  /* display: grid;
-  gap: 1rem;
-  grid-auto-flow: column; */
-  display: flex;
-  align-items: center;
-  span {
-    text-transform: uppercase;
+  ${mediaQueries.md} {
+    display: block;
+    flex: 0.2;
+    height: 2rem;
+    object-fit: contain;
   }
 `
 
-const SocialLinkListStyle = styled(ListPlain)`
-  /* display: grid; */
-  /* gap: 1rem; */
-  display: flex;
-  li {
-    margin-left: 34px;
-    font-size: 30px;
-    color: inherit;
-    a {
-      color: inherit;
+const SocialContainerStyled = styled.div`
+  ${mediaQueries.md} {
+    align-items: center;
+    display: flex;
+  }
+
+  span {
+    display: none;
+
+    ${mediaQueries.md} {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: bold;
+      margin-right: 1rem;
     }
   }
-  /* grid-auto-flow: column; */
+`
+
+const SocialLinkListStyled = styled(ListPlain)`
+  align-items: center;
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: column;
+  justify-content: center;
+  padding-inline-start: 2rem;
+
+  a {
+    color: inherit;
+    font-size: 2.125rem;
+    text-decoration: none;
+  }
 `
 
 const FooterStyle = styled.footer`
-  border-top: 0.5px solid #858585;
-  border-bottom: 0.5px solid #858585;
-  display: grid;
-  gap: 2rem;
-  .container {
-    width: 90%;
-    margin: auto;
-    .primary {
-      display: flex;
-      justify-content: space-between;
+  border-top-style: solid;
+  margin-block-start: ${themeGet("space.9")}px;
+  padding-top: 1.5rem;
+
+  ${mediaQueries.md} {
+    padding-top: 2.25rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: ${themeGet("fontFamily", "Quicksand")};
+    text-transform: uppercase;
+  }
+
+  .footer-newsletter {
+    padding-bottom: 1rem;
+
+    ${mediaQueries.md} {
       align-items: center;
-      padding-bottom: 2rem;
-      padding-top: 2rem;
-      border-bottom: 0.5px solid #858585;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      padding-bottom: 2.25rem;
     }
-    .title_wrapper {
-      display: flex;
-    }
-    .secondary {
-      display: flex;
-      justify-content: start;
+  }
+
+  .footer-nav-desktop {
+    display: none;
+
+    ${mediaQueries.md} {
+      border-top-style: solid;
+      display: grid;
+      gap: ${themeGet("space.6")}px;
+      grid-template-columns: 1fr 1fr 1fr 2fr;
+      padding-block-end: ${themeGet("space.7")}px;
+      padding-block-start: ${themeGet("space.7")}px;
+
       h3 {
-        font-family: ${themeGet("fonts.body", "Quicksand")};
-        font-size: 14px;
-        margin-bottom: 38px;
-        text-transform: uppercase;
+        font-family: ${themeGet("fontFamily", "Quicksand")};
+        font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+        padding-block-end: ${themeGet("space.8")}px;
       }
+
       ul {
+        display: grid;
+        gap: 1.5rem;
         list-style: none;
         padding: 0;
-        font-size: 14px;
-
-        &:not(:first-child) {
-          margin-left: 84px;
-        }
         li {
-          padding: 12px 0;
+          font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+
           a {
-            font-weight: 300;
-            text-decoration: 0;
+            text-decoration: none;
             color: inherit;
+            font-size: inherit;
           }
         }
       }
     }
   }
-  .tertiary {
-    border-top: 0.5px solid #858585;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+
+  .footer-nav-mobile {
+    ${mediaQueries.md} {
+      display: none;
+    }
   }
-  .tertiary-wrapper {
-    display: flex;
-    justify-content: space-between;
+
+  .footer-social {
+    border-bottom-style: solid;
+    border-top-style: solid;
+
+    ${mediaQueries.md} {
+      border-bottom-style: none;
+    }
+
+    .container {
+      padding-block-end: ${themeGet("space.7")}px;
+      padding-block-start: ${themeGet("space.7")}px;
+
+      ${mediaQueries.md} {
+        display: grid;
+        align-items: center;
+        gap: ${themeGet("space.6")}px;
+        grid-auto-flow: column;
+        justify-content: space-between;
+      }
+    }
+
+    section {
+      display: grid;
+      grid-auto-flow: row;
+      ${mediaQueries.md} {
+        align-items: center;
+        grid-auto-flow: column;
+        gap: ${themeGet("space.9")}px;
+      }
+      h3 {
+        display: none;
+        ${mediaQueries.md} {
+          display: block;
+          font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+        }
+      }
+      ul {
+        padding: 0;
+      }
+    }
+  }
+`
+const ContainerStyled = styled.div`
+  h2 {
+    margin-bottom: 1.25rem;
+    font-family: ${themeGet("fontFamily", "Tiempos")};
+    font-size: ${themeGet("fontSizes.heading1Mobile")}px;
+    font-weight: 100;
+    text-transform: capitalize;
+    ${mediaQueries.md} {
+      display: none;
+    }
+  }
+
+  p {
+    text-align: center;
+
+    ${mediaQueries.md} {
+      font-size: 0.75rem;
+      text-align: left;
+    }
   }
 `
 
 export type FooterProps = {
+  // data?: FooterQuery
+  data?: LayoutQuery
   siteTitle?: string
 }
 
 export const Footer: React.FC<FooterProps> = (
-  { siteTitle } = {
+  { data, siteTitle } = {
     siteTitle: "Site Title",
   }
-) => {
-  const data: FooterQuery = useStaticQuery(graphql`
-    query Footer {
-      allContentstackMenus(
-        filter: {
-          slot: {
-            in: ["secondary-1", "secondary-2", "secondary-3", "tertiary-1"]
-          }
-        }
-      ) {
-        edges {
-          node {
-            ...Contentstack_menusFragment
-          }
-        }
-      }
-    }
-  `)
+) => (
+  <FooterStyle>
+    <ContainerStyled className="container">
+      <h2>Newsletter</h2>
 
-  return (
-    <FooterStyle>
-      <div className="container">
-        <div className="primary">
-          <LogotypeStyle />
-          <NewsletterSignup />
-        </div>
-        <div className="secondary">
-          {data.allContentstackMenus.edges
-            .filter(({ node }) => node.slot?.startsWith("secondary"))
+      <div className="footer-newsletter">
+        <LogotypeStyle />
+        <NewsletterSignup />
+      </div>
+
+      <div className="footer-nav-mobile">
+        <ReactAccessibleAccordion>
+          {data?.allContentstackMenus?.edges
+            .filter(({ node: menu }) =>
+              menu.slot?.startsWith("footer-secondary")
+            )
             .map(({ node: menu }) => (
-              <>
-                <ul id={menu.slot as string} key={menu.id}>
-                  <h3>{menu.title}</h3>
+              <ReactAccessibleAccordionItem key={menu.id}>
+                <ReactAccessibleAccordionItemHeading>
+                  <ReactAccessibleAccordionItemButton>
+                    {menu.title}
+                  </ReactAccessibleAccordionItemButton>
+                </ReactAccessibleAccordionItemHeading>
+                <ReactAccessibleAccordionItemPanel>
+                  <p>{menu?.title}</p>
+                </ReactAccessibleAccordionItemPanel>
+              </ReactAccessibleAccordionItem>
+            ))}
+        </ReactAccessibleAccordion>
+      </div>
 
+      <div className="footer-nav-desktop">
+        {data?.allContentstackMenus?.edges
+          .filter(({ node: menu }) => menu.slot?.startsWith("footer-secondary"))
+          .map(({ node: menu }) => (
+            <section>
+              <h3>{menu.title}</h3>
+              <ul id={menu.slot as string} key={menu.id}>
+                {menu?.links?.map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      to={link?.url?.href as string}
+                      title={link?.url?.title as string}
+                    >
+                      {link?.text}
+                      {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+      </div>
+    </ContainerStyled>
+    <div className="footer-social">
+      <ContainerStyled className="container">
+        <SocialContainerStyled>
+          {data?.allContentstackMenus?.edges
+            .filter(({ node: menu }) =>
+              menu.slot?.startsWith("footer-tertiary")
+            )
+            .map(({ node: menu }) => (
+              <section>
+                <h3>{menu.title}</h3>
+                <SocialLinkListStyled id={menu.slot as string} key={menu.id}>
                   {menu?.links?.map((link, index) => (
                     <li key={index}>
-                      <Link
-                        to={link?.url?.href as string}
+                      <a
+                        href={link?.url?.href as string}
                         title={link?.url?.title as string}
                       >
-                        {link?.text}
-                        {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
-                      </Link>
+                        {link?.text && <span>{link?.text}</span>}
+                        {link?.icon && (
+                          <img
+                            src={link?.icon?.url as string}
+                            title={link?.icon?.title as string}
+                          />
+                        )}
+                      </a>
                     </li>
                   ))}
-                </ul>
-              </>
+                </SocialLinkListStyled>
+              </section>
             ))}
-        </div>
-      </div>
-      <div className="tertiary">
-        <div className="container tertiary-wrapper">
-          <SocialContainerStyle>
-            <span>Follow us</span>
-            {/* {data.allContentstackMenus.edges
-              .filter(item => item.node.slot.startsWith("tertiary"))
-              .map(({ node: menu }) => (
-                <>
-                  <ul id={menu.slot as string} key={menu.id}>
-                    <h3>{menu.title}</h3>
-
-                    {menu?.links?.map((link, index) => (
-                      <li key={index}>
-                        <Link
-                          to={link?.url?.href as string}
-                          title={link?.url?.title as string}
-                        >
-                          {link?.text}
-                          {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ))} */}
-            <SocialLinkListStyle>
-              <li>
-                <a href="https://www.facebook.com/BeautyByLaPerla/">
-                  <FaFacebook />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com/BeautyByLaPerla/">
-                  <FaInstagram />
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com/BeautyByLaPerla">
-                  <FaTwitter />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/channel/EJo0TYlRfn6rYQUCAxW1XT0i">
-                  <FaYoutube />
-                </a>
-              </li>
-            </SocialLinkListStyle>
-          </SocialContainerStyle>
-          <p>
-            © {new Date().getFullYear()} {siteTitle}
-          </p>
-        </div>
-      </div>
-    </FooterStyle>
-  )
-}
+        </SocialContainerStyled>
+        <p className="small">
+          © {new Date().getFullYear()} {siteTitle}
+        </p>
+      </ContainerStyled>
+    </div>
+  </FooterStyle>
+)
