@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
@@ -16,11 +17,11 @@ const Template: Story<TabsProps> = args => <Tabs {...args} />
 export const Example = Template.bind({})
 Example.args = {
   children: [
-    <div>
-      <h1>Heading 1</h1>
-      <span>
-        Contents
-      </span>
-    </div>
+    <React.Fragment>
+      <Link to="/products">All</Link>
+      <Link to="/fragrances">Fragrances</Link>
+      <Link to="/makeup">Makeup</Link>
+      <Link to="/body">Body</Link>
+    </React.Fragment>
   ]
 }
