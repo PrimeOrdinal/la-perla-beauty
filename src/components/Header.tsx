@@ -20,7 +20,7 @@ import { mediaQueries } from "../theme"
 const HeaderStyled = styled.header`
   background-color: #ffffff;
   border-bottom-style: solid;
-  margin-block-end: ${themeGet("space.9")}px;
+  margin-block-end: ${themeGet("space.6")}px;
   position: sticky;
   top: 0;
 `
