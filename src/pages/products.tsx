@@ -47,7 +47,7 @@ const ProductsPage: React.FC<
         </CategoryHeader>
       </div>
 
-      <Tabs marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }}>
+      <Tabs marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }} marginTop={{ _: 4, sm: 2, md: 4, lg: 8 }}>
         <a href="/products">All</a>
         <a href="/fragrances">Fragrances</a>
         <a href="/makeup">Makeup</a>

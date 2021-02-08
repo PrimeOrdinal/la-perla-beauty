@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
@@ -11,7 +12,7 @@ export default {
     variant: {
       control: {
         type: "inline-radio",
-        options: ["primary", "secondary"],
+        options: ["primary", "secondary", "tertiary"],
       },
     },
   },
@@ -19,11 +20,28 @@ export default {
 
 const Template: Story<LeafProps> = args => <Leaf {...args} />
 
-export const Example = Template.bind({})
-Example.args = {
-  children: "Leaf",
+export const Image = Template.bind({})
+Image.args = {
+  children: <React.Fragment>
+      <img src="https://via.placeholder.com/300x400" alt="Placeholder" />
+  </React.Fragment>,
   variant: "primary",
 }
-Example.argTypes = {
+Image.argTypes = {
+  onClick: { action: "Leaf clicked" },
+}
+
+export const Text = Template.bind({})
+Text.args = {
+  children: <React.Fragment>
+      <h1>Risk free purchase</h1>
+      <p>Phasellus hendrerit nisl justo, non visto sollicitudin justo in. Quisque eu tincidunt arcu. Aenean ullamcorper augue vel ex iaculis.</p>
+      <Link to="/test">Lorem ipsum</Link>
+  </React.Fragment>,
+  maxWidth: 640,
+  variant: "primary",
+  width: { _: 1, md: 1/2},
+}
+Text.argTypes = {
   onClick: { action: "Leaf clicked" },
 }

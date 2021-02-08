@@ -22,7 +22,7 @@ const LogotypeLinkStyle = styled(Link)`
 `
 
 const LogotypeStyle = styled(Logotype)`
-  height: 40px;
+  height: 29px;
   width: auto;
 `
 
@@ -32,7 +32,10 @@ export type LogotypeLinkProps = GridProps &
     siteTitle: string
   }
 
-export const LogotypeLink: React.FC<LogotypeLinkProps> = ({ siteTitle, ...props }) => (
+export const LogotypeLink: React.FC<LogotypeLinkProps> = ({
+  siteTitle,
+  ...props
+}) => (
   <LogotypeLinkStyle
     title={`Return to the ${siteTitle} homepage`}
     to={homePath}

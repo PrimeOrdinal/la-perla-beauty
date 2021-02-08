@@ -7,7 +7,6 @@ import {
   AccordionItemButton as ReactAccessibleAccordionItemButton,
   AccordionItemPanel as ReactAccessibleAccordionItemPanel,
 } from "react-accessible-accordion"
-import Plus from "../images/Plus.svg"
 import styled from "styled-components"
 import {
   compose,
@@ -19,6 +18,9 @@ import {
   SpaceProps,
   VariantProps,
 } from "styled-system"
+
+import Minus from "../images/Minus.svg"
+import Plus from "../images/Plus.svg"
 
 export type AccordionProps = LayoutProps &
   PositionProps &
@@ -44,15 +46,15 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__button {
-    background-color: unset;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    text-transform: uppercase;
+    align-content: center;
+    align-items: center;
+    display: grid;
     font-weight: bold;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    padding: 18px 0;
+    text-transform: uppercase;
+    width: 100%;
   }
 
   .accordion__button:hover {
@@ -60,27 +62,26 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__button:after {
-    display: inline-block;
+    background-image: url(${Minus});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
     content: "";
-    position: absolute;
-    right: 10px;
-    height: 10px;
-    width: 10px;
-    margin-right: 12px;
-    background: url(${Plus});
-    border-bottom: 2px solid currentColor;
-    border-right: 2px solid currentColor;
-    transform: rotate(-45deg);
+    display: block;
+    height: 16px;
+    width: 16px;
+  }
+
+  .accordion__button:not([aria-expanded="true"]):after {
+    background-image: url(${Plus});
   }
 
   .accordion__button[aria-expanded="true"]::after,
   .accordion__button[aria-selected="true"]::after {
-    transform: rotate(45deg);
   }
 
   .accordion__button[aria-expanded="false"]::after,
   .accordion__button[aria-selected="false"]::after {
-    transform: rotate(-45deg);
   }
 
   [hidden] {
@@ -88,8 +89,26 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__panel {
-    padding: 20px;
+    padding: 0;
     animation: fadein 0.35s ease-in;
+  }
+
+  .accordion__panel ul {
+    font-size: 13px;
+    list-style: none;
+    margin: 0;
+    padding-block-end: 12px;
+    padding: 0;
+  }
+  .accordion__panel ul li {
+    padding: 8px 0;
+  }
+  .accordion__panel ul li a {
+    color: #363139;
+    text-decoration: none;
+  }
+  .accordion__panel ul li:last-child {
+    padding-block-end: 16px;
   }
 
   /* -------------------------------------------------- */
@@ -111,7 +130,6 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
 
 export const Accordion: React.FC<AccordionProps> = ({ items, ...props }) => (
   <AccordionStyled {...props}>
-    <script>{JSON.stringify(items)}</script>
     {items?.length &&
       items.map((item, index) => (
         <ReactAccessibleAccordionItem key={index}>

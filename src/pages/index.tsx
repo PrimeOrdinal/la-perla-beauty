@@ -45,20 +45,23 @@ const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
         </CategoryHeader>
       </div>
 
-      <Tabs marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }}>
+      <Tabs
+        marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }}
+        marginTop={{ _: 4, sm: 2, md: 4, lg: 8 }}
+      >
         <a href="/products">All</a>
         <a href="/fragrances">Fragrances</a>
         <a href="/makeup">Makeup</a>
         <a href="/body">Body</a>
       </Tabs>
 
-      <CategoryHeader className={clsx("container")}>
+      {/* <CategoryHeader className={clsx("container")}>
         <h1>All beauty</h1>
         <span>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, dot. Nullam
           ac eleifend turpis.
         </span>
-      </CategoryHeader>
+      </CategoryHeader> */}
 
       <section className={clsx("container", "BigCommerce")}>
         <Listing

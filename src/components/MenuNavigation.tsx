@@ -35,16 +35,18 @@ const StyledMenu = styled.div`
 
 const StyledMenuMainHeadings = styled(ListPlain)`
   display: grid;
-  gap: ${themeGet("space.20")}px;
+  gap: ${themeGet("space.7")}px;
   grid-auto-flow: column;
   padding-block-end: 1.25rem;
   padding-block-start: 1.25rem;
   place-content: center;
+
   li {
     text-align: left;
     font-size: ${themeGet("fontSizes.heading3Desktop")}px;
     font-weight: 600;
     letter-spacing: 1px;
+
     a {
       color: inherit;
       text-decoration: none;

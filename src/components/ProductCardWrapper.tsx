@@ -7,10 +7,12 @@ const ContainerStyled = styled.div`
   gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
+
   .box {
     min-height: 10rem;
     background: #a94ea9;
   }
+  
   .banner {
     min-height: 10rem;
     background: #521952;

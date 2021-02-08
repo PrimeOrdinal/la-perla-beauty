@@ -1,4 +1,5 @@
 import { themeGet } from "@styled-system/theme-get"
+import { mediaQueries } from "../theme"
 import styled from "styled-components"
 import {
   compose,
@@ -20,7 +21,12 @@ export type CategoryHeaderProps = GridProps &
 export const CategoryHeaderStyled = styled.header`
   display: grid;
   justify-items: center;
-  margin-block-end: ${themeGet("space.20")}px;
+  margin-block-end: ${themeGet("space.7")}px;
+  text-align: center;
+
+  ${mediaQueries.md} {
+    text-align: left;
+  }
 
   ${compose(grid, layout, space)}
 `

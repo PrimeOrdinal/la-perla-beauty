@@ -6,20 +6,15 @@ import type {
 import { themeGet } from "@styled-system/theme-get"
 import { Link } from "gatsby"
 import React from "react"
-import {
-  Accordion as ReactAccessibleAccordion,
-  AccordionItem as ReactAccessibleAccordionItem,
-  AccordionItemHeading as ReactAccessibleAccordionItemHeading,
-  AccordionItemButton as ReactAccessibleAccordionItemButton,
-  AccordionItemPanel as ReactAccessibleAccordionItemPanel,
-} from "react-accessible-accordion"
 import styled from "styled-components"
 
 import { ReactComponent as Logotype } from "../images/Logotype.svg"
 
+import { mediaQueries } from "../theme"
+
+import { Accordion } from "./Accordion"
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
-import { fontSizes, mediaQueries } from "../theme"
 
 const LogotypeStyle = styled(Logotype)`
   display: none;
@@ -67,11 +62,15 @@ const SocialLinkListStyled = styled(ListPlain)`
 
 const FooterStyle = styled.footer`
   border-top-style: solid;
+  border-bottom-style: solid;
   margin-block-start: ${themeGet("space.9")}px;
+  margin-block-end: ${themeGet("space.9")}px;
   padding-top: 1.5rem;
 
   ${mediaQueries.md} {
     padding-top: 2.25rem;
+    border-bottom: none;
+    margin-block-end: initial;
   }
 
   h1,
@@ -146,7 +145,7 @@ const FooterStyle = styled.footer`
 
     .container {
       padding-block-end: ${themeGet("space.7")}px;
-      padding-block-start: ${themeGet("space.7")}px;
+      padding-block-start: ${themeGet("space.11")}px;
 
       ${mediaQueries.md} {
         display: grid;
@@ -178,6 +177,7 @@ const FooterStyle = styled.footer`
     }
   }
 `
+
 const ContainerStyled = styled.div`
   h2 {
     margin-bottom: 1.25rem;
@@ -221,24 +221,30 @@ export const Footer: React.FC<FooterProps> = (
       </div>
 
       <div className="footer-nav-mobile">
-        <ReactAccessibleAccordion>
-          {data?.allContentstackMenus?.edges
+        <Accordion
+          className="footer-secondary-accordion"
+          items={data?.allContentstackMenus?.edges
             .filter(({ node: menu }) =>
               menu.slot?.startsWith("footer-secondary")
             )
-            .map(({ node: menu }) => (
-              <ReactAccessibleAccordionItem key={menu.id}>
-                <ReactAccessibleAccordionItemHeading>
-                  <ReactAccessibleAccordionItemButton>
-                    {menu.title}
-                  </ReactAccessibleAccordionItemButton>
-                </ReactAccessibleAccordionItemHeading>
-                <ReactAccessibleAccordionItemPanel>
-                  <p>{menu?.title}</p>
-                </ReactAccessibleAccordionItemPanel>
-              </ReactAccessibleAccordionItem>
-            ))}
-        </ReactAccessibleAccordion>
+            .map(({ node: menu }) => ({
+              heading: menu.title,
+              panel: (
+                <ul>
+                  {menu.links?.map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        to={link?.url?.href as string}
+                        title={link?.url?.title as string}
+                      >
+                        {link?.text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ),
+            }))}
+        />
       </div>
 
       <div className="footer-nav-desktop">
@@ -255,7 +261,6 @@ export const Footer: React.FC<FooterProps> = (
                       title={link?.url?.title as string}
                     >
                       {link?.text}
-                      {/* {link?.image && <Img fluid={link?.image?.children?.fluid as FluidObject} />} */}
                     </Link>
                   </li>
                 ))}

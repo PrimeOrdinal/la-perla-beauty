@@ -5,10 +5,27 @@ export const Contentstack_menusFragment = graphql`
     links {
       icon {
         description
-        filename
         id
         title
         url
+      }
+      sub_menus {
+        id
+        links {
+          icon {
+            description
+            id
+            title
+            url
+          }
+          text
+          url {
+            href
+            title
+          }
+        }
+        slot
+        title
       }
       text
       url {

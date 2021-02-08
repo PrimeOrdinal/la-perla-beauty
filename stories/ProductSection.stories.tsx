@@ -22,9 +22,9 @@ Primary.args = {
     "@type": "Product",
     name: "Executive Anvil",
     image: [
-      "https://example.com/photos/1x1/photo.jpg",
-      "https://example.com/photos/4x3/photo.jpg",
-      "https://example.com/photos/16x9/photo.jpg",
+      "https://via.placeholder.com/300x400",
+      "https://via.placeholder.com/300x400",
+      "https://via.placeholder.com/300x400",
     ],
     description:
       "Sleeker than ACME's Classic Anvil, the Executive Anvil is perfect for the business traveler looking for something to drop from a height.",

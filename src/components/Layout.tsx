@@ -71,7 +71,7 @@ export const Layout: React.FC = (
       allContentstackMenus(
         filter: {
           slot: {
-            in: ["footer-secondary-1", "footer-secondary-2", "footer-secondary-3", "footer-tertiary-1", "header-navigation"]
+            in: ["footer-secondary-1", "footer-secondary-2", "footer-secondary-3", "footer-tertiary-1", "header-navigation", "mobile-navigation"]
           }
         }
       ) {

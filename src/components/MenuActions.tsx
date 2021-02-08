@@ -15,6 +15,8 @@ import { ReactComponent as Basket } from "../images/Basket.svg"
 import { ReactComponent as Profile } from "../images/Profile.svg"
 import { ReactComponent as Search } from "../images/Search.svg"
 
+import { mediaQueries } from "../theme"
+
 import { ListPlain } from "./ListPlain"
 
 import {
@@ -25,16 +27,22 @@ import {
 
 export const MenuActionsStyle = styled(ListPlain)`
   display: grid;
-  gap: 1rem;
+  gap: 0.5rem;
   grid-auto-flow: column;
   justify-content: end;
   padding: ${props => props.theme.space[2]}px;
-
+  align-items: center;
   li {
     a {
       svg {
         height: 20px;
         object-fit: contain;
+      }
+      .profile {
+        display: none;
+        ${mediaQueries.md} {
+          display: block;
+        }
       }
     }
   }
@@ -69,7 +77,7 @@ export const MenuActions: React.FC<MenuActionsProps> = ({
     </li>
     <li>
       <Link to={myAccountPath}>
-        <Profile />
+        <Profile className="profile" />
       </Link>
     </li>
     <li>

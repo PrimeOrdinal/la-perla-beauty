@@ -9,9 +9,13 @@ import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 import { ReactComponent as Wishlist } from "../images/Wishlist.svg"
 import { ReactComponent as Plus } from "../images/Plus.svg"
 
-import { availabilitySchemaToHumanReadableText, availabilitySchemaToShortName } from "../utils/schema-org"
+import {
+  availabilitySchemaToHumanReadableText,
+  availabilitySchemaToShortName,
+} from "../utils/schema-org"
 
 import { Tag } from "./Tag"
+import { mediaQueries } from "../theme"
 
 const ProductCardStyled = styled.article`
   align-content: space-between;
@@ -33,11 +37,13 @@ const ProductCardStyled = styled.article`
   .product-category-wrapper {
     align-items: center;
     display: grid;
-    grid-template-columns: 4fr 1fr 1fr;
-
+    grid-auto-flow: column;
+    justify-content: end;
+    gap: 1rem;
     svg {
       cursor: pointer;
       height: ${themeGet("space.4")}px;
+      margin-right: ${themeGet("space.2")}px;
       object-fit: contain;
       justify-self: end;
     }
@@ -53,10 +59,13 @@ const ProductCardStyled = styled.article`
 
   .product-name {
     align-self: end;
-    font-family: "Tiempos";
-    font-size: ${themeGet("fontSizes.5")}px;
+    font-family: "Tiempos Fine";
+    font-size: ${themeGet("fontSizes.heading3Desktop")}px;
     font-weight: bold;
     display: inline-block;
+    ${mediaQueries.sm} {
+      font-size: ${themeGet("fontSizes.5")}px;
+    }
   }
 
   .product-price {
@@ -91,11 +100,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           src="https://via.placeholder.com/282"
         />
       )}
-      {offer?.availability && (<Tag className="availability" availability={availabilitySchemaToShortName(offer?.availability)}>{availabilitySchemaToHumanReadableText(offer?.availability)}</Tag>)}
+      {offer?.availability && (
+        <Tag
+          className="availability"
+          availability={availabilitySchemaToShortName(offer?.availability)}
+        >
+          {availabilitySchemaToHumanReadableText(offer?.availability)}
+        </Tag>
+      )}
       <div className="product-category-wrapper">
-        {product?.category?.url && (<a className="product-category" itemProp="category" href={product?.category?.url as string}>
-          <span itemProp="name">{product?.name}</span>
-        </a>)}
+        {product?.category?.url && (
+          <a
+            className="product-category"
+            itemProp="category"
+            href={product?.category?.url as string}
+          >
+            <span itemProp="name">{product?.name}</span>
+          </a>
+        )}
         {product?.brand?.name && (
           <span className="product-brand" itemProp="brand">
             {product?.brand?.name}
