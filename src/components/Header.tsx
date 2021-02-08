@@ -20,6 +20,7 @@ const HeaderStyled = styled.header`
   background-color: #ffffff;
   border-bottom-style: solid;
   margin-block-end: ${themeGet("space.6")}px;
+  padding-block-start: ${themeGet("space.6")}px;
   position: sticky;
   top: 0;
 

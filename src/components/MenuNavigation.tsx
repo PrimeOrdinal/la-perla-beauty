@@ -62,12 +62,15 @@ const StyledMenuMainExpanded = styled.div`
   grid-template-columns: repeat(4, 1fr);
   padding-block-end: 1rem;
   padding-block-start: 1rem;
+
   ul {
     list-style: none;
     padding: 0;
+
     li {
       text-align: left;
       padding: 0.5rem 0;
+
       a {
         text-decoration: none;
         color: inherit;
