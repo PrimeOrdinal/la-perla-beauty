@@ -9,6 +9,7 @@ import { Link } from "gatsby"
 
 const StyledHamburger = styled.div`
   button {
+    padding-left: 0;
     svg {
       cursor: pointer;
       height: ${themeGet("space.5")}px;
