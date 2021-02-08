@@ -35,11 +35,14 @@ export const MenuActionsStyle = styled(ListPlain)`
   padding: ${themeGet("space.2")}px;
 
   ${mediaQueries.md} {
-    gap: ${themeGet("space.6")}px;
+    gap: ${themeGet("space.4")}px;
   }
 
   li {
     a {
+      align-items: center;
+      display: grid;
+
       svg {
         height: 18px;
         object-fit: contain;
