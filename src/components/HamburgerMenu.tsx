@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import React, { useState } from "react"
 import styled from "styled-components"
 
-import { ReactComponent as Plus } from "../images/Plus.svg"
+import { ReactComponent as Close } from "../images/Close.svg"
 import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
 
 import { mediaQueries } from "../theme"
@@ -46,8 +46,7 @@ const HamburgerMenu = ({ data, ...props }) => {
   return (
     <StyledHamburger>
       <button onClick={() => setToggle(!toggle)}>
-        {toggle && <Plus /> || <Hamburger />
-        }
+        {toggle && <Close /> || <Hamburger />}
         
       </button>
 
