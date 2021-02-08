@@ -40,11 +40,13 @@ const StyledMenuMainHeadings = styled(ListPlain)`
   padding-block-end: 1.25rem;
   padding-block-start: 1.25rem;
   place-content: center;
+
   li {
     text-align: left;
     font-size: ${themeGet("fontSizes.heading3Desktop")}px;
     font-weight: 600;
     letter-spacing: 1px;
+
     a {
       color: inherit;
       text-decoration: none;

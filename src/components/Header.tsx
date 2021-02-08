@@ -6,12 +6,9 @@ import type {
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
-import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
 import { useToggle } from "../hooks/useToggle"
 import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
-import { Accordion } from "./Accordion"
 import { MenuNavigation as MenuNavigation } from "./MenuNavigation"
 import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
@@ -25,6 +22,11 @@ const HeaderStyled = styled.header`
   margin-block-end: ${themeGet("space.6")}px;
   position: sticky;
   top: 0;
+
+  .permanent {
+    position: relative;
+    z-index: 50;
+  }
 `
 
 const ContainerStyled = styled.div`
@@ -34,6 +36,7 @@ const ContainerStyled = styled.div`
   padding-block-start: ${themeGet("space.6")}px;
   align-items: center;
   padding-block-end: ${themeGet("space.6")}px;
+
   ${mediaQueries.md} {
     padding-block-end: unset;
     text-align: center;
@@ -57,13 +60,14 @@ export const Header: React.FC<HeaderProps> = (
   return (
     <HeaderStyled>
       <ContainerStyled className="container">
-        <LogotypeLink gridArea="logo" siteTitle={siteTitle} />
+        <LogotypeLink className="permanent" gridArea="logo" siteTitle={siteTitle} />
         <MenuStore
           display={{ _: "none", md: "flex" }}
           gridArea="menu-primary"
         />
         <HamburgerMenu data={data} />
         <MenuActions
+          className="permanent"
           gridArea="menu-secondary"
           toggleMiniBagVisibility={toggleMiniBagVisibility}
           toggleQuickSearchVisibility={toggleQuickSearchVisibility}

@@ -9,28 +9,37 @@ import { Link } from "gatsby"
 
 const StyledHamburger = styled.div`
   button {
-    padding-left: 0;
+    left: -${themeGet("space.4")}px;
+    position: relative;
+    z-index: 50;
+
     svg {
       cursor: pointer;
       height: ${themeGet("space.5")}px;
       object-fit: contain;
+
       ${mediaQueries.md} {
         display: none;
       }
     }
   }
 
-  div {
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
+  .container {
+    background-color: ${themeGet("colors.white")};
     bottom: 0;
+    height: 100vh;
+    left: 0;
+    overflow-y: auto;
+    padding-top: ${themeGet("space.12")}px;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 `
 
 const HamburgerMenu = ({ data, ...props }) => {
   const [toggle, setToggle] = useState(false)
+
   return (
     <StyledHamburger>
       <button onClick={() => setToggle(!toggle)}>
@@ -38,19 +47,19 @@ const HamburgerMenu = ({ data, ...props }) => {
       </button>
 
       {toggle && (
-        <div>
+        <div className="container">
           {
             <Accordion
               className="hamburger-accordion"
               items={data?.allContentstackMenus?.edges
-                .filter(({ node: menu }) =>
-                  menu.slot?.startsWith("header-navigation")
+                .find(({ node: menu }) =>
+                  menu.slot?.startsWith("mobile-navigation")
                 )
-                .map(({ node: menu }) => ({
-                  heading: menu.title,
+                ?.node?.links.map((panel) => ({
+                  heading: panel.text,
                   panel: (
                     <ul>
-                      {menu.links?.map((link, index) => (
+                      {panel.sub_menus?.[0]?.links?.map((link, index) => (
                         <li key={index}>
                           <Link
                             to={link?.url?.href as string}
