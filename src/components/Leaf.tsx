@@ -13,6 +13,8 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { mediaQueries } from "../theme"
+
 export type LeafProps = ColorProps &
   LayoutProps &
   SpaceProps &
@@ -29,11 +31,18 @@ export const LeafStyled: React.FC<LeafProps> = styled.div`
   font-size: ${themeGet("fontSizes.body")}px;
   grid-auto-flow:row;
   justify-items: start;
-  left: 20vw;
+  left: 30vw;
   padding: ${themeGet("space.10")}px;
   position: relative;
   text-transform: uppercase;
-  width: 20vw;
+  width: 50vw;
+
+  background: ${props => (props.children.img ? "red" : "blue")};
+
+  ${mediaQueries.md} {
+    left: 20vw;
+    width: 20vw;
+  }
 
   a {
     color: inherit;
@@ -41,10 +50,15 @@ export const LeafStyled: React.FC<LeafProps> = styled.div`
   }
 
   img {
-    left: -12.5vw;
+    left: -35vw;
     position: relative;
-    width: 20vw;
+    width: 50vw;
     z-index: 10;
+
+    ${mediaQueries.md} {
+      left: -12.5vw;
+      width: 20vw;
+    }
   }
 
   ${variant({
