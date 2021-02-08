@@ -1,11 +1,14 @@
-import React, { useState } from "react"
-
-import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
-import { mediaQueries } from "../theme"
-import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
-import { Accordion } from "./Accordion"
 import { Link } from "gatsby"
+import React, { useState } from "react"
+import styled from "styled-components"
+
+import { ReactComponent as Plus } from "../images/Plus.svg"
+import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
+
+import { mediaQueries } from "../theme"
+
+import { Accordion } from "./Accordion"
 
 const StyledHamburger = styled.div`
   button {
@@ -43,7 +46,9 @@ const HamburgerMenu = ({ data, ...props }) => {
   return (
     <StyledHamburger>
       <button onClick={() => setToggle(!toggle)}>
-        <Hamburger />
+        {toggle && <Plus /> || <Hamburger />
+        }
+        
       </button>
 
       {toggle && (
