@@ -52,7 +52,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
     font-weight: bold;
     grid-auto-flow: column;
     justify-content: space-between;
-    padding: 18px;
+    padding: 18px 0;
     text-transform: uppercase;
     width: 100%;
   }
@@ -89,7 +89,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__panel {
-    padding: 0 20px;
+    padding: 0;
     animation: fadein 0.35s ease-in;
   }
 
@@ -106,6 +106,9 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   .accordion__panel ul li a {
     color: #363139;
     text-decoration: none;
+  }
+  .accordion__panel ul li:last-child {
+    padding-block-end: 16px;
   }
 
   /* -------------------------------------------------- */
