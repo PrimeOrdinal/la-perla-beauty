@@ -144,7 +144,8 @@ const FooterStyle = styled.footer`
     }
 
     .container {
-      
+      padding-block-end: ${themeGet("space.7")}px;
+      padding-block-start: ${themeGet("space.11")}px;
 
       ${mediaQueries.md} {
         display: grid;
