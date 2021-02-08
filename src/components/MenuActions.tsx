@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
@@ -26,18 +27,25 @@ import {
 } from "../utils/paths"
 
 export const MenuActionsStyle = styled(ListPlain)`
+  align-items: center;
   display: grid;
-  gap: 0.5rem;
+  gap: ${themeGet("space.3")}px;
   grid-auto-flow: column;
   justify-content: end;
-  padding: ${props => props.theme.space[2]}px;
-  align-items: center;
+  padding: ${themeGet("space.2")}px;
+
+  ${mediaQueries.md} {
+    gap: ${themeGet("space.6")}px;
+  }
+
   li {
     a {
       svg {
-        height: 20px;
+        height: 18px;
         object-fit: contain;
+        object-position: center;
       }
+
       .profile {
         display: none;
 
