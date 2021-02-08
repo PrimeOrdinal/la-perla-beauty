@@ -418,208 +418,462 @@ Example.args = {
     allContentstackMenus: {
       edges: [
         {
-          "node": {
-            "icon": null,
-            "links": [
+          node: {
+            icon: null,
+            links: [
               {
-                "text": "New In",
-                "sub_menus": null,
-                "icon": null
+                text: "Our Company",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/our-company/",
+                  title: "Our Company",
+                },
               },
               {
-                "text": "Fragrances",
-                "sub_menus": null,
-                "icon": null
+                text: "Our Commitments",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/our-commitments/",
+                  title: "Our Commitments",
+                },
               },
               {
-                "text": "Makeup",
-                "sub_menus": null,
-                "icon": null
+                text: "Our Stockists",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/our-stockists/",
+                  title: "Our Stockists",
+                },
               },
               {
-                "text": "Body",
-                "sub_menus": null,
-                "icon": null
+                text: "Our Products",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/our-products/",
+                  title: "Our Products",
+                },
               },
               {
-                "text": "Content House",
-                "sub_menus": null,
-                "icon": null
+                text: "Clean Beauty",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/clean-beauty/",
+                  title: "Clean Beauty",
+                },
               },
-              {
-                "text": "La Perla Lingerie",
-                "sub_menus": null,
-                "icon": null
-              },
-              {
-                "text": "About La Perla",
-                "sub_menus": null,
-                "icon": null
-              },
-              {
-                "text": "Contact Us",
-                "sub_menus": null,
-                "icon": null
-              }
             ],
-            "slot": "header-navigation",
-            "title": "Header Navigation"
-          }
+            slot: "footer-secondary-1",
+            title: "About Us",
+          },
         },
         {
           node: {
-            id: "6ac7fbe6-173f-5014-9c7c-d0fee6a77241",
-            title: "Follow Us",
-            slot: "footer-tertiary-1",
+            icon: null,
+            links: [
+              {
+                text: "My Account",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/my-account/",
+                  title: "My Account",
+                },
+              },
+              {
+                text: "Delivery & Returns",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/delivery-and-returns/",
+                  title: "Delivery & Returns",
+                },
+              },
+              {
+                text: "Terms & Conditions",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/terms-and-conditions/",
+                  title: "Terms & Conditions",
+                },
+              },
+              {
+                text: "Privacy Policy",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/privacy-policy/",
+                  title: "Privacy Policy",
+                },
+              },
+              {
+                text: "Data Protection",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/data-protection/",
+                  title: "Data Protection",
+                },
+              },
+            ],
+            slot: "footer-secondary-2",
+            title: "Delivery & Returns",
+          },
+        },
+        {
+          node: {
+            icon: null,
+            links: [
+              {
+                text: "Work With Us",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/work-with-us/",
+                  title: "Work With Us",
+                },
+              },
+              {
+                text: "Store Locator/Stockists",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "store-locator-stockists",
+                  title: "Store Locator/Stockists",
+                },
+              },
+              {
+                text: "FAQs",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/faqs/",
+                  title: "FAQs",
+                },
+              },
+              {
+                text: "Contact Us",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/contact-us/",
+                  title: "Contact Us",
+                },
+              },
+            ],
+            slot: "footer-secondary-3",
+            title: "Information & Help",
+          },
+        },
+        {
+          node: {
+            icon: null,
+            links: [
+              {
+                text: "New In",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/new-in/",
+                  title: "New In",
+                },
+              },
+              {
+                text: "Fragrances",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/fragrances/",
+                  title: "Fragrances",
+                },
+              },
+              {
+                text: "Makeup",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/makeup/",
+                  title: "Makeup",
+                },
+              },
+              {
+                text: "Body",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/body/",
+                  title: "Body",
+                },
+              },
+              {
+                text: "Content House",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/content-house/",
+                  title: "Content House",
+                },
+              },
+              {
+                text: "La Perla Lingerie",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "https://laperla.com",
+                  title: "La Perla Lingerie",
+                },
+              },
+              {
+                text: "About La Perla",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/about/",
+                  title: "About La Perla",
+                },
+              },
+              {
+                text: "Contact Us",
+                sub_menus: null,
+                icon: null,
+                url: {
+                  href: "/contact-us/",
+                  title: "Contact Us",
+                },
+              },
+            ],
+            slot: "header-navigation",
+            title: "Header Navigation",
+          },
+        },
+        {
+          node: {
+            icon: {
+              description: "",
+              title: "facebook.svg",
+              url:
+                "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blt120936cf45aa5baf/601013432206ca0c0330f7c4/facebook.svg",
+            },
             links: [
               {
                 text: "",
+                sub_menus: null,
+                icon: {
+                  description: "",
+                  title: "youtube.svg",
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blta5b46ebe32db0638/601012b833e08b0bf863165e/youtube.svg",
+                },
                 url: {
                   href:
                     "https://www.youtube.com/channel/EJo0TYlRfn6rYQUCAxW1XT0i",
                   title: "Follow us on YouTube",
                 },
-                icon: null,
               },
               {
                 text: "",
+                sub_menus: null,
+                icon: {
+                  description: "",
+                  title: "instagram.svg",
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blt26448e2036f3e297/6010131a2206ca0c0330f7c2/instagram.svg",
+                },
                 url: {
                   href: "https://www.instagram.com/BeautyByLaPerla/",
                   title: "Follow us on Instagram",
                 },
-                icon: null,
               },
               {
                 text: "",
+                sub_menus: null,
+                icon: {
+                  description: "",
+                  title: "facebook.svg",
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blt120936cf45aa5baf/601013432206ca0c0330f7c4/facebook.svg",
+                },
                 url: {
                   href: "https://www.facebook.com/BeautyByLaPerla/",
                   title: "Follow us on Facebook",
                 },
-                icon: null,
               },
               {
                 text: "",
+                sub_menus: null,
+                icon: {
+                  description: "",
+                  title: "twitter.svg",
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blt906eec211b8f861c/6010132b3a3dc60c74cd7232/twitter.svg",
+                },
                 url: {
                   href: "https://twitter.com/BeautyByLaPerla",
                   title: "Follow us on Twitter",
                 },
-                icon: null,
               },
               {
                 text: "",
+                sub_menus: null,
+                icon: {
+                  description: null,
+                  title: "pinterest.svg",
+                  url:
+                    "https://eu-images.contentstack.com/v3/assets/blt2bb45aeece463821/blta0e9c4ee012dba84/601a9186bd5bd00dbe111759/pinterest.svg",
+                },
                 url: {
                   href: "https://www.pinterest.com/laperla/",
                   title: "Follow us on Pinterest",
                 },
-                icon: null,
               },
             ],
+            slot: "footer-tertiary-1",
+            title: "Follow Us",
           },
         },
         {
           node: {
-            id: "ae387fe1-21f0-5681-8cbc-f6713e550ef8",
-            title: "About Us",
-            slot: "footer-secondary-1",
+            icon: null,
             links: [
               {
-                text: "Our Company",
-                url: { href: "/our-company/", title: "Our Company" },
+                text: "Item 1",
+                sub_menus: null,
                 icon: null,
+                url: {
+                  href: "/fragrances/item-1/",
+                  title: "",
+                },
               },
               {
-                text: "Our Commitments",
-                url: { href: "/our-commitments/", title: "Our Commitments" },
+                text: "Item 2",
+                sub_menus: null,
                 icon: null,
-              },
-              {
-                text: "Our Stockists",
-                url: { href: "/our-stockists/", title: "Our Stockists" },
-                icon: null,
-              },
-              {
-                text: "Our Products",
-                url: { href: "/our-products/", title: "Our Products" },
-                icon: null,
-              },
-              {
-                text: "Clean Beauty",
-                url: { href: "/clean-beauty/", title: "Clean Beauty" },
-                icon: null,
+                url: {
+                  href: "/fragrances/item-2/",
+                  title: "",
+                },
               },
             ],
+            slot: "",
+            title: "Fragrances",
           },
         },
         {
           node: {
-            id: "87287b53-1ea7-55c3-89cb-f5454f4a52d2",
-            title: "Information & Help",
-            slot: "footer-secondary-3",
+            icon: null,
             links: [
               {
-                text: "Work With Us",
-                url: { href: "/work-with-us/", title: "Work With Us" },
+                text: "Makeup",
+                sub_menus: [],
                 icon: null,
-              },
-              {
-                text: "Store Locator/Stockists",
                 url: {
-                  href: "store-locator-stockists",
-                  title: "Store Locator/Stockists",
+                  href: "/makeup-1/",
+                  title: "Makeup 1",
                 },
-                icon: null,
               },
               {
-                text: "FAQs",
-                url: { href: "/faqs/", title: "FAQs" },
+                text: "Makeup 2",
+                sub_menus: [],
                 icon: null,
-              },
-              {
-                text: "Contact Us",
-                url: { href: "/contact-us/", title: "Contact Us" },
-                icon: null,
+                url: {
+                  href: "/makeup-2/",
+                  title: "Makeup 2",
+                },
               },
             ],
+            slot: "",
+            title: "Makeup",
           },
         },
         {
           node: {
-            id: "17a629c0-6e77-5e6f-bd03-6126c4c5a3c1",
-            title: "Delivery & Returns",
-            slot: "footer-secondary-2",
+            icon: null,
             links: [
               {
-                text: "My Account",
-                url: { href: "/my-account/", title: "My Account" },
+                text: "New In",
+                sub_menus: [],
                 icon: null,
-              },
-              {
-                text: "Delivery & Returns",
                 url: {
-                  href: "/delivery-and-returns/",
-                  title: "Delivery & Returns",
+                  href: "/new-in/",
+                  title: "New In",
                 },
-                icon: null,
               },
               {
-                text: "Terms & Conditions",
+                text: "Fragrances",
+                sub_menus: [
+                  {
+                    title: "Fragrances",
+                    links: [
+                      {
+                        text: "Item 1",
+                        url: {
+                          href: "/fragrances/item-1/",
+                          title: "",
+                        },
+                      },
+                      {
+                        text: "Item 2",
+                        url: {
+                          href: "/fragrances/item-2/",
+                          title: "",
+                        },
+                      },
+                    ],
+                    slot: "",
+                  },
+                ],
+                icon: null,
                 url: {
-                  href: "/terms-and-conditions/",
-                  title: "Terms & Conditions",
+                  href: "/fragrances/",
+                  title: "Fragrances",
                 },
-                icon: null,
               },
               {
-                text: "Privacy Policy",
-                url: { href: "/privacy-policy/", title: "Privacy Policy" },
+                text: "Makeup",
+                sub_menus: [
+                  {
+                    title: "Makeup",
+                    links: [
+                      {
+                        text: "Makeup",
+                        url: {
+                          href: "/makeup-1/",
+                          title: "Makeup 1",
+                        },
+                      },
+                      {
+                        text: "Makeup 2",
+                        url: {
+                          href: "/makeup-2/",
+                          title: "Makeup 2",
+                        },
+                      },
+                    ],
+                    slot: "",
+                  },
+                ],
                 icon: null,
-              },
-              {
-                text: "Data Protection",
-                url: { href: "/data-protection/", title: "Data Protection" },
-                icon: null,
+                url: {
+                  href: "/makeup/",
+                  title: "Makeup",
+                },
               },
             ],
+            slot: "mobile-navigation",
+            title: "Mobile Navigation",
+          },
+        },
+        {
+          node: {
+            icon: null,
+            links: [],
+            slot: null,
+            title: "Footer Navigation",
           },
         },
       ],
