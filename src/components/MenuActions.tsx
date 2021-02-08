@@ -40,6 +40,7 @@ export const MenuActionsStyle = styled(ListPlain)`
       }
       .profile {
         display: none;
+
         ${mediaQueries.md} {
           display: block;
         }

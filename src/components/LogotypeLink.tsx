@@ -13,6 +13,8 @@ import {
 
 import { ReactComponent as Logotype } from "../images/Logotype.svg"
 
+import { mediaQueries } from "../theme"
+
 import { home as homePath } from "../utils/paths"
 
 const LogotypeLinkStyle = styled(Link)`
@@ -22,8 +24,12 @@ const LogotypeLinkStyle = styled(Link)`
 `
 
 const LogotypeStyle = styled(Logotype)`
-  height: 29px;
+  height: 20px;
   width: auto;
+
+  ${mediaQueries.md} {
+    height: 30px;
+  }
 `
 
 export type LogotypeLinkProps = GridProps &

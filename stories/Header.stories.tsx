@@ -418,10 +418,59 @@ Example.args = {
     allContentstackMenus: {
       edges: [
         {
+          "node": {
+            "icon": null,
+            "links": [
+              {
+                "text": "New In",
+                "sub_menus": null,
+                "icon": null
+              },
+              {
+                "text": "Fragrances",
+                "sub_menus": null,
+                "icon": null
+              },
+              {
+                "text": "Makeup",
+                "sub_menus": null,
+                "icon": null
+              },
+              {
+                "text": "Body",
+                "sub_menus": null,
+                "icon": null
+              },
+              {
+                "text": "Content House",
+                "sub_menus": null,
+                "icon": null
+              },
+              {
+                "text": "La Perla Lingerie",
+                "sub_menus": null,
+                "icon": null
+              },
+              {
+                "text": "About La Perla",
+                "sub_menus": null,
+                "icon": null
+              },
+              {
+                "text": "Contact Us",
+                "sub_menus": null,
+                "icon": null
+              }
+            ],
+            "slot": "header-navigation",
+            "title": "Header Navigation"
+          }
+        },
+        {
           node: {
             id: "6ac7fbe6-173f-5014-9c7c-d0fee6a77241",
             title: "Follow Us",
-            slot: "tertiary-1",
+            slot: "footer-tertiary-1",
             links: [
               {
                 text: "",
@@ -471,7 +520,7 @@ Example.args = {
           node: {
             id: "ae387fe1-21f0-5681-8cbc-f6713e550ef8",
             title: "About Us",
-            slot: "secondary-1",
+            slot: "footer-secondary-1",
             links: [
               {
                 text: "Our Company",
@@ -505,7 +554,7 @@ Example.args = {
           node: {
             id: "87287b53-1ea7-55c3-89cb-f5454f4a52d2",
             title: "Information & Help",
-            slot: "secondary-3",
+            slot: "footer-secondary-3",
             links: [
               {
                 text: "Work With Us",
@@ -537,7 +586,7 @@ Example.args = {
           node: {
             id: "17a629c0-6e77-5e6f-bd03-6126c4c5a3c1",
             title: "Delivery & Returns",
-            slot: "secondary-2",
+            slot: "footer-secondary-2",
             links: [
               {
                 text: "My Account",
