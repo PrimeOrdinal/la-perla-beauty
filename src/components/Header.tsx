@@ -30,15 +30,12 @@ const HeaderStyled = styled.header`
 `
 
 const ContainerStyled = styled.div`
+  align-items: center;
   display: grid;
   grid-template-areas: "menu-primary logo menu-secondary" "menu-navigation menu-navigation menu-navigation" "quick-search quick-search quick-search";
   grid-template-columns: 1fr 2fr 1fr;
-  padding-block-start: ${themeGet("space.6")}px;
-  align-items: center;
-  padding-block-end: ${themeGet("space.6")}px;
 
   ${mediaQueries.md} {
-    padding-block-end: unset;
     text-align: center;
   }
 `

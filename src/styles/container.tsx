@@ -7,8 +7,8 @@ export const container = `
         margin-inline-end: auto;
         margin-inline-start: auto;
         max-width: 36rem;
-        padding-right: var(--app-gutter-x, .75rem);
-        padding-left: var(--app-gutter-x, .75rem);
+        padding-inline-end: var(--app-gutter-x, .75rem);
+        padding-inline-start: var(--app-gutter-x, .75rem);
 
         ${mediaQueries.sm} {
             --app-gutter-x: 2rem;
