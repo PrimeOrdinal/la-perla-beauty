@@ -1,5 +1,5 @@
 import React from "react"
-import { mediaQueries, theme } from "../theme"
+import { mediaQueries } from "../theme"
 import styled from "styled-components"
 
 const ContainerStyled = styled.div`

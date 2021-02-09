@@ -40,7 +40,7 @@ const StyledHamburger = styled.div`
   }
 `
 
-const HamburgerMenu = ({ data, ...props }) => {
+const HamburgerMenu = ({ data }) => {
   const [toggle, setToggle] = useState(false)
 
   return (

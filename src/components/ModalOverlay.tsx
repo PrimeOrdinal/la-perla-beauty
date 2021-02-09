@@ -7,7 +7,6 @@ import DownArrow, {
   ReactComponent as DownArrowComponent,
 } from "../images/DownArrow.svg"
 import { ReactComponent as Close } from "../images/Close.svg"
-import { fontSizes } from "src/theme"
 
 const ModalOverlayStyle = {
   content: {
