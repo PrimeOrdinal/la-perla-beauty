@@ -233,12 +233,21 @@ export const Footer: React.FC<FooterProps> = (
                 <ul>
                   {menu.links?.map((link, index) => (
                     <li key={index}>
-                      <Link
-                        to={link?.url?.href as string}
-                        title={link?.url?.title as string}
-                      >
-                        {link?.text}
-                      </Link>
+                      {link?.url?.href?.startsWith("http") ? (
+                        <a
+                          href={link?.url?.href as string}
+                          title={link?.url?.title as string}
+                        >
+                          {link?.text}
+                        </a>
+                      ) : (
+                        <Link
+                          to={link?.url?.href as string}
+                          title={link?.url?.title as string}
+                        >
+                          {link?.text}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
