@@ -63,6 +63,7 @@ InStock.args = {
       priceValidUntil: "2020-11-20",
       url: "https://example.com/anvil",
     },
+    url: "https://example.com/anvil"
   } as Product,
   width: { _: 1, sm: 1/2, md: 1/2, lg: 1/6 },
 }

@@ -13,6 +13,13 @@ export const BigCommerceProductsFragment = graphql`
     gtin
     height
     id
+    images {
+      description
+      id
+      is_thumbnail
+      sort_order
+      url_standard
+    }
     inventory_level
     inventory_warning_level
     is_featured

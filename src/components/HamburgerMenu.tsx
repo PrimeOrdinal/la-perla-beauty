@@ -1,11 +1,14 @@
-import React, { useState } from "react"
-
-import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
-import { mediaQueries } from "../theme"
-import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
-import { Accordion } from "./Accordion"
 import { Link } from "gatsby"
+import React, { useState } from "react"
+import styled from "styled-components"
+
+import { ReactComponent as Close } from "../images/Close.svg"
+import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
+
+import { mediaQueries } from "../theme"
+
+import { Accordion } from "./Accordion"
 
 const StyledHamburger = styled.div`
   button {
@@ -37,13 +40,14 @@ const StyledHamburger = styled.div`
   }
 `
 
-const HamburgerMenu = ({ data, ...props }) => {
+const HamburgerMenu = ({ data }) => {
   const [toggle, setToggle] = useState(false)
 
   return (
     <StyledHamburger>
       <button onClick={() => setToggle(!toggle)}>
-        <Hamburger />
+        {toggle && <Close /> || <Hamburger />}
+        
       </button>
 
       {toggle && (

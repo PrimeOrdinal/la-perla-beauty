@@ -144,7 +144,8 @@ const FooterStyle = styled.footer`
     }
 
     .container {
-      
+      padding-block-end: ${themeGet("space.7")}px;
+      padding-block-start: ${themeGet("space.11")}px;
 
       ${mediaQueries.md} {
         display: grid;
@@ -229,15 +230,24 @@ export const Footer: React.FC<FooterProps> = (
             .map(({ node: menu }) => ({
               heading: menu.title,
               panel: (
-                <ul>
+                <ul key={menu.id}>
                   {menu.links?.map((link, index) => (
                     <li key={index}>
-                      <Link
-                        to={link?.url?.href as string}
-                        title={link?.url?.title as string}
-                      >
-                        {link?.text}
-                      </Link>
+                      {link?.url?.href?.startsWith("http") ? (
+                        <a
+                          href={link?.url?.href as string}
+                          title={link?.url?.title as string}
+                        >
+                          {link?.text}
+                        </a>
+                      ) : (
+                        <Link
+                          to={link?.url?.href as string}
+                          title={link?.url?.title as string}
+                        >
+                          {link?.text}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -250,9 +260,9 @@ export const Footer: React.FC<FooterProps> = (
         {data?.allContentstackMenus?.edges
           .filter(({ node: menu }) => menu.slot?.startsWith("footer-secondary"))
           .map(({ node: menu }) => (
-            <section>
+            <section key={menu.id}>
               <h3>{menu.title}</h3>
-              <ul id={menu.slot as string} key={menu.id}>
+              <ul id={menu.slot as string}>
                 {menu?.links?.map((link, index) => (
                   <li key={index}>
                     <Link
@@ -276,7 +286,7 @@ export const Footer: React.FC<FooterProps> = (
               menu.slot?.startsWith("footer-tertiary")
             )
             .map(({ node: menu }) => (
-              <section>
+              <section key={menu.id}>
                 <h3>{menu.title}</h3>
                 <SocialLinkListStyled id={menu.slot as string} key={menu.id}>
                   {menu?.links?.map((link, index) => (

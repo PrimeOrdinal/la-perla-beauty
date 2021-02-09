@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>E702667C-711E-4A48-A1C8-7CEECA5A9DDD</title>
-    <g id="02.PLP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="D_01_PLP_02_Fragrances_Pink-Tag" transform="translate(-1335.000000, -114.000000)">
-            <g id="Desktop-Menu/-Closed" transform="translate(0.000000, 84.000000)">
-                <g id="Icons" transform="translate(1249.000000, 30.000000)">
-                    <g id="Basket" transform="translate(86.000000, 0.000000)">
-                        <path d="M9,0.5 C10.0704398,0.5 11.0426853,0.920459143 11.7605474,1.60527356 C12.5815692,2.38849864 13.0700692,3.51743275 12.9918053,4.7586575 L12.9918053,4.7586575 L16.9874495,5.00015386 L17.5,17 L1,17.5 L0.5,5.5 L5.0303698,5 C4.87274493,3.6994755 5.33989023,2.50325552 6.17157288,1.67157288 C6.8954305,0.94771525 7.8954305,0.5 9,0.5 Z" id="Oval-2" stroke="#363139"></path>
-                        <rect id="Rectangle" fill="#363139" x="1" y="4.5" width="16" height="1"></rect>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <g id="_02.PLP" serif:id="02.PLP">
+        <g id="D_01_PLP_02_Fragrances_Pink-Tag">
+            <g id="Desktop-Menu--Closed" serif:id="Desktop-Menu/-Closed">
+                <g id="Icons">
+                    <g id="Basket">
+                        <path id="Oval-2" d="M9,0.5C10.07,0.5 11.043,0.92 11.761,1.605C12.582,2.388 13.095,3.759 13.017,5L17.518,5L17.5,17.492L0.458,17.545L0.52,5L5.03,5C4.873,3.699 5.34,2.503 6.172,1.672C6.895,0.948 7.895,0.5 9,0.5Z" style="fill:none;stroke:rgb(54,49,57);stroke-width:1px;"/>
+                        <rect id="Rectangle" x="1" y="4.5" width="16" height="1" style="fill:rgb(54,49,57);"/>
                     </g>
                 </g>
             </g>
