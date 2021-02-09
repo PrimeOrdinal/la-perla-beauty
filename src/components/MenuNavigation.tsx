@@ -37,8 +37,7 @@ const StyledMenuMainHeadings = styled(ListPlain)`
   display: grid;
   gap: ${themeGet("space.7")}px;
   grid-auto-flow: column;
-  padding-block-end: 1.25rem;
-  padding-block-start: 1.25rem;
+  padding-block-start: ${themeGet("space.7")}px;
   place-content: center;
 
   li {

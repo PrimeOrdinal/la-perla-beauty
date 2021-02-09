@@ -35,7 +35,7 @@ export const MenuActionsStyle = styled(ListPlain)`
   padding: ${themeGet("space.2")}px;
 
   ${mediaQueries.md} {
-    gap: ${themeGet("space.5")}px;
+    gap: ${themeGet("space.7")}px;
   }
 
   li {
