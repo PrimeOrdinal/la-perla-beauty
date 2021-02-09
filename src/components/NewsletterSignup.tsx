@@ -1,4 +1,3 @@
-import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 import { mediaQueries } from "../theme"
@@ -8,35 +7,10 @@ const StyledNewsletter = styled.div`
   ${mediaQueries.md} {
     justify-content: end;
   }
-
-  form {
-    display: grid;
-    gap: ${themeGet("space.4")}px;
-    grid-auto-flow: column;
-
+  label {
+    display: none;
     ${mediaQueries.md} {
-      align-items: center;
-      gap: ${themeGet("space.6")}px;
-      grid-auto-flow: column;
-      grid-template-columns: unset;
-      justify-content: end;
-    }
-
-    label {
-      display: none;
-
-      ${mediaQueries.md} {
-        display: block;
-        font-size: ${themeGet("fontSizes.1")}px;
-        text-transform: uppercase;
-        margin-right: ${themeGet("space.5")}px;
-      }
-    }
-
-    input {
-      ${mediaQueries.md} {
-        min-width: 14rem;
-      }
+      display: block;
     }
   }
 `
@@ -52,7 +26,9 @@ export const NewsletterSignup: React.FC = () => {
           placeholder="Enter your email address"
           type="email"
         />
-        <Button variant="secondary">Sign up</Button>
+        <Button variant="secondary" py={4} px={9}>
+          Sign up
+        </Button>
       </form>
     </StyledNewsletter>
   )

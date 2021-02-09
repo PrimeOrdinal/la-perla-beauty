@@ -85,12 +85,22 @@ const FooterStyle = styled.footer`
 
   .footer-newsletter {
     padding-bottom: 1rem;
-
     ${mediaQueries.md} {
       align-items: center;
       display: grid;
       grid-template-columns: 1fr 4fr;
       padding-bottom: 2.25rem;
+    }
+    span {
+      display: none;
+      ${mediaQueries.md} {
+        display: block;
+        font-family: "Tiempos";
+        font-weight: 300;
+        font-size: ${themeGet("fontSizes.6")}px;
+        letter-spacing: 0.5px;
+        text-transform: capitalize;
+      }
     }
   }
 
@@ -216,7 +226,8 @@ export const Footer: React.FC<FooterProps> = (
       <h2>Newsletter</h2>
 
       <div className="footer-newsletter">
-        <LogotypeStyle />
+        {/* <LogotypeStyle /> */}
+        <span>La Perla Beauty</span>
         <NewsletterSignup />
       </div>
 
