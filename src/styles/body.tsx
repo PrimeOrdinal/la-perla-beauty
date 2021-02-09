@@ -2,14 +2,14 @@ import { mediaQueries, theme } from "../theme"
 
 export const body = `
     body {
-        --font-size-body: 13px;
+        --font-size-body: ${theme.fontSizes.bodyMobile}px;
 
         color: ${theme.colors.text};
         font-size: var(--font-size-body, 13px);
         margin: 0;
     
         ${mediaQueries.sm} {
-            --font-size-body: 14px;
+            --font-size-body: ${theme.fontSizes.bodyDesktop}px;
         }
     
         /*

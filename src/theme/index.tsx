@@ -9,7 +9,8 @@ type BreakpointsProp = Array<string> & {
 
 type FontSizesProp = Array<number> & {
   small?: number
-  body?: number
+  bodyDesktop?: number
+  bodyMobile?: number
   heading1Desktop?: number
   heading2Desktop?: number
   heading3Desktop?: number
@@ -31,7 +32,8 @@ breakpoints.xl = breakpoints[3]
 export const fontSizes: FontSizesProp = [11, 12, 13, 14, 16, 18, 24, 32]
 
 fontSizes.small = fontSizes[0]
-fontSizes.body = fontSizes[1]
+fontSizes.bodyDesktop = fontSizes[3]
+fontSizes.bodyMobile = fontSizes[2]
 fontSizes.heading4Desktop = fontSizes[2]
 fontSizes.heading3Desktop = fontSizes[3]
 fontSizes.heading2Desktop = fontSizes[4]
