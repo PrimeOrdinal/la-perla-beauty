@@ -2,6 +2,7 @@ import type { Offer, Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
 import getSymbolFromCurrency from "currency-symbol-map"
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
@@ -86,6 +87,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const offer = product?.offers as Offer
 
+  const thumbnail = product?.images?.find(({ representativeOfPage }) => representativeOfPage === true)
+
+  const image = thumbnail ? (
+    <img
+      alt={product?.name as string}
+      itemProp="image"
+      src={thumbnail?.contentUrl}
+    />
+  ) : undefined
+
   return (
     <ProductCardStyled
       itemScope
@@ -93,13 +104,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       data-id={product?.["@id"]}
       {...props}
     >
-      {showImage && (
-        <img
-          alt={product?.name as string}
-          itemProp="image"
-          src="https://via.placeholder.com/282"
-        />
-      )}
+      {(showImage && (product?.url && (
+        <Link to={product?.url as string} title={product?.title as string}>
+          {image}
+        </Link>
+      ))) ||
+        image}
       {offer?.availability && (
         <Tag
           className="availability"
@@ -110,13 +120,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       )}
       <div className="product-category-wrapper">
         {product?.category?.url && (
-          <a
+          <Link
             className="product-category"
             itemProp="category"
-            href={product?.category?.url as string}
+            title={product?.category}
+            to={product?.category as string}
           >
-            <span itemProp="name">{product?.name}</span>
-          </a>
+            <span itemProp="name">{product?.category}</span>
+          </Link>
         )}
         {product?.brand?.name && (
           <span className="product-brand" itemProp="brand">

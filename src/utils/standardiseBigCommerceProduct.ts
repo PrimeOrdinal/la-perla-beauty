@@ -5,25 +5,27 @@ import { Product, WithContext } from "schema-dts"
 
 export function standardiseBigCommerceProduct(
   product: BigCommerceProducts
-): Product {
+): WithContext<Product> {
   const data: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product?.name as string | undefined,
     description: product?.description as string | undefined,
+    images: product?.images?.sort((a, b) => a?.sort_order - b?.sort_order)
+    .map((image) => ({
+      caption: image?.description,
+      contentUrl: image?.url_standard,
+      identifier: image?.id,
+      representativeOfPage: image?.is_thumbnail,
+    })),
     offers: {
       "@type": "Offer",
       // availability: product?.availability,
       // price: product?.offer?.price ? product?.offer?.price : 0,
       // priceCurrency: product?.offer?.priceCurrency,
     },
-  }
-
-  data.url = product?.custom_url?.url ? product?.custom_url?.url : undefined
-
-  // if (product?.images?.length) {
-  //   data.image = product?.images.map(image => image)
-  // }
+    url: product?.custom_url?.url as string | undefined
+  } as WithContext<Product>
 
   return data
 }
