@@ -11,7 +11,7 @@ import { mediaQueries } from "../theme"
 const StyledButton = styled.button`
   align-items: center;
   display: grid;
-  font-size: ${themeGet("fontSizes.body")}px;
+  font-size: var(--font-size-body, 13px);
   gap: 1rem;
   grid-auto-flow: column;
   padding: ${themeGet("space.4")}px ${themeGet("space.4")}px;

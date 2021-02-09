@@ -28,7 +28,7 @@ export const LeafStyled: React.FC<LeafProps> = styled.div`
   border-radius: 100px 0px;
   color: ${themeGet("colors.black")};
   display: grid;
-  font-size: ${themeGet("fontSizes.body")}px;
+  font-size: var(--font-size-body, 13px);
   grid-auto-flow:row;
   justify-items: start;
   left: 30vw;

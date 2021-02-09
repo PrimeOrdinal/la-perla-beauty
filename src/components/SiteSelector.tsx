@@ -6,7 +6,7 @@ import styled from "styled-components"
 const AnchorStyled = styled.a`
   background-color: ${props => (props.href ? "white" : "grey")};
   color: ${props => (props.href ? "grey" : "white")};
-  font-size: ${themeGet("fontSizes.body")}px;
+  font-size: var(--font-size-body, 13px);
   padding: ${themeGet("space.6")}px ${themeGet("space.9")}px;
   text-decoration: none;
   text-transform: uppercase;

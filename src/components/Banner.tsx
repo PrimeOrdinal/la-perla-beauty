@@ -26,7 +26,7 @@ export const BannerStyled: React.FC<BannerProps> = styled.div`
   background-color: ${themeGet("colors.lilac")};
   color: ${themeGet("colors.black")};
   display: grid;
-  font-size: ${themeGet("fontSizes.body")}px;
+  font-size: var(--font-size-body, 13px);
   text-align: center;
   grid-auto-flow: column;
   padding: ${themeGet("space.6")}px;
