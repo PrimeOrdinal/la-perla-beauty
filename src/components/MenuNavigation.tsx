@@ -99,12 +99,21 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
           <StyledMenuMainHeadings id={menu.slot as string} key={menu.id}>
             {menu?.links?.map((link, index) => (
               <li key={index}>
-                <Link
-                  to={link?.url?.href as string}
-                  title={link?.url?.title as string}
-                >
-                  {link?.text}
-                </Link>
+                {link?.url?.href?.startsWith("http") ? (
+                  <a
+                    href={link?.url?.href as string}
+                    title={link?.url?.title as string}
+                  >
+                    {link?.text}
+                  </a>
+                ) : (
+                  <Link
+                    to={link?.url?.href as string}
+                    title={link?.url?.title as string}
+                  >
+                    {link?.text}
+                  </Link>
+                )}
               </li>
             ))}
           </StyledMenuMainHeadings>
@@ -114,12 +123,21 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
           <ul id={menu.slot as string} key={menu.id}>
             {menu?.links?.map((link, index) => (
               <li key={index}>
-                <Link
-                  to={link?.url?.href as string}
-                  title={link?.url?.title as string}
-                >
-                  {link?.text}
-                </Link>
+                {link?.url?.href?.startsWith("http") ? (
+                  <a
+                    href={link?.url?.href as string}
+                    title={link?.url?.title as string}
+                  >
+                    {link?.text}
+                  </a>
+                ) : (
+                  <Link
+                    to={link?.url?.href as string}
+                    title={link?.url?.title as string}
+                  >
+                    {link?.text}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
