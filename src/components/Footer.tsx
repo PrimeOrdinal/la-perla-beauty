@@ -121,6 +121,7 @@ const FooterStyle = styled.footer`
         font-family: ${themeGet("fontFamily", "Quicksand")};
         font-size: ${themeGet("fontSizes.heading3Desktop")}px;
         padding-block-end: ${themeGet("space.8")}px;
+        font-weight: bold;
       }
 
       ul {
@@ -181,6 +182,7 @@ const FooterStyle = styled.footer`
         ${mediaQueries.md} {
           display: block;
           font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+          font-weight: bold;
         }
       }
       ul {
