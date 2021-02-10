@@ -3,7 +3,7 @@ import { mediaQueries, theme } from "../theme"
 export const form = `
 form {
     display: grid;
-    gap: ${theme.space[4]}px;
+    column-gap: ${theme.space[4]}px;
     grid-template-columns: 2fr 1fr;
 
     ${mediaQueries.md} {
