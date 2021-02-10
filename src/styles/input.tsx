@@ -3,7 +3,7 @@ import { theme } from "../theme"
 export const input = `
     input {
         border-color: ${theme.border.color};
-        border-radius: ${theme.radii[2]}px;
+        border-radius: ${theme.radii[3]}px;
         border-style: solid;
         border-width: ${theme.border.width};
         font-family: "Quicksand";

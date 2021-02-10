@@ -5,7 +5,7 @@ export const button = `
         align-items: center;
         appearance: unset;
         background: unset;
-        border-radius: ${theme.radii[2]}px;
+        border-radius: ${theme.radii[3]}px;
         border: unset;
         cursor: pointer;
         display: flex;
