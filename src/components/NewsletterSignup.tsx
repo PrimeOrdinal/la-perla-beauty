@@ -26,7 +26,7 @@ export const NewsletterSignup: React.FC = () => {
           placeholder="Enter your email address"
           type="email"
         />
-        <Button variant="secondary" py={4} px={9}>
+        <Button variant="secondary" py={{ md: 4 }} px={{ md: 9 }}>
           Sign up
         </Button>
         <div>
