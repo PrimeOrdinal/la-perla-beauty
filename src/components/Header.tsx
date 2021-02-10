@@ -20,10 +20,12 @@ const HeaderStyled = styled.header`
   background-color: #ffffff;
   border-bottom-style: solid;
   margin-block-end: ${themeGet("space.6")}px;
-  padding-block-start: ${themeGet("space.6")}px;
+  padding-block-start: ${themeGet("space.3")}px;
   position: sticky;
   top: 0;
-
+  ${mediaQueries.md} {
+    padding-block-start: ${themeGet("space.8")}px;
+  }
   .permanent {
     position: relative;
     z-index: 50;
@@ -58,7 +60,11 @@ export const Header: React.FC<HeaderProps> = (
   return (
     <HeaderStyled>
       <ContainerStyled className="container">
-        <LogotypeLink className="permanent" gridArea="logo" siteTitle={siteTitle} />
+        <LogotypeLink
+          className="permanent"
+          gridArea="logo"
+          siteTitle={siteTitle}
+        />
         <MenuStore
           display={{ _: "none", md: "flex" }}
           gridArea="menu-primary"

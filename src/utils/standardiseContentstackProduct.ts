@@ -1,6 +1,6 @@
-import type { Contentstack_Products } from "../../graphql-types"
+import type { Product, WithContext } from "schema-dts"
 
-import { Product, WithContext } from "schema-dts"
+import type { Contentstack_Products } from "../../graphql-types"
 
 export function standardiseContentstackProduct(
   product: Pick<

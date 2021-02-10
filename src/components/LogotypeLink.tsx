@@ -30,6 +30,8 @@ const LogotypeStyle = styled(Logotype)`
   ${mediaQueries.md} {
     height: 30px;
   }
+
+  ${compose(grid, layout, space)}
 `
 
 export type LogotypeLinkProps = GridProps &
@@ -47,6 +49,6 @@ export const LogotypeLink: React.FC<LogotypeLinkProps> = ({
     to={homePath}
     {...props}
   >
-    <LogotypeStyle />
+    <LogotypeStyle {...props} />
   </LogotypeLinkStyle>
 )

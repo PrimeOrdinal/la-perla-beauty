@@ -24,8 +24,17 @@ const ProductCardStyled = styled.article`
   display: grid;
   gap: ${themeGet("space.5")}px;
 
+  .image-container,
   img {
+    aspect-ratio: 1;
+    background-color: ${themeGet("colors.lightgrey")};
     border-radius: ${themeGet("radii.4")}px;
+    display: block;
+  }
+
+  img {
+    object-fit: cover;
+    object-position: center;
     width: 100%;
   }
 
@@ -52,7 +61,7 @@ const ProductCardStyled = styled.article`
 
   .product-category {
     color: inherit;
-    font-size: ${themeGet("fontSizes.body")}px;
+    font-size: var(--font-size-body, 13px);
     letter-spacing: 1px;
     text-decoration: none;
     text-transform: uppercase;
@@ -105,7 +114,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {...props}
     >
       {(showImage && (product?.url && (
-        <Link to={product?.url as string} title={product?.title as string}>
+        <Link className="image-container" to={product?.url as string} title={product?.title as string}>
           {image}
         </Link>
       ))) ||
@@ -163,7 +172,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             >
               {offer?.price}
             </span>
-            <link itemProp="availability" href="https://schema.org/InStock" />
+            {offer?.availability && <link itemProp="availability" href={offer?.availability} />}
           </div>
         )}
       </div>

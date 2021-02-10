@@ -16,6 +16,7 @@ import { Tabs } from "../components/Tabs"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
+import Filters from "../components/Filters"
 
 const ProductsPage: React.FC<
   PageProps<ProductsPageQuery, PageContextTypeBreadcrumb>
@@ -38,7 +39,7 @@ const ProductsPage: React.FC<
         <Breadcrumb crumbs={crumbs} />
 
         <CategoryHeader>
-          <h1>{page?.name}</h1>
+          <h1>{page?.name}Hello</h1>
           <div
             dangerouslySetInnerHTML={{
               __html: page?.description as string,
@@ -47,13 +48,16 @@ const ProductsPage: React.FC<
         </CategoryHeader>
       </div>
 
-      <Tabs marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }} marginTop={{ _: 4, sm: 2, md: 4, lg: 8 }}>
+      <Tabs
+        marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }}
+        marginTop={{ _: 4, sm: 2, md: 4, lg: 8 }}
+      >
         <a href="/products">All</a>
         <a href="/fragrances">Fragrances</a>
         <a href="/makeup">Makeup</a>
         <a href="/body">Body</a>
       </Tabs>
-
+      <Filters />
       <section className={clsx("container", "BigCommerce")}>
         <Listing
           edges={data.allBigCommerceProducts.edges.map(({ node }) => ({

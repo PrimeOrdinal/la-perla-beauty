@@ -8,7 +8,7 @@ export const button = `
         border: unset;
         cursor: pointer;
         font-family: "Quicksand";
-        font-size: ${theme.fontSizes.body}px;
+        font-size: var(--font-size-body, 13px);
         letter-spacing: 1px;
         padding: ${theme.space[4]}px ${theme.space[6]}px;
         text-align: center;

@@ -48,11 +48,13 @@ const SocialContainerStyled = styled.div`
 const SocialLinkListStyled = styled(ListPlain)`
   align-items: center;
   display: grid;
-  gap: 1rem;
+  gap: 30px;
   grid-auto-flow: column;
   justify-content: center;
   padding-inline-start: 2rem;
-
+  ${mediaQueries.md} {
+    gap: 34px;
+  }
   a {
     color: inherit;
     font-size: 2.125rem;
@@ -85,12 +87,22 @@ const FooterStyle = styled.footer`
 
   .footer-newsletter {
     padding-bottom: 1rem;
-
     ${mediaQueries.md} {
       align-items: center;
       display: grid;
-      grid-template-columns: 1fr 4fr;
+      grid-template-columns: auto 4fr;
       padding-bottom: 2.25rem;
+    }
+    span {
+      display: none;
+      ${mediaQueries.md} {
+        display: block;
+        font-family: "Tiempos";
+        font-weight: 300;
+        font-size: ${themeGet("fontSizes.6")}px;
+        letter-spacing: 0.5px;
+        text-transform: capitalize;
+      }
     }
   }
 
@@ -109,6 +121,7 @@ const FooterStyle = styled.footer`
         font-family: ${themeGet("fontFamily", "Quicksand")};
         font-size: ${themeGet("fontSizes.heading3Desktop")}px;
         padding-block-end: ${themeGet("space.8")}px;
+        font-weight: bold;
       }
 
       ul {
@@ -169,6 +182,7 @@ const FooterStyle = styled.footer`
         ${mediaQueries.md} {
           display: block;
           font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+          font-weight: bold;
         }
       }
       ul {
@@ -192,10 +206,13 @@ const ContainerStyled = styled.div`
 
   p {
     text-align: center;
-
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-block-start: ${themeGet("space.7")}px;
     ${mediaQueries.md} {
       font-size: 0.75rem;
       text-align: left;
+      margin-block-start: revert;
     }
   }
 `
@@ -216,12 +233,15 @@ export const Footer: React.FC<FooterProps> = (
       <h2>Newsletter</h2>
 
       <div className="footer-newsletter">
-        <LogotypeStyle />
+        {/* <LogotypeStyle /> */}
+        <span>La Perla Beauty</span>
         <NewsletterSignup />
       </div>
 
       <div className="footer-nav-mobile">
         <Accordion
+          allowMultipleExpanded={true}
+          allowZeroExpanded={true}
           className="footer-secondary-accordion"
           items={data?.allContentstackMenus?.edges
             .filter(({ node: menu }) =>

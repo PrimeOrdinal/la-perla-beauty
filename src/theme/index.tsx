@@ -9,7 +9,8 @@ type BreakpointsProp = Array<string> & {
 
 type FontSizesProp = Array<number> & {
   small?: number
-  body?: number
+  bodyDesktop?: number
+  bodyMobile?: number
   heading1Desktop?: number
   heading2Desktop?: number
   heading3Desktop?: number
@@ -20,7 +21,12 @@ type FontSizesProp = Array<number> & {
   heading4Mobile?: number
 }
 
-export const breakpoints: BreakpointsProp = ["40rem", "60rem", "72rem", "100rem"]
+export const breakpoints: BreakpointsProp = [
+  "40rem",
+  "60rem",
+  "72rem",
+  "100rem",
+]
 
 // aliases
 breakpoints.sm = breakpoints[0]
@@ -31,7 +37,8 @@ breakpoints.xl = breakpoints[3]
 export const fontSizes: FontSizesProp = [11, 12, 13, 14, 16, 18, 24, 32]
 
 fontSizes.small = fontSizes[0]
-fontSizes.body = fontSizes[1]
+fontSizes.bodyDesktop = fontSizes[3]
+fontSizes.bodyMobile = fontSizes[2]
 fontSizes.heading4Desktop = fontSizes[2]
 fontSizes.heading3Desktop = fontSizes[3]
 fontSizes.heading2Desktop = fontSizes[4]
@@ -115,17 +122,13 @@ theme.buttons = {
     backgroundColor: theme.colors.black,
     color: theme.colors.white,
     "&:disabled": {},
-    "&:hover": {
-      color: "background",
-    },
+    "&:hover": {},
   },
   secondary: {
     backgroundColor: theme.colors.lightgrey,
     color: theme.colors.darkgrey,
     "&:disabled": {},
-    "&:hover": {
-      color: "background",
-    },
+    "&:hover": {},
   },
 }
 

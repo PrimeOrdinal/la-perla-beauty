@@ -55,6 +55,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
     padding: 18px 0;
     text-transform: uppercase;
     width: 100%;
+    cursor: pointer;
   }
 
   .accordion__button:hover {

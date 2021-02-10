@@ -8,6 +8,7 @@ export const headings = `
     h5,
     h6 {
         font-family: "Tiempos", Times, serif;
+        font-weight: 300;
     }
 
     .heading1 {

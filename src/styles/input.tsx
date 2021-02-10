@@ -10,9 +10,13 @@ export const input = `
         font-size: ${theme.fontSizes[0]}px;
         gap: ${theme.space[3]}px;
         padding: ${theme.space[4]}px ${theme.space[7]}px;
-
+        height: 100%;
+        
         ${theme.mediaQueries.md} {
             padding: ${theme.space[3]}px ${theme.space[8]}px;
+            min-width: 12rem;
+            font-size: ${theme.fontSizes[2]}px;
+
         }
 
         &:focus {

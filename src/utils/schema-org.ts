@@ -1,5 +1,3 @@
-import { path } from "path"
-
 export const availabilitySchemaToHumanReadableText = availability => {
   // TODO:  Integrate translations
 
