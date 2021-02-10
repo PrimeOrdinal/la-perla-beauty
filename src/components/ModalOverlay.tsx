@@ -146,7 +146,7 @@ const ModalOverlay = () => {
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi</p>
           <form>
             <label className="shipping-label label" htmlFor="shipping">
-              Selling shipping destination
+              Select shipping destination
             </label>
             <select className="shipping-selection select" name="shipping" id="">
               <option value="">United Kingdom</option>
