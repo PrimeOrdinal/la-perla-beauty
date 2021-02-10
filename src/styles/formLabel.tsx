@@ -11,9 +11,9 @@ export const formLabel = `
         text-transform: uppercase;
         font-family: inherit;
 
-        color: ${theme.colors.primary};
+        color: ${theme.colors.black};
         ${mediaQueries.md}{
-            font-size: ${theme.fontSizes[1]}px;
+            font-size: ${theme.fontSizes[3]}px;
         }
     }
 `

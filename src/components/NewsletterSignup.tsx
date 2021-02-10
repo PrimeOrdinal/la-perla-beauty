@@ -29,6 +29,14 @@ export const NewsletterSignup: React.FC = () => {
         <Button variant="secondary" py={4} px={9}>
           Sign up
         </Button>
+        <div>
+          <p>Lorem ipsum dolor sit amet.</p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste amet
+            minima blanditiis reprehenderit mollitia doloribus, voluptates omnis
+            ex dolorem veritatis!
+          </p>
+        </div>
       </form>
     </StyledNewsletter>
   )
