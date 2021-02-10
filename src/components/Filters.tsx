@@ -17,8 +17,12 @@ const FilterSection = styled.section`
 
   .view {
     align-items: center;
-    display: flex;
+    display: none;
     gap: 1rem;
+
+    ${theme.mediaQueries.md} {
+      display: flex;
+    }
   }
 
   svg {
