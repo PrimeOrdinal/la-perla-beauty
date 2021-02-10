@@ -7,6 +7,17 @@ import type { BigCommerceProducts } from "../../graphql-types"
 export function standardiseBigCommerceProduct(
   product: BigCommerceProducts
 ): WithContext<Product> {
+  
+  let availability = "https://schema.org/InStock"
+
+  if (product?.availability && (product?.inventory_level <= product?.inventory_warning_level)) {
+    availability = "https://schema.org/LimitedAvailability"
+  }
+  
+  if (product?.inventory_level === 0) {
+    availability = "https://schema.org/OutOfStock"
+  }
+
   const data: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -21,9 +32,9 @@ export function standardiseBigCommerceProduct(
     })),
     offers: {
       "@type": "Offer",
-      // availability: product?.availability,
-      // price: product?.offer?.price ? product?.offer?.price : 0,
-      // priceCurrency: product?.offer?.priceCurrency,
+      availability,
+      price: product?.calculated_price,
+      priceCurrency: "EUR",
     },
     url: product?.custom_url?.url as string | undefined
   } as WithContext<Product>

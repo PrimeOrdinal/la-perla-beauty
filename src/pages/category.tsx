@@ -5,7 +5,7 @@ import type {
 } from "../../graphql-types"
 
 import clsx from "clsx"
-import { PageProps, graphql } from "gatsby"
+import { PageProps, graphql, Link } from "gatsby"
 import React from "react"
 
 import { Breadcrumb } from "../components/Breadcrumb"
@@ -29,7 +29,6 @@ const CategoryPage: React.FC<
   const {
     breadcrumb: { crumbs },
     category,
-    id,
     page,
   } = pageContext
 
@@ -37,12 +36,11 @@ const CategoryPage: React.FC<
     <Layout>
       <SEO title={page?.title} />
 
-      <div className={clsx("container")}>
+      <div className={clsx("container")} category-id={category?.bigcommerce_id}>
         <Breadcrumb crumbs={crumbs} />
 
         <CategoryHeader>
           <h1>{category?.name}</h1>
-          <p>{category?.bigcommerce_id}</p>
           <div
             dangerouslySetInnerHTML={{
               __html: category?.description as string,
@@ -55,10 +53,16 @@ const CategoryPage: React.FC<
         marginBottom={{ _: 4, sm: 4, md: 6, lg: 8 }}
         marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}
       >
-        <a href="/products">All</a>
-        <a href="/fragrances">Fragrances</a>
-        <a href="/makeup">Makeup</a>
-        <a href="/body">Body</a>
+        {data.allBigCommerceCategories?.edges?.map(({ node: category }) => (
+          <Link
+            key={category?.id}
+            id={category?.id}
+            to={category?.custom_url?.url as string}
+            title={category?.name as string}
+          >
+            {category?.name as string}
+          </Link>
+        ))}
       </Tabs>
 
       <div className={clsx("container")}>
@@ -94,40 +98,25 @@ export default CategoryPage
 
 export const query = graphql`
   query CategoryPage($id: Int) {
-    allBigCommerceProducts(filter: { categories: { eq: $id } }) {
+    allBigCommerceCategories {
       edges {
         node {
-          availability
-          calculated_price
-          categories
+          bigcommerce_id
           custom_url {
             url
           }
-          depth
           description
-          fixed_cost_shipping_price
-          gtin
-          height
           id
-          inventory_level
-          inventory_warning_level
-          is_featured
-          is_free_shipping
-          is_preorder_only
-          is_price_hidden
           is_visible
-          mpn
           name
-          order_quantity_maximum
-          order_quantity_minimum
-          preorder_message
-          price
-          price_hidden_label
-          sale_price
-          sku
-          upc
-          weight
-          width
+          page_title
+        }
+      }
+    }
+    allBigCommerceProducts {
+      edges {
+        node {
+          ...BigCommerceProductsFragment
         }
       }
     }

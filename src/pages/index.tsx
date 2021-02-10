@@ -5,7 +5,7 @@ import type {
 } from "../../graphql-types"
 
 import clsx from "clsx"
-import { PageProps, graphql } from "gatsby"
+import { PageProps, graphql, Link } from "gatsby"
 import React from "react"
 
 import { CategoryHeader } from "../components/CategoryHeader"
@@ -49,10 +49,16 @@ const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
         marginBottom={{ _: 4, sm: 2, md: 4, lg: 8 }}
         marginTop={{ _: 4, sm: 2, md: 4, lg: 8 }}
       >
-        <a href="/products">All</a>
-        <a href="/fragrances">Fragrances</a>
-        <a href="/makeup">Makeup</a>
-        <a href="/body">Body</a>
+        {data.allBigCommerceCategories?.edges?.map(({ node: category }) => (
+          <Link
+            key={category?.id}
+            id={category?.id}
+            to={category?.custom_url?.url as string}
+            title={category?.name as string}
+          >
+            {category?.name as string}
+          </Link>
+        ))}
       </Tabs>
 
       {/* <CategoryHeader className={clsx("container")}>
@@ -64,19 +70,21 @@ const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
       </CategoryHeader> */}
 
       <section className={clsx("container", "BigCommerce")}>
-        <Listing
-          edges={data.allBigCommerceProducts.edges.map(({ node }) => ({
-            node: standardiseBigCommerceProduct(
-              (node as unknown) as BigCommerceProducts
-            ),
-          }))}
-        />
+        {data.allBigCommerceProducts && (
+          <Listing
+            products={data.allBigCommerceProducts?.edges?.map(({ node }) => ({
+              node: standardiseBigCommerceProduct(
+                (node as unknown) as BigCommerceProducts
+              ),
+            }))}
+          />
+        )}
       </section>
 
       <section className={clsx("container", "Contentstack")}>
         {data.allContentstackProducts && (
           <Listing
-            edges={data.allContentstackProducts.edges.map(({ node }) => ({
+            products={data.allContentstackProducts.edges.map(({ node }) => ({
               node: standardiseContentstackProduct(node),
             }))}
           />
@@ -93,8 +101,15 @@ export const query = graphql`
     allBigCommerceCategories {
       edges {
         node {
-          name
+          bigcommerce_id
+          custom_url {
+            url
+          }
+          description
           id
+          is_visible
+          name
+          page_title
         }
       }
     }
