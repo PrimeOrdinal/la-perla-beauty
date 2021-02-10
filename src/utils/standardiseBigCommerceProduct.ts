@@ -1,7 +1,8 @@
+import type { Product, WithContext } from "schema-dts"
+
 import type { BigCommerceProducts } from "../../graphql-types"
 
 // import getSymbolFromCurrency from "currency-symbol-map"
-import { Product, WithContext } from "schema-dts"
 
 export function standardiseBigCommerceProduct(
   product: BigCommerceProducts
