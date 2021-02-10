@@ -21,7 +21,12 @@ type FontSizesProp = Array<number> & {
   heading4Mobile?: number
 }
 
-export const breakpoints: BreakpointsProp = ["40rem", "60rem", "72rem", "100rem"]
+export const breakpoints: BreakpointsProp = [
+  "40rem",
+  "60rem",
+  "72rem",
+  "100rem",
+]
 
 // aliases
 breakpoints.sm = breakpoints[0]
@@ -117,17 +122,13 @@ theme.buttons = {
     backgroundColor: theme.colors.black,
     color: theme.colors.white,
     "&:disabled": {},
-    "&:hover": {
-      color: "background",
-    },
+    "&:hover": {},
   },
   secondary: {
     backgroundColor: theme.colors.lightgrey,
     color: theme.colors.darkgrey,
     "&:disabled": {},
-    "&:hover": {
-      color: "background",
-    },
+    "&:hover": {},
   },
 }
 
