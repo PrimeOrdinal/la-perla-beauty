@@ -23,6 +23,7 @@ const ModalOverlayStyle = {
 
 const BtnStyled = styled.button`
   padding: 0;
+
   svg {
     height: ${themeGet("space.3")}px;
     object-fit: contain;
@@ -35,21 +36,26 @@ const WrapperStyled = styled.div`
   flex-direction: column;
   height: 100%;
   padding: 1rem;
+
   .close-button {
     align-self: end;
     padding: 0;
+
     svg {
       height: ${themeGet("space.7")}px;
       object-fit: contain;
     }
   }
+
   h1 {
     text-align: center;
   }
+
   p {
     text-align: center;
     margin-block-end: 2rem;
   }
+
   form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

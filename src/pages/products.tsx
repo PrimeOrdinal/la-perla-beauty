@@ -9,6 +9,7 @@ import React from "react"
 
 import { Breadcrumb } from "../components/Breadcrumb"
 import { CategoryHeader } from "../components/CategoryHeader"
+import { Filters } from "../components/Filters"
 import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"
 import { SEO } from "../components/SEO"
@@ -16,7 +17,7 @@ import { Tabs } from "../components/Tabs"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
-import Filters from "../components/Filters"
+
 
 const ProductsPage: React.FC<
   PageProps<ProductsPageQuery, PageContextTypeBreadcrumb>
@@ -57,7 +58,9 @@ const ProductsPage: React.FC<
         <a href="/makeup">Makeup</a>
         <a href="/body">Body</a>
       </Tabs>
-      <Filters />
+
+      <Filters productCount={data.allBigCommerceProducts.edges.length} />
+
       <section className={clsx("container", "BigCommerce")}>
         <Listing
           edges={data.allBigCommerceProducts.edges.map(({ node }) => ({
@@ -68,7 +71,7 @@ const ProductsPage: React.FC<
         />
       </section>
 
-      <section className={clsx("container", "Contentstack")}>
+      {/* <section className={clsx("container", "Contentstack")}>
         {data.allContentstackProducts && (
           <Listing
             edges={data.allContentstackProducts.edges.map(({ node }) => ({
@@ -76,7 +79,7 @@ const ProductsPage: React.FC<
             }))}
           />
         )}
-      </section>
+      </section> */}
     </Layout>
   )
 }

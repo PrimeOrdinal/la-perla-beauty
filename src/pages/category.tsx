@@ -10,11 +10,11 @@ import React from "react"
 
 import { Breadcrumb } from "../components/Breadcrumb"
 import { CategoryHeader } from "../components/CategoryHeader"
+import { Filters } from "../components/Filters"
 import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"
 import { SEO } from "../components/SEO"
 import { Tabs } from "../components/Tabs"
-import { ViewSelector } from "../components/ViewSelector"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
@@ -65,9 +65,7 @@ const CategoryPage: React.FC<
         ))}
       </Tabs>
 
-      <div className={clsx("container")}>
-        <ViewSelector />
-      </div>
+      <Filters productCount={data.allBigCommerceProducts.edges.length} />
 
       <section className={clsx("container", "BigCommerce")}>
         <Listing
@@ -76,20 +74,26 @@ const CategoryPage: React.FC<
               (node as unknown) as BigCommerceProducts
             ),
           }))}
-          promotionalBanners={data.allContentstackCategories?.edges?.[0]?.node?.promotional_banners}
+          promotionalBanners={
+            data.allContentstackCategories?.edges?.[0]?.node
+              ?.promotional_banners
+          }
         />
       </section>
 
-      <section className={clsx("container", "Contentstack")}>
+      {/* <section className={clsx("container", "Contentstack")}>
         {data.allContentstackProducts && (
           <Listing
             products={data.allContentstackProducts.edges.map(({ node }) => ({
               node: standardiseContentstackProduct(node),
             }))}
-            promotionalBanners={data.allContentstackCategories?.edges?.[0]?.node?.promotional_banners}
+            promotionalBanners={
+              data.allContentstackCategories?.edges?.[0]?.node
+                ?.promotional_banners
+            }
           />
         )}
-      </section>
+      </section> */}
     </Layout>
   )
 }
