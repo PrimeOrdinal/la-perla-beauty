@@ -1,18 +1,18 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { PromoBanner, PromoBannerProps } from "../src/components/PromoBanner"
+import { PromotionalBanner, PromotionalBannerProps } from "../src/components/PromotionalBanner"
 
 export default {
-  title: "PromoBanner",
-  component: PromoBanner,
+  title: "PromotionalBanner",
+  component: PromotionalBanner,
   argTypes: {
     backgroundColor: { control: "color" },
     showImage: { control: "boolean" }
   },
 } as Meta
 
-const Template: Story<PromoBannerProps> = args => <PromoBanner {...args} />
+const Template: Story<PromotionalBannerProps> = args => <PromotionalBanner {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {

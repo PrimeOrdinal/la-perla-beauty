@@ -1,4 +1,6 @@
-import type { Product } from "schema-dts"
+import type { Product, WithContext } from "schema-dts"
+
+import type { Contentstack_CategoriesPromotional_Banners } from "../../graphql-types"
 
 import React from "react"
 import { Helmet } from "react-helmet"
@@ -14,6 +16,7 @@ import {
 } from "styled-system"
 
 import { ProductCard } from "./ProductCard"
+import { PromotionalBanner } from "./PromotionalBanner"
 
 const ListingStyled = styled.ul`
   display: grid;
@@ -25,12 +28,13 @@ const ListingStyled = styled.ul`
 export type ListingProps = GridProps &
   LayoutProps &
   SpaceProps & {
-    edges: Array<{
-      node: Product
+    products?: Array<{
+      node: WithContext<Product>
     }>
+    promotionalBanners?: Contentstack_CategoriesPromotional_Banners
   }
-
-export const Listing: React.FC<ListingProps> = ({ edges }) => (
+  
+export const Listing: React.FC<ListingProps> = ({ products, promotionalBanners }) => (
   <ListingStyled
     className="container"
     borderTop={1}
@@ -44,12 +48,17 @@ export const Listing: React.FC<ListingProps> = ({ edges }) => (
       xl: "repeat(4, 1fr)",
     }}
   >
-    {edges.map(({ node: product }: { node: Product }, index) => (
+    {products?.map(({ node: product }: { node: Product }, index) => (
       <li key={index}>
         <ProductCard product={product} />
         <Helmet>
           <script type="application/ld+json">{JSON.stringify(product)}</script>
         </Helmet>
+      </li>
+    ))}
+    {promotionalBanners?.map((promotionalBanner, index) => (
+      <li key={index} style={{order: promotionalBanner?.grid_position}}>
+        <PromotionalBanner {...promotionalBanner?.promotional_banner?.[0]} />
       </li>
     ))}
   </ListingStyled>

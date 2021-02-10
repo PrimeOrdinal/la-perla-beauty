@@ -6,7 +6,7 @@ import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 
 import { mediaQueries } from "../theme"
 
-const PromoBannerStyled = styled.aside`
+const PromotionalBannerStyled = styled.aside`
   background-color: ${themeGet("colors.pink")};
   border-radius: ${themeGet("radii.4")}px;
   display: grid;
@@ -49,7 +49,7 @@ const PromoBannerStyled = styled.aside`
   ${compose(layout, space)}
 `
 
-export type PromoBannerProps = LayoutProps &
+export type PromotionalBannerProps = LayoutProps &
   SpaceProps & {
     description: string
     image: {
@@ -64,27 +64,28 @@ export type PromoBannerProps = LayoutProps &
     showImage: boolean
   }
 
-export const PromoBanner: React.FC<PromoBannerProps> = ({
-  description,
+export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
   image,
   link,
   showImage = true,
+  text,
   title,
   ...props
 }) => (
-  <PromoBannerStyled
+  <PromotionalBannerStyled
     {...props}
   >
     {showImage && (
       <img
-        alt={image?.alt as string}
-        src={image?.src as string}
+        alt={image?.description as string}
+        src={image?.url as string}
+        title={image?.title as string}
       />
     )}
     <div>
       <h1 className="heading">{title}</h1>
-      <span>{description}</span>
+      <span>{text}</span>
       <Link to={link?.href} className="link">{link?.text}</Link>
     </div>
-  </PromoBannerStyled>
+  </PromotionalBannerStyled>
 )

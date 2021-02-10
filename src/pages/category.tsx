@@ -29,6 +29,7 @@ const CategoryPage: React.FC<
   const {
     breadcrumb: { crumbs },
     category,
+    id,
     page,
   } = pageContext
 
@@ -41,6 +42,7 @@ const CategoryPage: React.FC<
 
         <CategoryHeader>
           <h1>{category?.name}</h1>
+          <p>{category?.bigcommerce_id}</p>
           <div
             dangerouslySetInnerHTML={{
               __html: category?.description as string,
@@ -65,20 +67,22 @@ const CategoryPage: React.FC<
 
       <section className={clsx("container", "BigCommerce")}>
         <Listing
-          edges={data.allBigCommerceProducts.edges.map(({ node }) => ({
+          products={data.allBigCommerceProducts.edges.map(({ node }) => ({
             node: standardiseBigCommerceProduct(
               (node as unknown) as BigCommerceProducts
             ),
           }))}
+          promotionalBanners={data.allContentstackCategories?.edges?.[0]?.node?.promotional_banners}
         />
       </section>
 
       <section className={clsx("container", "Contentstack")}>
         {data.allContentstackProducts && (
           <Listing
-            edges={data.allContentstackProducts.edges.map(({ node }) => ({
+            products={data.allContentstackProducts.edges.map(({ node }) => ({
               node: standardiseContentstackProduct(node),
             }))}
+            promotionalBanners={data.allContentstackCategories?.edges?.[0]?.node?.promotional_banners}
           />
         )}
       </section>
@@ -124,6 +128,30 @@ export const query = graphql`
           upc
           weight
           width
+        }
+      }
+    }
+    allContentstackCategories(filter: { bigcommerce_id: { eq: $id } }) {
+      edges {
+        node {
+          promotional_banners {
+            grid_position
+            promotional_banner {
+              colour
+              image {
+                description
+                title
+                url
+              }
+              layout
+              link {
+                href
+                title
+              }
+              text
+              title
+            }
+          }
         }
       }
     }
