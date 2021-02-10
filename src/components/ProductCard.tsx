@@ -50,6 +50,7 @@ const ProductCardStyled = styled.article`
     grid-auto-flow: column;
     justify-content: end;
     gap: 1rem;
+
     svg {
       cursor: pointer;
       height: ${themeGet("space.4")}px;

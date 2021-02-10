@@ -1,67 +1,43 @@
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
-import { mediaQueries, theme } from "../theme"
 
 import { ReactComponent as Filter } from "../images/Filter.svg"
-import { ReactComponent as Grid } from "../images/Grid.svg"
-import { ReactComponent as List } from "../images/List.svg"
+
+import { theme } from "../theme"
+
+import { ViewSelector } from "./ViewSelector"
 
 const FilterSection = styled.section`
-  .wrap {
-    display: flex;
-    justify-content: space-between;
+  align-items: center;
+  border-bottom: ${theme.border.width} solid ${theme.border.color};
+  display: flex;
+  justify-content: space-between;
+  padding-block-end: 1.25rem;
+
+  .view {
     align-items: center;
-    padding-block-end: 1.25rem;
-    border-bottom: ${theme.border.width} solid ${theme.border.color};
-    .view {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      span {
-        text-transform: uppercase;
-        &:last-child {
-          display: none;
-          ${mediaQueries.md} {
-            display: block;
-          }
-        }
-      }
-      button {
-        padding: 0;
-        svg {
-          height: 16px;
-          object-fit: contain;
-          cursor: pointer;
-        }
-      }
-    }
+    display: flex;
+    gap: 1rem;
+  }
+
+  svg {
+    height: ${themeGet("space.5")}px;
+    object-fit: contain;
   }
 `
 
-const Filters = () => {
+export const Filters = ({productCount}) => {
   return (
     <FilterSection className="container">
-      <div className="wrap">
-        <div className="view">
-          <span>Grid</span>
-          <button>
-            <Grid />
-          </button>
-          <span>List</span>
-          <button>
-            <List />
-          </button>
-        </div>
-        <div className="view">
+      <ViewSelector />
+      <div className="view">
+        <button>
           <span>Refine</span>
-          <button>
-            <Filter />
-          </button>
-          <span>14 Products</span>
-        </div>
+          <Filter />
+        </button>
+        <span>{productCount} Products</span>
       </div>
     </FilterSection>
   )
 }
-
-export default Filters
