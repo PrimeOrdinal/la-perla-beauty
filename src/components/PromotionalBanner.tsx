@@ -7,7 +7,6 @@ import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 import { mediaQueries } from "../theme"
 
 const PromotionalBannerStyled = styled.aside`
-  aspect-ratio: 1;
   background-color: ${themeGet("colors.pink")};
   border-radius: ${themeGet("radii.4")}px;
   display: grid;

@@ -15,6 +15,8 @@ import {
   SpaceProps,
 } from "styled-system"
 
+import { theme } from "../theme"
+
 import { ProductCard } from "./ProductCard"
 import { PromotionalBanner } from "./PromotionalBanner"
 
@@ -22,6 +24,20 @@ const ListingStyled = styled.ul`
   display: grid;
   list-style: none;
   padding: 0;
+
+  .product {
+
+  }
+
+  .promotional-banner {
+    aspect-ratio: 1;
+    grid-column: span 2;
+
+    ${theme.mediaQueries.md} {
+      aspect-ratio: unset;
+    }
+  }
+
   ${compose(grid, layout, space)}
 `
 
@@ -39,7 +55,7 @@ export const Listing: React.FC<ListingProps> = ({
   promotionalBanners,
 }) => {
   const items = products?.map(({ node: product }: { node: Product }, index) => (
-    <li key={index}>
+    <li className="product" key={index}>
       <ProductCard product={product} />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(product)}</script>
@@ -54,7 +70,7 @@ export const Listing: React.FC<ListingProps> = ({
     items.splice(
       promotionalBanner?.grid_position,
       0,
-      <li key={index}>
+      <li className="promotional-banner" key={index}>
         <PromotionalBanner {...promotionalBanner?.promotional_banner?.[0]} />
       </li>
     )
