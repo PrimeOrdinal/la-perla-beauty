@@ -38,7 +38,7 @@ const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
 
         <CategoryHeader>
           <h1>All beauty</h1>
-          <span>
+          <span className={clsx("container")}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, dot. Nullam
             ac eleifend turpis.
           </span>
