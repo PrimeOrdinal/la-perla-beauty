@@ -7,6 +7,7 @@ import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 import { useToggle } from "../hooks/useToggle"
+import { HamburgerMenu } from "./HamburgerMenu"
 import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
 import { MenuNavigation as MenuNavigation } from "./MenuNavigation"
@@ -14,7 +15,6 @@ import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
 import { mediaQueries } from "../theme"
-import HamburgerMenu from "./HamburgerMenu"
 
 const HeaderStyled = styled.header`
   background-color: #ffffff;
