@@ -26,7 +26,6 @@ const ListingStyled = styled.ul`
   padding: 0;
 
   .product {
-
   }
 
   .promotional-banner {
@@ -75,7 +74,6 @@ export const Listing: React.FC<ListingProps> = ({
 
   return (
     <ListingStyled
-      className="container"
       borderTop={1}
       gridAutoFlow="row"
       gridColumnGap={{ _: 6, sm: 6, md: 8, lg: 10 }}
