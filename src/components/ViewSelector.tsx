@@ -12,16 +12,17 @@ const StyledButton = styled.button`
   align-items: center;
   display: grid;
   font-size: var(--font-size-body, 13px);
-  gap: ${themeGet("space.3")}px;
+  gap: ${themeGet("space.2")}px;
   grid-auto-flow: column;
   text-transform: uppercase;
   padding: 0;
   ${mediaQueries.md} {
-    gap: ${themeGet("space.4")}px;
+    gap: ${themeGet("space.3")}px;
   }
 
   svg {
     width: ${themeGet("space.7")}px;
+    object-fit: contain;
   }
 
   svg,
