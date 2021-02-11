@@ -55,22 +55,19 @@ export const Listing: React.FC<ListingProps> = ({
   promotionalBanners,
 }) => {
   const items = products?.map(({ node: product }: { node: Product }, index) => (
-    <li className="product" key={index}>
+    <li className="product" key={`product-${index}`}>
       <ProductCard product={product} />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(product)}</script>
       </Helmet>
-      <script type="application/ld+json">{JSON.stringify(product)}</script>
     </li>
   ))
-
-  console.log("promotionalBanners", promotionalBanners)
 
   promotionalBanners?.forEach((promotionalBanner, index) => {
     items.splice(
       promotionalBanner?.grid_position,
       0,
-      <li className="promotional-banner" key={index}>
+      <li className="promotional-banner" key={`promotional-banner-${index}`}>
         <PromotionalBanner {...promotionalBanner?.promotional_banner?.[0]} />
       </li>
     )
