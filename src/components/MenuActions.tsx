@@ -88,8 +88,8 @@ export const MenuActions: React.FC<MenuActionsProps> = ({
       </Link>
     </li>
     <li>
-      <Link to={myAccountPath}>
-        <Profile className="profile" />
+      <Link className="profile" to={myAccountPath}>
+        <Profile />
       </Link>
     </li>
     <li>
