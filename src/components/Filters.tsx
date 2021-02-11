@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 import { ReactComponent as Filter } from "../images/Filter.svg"
 
-import { theme } from "../theme"
+import { theme, mediaQueries } from "../theme"
 
 import { ViewSelector } from "./ViewSelector"
 
@@ -15,33 +15,53 @@ const FilterSection = styled.section`
   justify-content: space-between;
   padding-block-end: 1.25rem;
 
-  .view {
-    align-items: center;
-    display: none;
-    gap: 1rem;
-
-    ${theme.mediaQueries.md} {
-      display: flex;
-    }
-  }
-
   svg {
     height: ${themeGet("space.5")}px;
     object-fit: contain;
   }
 `
 
-export const Filters = ({productCount}) => {
+const StyledButton = styled.button`
+  align-items: center;
+  display: grid;
+  font-size: var(--font-size-body, 13px);
+  gap: ${themeGet("space.3")}px;
+  grid-auto-flow: column;
+  text-transform: uppercase;
+  padding: 0;
+  ${mediaQueries.md} {
+    gap: ${themeGet("space.4")}px;
+  }
+
+  svg {
+    width: ${themeGet("space.7")}px;
+  }
+`
+const StyledRefine = styled.div`
+  ${theme.mediaQueries.md} {
+    display: grid;
+    grid-auto-flow: column;
+    gap: ${themeGet("space.10")}px;
+  }
+  .product-count {
+    display: none;
+    ${mediaQueries.md} {
+      display: block;
+    }
+  }
+`
+
+export const Filters = ({ productCount }) => {
   return (
     <FilterSection className="container">
       <ViewSelector />
-      <div className="view">
-        <button>
+      <StyledRefine>
+        <StyledButton>
           <span>Refine</span>
           <Filter />
-        </button>
-        <span>{productCount} Products</span>
-      </div>
+        </StyledButton>
+        <span className="product-count">{productCount} Products</span>
+      </StyledRefine>
     </FilterSection>
   )
 }
