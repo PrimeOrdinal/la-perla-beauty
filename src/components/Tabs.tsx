@@ -24,6 +24,7 @@ export const TabsStyled: React.FC<TabsProps> = styled(Tabs)`
   grid-auto-flow: column;
   justify-content: center;
   padding: ${themeGet("space.5")}px;
+
   a {
     color: inherit;
     text-decoration: none;

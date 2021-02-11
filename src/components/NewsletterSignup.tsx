@@ -1,6 +1,10 @@
+import { Formik, Field, Form, FormikHelpers } from "formik"
+import fetch from "node-fetch"
 import React from "react"
 import styled from "styled-components"
+
 import { mediaQueries } from "../theme"
+
 import { Button } from "./Button"
 
 const StyledNewsletter = styled.div`
@@ -15,18 +19,58 @@ const StyledNewsletter = styled.div`
   }
 `
 
-export const NewsletterSignup: React.FC = () => {
-  return (
-    <StyledNewsletter>
-      <form>
-        <label htmlFor="email-address">Sign up to our newsletter</label>
-        <input
-          id="email-address"
-          name="email-address"
+interface Values {
+  emailAddress: string
+}
+
+const validate = value => {
+  let errorMessage;
+
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    errorMessage = 'Invalid email address';
+  }
+
+  return errorMessage;
+};
+
+export const NewsletterSignup: React.FC = () => (
+  <StyledNewsletter>
+    <Formik
+      initialValues={{
+        emailAddress: "",
+      }}
+      onSubmit={async (
+        values: Values,
+        { setSubmitting }: FormikHelpers<Values>
+      ) => {
+        const path = `${window.location.origin}/.netlify/functions/sign-up-to-our-newsletter`
+
+        const url = new URL(path)
+
+        const response = await fetch(url, {
+          body: JSON.stringify(values),
+          headers: {
+            Accept: "application/json",
+          },
+          method: "POST",
+        })
+
+        setSubmitting(false)
+
+        console.log(response)
+      }}
+    >
+      <Form>
+        <label htmlFor="emailAddress">Sign up to our newsletter</label>
+        <Field
+          as="input"
+          id="emailAddress"
+          name="emailAddress"
           placeholder="Enter your email address"
           type="email"
+          validate={validate}
         />
-        <Button variant="secondary" py={{ md: 4 }} px={{ md: 9 }}>
+        <Button type="submit" variant="secondary" py={{ md: 4 }} px={{ md: 9 }}>
           Sign up
         </Button>
         <div>
@@ -37,7 +81,7 @@ export const NewsletterSignup: React.FC = () => {
             ex dolorem veritatis!
           </p>
         </div>
-      </form>
-    </StyledNewsletter>
-  )
-}
+      </Form>
+    </Formik>
+  </StyledNewsletter>
+)
