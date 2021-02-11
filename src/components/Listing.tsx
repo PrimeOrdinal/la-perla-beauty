@@ -44,9 +44,11 @@ export type ListingProps = GridProps &
       node: WithContext<Product>
     }>
     promotionalBanners?: Contentstack_CategoriesPromotional_Banners
+    view: "grid" | "list"
   }
 
 export const Listing: React.FC<ListingProps> = ({
+  view,
   products,
   promotionalBanners,
 }) => {
@@ -73,14 +75,20 @@ export const Listing: React.FC<ListingProps> = ({
     <ListingStyled
       borderTop={1}
       gridAutoFlow="row"
-      gridColumnGap={{ _: 6, sm: 6, md: 8, lg: 10 }}
-      gridRowGap={{ _: 4, sm: 6, md: 8, lg: 10 }}
-      gridTemplateColumns={{
+      gridColumnGap={view === "grid" ? { _: 6, sm: 6, md: 8, lg: 10 } : { _: 6, sm: 6, md: 8, lg: 10 }}
+      gridRowGap={view === "grid" ? { _: 4, sm: 6, md: 8, lg: 10 } : { _: 4, sm: 6, md: 8, lg: 10 }}
+      gridTemplateColumns={view === "grid" ? {
         _: "repeat(2, 1fr)",
         sm: "repeat(2, 1fr)",
         md: "repeat(4, 1fr)",
         xl: "repeat(4, 1fr)",
+      } : {
+        _: "repeat(1, 1fr)",
+        sm: "repeat(1, 1fr)",
+        md: "repeat(2, 1fr)",
+        xl: "repeat(2, 1fr)",
       }}
+      view={view}
     >
       {items}
     </ListingStyled>

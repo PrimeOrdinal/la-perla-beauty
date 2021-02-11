@@ -6,18 +6,18 @@ import type {
 
 import clsx from "clsx"
 import { PageProps, graphql, Link } from "gatsby"
-import React from "react"
+import React, { useState } from "react"
 
 import { Breadcrumb } from "../components/Breadcrumb"
 import { CategoryHeader } from "../components/CategoryHeader"
-import { Filters } from "../components/Filters"
 import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"
+import { MenuListing } from "../components/MenuListing"
 import { SEO } from "../components/SEO"
 import { Tabs } from "../components/Tabs"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
-import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
+// import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceCategories
@@ -31,6 +31,8 @@ const CategoryPage: React.FC<
     category,
     page,
   } = pageContext
+
+  const [view, setView]: [view: "grid" | "list", setView: React.Dispatch<SetStateAction<string>>] = useState("grid")
 
   return (
     <Layout>
@@ -65,7 +67,11 @@ const CategoryPage: React.FC<
         ))}
       </Tabs>
 
-      <Filters productCount={data.allBigCommerceProducts.edges.length} />
+      <MenuListing
+        productCount={data.allBigCommerceProducts.edges.length}
+        setView={setView}
+        view={view}
+      />
 
       <section className={clsx("container", "BigCommerce")}>
         <Listing
@@ -78,6 +84,7 @@ const CategoryPage: React.FC<
             data.allContentstackCategories?.edges?.[0]?.node
               ?.promotional_banners
           }
+          view={view}
         />
       </section>
 

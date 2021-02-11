@@ -8,33 +8,9 @@ import { ReactComponent as List } from "../images/List.svg"
 
 import { mediaQueries } from "../theme"
 
-const StyledButton = styled.button`
-  align-items: center;
-  display: grid;
-  font-size: var(--font-size-body, 13px);
-  gap: ${themeGet("space.2")}px;
-  grid-auto-flow: column;
-  text-transform: uppercase;
-  padding: 0;
-  ${mediaQueries.md} {
-    gap: ${themeGet("space.3")}px;
-  }
+import { Button } from "./Button"
 
-  svg {
-    width: ${themeGet("space.7")}px;
-    object-fit: contain;
-  }
-
-  svg,
-  svg * {
-    fill: ${props =>
-      props.active
-        ? themeGet("colors.darkgrey")
-        : themeGet("colors.lightgrey")};
-  }
-`
-
-const ContainerStyled = styled.nav`
+const ViewSelectorStyled = styled.nav`
   display: grid;
   grid-auto-flow: column;
   justify-content: start;
@@ -45,29 +21,36 @@ const ContainerStyled = styled.nav`
   }
 `
 
-export const ViewSelector: React.FC = () => {
-  const [view, setView] = useState("grid")
+export type ViewSelectorProps = {
+  setView: React.Dispatch<SetStateAction<string>>
+  view: "grid" | "list"
+}
 
+export const ViewSelector: React.FC<ViewSelectorProps> = ({
+  setView,
+  view,
+  ...props
+}) => {
   return (
-    <ContainerStyled>
-      <StyledButton
-        className={clsx("button--link")}
-        onClick={() => setView("grid")}
-        grid
+    <ViewSelectorStyled {...props}>
+      <Button
         active={view === "grid" ? "active" : undefined}
+        className={clsx("button--link")}
+        grid
+        onClick={() => setView("grid")}
       >
         Grid
         <Grid />
-      </StyledButton>
-      <StyledButton
-        className={clsx("button--link")}
-        onClick={() => setView("list")}
-        list
+      </Button>
+      <Button
         active={view === "list" ? "active" : undefined}
+        className={clsx("button--link")}
+        list
+        onClick={() => setView("list")}
       >
         List
         <List />
-      </StyledButton>
-    </ContainerStyled>
+      </Button>
+    </ViewSelectorStyled>
   )
 }
