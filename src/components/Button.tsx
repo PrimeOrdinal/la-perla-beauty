@@ -26,16 +26,24 @@ export const Button: React.FC<ButtonProps> = styled.button`
     color: ${themeGet("colors.disabled", "grey")};
   }
 
+  svg,
+  svg * {
+    fill: ${props =>
+      props.active
+        ? themeGet("colors.black", "black")
+        : themeGet("colors.darkgrey", "darkgrey")};
+  }
+
   ${variant({
-    prop: "buttons",
+    scale: "buttons",
     variants: {
       primary: {
-        backgroundColor: themeGet("buttons.primary.backgroundColor", "white"),
-        color: themeGet("buttons.primary.color", "black"),
+        backgroundColor: "black",
+        color: "white",
       },
       secondary: {
-        backgroundColor: themeGet("buttons.secondary.backgroundColor", "black"),
-        color: themeGet("buttons.secondary.color", "white"),
+        backgroundColor: "lightgrey",
+        color: "darkgrey",
       },
     },
   })}
