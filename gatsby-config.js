@@ -43,7 +43,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Quicksand"],
+          families: ["Quicksand:400,600"],
         },
       },
     },
