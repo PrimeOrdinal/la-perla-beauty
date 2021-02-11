@@ -25,16 +25,13 @@ const ListingStyled = styled.ul`
   list-style: none;
   padding: 0;
 
+  
+
   .product {
   }
 
   .promotional-banner {
-    aspect-ratio: 1;
     grid-column: span 2;
-
-    ${theme.mediaQueries.md} {
-      aspect-ratio: unset;
-    }
   }
 
   ${compose(grid, layout, space)}
