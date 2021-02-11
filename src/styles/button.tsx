@@ -11,7 +11,7 @@ export const button = `
         display: flex;
         font-family: "Quicksand";
         font-size: var(--font-size-body, 13px);
-        gap: ${theme.space[2]}px
+        gap: ${theme.space[2]}px;
         justify-content: center;
         justify-items: center;
         letter-spacing: 1px;
