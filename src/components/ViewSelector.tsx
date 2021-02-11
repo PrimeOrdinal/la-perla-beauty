@@ -1,6 +1,6 @@
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
-import React from "react"
+import React, {useState} from "react"
 import styled from "styled-components"
 
 import { ReactComponent as Grid } from "../images/Grid.svg"
@@ -24,6 +24,11 @@ const StyledButton = styled.button`
   svg {
     width: ${themeGet("space.7")}px
   }
+
+  svg,
+  svg * {
+    fill: ${props => (props.active ? themeGet("colors.darkgrey") : themeGet("colors.lightgrey"))};
+  }
 `
 
 const ContainerStyled = styled.nav`
@@ -33,10 +38,12 @@ const ContainerStyled = styled.nav`
 `
 
 export const ViewSelector: React.FC = () => {
+  const [view, setView] = useState("grid");
+
   return (
     <ContainerStyled>
-      <StyledButton className={clsx("button--link")} grid>Grid<Grid /></StyledButton>
-      <StyledButton className={clsx("button--link", "current")} list>List<List />
+      <StyledButton className={clsx("button--link")} onClick={() => setView("grid")} grid active={view === "grid" ? "active" : undefined}>Grid<Grid /></StyledButton>
+      <StyledButton className={clsx("button--link")} onClick={() => setView("list")} list active={view === "list" ? "active" : undefined}>List<List />
       </StyledButton>
     </ContainerStyled>
   )

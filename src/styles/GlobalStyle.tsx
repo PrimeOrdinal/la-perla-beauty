@@ -12,6 +12,7 @@ import { formLabel } from "./formLabel"
 import { headings } from "./headings"
 import { html } from "./html"
 import { input } from "./input"
+import { svg } from "./svg"
 
 export const GlobalStyle = createGlobalStyle`
     ${html}
@@ -26,4 +27,5 @@ export const GlobalStyle = createGlobalStyle`
     ${formLabel}
     ${headings}
     ${input}
+    ${svg}
 `
