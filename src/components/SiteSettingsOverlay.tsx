@@ -141,7 +141,7 @@ const SiteSettingsOverlay = () => {
   }
   return (
     <div>
-      <Button onClick={openModal}>
+      <Button onClick={openModal} active>
         UK | ENGLISH | £
         <DownArrowComponent />
       </Button>
