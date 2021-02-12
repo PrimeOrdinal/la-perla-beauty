@@ -19,8 +19,8 @@ import {
   VariantProps,
 } from "styled-system"
 
-import Minus from "../images/Minus.svg"
-import Plus from "../images/Plus.svg"
+import MinusIcon from "../images/Minus.svg"
+import PlusIcon from "../images/Plus.svg"
 
 export type AccordionProps = LayoutProps &
   PositionProps &
@@ -63,7 +63,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__button:after {
-    background-image: url(${Minus});
+    background-image: url(${MinusIcon});
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -74,7 +74,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__button:not([aria-expanded="true"]):after {
-    background-image: url(${Plus});
+    background-image: url(${PlusIcon});
   }
 
   .accordion__button[aria-expanded="true"]::after,
