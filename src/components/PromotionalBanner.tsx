@@ -16,6 +16,7 @@ const LayoutBase = styled.aside`
     aspect-ratio: 21 / 14;
     object-fit: cover;
     width: 100%;
+    height: 100%;
     ${mediaQueries.md} {
       aspect-ratio: 23 / 8;
       aspect-ratio: 2 / 1;
@@ -88,6 +89,7 @@ const PromotionalBannerView = styled(LayoutBase)`
 export type PromotionalBannerProps = LayoutProps &
   SpaceProps & {
     color: "beige" | "pink" | "lightgreen"
+    layout: "inlineView" | "desktopFull" | "listView"
     description: string
     image: {
       alt: string
@@ -108,19 +110,21 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
   text,
   title,
   ...props
-}) => (
-  <PromotionalBannerView {...props}>
-    {showImage && (
-      <img
-        alt={image?.description as string}
-        src={image?.url as string}
-        title={image?.title as string}
-      />
-    )}
-    <div>
-      <h1>{title}</h1>
-      <span>{text}</span>
-      <Link to={link?.href}>{link?.text}Learn More</Link>
-    </div>
-  </PromotionalBannerView>
-)
+}) => {
+  const content = (
+    <React.Fragment>
+      {showImage && (
+        <img
+          alt={image?.description as string}
+          src={image?.url as string}
+          title={image?.title as string}
+        />
+      )}
+      <div>
+        <h1>{title}</h1> <span>{text}</span>
+        <Link to={link?.href}>{link?.text}</Link>
+      </div>
+    </React.Fragment>
+  )
+  return <PromotionalBannerView {...props}>{content}</PromotionalBannerView>
+}
