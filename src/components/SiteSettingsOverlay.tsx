@@ -90,7 +90,6 @@ const WrapperStyled = styled.div`
       option {
         font-size: ${themeGet("fontSizes.heading4Desktop")}px;
       }
-
     }
 
     .shipping-label {
@@ -120,7 +119,6 @@ const WrapperStyled = styled.div`
     .button {
       grid-area: button;
     }
-
   }
 `
 
@@ -133,6 +131,7 @@ const SiteSettingsOverlay = () => {
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
     Modal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.5)"
+    Modal.defaultStyles.overlay.zIndex = "99999"
   }
 
   function closeModal() {
@@ -176,7 +175,9 @@ const SiteSettingsOverlay = () => {
             <select className="currency-selection select" name="currency" id="">
               <option value="">GBP £</option>
             </select>
-            <Button className="button" variant="primary">Continue Shopping</Button>
+            <Button className="button" variant="primary">
+              Continue Shopping
+            </Button>
           </form>
         </WrapperStyled>
       </Modal>
