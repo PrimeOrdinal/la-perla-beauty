@@ -41,11 +41,13 @@ const WrapperStyled = styled.div`
 
   .close-button {
     align-self: end;
+    align-self: flex-end;
     padding: 0;
 
     svg {
       height: ${themeGet("space.7")}px;
       object-fit: contain;
+      color: ${themeGet("colors.black")};
     }
   }
 
@@ -151,9 +153,9 @@ const SiteSettingsOverlay = () => {
         style={ModalOverlayStyle}
       >
         <WrapperStyled>
-          <button className="close-button" onClick={closeModal}>
+          <Button className="close-button" onClick={closeModal} active>
             <Close />
-          </button>
+          </Button>
           <h1>Lorem Ipsum</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi</p>
           <form>
