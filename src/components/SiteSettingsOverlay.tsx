@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
 
 import { ReactComponent as Close } from "../images/Close.svg"
-import DownArrow, {
+import {
   ReactComponent as DownArrowComponent,
 } from "../images/DownArrow.svg"
 
@@ -73,25 +73,6 @@ const WrapperStyled = styled.div`
       text-transform: uppercase;
       font-weight: bold;
       font-size: ${themeGet("fontSizes.heading4Desktop")}px;
-    }
-
-    .select {
-      appearance: none;
-      padding: 0.75rem 0.5rem;
-      border-radius: ${themeGet("radii.3")}px;
-      border: 1px solid ${themeGet("colors.black")};
-      background-image: url(${DownArrow});
-      background-repeat: no-repeat;
-      background-position: right 0.75rem top 50%;
-      width: 100%;
-      font-size: ${themeGet("fontSizes.heading4Desktop")}px;
-      &:focus {
-        outline: none;
-      }
-
-      option {
-        font-size: ${themeGet("fontSizes.heading4Desktop")}px;
-      }
     }
 
     .shipping-label {

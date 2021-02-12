@@ -52,7 +52,6 @@ const CategoryPage: React.FC<
       </div>
 
       <Tabs
-        marginBottom={{ _: 4, sm: 4, md: 6, lg: 8 }}
         marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}
       >
         {data.allBigCommerceCategories?.edges?.map(({ node: category }) => (

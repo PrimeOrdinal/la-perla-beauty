@@ -1,25 +1,51 @@
 import { themeGet } from "@styled-system/theme-get"
+import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
+import {
+  compose,
+  layout,
+  position,
+  space,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
 
-import { ReactComponent as Filter } from "../images/Filter.svg"
+import { ReactComponent as FilterIcon } from "../images/Filter.svg"
+import { ReactComponent as MinusIcon } from "../images/Minus.svg"
+
+import { useToggle } from "../hooks/useToggle"
 
 import { theme, mediaQueries } from "../theme"
 
 import { Button } from "./Button"
+import { MenuRefine } from "./MenuRefine"
 import { ViewSelector } from "./ViewSelector"
 
 const MenuListingStyled = styled.section`
-  align-items: center;
-  border-bottom: ${theme.border.width} solid ${theme.border.color};
-  display: flex;
-  justify-content: space-between;
-  padding-block-end: 1.25rem;
+  position: sticky;
+  top: 111px;
 
-  svg {
-    height: ${themeGet("space.5")}px;
-    object-fit: contain;
+  .menu {
+    align-items: center;
+    background-color: ${themeGet("colors.white")};
+    border-bottom: ${theme.border.width} solid ${theme.border.color};
+    display: flex;
+    justify-content: space-between;
+    padding-block-end: ${themeGet("space.7")}px;
+    padding-block-start: ${themeGet("space.7")}px;
   }
+
+  .menu-refine {
+    background-color: ${themeGet("colors.white")};
+    padding-block-end: ${themeGet("space.7")}px;
+    padding-block-start: ${themeGet("space.7")}px;
+    width: 80%;
+  }
+
+  ${compose(layout, position, space)}
 `
 
 const RefineStyled = styled.div`
@@ -40,25 +66,42 @@ const RefineStyled = styled.div`
   }
 `
 
-export type MenuListingProps = {
-  productCount: number
-  setView: React.Dispatch<SetStateAction<string>>
-  view: "grid" | "list"
-}
+export type MenuListingProps = LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
+    productCount: number
+    setView: React.Dispatch<SetStateAction<string>>
+    view: "grid" | "list"
+  }
 
-export const MenuListing: React.FC<MenuListingProps> = ({ productCount, setView, view,
-  ...props }) => {
+export const MenuListing: React.FC<MenuListingProps> = ({
+  productCount,
+  setView,
+  view,
+  ...props
+}) => {
+  const [filtersVisibility, toggleFiltersVisibility] = useToggle()
 
   return (
-    <MenuListingStyled className="container" {...props}>
-      <ViewSelector setView={setView} view={view} />
-      <RefineStyled>
-        <Button>
-          <span>Refine</span>
-          <Filter />
-        </Button>
-        <span className="product-count">{productCount} Products</span>
-      </RefineStyled>
+    <MenuListingStyled {...props}>
+      <div className={clsx("container", "menu")}>
+        <ViewSelector setView={setView} view={view} />
+        <RefineStyled>
+          <Button
+            onClick={() => {
+              toggleFiltersVisibility()
+            }}
+          >
+            <span>Refine</span>
+            {filtersVisibility ? <MinusIcon /> : <FilterIcon />}
+          </Button>
+          <span className="product-count">{productCount} Products</span>
+        </RefineStyled>
+      </div>
+      {filtersVisibility && (
+        <MenuRefine className={clsx("container", "menu-refine")} />
+      )}
     </MenuListingStyled>
   )
 }
