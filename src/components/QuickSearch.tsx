@@ -23,7 +23,11 @@ const QuickSearchStyled = styled.div`
   align-items: center;
   background-color: ${themeGet("colors.background", "white")};
   display: grid;
-  padding: ${props => props.theme.space[2]}px;
+  padding: ${themeGet("space.2")}px;
+
+  input {
+    margin: ${themeGet("space.2")}px;
+  }
 
   ${compose(color, grid, layout, position, space)}
 `
@@ -32,7 +36,7 @@ const ResultsStyled = styled.ul`
   align-items: center;
   display: grid;
   list-style: none;
-  margin: 0;
+  margin: ${themeGet("space.2")}px;
 
   li {
     margin-block-end: 0;
@@ -69,10 +73,10 @@ export const QuickSearch: React.FC<QuickSearchProps> = ({
   return (
     <QuickSearchStyled {...props}>
       <input
-        type="text"
-        value={query}
         onChange={search}
         placeholder="Search site"
+        type="text"
+        value={query}
       />
       <ResultsStyled>
         {(results as SearchResult[]).map(page => (
