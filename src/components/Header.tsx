@@ -25,6 +25,7 @@ const HeaderStyled = styled.header`
   margin-block-end: ${themeGet("space.6")}px;
   padding-block-start: ${themeGet("space.3")}px;
   position: sticky;
+  z-index: 999;
   top: 0;
   ${mediaQueries.md} {
     padding-block-start: ${themeGet("space.8")}px;
