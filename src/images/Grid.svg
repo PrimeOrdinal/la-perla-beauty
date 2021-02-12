@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>1514949B-829E-44E6-808E-321BCCE16698</title>
-    <defs>
-        <filter id="filter-1">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.211765 0 0 0 0 0.192157 0 0 0 0 0.223529 0 0 0 1.000000 0"></feColorMatrix>
-        </filter>
-    </defs>
-    <g id="02.PLP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="D_01_PLP_02_Fragrances_Pink-Tag" transform="translate(-134.000000, -463.000000)">
-            <g id="Grid-Active" transform="translate(87.000000, 461.000000)" filter="url(#filter-1)">
-                <g transform="translate(47.000000, 2.000000)">
-                    <rect id="Rectangle" fill="#363139" transform="translate(3.500000, 3.500000) scale(-1, 1) translate(-3.500000, -3.500000) " x="0" y="0" width="7" height="7" rx="2"></rect>
-                    <rect id="Rectangle-Copy-6" fill="#363139" transform="translate(3.500000, 12.500000) scale(-1, 1) translate(-3.500000, -12.500000) " x="0" y="9" width="7" height="7" rx="2"></rect>
-                    <rect id="Rectangle-Copy-5" fill="#363139" transform="translate(12.500000, 3.500000) scale(-1, 1) translate(-12.500000, -3.500000) " x="9" y="0" width="7" height="7" rx="2"></rect>
-                    <rect id="Rectangle-Copy-7" fill="#363139" transform="translate(12.500000, 12.500000) scale(-1, 1) translate(-12.500000, -12.500000) " x="9" y="9" width="7" height="7" rx="2"></rect>
-                </g>
-            </g>
-        </g>
+    <g>
+        <rect fill="currentColor" transform="translate(3.500000, 3.500000) scale(-1, 1) translate(-3.500000, -3.500000) " x="0" y="0" width="7" height="7" rx="2"></rect>
+        <rect fill="currentColor" transform="translate(3.500000, 12.500000) scale(-1, 1) translate(-3.500000, -12.500000) " x="0" y="9" width="7" height="7" rx="2"></rect>
+        <rect fill="currentColor" transform="translate(12.500000, 3.500000) scale(-1, 1) translate(-12.500000, -3.500000) " x="9" y="0" width="7" height="7" rx="2"></rect>
+        <rect fill="currentColor" transform="translate(12.500000, 12.500000) scale(-1, 1) translate(-12.500000, -12.500000) " x="9" y="9" width="7" height="7" rx="2"></rect>
     </g>
 </svg>

@@ -3,10 +3,12 @@ import Modal from "react-modal"
 import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
 
+import { ReactComponent as Close } from "../images/Close.svg"
 import DownArrow, {
   ReactComponent as DownArrowComponent,
 } from "../images/DownArrow.svg"
-import { ReactComponent as Close } from "../images/Close.svg"
+
+import { Button } from "./Button"
 
 const ModalOverlayStyle = {
   content: {
@@ -21,15 +23,15 @@ const ModalOverlayStyle = {
   },
 }
 
-const BtnStyled = styled.button`
-  padding: 0;
+// const BtnStyled = styled.button`
+//   padding: 0;
 
-  svg {
-    height: ${themeGet("space.3")}px;
-    object-fit: contain;
-    margin-left: ${themeGet("space.2")}px;
-  }
-`
+//   svg {
+//     height: ${themeGet("space.3")}px;
+//     object-fit: contain;
+//     margin-left: ${themeGet("space.2")}px;
+//   }
+// `
 
 const WrapperStyled = styled.div`
   display: flex;
@@ -39,11 +41,13 @@ const WrapperStyled = styled.div`
 
   .close-button {
     align-self: end;
+    align-self: flex-end;
     padding: 0;
 
     svg {
       height: ${themeGet("space.7")}px;
       object-fit: contain;
+      color: ${themeGet("colors.black")};
     }
   }
 
@@ -70,6 +74,7 @@ const WrapperStyled = styled.div`
       font-weight: bold;
       font-size: ${themeGet("fontSizes.heading4Desktop")}px;
     }
+
     .select {
       appearance: none;
       padding: 0.75rem 0.5rem;
@@ -83,41 +88,43 @@ const WrapperStyled = styled.div`
       &:focus {
         outline: none;
       }
+
       option {
         font-size: ${themeGet("fontSizes.heading4Desktop")}px;
       }
     }
+
     .shipping-label {
       grid-area: shipping;
     }
+
     .shipping-selection {
       grid-area: shipping-option;
     }
+
     .language-label {
       grid-area: language;
     }
+
     .language-selection {
       grid-area: language-option;
     }
+
     .currency-label {
       grid-area: currency;
     }
+
     .currency-selection {
       grid-area: currency-option;
     }
+
     .button {
       grid-area: button;
-      background: ${themeGet("colors.black")};
-      color: ${themeGet("colors.white")};
-      font-size: ${themeGet("fontSizes.heading4Desktop")}px;
-      padding: 0.75rem 0.5rem;
-      width: 100%;
-      margin-block-start: 1.5rem;
     }
   }
 `
 
-const ModalOverlay = () => {
+const SiteSettingsOverlay = () => {
   const [modalIsOpen, setIsOpen] = useState(false)
   function openModal() {
     setIsOpen(true)
@@ -126,6 +133,7 @@ const ModalOverlay = () => {
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
     Modal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.5)"
+    Modal.defaultStyles.overlay.zIndex = "99999"
   }
 
   function closeModal() {
@@ -133,10 +141,10 @@ const ModalOverlay = () => {
   }
   return (
     <div>
-      <BtnStyled onClick={openModal}>
+      <Button onClick={openModal} active>
         UK | ENGLISH | £
         <DownArrowComponent />
-      </BtnStyled>
+      </Button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -145,9 +153,9 @@ const ModalOverlay = () => {
         style={ModalOverlayStyle}
       >
         <WrapperStyled>
-          <button className="close-button" onClick={closeModal}>
+          <Button className="close-button" onClick={closeModal} active>
             <Close />
-          </button>
+          </Button>
           <h1>Lorem Ipsum</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi</p>
           <form>
@@ -169,7 +177,9 @@ const ModalOverlay = () => {
             <select className="currency-selection select" name="currency" id="">
               <option value="">GBP £</option>
             </select>
-            <button className="button">Continue Shopping</button>
+            <Button className="button" variant="primary">
+              Continue Shopping
+            </Button>
           </form>
         </WrapperStyled>
       </Modal>
@@ -177,4 +187,4 @@ const ModalOverlay = () => {
   )
 }
 
-export default ModalOverlay
+export default SiteSettingsOverlay

@@ -11,7 +11,7 @@ export const button = `
         display: flex;
         font-family: "Quicksand";
         font-size: var(--font-size-body, 13px);
-        gap: 1rem;
+        gap: ${theme.space[2]}px;
         justify-content: center;
         justify-items: center;
         letter-spacing: 1px;
@@ -24,7 +24,18 @@ export const button = `
         }
 
         ${theme.mediaQueries.md} {
+            gap: ${theme.space[3]}px;
             padding: ${theme.space[3]}px ${theme.space[4]}px;
+        }
+
+        svg {
+            width: ${theme.space[7]}px;
+            object-fit: contain;
+        }
+
+        svg,
+        svg * {
+            fill: ${theme.colors.lightgrey};
         }
     }
 `

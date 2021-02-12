@@ -6,15 +6,18 @@ import type {
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
+
 import { useToggle } from "../hooks/useToggle"
+
+import { mediaQueries } from "../theme"
+
+import { HamburgerMenu } from "./HamburgerMenu"
 import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
-import { MenuNavigation as MenuNavigation } from "./MenuNavigation"
+import { MenuNavigation } from "./MenuNavigation"
 import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
-import { mediaQueries } from "../theme"
-import HamburgerMenu from "./HamburgerMenu"
 
 const HeaderStyled = styled.header`
   background-color: #ffffff;
@@ -22,6 +25,7 @@ const HeaderStyled = styled.header`
   margin-block-end: ${themeGet("space.6")}px;
   padding-block-start: ${themeGet("space.3")}px;
   position: sticky;
+  z-index: 999;
   top: 0;
   ${mediaQueries.md} {
     padding-block-start: ${themeGet("space.8")}px;

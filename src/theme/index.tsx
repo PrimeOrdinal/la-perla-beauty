@@ -121,12 +121,26 @@ theme.buttons = {
   primary: {
     backgroundColor: theme.colors.black,
     color: theme.colors.white,
+    "&:active": {
+      color: theme.colors.lightgrey,
+    },
     "&:disabled": {},
     "&:hover": {},
   },
   secondary: {
     backgroundColor: theme.colors.lightgrey,
     color: theme.colors.darkgrey,
+    "&:active": {
+      color: theme.colors.black,
+    },
+    "&:disabled": {},
+    "&:hover": {},
+  },
+  transparent: {
+    color: theme.colors.text,
+    "&:active": {
+      color: theme.colors.black,
+    },
     "&:disabled": {},
     "&:hover": {},
   },

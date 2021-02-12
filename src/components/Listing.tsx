@@ -15,6 +15,8 @@ import {
   SpaceProps,
 } from "styled-system"
 
+import { theme } from "../theme"
+
 import { ProductCard } from "./ProductCard"
 import { PromotionalBanner } from "./PromotionalBanner"
 
@@ -22,6 +24,16 @@ const ListingStyled = styled.ul`
   display: grid;
   list-style: none;
   padding: 0;
+
+  
+
+  .product {
+  }
+
+  .promotional-banner {
+    grid-column: span 2;
+  }
+
   ${compose(grid, layout, space)}
 `
 
@@ -32,29 +44,28 @@ export type ListingProps = GridProps &
       node: WithContext<Product>
     }>
     promotionalBanners?: Contentstack_CategoriesPromotional_Banners
+    view: "grid" | "list"
   }
 
 export const Listing: React.FC<ListingProps> = ({
+  view,
   products,
   promotionalBanners,
 }) => {
   const items = products?.map(({ node: product }: { node: Product }, index) => (
-    <li key={index}>
+    <li className="product" key={`product-${index}`}>
       <ProductCard product={product} />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(product)}</script>
       </Helmet>
-      <script type="application/ld+json">{JSON.stringify(product)}</script>
     </li>
   ))
-
-  console.log("promotionalBanners", promotionalBanners)
 
   promotionalBanners?.forEach((promotionalBanner, index) => {
     items.splice(
       promotionalBanner?.grid_position,
       0,
-      <li key={index}>
+      <li className="promotional-banner" key={`promotional-banner-${index}`}>
         <PromotionalBanner {...promotionalBanner?.promotional_banner?.[0]} />
       </li>
     )
@@ -62,17 +73,22 @@ export const Listing: React.FC<ListingProps> = ({
 
   return (
     <ListingStyled
-      className="container"
       borderTop={1}
       gridAutoFlow="row"
-      gridColumnGap={{ _: 6, sm: 6, md: 8, lg: 10 }}
-      gridRowGap={{ _: 4, sm: 6, md: 8, lg: 10 }}
-      gridTemplateColumns={{
+      gridColumnGap={view === "grid" ? { _: 6, sm: 6, md: 8, lg: 10 } : { _: 6, sm: 6, md: 8, lg: 10 }}
+      gridRowGap={view === "grid" ? { _: 4, sm: 6, md: 8, lg: 10 } : { _: 4, sm: 6, md: 8, lg: 10 }}
+      gridTemplateColumns={view === "grid" ? {
         _: "repeat(2, 1fr)",
         sm: "repeat(2, 1fr)",
         md: "repeat(4, 1fr)",
         xl: "repeat(4, 1fr)",
+      } : {
+        _: "repeat(1, 1fr)",
+        sm: "repeat(1, 1fr)",
+        md: "repeat(2, 1fr)",
+        xl: "repeat(2, 1fr)",
       }}
+      view={view}
     >
       {items}
     </ListingStyled>

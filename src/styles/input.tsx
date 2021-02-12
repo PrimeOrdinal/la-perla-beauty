@@ -14,7 +14,7 @@ export const input = `
         
         ${theme.mediaQueries.md} {
             padding: ${theme.space[3]}px ${theme.space[8]}px;
-            min-width: 12rem;
+            min-width: 14rem;
             font-size: ${theme.fontSizes[2]}px;
 
         }

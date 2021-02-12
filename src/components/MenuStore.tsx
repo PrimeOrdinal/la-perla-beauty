@@ -1,5 +1,5 @@
 import React from "react"
-import ModalOverlay from "./ModalOverlay"
+import SiteSettingsOverlay from "./SiteSettingsOverlay"
 
 import styled from "styled-components"
 import {
@@ -23,7 +23,7 @@ export type MenuStoreProps = GridProps & LayoutProps & SpaceProps
 export const MenuStore: React.FC<MenuStoreProps> = props => (
   <MenuStoreStyled {...props}>
     <li>
-      <ModalOverlay />
+      <SiteSettingsOverlay />
     </li>
   </MenuStoreStyled>
 )

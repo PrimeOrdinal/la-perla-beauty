@@ -40,7 +40,7 @@ const StyledHamburger = styled.div`
   }
 `
 
-const HamburgerMenu = ({ data }) => {
+export const HamburgerMenu = ({ data }) => {
   const [toggle, setToggle] = useState(false)
 
   return (
@@ -83,5 +83,3 @@ const HamburgerMenu = ({ data }) => {
     </StyledHamburger>
   )
 }
-
-export default HamburgerMenu

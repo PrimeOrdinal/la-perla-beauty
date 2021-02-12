@@ -26,7 +26,6 @@ const ProductCardStyled = styled.article`
 
   .image-container,
   img {
-    aspect-ratio: 1;
     background-color: ${themeGet("colors.lightgrey")};
     border-radius: ${themeGet("radii.4")}px;
     display: block;

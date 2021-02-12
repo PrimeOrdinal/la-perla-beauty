@@ -9,7 +9,7 @@ import React from "react"
 
 import { Breadcrumb } from "../components/Breadcrumb"
 import { CategoryHeader } from "../components/CategoryHeader"
-import { Filters } from "../components/Filters"
+import { MenuListing } from "../components/MenuListing"
 import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"
 import { SEO } from "../components/SEO"
@@ -59,7 +59,7 @@ const ProductsPage: React.FC<
         <a href="/body">Body</a>
       </Tabs>
 
-      <Filters productCount={data.allBigCommerceProducts.edges.length} />
+      <MenuListing productCount={data.allBigCommerceProducts.edges.length} />
 
       <section className={clsx("container", "BigCommerce")}>
         <Listing
