@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet"
 import React from "react"
 import styled from "styled-components"
 
+import { Button } from "../components/Button"
+import { ImageGallery } from "../components/ImageGallery"
 import { Layout } from "../components/Layout"
 import { SEO } from "../components/SEO"
 
@@ -52,30 +54,29 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 
   const name = product?.name as string
 
+  const imageGalleryArguments = {
+    items: [
+      {
+        original: "https://picsum.photos/id/1018/1000/600/",
+        thumbnail: "https://picsum.photos/id/1018/250/150/",
+      },
+      {
+        original: "https://picsum.photos/id/1015/1000/600/",
+        thumbnail: "https://picsum.photos/id/1015/250/150/",
+      },
+      {
+        original: "https://picsum.photos/id/1019/1000/600/",
+        thumbnail: "https://picsum.photos/id/1019/250/150/",
+      },
+    ],
+    showPlayButton: true
+  }
+
   return (
     <Layout>
       <SEO title={`Product page for ${name}`} />
       <StyledProduct>
-        <section id="images">
-          <img alt={name} src="https://via.placeholder.com/250" />
-          <ul>
-            <li>
-              <img alt={name} src="https://via.placeholder.com/250" />
-            </li>
-            <li>
-              <img alt={name} src="https://via.placeholder.com/250" />
-            </li>
-            <li>
-              <img alt={name} src="https://via.placeholder.com/250" />
-            </li>
-            <li>
-              <img alt={name} src="https://via.placeholder.com/250" />
-            </li>
-            <li>
-              <img alt={name} src="https://via.placeholder.com/250" />
-            </li>
-          </ul>
-        </section>
+        <ImageGallery {...imageGalleryArguments} />
         <section id="sidebar">
           <header>
             <h1>{name}</h1>
@@ -106,8 +107,8 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             <dd>{product?.upc}</dd> */}
           </dl>
           <form>
-            <button data-id={product?.["id"]}>Add to bag</button>
-            <button data-id={product?.["id"]}>Add to wishlist</button>
+            <Button data-id={product?.["id"]} variant="primary">Add to bag</Button>
+            <Button data-id={product?.["id"]} variant="secondary">Add to wishlist</Button>
           </form>
         </section>
         {/* {product?.categories &&
