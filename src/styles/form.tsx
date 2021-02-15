@@ -16,7 +16,6 @@ export const form = `
       }
   }
 
-  form,
   .form-fields,
   .form-row {
     ${mediaQueries.md} {

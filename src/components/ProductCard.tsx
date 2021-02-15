@@ -89,6 +89,10 @@ const ProductCardStyled = styled.article`
     font-size: ${themeGet("fontSizes.heading2Desktop")}px;
   }
 
+  .quick-buy {
+    grid-auto-flow: row;
+  }
+
   ${compose(layout, space)}
 `
 
@@ -223,7 +227,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         console.log(response)
       }}
     >
-      <Form className="form">
+      <Form className={clsx("quick-buy")}>
         <h1>Sizes</h1>
         <div className="form-fields">
           <div className="field">
