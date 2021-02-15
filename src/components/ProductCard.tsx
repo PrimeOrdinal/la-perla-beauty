@@ -54,14 +54,13 @@ const ProductCardStyled = styled.article`
     display: grid;
     grid-auto-flow: column;
     justify-content: end;
-    gap: 1rem;
-
+    gap: 0.5rem;
     svg {
       cursor: pointer;
-      height: ${themeGet("space.4")}px;
+      height: 18px;
       margin-right: ${themeGet("space.2")}px;
       object-fit: contain;
-      justify-self: end;
+      justify-self: flex-end;
     }
   }
 
@@ -74,11 +73,10 @@ const ProductCardStyled = styled.article`
   }
 
   .product-name {
-    align-self: end;
-    font-family: "Tiempos Fine";
-    font-size: ${themeGet("fontSizes.heading3Desktop")}px;
-    font-weight: bold;
-    display: inline-block;
+    align-self: flex-end;
+    font-size: ${themeGet("fontSizes.heading2Desktop")}px;
+    font-weight: 300;
+    font-family: "Tiempos";
     ${mediaQueries.sm} {
       font-size: ${themeGet("fontSizes.5")}px;
     }
@@ -91,6 +89,20 @@ const ProductCardStyled = styled.article`
 
   .quick-buy {
     grid-auto-flow: row;
+    h1 {
+      font-size: 13px;
+      ${mediaQueries.md} {
+        font-size: 14px;
+      }
+      font-family: "Quicksand";
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .form-fields {
+      display: grid;
+      grid-auto-flow: column;
+    }
   }
 
   ${compose(layout, space)}
@@ -172,7 +184,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             toggleQuickBuyVisibility()
           }}
         >
-          <span>Quick Buy</span>
           {quickBuyVisibility ? <MinusIcon /> : <PlusIcon />}
         </Button>
       </div>
@@ -247,8 +258,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   name="size"
                   id="size-option-1"
                   value="value-1"
+                  className="fancy-product"
                 />
-                <label htmlFor="option-1">Value 1</label>
+                <label htmlFor="size-option-1" className="product-radio-label">
+                  30 ml
+                </label>
               </div>
               <div className="field">
                 <Field
@@ -256,8 +270,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   name="size"
                   id="size-option-2"
                   value="value-2"
+                  className="fancy-product"
                 />
-                <label htmlFor="option-2">Value 2</label>
+                <label htmlFor="size-option-2" className="product-radio-label">
+                  90 ml
+                </label>
               </div>
               <div className="field">
                 <Field
@@ -265,8 +282,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   name="size"
                   id="size-option-3"
                   value="value-3"
+                  className="fancy-product"
                 />
-                <label htmlFor="option-3">Value 3</label>
+                <label htmlFor="size-option-3" className="product-radio-label">
+                  120 ml
+                </label>
               </div>
             </div>
             <Button
