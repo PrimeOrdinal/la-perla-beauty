@@ -31,7 +31,7 @@ export const Button: React.FC<ButtonProps> = styled.button`
     fill: ${props =>
       props.active
         ? themeGet("colors.black", "black")
-        : themeGet("colors.darkgrey", "darkgrey")};
+        : themeGet("colors.lightgrey", "lightgrey")};
   }
 
   ${variant({

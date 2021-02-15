@@ -89,6 +89,7 @@ export const MenuListing: React.FC<MenuListingProps> = ({
         <ViewSelector setView={setView} view={view} />
         <RefineStyled>
           <Button
+            active
             onClick={() => {
               toggleFiltersVisibility()
             }}
