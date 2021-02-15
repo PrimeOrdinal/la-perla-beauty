@@ -15,8 +15,6 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { theme } from "../theme"
-
 import { ProductCard } from "./ProductCard"
 import { PromotionalBanner } from "./PromotionalBanner"
 
@@ -25,13 +23,8 @@ const ListingStyled = styled.ul`
   list-style: none;
   padding: 0;
 
-  
-
-  .product {
-  }
-
   .promotional-banner {
-    grid-column: span 2;
+    grid-column: ${props => (props.view === "grid" ? "span 2" : "span 1")};
   }
 
   ${compose(grid, layout, space)}

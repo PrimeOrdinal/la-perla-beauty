@@ -1,20 +1,26 @@
 import type { Offer, Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
+import clsx from "clsx"
 import getSymbolFromCurrency from "currency-symbol-map"
+import { Formik, Field, Form, FormikHelpers } from "formik"
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 
+import { useToggle } from "../hooks/useToggle"
+
 import { ReactComponent as Wishlist } from "../images/Wishlist.svg"
-import { ReactComponent as Plus } from "../images/Plus.svg"
+import { ReactComponent as MinusIcon } from "../images/Minus.svg"
+import { ReactComponent as PlusIcon } from "../images/Plus.svg"
 
 import {
   availabilitySchemaToHumanReadableText,
   availabilitySchemaToShortName,
 } from "../utils/schema-org"
 
+import { Button } from "./Button"
 import { Tag } from "./Tag"
 import { mediaQueries } from "../theme"
 
@@ -86,6 +92,10 @@ const ProductCardStyled = styled.article`
   ${compose(layout, space)}
 `
 
+interface Values {
+  emailAddress: string
+}
+
 export type ProductCardProps = LayoutProps &
   SpaceProps & { product: Product; showImage: boolean }
 
@@ -94,6 +104,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   showImage = true,
   ...props
 }) => {
+  const [quickBuyVisibility, toggleQuickBuyVisibility] = useToggle()
+  
   const offer = product?.offers as Offer
 
   const thumbnail = product?.images?.find(({ representativeOfPage }) => representativeOfPage === true)
@@ -144,7 +156,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </span>
         )}
         <Wishlist />
-        <Plus />
+        <Button
+          active
+          onClick={() => {
+            toggleQuickBuyVisibility()
+          }}
+        >
+          <span >Quick Buy</span>
+          {quickBuyVisibility ? <MinusIcon /> : <PlusIcon />}
+        </Button>
       </div>
       {product?.name && (
         <span className="product-name" itemProp="name">
@@ -172,10 +192,99 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             >
               {offer?.price}
             </span>
-            {offer?.availability && <link itemProp="availability" href={offer?.availability} />}
+            {offer?.availability && <link itemProp="availability" href={offer?.availability as string} />}
           </div>
         )}
       </div>
+      {quickBuyVisibility && (
+        <Formik
+      className={clsx("container", "form-container")}
+      initialValues={{
+        emailAddress: "",
+      }}
+      onSubmit={async (
+        values: Values,
+        { setSubmitting }: FormikHelpers<Values>
+      ) => {
+        const path = `${window.location.origin}/.netlify/functions/sign-up-to-our-newsletter`
+
+        const url = new URL(path)
+
+        const response = await fetch(url, {
+          body: JSON.stringify(values),
+          headers: {
+            Accept: "application/json",
+          },
+          method: "POST",
+        })
+
+        setSubmitting(false)
+
+        console.log(response)
+      }}
+    >
+      <Form className="form">
+        <h1>Sizes</h1>
+        <div className="form-fields">
+          <div className="field">
+            <Field
+              type="radio"
+              name="filter"
+              id="option-1"
+              value="value-1"
+            />
+            <label htmlFor="option-1">Value 1</label>
+          </div>
+          <div className="field">
+            <Field
+              type="radio"
+              name="filter"
+              id="option-2"
+              value="value-2"
+            />
+            <label htmlFor="option-2">Value 2</label>
+          </div>
+          <div className="field">
+            <Field
+              type="radio"
+              name="filter"
+              id="option-3"
+              value="value-3"
+            />
+            <label htmlFor="option-3">Value 3</label>
+          </div>
+          <div className="field">
+            <Field
+              type="radio"
+              name="filter"
+              id="option-4"
+              value="value-4"
+            />
+            <label htmlFor="option-4">Value 4</label>
+          </div>
+        </div>
+        <Button type="reset" variant="secondary" py={{ md: 4 }} px={{ md: 9 }}>
+          <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+            <span
+              itemProp="priceCurrency"
+              content={offer?.priceCurrency as string}
+              className="product-price"
+            >
+              {getSymbolFromCurrency(offer?.priceCurrency as string)}
+            </span>
+            <span
+              className="product-price"
+              itemProp="price"
+              content={offer?.price as number}
+            >
+              {offer?.price}
+            </span>
+            {offer?.availability && <link itemProp="availability" href={offer?.availability as string} />}
+          </span> | <span>Add to bag</span>
+        </Button>
+      </Form>
+    </Formik>
+      )}
     </ProductCardStyled>
   )
 }
