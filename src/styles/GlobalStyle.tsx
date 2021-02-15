@@ -8,7 +8,9 @@ import { container } from "./container"
 import { field } from "./field"
 import { fonts } from "./fonts"
 import { form } from "./form"
+import { formCheckboxContainer } from "./formCheckboxContainer"
 import { formField } from "./formField"
+import { formRadioContainer } from "./formRadioContainer"
 import { headings } from "./headings"
 import { html } from "./html"
 import { input } from "./input"
@@ -32,4 +34,6 @@ export const GlobalStyle = createGlobalStyle`
     ${input}
     ${select}
     ${svg}
+    ${formRadioContainer}
+    ${formCheckboxContainer}
 `
