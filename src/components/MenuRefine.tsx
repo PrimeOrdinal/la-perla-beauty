@@ -311,7 +311,7 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
         </div>
         <Button
           type="reset"
-          variant="secondary"
+          variant="tertiary"
           py={{ md: 4 }}
           px={{ md: 9 }}
           justifySelf={{ md: "flex-end" }}

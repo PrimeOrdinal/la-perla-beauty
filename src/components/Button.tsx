@@ -46,6 +46,10 @@ export const Button: React.FC<ButtonProps> = styled.button`
         backgroundColor: "lightgrey",
         color: "darkgrey",
       },
+      tertiary: {
+        backgroundColor: "orange",
+        color: "darkgrey",
+      },
     },
   })}
 

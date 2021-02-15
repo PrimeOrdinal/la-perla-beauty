@@ -136,6 +136,15 @@ theme.buttons = {
     "&:disabled": {},
     "&:hover": {},
   },
+  tertiary: {
+    backgroundColor: theme.colors.orange,
+    color: theme.colors.darkgrey,
+    "&:active": {
+      color: theme.colors.black,
+    },
+    "&:disabled": {},
+    "&:hover": {},
+  },
   transparent: {
     color: theme.colors.text,
     "&:active": {
