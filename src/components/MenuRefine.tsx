@@ -7,13 +7,14 @@ import {
   layout,
   position,
   space,
+  flexbox,
   LayoutProps,
   PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-import { theme } from "../theme"
+import { mediaQueries, theme } from "../theme"
 
 import { Button } from "./Button"
 
@@ -29,8 +30,28 @@ const MenuRefineStyled = styled.section`
   .form {
     grid-auto-flow: row;
   }
-
   .form-fields {
+    ${mediaQueries.md} {
+      grid-template-columns: 1fr 4fr;
+    }
+
+    gap: 80px;
+  }
+
+  h1 {
+    font-family: "Quicksand";
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-block-end: 1rem;
+    border-bottom: ${theme.border.width} solid ${theme.border.color};
+  }
+
+  h2 {
+    font-family: "Quicksand";
+    font-weight: normal;
+    margin: 0;
+    font-size: inherit;
+    text-transform: uppercase;
   }
 
   ${compose(layout, position, space)}
@@ -93,8 +114,11 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                   name="filter"
                   id="option-1"
                   value="value-1"
+                  className="fancy-radio"
                 />
-                <label htmlFor="option-1">Value 1</label>
+                <label htmlFor="option-1" className="fancy-radio-label">
+                  Best sellers
+                </label>
               </div>
               <div className="field">
                 <Field
@@ -102,8 +126,47 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                   name="filter"
                   id="option-2"
                   value="value-2"
+                  className="fancy-radio"
                 />
-                <label htmlFor="option-2">Value 2</label>
+                <label htmlFor="option-2" className="fancy-radio-label">
+                  Recommended
+                </label>
+              </div>
+              <div className="field">
+                <Field
+                  type="radio"
+                  name="filter"
+                  id="option-3"
+                  value="value-3"
+                  className="fancy-radio"
+                />
+                <label htmlFor="option-3" className="fancy-radio-label">
+                  new arrivals
+                </label>
+              </div>
+              <div className="field">
+                <Field
+                  type="radio"
+                  name="filter"
+                  id="option-4"
+                  value="value-4"
+                  className="fancy-radio"
+                />
+                <label htmlFor="option-4" className="fancy-radio-label">
+                  price (low - high)
+                </label>
+              </div>
+              <div className="field">
+                <Field
+                  type="radio"
+                  name="filter"
+                  id="option-5"
+                  value="value-5"
+                  className="fancy-radio"
+                />
+                <label htmlFor="option-5" className="fancy-radio-label">
+                  price (high - low)
+                </label>
               </div>
             </div>
           </section>
@@ -117,8 +180,11 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                     name="filter"
                     id="option-a-1"
                     value="value-a-1"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-a-1">Value A 1</label>
+                  <label htmlFor="option-a-1" className="fancy-checkbox-label">
+                    Value A 1
+                  </label>
                 </div>
                 <div className="field">
                   <Field
@@ -126,19 +192,26 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                     name="filter"
                     id="option-a-2"
                     value="value-a-2"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-a-2">Value A 2</label>
+                  <label htmlFor="option-a-2" className="fancy-checkbox-label">
+                    Value A 2
+                  </label>
                 </div>
               </div>
               <div className="form-column">
+                <h2>scent type</h2>
                 <div className="field">
                   <Field
                     type="checkbox"
                     name="filter"
                     id="option-b-1"
                     value="value-b-1"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-b-1">Value B 1</label>
+                  <label htmlFor="option-b-1" className="fancy-checkbox-label">
+                    Value B 1
+                  </label>
                 </div>
                 <div className="field">
                   <Field
@@ -146,19 +219,26 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                     name="filter"
                     id="option-b-2"
                     value="value-b-2"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-b-2">Value B 2</label>
+                  <label htmlFor="option-b-2" className="fancy-checkbox-label">
+                    Value B 2
+                  </label>
                 </div>
               </div>
               <div className="form-column">
+                <h2>category</h2>
                 <div className="field">
                   <Field
                     type="checkbox"
                     name="filter"
                     id="option-c-1"
                     value="value-c-1"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-c-1">Value C 1</label>
+                  <label htmlFor="option-c-1" className="fancy-checkbox-label">
+                    Value C 1
+                  </label>
                 </div>
                 <div className="field">
                   <Field
@@ -166,19 +246,26 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                     name="filter"
                     id="option-c-2"
                     value="value-c-2"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-c-2">Value C 2</label>
+                  <label htmlFor="option-c-2" className="fancy-checkbox-label">
+                    Value C 2
+                  </label>
                 </div>
               </div>
               <div className="form-column">
+                <h2>perfume strength</h2>
                 <div className="field">
                   <Field
                     type="checkbox"
                     name="filter"
                     id="option-d-1"
                     value="value-d-1"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-d-1">Value D 1</label>
+                  <label htmlFor="option-d-1" className="fancy-checkbox-label">
+                    Value D 1
+                  </label>
                 </div>
                 <div className="field">
                   <Field
@@ -186,19 +273,25 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                     name="filter"
                     id="option-d-2"
                     value="value-d-2"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-d-2">Value D 2</label>
+                  <label htmlFor="option-d-2" className="fancy-checkbox-label">
+                    Value D 2
+                  </label>
                 </div>
               </div>
-              <div className="form-column">
+              {/* <div className="form-column">
                 <div className="field">
                   <Field
                     type="checkbox"
                     name="filter"
                     id="option-e-1"
                     value="value-e-1"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-e-1">Value E 1</label>
+                  <label htmlFor="option-e-1" className="fancy-checkbox-label">
+                    Value E 1
+                  </label>
                 </div>
                 <div className="field">
                   <Field
@@ -206,14 +299,23 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                     name="filter"
                     id="option-e-2"
                     value="value-e-2"
+                    className="fancy-checkbox"
                   />
-                  <label htmlFor="option-e-2">Value E 2</label>
+                  <label htmlFor="option-e-2" className="fancy-checkbox-label">
+                    Value E 2
+                  </label>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
         </div>
-        <Button type="reset" variant="secondary" py={{ md: 4 }} px={{ md: 9 }}>
+        <Button
+          type="reset"
+          variant="secondary"
+          py={{ md: 4 }}
+          px={{ md: 9 }}
+          justifySelf={{ md: "flex-end" }}
+        >
           Clear
         </Button>
       </Form>
