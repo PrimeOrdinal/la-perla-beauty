@@ -109,10 +109,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   ...props
 }) => {
   const [quickBuyVisibility, toggleQuickBuyVisibility] = useToggle()
-  
+
   const offer = product?.offers as Offer
 
-  const thumbnail = product?.images?.find(({ representativeOfPage }) => representativeOfPage === true)
+  const thumbnail = product?.images?.find(
+    ({ representativeOfPage }) => representativeOfPage === true
+  )
 
   const image = thumbnail ? (
     <img
@@ -129,11 +131,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       data-id={product?.["@id"]}
       {...props}
     >
-      {(showImage && (product?.url && (
-        <Link className="image-container" to={product?.url as string} title={product?.title as string}>
+      {(showImage && product?.url && (
+        <Link
+          className="image-container"
+          to={product?.url as string}
+          title={product?.title as string}
+        >
           {image}
         </Link>
-      ))) ||
+      )) ||
         image}
       {offer?.availability && (
         <Tag
@@ -166,7 +172,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             toggleQuickBuyVisibility()
           }}
         >
-          <span >Quick Buy</span>
+          <span>Quick Buy</span>
           {quickBuyVisibility ? <MinusIcon /> : <PlusIcon />}
         </Button>
       </div>
@@ -196,98 +202,109 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             >
               {offer?.price}
             </span>
-            {offer?.availability && <link itemProp="availability" href={offer?.availability as string} />}
+            {offer?.availability && (
+              <link
+                itemProp="availability"
+                href={offer?.availability as string}
+              />
+            )}
           </div>
         )}
       </div>
       {quickBuyVisibility && (
         <Formik
-      className={clsx("container", "form-container")}
-      initialValues={{
-        emailAddress: "",
-      }}
-      onSubmit={async (
-        values: Values,
-        { setSubmitting }: FormikHelpers<Values>
-      ) => {
-        const path = `${window.location.origin}/.netlify/functions/sign-up-to-our-newsletter`
+          className={clsx("container", "form-container")}
+          initialValues={{
+            emailAddress: "",
+          }}
+          onSubmit={async (
+            values: Values,
+            { setSubmitting }: FormikHelpers<Values>
+          ) => {
+            const path = `${window.location.origin}/.netlify/functions/sign-up-to-our-newsletter`
 
-        const url = new URL(path)
+            const url = new URL(path)
 
-        const response = await fetch(url, {
-          body: JSON.stringify(values),
-          headers: {
-            Accept: "application/json",
-          },
-          method: "POST",
-        })
+            const response = await fetch(url, {
+              body: JSON.stringify(values),
+              headers: {
+                Accept: "application/json",
+              },
+              method: "POST",
+            })
 
-        setSubmitting(false)
+            setSubmitting(false)
 
-        console.log(response)
-      }}
-    >
-      <Form className={clsx("quick-buy")}>
-        <h1>Sizes</h1>
-        <div className="form-fields">
-          <div className="field">
-            <Field
-              type="radio"
-              name="filter"
-              id="option-1"
-              value="value-1"
-            />
-            <label htmlFor="option-1">Value 1</label>
-          </div>
-          <div className="field">
-            <Field
-              type="radio"
-              name="filter"
-              id="option-2"
-              value="value-2"
-            />
-            <label htmlFor="option-2">Value 2</label>
-          </div>
-          <div className="field">
-            <Field
-              type="radio"
-              name="filter"
-              id="option-3"
-              value="value-3"
-            />
-            <label htmlFor="option-3">Value 3</label>
-          </div>
-          <div className="field">
-            <Field
-              type="radio"
-              name="filter"
-              id="option-4"
-              value="value-4"
-            />
-            <label htmlFor="option-4">Value 4</label>
-          </div>
-        </div>
-        <Button type="reset" variant="secondary" py={{ md: 4 }} px={{ md: 9 }}>
-          <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
-            <span
-              itemProp="priceCurrency"
-              content={offer?.priceCurrency as string}
-              className="product-price"
+            console.log(response)
+          }}
+        >
+          <Form className={clsx("quick-buy")}>
+            <h1>Sizes</h1>
+            <div className="form-fields">
+              <div className="field">
+                <Field
+                  type="radio"
+                  name="size"
+                  id="size-option-1"
+                  value="value-1"
+                />
+                <label htmlFor="option-1">Value 1</label>
+              </div>
+              <div className="field">
+                <Field
+                  type="radio"
+                  name="size"
+                  id="size-option-2"
+                  value="value-2"
+                />
+                <label htmlFor="option-2">Value 2</label>
+              </div>
+              <div className="field">
+                <Field
+                  type="radio"
+                  name="size"
+                  id="size-option-3"
+                  value="value-3"
+                />
+                <label htmlFor="option-3">Value 3</label>
+              </div>
+            </div>
+            <Button
+              type="submit"
+              variant="primary"
+              py={{ md: 4 }}
+              px={{ md: 9 }}
             >
-              {getSymbolFromCurrency(offer?.priceCurrency as string)}
-            </span>
-            <span
-              className="product-price"
-              itemProp="price"
-              content={offer?.price as number}
-            >
-              {offer?.price}
-            </span>
-            {offer?.availability && <link itemProp="availability" href={offer?.availability as string} />}
-          </span> | <span>Add to bag</span>
-        </Button>
-      </Form>
-    </Formik>
+              <span
+                itemProp="offers"
+                itemScope
+                itemType="https://schema.org/Offer"
+              >
+                <span
+                  itemProp="priceCurrency"
+                  content={offer?.priceCurrency as string}
+                  className="product-price"
+                >
+                  {getSymbolFromCurrency(offer?.priceCurrency as string)}
+                </span>
+                <span
+                  className="product-price"
+                  itemProp="price"
+                  content={offer?.price as number}
+                >
+                  {offer?.price}
+                </span>
+                {offer?.availability && (
+                  <link
+                    itemProp="availability"
+                    href={offer?.availability as string}
+                  />
+                )}
+              </span>{" "}
+              | <span>Add to bag</span>
+            </Button>
+          </Form>
+        </Formik>
       )}
     </ProductCardStyled>
   )
