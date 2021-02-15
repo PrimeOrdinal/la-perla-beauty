@@ -26,7 +26,7 @@ import { ViewSelector } from "./ViewSelector"
 
 const MenuListingStyled = styled.section`
   position: sticky;
-  top: 111px;
+  top: var(--header-min-height, 64px);
 
   .menu {
     align-items: center;
