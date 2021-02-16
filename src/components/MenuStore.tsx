@@ -1,6 +1,4 @@
-import React from "react"
-import SiteSettingsOverlay from "./SiteSettingsOverlay"
-
+import React, { useState } from "react"
 import styled from "styled-components"
 import {
   compose,
@@ -12,18 +10,41 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ListPlain } from "./ListPlain"
+import { ReactComponent as DownArrowIcon } from "../images/DownArrow.svg"
 
-export const MenuStoreStyled = styled(ListPlain)`
+import { Button } from "./Button"
+import { ListPlain } from "./ListPlain"
+import { SiteSettingsOverlay } from "./SiteSettingsOverlay"
+
+const MenuStoreStyled = styled(ListPlain)`
   ${compose(grid, layout, space)}
+`
+
+const DownArrowIconStyled = styled(DownArrowIcon)`
+  width: 14px;
 `
 
 export type MenuStoreProps = GridProps & LayoutProps & SpaceProps
 
-export const MenuStore: React.FC<MenuStoreProps> = props => (
-  <MenuStoreStyled {...props}>
-    <li>
-      <SiteSettingsOverlay />
-    </li>
-  </MenuStoreStyled>
-)
+export const MenuStore: React.FC<MenuStoreProps> = props => {
+  const [modalIsOpen, setIsOpen] = useState(false)
+  
+  function closeModal() {
+    setIsOpen(false)
+  }
+
+  function openModal() {
+    setIsOpen(true)
+  }
+
+  return (
+    <MenuStoreStyled {...props}>
+      <Button onClick={openModal} active>
+        UK | ENGLISH | £
+        <DownArrowIconStyled />
+      </Button>
+
+      <SiteSettingsOverlay closeModal={closeModal} modalIsOpen={modalIsOpen} />
+    </MenuStoreStyled>
+  )
+}

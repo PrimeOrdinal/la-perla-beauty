@@ -1,12 +1,9 @@
-import React, { useState } from "react"
+import { themeGet } from "@styled-system/theme-get"
+import React from "react"
 import Modal from "react-modal"
 import styled from "styled-components"
-import { themeGet } from "@styled-system/theme-get"
 
 import { ReactComponent as Close } from "../images/Close.svg"
-import {
-  ReactComponent as DownArrowComponent,
-} from "../images/DownArrow.svg"
 
 import { Button } from "./Button"
 
@@ -23,16 +20,6 @@ const ModalOverlayStyle = {
   },
 }
 
-// const BtnStyled = styled.button`
-//   padding: 0;
-
-//   svg {
-//     height: ${themeGet("space.3")}px;
-//     object-fit: contain;
-//     margin-left: ${themeGet("space.2")}px;
-//   }
-// `
-
 const WrapperStyled = styled.div`
   display: flex;
   flex-direction: column;
@@ -45,9 +32,9 @@ const WrapperStyled = styled.div`
     padding: 0;
 
     svg {
+      color: ${themeGet("colors.black")};
       height: ${themeGet("space.7")}px;
       object-fit: contain;
-      color: ${themeGet("colors.black")};
     }
   }
 
@@ -105,67 +92,63 @@ const WrapperStyled = styled.div`
   }
 `
 
-const SiteSettingsOverlay = () => {
-  const [modalIsOpen, setIsOpen] = useState(false)
-  function openModal() {
-    setIsOpen(true)
+export type SiteSettingsOverlayProps = GridProps &
+  LayoutProps &
+  SpaceProps & {
+    closeModal: React.DispatchWithoutAction
+    modalIsOpen: boolean
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    Modal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.5)"
-    Modal.defaultStyles.overlay.zIndex = "99999"
-  }
-
-  function closeModal() {
-    setIsOpen(false)
-  }
-  return (
-    <div>
-      <Button onClick={openModal} active>
-        UK | ENGLISH | £
-        <DownArrowComponent />
-      </Button>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        contentLabel="Country Selector"
-        style={ModalOverlayStyle}
-      >
-        <WrapperStyled>
-          <Button className="close-button" onClick={closeModal} active>
-            <Close />
-          </Button>
-          <h1>Lorem Ipsum</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi</p>
-          <form>
-            <label className="shipping-label label" htmlFor="shipping">
-              Select shipping destination
-            </label>
-            <select className="shipping-selection select" name="shipping" id="">
-              <option value="">United Kingdom</option>
-            </select>
-            <label className="language-label label" htmlFor="language">
-              Select your language
-            </label>
-            <select className="language-selection select" name="language" id="">
-              <option value="">English</option>
-            </select>
-            <label className="currency-label label" htmlFor="currency">
-              Select your currency
-            </label>
-            <select className="currency-selection select" name="currency" id="">
-              <option value="">GBP £</option>
-            </select>
-            <Button className="button" variant="primary">
-              Continue Shopping
-            </Button>
-          </form>
-        </WrapperStyled>
-      </Modal>
-    </div>
-  )
+function afterOpenModal() {
+  // references are now sync'd and can be accessed.
+  Modal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.5)"
+  Modal.defaultStyles.overlay.zIndex = "99999"
 }
 
-export default SiteSettingsOverlay
+export const SiteSettingsOverlay = ({ closeModal, modalIsOpen = false }) => {
+  return (
+    <Modal
+      contentLabel="Country Selector"
+      isOpen={modalIsOpen}
+      onAfterOpen={afterOpenModal}
+      onRequestClose={closeModal}
+      style={ModalOverlayStyle}
+    >
+      <WrapperStyled>
+        <Button className="close-button" onClick={closeModal} active>
+          <Close />
+        </Button>
+
+        <h1>Lorem Ipsum</h1>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi</p>
+
+        <form>
+          <label className="shipping-label label" htmlFor="shipping">
+            Select shipping destination
+          </label>
+          <select className="shipping-selection select" name="shipping" id="">
+            <option value="">United Kingdom</option>
+          </select>
+          <label className="language-label label" htmlFor="language">
+            Select your language
+          </label>
+          <select className="language-selection select" name="language" id="">
+            <option value="">English</option>
+          </select>
+          <label className="currency-label label" htmlFor="currency">
+            Select your currency
+          </label>
+          <select className="currency-selection select" name="currency" id="">
+            <option value="">GBP £</option>
+          </select>
+          <Button className="button" variant="primary">
+            Continue Shopping
+          </Button>
+        </form>
+
+      </WrapperStyled>
+
+    </Modal>
+  )
+}

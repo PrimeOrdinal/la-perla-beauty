@@ -27,12 +27,14 @@ import { ViewSelector } from "./ViewSelector"
 const MenuListingStyled = styled.section`
   position: sticky;
   top: var(--header-min-height, 64px);
+
   .product-count-mobile {
     display: block;
     text-transform: uppercase;
     padding-block-start: 1rem;
     padding-block-end: 1rem;
     background: white;
+
     ${mediaQueries.md} {
       display: none;
     }
