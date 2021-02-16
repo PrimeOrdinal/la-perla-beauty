@@ -1,5 +1,6 @@
 import type { Contentstack_Pages } from "../../graphql-types"
 
+import clsx from "clsx"
 import { PageProps } from "gatsby"
 import React from "react"
 
@@ -19,24 +20,26 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
     <Layout>
       <SEO title={page?.title} />
 
-      <h1>{page?.title}</h1>
-      <h2>ABABABABAB</h2>
+      <div className={clsx("container")}>
+        <h1>{page?.title}</h1>
+        <h2>ABABABABAB</h2>
 
-      <section>
-        <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
-      </section>
-      <section>
-        <h1>Section</h1>
-      </section>
-      <section>
-        <h1>Section</h1>
-      </section>
-      <section>
-        <h1>Section</h1>
-      </section>
-      <section>
-        <h1>Section</h1>
-      </section>
+        <section>
+          <img alt="Lorem ipsum" src="https://via.placeholder.com/250" />
+        </section>
+        <section>
+          <h1>Section</h1>
+        </section>
+        <section>
+          <h1>Section</h1>
+        </section>
+        <section>
+          <h1>Section</h1>
+        </section>
+        <section>
+          <h1>Section</h1>
+        </section>
+      </div>
     </Layout>
   )
 }
