@@ -3,8 +3,6 @@ import { Story, Meta } from "@storybook/react"
 
 import { ImageGallery } from "../src/components/ImageGallery"
 
-import "react-image-gallery/styles/css/image-gallery.css";
-
 export default {
   title: "ImageGallery",
   component: ImageGallery,

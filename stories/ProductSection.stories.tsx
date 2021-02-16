@@ -52,7 +52,7 @@ Primary.args = {
       priceCurrency: "USD",
       price: "119.99",
       priceValidUntil: "2020-11-20",
-      itemCondition: "https://schema.org/UsedCondition",
+      itemCondition: "https://schema.org/NewCondition",
       availability: "https://schema.org/InStock",
     },
   } as Product,

@@ -57,7 +57,7 @@ InStock.args = {
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/UsedCondition",
+      itemCondition: "https://schema.org/NewCondition",
       price: "119.99",
       priceCurrency: "USD",
       priceValidUntil: "2020-11-20",
