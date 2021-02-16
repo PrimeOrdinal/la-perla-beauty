@@ -4,7 +4,7 @@ import type {
 } from "../../graphql-types"
 
 import clsx from "clsx"
-import { PageProps, graphql, Link } from "gatsby"
+import { PageProps, graphql } from "gatsby"
 import React from "react"
 
 import { Layout } from "../components/Layout"
@@ -15,7 +15,7 @@ type PageContextPage = PageContextTypeBreadcrumb & {
 }
 
 const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
-  data,
+  // data,
   // location,
   pageContext,
   // path

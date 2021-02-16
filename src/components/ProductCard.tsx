@@ -11,9 +11,9 @@ import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 
 import { useToggle } from "../hooks/useToggle"
 
-import { CloseIcon as Wishlist } from "../images/Wishlist.svg"
-import { CloseIcon as MinusIcon } from "../images/Minus.svg"
-import { CloseIcon as PlusIcon } from "../images/Plus.svg"
+import { ReactComponent as Wishlist } from "../images/Wishlist.svg"
+import { ReactComponent as MinusIcon } from "../images/Minus.svg"
+import { ReactComponent as PlusIcon } from "../images/Plus.svg"
 
 import { mediaQueries } from "../theme"
 
