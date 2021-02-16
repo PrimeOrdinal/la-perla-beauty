@@ -32,8 +32,11 @@ const StyledPageContainer = styled.div`
 `
 
 const StyledContentArea = styled.div`
-  display: flex;
   flex-basis: 100%;
+
+  &.flex {
+    display: flex;
+  }
 `
 
 export type LayoutProps = {
@@ -134,7 +137,7 @@ export const Layout: React.FC<LayoutProps> = ({
           </React.Fragment>
         ) : (
           <StyledPageContainer>
-            <StyledContentArea>{children}</StyledContentArea>
+            <StyledContentArea className="flex">{children}</StyledContentArea>
           </StyledPageContainer>
         )}
 
