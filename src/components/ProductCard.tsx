@@ -179,6 +179,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
         <Wishlist />
         <Button
+          p={0}
           active
           onClick={() => {
             toggleQuickBuyVisibility()
