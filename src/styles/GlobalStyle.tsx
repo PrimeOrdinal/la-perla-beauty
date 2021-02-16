@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components"
 
+import { accessibility } from "./accessibility"
+import { anchor } from "./anchor"
 import { body } from "./body"
 import { border } from "./border"
 import { boxSizing } from "./boxSizing"
@@ -19,6 +21,8 @@ import { select } from "./select"
 import { svg } from "./svg"
 
 export const GlobalStyle = createGlobalStyle`
+    ${accessibility}
+    ${anchor}
     ${html}
     ${body}
     ${border}
