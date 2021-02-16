@@ -15,7 +15,7 @@ type PageContextPage = PageContextTypeBreadcrumb & {
 }
 
 const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
-  // data,
+  data,
   // location,
   pageContext,
   // path
@@ -29,7 +29,7 @@ const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
       <div className={clsx("container")}>
         
         <header>
-          <h1>La Perla Beauty</h1>
+          <h1>{data?.site?.siteMetadata?.title}</h1>
 
           <span>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, dot. Nullam
@@ -89,6 +89,11 @@ export const query = graphql`
           title
           url
         }
+      }
+    }
+    site {
+      siteMetadata {
+        title
       }
     }
   }

@@ -7,10 +7,9 @@
 
 import type { LayoutQuery } from "../../graphql-types"
 
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql, navigate, useStaticQuery } from "gatsby"
 import React from "react"
 import styled, { ThemeProvider } from "styled-components"
-// import type {} from "styled-components/cssprop"
 
 import { GlobalStyle } from "../styles/GlobalStyle"
 
@@ -32,17 +31,21 @@ const StyledPageContainer = styled.div`
   flex: 1;
 `
 
-const StyledMain = styled.div`
+const StyledContentArea = styled.div`
+  display: flex;
   flex-basis: 100%;
 `
 
 export type LayoutProps = {
   children?: React.ReactNode
+  type?: "full" | "minimal"
 }
 
-export const Layout: React.FC = (
-  { children }
-) => {
+export const Layout: React.FC<LayoutProps> = ({
+  children,
+  type = "full",
+  ...props
+}) => {
   const data: LayoutQuery = useStaticQuery(graphql`
     query Layout {
       site {
@@ -71,7 +74,14 @@ export const Layout: React.FC = (
       allContentstackMenus(
         filter: {
           slot: {
-            in: ["footer-secondary-1", "footer-secondary-2", "footer-secondary-3", "footer-tertiary-1", "header-navigation", "mobile-navigation"]
+            in: [
+              "footer-secondary-1"
+              "footer-secondary-2"
+              "footer-secondary-3"
+              "footer-tertiary-1"
+              "header-navigation"
+              "mobile-navigation"
+            ]
           }
         }
       ) {
@@ -84,20 +94,50 @@ export const Layout: React.FC = (
       siteSearchIndex {
         index
       }
+      bigCommerceGQL {
+        site {
+          settings {
+            status
+          }
+        }
+      }
     }
   `)
 
+  // TODO: Uncomment the following if statement to show a maintenance when the BigCommerce store is not available
+  // if (data.bigCommerceGQL.site.settings.status === "PRE_LAUNCH") {
+  //   navigate("/maintenance")
+  // }
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} {...props}>
       <StyledSiteContainer>
         <GlobalStyle theme={theme} />
         <SiteSelector />
-        <Banner to="/shipping" variant="primary">Standard Shipping &amp; Returns Lorem Ipsum</Banner>
-        <Header siteTitle={data?.site?.siteMetadata?.title || `Title`} data={data} />
-        <StyledPageContainer>
-          <StyledMain>{children}</StyledMain>
-        </StyledPageContainer>
-        <Footer siteTitle={data?.site?.siteMetadata?.title || `Title`} data={data} />
+
+        {type === "full" ? (
+          <React.Fragment>
+            <Banner to="/shipping" variant="primary">
+              Standard Shipping &amp; Returns Lorem Ipsum
+            </Banner>
+            <Header
+              siteTitle={data?.site?.siteMetadata?.title || `Title`}
+              data={data}
+            />
+            <StyledPageContainer>
+              <StyledContentArea>{children}</StyledContentArea>
+            </StyledPageContainer>
+            <Footer
+              siteTitle={data?.site?.siteMetadata?.title || `Title`}
+              data={data}
+            />
+          </React.Fragment>
+        ) : (
+          <StyledPageContainer>
+            <StyledContentArea>{children}</StyledContentArea>
+          </StyledPageContainer>
+        )}
+
       </StyledSiteContainer>
     </ThemeProvider>
   )
