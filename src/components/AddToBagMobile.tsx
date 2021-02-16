@@ -1,8 +1,9 @@
 import React from "react"
-import { mediaQueries } from "../theme"
 import styled from "styled-components"
+
+import { ReactComponent as CloseIcon } from "../images/Close.svg"
+
 import { Button } from "./Button"
-import { ReactComponent as Close } from "../images/Close.svg"
 
 const ContainerStyled = styled.div`
   border: 1px solid;
@@ -35,7 +36,7 @@ const ContainerStyled = styled.div`
 `
 
 const Backdrop = styled.div`
-  background: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   height: 50vh;
   position: relative;
 `
@@ -47,7 +48,7 @@ export const AddToBagMobile: React.FC = () => {
         <div className="title">
           <span>ITEM ADDED TO BAG</span>
           <button className="close">
-            <Close />
+            <CloseIcon />
           </button>
         </div>
 

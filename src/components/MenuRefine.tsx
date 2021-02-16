@@ -90,7 +90,7 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
 
         const url = new URL(path)
 
-        const response = await fetch(url, {
+        const response = await fetch(url.toString(), {
           body: JSON.stringify(values),
           headers: {
             Accept: "application/json",

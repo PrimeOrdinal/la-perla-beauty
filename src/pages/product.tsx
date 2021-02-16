@@ -272,8 +272,6 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             <dd>{product?.mpn}</dd>
             <dt>SKU</dt>
             <dd>{product?.sku}</dd>
-            <dt>UPC</dt>
-            <dd>{product?.upc}</dd>
             <dt>URL</dt>
             <dd>{product?.url}</dd>
             {/* <dt>Price</dt>

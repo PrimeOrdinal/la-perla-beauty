@@ -1,7 +1,3 @@
-import { themeGet } from "@styled-system/theme-get"
-
-import { theme } from "../theme"
-
 export const formCheckboxContainer = `
 
   .field {

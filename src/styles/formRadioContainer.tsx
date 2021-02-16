@@ -1,4 +1,4 @@
-import { theme, mediaQueries } from "../theme"
+import { mediaQueries } from "../theme"
 
 export const formRadioContainer = `
 .field {

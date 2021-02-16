@@ -11,9 +11,11 @@ import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 
 import { useToggle } from "../hooks/useToggle"
 
-import { ReactComponent as Wishlist } from "../images/Wishlist.svg"
-import { ReactComponent as MinusIcon } from "../images/Minus.svg"
-import { ReactComponent as PlusIcon } from "../images/Plus.svg"
+import { CloseIcon as Wishlist } from "../images/Wishlist.svg"
+import { CloseIcon as MinusIcon } from "../images/Minus.svg"
+import { CloseIcon as PlusIcon } from "../images/Plus.svg"
+
+import { mediaQueries } from "../theme"
 
 import {
   availabilitySchemaToHumanReadableText,
@@ -23,7 +25,6 @@ import {
 import { Button } from "./Button"
 import { Price } from "./Price"
 import { Tag } from "./Tag"
-import { mediaQueries } from "../theme"
 
 const ProductCardStyled = styled.article`
   align-content: space-between;
@@ -53,15 +54,16 @@ const ProductCardStyled = styled.article`
   .product-category-wrapper {
     align-items: center;
     display: grid;
+    gap: 0.5rem;
     grid-auto-flow: column;
     justify-content: end;
-    gap: 0.5rem;
+
     svg {
       cursor: pointer;
       height: 18px;
+      justify-self: flex-end;
       margin-right: ${themeGet("space.2")}px;
       object-fit: contain;
-      justify-self: flex-end;
     }
   }
 
@@ -75,9 +77,10 @@ const ProductCardStyled = styled.article`
 
   .product-name {
     align-self: flex-end;
+    font-family: "Tiempos";
     font-size: ${themeGet("fontSizes.heading2Desktop")}px;
     font-weight: 300;
-    font-family: "Tiempos";
+
     ${mediaQueries.sm} {
       font-size: ${themeGet("fontSizes.5")}px;
     }
@@ -90,14 +93,16 @@ const ProductCardStyled = styled.article`
 
   .quick-buy {
     grid-auto-flow: row;
+
     h1 {
+      font-family: "Quicksand";
       font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+
       ${mediaQueries.md} {
         font-size: 14px;
       }
-      font-family: "Quicksand";
-      text-transform: uppercase;
-      font-weight: 600;
     }
 
     .form-fields {
@@ -195,9 +200,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {product?.name}
         </span>
       )}
-      {offer && (
-        <Price offer={offer} />
-      )}
+      {offer && <Price offer={offer} />}
       {quickBuyVisibility && (
         <Formik
           className={clsx("container", "form-container")}
@@ -212,7 +215,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
             const url = new URL(path)
 
-            const response = await fetch(url, {
+            const response = await fetch(url.toString(), {
               body: JSON.stringify(values),
               headers: {
                 Accept: "application/json",
