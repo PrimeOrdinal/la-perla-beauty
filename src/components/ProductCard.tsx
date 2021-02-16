@@ -21,6 +21,7 @@ import {
 } from "../utils/schema-org"
 
 import { Button } from "./Button"
+import { Price } from "./Price"
 import { Tag } from "./Tag"
 import { mediaQueries } from "../theme"
 
@@ -185,6 +186,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             toggleQuickBuyVisibility()
           }}
         >
+          <span className="sr-only">Quick Buy</span>
           {quickBuyVisibility ? <MinusIcon /> : <PlusIcon />}
         </Button>
       </div>
@@ -193,36 +195,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {product?.name}
         </span>
       )}
-      <div
-        itemProp="offers"
-        itemScope
-        itemType="https://schema.org/AggregateOffer"
-      >
-        {offer && (
-          <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
-            <span
-              itemProp="priceCurrency"
-              content={offer?.priceCurrency as string}
-              className="product-price"
-            >
-              {getSymbolFromCurrency(offer?.priceCurrency as string)}
-            </span>
-            <span
-              className="product-price"
-              itemProp="price"
-              content={offer?.price as number}
-            >
-              {offer?.price}
-            </span>
-            {offer?.availability && (
-              <link
-                itemProp="availability"
-                href={offer?.availability as string}
-              />
-            )}
-          </div>
-        )}
-      </div>
+      {offer && (
+        <Price offer={offer} />
+      )}
       {quickBuyVisibility && (
         <Formik
           className={clsx("container", "form-container")}
@@ -251,7 +226,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           }}
         >
           <Form className={clsx("quick-buy")}>
-            <h1>Sizes</h1>
+            <legend>Sizes</legend>
             <div className="form-fields">
               <div className="field">
                 <Field
@@ -302,23 +277,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 itemType="https://schema.org/Offer"
               >
                 <span
-                  itemProp="priceCurrency"
-                  content={offer?.priceCurrency as string}
                   className="product-price"
+                  content={offer?.priceCurrency as string}
+                  itemProp="priceCurrency"
                 >
                   {getSymbolFromCurrency(offer?.priceCurrency as string)}
                 </span>
                 <span
                   className="product-price"
-                  itemProp="price"
                   content={offer?.price as number}
+                  itemProp="price"
                 >
                   {offer?.price}
                 </span>
                 {offer?.availability && (
                   <link
-                    itemProp="availability"
                     href={offer?.availability as string}
+                    itemProp="availability"
                   />
                 )}
               </span>{" "}
