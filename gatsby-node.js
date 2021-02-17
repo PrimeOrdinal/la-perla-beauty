@@ -98,6 +98,33 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        bigCommerceGQL {
+          site {
+            categoryTree {
+              path
+              name
+              description
+              productCount
+              entityId
+              children {
+                description
+                entityId
+                name
+                path
+                productCount
+              }
+            }
+            settings {
+              status
+              storeHash
+              storeName
+              url {
+                cdnUrl
+                vanityUrl
+              }
+            }
+          }
+        }
       }
     `
   )
