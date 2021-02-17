@@ -165,7 +165,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               values: Values,
               { setSubmitting }: FormikHelpers<Values>
             ) => {
-              const path = `${window.location.origin}/.netlify/functions/add-to-bag`
+              const path = `${window.location.origin}/.netlify/functions/add-to-cart`
 
               const url = new URL(path)
 
@@ -191,8 +191,14 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
                     name="size"
                     id="size-option-1"
                     value="value-1"
+                    className="fancy-product"
                   />
-                  <label htmlFor="option-1">Value 1</label>
+                  <label
+                    htmlFor="size-option-1"
+                    className="product-radio-label"
+                  >
+                    30 ml
+                  </label>
                 </div>
                 <div className="field">
                   <Field
@@ -200,8 +206,14 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
                     name="size"
                     id="size-option-2"
                     value="value-2"
+                    className="fancy-product"
                   />
-                  <label htmlFor="option-2">Value 2</label>
+                  <label
+                    htmlFor="size-option-2"
+                    className="product-radio-label"
+                  >
+                    90 ml
+                  </label>
                 </div>
                 <div className="field">
                   <Field
@@ -209,8 +221,14 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
                     name="size"
                     id="size-option-3"
                     value="value-3"
+                    className="fancy-product"
                   />
-                  <label htmlFor="option-3">Value 3</label>
+                  <label
+                    htmlFor="size-option-3"
+                    className="product-radio-label"
+                  >
+                    120 ml
+                  </label>
                 </div>
               </div>
               <Button
