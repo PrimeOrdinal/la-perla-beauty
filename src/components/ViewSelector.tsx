@@ -14,10 +14,18 @@ const ViewSelectorStyled = styled.nav`
   display: grid;
   grid-auto-flow: column;
   justify-content: start;
-  gap: ${themeGet("space.8")}px;
+  gap: ${themeGet("space.4")}px;
 
   ${mediaQueries.md} {
     gap: ${themeGet("space.10")}px;
+  }
+
+  .button {
+    padding: ${themeGet("space.4")}px ${themeGet("space.4")}px;
+
+    ${mediaQueries.md} {
+      padding: ${themeGet("space.4")}px ${themeGet("space.6")}px;
+    }
   }
 `
 
@@ -35,7 +43,7 @@ export const ViewSelector: React.FC<ViewSelectorProps> = ({
     <ViewSelectorStyled {...props}>
       <Button
         active={view === "grid" ? "active" : undefined}
-        className={clsx("button--link")}
+        className={clsx("button")}
         grid
         onClick={() => setView("grid")}
       >
@@ -44,7 +52,7 @@ export const ViewSelector: React.FC<ViewSelectorProps> = ({
       </Button>
       <Button
         active={view === "list" ? "active" : undefined}
-        className={clsx("button--link")}
+        className={clsx("button")}
         list
         onClick={() => setView("list")}
       >
