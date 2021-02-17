@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { mediaQueries } from "../theme"
 
 import { ReactComponent as CloseIcon } from "../images/Close.svg"
 import { ReactComponent as MinusIcon } from "../images/Minus.svg"
@@ -7,15 +8,18 @@ import { ReactComponent as PlusIcon } from "../images/Plus.svg"
 
 const ShoppingBagProductStyled = styled.div`
   display: grid;
-  gap: 12px;
-  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 2fr;
 
-  .column-1 {
+  .bagCol-1 {
     border-radius: 12px;
     height: 160px;
+    ${mediaQueries.md} {
+      height: 200px;
+    }
   }
 
-  .column-2 {
+  .bagCol-2 {
     position: relative;
 
     .title-wrapper {
@@ -40,19 +44,28 @@ const ShoppingBagProductStyled = styled.div`
     .quantity-wrapper {
       align-items: center;
       bottom: 0px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 3fr;
+      display: flex;
+      justify-content: space-between;
       position: absolute;
-
-      .quantity-icon {
-        border: solid 1px black;
-        height: 30px;
-        padding: 0px;
-        width: 30px;
+      width: 100%;
+      ${mediaQueries.md} {
+        bottom: 30%;
       }
+      .button-wrapper {
+        display: grid;
+        grid-auto-flow: column;
+        gap: 1rem;
+        align-items: center;
+        .quantity-icon {
+          border: solid 1px black;
+          height: 30px;
+          padding: 0px;
+          width: 30px;
+        }
 
-      .total {
-        text-align: center;
+        .total {
+          text-align: center;
+        }
       }
 
       .price {
@@ -76,10 +89,10 @@ export const ShoppingBagProduct: React.FC = () => {
   return (
     <ShoppingBagProductStyled>
       <img
-        className="column-1"
+        className="bagCol-1"
         src="https://cdn11.bigcommerce.com/s-9o6tufixs6/products/116/images/404/LaPerla_Collection_120ml__IT__14539.1612958270.386.513.jpg?c=1"
       />
-      <aside className="column-2">
+      <aside className="bagCol-2">
         <div className="title-wrapper">
           <h1>Product Name</h1>
           <button className="close-icon icon">
@@ -88,13 +101,15 @@ export const ShoppingBagProduct: React.FC = () => {
         </div>
         <span>200ml</span>
         <div className="quantity-wrapper">
-          <button className="quantity-icon icon">
-            <MinusIcon />
-          </button>
-          <span className="total">2</span>
-          <button className="quantity-icon icon">
-            <PlusIcon />
-          </button>
+          <div className="button-wrapper">
+            <button className="quantity-icon icon">
+              <MinusIcon />
+            </button>
+            <span className="total">2</span>
+            <button className="quantity-icon icon">
+              <PlusIcon />
+            </button>
+          </div>
           <span className="price">£124</span>
         </div>
       </aside>

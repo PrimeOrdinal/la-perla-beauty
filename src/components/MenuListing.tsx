@@ -52,8 +52,8 @@ const MenuListingStyled = styled.section`
 
   .menu-refine {
     background-color: ${themeGet("colors.white")};
-    padding-block-end: ${themeGet("space.7")}px;
-    padding-block-start: ${themeGet("space.7")}px;
+    padding-block-end: ${themeGet("space.10")}px;
+    padding-block-start: ${themeGet("space.10")}px;
     width: 80%;
   }
 

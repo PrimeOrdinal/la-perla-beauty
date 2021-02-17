@@ -14,18 +14,25 @@ import {
 import { Formik, Field, Form, FormikHelpers } from "formik"
 
 import { mediaQueries, theme } from "../theme"
+import { themeGet } from "@styled-system/theme-get"
 
+import { ReactComponent as Minus } from "../images/Minus.svg"
 import { Button } from "./Button"
 import { Accordion } from "./Accordion"
 
 const MenuRefineMobileStyled = styled.section`
   display: grid;
   grid-auto-flow: row;
-  gap: 1rem;
+  gap: ${themeGet("space.6")}px;
   position: relative;
+  ${mediaQueries.md} {
+    display: none;
+  }
   h1 {
-    border-top: 1px solid gray;
-    padding-block-start: 1rem;
+    border-top: ${theme.border.width} solid ${theme.border.color};
+    margin: 0px;
+    padding-block-start: ${themeGet("space.6")}px;
+    padding-block-end: ${themeGet("space.6")}px;
   }
   .sort,
   .filter {
@@ -33,22 +40,51 @@ const MenuRefineMobileStyled = styled.section`
       font-family: "Quicksand";
       font-weight: 600;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: ${themeGet("fontSizes.bodyMobile")}px;
+      border-bottom: ${themeGet("border.color")} solid
+        ${themeGet("border.width")};
     }
   }
-  .main-title {
-    border: none;
-  }
+
   .mobile-menu {
     position: absolute;
     width: 80%;
     right: 0px;
-    border: 1px solid gray;
-    padding: 1rem;
+    border: 0.5px solid gray;
+    border-radius: ${themeGet("space.4")}px 0px 0px 0px;
+    padding: ${themeGet("space.6")}px;
+
+    .main-title-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .main-title {
+        border: none;
+      }
+      svg {
+        width: 20px;
+        object-fit: contain;
+      }
+    }
   }
+
+  .sort-column {
+    gap: ${themeGet("space.8")}px;
+    padding-block-start: ${themeGet("space.3")}px;
+    padding-block-end: ${themeGet("space.3")}px;
+  }
+
+  .filter-column {
+    .field:not(:last-child) {
+      padding-block-end: ${themeGet("space.5")}px;
+      border-bottom: ${themeGet("border.color")} solid
+        ${themeGet("border.width")};
+    }
+  }
+
   .field-wrapper {
     display: grid;
-    gap: 1rem;
+    gap: ${themeGet("space.6")}px;
   }
 `
 
@@ -74,7 +110,10 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
   return (
     <MenuRefineMobileStyled>
       <div className="mobile-menu">
-        <h1 className="main-title">Refine</h1>
+        <div className="main-title-wrapper">
+          <h1 className="main-title">Refine</h1>
+          <Minus />
+        </div>
         <Formik
           className={clsx("container", "form-container")}
           initialValues={{
@@ -105,7 +144,7 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
             <div className="form-fields">
               <section className={clsx("form-section", "sort")}>
                 <h1>Sort by</h1>
-                <div className="form-column">
+                <div className="form-column sort-column">
                   <div className="field">
                     <Field
                       type="radio"
@@ -171,7 +210,7 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
               <section className={clsx("form-section", "filter")}>
                 <h1>Filter by</h1>
                 <div className="form-row">
-                  <div className="form-column">
+                  <div className="form-column filter-column">
                     <div className="field">
                       <Field
                         type="checkbox"

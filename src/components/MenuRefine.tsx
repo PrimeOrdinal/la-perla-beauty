@@ -13,17 +13,22 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { themeGet } from "@styled-system/theme-get"
 import { mediaQueries, theme } from "../theme"
 
 import { Button } from "./Button"
 
 const MenuRefineStyled = styled.section`
+  display: none;
+  ${mediaQueries.lg} {
+    display: grid;
+  }
   .menu {
     align-items: center;
     border-bottom: ${theme.border.width} solid ${theme.border.color};
     display: flex;
     justify-content: space-between;
-    padding-block-end: 1.25rem;
+    padding-block-end: ${themeGet("space.7")};
   }
 
   .form {
@@ -33,16 +38,14 @@ const MenuRefineStyled = styled.section`
     ${mediaQueries.md} {
       grid-template-columns: 1fr 4fr;
     }
-
-    gap: 80px;
   }
 
   h1 {
     font-family: "Quicksand";
     font-weight: 600;
     text-transform: uppercase;
-    padding-block-end: 1rem;
-    border-bottom: ${theme.border.width} solid ${theme.border.color};
+    padding-block-end: ${themeGet("space.6")}px;
+    border-bottom: ${themeGet("border.width")} solid ${themeGet("border.color")};
   }
 
   h2 {
@@ -51,6 +54,12 @@ const MenuRefineStyled = styled.section`
     margin: 0;
     font-size: inherit;
     text-transform: uppercase;
+    font-size: ${themeGet("fontSizes.heading4Desktop")}px;
+  }
+
+  .fancy-radio-label,
+  .fancy-checkbox-label {
+    font-size: ${themeGet("fontSizes.heading4Desktop")}px;
   }
 
   ${compose(layout, position, space)}
