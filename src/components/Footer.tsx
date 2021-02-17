@@ -248,6 +248,7 @@ export const Footer: React.FC<FooterProps> = (
                       {link?.url?.href?.startsWith("http") ? (
                         <a
                           href={link?.url?.href as string}
+                          rel="external"
                           title={link?.url?.title as string}
                         >
                           {link?.text}
