@@ -1,5 +1,5 @@
 import React from "react"
-import { theme, mediaQueries } from "../theme"
+import { mediaQueries } from "../theme"
 import { themeGet } from "@styled-system/theme-get"
 import styled from "styled-components"
 import { ShoppingBagProduct } from "./ShoppingBagProduct"
@@ -55,7 +55,7 @@ const GridStyled = styled.div`
         padding-block-start: 1rem;
         padding-block-end: 1rem;
         border-top: solid ${themeGet("border.width")}
-          ${themeGet("border.color")};
+          ${themeGet("border.color")}px;
         h2 {
           font-family: "Quicksand";
           text-transform: uppercase;
@@ -73,7 +73,7 @@ const GridStyled = styled.div`
         }
       }
       .productTotal-section {
-        border-top: solid ${themeGet("border.width")}
+        border-top: solid ${themeGet("border.width")}px
           ${themeGet("border.color")};
         padding-block-start: 1rem;
         padding-block-end: 1rem;
@@ -82,7 +82,7 @@ const GridStyled = styled.div`
         gap: 1rem;
       }
       .checkout-section {
-        border-top: solid ${themeGet("border.width")}
+        border-top: solid ${themeGet("border.width")}px
           ${themeGet("border.color")};
         padding-block-start: 1rem;
         padding-block-end: 1rem;
