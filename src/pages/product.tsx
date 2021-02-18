@@ -1,4 +1,4 @@
-import type { Offer, Product } from "schema-dts"
+import type { ImageObject, Offer, Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -106,10 +106,17 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
   const offer = product?.offers as Offer
 
   const imageGalleryArguments = {
-    items: Array.isArray(product?.image) && product?.image?.map((image) => ({
-      original: image?.contentUrl,
-      thumbnail: image?.contentUrl,
-    })),
+    items: Array.isArray(product?.image)
+      ? product?.image?.map((image: ImageObject) => ({
+          original: image?.contentUrl,
+          thumbnail: image?.contentUrl,
+        }))
+      : [
+          {
+            original: (product?.image as ImageObject)?.contentUrl,
+            thumbnail: (product?.image as ImageObject)?.contentUrl,
+          },
+        ],
     showPlayButton: true,
   }
 
@@ -120,10 +127,12 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
       <Breadcrumb crumbs={crumbs} />
 
       <ProductStyled className={clsx("container")}>
-        <ImageGallery
-          className={clsx("image-gallery")}
-          {...imageGalleryArguments}
-        />
+        {imageGalleryArguments.items?.length && (
+          <ImageGallery
+            className={clsx("image-gallery")}
+            {...imageGalleryArguments}
+          />
+        )}
 
         <main>
           <header>

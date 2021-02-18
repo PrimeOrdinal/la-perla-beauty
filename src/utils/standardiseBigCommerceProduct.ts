@@ -1,4 +1,4 @@
-import type { Product, WithContext } from "schema-dts"
+import type { ImageObject, Product, WithContext } from "schema-dts"
 
 import type { BigCommerceProducts } from "../../graphql-types"
 
@@ -33,7 +33,7 @@ export function standardiseBigCommerceProduct(
       contentUrl: image?.url_standard,
       identifier: image?.id,
       representativeOfPage: image?.is_thumbnail,
-    })),
+    } as ImageObject)),
     mpn: product?.mpn as string | undefined,
     name: product?.name as string | undefined,
     offers: {
