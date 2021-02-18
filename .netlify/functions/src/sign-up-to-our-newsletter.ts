@@ -11,9 +11,9 @@ const validate = value => {
 }
 
 export const handler: Handler = async (event: APIGatewayEvent) => {
-  const SITE_URL = process.env.SITE_URL
+  const GATSBY_SITE_URL = `${process.env.GATSBY_SITE_URL}`
 
-  if (!SITE_URL) {
+  if (!GATSBY_SITE_URL) {
     return {
       body: "Environment variable missing",
       statusCode: 400,

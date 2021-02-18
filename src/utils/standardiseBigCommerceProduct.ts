@@ -1,4 +1,4 @@
-import type { Product, WithContext } from "schema-dts"
+import type { ImageObject, Product, WithContext } from "schema-dts"
 
 import type { BigCommerceProducts } from "../../graphql-types"
 
@@ -27,13 +27,13 @@ export function standardiseBigCommerceProduct(
     gtin: product?.gtin as string | undefined,
     height: product?.height as string | undefined,
     identifier: product?.id as string | undefined,
-    images: product?.images?.sort((a, b) => a?.sort_order - b?.sort_order)
+    image: product?.images?.sort((a, b) => a?.sort_order - b?.sort_order)
     .map((image) => ({
       caption: image?.description,
       contentUrl: image?.url_standard,
       identifier: image?.id,
       representativeOfPage: image?.is_thumbnail,
-    })),
+    } as ImageObject)),
     mpn: product?.mpn as string | undefined,
     name: product?.name as string | undefined,
     offers: {

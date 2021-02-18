@@ -1,7 +1,7 @@
 export const getCartId = async (): Promise<string | undefined> => {
-    const path = `${window.location.origin}/.netlify/functions/carts`
+    const path = `/.netlify/functions/carts`
 
-    const url = new URL(path)
+    const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
     const response = await fetch(url.toString(), {
       headers: {

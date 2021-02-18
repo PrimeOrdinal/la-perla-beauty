@@ -1,4 +1,4 @@
-import type { Offer, Product } from "schema-dts"
+import type { ImageObject, Offer, Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -106,32 +106,17 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
   const offer = product?.offers as Offer
 
   const imageGalleryArguments = {
-    items: [
-      {
-        original: "https://picsum.photos/id/1018/600/600/",
-        thumbnail: "https://picsum.photos/id/1018/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1015/600/600/",
-        thumbnail: "https://picsum.photos/id/1015/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1014/600/600/",
-        thumbnail: "https://picsum.photos/id/1014/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1016/600/600/",
-        thumbnail: "https://picsum.photos/id/1016/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1015/600/600/",
-        thumbnail: "https://picsum.photos/id/1015/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1019/600/600/",
-        thumbnail: "https://picsum.photos/id/1019/100/100/",
-      },
-    ],
+    items: Array.isArray(product?.image)
+      ? product?.image?.map((image: ImageObject) => ({
+          original: image?.contentUrl,
+          thumbnail: image?.contentUrl,
+        }))
+      : [
+          {
+            original: (product?.image as ImageObject)?.contentUrl,
+            thumbnail: (product?.image as ImageObject)?.contentUrl,
+          },
+        ],
     showPlayButton: true,
   }
 
@@ -142,10 +127,12 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
       <Breadcrumb crumbs={crumbs} />
 
       <ProductStyled className={clsx("container")}>
-        <ImageGallery
-          className={clsx("image-gallery")}
-          {...imageGalleryArguments}
-        />
+        {imageGalleryArguments.items?.length && (
+          <ImageGallery
+            className={clsx("image-gallery")}
+            {...imageGalleryArguments}
+          />
+        )}
 
         <main>
           <header>
@@ -192,9 +179,9 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             ) => {
               const cartId = await getCartId()
 
-              const path = `${window.location.origin}/.netlify/functions/carts/${cartId}/items`
+              const path = `/.netlify/functions/carts/${cartId}/items`
 
-              const url = new URL(path)
+              const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
               const response = await fetch(url.toString(), {
                 body: JSON.stringify(values),

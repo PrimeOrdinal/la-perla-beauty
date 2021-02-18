@@ -38,9 +38,9 @@ export const QuickWishlist: React.FC<QuickWishlistProps> = ({
 }) => {
   const [isInWishlist, setIsInWishlist] = useState(false)
 
-  const path = `${window.location.origin}/.netlify/functions/wishlists`
+  const path = `/.netlify/functions/wishlists`
 
-  const url = new URL(path)
+  const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
   useEffect(() => {
     ;(async function getWishlists() {

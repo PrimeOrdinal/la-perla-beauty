@@ -10,14 +10,14 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
   const BIGCOMMERCE_CLIENT_ID = process.env.BIGCOMMERCE_CLIENT_ID
   const BIGCOMMERCE_ACCESS_TOKEN = process.env.BIGCOMMERCE_ACCESS_TOKEN
   const BIGCOMMERCE_CLIENT_SECRET = process.env.BIGCOMMERCE_CLIENT_SECRET
-  const SITE_URL = process.env.SITE_URL
+  const GATSBY_SITE_URL = process.env.GATSBY_SITE_URL
 
   if (
     !BIGCOMMERCE_STORE_HASH ||
     !BIGCOMMERCE_CLIENT_ID ||
     !BIGCOMMERCE_ACCESS_TOKEN ||
     !BIGCOMMERCE_CLIENT_SECRET ||
-    !SITE_URL
+    !GATSBY_SITE_URL
   ) {
     return {
       body: "Environment variable missing",
@@ -43,7 +43,7 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
       ? `carts/${cookies.cartId.value}`
       : `carts`
 
-    const url = new URL(`${apiURL}/${path}`)
+    const url = new URL(`/${path}`, `${apiURL}`)
 
     url.searchParams.append("include", "redirect_urls")
 
@@ -85,7 +85,7 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
         headers: {
           "Access-Control-Allow-Headers": "Content-Type, Accept",
           "Access-Control-Allow-Credentials": "true",
-          "Access-Control-Allow-Origin": SITE_URL,
+          "Access-Control-Allow-Origin": GATSBY_SITE_URL,
           "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE, OPTIONS",
           cookieHeader,
         },

@@ -3,9 +3,11 @@ import type { Handler } from "aws-lambda"
 import fetch from "node-fetch"
 
 export const handler: Handler = async () => {
-  const apiURL = "https://api.instagram.com/v1/users/self/media/recent"
+  const apiURL = "https://api.instagram.com"
   const INSTAGRAM_ACCESS_TOKEN = process.env.INSTAGRAM_ACCESS_TOKEN
   const count = 5
+
+  const path = "/v1/users/self/media/recent"
 
   if (!INSTAGRAM_ACCESS_TOKEN) {
     return {
@@ -15,7 +17,7 @@ export const handler: Handler = async () => {
   }
 
   try {
-    const url = new URL(apiURL)
+    const url = new URL(`/${path}`, `${apiURL}`)
 
     url.searchParams.append("access_token", INSTAGRAM_ACCESS_TOKEN)
     url.searchParams.append("count", count.toString())

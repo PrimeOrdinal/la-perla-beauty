@@ -118,12 +118,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   showImage = true,
   ...props
+}: {
+  product: Product
 }) => {
   const [quickBuyVisibility, toggleQuickBuyVisibility] = useToggle()
 
   const offer = product?.offers as Offer
 
-  const thumbnail = product?.images?.find(
+  const thumbnail = Array.isArray(product?.image) && product?.image?.find(
     ({ representativeOfPage }) => representativeOfPage === true
   )
 
