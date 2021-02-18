@@ -106,9 +106,9 @@ export const NewsletterSignup: React.FC = () => (
         values: Values,
         { setSubmitting }: FormikHelpers<Values>
       ) => {
-        const path = `${window.location.origin}/.netlify/functions/sign-up-to-our-newsletter`
+        const path = `/.netlify/functions/sign-up-to-our-newsletter`
 
-        const url = new URL(path)
+        const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
         const response = await fetch(url, {
           body: JSON.stringify(values),
