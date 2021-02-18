@@ -13,6 +13,7 @@ const MainStyled = styled.main`
     display: none;
     ${mediaQueries.md} {
       display: initial;
+      font-size: ${themeGet("fontSizes.7")}px;
     }
   }
 `
@@ -20,10 +21,11 @@ const MainStyled = styled.main`
 const GridStyled = styled.section`
   display: grid;
   grid-auto-flow: row;
-  gap: 1rem;
+  gap: ${themeGet("space.9")}px;
   ${mediaQueries.md} {
     grid-auto-flow: column;
     gap: 6rem;
+    margin-block-start: ${themeGet("space.12")}px;
   }
   .sign-in {
     display: grid;
@@ -33,18 +35,41 @@ const GridStyled = styled.section`
       display: none;
       ${mediaQueries.md} {
         display: initial;
+        font-size: ${themeGet("fontSizes.6")}px;
+        margin: 0;
       }
     }
     .mobile-heading {
+      font-size: ${themeGet("fontSizes.6")}px;
+      margin: 0;
       ${mediaQueries.md} {
         display: none;
+      }
+    }
+    p {
+      margin: 0;
+    }
+    form {
+      span {
+        text-transform: uppercase;
+        font-size: ${themeGet("fontSizes.small")}px;
+        ${mediaQueries.md} {
+          font-size: ${themeGet("fontSizes.1")}px;
+        }
       }
     }
   }
   .register {
     display: grid;
     grid-auto-flow: row;
-    gap: 1rem;
+    gap: ${themeGet("space.7")}px;
+    h1 {
+      font-size: ${themeGet("fontSizes.6")}px;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+    }
   }
 `
 
@@ -64,11 +89,13 @@ const AccountPage: React.FC = () => {
             </p>
             <form>
               <label htmlFor="email address">email address*</label>
-              <input type="email" />
+              <input className="input-focus" type="email" />
               <label htmlFor="password">password</label>
-              <input type="password" />
+              <input className="input-focus" type="password" />
               <span>forgot your password?</span>
-              <Button variant="primary">Sign in</Button>
+              <Button variant="primary" p={5}>
+                Sign in
+              </Button>
             </form>
           </section>
           <section className="register">
@@ -78,7 +105,9 @@ const AccountPage: React.FC = () => {
               quidem adipisci quos.
             </p>
             <IconList />
-            <Button variant="primary">register</Button>
+            <Button variant="primary" py={5}>
+              register
+            </Button>
           </section>
         </GridStyled>
       </MainStyled>
