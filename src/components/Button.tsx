@@ -1,5 +1,6 @@
 import { themeGet } from "@styled-system/theme-get"
 import { Link as GatsbyLink } from "gatsby"
+import React from "react"
 import styled, { css } from "styled-components"
 import {
   buttonStyle,
@@ -56,15 +57,47 @@ export const baseStyles = css`
     },
   })}
 
-  ${compose(buttonStyle, color, layout, space, flexbox)}
+  ${compose(buttonStyle, color, flexbox, layout, space)}
 `
+
+// Since DOM elements <a> cannot receive activeClassName
+// and partiallyActive, destructure the prop here and
+// pass it only to GatsbyLink
+export const Link = ({ children, to, ...other }) => {
+  // Tailor the following test to your environment.
+  // This example assumes that any internal link (intended for Gatsby)
+  // will start with exactly one slash, and that anything else is external.
+  const internal = /^\/(?!\/)/.test(to)
+
+  // Use Gatsby Link for internal links, and <a> for others
+  if (internal) {
+    return (
+      <GatsbyLink
+        to={to}
+        {...other}
+      >
+        {children}
+      </GatsbyLink>
+    )
+  }
+
+  return (
+    <a href={to} {...other}>
+      {children}
+    </a>
+  )
+}
 
 export const Button: React.FC<ButtonProps> = styled.button`
   ${baseStyles}
 `
 
+export const AnchorStyled: React.FC<ButtonProps> = styled.a`
+  ${styles}
+  ${baseStyles}
+`
 
-export const Link: React.FC<ButtonProps> = styled(GatsbyLink)`
+export const LinkStyled: React.FC<ButtonProps> = styled(Link)`
   ${styles}
   ${baseStyles}
 `
