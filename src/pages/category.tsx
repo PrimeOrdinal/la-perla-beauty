@@ -78,9 +78,10 @@ const CategoryPage: React.FC<
       <section className={clsx("container", "BigCommerce")}>
         <Listing
           products={data.allBigCommerceProducts.edges.map(({ node }) => ({
-            node: standardiseBigCommerceProduct(
-              (node as unknown) as BigCommerceProducts
-            ),
+            node: standardiseBigCommerceProduct({
+              node: (node as unknown) as BigCommerceProducts,
+              categories: data.bigCommerceGQL.site.categoryTree,
+            }),
           }))}
           promotionalBanners={
             data.allContentstackCategories?.edges?.[0]?.node
@@ -161,11 +162,20 @@ export const query = graphql`
       edges {
         node {
           id
+          locale
           product_id
           rich_text_editor
           title
           url
-          locale
+        }
+      }
+    }
+    bigCommerceGQL {
+      site {
+        categoryTree {
+          entityId
+          name
+          path
         }
       }
     }
