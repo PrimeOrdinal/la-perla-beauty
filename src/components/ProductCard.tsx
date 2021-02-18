@@ -1,9 +1,6 @@
 import type { Offer, Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
-import clsx from "clsx"
-import getSymbolFromCurrency from "currency-symbol-map"
-import { Formik, Field, Form, FormikHelpers } from "formik"
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
@@ -11,7 +8,6 @@ import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 
 import { useToggle } from "../hooks/useToggle"
 
-import { ReactComponent as Wishlist } from "../images/Wishlist.svg"
 import { ReactComponent as MinusIcon } from "../images/Minus.svg"
 import { ReactComponent as PlusIcon } from "../images/Plus.svg"
 
@@ -25,6 +21,8 @@ import {
 import { Button } from "./Button"
 import { Price } from "./Price"
 import { Tag } from "./Tag"
+import { QuickBuy } from "./QuickBuy"
+import { QuickWishlist } from "./QuickWishlist"
 
 const ProductCardStyled = styled.article`
   align-content: space-between;
@@ -113,11 +111,6 @@ const ProductCardStyled = styled.article`
 
   ${compose(layout, space)}
 `
-
-interface Values {
-  emailAddress: string
-}
-
 export type ProductCardProps = LayoutProps &
   SpaceProps & { product: Product; showImage: boolean }
 
@@ -183,7 +176,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {product?.brand?.name}
           </span>
         )}
-        <Wishlist />
+        <QuickWishlist product={product} />
         <Button
           p={0}
           active
@@ -202,108 +195,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       )}
       {offer && <Price offer={offer} />}
       {quickBuyVisibility && (
-        <Formik
-          className={clsx("container", "form-container")}
-          initialValues={{
-            emailAddress: "",
-          }}
-          onSubmit={async (
-            values: Values,
-            { setSubmitting }: FormikHelpers<Values>
-          ) => {
-            const path = `${window.location.origin}/.netlify/functions/sign-up-to-our-newsletter`
-
-            const url = new URL(path)
-
-            const response = await fetch(url.toString(), {
-              body: JSON.stringify(values),
-              headers: {
-                Accept: "application/json",
-              },
-              method: "POST",
-            })
-
-            setSubmitting(false)
-
-            console.log(response)
-          }}
-        >
-          <Form className={clsx("quick-buy")}>
-            <legend>Sizes</legend>
-            <div className="form-fields">
-              <div className="field">
-                <Field
-                  type="radio"
-                  name="size"
-                  id="size-option-1"
-                  value="value-1"
-                  className="fancy-product"
-                />
-                <label htmlFor="size-option-1" className="product-radio-label">
-                  30 ml
-                </label>
-              </div>
-              <div className="field">
-                <Field
-                  type="radio"
-                  name="size"
-                  id="size-option-2"
-                  value="value-2"
-                  className="fancy-product"
-                />
-                <label htmlFor="size-option-2" className="product-radio-label">
-                  90 ml
-                </label>
-              </div>
-              <div className="field">
-                <Field
-                  type="radio"
-                  name="size"
-                  id="size-option-3"
-                  value="value-3"
-                  className="fancy-product"
-                />
-                <label htmlFor="size-option-3" className="product-radio-label">
-                  120 ml
-                </label>
-              </div>
-            </div>
-            <Button
-              type="submit"
-              variant="primary"
-              py={{ md: 4 }}
-              px={{ md: 9 }}
-            >
-              <span
-                itemProp="offers"
-                itemScope
-                itemType="https://schema.org/Offer"
-              >
-                <span
-                  className="product-price"
-                  content={offer?.priceCurrency as string}
-                  itemProp="priceCurrency"
-                >
-                  {getSymbolFromCurrency(offer?.priceCurrency as string)}
-                </span>
-                <span
-                  className="product-price"
-                  content={offer?.price as number}
-                  itemProp="price"
-                >
-                  {offer?.price}
-                </span>
-                {offer?.availability && (
-                  <link
-                    href={offer?.availability as string}
-                    itemProp="availability"
-                  />
-                )}
-              </span>{" "}
-              | <span>Add to bag</span>
-            </Button>
-          </Form>
-        </Formik>
+        <QuickBuy product={product} />
       )}
     </ProductCardStyled>
   )
