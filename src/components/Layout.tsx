@@ -7,7 +7,7 @@
 
 import type { LayoutQuery } from "../../graphql-types"
 
-import { graphql, navigate, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import styled, { ThemeProvider } from "styled-components"
 
@@ -23,6 +23,7 @@ import { SiteSelector } from "./SiteSelector"
 const StyledSiteContainer = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 100vw;
   min-height: 100vh;
 `
 
@@ -33,6 +34,7 @@ const StyledPageContainer = styled.div`
 
 const StyledContentArea = styled.div`
   flex-basis: 100%;
+  max-width: 100vw;
 
   &.flex {
     display: flex;
