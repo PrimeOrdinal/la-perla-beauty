@@ -27,7 +27,7 @@ export function standardiseBigCommerceProduct(
     gtin: product?.gtin as string | undefined,
     height: product?.height as string | undefined,
     identifier: product?.id as string | undefined,
-    images: product?.images?.sort((a, b) => a?.sort_order - b?.sort_order)
+    image: product?.images?.sort((a, b) => a?.sort_order - b?.sort_order)
     .map((image) => ({
       caption: image?.description,
       contentUrl: image?.url_standard,
