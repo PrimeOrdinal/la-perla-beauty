@@ -20,7 +20,7 @@ const GridStyled = styled.div`
     padding-block-start: 1rem;
     padding-block-end: 1rem;
     h1 {
-      margin-block-end: 0;
+      margin: 0;
       font-size: ${themeGet("fontSizes.6")}px;
       ${mediaQueries.md} {
         font-size: ${themeGet("fontSizes.7")}px;
@@ -29,57 +29,69 @@ const GridStyled = styled.div`
   }
   .column-2 {
     ${mediaQueries.md} {
-      padding-block-start: 1rem;
-      padding-block-end: 1rem;
-      padding-inline-start: 1rem;
-      padding-inline-end: 1rem;
-      border: ${themeGet("border.width")} solid ${themeGet("border.color")};
-      border-radius: ${themeGet("radii.4")}px;
       display: grid;
+      align-items: flex-start;
     }
-    h1 {
-      display: none;
+    .column-2-wrapper {
       ${mediaQueries.md} {
-        display: initial;
-      }
-    }
-    .promo-section {
-      padding-block-start: 1rem;
-      padding-block-end: 1rem;
-      border-top: solid ${themeGet("border.width")} ${themeGet("border.color")};
-      h2 {
-        font-family: "Quicksand";
-        text-transform: uppercase;
-        font-size: ${themeGet("fontSizes.bodyMobile")}px;
-        font-weight: 600;
-        margin-block-start: 0;
-      }
-      form {
+        padding-block-start: 1rem;
+        padding-block-end: 1rem;
+        padding-inline-start: 1rem;
+        padding-inline-end: 1rem;
+        border: ${themeGet("border.width")} solid ${themeGet("border.color")};
+        border-radius: ${themeGet("radii.4")}px;
         display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 1rem;
-        input {
-          border: 1px solid black;
+        grid-auto-flow: row;
+      }
+
+      h1 {
+        display: none;
+        ${mediaQueries.md} {
+          display: initial;
         }
       }
-    }
-    .productTotal-section {
-      border-top: solid ${themeGet("border.width")} ${themeGet("border.color")};
-      padding-block-start: 1rem;
-      padding-block-end: 1rem;
-      display: grid;
-      grid-auto-flow: row;
-      gap: 1rem;
-    }
-    .checkout-section {
-      border-top: solid ${themeGet("border.width")} ${themeGet("border.color")};
-      padding-block-start: 1rem;
-      padding-block-end: 1rem;
-      display: grid;
-      grid-auto-flow: row;
-      gap: 1rem;
+      .promo-section {
+        padding-block-start: 1rem;
+        padding-block-end: 1rem;
+        border-top: solid ${themeGet("border.width")}
+          ${themeGet("border.color")};
+        h2 {
+          font-family: "Quicksand";
+          text-transform: uppercase;
+          font-size: ${themeGet("fontSizes.bodyMobile")}px;
+          font-weight: 600;
+          margin-block-start: 0;
+        }
+        form {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 1rem;
+          input {
+            border: 1px solid black;
+          }
+        }
+      }
+      .productTotal-section {
+        border-top: solid ${themeGet("border.width")}
+          ${themeGet("border.color")};
+        padding-block-start: 1rem;
+        padding-block-end: 1rem;
+        display: grid;
+        grid-auto-flow: row;
+        gap: 1rem;
+      }
+      .checkout-section {
+        border-top: solid ${themeGet("border.width")}
+          ${themeGet("border.color")};
+        padding-block-start: 1rem;
+        padding-block-end: 1rem;
+        display: grid;
+        grid-auto-flow: row;
+        gap: 1rem;
+      }
     }
   }
+
   .grid-wrapper {
     display: flex;
     justify-content: space-between;
@@ -106,37 +118,43 @@ export const Bag: React.FC = () => {
           <h1>Your bag</h1>
           <ShoppingBagProduct />
           <ShoppingBagProduct />
+          <ShoppingBagProduct />
+          <ShoppingBagProduct />
+          <ShoppingBagProduct />
+          <ShoppingBagProduct />
         </section>
         <section className="column-2">
-          <h1>Order Summary</h1>
-          <section className="promo-section">
-            <h2>promotional code</h2>
-            <form>
-              <input type="text" />
-              <Button variant="primary">Apply</Button>
-            </form>
-          </section>
-          <section className="productTotal-section">
-            <div className="grid-wrapper">
-              <span className="title">subtotal</span>
-              <span className="price">£100</span>
-            </div>
-            <div className="grid-wrapper">
-              <span>shipping</span>
-              <span>–</span>
-            </div>
-            <div className="grid-wrapper">
-              <span>Vat</span>
-              <span>–</span>
-            </div>
-          </section>
-          <section className="checkout-section">
-            <div className="grid-wrapper">
-              <span className="title">Total (inc vat)</span>
-              <span className="price">£100</span>
-            </div>
-            <Button variant="primary">Checkout</Button>
-          </section>
+          <div className="column-2-wrapper">
+            <h1>Order Summary</h1>
+            <section className="promo-section">
+              <h2>promotional code</h2>
+              <form>
+                <input type="text" />
+                <Button variant="primary">Apply</Button>
+              </form>
+            </section>
+            <section className="productTotal-section">
+              <div className="grid-wrapper">
+                <span className="title">subtotal</span>
+                <span className="price">£100</span>
+              </div>
+              <div className="grid-wrapper">
+                <span>shipping</span>
+                <span>–</span>
+              </div>
+              <div className="grid-wrapper">
+                <span>Vat</span>
+                <span>–</span>
+              </div>
+            </section>
+            <section className="checkout-section">
+              <div className="grid-wrapper">
+                <span className="title">Total (inc vat)</span>
+                <span className="price">£100</span>
+              </div>
+              <Button variant="primary">Checkout</Button>
+            </section>
+          </div>
         </section>
       </GridStyled>
     </div>
