@@ -1,12 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { themeGet } from "@styled-system/theme-get"
-import { mediaQueries } from "../theme"
 
 import { Layout } from "../components/Layout"
 import { IconList } from "../components/IconList"
 import { Button } from "../components/Button"
 import { SEO } from "../components/SEO"
+
+import { mediaQueries } from "../theme"
 
 const MainStyled = styled.main`
   .desktop-heading {

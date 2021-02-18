@@ -1,4 +1,4 @@
-import type { Product } from "schema-dts"
+import type { Offer, Product } from "schema-dts"
 
 import clsx from "clsx"
 import getSymbolFromCurrency from "currency-symbol-map"

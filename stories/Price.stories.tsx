@@ -1,4 +1,4 @@
-import type { Product } from "schema-dts"
+import type { Offer } from "schema-dts"
 
 import React from "react"
 import { Story, Meta } from "@storybook/react"

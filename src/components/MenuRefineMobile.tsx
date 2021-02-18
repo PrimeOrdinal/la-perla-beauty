@@ -1,11 +1,15 @@
+import type { SetStateAction } from "react"
+
 import React from "react"
 import clsx from "clsx"
 import styled from "styled-components"
 import {
+  color,
   compose,
   layout,
   position,
   space,
+  ColorProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -86,9 +90,11 @@ const MenuRefineMobileStyled = styled.section`
     display: grid;
     gap: ${themeGet("space.6")}px;
   }
+
+  ${compose(color, layout, position, space)}
 `
 
-export type MenuRefineProps = LayoutProps &
+export type MenuRefineProps = ColorProps & LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
@@ -108,7 +114,7 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
   ...props
 }) => {
   return (
-    <MenuRefineMobileStyled>
+    <MenuRefineMobileStyled {...props}>
       <div className="mobile-menu">
         <div className="main-title-wrapper">
           <h1 className="main-title">Refine</h1>

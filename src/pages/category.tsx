@@ -1,3 +1,5 @@
+import type { SetStateAction } from "react"
+
 import type {
   BigCommerceCategories,
   BigCommerceProducts,
@@ -32,7 +34,10 @@ const CategoryPage: React.FC<
     page,
   } = pageContext
 
-  const [view, setView]: [view: "grid" | "list", setView: React.Dispatch<SetStateAction<string>>] = useState("grid")
+  const [view, setView]: [
+    view: "grid" | "list",
+    setView: React.Dispatch<SetStateAction<string>>
+  ] = useState("grid")
 
   return (
     <Layout>
@@ -51,9 +56,7 @@ const CategoryPage: React.FC<
         </CategoryHeader>
       </div>
 
-      <Tabs
-        marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}
-      >
+      <Tabs marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}>
         {data.allBigCommerceCategories?.edges?.map(({ node: category }) => (
           <Link
             key={category?.id}
