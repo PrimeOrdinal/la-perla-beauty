@@ -13,7 +13,7 @@ const AnchorStyled = styled.a`
 `
 
 const NavStyled = styled.nav`
-  background-color: #efeee9;
+  background-color: ${themeGet("colors.darkgrey")};
   display: grid;
   text-align: center;
   grid-auto-flow: column;

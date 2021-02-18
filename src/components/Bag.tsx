@@ -1,10 +1,11 @@
-import React from "react"
-import { mediaQueries } from "../theme"
 import { themeGet } from "@styled-system/theme-get"
+import React from "react"
 import styled from "styled-components"
-import { ShoppingBagProduct } from "./ShoppingBagProduct"
+
+import { mediaQueries } from "../theme"
+
 import { Button } from "./Button"
-import { availabilitySchemaToHumanReadableText } from "src/utils/schema-org"
+import { ShoppingBagProduct } from "./ShoppingBagProduct"
 
 const GridStyled = styled.div`
   display: grid;
@@ -14,15 +15,18 @@ const GridStyled = styled.div`
     grid-template-columns: 2fr 1fr;
     margin-block-start: 2rem;
   }
+
   .column-1 {
     display: grid;
+    gap: 2rem;
     grid-auto-flow: row;
     justify-items: start;
-    gap: 2rem;
     padding-block-end: 1rem;
+
     h1 {
-      margin: 0;
       font-size: ${themeGet("fontSizes.6")}px;
+      margin: 0;
+
       ${mediaQueries.md} {
         font-size: ${themeGet("fontSizes.7")}px;
       }
@@ -30,83 +34,91 @@ const GridStyled = styled.div`
   }
   .column-2 {
     ${mediaQueries.md} {
-      display: grid;
       align-items: flex-start;
+      display: grid;
     }
+
     .column-2-wrapper {
       ${mediaQueries.md} {
-        padding-block-start: 1rem;
-        padding-block-end: 1rem;
-        padding-inline-start: 1rem;
-        padding-inline-end: 1rem;
-        border: ${themeGet("border.width")} solid ${themeGet("border.color")};
         border-radius: ${themeGet("radii.4")}px;
+        border-style: solid;
         display: grid;
         grid-auto-flow: row;
+        padding-block-end: 1rem;
+        padding-block-start: 1rem;
+        padding-inline-end: 1rem;
+        padding-inline-start: 1rem;
       }
 
       h1 {
         display: none;
+
         ${mediaQueries.md} {
           display: initial;
         }
       }
       .promo-section {
-        padding-block-start: 1rem;
+        border-top-style: solid;
         padding-block-end: 1rem;
-        border-top: solid ${themeGet("border.width")}
-          ${themeGet("border.color")}px;
+        padding-block-start: 1rem;
+
         h2 {
           font-family: "Quicksand";
-          text-transform: uppercase;
           font-size: ${themeGet("fontSizes.bodyMobile")}px;
           font-weight: 600;
           margin-block-start: 0;
+          text-transform: uppercase;
         }
+
         form {
           display: grid;
-          grid-template-columns: 2fr 1fr;
           gap: 1rem;
+          grid-template-columns: 2fr 1fr;
+
           input {
-            border: 1px solid black;
+            border-color: ${themeGet("colors.black")};
+            border-style: solid;
           }
         }
       }
+
       .productTotal-section {
-        border-top: solid ${themeGet("border.width")}px
-          ${themeGet("border.color")};
-        padding-block-start: 1rem;
-        padding-block-end: 1rem;
+        border-top-style: solid;
         display: grid;
-        grid-auto-flow: row;
         gap: 1rem;
+        grid-auto-flow: row;
+        padding-block-end: 1rem;
+        padding-block-start: 1rem;
       }
+
       .checkout-section {
-        border-top: solid ${themeGet("border.width")}px
-          ${themeGet("border.color")};
-        padding-block-start: 1rem;
-        padding-block-end: 1rem;
+        border-top-style: solid;
         display: grid;
-        grid-auto-flow: row;
         gap: 1rem;
+        grid-auto-flow: row;
+        padding-block-end: 1rem;
+        padding-block-start: 1rem;
       }
     }
   }
 
   .grid-wrapper {
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+
     span {
       text-transform: uppercase;
     }
+
     .title {
       font-weight: 600;
     }
+
     .price {
       font-family: "Tiempos";
-      font-weight: 300;
       font-size: ${themeGet("fontSizes.heading3Mobile")}px;
+      font-weight: 300;
     }
   }
 `

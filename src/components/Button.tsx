@@ -1,5 +1,6 @@
 import { themeGet } from "@styled-system/theme-get"
-import styled from "styled-components"
+import { Link as GatsbyLink } from "gatsby"
+import styled, { css } from "styled-components"
 import {
   buttonStyle,
   color,
@@ -15,6 +16,8 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { styles } from "../styles/button"
+
 export type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   ButtonStyleProps &
   ColorProps &
@@ -22,7 +25,7 @@ export type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   SpaceProps &
   VariantProps
 
-export const Button: React.FC<ButtonProps> = styled.button`
+export const baseStyles = css`
   &:disabled {
     color: ${themeGet("colors.disabled", "grey")};
   }
@@ -54,4 +57,14 @@ export const Button: React.FC<ButtonProps> = styled.button`
   })}
 
   ${compose(buttonStyle, color, layout, space, flexbox)}
+`
+
+export const Button: React.FC<ButtonProps> = styled.button`
+  ${baseStyles}
+`
+
+
+export const Link: React.FC<ButtonProps> = styled(GatsbyLink)`
+  ${styles}
+  ${baseStyles}
 `
