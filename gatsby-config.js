@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     author: process.env.SITE_AUTHOR,
     description: process.env.SITE_DESCRIPTION,
-    siteUrl: process.env.SITE_URL,
+    siteUrl: process.env.GATSBY_SITE_URL,
     title: process.env.SITE_TITLE,
   },
   plugins: [

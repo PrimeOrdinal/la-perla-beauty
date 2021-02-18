@@ -179,9 +179,9 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             ) => {
               const cartId = await getCartId()
 
-              const path = `${window.location.origin}/.netlify/functions/carts/${cartId}/items`
+              const path = `/.netlify/functions/carts/${cartId}/items`
 
-              const url = new URL(path)
+              const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
               const response = await fetch(url.toString(), {
                 body: JSON.stringify(values),

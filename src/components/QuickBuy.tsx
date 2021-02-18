@@ -39,9 +39,9 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({
 
   const offer = product?.offers as Offer
 
-  const path = `${window.location.origin}/.netlify/functions/carts`
+  const path = `/.netlify/functions/carts`
 
-  const url = new URL(path)
+  const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
   useEffect(() => {
     ;(async function getCarts() {
@@ -77,9 +77,9 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({
             values: Values,
             { setSubmitting }: FormikHelpers<Values>
           ) => {
-            const path = `${window.location.origin}/.netlify/functions/carts`
+            const path = `/.netlify/functions/carts`
 
-            const url = new URL(path)
+            const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
             const response = await fetch(url.toString(), {
               body: JSON.stringify(values),
