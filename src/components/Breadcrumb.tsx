@@ -4,6 +4,8 @@ import React from "react"
 import styled from "styled-components"
 
 const BreadcrumbStyled = styled.div`
+  margin-block-end: ${themeGet("space.8")}px;
+
   .breadcrumb__title {
     text-decoration: none;
   }
@@ -51,7 +53,7 @@ export type BreadcrumbProps = {
     pathname: string
     location: Record<string, unknown>
   }[]
-  crumbSeparator: string
+  crumbSeparator?: string
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = props => {
