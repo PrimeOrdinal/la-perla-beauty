@@ -9,15 +9,16 @@ import { availabilitySchemaToHumanReadableText } from "src/utils/schema-org"
 const GridStyled = styled.div`
   display: grid;
   grid-auto-flow: row;
+
   ${mediaQueries.md} {
     grid-template-columns: 2fr 1fr;
+    margin-block-start: 2rem;
   }
   .column-1 {
     display: grid;
     grid-auto-flow: row;
     justify-items: start;
     gap: 2rem;
-    padding-block-start: 1rem;
     padding-block-end: 1rem;
     h1 {
       margin: 0;
