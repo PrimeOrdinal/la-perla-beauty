@@ -24,11 +24,7 @@ export type ImageGalleryProps = LayoutProps &
 
 export const ImageGalleryStyled: React.FC<ImageGalleryProps> = styled(
   ReactImageGallery
-)`
-  .image-gallery-image {
-    border-radius: ${themeGet("radii.4")}px;
-  }
-  
+)`  
   ${compose(layout, position, space)}
 `
 
