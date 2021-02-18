@@ -106,32 +106,10 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
   const offer = product?.offers as Offer
 
   const imageGalleryArguments = {
-    items: [
-      {
-        original: "https://picsum.photos/id/1018/600/600/",
-        thumbnail: "https://picsum.photos/id/1018/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1015/600/600/",
-        thumbnail: "https://picsum.photos/id/1015/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1014/600/600/",
-        thumbnail: "https://picsum.photos/id/1014/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1016/600/600/",
-        thumbnail: "https://picsum.photos/id/1016/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1015/600/600/",
-        thumbnail: "https://picsum.photos/id/1015/100/100/",
-      },
-      {
-        original: "https://picsum.photos/id/1019/600/600/",
-        thumbnail: "https://picsum.photos/id/1019/100/100/",
-      },
-    ],
+    items: Array.isArray(product?.image) && product?.image?.map((image) => ({
+      original: image?.contentUrl,
+      thumbnail: image?.contentUrl,
+    })),
     showPlayButton: true,
   }
 
