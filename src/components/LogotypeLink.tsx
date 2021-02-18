@@ -17,7 +17,7 @@ import { mediaQueries } from "../theme"
 
 import { home as homePath } from "../utils/paths"
 
-const LogotypeLinkStyle = styled(Link)`
+const LogotypeLinkStyled = styled(Link)`
   text-align: center;
 
   ${compose(grid, layout, space)}
@@ -40,15 +40,11 @@ export type LogotypeLinkProps = GridProps &
     siteTitle: string
   }
 
-export const LogotypeLink: React.FC<LogotypeLinkProps> = ({
-  siteTitle,
-  ...props
-}) => (
-  <LogotypeLinkStyle
+export const LogotypeLink: React.FC<LogotypeLinkProps> = ({ siteTitle }) => (
+  <LogotypeLinkStyled
     title={`Return to the ${siteTitle} homepage`}
     to={homePath}
-    {...props}
   >
-    <LogotypeStyle {...props} />
-  </LogotypeLinkStyle>
+    <LogotypeStyle />
+  </LogotypeLinkStyled>
 )
