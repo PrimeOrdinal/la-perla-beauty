@@ -20,7 +20,7 @@ import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
 
 const HeaderStyled = styled.header`
-  background-color: #ffffff;
+  background-color: ${themeGet("colors.white")};
   border-bottom-style: solid;
   margin-block-end: ${themeGet("space.7")}px;
   min-height: var(--header-min-height, 64px);
@@ -36,6 +36,10 @@ const HeaderStyled = styled.header`
   .permanent {
     position: relative;
     z-index: 50;
+  }
+
+  .minibag {
+    box-shadow: 2px 3px 10px 2px rgba(204,204,204,0.5);
   }
 `
 
@@ -91,7 +95,7 @@ export const Header: React.FC<HeaderProps> = (
           />
         )}
         {miniBagVisibility && (
-          <MiniBag position="absolute" right="5rem" top="5rem" />
+          <MiniBag position="absolute" right="1rem" top="6rem" className="minibag" />
         )}
         {quickSearchVisibility && (
           <QuickSearch
