@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 
@@ -11,6 +12,7 @@ import { mediaQueries } from "../theme"
 const MainStyled = styled.main`
   .desktop-heading {
     display: none;
+
     ${mediaQueries.md} {
       display: initial;
       font-size: ${themeGet("fontSizes.7")}px;
@@ -20,19 +22,22 @@ const MainStyled = styled.main`
 
 const GridStyled = styled.section`
   display: grid;
-  grid-auto-flow: row;
   gap: ${themeGet("space.9")}px;
+  grid-auto-flow: row;
+
   ${mediaQueries.md} {
-    grid-auto-flow: column;
     gap: 6rem;
+    grid-auto-flow: column;
     margin-block-start: ${themeGet("space.12")}px;
   }
   .sign-in {
     display: grid;
-    grid-auto-flow: row;
     gap: 1rem;
+    grid-auto-flow: row;
+
     .desktop-subheading {
       display: none;
+
       ${mediaQueries.md} {
         display: initial;
         font-size: ${themeGet("fontSizes.6")}px;
@@ -42,6 +47,7 @@ const GridStyled = styled.section`
     .mobile-heading {
       font-size: ${themeGet("fontSizes.6")}px;
       margin: 0;
+
       ${mediaQueries.md} {
         display: none;
       }
@@ -51,8 +57,9 @@ const GridStyled = styled.section`
     }
     form {
       span {
-        text-transform: uppercase;
         font-size: ${themeGet("fontSizes.small")}px;
+        text-transform: uppercase;
+
         ${mediaQueries.md} {
           font-size: ${themeGet("fontSizes.1")}px;
         }
@@ -61,12 +68,14 @@ const GridStyled = styled.section`
   }
   .register {
     display: grid;
-    grid-auto-flow: row;
     gap: ${themeGet("space.7")}px;
+    grid-auto-flow: row;
+
     h1 {
       font-size: ${themeGet("fontSizes.6")}px;
       margin: 0;
     }
+
     p {
       margin: 0;
     }
