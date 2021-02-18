@@ -1,4 +1,5 @@
 import { themeGet } from "@styled-system/theme-get"
+// import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -16,7 +17,7 @@ import {
 
 import { mediaQueries } from "../theme"
 
-import { Button } from "./Button"
+import { Link } from "./Button"
 import { ShoppingBagProduct } from "./ShoppingBagProduct"
 
 export type MiniBagProps = ColorProps &
@@ -110,7 +111,8 @@ export const MiniBag: React.FC<MiniBagProps> = props => (
         <span className="title">Total (inc vat)</span>
         <span className="price">£100</span>
       </div>
-      <Button variant="primary">Checkout</Button>
+      <Link to="/bag" variant="secondary">View Bag</Link>
+      <Link to="/checkout" variant="primary">Checkout</Link>
     </section>
   </MiniBagStyled>
 )
