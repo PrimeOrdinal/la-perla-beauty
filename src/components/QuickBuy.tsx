@@ -166,7 +166,7 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({
                   />
                 )}
               </span>{" "}
-              | <span>Add to bag</span>
+              | <span>{isInBag ? "Added to bag" : "Add to bag"}</span>
             </Button>
           </Form>
         </Formik>
