@@ -25,6 +25,7 @@ export const SiteSelector: React.FC = () => {
       <AnchorStyled
         className={clsx("button--link")}
         href="https://laperla.com"
+        rel="external"
       >
         Lingerie
       </AnchorStyled>

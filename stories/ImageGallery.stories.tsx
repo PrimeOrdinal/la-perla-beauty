@@ -3,8 +3,6 @@ import { Story, Meta } from "@storybook/react"
 
 import { ImageGallery } from "../src/components/ImageGallery"
 
-import "react-image-gallery/styles/css/image-gallery.css";
-
 export default {
   title: "ImageGallery",
   component: ImageGallery,
@@ -19,16 +17,28 @@ export const Example = Template.bind({})
 Example.args = {
   items: [
     {
-      original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
+      original: "https://picsum.photos/id/1018/600/600/",
+      thumbnail: "https://picsum.photos/id/1018/100/100/",
     },
     {
-      original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
+      original: "https://picsum.photos/id/1015/600/600/",
+      thumbnail: "https://picsum.photos/id/1015/100/100/",
     },
     {
-      original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
+      original: "https://picsum.photos/id/1014/600/600/",
+      thumbnail: "https://picsum.photos/id/1014/100/100/",
+    },
+    {
+      original: "https://picsum.photos/id/1016/600/600/",
+      thumbnail: "https://picsum.photos/id/1016/100/100/",
+    },
+    {
+      original: "https://picsum.photos/id/1015/600/600/",
+      thumbnail: "https://picsum.photos/id/1015/100/100/",
+    },
+    {
+      original: "https://picsum.photos/id/1019/600/600/",
+      thumbnail: "https://picsum.photos/id/1019/100/100/",
     },
   ],
   showPlayButton: true

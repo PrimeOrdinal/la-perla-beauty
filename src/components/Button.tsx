@@ -6,6 +6,7 @@ import {
   compose,
   layout,
   space,
+  flexbox,
   variant,
   ButtonStyleProps,
   ColorProps,
@@ -45,8 +46,12 @@ export const Button: React.FC<ButtonProps> = styled.button`
         backgroundColor: "lightgrey",
         color: "darkgrey",
       },
+      tertiary: {
+        backgroundColor: "orange",
+        color: "darkgrey",
+      },
     },
   })}
 
-  ${compose(buttonStyle, color, layout, space)}
+  ${compose(buttonStyle, color, layout, space, flexbox)}
 `

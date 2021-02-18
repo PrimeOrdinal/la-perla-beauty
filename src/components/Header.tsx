@@ -20,11 +20,9 @@ import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
 
 const HeaderStyled = styled.header`
-  --header-min-height: 64px;
-
   background-color: #ffffff;
   border-bottom-style: solid;
-  margin-block-end: ${themeGet("space.6")}px;
+  margin-block-end: ${themeGet("space.7")}px;
   min-height: var(--header-min-height, 64px);
   padding-block-start: ${themeGet("space.3")}px;
   position: sticky;
@@ -32,8 +30,6 @@ const HeaderStyled = styled.header`
   z-index: 999;
 
   ${mediaQueries.md} {
-    --header-min-height: 112px;
-
     padding-block-start: ${themeGet("space.8")}px;
   }
 

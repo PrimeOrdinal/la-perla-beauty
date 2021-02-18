@@ -1,9 +1,6 @@
 import type { Offer, Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
-import clsx from "clsx"
-import getSymbolFromCurrency from "currency-symbol-map"
-import { Formik, Field, Form, FormikHelpers } from "formik"
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
@@ -11,9 +8,10 @@ import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 
 import { useToggle } from "../hooks/useToggle"
 
-import { ReactComponent as Wishlist } from "../images/Wishlist.svg"
 import { ReactComponent as MinusIcon } from "../images/Minus.svg"
 import { ReactComponent as PlusIcon } from "../images/Plus.svg"
+
+import { mediaQueries } from "../theme"
 
 import {
   availabilitySchemaToHumanReadableText,
@@ -21,8 +19,10 @@ import {
 } from "../utils/schema-org"
 
 import { Button } from "./Button"
+import { Price } from "./Price"
 import { Tag } from "./Tag"
-import { mediaQueries } from "../theme"
+import { QuickBuy } from "./QuickBuy"
+import { QuickWishlist } from "./QuickWishlist"
 
 const ProductCardStyled = styled.article`
   align-content: space-between;
@@ -52,16 +52,16 @@ const ProductCardStyled = styled.article`
   .product-category-wrapper {
     align-items: center;
     display: grid;
+    gap: 0.5rem;
     grid-auto-flow: column;
     justify-content: end;
-    gap: 1rem;
 
     svg {
       cursor: pointer;
-      height: ${themeGet("space.4")}px;
+      height: 18px;
+      justify-self: flex-end;
       margin-right: ${themeGet("space.2")}px;
       object-fit: contain;
-      justify-self: end;
     }
   }
 
@@ -74,11 +74,11 @@ const ProductCardStyled = styled.article`
   }
 
   .product-name {
-    align-self: end;
-    font-family: "Tiempos Fine";
-    font-size: ${themeGet("fontSizes.heading3Desktop")}px;
-    font-weight: bold;
-    display: inline-block;
+    align-self: flex-end;
+    font-family: "Tiempos";
+    font-size: ${themeGet("fontSizes.heading2Desktop")}px;
+    font-weight: 300;
+
     ${mediaQueries.sm} {
       font-size: ${themeGet("fontSizes.5")}px;
     }
@@ -89,13 +89,28 @@ const ProductCardStyled = styled.article`
     font-size: ${themeGet("fontSizes.heading2Desktop")}px;
   }
 
+  .quick-buy {
+    grid-auto-flow: row;
+
+    h1 {
+      font-family: "Quicksand";
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+
+      ${mediaQueries.md} {
+        font-size: 14px;
+      }
+    }
+
+    .form-fields {
+      display: grid;
+      grid-auto-flow: column;
+    }
+  }
+
   ${compose(layout, space)}
 `
-
-interface Values {
-  emailAddress: string
-}
-
 export type ProductCardProps = LayoutProps &
   SpaceProps & { product: Product; showImage: boolean }
 
@@ -103,12 +118,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   showImage = true,
   ...props
+}: {
+  product: Product
 }) => {
   const [quickBuyVisibility, toggleQuickBuyVisibility] = useToggle()
-  
+
   const offer = product?.offers as Offer
 
-  const thumbnail = product?.images?.find(({ representativeOfPage }) => representativeOfPage === true)
+  const thumbnail = Array.isArray(product?.image) && product?.image?.find(
+    ({ representativeOfPage }) => representativeOfPage === true
+  )
 
   const image = thumbnail ? (
     <img
@@ -125,11 +144,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       data-id={product?.["@id"]}
       {...props}
     >
-      {(showImage && (product?.url && (
-        <Link className="image-container" to={product?.url as string} title={product?.title as string}>
+      {(showImage && product?.url && (
+        <Link
+          className="image-container"
+          to={product?.url as string}
+          title={product?.title as string}
+        >
           {image}
         </Link>
-      ))) ||
+      )) ||
         image}
       {offer?.availability && (
         <Tag
@@ -155,14 +178,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {product?.brand?.name}
           </span>
         )}
-        <Wishlist />
+        <QuickWishlist product={product} />
         <Button
+          p={0}
           active
           onClick={() => {
             toggleQuickBuyVisibility()
           }}
         >
-          <span >Quick Buy</span>
+          <span className="sr-only">Quick Buy</span>
           {quickBuyVisibility ? <MinusIcon /> : <PlusIcon />}
         </Button>
       </div>
@@ -171,119 +195,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {product?.name}
         </span>
       )}
-      <div
-        itemProp="offers"
-        itemScope
-        itemType="https://schema.org/AggregateOffer"
-      >
-        {offer && (
-          <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
-            <span
-              itemProp="priceCurrency"
-              content={offer?.priceCurrency as string}
-              className="product-price"
-            >
-              {getSymbolFromCurrency(offer?.priceCurrency as string)}
-            </span>
-            <span
-              className="product-price"
-              itemProp="price"
-              content={offer?.price as number}
-            >
-              {offer?.price}
-            </span>
-            {offer?.availability && <link itemProp="availability" href={offer?.availability as string} />}
-          </div>
-        )}
-      </div>
+      {offer && <Price offer={offer} />}
       {quickBuyVisibility && (
-        <Formik
-      className={clsx("container", "form-container")}
-      initialValues={{
-        emailAddress: "",
-      }}
-      onSubmit={async (
-        values: Values,
-        { setSubmitting }: FormikHelpers<Values>
-      ) => {
-        const path = `${window.location.origin}/.netlify/functions/sign-up-to-our-newsletter`
-
-        const url = new URL(path)
-
-        const response = await fetch(url, {
-          body: JSON.stringify(values),
-          headers: {
-            Accept: "application/json",
-          },
-          method: "POST",
-        })
-
-        setSubmitting(false)
-
-        console.log(response)
-      }}
-    >
-      <Form className="form">
-        <h1>Sizes</h1>
-        <div className="form-fields">
-          <div className="field">
-            <Field
-              type="radio"
-              name="filter"
-              id="option-1"
-              value="value-1"
-            />
-            <label htmlFor="option-1">Value 1</label>
-          </div>
-          <div className="field">
-            <Field
-              type="radio"
-              name="filter"
-              id="option-2"
-              value="value-2"
-            />
-            <label htmlFor="option-2">Value 2</label>
-          </div>
-          <div className="field">
-            <Field
-              type="radio"
-              name="filter"
-              id="option-3"
-              value="value-3"
-            />
-            <label htmlFor="option-3">Value 3</label>
-          </div>
-          <div className="field">
-            <Field
-              type="radio"
-              name="filter"
-              id="option-4"
-              value="value-4"
-            />
-            <label htmlFor="option-4">Value 4</label>
-          </div>
-        </div>
-        <Button type="reset" variant="secondary" py={{ md: 4 }} px={{ md: 9 }}>
-          <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
-            <span
-              itemProp="priceCurrency"
-              content={offer?.priceCurrency as string}
-              className="product-price"
-            >
-              {getSymbolFromCurrency(offer?.priceCurrency as string)}
-            </span>
-            <span
-              className="product-price"
-              itemProp="price"
-              content={offer?.price as number}
-            >
-              {offer?.price}
-            </span>
-            {offer?.availability && <link itemProp="availability" href={offer?.availability as string} />}
-          </span> | <span>Add to bag</span>
-        </Button>
-      </Form>
-    </Formik>
+        <QuickBuy product={product} />
       )}
     </ProductCardStyled>
   )

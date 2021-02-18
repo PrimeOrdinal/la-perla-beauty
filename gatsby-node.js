@@ -98,6 +98,33 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        bigCommerceGQL {
+          site {
+            categoryTree {
+              path
+              name
+              description
+              productCount
+              entityId
+              children {
+                description
+                entityId
+                name
+                path
+                productCount
+              }
+            }
+            settings {
+              status
+              storeHash
+              storeName
+              url {
+                cdnUrl
+                vanityUrl
+              }
+            }
+          }
+        }
       }
     `
   )
@@ -153,7 +180,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // In your template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the API.
       context: {
-        product: node,
+        node,
+        categoryIds: node.categories
       },
     })
   })

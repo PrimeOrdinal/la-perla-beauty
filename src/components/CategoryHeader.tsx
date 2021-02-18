@@ -23,9 +23,11 @@ export const CategoryHeaderStyled = styled.header`
   justify-items: center;
   margin-block-end: ${themeGet("space.7")}px;
   text-align: center;
+  
   span {
     font-size: 12px;
   }
+  
   ${mediaQueries.md} {
     text-align: left;
     span {

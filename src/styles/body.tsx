@@ -3,6 +3,7 @@ import { mediaQueries, theme } from "../theme"
 export const body = `
     body {
         --font-size-body: ${theme.fontSizes.bodyMobile}px;
+        --header-min-height: 64px;
 
         color: ${theme.colors.text};
         font-size: var(--font-size-body, 13px);
@@ -12,6 +13,10 @@ export const body = `
             --font-size-body: ${theme.fontSizes.bodyDesktop}px;
         }
     
+        ${mediaQueries.md} {
+            --header-min-height: 112px;
+        }
+
         /*
         ${mediaQueries.md} {
             --font-size-body: 16px;

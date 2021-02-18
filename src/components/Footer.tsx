@@ -9,24 +9,11 @@ import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
-import { ReactComponent as Logotype } from "../images/Logotype.svg"
-
 import { mediaQueries } from "../theme"
 
 import { Accordion } from "./Accordion"
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
-
-const LogotypeStyle = styled(Logotype)`
-  display: none;
-
-  ${mediaQueries.md} {
-    display: block;
-    flex: 0.2;
-    height: 2rem;
-    object-fit: contain;
-  }
-`
 
 const SocialContainerStyled = styled.div`
   ${mediaQueries.md} {
@@ -53,9 +40,11 @@ const SocialLinkListStyled = styled(ListPlain)`
   grid-auto-flow: column;
   justify-content: center;
   padding-inline-start: 2rem;
+
   ${mediaQueries.md} {
     gap: 34px;
   }
+
   a {
     color: inherit;
     font-size: 2.125rem;
@@ -88,14 +77,17 @@ const FooterStyle = styled.footer`
 
   .footer-newsletter {
     padding-bottom: 1rem;
+
     ${mediaQueries.md} {
       align-items: center;
       display: grid;
       grid-template-columns: auto 4fr;
       padding-bottom: 2.25rem;
     }
+
     span {
       display: none;
+
       ${mediaQueries.md} {
         display: block;
         font-family: "Tiempos";
@@ -234,7 +226,6 @@ export const Footer: React.FC<FooterProps> = (
       <h2>Newsletter</h2>
 
       <div className="footer-newsletter">
-        {/* <LogotypeStyle /> */}
         <span>La Perla Beauty</span>
         <NewsletterSignup />
       </div>
@@ -257,6 +248,7 @@ export const Footer: React.FC<FooterProps> = (
                       {link?.url?.href?.startsWith("http") ? (
                         <a
                           href={link?.url?.href as string}
+                          rel="external"
                           title={link?.url?.title as string}
                         >
                           {link?.text}

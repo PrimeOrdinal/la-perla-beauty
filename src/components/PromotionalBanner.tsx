@@ -12,21 +12,38 @@ const LayoutBase = styled.aside`
   border-radius: ${themeGet("radii.4")}px;
   display: grid;
   overflow: hidden;
+
   img {
-    aspect-ratio: 21 / 14;
+    height: 100%;
     object-fit: cover;
     width: 100%;
-    height: 100%;
-    ${mediaQueries.md} {
-      aspect-ratio: 23 / 8;
-      aspect-ratio: 2 / 1;
+
+    @supports (aspect-ratio: 1) {
+      aspect-ratio: 21 / 14;
+
+      ${mediaQueries.md} {
+        aspect-ratio: 2 / 1;
+      }
+    }
+
+    @supports not (aspect-ratio: 1) {
+      height: calc(80vw - 2rem);
+
+      ${mediaQueries.md} {
+        height: calc(50vw - 2rem);
+      }
+
+      ${mediaQueries.lg} {
+        height: calc(25vw - 2rem);
+      }
     }
   }
 
   div {
     h1 {
-      font-size: 20px;
       color: inherit;
+      font-size: 20px;
+
       ${mediaQueries.md} {
         font-size: 24px;
       }
@@ -35,20 +52,22 @@ const LayoutBase = styled.aside`
     span {
       font-size: 13px;
       color: inherit;
+
       ${mediaQueries.md} {
         font-size: 14px;
       }
     }
 
     a {
-      font-size: 13px;
       color: inherit;
-      text-decoration: unset;
-      text-transform: uppercase;
-      font-weight: 600;
       display: block;
+      font-size: 13px;
+      font-weight: 600;
       margin-block-start: ${themeGet("space.6")}px;
       padding-block-end: ${themeGet("space.6")}px;
+      text-decoration: unset;
+      text-transform: uppercase;
+
       ${mediaQueries.md} {
         font-size: 14px;
       }

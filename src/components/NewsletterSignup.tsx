@@ -27,7 +27,7 @@ const NewsletterStyled = styled.div`
       gap: ${themeGet("space.6")}px;
       grid-auto-flow: column;
       grid-template-columns: unset;
-      justify-content: end;
+      justify-content: flex-end;
     }
   }
 

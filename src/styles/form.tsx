@@ -12,10 +12,10 @@ export const form = `
 
       ${mediaQueries.md} {
         gap: ${theme.space[6]}px;
+        column-gap: ${theme.space[10]}px;
       }
   }
 
-  form,
   .form-fields,
   .form-row {
     ${mediaQueries.md} {

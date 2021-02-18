@@ -1,4 +1,4 @@
-import type { Offer, Product } from "schema-dts"
+import type { Product } from "schema-dts"
 
 import React from "react"
 import styled from "styled-components"

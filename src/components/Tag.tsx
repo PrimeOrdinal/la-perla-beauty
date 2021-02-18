@@ -19,7 +19,7 @@ export const Tag: React.FC<TagProps> = styled.span`
   border-radius: ${themeGet("radii.2")}px;
   display: block;
   font-size: ${themeGet("fontSizes.small")}px;
-  padding: ${themeGet("space.1")}px;
+  padding: ${themeGet("space.1")}px ${themeGet("space.3")}px;
   text-align: center;
   text-transform: uppercase;
 
