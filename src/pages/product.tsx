@@ -1,5 +1,6 @@
 import type { Offer, Product } from "schema-dts"
 
+import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import { Formik, Field, Form, FormikHelpers } from "formik"
 import { PageProps, graphql, Link } from "gatsby"
@@ -9,7 +10,8 @@ import styled from "styled-components"
 
 import type { BigCommerceProducts } from "../../graphql-types"
 
-import { Accordion, AccordionProps } from "../components/Accordion"
+import { Accordion } from "../components/Accordion"
+import { Breadcrumb } from "../components/Breadcrumb"
 import { Button } from "../components/Button"
 import { ImageGallery } from "../components/ImageGallery"
 import { Layout } from "../components/Layout"
@@ -23,6 +25,7 @@ import {
   availabilitySchemaToHumanReadableText,
   availabilitySchemaToShortName,
 } from "../utils/schema-org"
+import { getCartId } from "../utils/carts"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 
@@ -45,6 +48,7 @@ const ProductStyled = styled.article`
 
   .categories {
     display: grid;
+    font-size: ${themeGet("fontSizes.small")}px;
     gap: 1rem;
     grid-auto-flow: column;
     justify-content: start;
@@ -55,29 +59,31 @@ const ProductStyled = styled.article`
   }
 
   .title {
-    margin-block-end: 1rem;
+    font-size: ${themeGet("fontSizes.7")}px;
+    margin-block-end: ${themeGet("space.8")}px;
+    margin-block-start: unset;
   }
 
   .price {
-    font-size: 2rem;
+    font-size: ${themeGet("fontSizes.5")}px;
+    margin-block-end: ${themeGet("space.8")}px;
   }
 
-  ul {
-    align-items: start;
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(5, 1fr);
-    list-style: none;
-    margin: 0;
+  .form {
+    margin-block-end: ${themeGet("space.9")}px;
   }
 
-  li {
-    margin-block-end: 0;
+  .variants {
+    margin-block-end: ${themeGet("space.4")}px;
+  }
+
+  .description {
+    margin-block-end: ${themeGet("space.9")}px;
   }
 `
 
 interface Values {
-  emailAddress: string
+  identifier: string
 }
 
 type PageContextProduct = PageContextTypeBreadcrumb & {
@@ -89,10 +95,10 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
   pageContext,
 }) => {
   const {
+    breadcrumb: { crumbs },
     node,
-  }: {
-    node: BigCommerceProducts
   } = pageContext
+
   const product = standardiseBigCommerceProduct(node) as Product
 
   const name = product?.name as string
@@ -102,16 +108,28 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
   const imageGalleryArguments = {
     items: [
       {
-        original: "https://picsum.photos/id/1018/1000/600/",
-        thumbnail: "https://picsum.photos/id/1018/250/150/",
+        original: "https://picsum.photos/id/1018/600/600/",
+        thumbnail: "https://picsum.photos/id/1018/100/100/",
       },
       {
-        original: "https://picsum.photos/id/1015/1000/600/",
-        thumbnail: "https://picsum.photos/id/1015/250/150/",
+        original: "https://picsum.photos/id/1015/600/600/",
+        thumbnail: "https://picsum.photos/id/1015/100/100/",
       },
       {
-        original: "https://picsum.photos/id/1019/1000/600/",
-        thumbnail: "https://picsum.photos/id/1019/250/150/",
+        original: "https://picsum.photos/id/1014/600/600/",
+        thumbnail: "https://picsum.photos/id/1014/100/100/",
+      },
+      {
+        original: "https://picsum.photos/id/1016/600/600/",
+        thumbnail: "https://picsum.photos/id/1016/100/100/",
+      },
+      {
+        original: "https://picsum.photos/id/1015/600/600/",
+        thumbnail: "https://picsum.photos/id/1015/100/100/",
+      },
+      {
+        original: "https://picsum.photos/id/1019/600/600/",
+        thumbnail: "https://picsum.photos/id/1019/100/100/",
       },
     ],
     showPlayButton: true,
@@ -120,11 +138,15 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
   return (
     <Layout>
       <SEO title={name} />
+
+      <Breadcrumb crumbs={crumbs} />
+
       <ProductStyled className={clsx("container")}>
         <ImageGallery
           className={clsx("image-gallery")}
           {...imageGalleryArguments}
         />
+
         <main>
           <header>
             {data?.allBigCommerceCategories?.edges && (
@@ -143,6 +165,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
                 )}
               </div>
             )}
+
             {offer?.availability && (
               <Tag
                 className="availability"
@@ -153,23 +176,27 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
                 {availabilitySchemaToHumanReadableText(offer?.availability)}
               </Tag>
             )}
-            <h1>{name}</h1>
+
+            <h1 className="title">{name}</h1>
+
             <Price className="price" offer={offer} />
           </header>
+
           <Formik
-            className={clsx("container", "form-container")}
             initialValues={{
-              emailAddress: "",
+              identifier: product?.identifier,
             }}
             onSubmit={async (
               values: Values,
               { setSubmitting }: FormikHelpers<Values>
             ) => {
-              const path = `${window.location.origin}/.netlify/functions/add-to-cart`
+              const cartId = await getCartId()
+
+              const path = `${window.location.origin}/.netlify/functions/carts/${cartId}/items`
 
               const url = new URL(path)
 
-              const response = await fetch(url, {
+              const response = await fetch(url.toString(), {
                 body: JSON.stringify(values),
                 headers: {
                   Accept: "application/json",
@@ -182,9 +209,9 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               console.log(response)
             }}
           >
-            <Form className={clsx("quick-buy")}>
+            <Form className={clsx("form")}>
               <legend>Sizes</legend>
-              <div className="form-fields">
+              <div className={clsx("form-fields", "sizes", "variants")}>
                 <div className="field">
                   <Field
                     type="radio"
@@ -241,9 +268,8 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               </Button>
             </Form>
           </Formik>
-          {/* TODO: Add form around wishlist */}
-          <Button variant="secondary">Add to wishlist</Button>
           <div
+            className="description"
             dangerouslySetInnerHTML={{
               __html: product?.description as string,
             }}
@@ -251,22 +277,66 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
           <Accordion
             items={[
               {
-                heading: "About Us",
+                heading: "Perfumer Notes",
                 panel: (
                   <React.Fragment>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Voluptatem doloribus officia officiis qui eos iste dolorem
-                      eaque, maiores quidem consequatur sequi harum sint
-                      repudiandae molestias non temporibus nihil facilis
-                      veritatis sit facere inventore asperiores itaque. Ut
-                      dolores reprehenderit praesentium eos.
-                    </p>
+                    <dl>
+                      <dt>Identifier</dt>
+                      <dd>{product?.identifier}</dd>
+                      <dt>GTIN</dt>
+                      <dd>{product?.gtin}</dd>
+                      <dt>MPN</dt>
+                      <dd>{product?.mpn}</dd>
+                      <dt>SKU</dt>
+                      <dd>{product?.sku}</dd>
+                      <dt>URL</dt>
+                      <dd>{product?.url}</dd>
+                      {/*
+                      <dt>Price</dt>
+                      <dd>{product?.price}</dd>
+                      <dt>Calculated Price</dt>
+                      <dd>{product?.calculated_price}</dd>
+                      <dt>Availability</dt>
+                      <dd>{product?.availability}</dd>
+                      <dt>Sale Price</dt>
+                      <dd>{product?.sale_price}</dd>
+                      <dt>UPC</dt>
+                      <dd>{product?.upc}</dd>
+                      */}
+                    </dl>
                   </React.Fragment>
                 ),
               },
               {
-                heading: "Delivery & Return",
+                heading: "Appliction",
+                panel: (
+                  <React.Fragment>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Hic aliquam laudantium pariatur tenetur perspiciatis eum!
+                      Ullam, accusamus. Debitis animi, cumque porro, in eveniet
+                      accusamus voluptas vel fugit, ex tenetur sit.
+                    </p>
+                    <button>Test</button>
+                  </React.Fragment>
+                ),
+              },
+              {
+                heading: "Key Ingredient",
+                panel: (
+                  <React.Fragment>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Hic aliquam laudantium pariatur tenetur perspiciatis eum!
+                      Ullam, accusamus. Debitis animi, cumque porro, in eveniet
+                      accusamus voluptas vel fugit, ex tenetur sit.
+                    </p>
+                    <button>Test</button>
+                  </React.Fragment>
+                ),
+              },
+              {
+                heading: "Reviews",
                 panel: (
                   <React.Fragment>
                     <p>
@@ -281,28 +351,6 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               },
             ]}
           />
-          <dl>
-            <dt>Identifier</dt>
-            <dd>{product?.identifier}</dd>
-            <dt>GTIN</dt>
-            <dd>{product?.gtin}</dd>
-            <dt>MPN</dt>
-            <dd>{product?.mpn}</dd>
-            <dt>SKU</dt>
-            <dd>{product?.sku}</dd>
-            <dt>URL</dt>
-            <dd>{product?.url}</dd>
-            {/* <dt>Price</dt>
-            <dd>{product?.price}</dd>
-            <dt>Calculated Price</dt>
-            <dd>{product?.calculated_price}</dd>
-            <dt>Availability</dt>
-            <dd>{product?.availability}</dd>
-            <dt>Sale Price</dt>
-            <dd>{product?.sale_price}</dd>
-            <dt>UPC</dt>
-            <dd>{product?.upc}</dd> */}
-          </dl>
         </main>
       </ProductStyled>
       <Helmet>
