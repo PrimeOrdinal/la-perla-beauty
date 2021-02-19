@@ -104,7 +104,7 @@ export type ShoppingBagProductProps = GridProps &
     layout: "compact" | "full"
   }
 
-export const ShoppingBagProduct: React.FC<ListingProps> = ({
+export const ShoppingBagProduct: React.FC<ShoppingBagProductProps> = ({
   ...props
 }) => {
   return (

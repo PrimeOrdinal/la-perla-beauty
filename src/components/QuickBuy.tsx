@@ -1,4 +1,4 @@
-import type { Product } from "schema-dts"
+import type { Offer, Product } from "schema-dts"
 
 import clsx from "clsx"
 import getSymbolFromCurrency from "currency-symbol-map"
@@ -166,7 +166,7 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({
                   />
                 )}
               </span>{" "}
-              | <span>Add to bag</span>
+              | <span>{isInBag ? "Added to bag" : "Add to bag"}</span>
             </Button>
           </Form>
         </Formik>

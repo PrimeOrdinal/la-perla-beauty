@@ -1,3 +1,5 @@
+import type { SetStateAction } from "react"
+
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import React from "react"

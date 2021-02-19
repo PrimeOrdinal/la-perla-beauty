@@ -1,4 +1,3 @@
-import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import ReactImageGallery from "react-image-gallery"
 import styled from "styled-components"

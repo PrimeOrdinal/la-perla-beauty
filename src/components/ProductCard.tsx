@@ -1,5 +1,7 @@
 import type { Offer, Product } from "schema-dts"
 
+import type { ProductCardQuery } from "../../graphql-types"
+
 import { themeGet } from "@styled-system/theme-get"
 import { Link } from "gatsby"
 import React from "react"
@@ -49,20 +51,27 @@ const ProductCardStyled = styled.article`
     grid-template-rows: min-content 1fr;
   }
 
+  .product-information {
+    align-items: center;
+    display: grid;
+    gap: 0.5rem;
+    grid-auto-flow: column;
+    justify-content: space-between;
+  }
+
   .product-category-wrapper {
     align-items: center;
     display: grid;
     gap: 0.5rem;
     grid-auto-flow: column;
     justify-content: end;
+  }
 
-    svg {
-      cursor: pointer;
-      height: 18px;
-      justify-self: flex-end;
-      margin-right: ${themeGet("space.2")}px;
-      object-fit: contain;
-    }
+  .product-actions {
+    align-items: center;
+    display: grid;
+    gap: 0.5rem;
+    grid-auto-flow: column;
   }
 
   .product-category {
@@ -118,16 +127,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   showImage = true,
   ...props
-}: {
-  product: Product
 }) => {
   const [quickBuyVisibility, toggleQuickBuyVisibility] = useToggle()
 
   const offer = product?.offers as Offer
 
-  const thumbnail = Array.isArray(product?.image) && product?.image?.find(
-    ({ representativeOfPage }) => representativeOfPage === true
-  )
+  const thumbnail =
+    Array.isArray(product?.image) &&
+    product?.image?.find(
+      ({ representativeOfPage }) => representativeOfPage === true
+    )
 
   const image = thumbnail ? (
     <img
@@ -162,33 +171,40 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {availabilitySchemaToHumanReadableText(offer?.availability)}
         </Tag>
       )}
-      <div className="product-category-wrapper">
-        {product?.category?.url && (
-          <Link
-            className="product-category"
-            itemProp="category"
-            title={product?.category}
-            to={product?.category as string}
-          >
-            <span itemProp="name">{product?.category}</span>
-          </Link>
-        )}
+      <div className="product-information">
+        <div className="product-category-wrapper">
+          {Array.isArray(product?.category) &&
+            product?.category.map(category => (
+              <Link
+                className="product-category"
+                id={category?.identifier}
+                key={category?.identifier}
+                itemProp="category"
+                title={category?.name}
+                to={category?.url}
+              >
+                <span itemProp="name">{category?.name}</span>
+              </Link>
+            ))}
+        </div>
         {product?.brand?.name && (
           <span className="product-brand" itemProp="brand">
             {product?.brand?.name}
           </span>
         )}
-        <QuickWishlist product={product} />
-        <Button
-          p={0}
-          active
-          onClick={() => {
-            toggleQuickBuyVisibility()
-          }}
-        >
-          <span className="sr-only">Quick Buy</span>
-          {quickBuyVisibility ? <MinusIcon /> : <PlusIcon />}
-        </Button>
+        <div className="product-actions">
+          <QuickWishlist product={product} />
+          <Button
+            p={0}
+            active
+            onClick={() => {
+              toggleQuickBuyVisibility()
+            }}
+          >
+            <span className="sr-only">Quick Buy</span>
+            {quickBuyVisibility ? <MinusIcon /> : <PlusIcon />}
+          </Button>
+        </div>
       </div>
       {product?.name && (
         <span className="product-name" itemProp="name">
@@ -196,9 +212,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </span>
       )}
       {offer && <Price offer={offer} />}
-      {quickBuyVisibility && (
-        <QuickBuy product={product} />
-      )}
+      {quickBuyVisibility && <QuickBuy product={product} />}
     </ProductCardStyled>
   )
 }
