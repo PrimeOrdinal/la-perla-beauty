@@ -142,7 +142,7 @@ Example.args = {
             links: [
               {
                 text: "My Account",
-                url: { href: "/my-account/", title: "My Account" },
+                url: { href: "/account/", title: "My Account" },
                 icon: null,
               },
               {
