@@ -1,5 +1,14 @@
 import React from "react"
 import styled from "styled-components"
+import {
+  compose,
+  grid,
+  layout,
+  space,
+  GridProps,
+  LayoutProps,
+  SpaceProps,
+} from "styled-system"
 import { mediaQueries } from "../theme"
 
 import { ReactComponent as CloseIcon } from "../images/Close.svg"
@@ -9,25 +18,28 @@ import { ReactComponent as PlusIcon } from "../images/Plus.svg"
 const ShoppingBagProductStyled = styled.div`
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: ${props => (props.layout === "compact" ? "auto 1fr" : "1fr 2fr")};
 
   .bagCol-1 {
     border-radius: 12px;
     height: 160px;
+
     ${mediaQueries.md} {
-      height: 200px;
+      height: ${props => (props.layout === "compact" ? "100px" : "200px")};
     }
   }
 
   .bagCol-2 {
-    position: relative;
+    align-content: space-between;
+    display: grid;
 
     .title-wrapper {
-      align-items: center;
+      align-content: center;
       display: grid;
       grid-auto-flow: column;
       justify-content: space-between;
       margin-block-end: 8px;
+      padding-block-start: 1rem;
 
       h1 {
         font-size: 16px;
@@ -46,7 +58,6 @@ const ShoppingBagProductStyled = styled.div`
       bottom: 0px;
       display: flex;
       justify-content: space-between;
-      position: absolute;
       width: 100%;
       ${mediaQueries.md} {
         bottom: 30%;
@@ -83,35 +94,47 @@ const ShoppingBagProductStyled = styled.div`
       fill: black;
     }
   }
+
+  ${compose(grid, layout, space)}
 `
 
-export const ShoppingBagProduct: React.FC = () => {
+export type ShoppingBagProductProps = GridProps &
+  LayoutProps &
+  SpaceProps & {
+    layout: "compact" | "full"
+  }
+
+export const ShoppingBagProduct: React.FC<ShoppingBagProductProps> = ({
+  ...props
+}) => {
   return (
-    <ShoppingBagProductStyled>
+    <ShoppingBagProductStyled {...props}>
       <img
         className="bagCol-1"
         src="https://cdn11.bigcommerce.com/s-9o6tufixs6/products/116/images/404/LaPerla_Collection_120ml__IT__14539.1612958270.386.513.jpg?c=1"
       />
       <aside className="bagCol-2">
-        <div className="title-wrapper">
-          <h1>Product Name</h1>
-          <button className="close-icon icon">
-            <CloseIcon />
-          </button>
+        <div>
+          <div className="title-wrapper">
+            <h1>Product Name</h1>
+            <button className="close-icon icon">
+              <CloseIcon />
+            </button>
+          </div>
+          <span>200ml</span>
         </div>
-        <span>200ml</span>
-        <div className="quantity-wrapper">
+        <form className="quantity-wrapper">
           <div className="button-wrapper">
             <button className="quantity-icon icon">
               <MinusIcon />
             </button>
-            <span className="total">2</span>
+            <input className="total" name="quantity" type="number" value="2" />
             <button className="quantity-icon icon">
               <PlusIcon />
             </button>
           </div>
           <span className="price">£124</span>
-        </div>
+        </form>
       </aside>
     </ShoppingBagProductStyled>
   )

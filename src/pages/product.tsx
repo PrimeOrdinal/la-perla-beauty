@@ -99,7 +99,10 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
     node,
   } = pageContext
 
-  const product = standardiseBigCommerceProduct(node) as Product
+  const product = standardiseBigCommerceProduct({
+    node,
+    categories: data.bigCommerceGQL.site.categoryTree,
+  }) as Product
 
   const name = product?.name as string
 
@@ -136,20 +139,20 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 
         <main>
           <header>
-            {data?.allBigCommerceCategories?.edges && (
+            {Array.isArray(product?.category) && (
               <div className="categories">
-                {data?.allBigCommerceCategories?.edges?.map(
-                  ({ node: category }) => (
-                    <Link
-                      key={category?.id}
-                      id={category?.id}
-                      to={category?.custom_url?.url as string}
-                      title={category?.name as string}
-                    >
-                      {category?.name as string}
-                    </Link>
-                  )
-                )}
+                {product?.category.map(category => (
+                  <Link
+                    className="product-category"
+                    id={category?.identifier}
+                    key={category?.identifier}
+                    itemProp="category"
+                    title={category?.name}
+                    to={category?.url}
+                  >
+                    <span itemProp="name">{category?.name}</span>
+                  </Link>
+                ))}
               </div>
             )}
 
@@ -362,6 +365,15 @@ export const query = graphql`
           id
           is_visible
           name
+        }
+      }
+    }
+    bigCommerceGQL {
+      site {
+        categoryTree {
+          entityId
+          name
+          path
         }
       }
     }

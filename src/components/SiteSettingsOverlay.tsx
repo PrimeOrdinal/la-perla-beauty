@@ -2,6 +2,19 @@ import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import Modal from "react-modal"
 import styled from "styled-components"
+import {
+  color,
+  compose,
+  grid,
+  layout,
+  position,
+  space,
+  ColorProps,
+  GridProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+} from "styled-system"
 
 import { ReactComponent as Close } from "../images/Close.svg"
 
@@ -90,10 +103,14 @@ const WrapperStyled = styled.div`
       grid-area: button;
     }
   }
+
+  ${compose(color, grid, layout, position, space)}
 `
 
-export type SiteSettingsOverlayProps = GridProps &
+export type SiteSettingsOverlayProps = ColorProps &
+  GridProps &
   LayoutProps &
+  PositionProps &
   SpaceProps & {
     closeModal: React.DispatchWithoutAction
     modalIsOpen: boolean
@@ -105,7 +122,11 @@ function afterOpenModal() {
   Modal.defaultStyles.overlay.zIndex = "99999"
 }
 
-export const SiteSettingsOverlay = ({ closeModal, modalIsOpen = false }) => {
+export const SiteSettingsOverlay = ({
+  closeModal,
+  modalIsOpen = false,
+  ...props
+}) => {
   return (
     <Modal
       contentLabel="Country Selector"
@@ -114,7 +135,7 @@ export const SiteSettingsOverlay = ({ closeModal, modalIsOpen = false }) => {
       onRequestClose={closeModal}
       style={ModalOverlayStyle}
     >
-      <WrapperStyled>
+      <WrapperStyled {...props}>
         <Button className="close-button" onClick={closeModal} active>
           <Close />
         </Button>
@@ -146,9 +167,7 @@ export const SiteSettingsOverlay = ({ closeModal, modalIsOpen = false }) => {
             Continue Shopping
           </Button>
         </form>
-
       </WrapperStyled>
-
     </Modal>
   )
 }

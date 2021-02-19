@@ -480,7 +480,7 @@ Example.args = {
                 sub_menus: null,
                 icon: null,
                 url: {
-                  href: "/my-account/",
+                  href: "/account/",
                   title: "My Account",
                 },
               },

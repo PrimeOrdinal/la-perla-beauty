@@ -36,6 +36,7 @@ const NewsletterStyled = styled.div`
   }
 
   input {
+    height: 100%;
     ${themeGet("mediaQueries.md")} {
       min-width: 14rem;
     }
@@ -53,7 +54,7 @@ const NewsletterStyled = styled.div`
     display: block;
     grid-column: span 2;
 
-    ${mediaQueries.md}{
+    ${mediaQueries.md} {
       display: none;
     }
 
@@ -87,14 +88,14 @@ interface Values {
 }
 
 const validate = value => {
-  let errorMessage;
+  let errorMessage
 
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    errorMessage = 'Invalid email address';
+    errorMessage = "Invalid email address"
   }
 
-  return errorMessage;
-};
+  return errorMessage
+}
 
 export const NewsletterSignup: React.FC = () => (
   <NewsletterStyled>

@@ -9,11 +9,11 @@ const AnchorStyled = styled.a`
   font-size: var(--font-size-body, 13px);
   padding: ${themeGet("space.6")}px ${themeGet("space.9")}px;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
 `
 
 const NavStyled = styled.nav`
-  background-color: #efeee9;
+  background-color: ${themeGet("colors.darkgrey")};
   display: grid;
   text-align: center;
   grid-auto-flow: column;
@@ -27,12 +27,10 @@ export const SiteSelector: React.FC = () => {
         href="https://laperla.com"
         rel="external"
       >
-        Lingerie
+        La Perla Lingerie
       </AnchorStyled>
-      <AnchorStyled
-        className={clsx("button--link", "current")}
-      >
-        Beauty
+      <AnchorStyled className={clsx("button--link", "current")}>
+        La Perla Beauty
       </AnchorStyled>
     </NavStyled>
   )
