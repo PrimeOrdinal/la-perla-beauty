@@ -1,5 +1,5 @@
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "gatsby"
+import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
 import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"

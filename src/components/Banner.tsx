@@ -1,5 +1,5 @@
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "gatsby"
+import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -57,8 +57,8 @@ export const BannerStyled: React.FC<BannerProps> = styled.div`
   ${compose(color, layout, space)}
 `
 
-export const Banner: React.FC<BannerProps> = ({ children, ...props }) => (
-  <BannerStyled {...props}>
+export const Banner: React.FC<BannerProps> = ({ children, variant, ...props }) => (
+  <BannerStyled variant={variant} {...props}>
     <Link {...props}>{children}</Link>
   </BannerStyled>
 )

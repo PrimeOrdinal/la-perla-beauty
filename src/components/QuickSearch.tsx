@@ -1,7 +1,7 @@
 import { themeGet } from "@styled-system/theme-get"
 // import type { Dispatch, SetStateAction } from "react"
 import { Index } from "elasticlunr"
-import { Link } from "gatsby"
+import { Link } from "./Button"
 import React, { useState } from "react"
 import styled from "styled-components"
 import {

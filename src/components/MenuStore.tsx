@@ -39,7 +39,7 @@ export const MenuStore: React.FC<MenuStoreProps> = props => {
 
   return (
     <MenuStoreStyled {...props}>
-      <Button onClick={openModal} active>
+      <Button onClick={openModal}>
         UK | ENGLISH | £
         <DownArrowIconStyled />
       </Button>

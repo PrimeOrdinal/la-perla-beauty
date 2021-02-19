@@ -1,7 +1,16 @@
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "gatsby"
+import { Link } from "./Button"
 import React, { useState } from "react"
 import styled from "styled-components"
+import {
+  compose,
+  grid,
+  layout,
+  space,
+  GridProps,
+  LayoutProps,
+  SpaceProps,
+} from "styled-system"
 
 import { ReactComponent as Close } from "../images/Close.svg"
 import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
@@ -38,13 +47,17 @@ const StyledHamburger = styled.div`
     right: 0;
     top: 0;
   }
+
+  ${compose(grid, layout, space)}
 `
 
-export const HamburgerMenu = ({ data }) => {
+export type HamburgerMenuProps = GridProps & LayoutProps & SpaceProps
+
+export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ data, ...props }) => {
   const [toggle, setToggle] = useState(false)
 
   return (
-    <StyledHamburger>
+    <StyledHamburger {...props}>
       <button onClick={() => setToggle(!toggle)}>
         {toggle && <Close /> || <Hamburger />}
         

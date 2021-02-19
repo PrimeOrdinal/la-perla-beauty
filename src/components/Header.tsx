@@ -80,7 +80,7 @@ export const Header: React.FC<HeaderProps> = (
           display={{ _: "none", md: "flex" }}
           gridArea="menu-primary"
         />
-        <HamburgerMenu data={data} />
+        <HamburgerMenu data={data} gridArea="menu-primary" />
         <MenuActions
           className="permanent"
           gridArea="menu-secondary"

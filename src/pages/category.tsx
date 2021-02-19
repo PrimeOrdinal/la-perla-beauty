@@ -7,10 +7,11 @@ import type {
 } from "../../graphql-types"
 
 import clsx from "clsx"
-import { PageProps, graphql, Link } from "gatsby"
+import { PageProps, graphql } from "gatsby"
 import React, { useState } from "react"
 
 import { Breadcrumb } from "../components/Breadcrumb"
+import { Link } from "../components/Button"
 import { CategoryHeader } from "../components/CategoryHeader"
 import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"

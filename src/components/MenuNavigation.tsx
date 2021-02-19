@@ -3,7 +3,7 @@ import type {
   LayoutQuery,
 } from "../../graphql-types"
 
-import { Link } from "gatsby"
+import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
 import {

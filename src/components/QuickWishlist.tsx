@@ -99,7 +99,7 @@ export const QuickWishlist: React.FC<QuickWishlistProps> = ({
         }}
       >
         <Form>
-          <Button type="submit" active>
+          <Button type="submit">
             <span className="sr-only">Add to Wishlist</span>
             {isInWishlist ? <WishlistPresentIcon /> : <WishlistAbsentIcon />}
           </Button>

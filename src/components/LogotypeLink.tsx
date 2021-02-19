@@ -1,4 +1,4 @@
-import { Link } from "gatsby"
+import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -40,10 +40,11 @@ export type LogotypeLinkProps = GridProps &
     siteTitle: string
   }
 
-export const LogotypeLink: React.FC<LogotypeLinkProps> = ({ siteTitle }) => (
+export const LogotypeLink: React.FC<LogotypeLinkProps> = ({ siteTitle, ...props }) => (
   <LogotypeLinkStyled
     title={`Return to the ${siteTitle} homepage`}
     to={homePath}
+    {...props}
   >
     <LogotypeStyle />
   </LogotypeLinkStyled>
