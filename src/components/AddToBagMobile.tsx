@@ -25,13 +25,9 @@ const ContainerStyled = styled.div`
   }
 
   .close {
-    padding: 0;
     height: 20px;
     object-fit: contain;
-    svg,
-    svg * {
-      fill: black;
-    }
+    padding: 0;
   }
 `
 

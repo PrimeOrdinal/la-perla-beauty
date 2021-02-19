@@ -44,7 +44,7 @@ export const ViewSelector: React.FC<ViewSelectorProps> = ({
   return (
     <ViewSelectorStyled {...props}>
       <Button
-        active={view === "grid" ? "active" : undefined}
+        active={view === "grid" ? "active" : "inactive"}
         className={clsx("button")}
         grid
         onClick={() => setView("grid")}
@@ -53,7 +53,7 @@ export const ViewSelector: React.FC<ViewSelectorProps> = ({
         <Grid />
       </Button>
       <Button
-        active={view === "list" ? "active" : undefined}
+        active={view === "list" ? "active" : "inactive"}
         className={clsx("button")}
         list
         onClick={() => setView("list")}

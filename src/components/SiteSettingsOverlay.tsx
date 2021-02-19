@@ -136,7 +136,7 @@ export const SiteSettingsOverlay = ({
       style={ModalOverlayStyle}
     >
       <WrapperStyled {...props}>
-        <Button className="close-button" onClick={closeModal} active>
+        <Button className="close-button" onClick={closeModal}>
           <Close />
         </Button>
 

@@ -1,5 +1,4 @@
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -18,6 +17,7 @@ import { ReactComponent as Search } from "../images/Search.svg"
 
 import { mediaQueries } from "../theme"
 
+import { Link } from "./Button"
 import { ListPlain } from "./ListPlain"
 
 import {
@@ -88,7 +88,7 @@ export const MenuActions: React.FC<MenuActionsProps> = ({
       </Link>
     </li>
     <li>
-      <Link className="profile" to={myAccountPath}>
+      <Link className="profile" to={myAccountPath} display={{ _: "none", md: "block" }}>
         <Profile />
       </Link>
     </li>

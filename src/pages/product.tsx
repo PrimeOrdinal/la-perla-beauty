@@ -3,7 +3,7 @@ import type { ImageObject, Offer, Product } from "schema-dts"
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import { Formik, Field, Form, FormikHelpers } from "formik"
-import { PageProps, graphql, Link } from "gatsby"
+import { PageProps, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import React from "react"
 import styled from "styled-components"
@@ -12,7 +12,7 @@ import type { BigCommerceProducts } from "../../graphql-types"
 
 import { Accordion } from "../components/Accordion"
 import { Breadcrumb } from "../components/Breadcrumb"
-import { Button } from "../components/Button"
+import { Button, Link } from "../components/Button"
 import { ImageGallery } from "../components/ImageGallery"
 import { Layout } from "../components/Layout"
 import { Price } from "../components/Price"
@@ -120,7 +120,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             thumbnail: (product?.image as ImageObject)?.contentUrl,
           },
         ],
-    showPlayButton: true,
+    showPlayButton: false,
   }
 
   return (

@@ -1,5 +1,5 @@
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "gatsby"
+import { Link } from "./Button"
 import React, { useState } from "react"
 import styled from "styled-components"
 

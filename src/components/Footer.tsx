@@ -5,7 +5,7 @@ import type {
 } from "../../graphql-types"
 
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "gatsby"
+import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
 

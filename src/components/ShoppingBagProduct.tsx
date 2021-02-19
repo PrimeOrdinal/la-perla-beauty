@@ -88,13 +88,6 @@ const ShoppingBagProductStyled = styled.div`
     }
   }
 
-  .icon {
-    svg,
-    svg * {
-      fill: black;
-    }
-  }
-
   ${compose(grid, layout, space)}
 `
 

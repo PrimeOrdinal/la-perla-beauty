@@ -1,4 +1,4 @@
-import { Link } from "gatsby"
+import { Link } from "./Button"
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 

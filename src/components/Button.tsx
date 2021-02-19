@@ -17,9 +17,18 @@ import {
   VariantProps,
 } from "styled-system"
 
-import { styles } from "../styles/button"
+import { styles as buttonStyles } from "../styles/button"
 
 export type ButtonProps = React.HTMLProps<HTMLButtonElement> &
+  ButtonStyleProps &
+  ColorProps &
+  LayoutProps &
+  SpaceProps &
+  VariantProps & {
+    active: "active" | "inactive"
+  }
+
+  export type LinkProps = React.HTMLProps<HTMLAnchorElement> &
   ButtonStyleProps &
   ColorProps &
   LayoutProps &
@@ -34,9 +43,9 @@ export const baseStyles = css`
   svg,
   svg * {
     fill: ${props =>
-      props.active
-        ? themeGet("colors.black", "black")
-        : themeGet("colors.lightgrey", "lightgrey")} !important;
+      props.active && (props.active === "active"
+      ? themeGet("colors.black", "black")
+      : themeGet("colors.lightgrey", "lightgrey"))} !important;
   }
 
   ${variant({
@@ -63,7 +72,7 @@ export const baseStyles = css`
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
 // pass it only to GatsbyLink
-export const Link = ({ children, to, ...other }) => {
+export const LinkContextual = ({ children, to, ...other }) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
@@ -88,17 +97,20 @@ export const Link = ({ children, to, ...other }) => {
   )
 }
 
-export const AnchorStyled: React.FC<ButtonProps> = styled.a`
-  ${styles}
+export const Anchor: React.FC<LinkProps> = styled.a`
   ${baseStyles}
 `
 
 export const Button: React.FC<ButtonProps> = styled.button`
-  ${styles}
+  ${buttonStyles}
   ${baseStyles}
 `
 
-export const LinkStyled: React.FC<ButtonProps> = styled(Link)`
-  ${styles}
+export const Link: React.FC<LinkProps> = styled(LinkContextual)`
+  ${baseStyles}
+`
+
+export const LinkButton: React.FC<LinkProps> = styled(LinkContextual)`
+  ${buttonStyles}
   ${baseStyles}
 `

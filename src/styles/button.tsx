@@ -28,13 +28,8 @@ export const styles = `
     }
 
     svg {
-        width: ${theme.space[7]}px;
+        width: ${theme.space[6]}px;
         object-fit: contain;
-    }
-
-    svg,
-    svg * {
-        fill: ${theme.colors.black};
     }
 `
 
