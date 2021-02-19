@@ -34,7 +34,7 @@ export const styles = `
 
     svg,
     svg * {
-        fill: ${theme.colors.lightgrey};
+        fill: ${theme.colors.black};
     }
 `
 

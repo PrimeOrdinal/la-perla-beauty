@@ -17,7 +17,7 @@ import {
 
 import { mediaQueries } from "../theme"
 
-import { Link } from "./Button"
+import { LinkStyled } from "./Button"
 import { ShoppingBagProduct } from "./ShoppingBagProduct"
 
 export type MiniBagProps = ColorProps &
@@ -111,8 +111,8 @@ export const MiniBag: React.FC<MiniBagProps> = props => (
         <span className="title">Total (inc vat)</span>
         <span className="price">£100</span>
       </div>
-      <Link to="/bag" variant="secondary">View Bag</Link>
-      <Link to="/checkout" variant="primary">Checkout</Link>
+      <LinkStyled to="/bag" variant="secondary">View Bag</LinkStyled>
+      <LinkStyled to="/checkout" variant="primary">Checkout</LinkStyled>
     </section>
   </MiniBagStyled>
 )

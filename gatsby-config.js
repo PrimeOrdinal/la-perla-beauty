@@ -17,7 +17,19 @@ module.exports = {
       },
     },
     "gatsby-plugin-lint-queries",
-    "gatsby-plugin-graphql-codegen",
+    {
+      resolve: "gatsby-plugin-graphql-codegen",
+      options: {
+        // fileName: `./gatsby-graphql.ts`,
+        documentPaths: [
+          './src/**/*.{tsx}',
+          // './node_modules/gatsby-*/**/*.js',
+          './node_modules/gatsby*/!(node_modules)/**/*.js',
+          './gatsby-node.js',
+          // './gatsby-node.ts',
+        ],
+      }
+    },
     "gatsby-plugin-react-helmet",
     // {
     //   resolve: "gatsby-plugin-i18n",

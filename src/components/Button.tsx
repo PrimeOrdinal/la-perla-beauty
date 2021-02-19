@@ -36,7 +36,7 @@ export const baseStyles = css`
     fill: ${props =>
       props.active
         ? themeGet("colors.black", "black")
-        : themeGet("colors.lightgrey", "lightgrey")};
+        : themeGet("colors.lightgrey", "lightgrey")} !important;
   }
 
   ${variant({
@@ -88,11 +88,12 @@ export const Link = ({ children, to, ...other }) => {
   )
 }
 
-export const Button: React.FC<ButtonProps> = styled.button`
+export const AnchorStyled: React.FC<ButtonProps> = styled.a`
+  ${styles}
   ${baseStyles}
 `
 
-export const AnchorStyled: React.FC<ButtonProps> = styled.a`
+export const Button: React.FC<ButtonProps> = styled.button`
   ${styles}
   ${baseStyles}
 `
