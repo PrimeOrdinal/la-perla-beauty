@@ -36,7 +36,7 @@ export const baseStyles = css`
     fill: ${props =>
       props.active
         ? themeGet("colors.black", "black")
-        : themeGet("colors.lightgrey", "lightgrey")};
+        : themeGet("colors.lightgrey", "lightgrey")} !important;
   }
 
   ${variant({
