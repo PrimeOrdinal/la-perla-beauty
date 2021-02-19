@@ -113,7 +113,17 @@ const AccountPage: React.FC = () => {
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
               quidem adipisci quos.
             </p>
-            <IconList />
+            <IconList
+              items={[
+                {
+                  color: "red",
+                  heading: "hello",
+                  icon: "diamond",
+                  body: "some pseudo text here",
+                },
+              ]}
+              orientation="horizontal"
+            />
             <Button variant="primary" py={5}>
               register
             </Button>
