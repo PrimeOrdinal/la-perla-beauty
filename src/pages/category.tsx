@@ -1,9 +1,11 @@
 import type { SetStateAction } from "react"
 
 import type {
-  BigCommerceCategories,
+  // BigCommerceCategories,
   BigCommerceProducts,
-  CategoryPageQuery,
+  // CategoryPageQuery,
+  BigCommerceGql_Product,
+  BigCommerceGql_Category,
 } from "../../graphql-types"
 
 import clsx from "clsx"
@@ -23,7 +25,7 @@ import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommercePr
 // import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
-  category: BigCommerceCategories
+  category: BigCommerceGql_Category
 }
 
 const CategoryPage: React.FC<
@@ -35,16 +37,29 @@ const CategoryPage: React.FC<
     page,
   } = pageContext
 
-  const [view, setView]: [
-    view: "grid" | "list",
-    setView: React.Dispatch<SetStateAction<string>>
-  ] = useState("grid")
+  const [view, setView] = useState("grid")
+
+  const products = data?.bigCommerceGQL?.site?.products?.edges.map(
+    ({ node: productFormatBigCommerce }) =>
+      standardiseBigCommerceProduct({
+        productFormatBigCommerce,
+      })
+  )
+  console.log(products)
+
+  const promotionalBanners =
+    data.allContentstackCategories?.edges?.[0]?.node?.promotional_banners
+
+  const tabs = data.bigCommerceGQL?.site?.categoryTree?.find(
+    (categoryTreeItem: BigCommerceGql_Category) =>
+      categoryTreeItem.entityId === category.entityId
+  )?.children
 
   return (
     <Layout>
       <SEO title={page?.title} />
 
-      <div className={clsx("container")} category-id={category?.bigcommerce_id}>
+      <div className={clsx("container")} category-id={category?.entityId}>
         <Breadcrumb crumbs={crumbs} />
 
         <CategoryHeader>
@@ -57,54 +72,35 @@ const CategoryPage: React.FC<
         </CategoryHeader>
       </div>
 
-      <Tabs marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}>
-        {data.allBigCommerceCategories?.edges?.map(({ node: category }) => (
-          <Link
-            key={category?.id}
-            id={category?.id}
-            to={category?.custom_url?.url as string}
-            title={category?.name as string}
-          >
-            {category?.name as string}
-          </Link>
-        ))}
-      </Tabs>
+      {tabs && (
+        <Tabs marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}>
+          {tabs.map(category => (
+            <Link
+              id={category?.entityId}
+              key={category?.entityId}
+              title={category?.name}
+              to={category?.path}
+            >
+              {category?.name}
+            </Link>
+          ))}
+        </Tabs>
+      )}
 
       <MenuListing
-        productCount={data.allBigCommerceProducts.edges.length}
+        productCount={products.length}
         setView={setView}
         view={view}
       />
 
-      <section className={clsx("container", "BigCommerce")}>
+      <section className={clsx("container")}>
         <Listing
-          products={data.allBigCommerceProducts.edges.map(({ node }) => ({
-            node: standardiseBigCommerceProduct({
-              node: (node as unknown) as BigCommerceProducts,
-              categories: data.bigCommerceGQL.site.categoryTree,
-            }),
-          }))}
-          promotionalBanners={
-            data.allContentstackCategories?.edges?.[0]?.node
-              ?.promotional_banners
-          }
+          products={products}
+          promotionalBanners={promotionalBanners}
           view={view}
         />
       </section>
 
-      {/* <section className={clsx("container", "Contentstack")}>
-        {data.allContentstackProducts && (
-          <Listing
-            products={data.allContentstackProducts.edges.map(({ node }) => ({
-              node: standardiseContentstackProduct(node),
-            }))}
-            promotionalBanners={
-              data.allContentstackCategories?.edges?.[0]?.node
-                ?.promotional_banners
-            }
-          />
-        )}
-      </section> */}
     </Layout>
   )
 }
@@ -113,70 +109,42 @@ export default CategoryPage
 
 export const query = graphql`
   query CategoryPage($id: Int) {
-    allBigCommerceCategories {
-      edges {
-        node {
-          bigcommerce_id
-          custom_url {
-            url
-          }
-          description
-          id
-          is_visible
-          name
-          page_title
-        }
-      }
-    }
-    allBigCommerceProducts {
-      edges {
-        node {
-          ...BigCommerceProductsFragment
-        }
-      }
-    }
     allContentstackCategories(filter: { bigcommerce_id: { eq: $id } }) {
       edges {
         node {
-          promotional_banners {
-            grid_position
-            promotional_banner {
-              colour
-              image {
-                description
-                title
-                url
-              }
-              layout
-              link {
-                href
-                title
-              }
-              text
-              title
-            }
-          }
+          ...Contentstack_categoriesFragment
         }
       }
     }
     allContentstackProducts {
       edges {
         node {
-          id
-          locale
-          product_id
-          rich_text_editor
-          title
-          url
+          ...Contentstack_productsFragment
         }
       }
     }
     bigCommerceGQL {
       site {
         categoryTree {
+          children {
+            entityId
+            name
+            path
+            productCount
+            description
+          }
+          description
           entityId
           name
           path
+          productCount
+        }
+        products {
+          edges {
+            node {
+              ...BigCommerceGQL_ProductFragment
+            }
+          }
         }
       }
     }

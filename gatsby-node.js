@@ -17,101 +17,64 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(
     `
       query AllProducts {
-        allBigCommerceCategories {
-          edges {
-            node {
-              bigcommerce_id
-              custom_url {
-                url
-              }
-              default_product_sort
-              description
-              id
-              image_url
-              is_visible
-              layout_file
-              meta_description
-              meta_keywords
-              name
-              page_title
-              parent_id
-              search_keywords
-              sort_order
-              views
-            }
-          }
-        }
-        allBigCommerceProducts {
-          edges {
-            node {
-              availability
-              calculated_price
-              categories
-              custom_url {
-                url
-              }
-              depth
-              description
-              fixed_cost_shipping_price
-              gtin
-              height
-              id
-              images {
-                description
-                id
-                is_thumbnail
-                sort_order
-                url_standard
-              }
-              inventory_level
-              inventory_warning_level
-              is_featured
-              is_free_shipping
-              is_preorder_only
-              is_price_hidden
-              is_visible
-              mpn
-              name
-              preorder_message
-              price
-              price_hidden_label
-              sale_price
-              sku
-              upc
-              weight
-              width
-            }
-          }
-        }
         allContentstackPages {
           edges {
             node {
-              template
-              title
-              url
               locale
               publish_details {
                 time
                 user
                 environment
               }
+              template
+              title
+              url
             }
           }
         }
         bigCommerceGQL {
           site {
             categoryTree {
-              path
-              name
-              description
-              productCount
-              entityId
               children {
                 description
                 entityId
                 name
                 path
                 productCount
+              }
+              description
+              entityId
+              name
+              path
+              productCount
+            }
+            products {
+              edges {
+                node {
+                  description
+                  entityId
+                  id
+                  images {
+                    edges {
+                      node {
+                        altText
+                        isDefault
+                        urlOriginal
+                      }
+                    }
+                  }
+                  inventory {
+                    aggregated {
+                      availableToSell
+                      warningLevel
+                    }
+                    hasVariantInventory
+                    isInStock
+                  }
+                  name
+                  path
+                  sku
+                }
               }
             }
             settings {
@@ -153,8 +116,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create pages for categories.
   const categoryTemplate = path.resolve(`src/pages/category.tsx`)
 
-  result.data.allBigCommerceCategories.edges.forEach(({ node }) => {
-    const pagePath = node.custom_url.url
+  result.data.bigCommerceGQL.site.categoryTree.forEach((node) => {
+    const pagePath = node.path
 
     createPage({
       path: pagePath,
@@ -163,7 +126,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // as a GraphQL variable to query for data from the API.
       context: {
         category: node,
-        id: node.bigcommerce_id
+        id: node.entityId
       },
     })
   })
@@ -171,8 +134,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create pages for products.
   const productTemplate = path.resolve(`src/pages/product.tsx`)
 
-  result.data.allBigCommerceProducts.edges.forEach(({ node }) => {
-    const pagePath = node.custom_url.url
+  result.data.bigCommerceGQL.site.products.edges.forEach(({ node }) => {
+    const pagePath = node.path
 
     createPage({
       path: pagePath,
@@ -180,8 +143,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // In your template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the API.
       context: {
-        node,
-        categoryIds: node.categories
+        node
       },
     })
   })

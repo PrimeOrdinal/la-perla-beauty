@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet"
 import React from "react"
 import styled from "styled-components"
 
-import type { BigCommerceProducts } from "../../graphql-types"
+import type { BigCommerceGql_Product } from "../../graphql-types"
 
 import { Accordion } from "../components/Accordion"
 import { Breadcrumb } from "../components/Breadcrumb"
@@ -87,7 +87,7 @@ interface Values {
 }
 
 type PageContextProduct = PageContextTypeBreadcrumb & {
-  node: BigCommerceProducts
+  node: BigCommerceGql_Product
 }
 
 const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
@@ -96,11 +96,11 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 }) => {
   const {
     breadcrumb: { crumbs },
-    node,
+    node: productFormatBigCommerce,
   } = pageContext
 
   const product = standardiseBigCommerceProduct({
-    node,
+    productFormatBigCommerce,
     categories: data.bigCommerceGQL.site.categoryTree,
   }) as Product
 
@@ -265,6 +265,8 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             }}
           />
           <Accordion
+            allowMultipleExpanded={true}
+            allowZeroExpanded={true}
             items={[
               {
                 heading: "Perfumer Notes",
@@ -353,27 +355,18 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 export default ProductPage
 
 export const query = graphql`
-  query ProductPage($categoryIds: [Int]) {
-    allBigCommerceCategories(filter: { bigcommerce_id: { in: $categoryIds } }) {
+  query ProductPage($id: Int) {
+    allContentstackProducts(filter: {product_id: {eq: $id}}) {
       edges {
         node {
-          bigcommerce_id
-          custom_url {
-            url
-          }
-          description
-          id
-          is_visible
-          name
+          ...Contentstack_productsFragment
         }
       }
     }
     bigCommerceGQL {
       site {
-        categoryTree {
-          entityId
-          name
-          path
+        product(entityId: $id) {
+          ...BigCommerceGQL_ProductFragment
         }
       }
     }

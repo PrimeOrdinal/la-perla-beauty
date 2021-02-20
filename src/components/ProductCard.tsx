@@ -132,11 +132,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   const offer = product?.offers as Offer
 
-  const thumbnail =
-    Array.isArray(product?.image) &&
-    product?.image?.find(
-      ({ representativeOfPage }) => representativeOfPage === true
-    )
+  const thumbnail = product?.image?.[0]
 
   const image = thumbnail ? (
     <img
