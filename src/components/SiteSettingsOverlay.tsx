@@ -1,6 +1,5 @@
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
-import Modal from "react-modal"
 import styled from "styled-components"
 import {
   color,
@@ -16,41 +15,10 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ReactComponent as Close } from "../images/Close.svg"
-
 import { Button } from "./Button"
-
-const ModalOverlayStyle = {
-  content: {
-    position: "absolute",
-    inset: "180px 40px",
-    border: "1px solid rgb(114, 114, 114)",
-    background: "rgb(255, 255, 255) none repeat scroll 0% 0%",
-    overflow: "auto",
-    borderRadius: "10px",
-    outline: "currentcolor none medium",
-    padding: "20px 30px",
-  },
-}
+import { Modal } from "./Modal"
 
 const WrapperStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 1rem;
-
-  .close-button {
-    align-self: end;
-    align-self: flex-end;
-    padding: 0;
-
-    svg {
-      color: ${themeGet("colors.black")};
-      height: ${themeGet("space.7")}px;
-      object-fit: contain;
-    }
-  }
-
   h1 {
     text-align: center;
   }
@@ -116,12 +84,6 @@ export type SiteSettingsOverlayProps = ColorProps &
     modalIsOpen: boolean
   }
 
-function afterOpenModal() {
-  // references are now sync'd and can be accessed.
-  Modal.defaultStyles.overlay.backgroundColor = "rgba(0, 0, 0, 0.5)"
-  Modal.defaultStyles.overlay.zIndex = "99999"
-}
-
 export const SiteSettingsOverlay = ({
   closeModal,
   modalIsOpen = false,
@@ -129,17 +91,12 @@ export const SiteSettingsOverlay = ({
 }) => {
   return (
     <Modal
+      closeModal={closeModal}
       contentLabel="Country Selector"
       isOpen={modalIsOpen}
-      onAfterOpen={afterOpenModal}
       onRequestClose={closeModal}
-      style={ModalOverlayStyle}
     >
       <WrapperStyled {...props}>
-        <Button className="close-button" onClick={closeModal}>
-          <Close />
-        </Button>
-
         <h1>Lorem Ipsum</h1>
 
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi</p>
