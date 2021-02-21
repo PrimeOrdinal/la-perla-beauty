@@ -1,5 +1,4 @@
 import { theme } from "../theme"
-import { themeGet } from "@styled-system/theme-get"
 
 export const input = `
     input {
@@ -19,7 +18,7 @@ export const input = `
             background: none;
             box-shadow: none;
             outline: none;
-            border: 1px solid ${themeGet("colors.black")};
+            border: 1px solid ${theme.colors.black};
         }
 
         &::selection {

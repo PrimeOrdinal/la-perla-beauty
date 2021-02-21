@@ -132,11 +132,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   const offer = product?.offers as Offer
 
-  const thumbnail =
-    Array.isArray(product?.image) &&
-    product?.image?.find(
-      ({ representativeOfPage }) => representativeOfPage === true
-    )
+  const thumbnail = product?.image?.[0]
 
   const image = thumbnail ? (
     <img
@@ -185,7 +181,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               >
                 <span itemProp="name">{category?.name}</span>
               </Link>
-            ))}
+            )).pop()}
         </div>
         {product?.brand?.name && (
           <span className="product-brand" itemProp="brand">

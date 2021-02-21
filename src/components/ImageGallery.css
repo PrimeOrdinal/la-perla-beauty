@@ -55,7 +55,6 @@
 }
 
 .image-gallery-slide {
-  border-radius: 20px;
   left: 0;
   overflow: hidden;
   position: absolute;
@@ -108,7 +107,6 @@
 }
 
 .image-gallery-thumbnail-image {
-  border-radius: 20px;
   width: 100%;
 }
 

@@ -91,6 +91,11 @@ module.exports = {
           // Learn about environment variables: https://gatsby.dev/env-vars
           Authorization: "Bearer " + process.env.BIGCOMMERCE_STOREFRONT_TOKEN,
         },
+        batch: true,
+        dataLoaderOptions: {
+          maxBatchSize: 10,
+        },
+        refetchInterval: 360,
       },
     },
     {
@@ -111,9 +116,9 @@ module.exports = {
 
         // Multiple endpoints in an object.
         endpoints: {
-          BigCommerceBrands: "/catalog/brands",
+          // BigCommerceBrands: "/catalog/brands",
           BigCommerceCategories: "/catalog/categories",
-          BigCommerceProducts: "/catalog/products?include=images",
+          BigCommerceProducts: "/catalog/products",
         },
 
         preview: true,
@@ -167,16 +172,19 @@ module.exports = {
       resolve: "@gatsby-contrib/gatsby-plugin-elasticlunr-search",
       options: {
         // Fields to index
-        fields: ["title", "tags"],
+        fields: ["title", "sku"],
         // How to resolve each field"s value for a supported node type
         resolvers: {
           // List how to resolve the fields" values
           BigCommerceProducts: {
+          // BigCommerceGql_Product: {
             image_url: function (node) {
               return node.image_url
+              // return node.image[0]
             },
             path: function (node) {
               return node.custom_url.url
+              // return node.path
             },
             sku: function (node) {
               return node.sku

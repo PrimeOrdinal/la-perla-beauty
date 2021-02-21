@@ -2,7 +2,7 @@ import type { SetStateAction } from "react"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import {
   compose,
@@ -23,40 +23,60 @@ import { useToggle } from "../hooks/useToggle"
 import { theme, mediaQueries } from "../theme"
 
 import { Button } from "./Button"
+import { Chip } from "./Chip"
 import { MenuRefine } from "./MenuRefine"
 import { ViewSelector } from "./ViewSelector"
 
 const MenuListingStyled = styled.section`
+  background-color: ${themeGet("colors.white")};
   position: sticky;
   top: var(--header-min-height, 64px);
 
-  .product-count-mobile {
-    display: block;
+  .product-count-mobile,
+  .sortBy {
     text-transform: uppercase;
-    padding-block-start: 1rem;
-    padding-block-end: 1rem;
-    background: white;
+  }
 
+  .feedback,
+  .filterChips,
+  .menu,
+  .product-count-mobile {
+    align-items: center;
+    display: grid;
+    gap: ${themeGet("space.7")}px;
+    grid-auto-flow: column;
+    justify-content: space-between;
+  }
+
+  .feedback,
+  .product-count-mobile {
+    padding-block-end: ${themeGet("space.7")}px;
+    padding-block-start: ${themeGet("space.7")}px;
+  }
+
+  .feedback {
+    padding-block-start: ${themeGet("space.9")}px;
+  }
+
+  .product-count-mobile {
     ${mediaQueries.md} {
       display: none;
     }
   }
 
   .menu {
-    align-items: center;
-    background-color: ${themeGet("colors.white")};
-    border-bottom: ${theme.border.width} solid ${theme.border.color};
-    display: flex;
-    justify-content: space-between;
-    padding-block-end: ${themeGet("space.7")}px;
-    padding-block-start: ${themeGet("space.7")}px;
+    border-bottom-style: solid;
+    padding-block-end: ${themeGet("space.3")}px;
+    padding-block-start: ${themeGet("space.3")}px;
   }
 
   .menu-refine {
-    background-color: ${themeGet("colors.white")};
     padding-block-end: ${themeGet("space.10")}px;
     padding-block-start: ${themeGet("space.10")}px;
-    width: 80%;
+  }
+
+  .filterChips {
+
   }
 
   ${compose(layout, position, space)}
@@ -73,6 +93,7 @@ const RefineStyled = styled.div`
 
   .product-count-desktop {
     display: none;
+    text-transform: upercase;
 
     ${mediaQueries.md} {
       display: block;
@@ -96,27 +117,47 @@ export const MenuListing: React.FC<MenuListingProps> = ({
   ...props
 }) => {
   const [filtersVisibility, toggleFiltersVisibility] = useToggle()
+  const [filterChips, setFilterChips] = useState([])
+  const [filtersCount, setFiltersCount] = useState(0)
+  const [sortBy, setSortBy] = useState("best sellers")
 
   return (
     <MenuListingStyled {...props}>
-      <div className={clsx("container", "menu")}>
-        <ViewSelector setView={setView} view={view} />
-        <RefineStyled>
-          <Button
-            active
-            onClick={() => {
-              toggleFiltersVisibility()
-            }}
-          >
-            <span>Refine</span>
-            {filtersVisibility ? <MinusIcon /> : <FilterIcon />}
-          </Button>
-          <span className="product-count-desktop">{productCount} Products</span>
-        </RefineStyled>
+      <div className={clsx("container")}>
+        <div className={clsx("menu")}>
+          <ViewSelector setView={setView} view={view} />
+          <RefineStyled>
+            <Button
+              onClick={() => {
+                toggleFiltersVisibility()
+              }}
+            >
+              <span>Refine {filtersCount > 0 && `(${filtersCount})`}</span>
+
+              {filtersVisibility ? <MinusIcon /> : <FilterIcon />}
+            </Button>
+            <span className="product-count-desktop">{productCount} products</span>
+          </RefineStyled>
+        </div>
       </div>
       {filtersVisibility && (
-        <MenuRefine className={clsx("container", "menu-refine")} />
+        <MenuRefine
+          className={clsx("container", "menu-refine")}
+          setFilterChips={setFilterChips}
+          setFiltersCount={setFiltersCount}
+          setSortBy={setSortBy}
+        />
       )}
+      <div className={clsx("container", "feedback")}>
+        {filterChips && (
+          <div className="filterChips">
+            {filterChips.map(filterChip => (
+              <Chip>{filterChip}</Chip>
+            ))}
+          </div>
+        )}
+        {sortBy && <span className="sortBy">Sort by: {sortBy}</span>}
+      </div>
       <span className="product-count-mobile container">
         Showing 1 - {productCount} of 100
       </span>

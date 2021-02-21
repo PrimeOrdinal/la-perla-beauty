@@ -3,10 +3,12 @@ import { createGlobalStyle } from "styled-components"
 import { accessibility } from "./accessibility"
 import { anchor } from "./anchor"
 import { body } from "./body"
+import { blockquote } from "./blockquote"
 import { border } from "./border"
 import { boxSizing } from "./boxSizing"
 import { button } from "./button"
 import { container } from "./container"
+import { dl } from "./dl"
 import { field } from "./field"
 import { fonts } from "./fonts"
 import { form } from "./form"
@@ -15,6 +17,7 @@ import { formField } from "./formField"
 import { formRadioContainer } from "./formRadioContainer"
 import { headings } from "./headings"
 import { html } from "./html"
+import { img } from "./img"
 import { input } from "./input"
 import { label } from "./label"
 import { select } from "./select"
@@ -23,21 +26,24 @@ import { svg } from "./svg"
 export const GlobalStyle = createGlobalStyle`
     ${accessibility}
     ${anchor}
-    ${html}
+    ${blockquote}
     ${body}
     ${border}
     ${boxSizing}
     ${button}
     ${container}
+    ${dl}
     ${field}
     ${fonts}
     ${form}
+    ${formCheckboxContainer}
     ${formField}
-    ${label}
+    ${formRadioContainer}
     ${headings}
+    ${html}
+    ${img}
     ${input}
+    ${label}
     ${select}
     ${svg}
-    ${formRadioContainer}
-    ${formCheckboxContainer}
 `

@@ -101,15 +101,22 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
     padding-block-end: 12px;
     padding: 0;
   }
+
   .accordion__panel ul li {
     padding: 8px 0;
   }
+
   .accordion__panel ul li a {
     color: #363139;
     text-decoration: none;
   }
+
   .accordion__panel ul li:last-child {
     padding-block-end: 16px;
+  }
+
+  .accordion__panel img {
+    width: 100%;
   }
 
   /* -------------------------------------------------- */

@@ -1,12 +1,21 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { IconList } from "../src/components/IconList"
+import { IconList, IconListProps } from "../src/components/IconList"
 
 export default {
   title: "IconList",
   component: IconList,
 } as Meta
 
-const Template: Story = args => <IconList {...args} />
-export const Primary = Template.bind({})
+const Template: Story<IconListProps> = args => <IconList {...args} />
+
+export const Horizontal = Template.bind({})
+Horizontal.args = {
+  layout: "horizontal"
+}
+
+export const Vertical = Template.bind({})
+Vertical.args = {
+  layout: "vertical"
+}

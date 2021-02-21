@@ -6,11 +6,7 @@ import fetch from "node-fetch"
 // https://github.com/DavidWells/netlify-functions-workshop/blob/master/lessons-code-complete/use-cases/1-rest-api/functions/api.js
 
 export const handler: Handler = async (event: APIGatewayEvent) => {
-  const BIGCOMMERCE_STORE_HASH = process.env.BIGCOMMERCE_STORE_HASH
-  const BIGCOMMERCE_CLIENT_ID = process.env.BIGCOMMERCE_CLIENT_ID
-  const BIGCOMMERCE_ACCESS_TOKEN = process.env.BIGCOMMERCE_ACCESS_TOKEN
-  const BIGCOMMERCE_CLIENT_SECRET = process.env.BIGCOMMERCE_CLIENT_SECRET
-  const GATSBY_SITE_URL = process.env.GATSBY_SITE_URL
+  const { BIGCOMMERCE_ACCESS_TOKEN, BIGCOMMERCE_CLIENT_ID, BIGCOMMERCE_CLIENT_SECRET, BIGCOMMERCE_STORE_HASH, GATSBY_SITE_URL } = process.env
 
   if (
     !BIGCOMMERCE_STORE_HASH ||
