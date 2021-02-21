@@ -3,6 +3,7 @@ export const Contentstack_productsFragment = graphql`
   fragment Contentstack_productsFragment on Contentstack_products {
     application
     description
+    description_extended
     id
     key_ingredients {
       type

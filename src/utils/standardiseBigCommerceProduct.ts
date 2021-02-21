@@ -1,7 +1,16 @@
-import type { ImageObject, Product, Thing, WithContext } from "schema-dts"
+import type {
+  ImageObject,
+  Product,
+  ProductCollection,
+  ProductGroup,
+  ProductLeaf,
+  Thing,
+  WithContext,
+} from "schema-dts"
 
 import type {
-  BigCommerceGql_Product
+  BigCommerceGql_Product,
+  BigCommerceGql_VariantEdge,
 } from "../../graphql-types"
 
 export function standardiseBigCommerceProduct({
@@ -26,16 +35,19 @@ export function standardiseBigCommerceProduct({
   const data: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",
-    category: productFormatBigCommerce?.categories?.edges?.map(({ node: category }) => ({
-      identifier: category?.entityId,
-      name: category?.name,
-      url: category?.path,
-    }) as Thing),
+    category: productFormatBigCommerce?.categories?.edges?.map(
+      ({ node: category }) =>
+        ({
+          identifier: category?.entityId,
+          name: category?.name,
+          url: category?.path,
+        } as Thing)
+    ),
     depth: productFormatBigCommerce?.depth,
     description: productFormatBigCommerce?.description,
     // gtin: productFormatBigCommerce?.gtin,
     height: productFormatBigCommerce?.height,
-    identifier: productFormatBigCommerce?.id,
+    identifier: productFormatBigCommerce?.entityId.toString(),
     image: productFormatBigCommerce?.images?.edges?.map(
       ({ node: image }) =>
         ({
@@ -52,6 +64,7 @@ export function standardiseBigCommerceProduct({
       price: productFormatBigCommerce?.prices?.price.value,
       priceCurrency: productFormatBigCommerce?.prices?.price.currencyCode,
     },
+    productID: productFormatBigCommerce?.entityId.toString(),
     sku: productFormatBigCommerce?.sku,
     // upc: productFormatBigCommerce?.upc,
     url: productFormatBigCommerce?.path,
@@ -60,4 +73,48 @@ export function standardiseBigCommerceProduct({
   } as WithContext<Product>
 
   return data
+}
+
+export function standardiseBigCommerceProductGroup({
+  productFormatBigCommerce,
+}: {
+  productFormatBigCommerce: BigCommerceGql_Product
+}): WithContext<ProductGroup> {
+  const data = standardiseBigCommerceProduct({
+    productFormatBigCommerce,
+  }) as WithContext<ProductGroup>
+
+  const productGroupID = productFormatBigCommerce?.id
+
+  const hasVariant: ProductLeaf[] = productFormatBigCommerce?.variants?.edges?.map(({ node }) => {
+      const variantData: BigCommerceGql_Product = {
+        ...data,
+        ...node
+      }
+
+      const product = standardiseBigCommerceProduct({
+        productFormatBigCommerce: variantData,
+      })
+
+      const size = node?.options?.edges?.flatMap(
+        ({ node: option }) => option?.values?.edges?.flatMap(({ node: value }) => value?.label)
+      )?.[0]
+
+      const variesBy = node?.options?.edges?.flatMap(
+        ({ node: option }) => option?.displayName
+      )?.[0]
+
+      return {
+        ...product,
+        size,
+        variesBy
+      }
+    }) as ProductLeaf[]
+
+  return {
+    ...data,
+    "@type": "ProductGroup",
+    hasVariant,
+    productGroupID,
+  }
 }

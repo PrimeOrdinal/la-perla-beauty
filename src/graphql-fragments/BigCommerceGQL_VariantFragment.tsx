@@ -14,6 +14,22 @@ export const BigCommerceGQL_VariantFragment = graphql`
       }
       isInStock
     }
+    options {
+      edges {
+        node {
+          displayName
+          entityId
+          isRequired
+          values {
+            edges {
+              node {
+                label
+              }
+            }
+          }
+        }
+      }
+    }
     prices {
       basePrice {
         ...BigCommerceGQL_MoneyFragment

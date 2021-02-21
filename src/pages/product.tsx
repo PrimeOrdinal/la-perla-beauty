@@ -1,4 +1,4 @@
-import type { ImageObject, Offer, Product } from "schema-dts"
+import type { ImageObject, Offer, ProductGroup } from "schema-dts"
 
 import type { BigCommerceGql_Product } from "../../graphql-types"
 
@@ -7,17 +7,22 @@ import clsx from "clsx"
 import { Formik, Form, FormikHelpers } from "formik"
 import { PageProps, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 
 import { Accordion } from "../components/Accordion"
 import { Breadcrumb } from "../components/Breadcrumb"
 import { Button, Link } from "../components/Button"
+import { IconList } from "../components/IconList"
 import { ImageGallery } from "../components/ImageGallery"
+import { Leaf } from "../components/Leaf"
 import { Layout } from "../components/Layout"
 import { Price } from "../components/Price"
 import { SEO } from "../components/SEO"
-import { SizeSelector } from "../components/SizeSelector"
+import { ProductColourSelector } from "../components/ProductColourSelector"
+import { ProductSizeSelector } from "../components/ProductSizeSelector"
+import { QuickShare } from "../components/QuickShare"
+import { QuickWishlist } from "../components/QuickWishlist"
 import { Tag } from "../components/Tag"
 
 import { mediaQueries } from "../theme"
@@ -28,7 +33,7 @@ import {
 } from "../utils/schema-org"
 import { getCartId } from "../utils/carts"
 
-import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
+import { standardiseBigCommerceProductGroup } from "../utils/standardiseBigCommerceProduct"
 
 const ProductStyled = styled.article`
   align-items: start;
@@ -75,7 +80,25 @@ const ProductStyled = styled.article`
   }
 
   .description {
+    margin-block-end: ${themeGet("space.4")}px;
+  }
+
+  .description_extended {
     margin-block-end: ${themeGet("space.9")}px;
+  }
+
+  .read-more {
+    font-weight: bold;
+    justify-content: start;
+    margin-block-end: ${themeGet("space.4")}px;
+    padding: unset;
+  }
+
+  .actions {
+    display: grid;
+    gap: ${themeGet("space.4")}px;
+    grid-auto-flow: column;
+    justify-content: end;
   }
 
   .details {
@@ -104,18 +127,22 @@ const ProductStyled = styled.article`
 
     dd,
     dt {
-      margin-block-end: 1rem;
+      margin-block-end: ${themeGet("space.4")}px;
     }
+  }
+
+  .accordion {
+    margin-block-end: ${themeGet("space.6")}px;
   }
 
   .ingedients {
     dt {
       font-weight: bold;
-      margin-block-end: 0.5rem;
+      margin-block-end: ${themeGet("space.2")}px;
     }
 
     dd {
-      margin-block-end: 1rem;
+      margin-block-end: ${themeGet("space.4")}px;
     }
 
     dd,
@@ -139,14 +166,15 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 }) => {
   const {
     breadcrumb: { crumbs },
-    // node: productFormatBigCommerce,
   } = pageContext
+
+  const [toggleReadMore, setToggleReadMore] = useState(false)
 
   const productFormatBigCommerce = data?.bigCommerceGQL?.site?.product
 
-  const product = standardiseBigCommerceProduct({
+  const product = standardiseBigCommerceProductGroup({
     productFormatBigCommerce,
-  }) as Product
+  }) as ProductGroup
 
   const name = product?.name as string
 
@@ -174,12 +202,15 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
       <Breadcrumb crumbs={crumbs} />
 
       <ProductStyled className={clsx("container")} data-identifier={product?.identifier}>
-        {imageGalleryArguments.items?.length && (
-          <ImageGallery
-            className={clsx("image-gallery")}
-            {...imageGalleryArguments}
-          />
-        )}
+        <div>
+          {imageGalleryArguments.items?.length && (
+            <ImageGallery
+              className={clsx("image-gallery")}
+              {...imageGalleryArguments}
+            />
+          )}
+          <IconList layout="horizontal" />
+        </div>
 
         <main>
           <header>
@@ -216,6 +247,11 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             <Price className="price" offer={offer} />
           </header>
 
+          <div className="actions">
+            <QuickShare />
+            <QuickWishlist />
+          </div>
+
           <Formik
             initialValues={{
               identifier: product?.identifier,
@@ -239,12 +275,10 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               })
 
               setSubmitting(false)
-
-              console.log(response)
             }}
           >
             <Form className={clsx("form")}>
-              <SizeSelector marginBottom={{ _: 2, md: 4 }} />
+              {Array.isArray(product?.hasVariant) && product?.hasVariant?.some((variant) => variant.variesBy === "Size") ? <ProductSizeSelector marginBottom={{ _: 2, md: 4 }} product={product} /> : <ProductColourSelector marginBottom={{ _: 2, md: 4 }} product={product} />}
               <Button
                 type="submit"
                 variant="primary"
@@ -261,6 +295,13 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               __html: data?.contentstackProducts?.description as string,
             }}
           />
+          <Button className="read-more" onClick={() => setToggleReadMore(!toggleReadMore)}>{toggleReadMore ? "Read less" : "Read more"}</Button>
+          {toggleReadMore && (<div
+            className="description-extended"
+            dangerouslySetInnerHTML={{
+              __html: data?.contentstackProducts?.description_extended as string,
+            }}
+          />)}
           <section className="details">
             <h3>Details</h3>
             <dl>
@@ -273,6 +314,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
           <Accordion
             allowMultipleExpanded={true}
             allowZeroExpanded={true}
+            className="accordion"
             items={[
               {
                 heading: "Perfumer Notes",
@@ -321,6 +363,10 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               },
             ]}
           />
+          <Leaf variant="secondary">
+            <h2>Risk-free purchase</h2>
+            <p>Phasellus hendrerit nisl justo, non visto sollicitudin justo in. Quisque eu tincidunt arcu. Aenean ullamcorper augue vel ex iaculis.</p>
+          </Leaf>
         </main>
       </ProductStyled>
       <Helmet>
