@@ -31,18 +31,8 @@ export const LeafStyled: React.FC<LeafProps> = styled.div`
   font-size: var(--font-size-body, 13px);
   grid-auto-flow:row;
   justify-items: start;
-  left: 30vw;
-  padding: ${themeGet("space.10")}px;
+  padding: ${themeGet("space.8")}px ${themeGet("space.11")}px;
   position: relative;
-  text-transform: uppercase;
-  width: 50vw;
-
-  background: ${props => (props.children.img ? "red" : "blue")};
-
-  ${mediaQueries.md} {
-    left: 20vw;
-    width: 20vw;
-  }
 
   a {
     color: inherit;
