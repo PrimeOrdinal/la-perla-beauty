@@ -14,8 +14,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   // Query for markdown nodes to use in creating pages.
-  const result = await graphql(
-    `
+  const result = await graphql(`
       query AllProducts {
         allContentstackPages {
           edges {
@@ -48,7 +47,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               path
               productCount
             }
-            products {
+            products(first: 50) {
               edges {
                 node {
                   description
@@ -143,6 +142,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // In your template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the API.
       context: {
+        id: node.entityId,
         node
       },
     })

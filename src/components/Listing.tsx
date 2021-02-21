@@ -45,9 +45,9 @@ export const Listing: React.FC<ListingProps> = ({
   products,
   promotionalBanners,
 }) => {
-  const items = products?.map(({ node: product }: { node: Product }, index) => (
+  const items = products?.map((product: Product, index) => (
     <li className="product" key={`product-${index}`}>
-      <ProductCard product={product} />
+      <ProductCard key={index} product={product} />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(product)}</script>
       </Helmet>

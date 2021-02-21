@@ -181,7 +181,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               >
                 <span itemProp="name">{category?.name}</span>
               </Link>
-            ))}
+            )).pop()}
         </div>
         {product?.brand?.name && (
           <span className="product-brand" itemProp="brand">

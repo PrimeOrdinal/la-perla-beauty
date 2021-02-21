@@ -64,15 +64,15 @@ const CategoryPage: React.FC<
 
         <CategoryHeader>
           <h1>{category?.name}</h1>
-          <div
+          {category?.description && <div
             dangerouslySetInnerHTML={{
               __html: category?.description as string,
             }}
-          ></div>
+          ></div>}
         </CategoryHeader>
       </div>
 
-      {tabs && (
+      {tabs?.length && (
         <Tabs marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}>
           {tabs.map(category => (
             <Link
@@ -139,7 +139,7 @@ export const query = graphql`
           path
           productCount
         }
-        products {
+        products(first: 50) {
           edges {
             node {
               ...BigCommerceGQL_ProductFragment

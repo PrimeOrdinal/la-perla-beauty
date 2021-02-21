@@ -1,14 +1,14 @@
 import type { ImageObject, Offer, Product } from "schema-dts"
 
+import type { BigCommerceGql_Product } from "../../graphql-types"
+
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
-import { Formik, Field, Form, FormikHelpers } from "formik"
+import { Formik, Form, FormikHelpers } from "formik"
 import { PageProps, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import React from "react"
 import styled from "styled-components"
-
-import type { BigCommerceGql_Product } from "../../graphql-types"
 
 import { Accordion } from "../components/Accordion"
 import { Breadcrumb } from "../components/Breadcrumb"
@@ -17,6 +17,7 @@ import { ImageGallery } from "../components/ImageGallery"
 import { Layout } from "../components/Layout"
 import { Price } from "../components/Price"
 import { SEO } from "../components/SEO"
+import { SizeSelector } from "../components/SizeSelector"
 import { Tag } from "../components/Tag"
 
 import { mediaQueries } from "../theme"
@@ -58,7 +59,7 @@ const ProductStyled = styled.article`
     justify-self: end;
   }
 
-  .title {
+  .name {
     font-size: ${themeGet("fontSizes.7")}px;
     margin-block-end: ${themeGet("space.8")}px;
     margin-block-start: unset;
@@ -73,12 +74,54 @@ const ProductStyled = styled.article`
     margin-block-end: ${themeGet("space.9")}px;
   }
 
-  .variants {
-    margin-block-end: ${themeGet("space.4")}px;
-  }
-
   .description {
     margin-block-end: ${themeGet("space.9")}px;
+  }
+
+  .details {
+    dl {
+      display: flow-root;
+      list-style: none;
+    }
+
+    dt {
+      float: left;
+      margin-inline-end: 0.5ch;
+
+      &:before {
+        content: "•";
+        display: inline-block;
+        margin-inline-end: 1ch;
+      }
+
+      &.separated {
+        &:after {
+          content: ":";
+          display: inline-block;
+        }
+      }
+    }
+
+    dd,
+    dt {
+      margin-block-end: 1rem;
+    }
+  }
+
+  .ingedients {
+    dt {
+      font-weight: bold;
+      margin-block-end: 0.5rem;
+    }
+
+    dd {
+      margin-block-end: 1rem;
+    }
+
+    dd,
+    dt {
+      
+    }
   }
 `
 
@@ -96,12 +139,13 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 }) => {
   const {
     breadcrumb: { crumbs },
-    node: productFormatBigCommerce,
+    // node: productFormatBigCommerce,
   } = pageContext
+
+  const productFormatBigCommerce = data?.bigCommerceGQL?.site?.product
 
   const product = standardiseBigCommerceProduct({
     productFormatBigCommerce,
-    categories: data.bigCommerceGQL.site.categoryTree,
   }) as Product
 
   const name = product?.name as string
@@ -129,7 +173,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 
       <Breadcrumb crumbs={crumbs} />
 
-      <ProductStyled className={clsx("container")}>
+      <ProductStyled className={clsx("container")} data-identifier={product?.identifier}>
         {imageGalleryArguments.items?.length && (
           <ImageGallery
             className={clsx("image-gallery")}
@@ -152,7 +196,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
                   >
                     <span itemProp="name">{category?.name}</span>
                   </Link>
-                ))}
+                )).pop()}
               </div>
             )}
 
@@ -167,7 +211,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               </Tag>
             )}
 
-            <h1 className="title">{name}</h1>
+            <h1 className={clsx("name", "title")}>{name}</h1>
 
             <Price className="price" offer={offer} />
           </header>
@@ -200,54 +244,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             }}
           >
             <Form className={clsx("form")}>
-              <legend>Sizes</legend>
-              <div className={clsx("form-fields", "sizes", "variants")}>
-                <div className="field">
-                  <Field
-                    type="radio"
-                    name="size"
-                    id="size-option-1"
-                    value="value-1"
-                    className="fancy-product"
-                  />
-                  <label
-                    htmlFor="size-option-1"
-                    className="product-radio-label"
-                  >
-                    30 ml
-                  </label>
-                </div>
-                <div className="field">
-                  <Field
-                    type="radio"
-                    name="size"
-                    id="size-option-2"
-                    value="value-2"
-                    className="fancy-product"
-                  />
-                  <label
-                    htmlFor="size-option-2"
-                    className="product-radio-label"
-                  >
-                    90 ml
-                  </label>
-                </div>
-                <div className="field">
-                  <Field
-                    type="radio"
-                    name="size"
-                    id="size-option-3"
-                    value="value-3"
-                    className="fancy-product"
-                  />
-                  <label
-                    htmlFor="size-option-3"
-                    className="product-radio-label"
-                  >
-                    120 ml
-                  </label>
-                </div>
-              </div>
+              <SizeSelector marginBottom={{ _: 2, md: 4 }} />
               <Button
                 type="submit"
                 variant="primary"
@@ -261,9 +258,18 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
           <div
             className="description"
             dangerouslySetInnerHTML={{
-              __html: product?.description as string,
+              __html: data?.contentstackProducts?.description as string,
             }}
           />
+          <section className="details">
+            <h3>Details</h3>
+            <dl>
+              <dt className="separated">SKU</dt>
+              <dd>{product?.sku}</dd>
+              <dt>Manufactured in</dt>
+              <dd>France</dd>
+            </dl>
+          </section>
           <Accordion
             allowMultipleExpanded={true}
             allowZeroExpanded={true}
@@ -271,74 +277,46 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               {
                 heading: "Perfumer Notes",
                 panel: (
-                  <React.Fragment>
-                    <dl>
-                      <dt>Identifier</dt>
-                      <dd>{product?.identifier}</dd>
-                      <dt>GTIN</dt>
-                      <dd>{product?.gtin}</dd>
-                      <dt>MPN</dt>
-                      <dd>{product?.mpn}</dd>
-                      <dt>SKU</dt>
-                      <dd>{product?.sku}</dd>
-                      <dt>URL</dt>
-                      <dd>{product?.url}</dd>
-                      {/*
-                      <dt>Price</dt>
-                      <dd>{product?.price}</dd>
-                      <dt>Calculated Price</dt>
-                      <dd>{product?.calculated_price}</dd>
-                      <dt>Availability</dt>
-                      <dd>{product?.availability}</dd>
-                      <dt>Sale Price</dt>
-                      <dd>{product?.sale_price}</dd>
-                      <dt>UPC</dt>
-                      <dd>{product?.upc}</dd>
-                      */}
-                    </dl>
-                  </React.Fragment>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: data?.contentstackProducts
+                        ?.perfumer_notes as string,
+                    }}
+                  />
                 ),
               },
               {
                 heading: "Appliction",
                 panel: (
-                  <React.Fragment>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Hic aliquam laudantium pariatur tenetur perspiciatis eum!
-                      Ullam, accusamus. Debitis animi, cumque porro, in eveniet
-                      accusamus voluptas vel fugit, ex tenetur sit.
-                    </p>
-                    <button>Test</button>
-                  </React.Fragment>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: data?.contentstackProducts?.application as string,
+                    }}
+                  />
                 ),
               },
               {
-                heading: "Key Ingredient",
+                heading: "Key Ingredients",
                 panel: (
-                  <React.Fragment>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Hic aliquam laudantium pariatur tenetur perspiciatis eum!
-                      Ullam, accusamus. Debitis animi, cumque porro, in eveniet
-                      accusamus voluptas vel fugit, ex tenetur sit.
-                    </p>
-                    <button>Test</button>
-                  </React.Fragment>
-                ),
-              },
-              {
-                heading: "Reviews",
-                panel: (
-                  <React.Fragment>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Hic aliquam laudantium pariatur tenetur perspiciatis eum!
-                      Ullam, accusamus. Debitis animi, cumque porro, in eveniet
-                      accusamus voluptas vel fugit, ex tenetur sit.
-                    </p>
-                    <button>Test</button>
-                  </React.Fragment>
+                  <dl className="ingedients">
+                    {data?.contentstackProducts?.key_ingredients?.map(
+                      key_ingredient => (
+                        <React.Fragment>
+                          <dt>{key_ingredient?.type}</dt>
+                          {key_ingredient?.ingredient?.map((ingredient) => (
+                            <dd>
+                              <Link to={ingredient?.url}>{ingredient?.title}</Link>
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: ingredient?.information as string,
+                                }}
+                              />
+                            </dd>
+                          ))}
+                        </React.Fragment>
+                      )
+                    )}
+                  </dl>
                 ),
               },
             ]}
@@ -356,12 +334,8 @@ export default ProductPage
 
 export const query = graphql`
   query ProductPage($id: Int) {
-    allContentstackProducts(filter: {product_id: {eq: $id}}) {
-      edges {
-        node {
-          ...Contentstack_productsFragment
-        }
-      }
+    contentstackProducts(product_id: { eq: $id }) {
+      ...Contentstack_productsFragment
     }
     bigCommerceGQL {
       site {

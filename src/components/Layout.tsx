@@ -58,24 +58,6 @@ export const Layout: React.FC<LayoutProps> = ({
           title
         }
       }
-      allBigCommerceCategories {
-        edges {
-          node {
-            custom_url {
-              url
-            }
-            description
-            id
-            is_visible
-            meta_description
-            meta_keywords
-            name
-            page_title
-            parent_id
-            search_keywords
-          }
-        }
-      }
       allContentstackMenus(
         filter: {
           slot: {
