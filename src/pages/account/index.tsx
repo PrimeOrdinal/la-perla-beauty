@@ -3,6 +3,7 @@ import React from "react"
 import styled from "styled-components"
 
 import { Layout } from "../../components/Layout"
+import { AccountLayout } from "../../components/AccountLayout"
 import { IconList } from "../../components/IconList"
 import { Button } from "../../components/Button"
 import { SEO } from "../../components/SEO"
