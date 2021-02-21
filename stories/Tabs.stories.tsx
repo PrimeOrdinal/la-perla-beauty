@@ -1,4 +1,4 @@
-import { Link } from "./Button"
+import { Link } from "../src/components/Button"
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
