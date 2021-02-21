@@ -2,7 +2,7 @@ import type { Offer, Product } from "schema-dts"
 
 import clsx from "clsx"
 import getSymbolFromCurrency from "currency-symbol-map"
-import { Formik, Field, Form, FormikHelpers } from "formik"
+import { Formik, Form, FormikHelpers } from "formik"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import {
@@ -17,6 +17,8 @@ import {
 } from "styled-system"
 
 import { Button } from "./Button"
+import { ProductColourSelector } from "../components/ProductColourSelector"
+import { ProductSizeSelector } from "../components/ProductSizeSelector"
 
 export type QuickBuyProps = LayoutProps &
   PositionProps &
@@ -95,45 +97,7 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({
           }}
         >
           <Form className={clsx("quick-buy")}>
-            <legend>Sizes</legend>
-            <div className="form-fields">
-              <div className="field">
-                <Field
-                  type="radio"
-                  name="size"
-                  id="size-option-1"
-                  value="value-1"
-                  className="fancy-product"
-                />
-                <label htmlFor="size-option-1" className="product-radio-label">
-                  30 ml
-                </label>
-              </div>
-              <div className="field">
-                <Field
-                  type="radio"
-                  name="size"
-                  id="size-option-2"
-                  value="value-2"
-                  className="fancy-product"
-                />
-                <label htmlFor="size-option-2" className="product-radio-label">
-                  90 ml
-                </label>
-              </div>
-              <div className="field">
-                <Field
-                  type="radio"
-                  name="size"
-                  id="size-option-3"
-                  value="value-3"
-                  className="fancy-product"
-                />
-                <label htmlFor="size-option-3" className="product-radio-label">
-                  120 ml
-                </label>
-              </div>
-            </div>
+            {Array.isArray(product?.hasVariant) && product?.hasVariant?.some((variant) => variant.variesBy === "Size") ? <ProductSizeSelector marginBottom={{ _: 2, md: 4 }} product={product} /> : <ProductColourSelector marginBottom={{ _: 2, md: 4 }} product={product} />}
             <Button
               type="submit"
               variant="primary"

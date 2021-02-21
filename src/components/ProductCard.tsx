@@ -1,7 +1,5 @@
 import type { Offer, Product } from "schema-dts"
 
-import type { ProductCardQuery } from "../../graphql-types"
-
 import { themeGet } from "@styled-system/theme-get"
 import { Link } from "./Button"
 import React from "react"
@@ -22,9 +20,9 @@ import {
 
 import { Button } from "./Button"
 import { Price } from "./Price"
-import { Tag } from "./Tag"
 import { QuickBuy } from "./QuickBuy"
 import { QuickWishlist } from "./QuickWishlist"
+import { Tag } from "./Tag"
 
 const ProductCardStyled = styled.article`
   align-content: space-between;

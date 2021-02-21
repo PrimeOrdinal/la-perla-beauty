@@ -1,4 +1,5 @@
-import { themeGet } from "@styled-system/theme-get"
+import type { ProducGroup } from "schema-dts"
+
 import clsx from "clsx"
 import { Field } from "formik"
 import React from "react"
@@ -14,7 +15,7 @@ import {
   VariantProps,
 } from "styled-system"
 
-const SizeSelectorStyled = styled.div`
+const ProductColourSelectorStyled = styled.div`
   &:focus-within {
     .title {
       text-decoration: underline;
@@ -24,16 +25,21 @@ const SizeSelectorStyled = styled.div`
   ${compose(layout, position, space)}
 `
 
-export type SizeSelectorProps = LayoutProps &
+export type ProductColourSelectorProps = LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    
+    product: ProducGroup[]
   }
 
-export const SizeSelector: React.FC<SizeSelectorProps> = () => {
+export const ProductColourSelector: React.FC<ProductColourSelectorProps> = ({
+  product,
+  ...props
+}) => {
+  console.log("product", product)
+
   return (
-    <SizeSelectorStyled>
+    <ProductColourSelectorStyled {...props}>
       <h3 className="title" id="group_label_sizes">
         Sizes
       </h3>
@@ -75,6 +81,6 @@ export const SizeSelector: React.FC<SizeSelectorProps> = () => {
           </label>
         </div>
       </div>
-    </SizeSelectorStyled>
+    </ProductColourSelectorStyled>
   )
 }
