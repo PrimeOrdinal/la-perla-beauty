@@ -1,6 +1,6 @@
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
-import { Tabs } from "react-tabs"
+import { MenuSubCategory as ReactMenuSubCategory } from "react-tabs"
 import styled from "styled-components"
 import {
   compose,
@@ -15,9 +15,9 @@ import {
 
 import "react-tabs/style/react-tabs.css"
 
-export type TabsProps = LayoutProps & PositionProps & SpaceProps & VariantProps
+export type MenuSubCategoryProps = LayoutProps & PositionProps & SpaceProps & VariantProps
 
-export const TabsContainerStyled: React.FC<TabsProps> = styled.nav`
+export const MenuSubCategoryContainerStyled: React.FC<MenuSubCategoryProps> = styled.div`
   background-color: ${themeGet("colors.pink")};
   display: grid;
   overflow-x: auto;
@@ -26,7 +26,7 @@ export const TabsContainerStyled: React.FC<TabsProps> = styled.nav`
   ${compose(layout, position, space)}
 `
 
-export const TabsStyled: React.FC<TabsProps> = styled(Tabs)`
+export const MenuSubCategoryStyled: React.FC<MenuSubCategoryProps> = styled.nav`
   column-gap: ${themeGet("space.10")}px;
   display: inline-grid;
   grid-auto-flow: column;
@@ -42,10 +42,8 @@ export const TabsStyled: React.FC<TabsProps> = styled(Tabs)`
   }
 `
 
-const CustomTabs: React.FC<TabsProps> = ({ children, ...props }) => (
-  <TabsContainerStyled {...props}>
-    <TabsStyled>{children}</TabsStyled>
-  </TabsContainerStyled>
+export const MenuSubCategory: React.FC<MenuSubCategoryProps> = ({ children, ...props }) => (
+  <MenuSubCategoryContainerStyled {...props}>
+    <MenuSubCategoryStyled>{children}</MenuSubCategoryStyled>
+  </MenuSubCategoryContainerStyled>
 )
-
-export { CustomTabs as Tabs }

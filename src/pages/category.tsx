@@ -1,16 +1,12 @@
-import type { SetStateAction } from "react"
-
 import type {
-  // BigCommerceCategories,
-  BigCommerceProducts,
-  // CategoryPageQuery,
-  BigCommerceGql_Product,
   BigCommerceGql_Category,
+  CategoryPageQuery,
 } from "../../graphql-types"
 
 import clsx from "clsx"
 import { PageProps, graphql } from "gatsby"
 import React, { useState } from "react"
+
 import { Breadcrumb } from "../components/Breadcrumb"
 import { Link } from "../components/Button"
 import { CategoryHeader } from "../components/CategoryHeader"
@@ -18,7 +14,7 @@ import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"
 import { MenuListing } from "../components/MenuListing"
 import { SEO } from "../components/SEO"
-import { Tabs } from "../components/Tabs"
+import { MenuSubCategory } from "../components/MenuSubCategory"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 // import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
@@ -71,7 +67,7 @@ const CategoryPage: React.FC<
       </div>
 
       {tabs?.length && (
-        <Tabs marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}>
+        <MenuSubCategory marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}>
           {tabs.map(category => (
             <Link
               id={category?.entityId}
@@ -82,7 +78,7 @@ const CategoryPage: React.FC<
               {category?.name}
             </Link>
           ))}
-        </Tabs>
+        </MenuSubCategory>
       )}
 
       <MenuListing

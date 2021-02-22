@@ -2,17 +2,17 @@ import { Link } from "../src/components/Button"
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { Tabs, TabsProps } from "../src/components/Tabs"
+import { MenuSubCategory, MenuSubCategoryProps } from "../src/components/MenuSubCategory"
 
 export default {
-  title: "Tabs",
-  component: Tabs,
+  title: "MenuSubCategory",
+  component: MenuSubCategory,
   argTypes: {
     backgroundColor: { control: "color" },
   },
 } as Meta
 
-const Template: Story<TabsProps> = args => <Tabs {...args} />
+const Template: Story<MenuSubCategoryProps> = args => <MenuSubCategory {...args} />
 
 export const Example = Template.bind({})
 Example.args = {
