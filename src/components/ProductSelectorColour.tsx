@@ -22,6 +22,10 @@ const ProductSelectorColourStyled = styled.div`
     }
   }
 
+  .form-fields {
+    justify-content: start;
+  }
+
   ${compose(layout, position, space)}
 `
 
