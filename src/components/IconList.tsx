@@ -3,15 +3,17 @@ import React from "react"
 import styled from "styled-components"
 import {
   compose,
+  grid,
   layout,
   position,
   space,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
-export type IconListProps = LayoutProps &
+export type IconListProps = GridProps & LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
@@ -127,7 +129,7 @@ export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
       margin: 0;
     }
   }
-  ${compose(layout, position, space)}
+  ${compose(grid, layout, position, space)}
 `
 export const IconList: React.FC<IconListProps> = ({ items, ...props }) => (
   <IconListStyled {...props}>

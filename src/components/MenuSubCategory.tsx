@@ -1,6 +1,5 @@
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
-import { MenuSubCategory as ReactMenuSubCategory } from "react-tabs"
 import styled from "styled-components"
 import {
   compose,

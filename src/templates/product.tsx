@@ -46,7 +46,7 @@ const ProductStyled = styled.article`
   }
 
   .image-gallery {
-    margin-block-end: ${themeGet("space.8")}px;
+    margin-block-end: ${themeGet("space.10")}px;
   }
 
   header,
@@ -215,7 +215,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               {...imageGalleryArguments}
             />
           )}
-          <IconList display={{ _: "none", md: "grid" }} items={[{icon: "plant", color: "green", heading: "Viste ram docet ", body: (<p>Quisque eu tincidunt arcu. Aenean ullamcorper docet vist sum.</p>)}, {icon: "envelope", color: "purple", heading: "Viste ram docet ", body: (<p>Quisque eu tincidunt arcu. Aenean ullamcorper docet vist sum.</p>)}, {icon: "recycle", color: "orange", heading: "Viste ram docet ", body: (<p>Quisque eu tincidunt arcu. Aenean ullamcorper docet vist sum.</p>)}]} orientation="horizontal"></IconList>
+          <IconList display={{ _: "none", md: "grid" }} gridAutoFlow={{ _: "row", md: "column" }} items={[{icon: "plant", color: "green", heading: "Viste ram docet ", body: (<p>Quisque eu tincidunt arcu. Aenean ullamcorper docet vist sum.</p>)}, {icon: "envelope", color: "purple", heading: "Viste ram docet ", body: (<p>Quisque eu tincidunt arcu. Aenean ullamcorper docet vist sum.</p>)}, {icon: "recycle", color: "orange", heading: "Viste ram docet ", body: (<p>Quisque eu tincidunt arcu. Aenean ullamcorper docet vist sum.</p>)}]}></IconList>
         </div>
 
         <main>
@@ -392,7 +392,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 export default ProductPage
 
 export const query = graphql`
-  query ProductPage($id: Int) {
+  query ProductPage($id: Int!) {
     contentstackProducts(product_id: { eq: $id }) {
       ...Contentstack_productsFragment
     }
