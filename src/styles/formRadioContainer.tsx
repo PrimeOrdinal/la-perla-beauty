@@ -39,7 +39,7 @@ export const formRadioContainer = `
 
   label.fancy-radio-label:after {
     background: #363139;
-    border-radius: ${theme.radii[4]}px;
+    border-radius: 3px;
     border: 1px solid white;
     content: " ";
     height: 12px;
