@@ -115,86 +115,90 @@ export const QuickShare: React.FC<QuickShareProps> = ({
     setIsOpen(true)
   }
 
-  const output = navigator.canShare ? (
-    <Button onClick={onButtonClick} type="button">
-      <span className="sr-only">Share</span>
-      <ShareIcon />
-    </Button>
-  ) : (
-    <React.Fragment>
-      <Button onClick={openModal} type="button">
+  if(typeof navigator !== 'undefined') {
+    const output = navigator.canShare ? (
+      <Button onClick={onButtonClick} type="button">
         <span className="sr-only">Share</span>
         <ShareIcon />
       </Button>
-      <Modal
-        closeModal={closeModal}
-        contentLabel="Share"
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-      >
-        <h1 className="title">Share</h1>
-        <FallbackShareOptions>
-          <EmailShareButton url={window.location.href}>
-            <EmailIcon />
-          </EmailShareButton>
-          <FacebookShareButton url={window.location.href}>
-            <FacebookIcon />
-          </FacebookShareButton>
-          <HatenaShareButton url={window.location.href}>
-            <HatenaIcon />
-          </HatenaShareButton>
-          <InstapaperShareButton url={window.location.href}>
-            <InstapaperIcon />
-          </InstapaperShareButton>
-          <LineShareButton url={window.location.href}>
-            <LineIcon />
-          </LineShareButton>
-          <LinkedinShareButton url={window.location.href}>
-            <LinkedinIcon />
-          </LinkedinShareButton>
-          <LivejournalShareButton url={window.location.href}>
-            <LivejournalIcon />
-          </LivejournalShareButton>
-          <MailruShareButton url={window.location.href}>
-            <MailruIcon />
-          </MailruShareButton>
-          <OKShareButton url={window.location.href}>
-            <OKIcon />
-          </OKShareButton>
-          <PinterestShareButton url={window.location.href}>
-            <PinterestIcon />
-          </PinterestShareButton>
-          <PocketShareButton url={window.location.href}>
-            <PocketIcon />
-          </PocketShareButton>
-          <RedditShareButton url={window.location.href}>
-            <RedditIcon />
-          </RedditShareButton>
-          <TelegramShareButton url={window.location.href}>
-            <TelegramIcon />
-          </TelegramShareButton>
-          <TumblrShareButton url={window.location.href}>
-            <TumblrIcon />
-          </TumblrShareButton>
-          <TwitterShareButton url={window.location.href}>
-            <TwitterIcon />
-          </TwitterShareButton>
-          <ViberShareButton url={window.location.href}>
-            <ViberIcon />
-          </ViberShareButton>
-          <VKShareButton url={window.location.href}>
-            <VKIcon />
-          </VKShareButton>
-          <WhatsappShareButton url={window.location.href}>
-            <WhatsappIcon />
-          </WhatsappShareButton>
-          <WorkplaceShareButton url={window.location.href}>
-            <WorkplaceIcon />
-          </WorkplaceShareButton>
-        </FallbackShareOptions>
-      </Modal>
-    </React.Fragment>
-  )
+    ) : (
+      <React.Fragment>
+        <Button onClick={openModal} type="button">
+          <span className="sr-only">Share</span>
+          <ShareIcon />
+        </Button>
+        <Modal
+          closeModal={closeModal}
+          contentLabel="Share"
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+        >
+          <h1 className="title">Share</h1>
+          <FallbackShareOptions>
+            <EmailShareButton url={window.location.href}>
+              <EmailIcon />
+            </EmailShareButton>
+            <FacebookShareButton url={window.location.href}>
+              <FacebookIcon />
+            </FacebookShareButton>
+            <HatenaShareButton url={window.location.href}>
+              <HatenaIcon />
+            </HatenaShareButton>
+            <InstapaperShareButton url={window.location.href}>
+              <InstapaperIcon />
+            </InstapaperShareButton>
+            <LineShareButton url={window.location.href}>
+              <LineIcon />
+            </LineShareButton>
+            <LinkedinShareButton url={window.location.href}>
+              <LinkedinIcon />
+            </LinkedinShareButton>
+            <LivejournalShareButton url={window.location.href}>
+              <LivejournalIcon />
+            </LivejournalShareButton>
+            <MailruShareButton url={window.location.href}>
+              <MailruIcon />
+            </MailruShareButton>
+            <OKShareButton url={window.location.href}>
+              <OKIcon />
+            </OKShareButton>
+            <PinterestShareButton url={window.location.href}>
+              <PinterestIcon />
+            </PinterestShareButton>
+            <PocketShareButton url={window.location.href}>
+              <PocketIcon />
+            </PocketShareButton>
+            <RedditShareButton url={window.location.href}>
+              <RedditIcon />
+            </RedditShareButton>
+            <TelegramShareButton url={window.location.href}>
+              <TelegramIcon />
+            </TelegramShareButton>
+            <TumblrShareButton url={window.location.href}>
+              <TumblrIcon />
+            </TumblrShareButton>
+            <TwitterShareButton url={window.location.href}>
+              <TwitterIcon />
+            </TwitterShareButton>
+            <ViberShareButton url={window.location.href}>
+              <ViberIcon />
+            </ViberShareButton>
+            <VKShareButton url={window.location.href}>
+              <VKIcon />
+            </VKShareButton>
+            <WhatsappShareButton url={window.location.href}>
+              <WhatsappIcon />
+            </WhatsappShareButton>
+            <WorkplaceShareButton url={window.location.href}>
+              <WorkplaceIcon />
+            </WorkplaceShareButton>
+          </FallbackShareOptions>
+        </Modal>
+      </React.Fragment>
+    )
 
-  return <QuickShareStyled {...props}>{output}</QuickShareStyled>
+    return <QuickShareStyled {...props}>{output}</QuickShareStyled>
+  }
+
+  return <QuickShareStyled {...props}>share</QuickShareStyled>
 }
