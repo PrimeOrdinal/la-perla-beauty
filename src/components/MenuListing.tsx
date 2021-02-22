@@ -28,10 +28,6 @@ import { MenuRefine } from "./MenuRefine"
 import { ViewSelector } from "./ViewSelector"
 
 const MenuListingStyled = styled.section`
-  background-color: ${themeGet("colors.white")};
-  position: sticky;
-  top: var(--header-min-height, 38px);
-
   .product-count-mobile,
   .sortBy {
     text-transform: uppercase;
@@ -65,18 +61,23 @@ const MenuListingStyled = styled.section`
   }
 
   .menu {
+    background-color: ${themeGet("colors.white")};
     border-bottom-style: solid;
     padding-block-end: ${themeGet("space.3")}px;
     padding-block-start: ${themeGet("space.3")}px;
   }
 
-  .menu-refine {
-    padding-block-end: ${themeGet("space.10")}px;
-    padding-block-start: ${themeGet("space.10")}px;
+  .menu-view-and-refine {
+      
   }
 
-  .filterChips {
-
+  .menu-refine {
+    background-color: ${themeGet("colors.white")};
+    left: 20%;
+    position: absolute;
+    padding-block-end: ${themeGet("space.10")}px;
+    padding-block-start: ${themeGet("space.10")}px;
+    width: 80%;
   }
 
   ${compose(layout, position, space)}
@@ -123,7 +124,7 @@ export const MenuListing: React.FC<MenuListingProps> = ({
 
   return (
     <MenuListingStyled {...props}>
-      <div className={clsx("container")}>
+      <div className={clsx("container", "menu-view-and-refine")}>
         <div className={clsx("menu")}>
           <ViewSelector setView={setView} view={view} />
           <RefineStyled>

@@ -40,8 +40,6 @@ export const ProductSelectorColour: React.FC<ProductSelectorColourProps> = ({
   product,
   ...props
 }) => {
-  console.log("product", product)
-
   return (
     <ProductSelectorColourStyled {...props}>
       <h3 className="title" id="group_label_sizes">

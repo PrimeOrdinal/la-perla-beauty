@@ -41,8 +41,6 @@ export const ProductSelectorSize: React.FC<ProductSelectorSizeProps> = ({
   product,
   ...props
 }) => {
-  console.log("product", product)
-
   return (
     <ProductSelectorSizeStyled {...props}>
       <h3 className="title" id="group_label_sizes">
