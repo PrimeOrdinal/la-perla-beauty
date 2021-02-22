@@ -85,8 +85,10 @@
   align-items: center;
   display: none;
   margin-block-start: 30px;
+}
 
-  @media screen and (min-width: 60rem) {
+@media screen and (min-width: 60rem) {
+  .image-gallery-thumbnails-wrapper {
     display: grid;
   }
 }
