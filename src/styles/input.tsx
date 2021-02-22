@@ -26,6 +26,10 @@ export const input = `
             box-shadow: none;
             outline: none;
         }
+
+        &[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
     }
       
 `

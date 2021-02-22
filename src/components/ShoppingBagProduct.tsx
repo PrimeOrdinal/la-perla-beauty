@@ -75,7 +75,10 @@ const ShoppingBagProductStyled = styled.div`
         }
 
         .total {
+          border: none;
+          padding: unset;
           text-align: center;
+          width: 2rem;
         }
       }
 
