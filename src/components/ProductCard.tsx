@@ -70,6 +70,11 @@ const ProductCardStyled = styled.article`
     display: grid;
     gap: 0.5rem;
     grid-auto-flow: column;
+
+    button {
+      padding-inline-end: ${themeGet("space.3")}px;
+      padding-inline-start: ${themeGet("space.3")}px;
+    }
   }
 
   .product-category {
@@ -94,26 +99,6 @@ const ProductCardStyled = styled.article`
   .product-price {
     font-family: "Tiempos";
     font-size: ${themeGet("fontSizes.heading2Desktop")}px;
-  }
-
-  .quick-buy {
-    grid-auto-flow: row;
-
-    h1 {
-      font-family: "Quicksand";
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-
-      ${mediaQueries.md} {
-        font-size: 14px;
-      }
-    }
-
-    .form-fields {
-      display: grid;
-      grid-auto-flow: column;
-    }
   }
 
   ${compose(layout, space)}
@@ -204,8 +189,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {product?.name}
         </span>
       )}
-      {offer && <Price offer={offer} />}
-      {quickBuyVisibility && <QuickBuy product={product} />}
+      {offer && <Price display={{ _: "none", md: "block" }} offer={offer} />}
+      {quickBuyVisibility && <QuickBuy className="quick-buy" marginBottom={{ _: 6, md: 0 }} product={product} />}
     </ProductCardStyled>
   )
 }

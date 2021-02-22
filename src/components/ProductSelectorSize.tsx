@@ -24,6 +24,7 @@ const ProductSelectorSizeStyled = styled.div`
 
   .form-fields {
     grid-auto-flow: column;
+    justify-content: start;
   }
 
   ${compose(layout, position, space)}

@@ -93,7 +93,7 @@ const RefineStyled = styled.div`
 
   .product-count-desktop {
     display: none;
-    text-transform: upercase;
+    text-transform: uppercase;
 
     ${mediaQueries.md} {
       display: block;
