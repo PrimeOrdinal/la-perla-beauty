@@ -105,17 +105,17 @@ export const DeliveryAndReturnsInformation: React.FC<DeliveryAndReturnsInformati
           }}
         >
           <Form>
-            <label htmlFor="postcode">
-              Enter your postcode to recieve avaiable delivery options and
+            <label htmlFor="country">
+              Enter your country to recieve avaiable delivery options and
               prices. Donec quis erat feugiat, ultrices eros nec, tincidunt
               nisl.
             </label>
             <div className="form-row">
               <Field
                 as="input"
-                id="postcode"
-                name="postcode"
-                placeholder="Enter postcode"
+                id="country"
+                name="country"
+                placeholder="Enter country"
                 type="text"
               />
               <Button type="submit" variant="secondary">
