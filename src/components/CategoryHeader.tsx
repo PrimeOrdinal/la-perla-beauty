@@ -29,7 +29,7 @@ export const CategoryHeaderStyled = styled.header`
   }
   
   ${mediaQueries.md} {
-    text-align: left;
+    text-align: center;
     span {
       font-size: revert;
     }
