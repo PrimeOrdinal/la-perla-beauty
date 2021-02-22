@@ -392,7 +392,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 export default ProductPage
 
 export const query = graphql`
-  query ProductPage($id: Int) {
+  query ProductPage($id: Int!) {
     contentstackProducts(product_id: { eq: $id }) {
       ...Contentstack_productsFragment
     }

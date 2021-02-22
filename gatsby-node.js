@@ -112,18 +112,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
 
   // Create pages for products.
-  const productTemplate = path.resolve(`src/pages/product.tsx`)
-
+  const productTemplate = path.resolve(`src/templates/product.tsx`)
+  
   result.data.allBigCommerceProducts.edges.forEach(({ node }) => {
     const pagePath = node.custom_url?.url
-
-    // console.log(node)
 
     createPage({
       path: pagePath,
       component: productTemplate,
-      // In your template's graphql query, you can use pagePath
-      // as a GraphQL variable to query for data from the API.
       context: {
         id: node.bigcommerce_id
       },
