@@ -23,7 +23,7 @@ const HeaderStyled = styled.header`
   background-color: ${themeGet("colors.white")};
   border-bottom-style: solid;
   margin-block-end: ${themeGet("space.7")}px;
-  min-height: var(--header-min-height, 64px);
+  min-height: var(--header-min-height, 38px);
   padding-block-start: ${themeGet("space.3")}px;
   position: sticky;
   top: 0;

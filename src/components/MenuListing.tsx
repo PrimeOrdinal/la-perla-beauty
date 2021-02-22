@@ -30,7 +30,7 @@ import { ViewSelector } from "./ViewSelector"
 const MenuListingStyled = styled.section`
   background-color: ${themeGet("colors.white")};
   position: sticky;
-  top: var(--header-min-height, 64px);
+  top: var(--header-min-height, 38px);
 
   .product-count-mobile,
   .sortBy {

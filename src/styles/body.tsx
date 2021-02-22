@@ -4,7 +4,7 @@ export const body = `
     body {
         --font-size-body: ${theme.fontSizes.bodyMobile}px;
         --font-size-small: ${theme.fontSizes.smallMobile}px;
-        --header-min-height: 64px;
+        --header-min-height: 38px;
 
         color: ${theme.colors.text};
         font-size: var(--font-size-body, 13px);
