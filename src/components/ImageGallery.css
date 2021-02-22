@@ -83,8 +83,12 @@
 
 .image-gallery-thumbnails-wrapper {
   align-items: center;
-  display: grid;
+  display: none;
   margin-block-start: 30px;
+
+  @media screen and (min-width: 60rem) {
+    display: grid;
+  }
 }
 
 .image-gallery-thumbnails-container {
