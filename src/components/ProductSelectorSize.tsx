@@ -15,31 +15,35 @@ import {
   VariantProps,
 } from "styled-system"
 
-const ProductSizeSelectorStyled = styled.div`
+const ProductSelectorSizeStyled = styled.div`
   &:focus-within {
     .title {
       text-decoration: underline;
     }
   }
 
+  .form-fields {
+    grid-auto-flow: column;
+  }
+
   ${compose(layout, position, space)}
 `
 
-export type ProductSizeSelectorProps = LayoutProps &
+export type ProductSelectorSizeProps = LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
     product: ProducGroup[]
   }
 
-export const ProductSizeSelector: React.FC<ProductSizeSelectorProps> = ({
+export const ProductSelectorSize: React.FC<ProductSelectorSizeProps> = ({
   product,
   ...props
 }) => {
   console.log("product", product)
 
   return (
-    <ProductSizeSelectorStyled {...props}>
+    <ProductSelectorSizeStyled {...props}>
       <h3 className="title" id="group_label_sizes">
         Sizes
       </h3>
@@ -58,6 +62,6 @@ export const ProductSizeSelector: React.FC<ProductSizeSelectorProps> = ({
           </label>
         </div>)}
       </div>
-    </ProductSizeSelectorStyled>
+    </ProductSelectorSizeStyled>
   )
 }

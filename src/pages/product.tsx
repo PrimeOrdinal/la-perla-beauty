@@ -20,8 +20,8 @@ import { Leaf } from "../components/Leaf"
 import { Layout } from "../components/Layout"
 import { Price } from "../components/Price"
 import { SEO } from "../components/SEO"
-import { ProductColourSelector } from "../components/ProductColourSelector"
-import { ProductSizeSelector } from "../components/ProductSizeSelector"
+import { ProductSelectorColour } from "../components/ProductSelectorColour"
+import { ProductSelectorSize } from "../components/ProductSelectorSize"
 import { QuickShare } from "../components/QuickShare"
 import { QuickWishlist } from "../components/QuickWishlist"
 import { Tag } from "../components/Tag"
@@ -215,7 +215,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               {...imageGalleryArguments}
             />
           )}
-          <IconList items={[{icon: "diamond", color: "red", heading: "Test 1", body: (<p>Lorem ipsum</p>)}, {icon: "diamond", color: "green", heading: "Test 2", body: (<p>Lorem ipsum</p>)}, {icon: "diamond", color: "blue", heading: "Test 3", body: (<p>Lorem ipsum</p>)}, {icon: "diamond", color: "red", heading: "Test 4", body: (<p>Lorem ipsum</p>)}]} orientation="horizontal"></IconList>
+          <IconList display={{ _: "none", md: "grid" }} items={[{icon: "diamond", color: "red", heading: "Test 1", body: (<p>Lorem ipsum</p>)}, {icon: "diamond", color: "green", heading: "Test 2", body: (<p>Lorem ipsum</p>)}, {icon: "diamond", color: "blue", heading: "Test 3", body: (<p>Lorem ipsum</p>)}, {icon: "diamond", color: "red", heading: "Test 4", body: (<p>Lorem ipsum</p>)}]} orientation="horizontal"></IconList>
         </div>
 
         <main>
@@ -290,7 +290,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             }}
           >
             <Form className={clsx("form")}>
-              {Array.isArray(product?.hasVariant) && product?.hasVariant?.some((variant) => variant.variesBy === "Size") ? <ProductSizeSelector marginBottom={{ _: 2, md: 4 }} product={product} /> : <ProductColourSelector marginBottom={{ _: 2, md: 4 }} product={product} />}
+              {Array.isArray(product?.hasVariant) && product?.hasVariant?.some((variant) => variant.variesBy === "Size") ? <ProductSelectorSize marginBottom={{ _: 2, md: 4 }} product={product} /> : <ProductSelectorColour marginBottom={{ _: 2, md: 4 }} product={product} />}
               <Button
                 type="submit"
                 variant="primary"

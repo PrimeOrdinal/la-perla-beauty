@@ -17,8 +17,8 @@ import {
 } from "styled-system"
 
 import { Button } from "./Button"
-import { ProductColourSelector } from "../components/ProductColourSelector"
-import { ProductSizeSelector } from "../components/ProductSizeSelector"
+import { ProductSelectorColour } from "../components/ProductSelectorColour"
+import { ProductSelectorSize } from "./ProductSelectorSize"
 
 export type QuickBuyProps = LayoutProps &
   PositionProps &
@@ -97,7 +97,7 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({
           }}
         >
           <Form className={clsx("quick-buy")}>
-            {Array.isArray(product?.hasVariant) && product?.hasVariant?.some((variant) => variant.variesBy === "Size") ? <ProductSizeSelector marginBottom={{ _: 2, md: 4 }} product={product} /> : <ProductColourSelector marginBottom={{ _: 2, md: 4 }} product={product} />}
+            {Array.isArray(product?.hasVariant) && product?.hasVariant?.some((variant) => variant.variesBy === "Size") ? <ProductSelectorSize marginBottom={{ _: 2, md: 4 }} product={product} /> : <ProductSelectorColour marginBottom={{ _: 2, md: 4 }} product={product} />}
             <Button
               type="submit"
               variant="primary"

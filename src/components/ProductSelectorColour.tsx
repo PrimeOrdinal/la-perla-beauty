@@ -15,7 +15,7 @@ import {
   VariantProps,
 } from "styled-system"
 
-const ProductColourSelectorStyled = styled.div`
+const ProductSelectorColourStyled = styled.div`
   &:focus-within {
     .title {
       text-decoration: underline;
@@ -25,21 +25,21 @@ const ProductColourSelectorStyled = styled.div`
   ${compose(layout, position, space)}
 `
 
-export type ProductColourSelectorProps = LayoutProps &
+export type ProductSelectorColourProps = LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
     product: ProducGroup[]
   }
 
-export const ProductColourSelector: React.FC<ProductColourSelectorProps> = ({
+export const ProductSelectorColour: React.FC<ProductSelectorColourProps> = ({
   product,
   ...props
 }) => {
   console.log("product", product)
 
   return (
-    <ProductColourSelectorStyled {...props}>
+    <ProductSelectorColourStyled {...props}>
       <h3 className="title" id="group_label_sizes">
         Sizes
       </h3>
@@ -81,6 +81,6 @@ export const ProductColourSelector: React.FC<ProductColourSelectorProps> = ({
           </label>
         </div>
       </div>
-    </ProductColourSelectorStyled>
+    </ProductSelectorColourStyled>
   )
 }
