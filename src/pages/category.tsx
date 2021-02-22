@@ -46,7 +46,7 @@ const CategoryPage: React.FC<
 
   const tabs = data.bigCommerceGQL?.site?.categoryTree?.find(
     (categoryTreeItem: BigCommerceGql_Category) =>
-      categoryTreeItem.entityId === category.entityId
+      categoryTreeItem.entityId === category.id
   )?.children
 
   return (
