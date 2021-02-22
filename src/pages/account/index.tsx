@@ -3,7 +3,6 @@ import React from "react"
 import styled from "styled-components"
 
 import { Layout } from "../../components/Layout"
-import { AccountLayout } from "../../components/AccountLayout"
 import { IconList } from "../../components/IconList"
 import { Button } from "../../components/Button"
 import { SEO } from "../../components/SEO"
@@ -71,7 +70,7 @@ const GridStyled = styled.section`
     display: grid;
     gap: ${themeGet("space.7")}px;
     grid-auto-flow: row;
-
+    align-items: flex-start;
     h1 {
       font-size: ${themeGet("fontSizes.6")}px;
       margin: 0;
@@ -117,10 +116,43 @@ const AccountPage: React.FC = () => {
             <IconList
               items={[
                 {
-                  color: "red",
-                  heading: "hello",
-                  icon: "diamond",
-                  body: "some pseudo text here",
+                  color: "purple",
+                  icon: "recycle",
+                  body:
+                    "some pseudo text here to populate the body of this usp section.",
+                },
+              ]}
+              orientation="horizontal"
+            />
+            <IconList
+              items={[
+                {
+                  color: "orange",
+                  icon: "plant",
+                  body:
+                    "some pseudo text here to populate the body of this usp section.",
+                },
+              ]}
+              orientation="horizontal"
+            />
+            <IconList
+              items={[
+                {
+                  color: "pink",
+                  icon: "nib",
+                  body:
+                    "some pseudo text here to populate the body of this usp section.",
+                },
+              ]}
+              orientation="horizontal"
+            />
+            <IconList
+              items={[
+                {
+                  color: "green",
+                  icon: "tracking",
+                  body:
+                    "some pseudo text here to populate the body of this usp section.",
                 },
               ]}
               orientation="horizontal"
