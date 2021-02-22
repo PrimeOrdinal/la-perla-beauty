@@ -10,10 +10,13 @@ const AnchorStyled = styled.a`
   padding: ${themeGet("space.6")}px ${themeGet("space.9")}px;
   text-decoration: none;
   text-transform: capitalize;
+  &.current {
+    font-weight: 600;
+  }
 `
 
 const NavStyled = styled.nav`
-  background-color: ${themeGet("colors.darkgrey")};
+  background-color: ${themeGet("colors.lightgrey")};
   display: grid;
   text-align: center;
   grid-auto-flow: column;
