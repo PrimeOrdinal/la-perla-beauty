@@ -13,6 +13,7 @@ import styled from "styled-components"
 import { Accordion } from "../components/Accordion"
 import { Breadcrumb } from "../components/Breadcrumb"
 import { Button, Link } from "../components/Button"
+import { DeliveryAndReturnsInformation } from "../components/DeliveryAndReturnsInformation"
 import { IconList } from "../components/IconList"
 import { ImageGallery } from "../components/ImageGallery"
 import { Leaf } from "../components/Leaf"
@@ -45,6 +46,7 @@ const ProductStyled = styled.article`
   }
 
   .image-gallery {
+    margin-block-end: ${themeGet("space.8")}px;
   }
 
   header,
@@ -131,6 +133,10 @@ const ProductStyled = styled.article`
     }
   }
 
+  .delivery-and-returns-information {
+    margin-block-end: ${themeGet("space.9")}px;
+  }
+
   .accordion {
     margin-block-end: ${themeGet("space.6")}px;
   }
@@ -209,7 +215,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               {...imageGalleryArguments}
             />
           )}
-          <IconList layout="horizontal" />
+          <IconList items={[{icon: "diamond", color: "red", heading: "Test 1", body: (<p>Lorem ipsum</p>)}, {icon: "diamond", color: "green", heading: "Test 2", body: (<p>Lorem ipsum</p>)}, {icon: "diamond", color: "blue", heading: "Test 3", body: (<p>Lorem ipsum</p>)}, {icon: "diamond", color: "red", heading: "Test 4", body: (<p>Lorem ipsum</p>)}]} orientation="horizontal"></IconList>
         </div>
 
         <main>
@@ -254,7 +260,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 
           <Formik
             initialValues={{
-              identifier: product?.identifier,
+              identifier: product?.identifier as string,
             }}
             onSubmit={async (
               values: Values,
@@ -273,6 +279,12 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
                 },
                 method: "POST",
               })
+
+              console.log(response)
+
+              if (response.ok) {
+                console.log(response.ok)
+              }
 
               setSubmitting(false)
             }}
@@ -363,6 +375,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               },
             ]}
           />
+          <DeliveryAndReturnsInformation className="delivery-and-returns-information" />
           <Leaf variant="secondary">
             <h2>Risk-free purchase</h2>
             <p>Phasellus hendrerit nisl justo, non visto sollicitudin justo in. Quisque eu tincidunt arcu. Aenean ullamcorper augue vel ex iaculis.</p>
