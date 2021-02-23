@@ -26,6 +26,7 @@ const MainStyled = styled.main`
     font-family: "Quicksand";
     font-weight: 600;
     font-size: 13px;
+    margin: 0;
     text-transform: uppercase;
     ${mediaQueries.md} {
       display: none;
