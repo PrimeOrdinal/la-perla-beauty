@@ -98,7 +98,7 @@ const OrdersPage: React.FC = () => (
         </div>
       </OrdersColumn>
     </AccountLayout>
-    <PromotionalBanner {...PromoBannerArgs} inlineView />
+    {/* <PromotionalBanner {...PromoBannerArgs} inlineView /> */}
   </Layout>
 )
 
