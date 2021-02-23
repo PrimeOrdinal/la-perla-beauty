@@ -19,10 +19,8 @@ export type OrdersItemProps = LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    items: Array<{
-      current: string
-      previous: string
-    }>
+    current: string
+    previous: string
   }
 
 const OrderItemStyled = styled.article`
@@ -103,7 +101,10 @@ const SecondColumnStyled = styled(ListPlain)`
   }
 `
 
-export const OrdersItem: React.FC<OrdersItemProps> = ({ items, previous }) => {
+export const OrdersItem: React.FC<OrdersItemProps> = ({
+  current,
+  previous,
+}) => {
   return (
     <OrderItemStyled>
       <img src="https://picsum.photos/220" alt="image" />
@@ -124,22 +125,23 @@ export const OrdersItem: React.FC<OrdersItemProps> = ({ items, previous }) => {
             status: <span>processing</span>
           </li>
         </ListPlain>
-        {/* <li>
-          <Link className="view-mobile">view order details</Link>
-          button is below this ------
-        </li> */}
+
+        <li>
+          {previous && <Link className="view-mobile">view order details</Link>}
+        </li>
       </SecondColumnStyled>
-      <div className="items">
-        <Button variant="primary" py="5" px="7">
-          view order details
-        </Button>
-        <Button variant="tertiary" py="5" px="7">
-          track order
-        </Button>
-      </div>
-      {/* View order details link below for desktop variant -------  */}
-      {/* This is the link and not the button ------- */}
-      {/* <Link className="view-desktop">View order details</Link> */}
+      {current && (
+        <div className="items">
+          <Button variant="primary" py="5" px="7">
+            view order details
+          </Button>
+          <Button variant="tertiary" py="5" px="7">
+            track order
+          </Button>
+        </div>
+      )}
+
+      {previous && <Link className="view-desktop">View order details</Link>}
     </OrderItemStyled>
   )
 }
