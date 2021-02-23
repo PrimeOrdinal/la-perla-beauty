@@ -6,6 +6,10 @@ import { mediaQueries } from "../theme"
 
 import { Button } from "./Button"
 import { ShoppingBagProduct } from "./ShoppingBagProduct"
+import applepay from "../images/applepay.svg"
+import googlepay from "../images/googlepay.svg"
+import mastercard from "../images/mastercard.svg"
+import visa from "../images/visa.svg"
 
 const GridStyled = styled.div`
   display: grid;
@@ -33,9 +37,11 @@ const GridStyled = styled.div`
     }
   }
   .column-2 {
+    align-content: flex-start;
     ${mediaQueries.md} {
       align-items: flex-start;
       display: grid;
+      gap: 2rem;
     }
 
     .column-2-wrapper {
@@ -99,6 +105,13 @@ const GridStyled = styled.div`
         padding-block-end: 1rem;
         padding-block-start: 1rem;
       }
+    }
+    .payment-icons {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
     }
   }
 
@@ -167,6 +180,12 @@ export const Bag: React.FC = () => {
               </div>
               <Button variant="primary">Checkout</Button>
             </section>
+          </div>
+          <div className="payment-icons">
+            <img src={applepay} alt="apple pay icon" />
+            <img src={mastercard} alt="mastercard icon" />
+            <img src={googlepay} alt="google pay icon" />
+            <img src={visa} alt="visa card icon" />
           </div>
         </section>
       </GridStyled>
