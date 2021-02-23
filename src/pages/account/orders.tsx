@@ -6,6 +6,7 @@ import { mediaQueries } from "../../theme"
 import { Layout } from "../../components/Layout"
 import { ListPlain } from "../../components/ListPlain"
 import { OrdersItem } from "../../components/OrdersItem"
+import { PromotionalBanner } from "../../components/PromotionalBanner"
 import { AccountLayout } from "../../components/AccountLayout"
 import { SEO } from "../../components/SEO"
 
@@ -45,7 +46,21 @@ const OrdersColumn = styled.section`
     gap: 30px;
   }
 `
-
+const PromoBannerArgs = {
+  description:
+    "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt.",
+  image: {
+    description:
+      "A grey placeholder image with the dimensions overlayed in white text",
+    src: "https://via.placeholder.com/282",
+  },
+  link: {
+    href: "/learn-more",
+    text: "Learn more",
+  },
+  title: "Promo Banner",
+  width: { _: 1, md: 1 / 2 },
+}
 const OrdersPage: React.FC = () => (
   <Layout>
     <AccountLayout>
@@ -57,7 +72,7 @@ const OrdersPage: React.FC = () => (
           <h2>Current orders</h2>
           <ListPlain className="grid-item">
             <li>
-              <OrdersItem />
+              <OrdersItem current />
             </li>
           </ListPlain>
         </div>
@@ -65,24 +80,25 @@ const OrdersPage: React.FC = () => (
           <h2>Previous Orders</h2>
           <ListPlain className="grid-item">
             <li>
-              <OrdersItem />
+              <OrdersItem previous />
             </li>
             <li>
-              <OrdersItem />
+              <OrdersItem previous />
             </li>
             <li>
-              <OrdersItem />
+              <OrdersItem previous />
             </li>
             <li>
-              <OrdersItem />
+              <OrdersItem previous />
             </li>
             <li>
-              <OrdersItem />
+              <OrdersItem previous />
             </li>
           </ListPlain>
         </div>
       </OrdersColumn>
     </AccountLayout>
+    <PromotionalBanner {...PromoBannerArgs} inlineView />
   </Layout>
 )
 
