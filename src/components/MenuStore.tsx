@@ -10,7 +10,7 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ReactComponent as DownArrowIcon } from "../images/DownArrow.svg"
+import { ReactComponent as ChevronIcon } from "../images/Chevron.svg"
 
 import { Button } from "./Button"
 import { ListPlain } from "./ListPlain"
@@ -20,7 +20,7 @@ const MenuStoreStyled = styled(ListPlain)`
   ${compose(grid, layout, space)}
 `
 
-const DownArrowIconStyled = styled(DownArrowIcon)`
+const ChevronIconStyled = styled(ChevronIcon)`
   width: 14px;
 `
 
@@ -41,7 +41,7 @@ export const MenuStore: React.FC<MenuStoreProps> = props => {
     <MenuStoreStyled {...props}>
       <Button onClick={openModal}>
         UK | ENGLISH | £
-        <DownArrowIconStyled />
+        <ChevronIconStyled />
       </Button>
 
       <SiteSettingsOverlay closeModal={closeModal} modalIsOpen={modalIsOpen} />

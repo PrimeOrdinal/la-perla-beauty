@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
-import DownArrow from "../../images/DownArrow.svg"
+import Chevron from "../../images/Chevron.svg"
 import { Layout } from "../../components/Layout"
 import { Button } from "../../components/Button"
 import { Accordion } from "../../components/Accordion"
@@ -129,7 +129,7 @@ const InformationPage: React.FC = () => (
                 <option value="+42" />
                 <option value="+12" />
               </datalist>
-              <img src={DownArrow} alt="something" />
+              <img src={Chevron} alt="something" />
             </div>
 
             <input type="text" />

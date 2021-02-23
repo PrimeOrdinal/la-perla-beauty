@@ -1,11 +1,11 @@
 import { theme } from "../theme"
 
-import DownArrowIcon from "../images/DownArrow.svg"
+import ChevronIcon from "../images/Chevron.svg"
 
 export const select = `
     select {
         appearance: none;
-        background-image: url(${DownArrowIcon});
+        background-image: url(${ChevronIcon});
         background-position: right ${theme.space[4]}px top 50%;
         background-repeat: no-repeat;
         border-radius: ${theme.radii[3]}px;
