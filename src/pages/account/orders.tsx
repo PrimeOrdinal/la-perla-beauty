@@ -15,9 +15,9 @@ const OrdersColumn = styled.section`
     text-transform: capitalize;
     margin: 0;
     font-weight: 300;
-    font-size: 24px;
+    font-size: ${themeGet("fontSizes.6")}px;
     ${mediaQueries.md} {
-      font-size: 32px;
+      font-size: ${themeGet("fontSizes.7")}px;
     }
   }
 
@@ -25,25 +25,25 @@ const OrdersColumn = styled.section`
     h2 {
       font-size: 20px;
       ${mediaQueries.md} {
-        font-size: 24px;
+        font-size: ${themeGet("fontSizes.6")}px;
       }
     }
     display: grid;
     grid-auto-flow: row;
-    gap: 1rem;
-    padding-block-end: 2rem;
+    gap: ${themeGet("space.6")}px;
+    padding-block-end: ${themeGet("space.9")}px;
   }
   .previous-orders {
     display: grid;
     grid-auto-flow: row;
-    gap: 1rem;
+    gap: ${themeGet("space.6")}px;
     border-top: ${themeGet("border.width")} solid ${themeGet("border.color")};
   }
 
   .grid-item {
     display: grid;
     grid-auto-flow: row;
-    gap: 30px;
+    gap: ${themeGet("space.9")}px;
   }
 `
 const PromoBannerArgs = {
