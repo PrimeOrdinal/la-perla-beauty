@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
+import { mediaQueries } from "../../theme"
 
 import { Layout } from "../../components/Layout"
 import { ListPlain } from "../../components/ListPlain"
@@ -11,13 +12,20 @@ import { SEO } from "../../components/SEO"
 const OrdersColumn = styled.section`
   h1 {
     text-transform: capitalize;
-    font-size: 32px;
     margin: 0;
     font-weight: 300;
+    font-size: 24px;
+    ${mediaQueries.md} {
+      font-size: 32px;
+    }
   }
+
   .current-orders {
     h2 {
-      font-size: 24px;
+      font-size: 20px;
+      ${mediaQueries.md} {
+        font-size: 24px;
+      }
     }
     display: grid;
     grid-auto-flow: row;
@@ -34,7 +42,7 @@ const OrdersColumn = styled.section`
   .grid-item {
     display: grid;
     grid-auto-flow: row;
-    gap: 1rem;
+    gap: 30px;
   }
 `
 
