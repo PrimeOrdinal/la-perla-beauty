@@ -60,6 +60,7 @@ const ProductStyled = styled.article`
     gap: 1rem;
     grid-auto-flow: column;
     justify-content: start;
+    text-transform: uppercase;
   }
 
   .availability {
