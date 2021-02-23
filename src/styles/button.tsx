@@ -24,7 +24,7 @@ export const styles = `
 
     ${theme.mediaQueries.md} {
         gap: ${theme.space[4]}px;
-        padding: ${theme.space[3]}px ${theme.space[4]}px;
+        padding: ${theme.space[5]}px ${theme.space[4]}px;
     }
 
     svg {
