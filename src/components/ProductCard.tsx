@@ -99,6 +99,7 @@ const ProductCardStyled = styled.article`
   .product-price {
     font-family: "Tiempos";
     font-size: ${themeGet("fontSizes.heading2Desktop")}px;
+    font-weight: 300;
   }
 
   ${compose(layout, space)}
