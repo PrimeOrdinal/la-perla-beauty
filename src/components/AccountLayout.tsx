@@ -16,10 +16,13 @@ const MainStyled = styled.main`
   display: grid;
   grid-auto-flow: row;
   gap: 1rem;
+
   ${mediaQueries.md} {
     grid-auto-flow: column;
     align-items: flex-start;
     gap: 5rem;
+    margin-block-end: 70px;
+    margin-block-start: 70px;
     grid-template-columns: minmax(200px, 300px) auto;
   }
   .section-title {
