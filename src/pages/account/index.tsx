@@ -10,12 +10,15 @@ import { SEO } from "../../components/SEO"
 import { mediaQueries } from "../../theme"
 
 const MainStyled = styled.main`
+  display: grid;
+  place-content: center;
   .desktop-heading {
     display: none;
 
     ${mediaQueries.md} {
       display: initial;
       font-size: ${themeGet("fontSizes.7")}px;
+      margin-block-start: 70px;
     }
   }
 `
@@ -26,9 +29,11 @@ const GridStyled = styled.section`
   grid-auto-flow: row;
 
   ${mediaQueries.md} {
-    gap: 6rem;
-    grid-auto-flow: column;
+    gap: 105px;
+    grid-template-columns: minmax(400px, 550px) minmax(400px, 550px);
+    place-content: center;
     margin-block-start: ${themeGet("space.12")}px;
+    margin-block-end: 70px;
   }
   .sign-in {
     display: grid;
@@ -102,7 +107,7 @@ const AccountPage: React.FC = () => {
               <label htmlFor="password">password</label>
               <input className="input-focus" type="password" />
               <span>forgot your password?</span>
-              <Button variant="primary" p={5}>
+              <Button variant="secondary" p={5} className="sign-in">
                 Sign in
               </Button>
             </form>
