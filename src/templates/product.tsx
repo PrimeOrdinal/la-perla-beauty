@@ -75,7 +75,7 @@ const ProductStyled = styled.article`
 
   .price {
     font-size: ${themeGet("fontSizes.5")}px;
-    margin-block-end: ${themeGet("space.8")}px;
+    margin-block-end: ${themeGet("space.6")}px;
   }
 
   .form {
@@ -101,6 +101,7 @@ const ProductStyled = styled.article`
     display: grid;
     gap: ${themeGet("space.4")}px;
     grid-auto-flow: column;
+    height: 0;
     justify-content: end;
   }
 
