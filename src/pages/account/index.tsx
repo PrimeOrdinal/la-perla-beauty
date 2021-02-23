@@ -101,13 +101,13 @@ const AccountPage: React.FC = () => {
               Please enter your email address and password below to access your
               account
             </p>
-            <form>
+            <form action="/account/information">
               <label htmlFor="email address">email address*</label>
               <input className="input-focus" type="email" />
               <label htmlFor="password">password</label>
               <input className="input-focus" type="password" />
               <span>forgot your password?</span>
-              <Button variant="secondary" p={5} className="sign-in">
+              <Button type="submit" variant="secondary" p={5} className="sign-in">
                 Sign in
               </Button>
             </form>

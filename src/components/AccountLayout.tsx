@@ -39,57 +39,56 @@ const MainStyled = styled.main`
 `
 
 const AccountNav = styled(ListPlain)`
-  display: grid;
-  grid-auto-flow: row;
-  gap: 1.5rem;
-  border: 1px solid black;
-  padding: 1rem;
   border-radius: 15px;
+  border: 1px solid black;
+  display: grid;
+  gap: 1.5rem;
+  grid-auto-flow: row;
   justify-items: flex-start;
+  padding: 1rem;
   place-content: start;
+
   ${mediaQueries.md} {
-    border: none;
-    align-items: flex-start;
     align-content: flex-start;
+    align-items: flex-start;
+    border: none;
     place-content: unset;
   }
+
   li {
     ${mediaQueries.md} {
-      border-bottom: ${themeGet("border.width")} solid
-        ${themeGet("border.color")};
       width: 100%;
-      padding-block-end: 12px;
     }
+
     a {
-      display: grid;
-      grid-auto-flow: column;
-      gap: 1rem;
       align-items: center;
+      display: grid;
+      gap: 1rem;
+      grid-auto-flow: column;
       text-transform: uppercase;
+
       ${mediaQueries.md} {
+        border-bottom-style: solid;
+        padding-block-end: 12px;
         justify-content: start;
+
+        &.active {
+          border-bottom-color: ${themeGet("colors.black")};
+          font-weight: bold,
+        }
       }
+
       svg {
         height: auto;
         width: 15px;
       }
     }
   }
-
-  .active {
-    border-bottom: black solid 1px;
-  }
-  .border {
-    border-bottom: solid ${themeGet("border.width")} ${themeGet("border.color")};
-  }
 `
-
-const activeStyles = {
-  background: "red",
-}
 
 export const AccountLayout = ({ children }) => {
   const [active, setActive] = useState(false)
+
   const handleClick = () => {
     setActive(!active)
   }
@@ -99,37 +98,37 @@ export const AccountLayout = ({ children }) => {
       <h1 className="section-title">Navigate to section</h1>
       <AccountNav>
         <li>
-          <Link to="/account/information" activeStyle={activeStyles}>
+          <Link to="/account/information">
             <Profile />
             Account information
           </Link>
         </li>
         <li>
-          <Link to="/account/orders" activeStyle={activeStyles}>
+          <Link to="/account/orders">
             <Shipping />
             Orders
           </Link>
         </li>
         <li>
-          <Link activeStyle={{ color: "red" }}>
+          <Link to="/account/returns">
             <Return />
             Returns
           </Link>
         </li>
-        <li className={active ? "active" : ""}>
-          <Link>
+        <li>
+          <Link to="/account/address-book">
             <Address />
             Address book
           </Link>
         </li>
-        <li className={active ? "active" : ""}>
+        <li>
           <Link to="/account/wishlist">
             <WishlistAbsent />
             Wishlist
           </Link>
         </li>
         <li>
-          <Link>
+          <Link to="/account/newsletter-preferences">
             <Newsletter />
             Newsletter preferences
           </Link>

@@ -82,6 +82,7 @@ export const LinkContextual = ({ children, to, ...other }) => {
   if (internal) {
     return (
       <GatsbyLink
+        activeClassName="active"
         to={to}
         {...other}
       >
