@@ -23,7 +23,8 @@ const MainStyled = styled.main`
     gap: 5rem;
     margin-block-end: 70px;
     margin-block-start: 70px;
-    grid-template-columns: minmax(200px, 300px) auto;
+    grid-template-columns: minmax(200px, 300px) minmax(400px, 650px);
+    justify-content: space-between;
   }
   .section-title {
     font-family: "Quicksand";
