@@ -14,18 +14,16 @@ const ColumnTwoStyled = styled.section`
   grid-auto-flow: row;
   gap: 1rem;
   .account-title {
-    display: none;
+    font-size: 24px;
+    margin: 0;
     ${mediaQueries.md} {
       font-size: 32px;
       display: initial;
-      margin: 0;
     }
   }
   .account-description {
-    display: none;
+    margin: 0;
     ${mediaQueries.md} {
-      display: initial;
-      margin: 0;
       font-size: 14px;
     }
   }
@@ -33,10 +31,13 @@ const ColumnTwoStyled = styled.section`
   form {
     display: grid;
     grid-auto-flow: row;
-    gap: 1rem;
+    gap: 10px;
     ${mediaQueries.md} {
       padding-block-start: 1rem;
       padding-block-end: 1rem;
+    }
+    label {
+      font-size: 13px;
     }
     .mobile-numbers {
       display: grid;
@@ -63,8 +64,8 @@ const ColumnTwoStyled = styled.section`
   }
   h3 {
     margin: 0;
+    font-size: 20px;
     ${mediaQueries.md} {
-      font-size: 20px;
     }
   }
 `
@@ -91,9 +92,9 @@ const InformationPage: React.FC = () => (
           <input type="text" />
           <label htmlFor="last name">Last name*</label>
           <input type="text" />
-          <label htmlFor="email">email address</label>
+          <label htmlFor="email">email address*</label>
           <input type="email" />
-          <label htmlFor="mobile">mobile number*</label>
+          <label htmlFor="mobile">mobile no.</label>
           <div className="mobile-numbers">
             <div className="country-code-container">
               <input
