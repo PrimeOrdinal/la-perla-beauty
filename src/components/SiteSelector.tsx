@@ -4,12 +4,12 @@ import React from "react"
 import styled from "styled-components"
 
 const AnchorStyled = styled.a`
-  background-color: ${props => (props.href ? "white" : "grey")};
-  color: ${props => (props.href ? "grey" : "white")};
+  background-color: ${props => (props.href ? "#EFEEE9" : "white")};
+  color: ${props => (props.href ? "#363139" : "#363139")};
   font-size: var(--font-size-body, 13px);
   padding: ${themeGet("space.6")}px ${themeGet("space.9")}px;
   text-decoration: none;
-  text-transform: capitalize;
+  text-transform: uppercase;
   &.current {
     font-weight: 600;
   }
@@ -25,15 +25,15 @@ const NavStyled = styled.nav`
 export const SiteSelector: React.FC = () => {
   return (
     <NavStyled>
+      <AnchorStyled className={clsx("button--link", "current")}>
+        La Perla Beauty
+      </AnchorStyled>
       <AnchorStyled
         className={clsx("button--link")}
         href="https://laperla.com"
         rel="external"
       >
         La Perla Lingerie
-      </AnchorStyled>
-      <AnchorStyled className={clsx("button--link", "current")}>
-        La Perla Beauty
       </AnchorStyled>
     </NavStyled>
   )
