@@ -25,6 +25,7 @@ const StyledMenu = styled.div`
   display: grid;
   list-style: none;
   margin: 0;
+  position: relative;
 
   li {
     margin-block-end: 0;
@@ -56,11 +57,18 @@ const StyledMenuMainHeadings = styled(ListPlain)`
 `
 
 const StyledMenuMainExpanded = styled.div`
+  background-color: ${themeGet("colors.white")};
+  border-bottom-right-radius: ${themeGet("radii.4")}px;
+  border-bottom-left-radius: ${themeGet("radii.4")}px;
   display: ${props => (props.active ? "grid" : "none")};
   gap: 1rem;
   grid-template-columns: repeat(4, 1fr);
   padding-block-end: 1rem;
   padding-block-start: 1rem;
+  padding-inline-end: 1rem;
+  padding-inline-start: 1rem;
+  position: absolute;
+  width: 100%;
 
   ul {
     list-style: none;
@@ -120,30 +128,34 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
           </StyledMenuMainHeadings>
         ))}
       <StyledMenuMainExpanded active={isHovered}>
-        {data?.allContentstackMenus?.edges?.map(({ node: menu }) => (
-          <ul id={menu.slot as string} key={menu.id}>
-            {menu?.links?.map((link, index) => (
-              <li key={index}>
-                {link?.url?.href?.startsWith("http") ? (
-                  <a
-                    href={link?.url?.href as string}
-                    rel="external"
-                    title={link?.url?.title as string}
-                  >
-                    {link?.text}
-                  </a>
-                ) : (
-                  <Link
-                    to={link?.url?.href as string}
-                    title={link?.url?.title as string}
-                  >
-                    {link?.text}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-        ))}
+        {data?.allContentstackMenus?.edges
+          ?.filter(({ node: menu }) =>
+            menu.slot?.startsWith("footer-secondary")
+          )
+          ?.map(({ node: menu }) => (
+            <ul id={menu.slot as string} key={menu.id}>
+              {menu?.links?.map((link, index) => (
+                <li key={index}>
+                  {link?.url?.href?.startsWith("http") ? (
+                    <a
+                      href={link?.url?.href as string}
+                      rel="external"
+                      title={link?.url?.title as string}
+                    >
+                      {link?.text}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link?.url?.href as string}
+                      title={link?.url?.title as string}
+                    >
+                      {link?.text}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ))}
       </StyledMenuMainExpanded>
     </StyledMenu>
   )
