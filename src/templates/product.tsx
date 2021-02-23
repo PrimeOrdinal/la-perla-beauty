@@ -156,7 +156,6 @@ const ProductStyled = styled.article`
 
     dd,
     dt {
-      
     }
   }
 `
@@ -210,7 +209,10 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
 
       <Breadcrumb crumbs={crumbs} />
 
-      <ProductStyled className={clsx("container")} data-identifier={product?.identifier}>
+      <ProductStyled
+        className={clsx("container")}
+        data-identifier={product?.identifier}
+      >
         <div>
           {imageGalleryArguments.items?.length && (
             <ImageGallery
@@ -218,25 +220,65 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               {...imageGalleryArguments}
             />
           )}
-          <IconList display={{ _: "none", md: "grid" }} gridAutoFlow={{ _: "row", md: "column" }} items={[{icon: "plant", color: "green", heading: "Viste ram docet ", body: (<p>Quisque eu tincidunt arcu. Aenean ullamcorper docet vist sum.</p>)}, {icon: "envelope", color: "purple", heading: "Viste ram docet ", body: (<p>Quisque eu tincidunt arcu. Aenean ullamcorper docet vist sum.</p>)}, {icon: "recycle", color: "orange", heading: "Viste ram docet ", body: (<p>Quisque eu tincidunt arcu. Aenean ullamcorper docet vist sum.</p>)}]}></IconList>
+          <IconList
+            display={{ _: "none", md: "grid" }}
+            gridAutoFlow={{ _: "row", md: "column" }}
+            items={[
+              {
+                icon: "plant",
+                color: "green",
+                heading: "Viste ram docet ",
+                body: (
+                  <p>
+                    Quisque eu tincidunt arcu. Aenean ullamcorper docet vist
+                    sum.
+                  </p>
+                ),
+              },
+              {
+                icon: "envelope",
+                color: "purple",
+                heading: "Viste ram docet ",
+                body: (
+                  <p>
+                    Quisque eu tincidunt arcu. Aenean ullamcorper docet vist
+                    sum.
+                  </p>
+                ),
+              },
+              {
+                icon: "recycle",
+                color: "orange",
+                heading: "Viste ram docet ",
+                body: (
+                  <p>
+                    Quisque eu tincidunt arcu. Aenean ullamcorper docet vist
+                    sum.
+                  </p>
+                ),
+              },
+            ]}
+          ></IconList>
         </div>
 
         <main>
           <header>
             {Array.isArray(product?.category) && (
               <div className="categories">
-                {product?.category.map(category => (
-                  <Link
-                    className="product-category"
-                    id={category?.identifier}
-                    key={category?.identifier}
-                    itemProp="category"
-                    title={category?.name}
-                    to={category?.url}
-                  >
-                    <span itemProp="name">{category?.name}</span>
-                  </Link>
-                )).pop()}
+                {product?.category
+                  .map(category => (
+                    <Link
+                      className="product-category"
+                      id={category?.identifier}
+                      key={category?.identifier}
+                      itemProp="category"
+                      title={category?.name}
+                      to={category?.url}
+                    >
+                      <span itemProp="name">{category?.name}</span>
+                    </Link>
+                  ))
+                  .pop()}
               </div>
             )}
 
@@ -293,7 +335,20 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             }}
           >
             <Form className={clsx("form")}>
-              {Array.isArray(product?.hasVariant) && product?.hasVariant?.some((variant) => variant.variesBy === "Size") ? <ProductSelectorSize marginBottom={{ _: 2, md: 4 }} product={product} /> : <ProductSelectorColour marginBottom={{ _: 2, md: 4 }} product={product} />}
+              {Array.isArray(product?.hasVariant) &&
+              product?.hasVariant?.some(
+                variant => variant.variesBy === "Size"
+              ) ? (
+                <ProductSelectorSize
+                  marginBottom={{ _: 2, md: 4 }}
+                  product={product}
+                />
+              ) : (
+                <ProductSelectorColour
+                  marginBottom={{ _: 2, md: 4 }}
+                  product={product}
+                />
+              )}
               <Button
                 type="submit"
                 variant="primary"
@@ -310,22 +365,32 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               __html: data?.contentstackProducts?.description as string,
             }}
           />
-          <Button className="read-more" onClick={() => setReadMoreOpen(!readMoreOpen)}>{readMoreOpen ? "Read less" : "Read more"}</Button>
-          {readMoreOpen && (<div
-            className="description-extended"
-            dangerouslySetInnerHTML={{
-              __html: data?.contentstackProducts?.description_extended as string,
-            }}
-          />)}
-          {readMoreOpen && <section className="details">
-            <h3>Details</h3>
-            <dl>
-              <dt className="separated">SKU</dt>
-              <dd>{product?.sku}</dd>
-              <dt>Manufactured in</dt>
-              <dd>France</dd>
-            </dl>
-          </section>}
+          <Button
+            className="read-more"
+            onClick={() => setReadMoreOpen(!readMoreOpen)}
+          >
+            {readMoreOpen ? "Read less" : "Read more"}
+          </Button>
+          {readMoreOpen && (
+            <div
+              className="description-extended"
+              dangerouslySetInnerHTML={{
+                __html: data?.contentstackProducts
+                  ?.description_extended as string,
+              }}
+            />
+          )}
+          {readMoreOpen && (
+            <section className="details">
+              <h3>Details</h3>
+              <dl>
+                <dt className="separated">SKU</dt>
+                <dd>{product?.sku}</dd>
+                <dt>Manufactured in</dt>
+                <dd>France</dd>
+              </dl>
+            </section>
+          )}
           <Accordion
             allowMultipleExpanded={true}
             allowZeroExpanded={true}
@@ -360,9 +425,11 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
                       key_ingredient => (
                         <React.Fragment>
                           <dt>{key_ingredient?.type}</dt>
-                          {key_ingredient?.ingredient?.map((ingredient) => (
+                          {key_ingredient?.ingredient?.map(ingredient => (
                             <dd>
-                              <Link to={ingredient?.url}>{ingredient?.title}</Link>
+                              <Link to={ingredient?.url}>
+                                {ingredient?.title}
+                              </Link>
                               <div
                                 dangerouslySetInnerHTML={{
                                   __html: ingredient?.information as string,
@@ -381,7 +448,11 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
           <DeliveryAndReturnsInformation className="delivery-and-returns-information" />
           <Leaf variant="secondary">
             <h2>Risk-free purchase</h2>
-            <p>Phasellus hendrerit nisl justo, non visto sollicitudin justo in. Quisque eu tincidunt arcu. Aenean ullamcorper augue vel ex iaculis.</p>
+            <p>
+              Phasellus hendrerit nisl justo, non visto sollicitudin justo in.
+              Quisque eu tincidunt arcu. Aenean ullamcorper augue vel ex
+              iaculis.
+            </p>
           </Leaf>
         </main>
       </ProductStyled>
