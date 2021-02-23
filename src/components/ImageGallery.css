@@ -1,3 +1,8 @@
+.ui-button {
+  position: absolute;
+  z-index: 500;
+}
+
 .image-gallery-icon {
   position: absolute;
   transition: all 0.2s ease-out;
@@ -5,8 +10,8 @@
 }
 
 .image-gallery-svg {
-  height: 50px;
-  width: 50px;
+  height: 24px;
+  width: 24px;
 }
 
 .image-gallery-left-nav,
@@ -16,7 +21,6 @@
 
 .image-gallery-left-nav .image-gallery-svg,
 .image-gallery-right-nav .image-gallery-svg {
-  width: 30px;
 }
 
 .image-gallery-fullscreen-button,
@@ -25,24 +29,32 @@
 }
 
 .image-gallery-fullscreen-button {
-  right: 20px;
+  right: 10px;
 }
 
-.image-gallery-fullscreen-button .image-gallery-svg {
-  height: 30px;
-  width: 30px;
+.image-gallery-fullscreen-button .ui {
+  width: 24px;
+}
+
+.image-gallery-fullscreen-button:not(.active) .image-gallery-svg.zoom-out {
+  display: none;
+}
+
+.image-gallery-fullscreen-button.active .image-gallery-svg.zoom-in {
+  display: none;
 }
 
 .image-gallery-play-button {
-  left: 20px;
+  left: 10px;
 }
 
 .image-gallery-left-nav {
-  right: 60px;
+  right: 70px;
+  transform: rotate(180deg);
 }
 
 .image-gallery-right-nav {
-  right: 20px;
+  right: 10px;
 }
 
 .image-gallery-content {
