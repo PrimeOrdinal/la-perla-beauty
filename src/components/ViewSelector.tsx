@@ -19,7 +19,7 @@ const ViewSelectorStyled = styled.nav`
   gap: ${themeGet("space.4")}px;
 
   ${mediaQueries.md} {
-    gap: ${themeGet("space.10")}px;
+    gap: ${themeGet("space.8")}px;
   }
 
   .button {
