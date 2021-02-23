@@ -10,12 +10,21 @@ import { SEO } from "../../components/SEO"
 import { ProductCard } from "../../components/ProductCard"
 
 const WishlistColumn = styled(ListPlain)`
+  .wishlist-title {
+    margin: 0;
+  }
+  .recent-heading {
+    margin: 0;
+    padding-block-start: 1rem;
+    padding-block-end: 1rem;
+  }
+
   .wishlist-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     ${mediaQueries.md} {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
     border-bottom: solid ${themeGet("border.color")} ${themeGet("border.width")};
     padding-block-end: 2rem;
@@ -32,7 +41,7 @@ const WishlistPage: React.FC = () => (
     <AccountLayout>
       <SEO title="My wishlist" />
       <WishlistColumn className="container">
-        <h1>Wishlist</h1>
+        <h1 className="wishlist-title">Wishlist</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
           doloremque blanditiis veniam at temporibus provident eveniet a fuga
@@ -247,53 +256,7 @@ const WishlistPage: React.FC = () => (
               }}
             />
           </li>
-          <li>
-            <ProductCard
-              product={{
-                "@context": "https://schema.org",
-                "@type": "ProductGroup",
-                category: [{ name: "Shop All", url: "/shop-all/" }],
-                description: "Once Upon A Garden | 12ml EDP | Miniature",
-                identifier: "117",
-                image: [
-                  {
-                    caption: "",
-                    contentUrl:
-                      "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/117/403/LaPerla_Collection_120ml__ATN__55211.1612958260.jpg",
-                    representativeOfPage: true,
-                  },
-                ],
-                name: "Once Upon A Garden",
-                offers: {
-                  "@type": "Offer",
-                  availability: "https://schema.org/InStock",
-                  price: 0,
-                  priceCurrency: "EUR",
-                },
-                productID: "117",
-                sku: "08009118496002",
-                url: "/once-upon-a-garden/",
-                hasVariant: [
-                  {
-                    "@context": "https://schema.org",
-                    "@type": "Product",
-                    description: "Once Upon A Garden | 12ml EDP | Miniature",
-                    identifier: "82",
-                    name: "Once Upon A Garden",
-                    offers: {
-                      "@type": "Offer",
-                      availability: "https://schema.org/InStock",
-                      price: 0,
-                      priceCurrency: "EUR",
-                    },
-                    productID: "82",
-                    sku: "08009118496002",
-                  },
-                ],
-                productGroupID: "UHJvZHVjdDoxMTc=",
-              }}
-            />
-          </li>
+
           <li>
             <ProductCard
               product={{
@@ -349,7 +312,7 @@ const WishlistPage: React.FC = () => (
             />
           </li>
         </ListPlain>
-        <h1>Recently viewed</h1>
+        <h1 className="recent-heading">Recently viewed</h1>
         <ListPlain className="recently-viewed">
           <li>
             <ProductCard
@@ -398,53 +361,7 @@ const WishlistPage: React.FC = () => (
               }}
             />
           </li>
-          <li>
-            <ProductCard
-              product={{
-                "@context": "https://schema.org",
-                "@type": "ProductGroup",
-                category: [{ name: "Shop All", url: "/shop-all/" }],
-                description: "Once Upon A Garden | 12ml EDP | Miniature",
-                identifier: "117",
-                image: [
-                  {
-                    caption: "",
-                    contentUrl:
-                      "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/117/403/LaPerla_Collection_120ml__ATN__55211.1612958260.jpg",
-                    representativeOfPage: true,
-                  },
-                ],
-                name: "Once Upon A Garden",
-                offers: {
-                  "@type": "Offer",
-                  availability: "https://schema.org/InStock",
-                  price: 0,
-                  priceCurrency: "EUR",
-                },
-                productID: "117",
-                sku: "08009118496002",
-                url: "/once-upon-a-garden/",
-                hasVariant: [
-                  {
-                    "@context": "https://schema.org",
-                    "@type": "Product",
-                    description: "Once Upon A Garden | 12ml EDP | Miniature",
-                    identifier: "82",
-                    name: "Once Upon A Garden",
-                    offers: {
-                      "@type": "Offer",
-                      availability: "https://schema.org/InStock",
-                      price: 0,
-                      priceCurrency: "EUR",
-                    },
-                    productID: "82",
-                    sku: "08009118496002",
-                  },
-                ],
-                productGroupID: "UHJvZHVjdDoxMTc=",
-              }}
-            />
-          </li>
+
           <li>
             <ProductCard
               product={{
