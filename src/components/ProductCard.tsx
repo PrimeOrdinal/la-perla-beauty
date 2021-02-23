@@ -111,7 +111,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   showImage = true,
   ...props
 }) => {
-  const [quickBuyVisibility, toggleQuickBuyVisibility] = useToggle()
+  const [quickBuyOpen, toggleQuickBuyOpen] = useToggle()
 
   const offer = product?.offers as Offer
 
@@ -176,11 +176,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <Button
             p={0}
             onClick={() => {
-              toggleQuickBuyVisibility()
+              toggleQuickBuyOpen()
             }}
           >
             <span className="sr-only">Quick Buy</span>
-            {quickBuyVisibility ? <MinusIcon /> : <PlusIcon />}
+            {quickBuyOpen ? <MinusIcon /> : <PlusIcon />}
           </Button>
         </div>
       </div>
@@ -189,8 +189,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {product?.name}
         </span>
       )}
-      {offer && <Price display={{ _: "none", md: "block" }} offer={offer} />}
-      {quickBuyVisibility && <QuickBuy className="quick-buy" marginBottom={{ _: 6, md: 0 }} product={product} />}
+      {!quickBuyOpen && offer && <Price display={{ _: "none", md: "block" }} offer={offer} />}
+      {quickBuyOpen && <QuickBuy className="quick-buy" marginBottom={{ _: 6, md: 0 }} product={product} />}
     </ProductCardStyled>
   )
 }
