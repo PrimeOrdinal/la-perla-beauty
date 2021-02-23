@@ -46,7 +46,7 @@ const ProductStyled = styled.article`
   }
 
   .image-gallery {
-    margin-block-end: ${themeGet("space.10")}px;
+    margin-block-end: ${themeGet("space.12")}px;
   }
 
   header,
