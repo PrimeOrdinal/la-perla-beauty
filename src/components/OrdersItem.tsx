@@ -28,10 +28,14 @@ export type OrdersItemProps = LayoutProps &
 const OrderItemStyled = styled.article`
   display: grid;
   gap: 1rem;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   place-content: start;
   ${mediaQueries.md} {
     grid-auto-flow: column;
+  }
+  img {
+    width: 100%;
+    object-fit: cover;
   }
   .items {
     display: grid;
@@ -43,7 +47,7 @@ const OrderItemStyled = styled.article`
       place-content: start;
     }
   }
-  .view-previous-desktop {
+  .view-desktop {
     text-transform: uppercase;
     font-weight: bold;
     display: none;
@@ -61,33 +65,37 @@ const SecondColumnStyled = styled(ListPlain)`
     grid-auto-flow: row;
     .order-name {
       text-transform: uppercase;
+      font-size: 11px;
     }
     .order-number {
       font-family: "Tiempos";
       font-weight: 300;
+      font-size: 14px;
     }
   }
   .price {
     font-family: "Tiempos";
     font-weight: 300;
+    font-size: 14px;
   }
   .order-history {
     display: grid;
     grid-auto-flow: row;
-    gap: 1rem;
+    gap: 8px;
     li {
       font-weight: bold;
       text-transform: uppercase;
-      font-size: 13px;
+      font-size: 11px;
       span {
         font-weight: normal;
       }
     }
   }
   li {
-    .view-previous-mobile {
+    .view-mobile {
       text-transform: uppercase;
       font-weight: bold;
+      font-size: 13px;
       ${mediaQueries.md} {
         display: none;
       }
@@ -98,7 +106,7 @@ const SecondColumnStyled = styled(ListPlain)`
 export const OrdersItem: React.FC<OrdersItemProps> = ({ items, previous }) => {
   return (
     <OrderItemStyled>
-      <img src="https://picsum.photos/210" alt="image" />
+      <img src="https://picsum.photos/220" alt="image" />
       <SecondColumnStyled>
         <ListPlain className="order">
           <li className="order-name">order</li>
@@ -113,23 +121,25 @@ export const OrdersItem: React.FC<OrdersItemProps> = ({ items, previous }) => {
             last update: <span>1/32/13</span>
           </li>
           <li>
-            status: <span>1/32/13</span>
+            status: <span>processing</span>
           </li>
         </ListPlain>
-        <li>
-          <Link className="view-previous-mobile">view order details</Link>
-        </li>
+        {/* <li>
+          <Link className="view-mobile">view order details</Link>
+          button is below this ------
+        </li> */}
       </SecondColumnStyled>
-      {/* <div className="items">
+      <div className="items">
         <Button variant="primary" py="5" px="7">
           view order details
         </Button>
         <Button variant="tertiary" py="5" px="7">
           track order
         </Button>
-      </div> */}
-
-      <Link className="view-previous-desktop">View order details</Link>
+      </div>
+      {/* View order details link below for desktop variant -------  */}
+      {/* This is the link and not the button ------- */}
+      {/* <Link className="view-desktop">View order details</Link> */}
     </OrderItemStyled>
   )
 }
