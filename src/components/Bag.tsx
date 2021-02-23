@@ -74,7 +74,7 @@ const GridStyled = styled.div`
           display: grid;
           gap: 1rem;
           grid-template-columns: 2fr 1fr;
-
+          align-items: stretch;
           input {
             border-color: ${themeGet("colors.black")};
             border-style: solid;
