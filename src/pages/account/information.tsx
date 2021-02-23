@@ -39,6 +39,22 @@ const ColumnTwoStyled = styled.section`
     label {
       font-size: 13px;
     }
+    .name-wrapper {
+      display: grid;
+      grid-auto-flow: row;
+      gap: 10px;
+      ${mediaQueries.md} {
+        grid-template-columns: auto auto;
+        gap: 40px;
+      }
+      .first-name,
+      .last-name {
+        display: grid;
+        grid-auto-flow: row;
+        gap: 10px;
+      }
+    }
+
     .mobile-numbers {
       display: grid;
       grid-template-columns: 135px 1fr;
@@ -88,10 +104,16 @@ const InformationPage: React.FC = () => (
         <form>
           <label htmlFor="title">title*</label>
           <input type="text" />
-          <label htmlFor="first name">First name*</label>
-          <input type="text" />
-          <label htmlFor="last name">Last name*</label>
-          <input type="text" />
+          <div className="name-wrapper">
+            <div className="first-name">
+              <label htmlFor="first name">First name*</label>
+              <input type="text" />
+            </div>
+            <div className="last-name">
+              <label htmlFor="last name">Last name*</label>
+              <input type="text" />
+            </div>
+          </div>
           <label htmlFor="email">email address*</label>
           <input type="email" />
           <label htmlFor="mobile">mobile no.</label>
