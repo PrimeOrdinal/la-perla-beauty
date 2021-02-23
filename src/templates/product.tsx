@@ -141,6 +141,7 @@ const ProductStyled = styled.article`
 
   .accordion {
     margin-block-end: ${themeGet("space.6")}px;
+    margin-block-start: ${themeGet("space.6")}px;
   }
 
   .ingedients {
@@ -176,7 +177,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
     breadcrumb: { crumbs },
   } = pageContext
 
-  const [toggleReadMore, setToggleReadMore] = useState(false)
+  const [readMoreOpen, setReadMoreOpen] = useState(false)
 
   const productFormatBigCommerce = data?.bigCommerceGQL?.site?.product
 
@@ -309,14 +310,14 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               __html: data?.contentstackProducts?.description as string,
             }}
           />
-          <Button className="read-more" onClick={() => setToggleReadMore(!toggleReadMore)}>{toggleReadMore ? "Read less" : "Read more"}</Button>
-          {toggleReadMore && (<div
+          <Button className="read-more" onClick={() => setReadMoreOpen(!readMoreOpen)}>{readMoreOpen ? "Read less" : "Read more"}</Button>
+          {readMoreOpen && (<div
             className="description-extended"
             dangerouslySetInnerHTML={{
               __html: data?.contentstackProducts?.description_extended as string,
             }}
           />)}
-          <section className="details">
+          {readMoreOpen && <section className="details">
             <h3>Details</h3>
             <dl>
               <dt className="separated">SKU</dt>
@@ -324,7 +325,7 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
               <dt>Manufactured in</dt>
               <dd>France</dd>
             </dl>
-          </section>
+          </section>}
           <Accordion
             allowMultipleExpanded={true}
             allowZeroExpanded={true}
