@@ -58,7 +58,7 @@ const AccountNav = styled(ListPlain)`
       border-bottom: ${themeGet("border.width")} solid
         ${themeGet("border.color")};
       width: 100%;
-      padding: 0.25rem 0;
+      padding-block-end: 12px;
     }
     a {
       display: grid;
