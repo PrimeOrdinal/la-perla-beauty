@@ -18,7 +18,8 @@ import { ReactComponent as PlusIcon } from "../images/Plus.svg"
 const ShoppingBagProductStyled = styled.div`
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: ${props => (props.layout === "compact" ? "auto 1fr" : "1fr 2fr")};
+  grid-template-columns: ${props =>
+    props.layout === "compact" ? "auto 1fr" : "1fr 2fr"};
 
   .bagCol-1 {
     border-radius: 12px;
@@ -32,7 +33,10 @@ const ShoppingBagProductStyled = styled.div`
   .bagCol-2 {
     align-content: space-between;
     display: grid;
-
+    span {
+      text-align: left;
+      display: block;
+    }
     .title-wrapper {
       align-content: center;
       display: grid;
