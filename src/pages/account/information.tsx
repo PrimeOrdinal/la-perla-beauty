@@ -12,64 +12,64 @@ import { mediaQueries } from "../../theme"
 const ColumnTwoStyled = styled.section`
   display: grid;
   grid-auto-flow: row;
-  gap: 1rem;
+  gap: ${themeGet("space.5")}px;
   .account-title {
-    font-size: 24px;
+    font-size: ${themeGet("fontSizes.6")}px;
     margin: 0;
     ${mediaQueries.md} {
-      font-size: 32px;
+      font-size: ${themeGet("fontSizes.7")}px;
       display: initial;
     }
   }
   .account-description {
     margin: 0;
     ${mediaQueries.md} {
-      font-size: 14px;
+      font-size: ${themeGet("fontSizes.bodyDesktop")}px;
     }
   }
 
   form {
     display: grid;
     grid-auto-flow: row;
-    gap: 10px;
+    gap: ${themeGet("space.5")}px;
     ${mediaQueries.md} {
-      padding-block-start: 1rem;
-      padding-block-end: 1rem;
+      padding-block-start: ${themeGet("space.6")}px;
+      padding-block-end: ${themeGet("space.6")}px;
     }
     label {
-      font-size: 13px;
+      font-size: ${themeGet("fontSizes.bodyMobile")}px;
     }
     .name-wrapper {
       display: grid;
       grid-auto-flow: row;
-      gap: 10px;
+      gap: ${themeGet("space.5")}px;
       ${mediaQueries.md} {
         grid-template-columns: auto auto;
-        gap: 40px;
+        gap: ${themeGet("space.10")}px;
       }
       .first-name,
       .last-name {
         display: grid;
         grid-auto-flow: row;
-        gap: 10px;
+        gap: ${themeGet("space.5")}px;
       }
     }
 
     .mobile-numbers {
       display: grid;
       grid-template-columns: 135px 1fr;
-      gap: 1rem;
+      gap: ${themeGet("space.6")}px;
       .country-code-container {
         border: solid ${themeGet("border.color")} ${themeGet("border.width")};
-        border-radius: 12px;
+        border-radius: ${themeGet("radii.3")}px;
         display: flex;
-        padding: 0 1rem;
+        padding: 0 ${themeGet("space.6")}px;
         justify-content: space-between;
         align-items: center;
         input {
           border: none;
           padding: 0;
-          width: 80px;
+          width: ${themeGet("space.13")}px;
         }
       }
     }
@@ -78,7 +78,7 @@ const ColumnTwoStyled = styled.section`
         ${themeGet("border.color")};
     }
   }
-  h3 {
+  h2 {
     margin: 0;
     font-size: 20px;
     ${mediaQueries.md} {
@@ -89,7 +89,7 @@ const ColumnTwoStyled = styled.section`
 const AccordionGrid = styled.div`
   display: grid;
   grid-auto-flow: row;
-  gap: 1rem;
+  gap: ${themeGet("space.6")}px;
 `
 
 const InformationPage: React.FC = () => (
@@ -159,7 +159,7 @@ const InformationPage: React.FC = () => (
             ]}
           />
         </form>
-        <h3>Newsletter preferences</h3>
+        <h2>Newsletter preferences</h2>
         <Button variant="primary">manage newsletter preferences</Button>
       </ColumnTwoStyled>
     </AccountLayout>
