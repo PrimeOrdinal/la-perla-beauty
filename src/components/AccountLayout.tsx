@@ -99,13 +99,13 @@ export const AccountLayout = ({ children }) => {
       <h1 className="section-title">Navigate to section</h1>
       <AccountNav>
         <li>
-          <Link to="information" activeStyle={activeStyles}>
+          <Link to="/account/information" activeStyle={activeStyles}>
             <Profile />
             Account information
           </Link>
         </li>
         <li>
-          <Link to="orders" activeStyle={activeStyles}>
+          <Link to="/account/orders" activeStyle={activeStyles}>
             <Shipping />
             Orders
           </Link>
@@ -123,7 +123,7 @@ export const AccountLayout = ({ children }) => {
           </Link>
         </li>
         <li className={active ? "active" : ""}>
-          <Link to="wishlist">
+          <Link to="/account/wishlist">
             <WishlistAbsent />
             Wishlist
           </Link>
