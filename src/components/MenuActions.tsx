@@ -32,10 +32,10 @@ export const MenuActionsStyle = styled(ListPlain)`
   gap: ${themeGet("space.4")}px;
   grid-auto-flow: column;
   justify-content: end;
-  padding: ${themeGet("space.2")}px;
 
   ${mediaQueries.md} {
     gap: ${themeGet("space.7")}px;
+    padding: ${themeGet("space.2")}px;
   }
 
   li {

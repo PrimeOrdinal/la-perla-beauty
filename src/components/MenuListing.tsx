@@ -29,6 +29,13 @@ import { MenuRefineMobile } from "./MenuRefineMobile"
 import { ViewSelector } from "./ViewSelector"
 
 const MenuListingStyled = styled.section`
+  .view-selector {
+    ${mediaQueries.smDown} {
+      left: -${themeGet("space.4")}px;
+      position: relative;
+    }
+  }
+
   .product-count-mobile,
   .sortBy {
     text-transform: uppercase;
@@ -92,6 +99,11 @@ const RefineStyled = styled.div`
   display: grid;
   grid-auto-flow: column;
 
+  ${mediaQueries.smDown} {
+    right: -${themeGet("space.4")}px;
+    position: relative;
+  }
+
   ${theme.mediaQueries.md} {
     gap: ${themeGet("space.10")}px;
   }
@@ -130,7 +142,7 @@ export const MenuListing: React.FC<MenuListingProps> = ({
     <MenuListingStyled {...props}>
       <div className={clsx("container", "menu-view-and-refine")}>
         <div className={clsx("menu")}>
-          <ViewSelector setView={setView} view={view} />
+          <ViewSelector className="view-selector" setView={setView} view={view} />
           <RefineStyled>
             <Button
               onClick={() => {

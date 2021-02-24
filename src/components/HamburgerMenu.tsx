@@ -21,7 +21,7 @@ import { Accordion } from "./Accordion"
 
 const StyledHamburger = styled.div`
   button {
-    left: -${themeGet("space.4")}px;
+    left: -${themeGet("space.5")}px;
     position: relative;
     z-index: 50;
 
