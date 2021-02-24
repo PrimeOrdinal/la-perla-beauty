@@ -23,6 +23,7 @@ const ProductSelectorColourStyled = styled.div`
   }
 
   .form-fields {
+    grid-auto-flow: column;
     justify-content: start;
   }
 
