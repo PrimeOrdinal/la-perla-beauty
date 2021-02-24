@@ -49,9 +49,18 @@ const StyledMenuMainHeadings = styled(ListPlain)`
 
     a {
       color: inherit;
+      display: inline-block;
       text-decoration: none;
       font-weight: inherit;
+      padding-block-end: ${themeGet("space.6")}px;
       text-transform: uppercase;
+
+      &.active,
+      &:active,
+      &:hover {
+        border-bottom-color: ${themeGet("colors.black")};
+        border-bottom-style: solid;
+      }
     }
   }
 `
@@ -63,12 +72,14 @@ const StyledMenuMainExpanded = styled.div`
   display: ${props => (props.active ? "grid" : "none")};
   gap: 1rem;
   grid-template-columns: repeat(4, 1fr);
+  left: 10%;
+  margin-top: ${themeGet("border.width")};
   padding-block-end: 1rem;
   padding-block-start: 1rem;
   padding-inline-end: 1rem;
   padding-inline-start: 1rem;
   position: absolute;
-  width: 100%;
+  width: 80%;
 
   ul {
     list-style: none;

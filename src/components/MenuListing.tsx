@@ -25,6 +25,7 @@ import { theme, mediaQueries } from "../theme"
 import { Button } from "./Button"
 import { Chip } from "./Chip"
 import { MenuRefine } from "./MenuRefine"
+import { MenuRefineMobile } from "./MenuRefineMobile"
 import { ViewSelector } from "./ViewSelector"
 
 const MenuListingStyled = styled.section`
@@ -52,6 +53,10 @@ const MenuListingStyled = styled.section`
 
   .feedback {
     padding-block-start: ${themeGet("space.9")}px;
+
+    ${mediaQueries.smDown} {
+      display: none;
+    }
   }
 
   .product-count-mobile {
@@ -68,7 +73,6 @@ const MenuListingStyled = styled.section`
   }
 
   .menu-view-and-refine {
-      
   }
 
   .menu-refine {
@@ -137,12 +141,22 @@ export const MenuListing: React.FC<MenuListingProps> = ({
 
               {filtersVisibility ? <MinusIcon /> : <FilterIcon />}
             </Button>
-            <span className="product-count-desktop">{productCount} products</span>
+            <span className="product-count-desktop">
+              {productCount} products
+            </span>
           </RefineStyled>
         </div>
       </div>
       {filtersVisibility && (
         <MenuRefine
+          className={clsx("container", "menu-refine")}
+          setFilterChips={setFilterChips}
+          setFiltersCount={setFiltersCount}
+          setSortBy={setSortBy}
+        />
+      )}
+      {filtersVisibility && (
+        <MenuRefineMobile
           className={clsx("container", "menu-refine")}
           setFilterChips={setFilterChips}
           setFiltersCount={setFiltersCount}
