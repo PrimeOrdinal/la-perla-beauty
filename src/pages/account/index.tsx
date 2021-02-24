@@ -62,7 +62,7 @@ const GridStyled = styled.section`
     }
     form {
       span {
-        font-size: ${themeGet("fontSizes.small")}px;
+        font-size: var(--font-size-small, 12px);
         text-transform: uppercase;
 
         ${mediaQueries.md} {
