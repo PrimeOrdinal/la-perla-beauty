@@ -124,6 +124,7 @@ const IngredientList = styled(ListPlain)`
           ${mediaQueries.md} {
             grid-template-columns: repeat(2, minmax(auto, 50ch));
             align-items: flex-start;
+            gap: ${themeGet("space.10")}px;
           }
           .info-one,
           .info-two,
