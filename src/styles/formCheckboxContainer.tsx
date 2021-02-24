@@ -49,6 +49,6 @@ export const formCheckboxContainer = `
   }
 
   input:checked + label.fancy-checkbox-label {
-    font-weight: 600;
+    font-weight: bold;
   }
 `

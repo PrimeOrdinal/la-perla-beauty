@@ -28,7 +28,7 @@ const MainStyled = styled.main`
   }
   .section-title {
     font-family: "Quicksand";
-    font-weight: 600;
+    font-weight: bold;
     font-size: 13px;
     margin: 0;
     text-transform: uppercase;

@@ -16,7 +16,7 @@ const AnchorStyled = styled.a`
     padding: ${themeGet("space.6")}px ${themeGet("space.9")}px;
   }
   &.current {
-    font-weight: 600;
+    font-weight: bold;
   }
 `
 

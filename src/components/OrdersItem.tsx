@@ -67,13 +67,13 @@ const SecondColumnStyled = styled(ListPlain)`
     }
     .order-number {
       font-family: "Tiempos";
-      font-weight: 300;
+      font-weight: lighter;
       font-size: 14px;
     }
   }
   .price {
     font-family: "Tiempos";
-    font-weight: 300;
+    font-weight: lighter;
     font-size: 14px;
   }
   .order-history {

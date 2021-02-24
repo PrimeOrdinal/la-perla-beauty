@@ -44,7 +44,7 @@ const StyledMenuMainHeadings = styled(ListPlain)`
   li {
     text-align: left;
     font-size: ${themeGet("fontSizes.heading3Desktop")}px;
-    font-weight: 600;
+    font-weight: bold;
     letter-spacing: 1px;
 
     a {

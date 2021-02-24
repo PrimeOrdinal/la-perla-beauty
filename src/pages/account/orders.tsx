@@ -14,7 +14,7 @@ const OrdersColumn = styled.section`
   h1 {
     text-transform: capitalize;
     margin: 0;
-    font-weight: 300;
+    font-weight: lighter;
     font-size: ${themeGet("fontSizes.6")}px;
     ${mediaQueries.md} {
       font-size: ${themeGet("fontSizes.7")}px;

@@ -47,7 +47,7 @@ const ShoppingBagProductStyled = styled.div`
 
       h1 {
         font-size: 16px;
-        font-weight: 300;
+        font-weight: lighter;
         margin: 0;
       }
       .close-icon {
@@ -89,7 +89,7 @@ const ShoppingBagProductStyled = styled.div`
       .price {
         font-family: "Tiempos";
         font-size: 14px;
-        font-weight: 300;
+        font-weight: lighter;
         text-align: end;
       }
     }

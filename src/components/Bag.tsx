@@ -71,7 +71,7 @@ const GridStyled = styled.div`
         h2 {
           font-family: "Quicksand";
           font-size: ${themeGet("fontSizes.bodyMobile")}px;
-          font-weight: 600;
+          font-weight: bold;
           margin-block-start: 0;
           text-transform: uppercase;
         }
@@ -125,13 +125,13 @@ const GridStyled = styled.div`
     }
 
     .title {
-      font-weight: 600;
+      font-weight: bold;
     }
 
     .price {
       font-family: "Tiempos";
       font-size: ${themeGet("fontSizes.heading3Mobile")}px;
-      font-weight: 300;
+      font-weight: lighter;
     }
   }
 `

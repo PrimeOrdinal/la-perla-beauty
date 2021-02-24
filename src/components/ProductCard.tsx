@@ -101,7 +101,7 @@ const ProductCardStyled = styled.article`
     align-self: flex-end;
     font-family: "Tiempos";
     font-size: ${themeGet("fontSizes.heading2Desktop")}px;
-    font-weight: 300;
+    font-weight: lighter;
 
     ${mediaQueries.sm} {
       font-size: ${themeGet("fontSizes.5")}px;
@@ -111,7 +111,7 @@ const ProductCardStyled = styled.article`
   .product-price {
     font-family: "Tiempos";
     font-size: ${themeGet("fontSizes.heading2Desktop")}px;
-    font-weight: 300;
+    font-weight: lighter;
   }
 
   ${compose(layout, space)}

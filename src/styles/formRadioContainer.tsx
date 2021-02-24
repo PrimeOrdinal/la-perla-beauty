@@ -56,7 +56,7 @@ export const formRadioContainer = `
   }
 
   input:checked + label.fancy-radio-label {
-    font-weight: 600;
+    font-weight: bold;
   }
 
   .fancy-product {
@@ -98,6 +98,6 @@ export const formRadioContainer = `
   }
 
   input:checked + label.product-radio-label  {
-    font-weight: 600;
+    font-weight: bold;
   }
 `

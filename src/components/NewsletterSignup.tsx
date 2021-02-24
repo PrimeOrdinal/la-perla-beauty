@@ -61,7 +61,7 @@ const NewsletterStyled = styled.div`
     p {
       text-align: left;
       font-size: var(--font-size-small, 12px);
-      font-weight: 300;
+      font-weight: lighter;
       text-transform: unset;
     }
   }

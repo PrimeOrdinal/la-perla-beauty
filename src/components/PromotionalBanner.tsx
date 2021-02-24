@@ -62,7 +62,7 @@ const LayoutBase = styled.aside`
       color: inherit;
       display: block;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: bold;
       margin-block-start: ${themeGet("space.6")}px;
       padding-block-end: ${themeGet("space.6")}px;
       text-decoration: unset;

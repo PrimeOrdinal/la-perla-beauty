@@ -48,7 +48,7 @@ const MenuRefineMobileStyled = styled.section`
         ${themeGet("border.width")};
       font-family: "Quicksand";
       font-size: ${themeGet("fontSizes.bodyMobile")}px;
-      font-weight: 600;
+      font-weight: bold;
       text-transform: uppercase;
     }
   }

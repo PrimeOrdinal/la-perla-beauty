@@ -47,7 +47,7 @@ const MenuRefineStyled = styled.section`
 
   h1 {
     font-family: "Quicksand";
-    font-weight: 600;
+    font-weight: bold;
     text-transform: uppercase;
     padding-block-end: ${themeGet("space.6")}px;
     border-bottom: ${themeGet("border.width")} solid ${themeGet("border.color")};
