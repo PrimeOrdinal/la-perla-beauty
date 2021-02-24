@@ -68,12 +68,15 @@ const ProductCardStyled = styled.article`
   .product-actions {
     align-items: center;
     display: grid;
-    gap: 0.5rem;
     grid-auto-flow: column;
 
+    ${mediaQueries.sm} {
+      gap: ${themeGet("space.3")}px;
+    }
+
     button {
-      padding-inline-end: ${themeGet("space.3")}px;
-      padding-inline-start: ${themeGet("space.3")}px;
+      padding-inline-end: ${themeGet("space.2")}px;
+      padding-inline-start: ${themeGet("space.2")}px;
     }
   }
 
@@ -81,8 +84,17 @@ const ProductCardStyled = styled.article`
     color: inherit;
     font-size: var(--font-size-small, 12px);
     letter-spacing: 1px;
+    overflow: hidden;
     text-decoration: none;
+    text-overflow: ellipsis;
     text-transform: uppercase;
+    white-space: nowrap;
+
+    ${mediaQueries.sm} {
+      overflow: unset;
+      text-overflow: unset;
+      white-space: unset;
+    }
   }
 
   .product-name {
