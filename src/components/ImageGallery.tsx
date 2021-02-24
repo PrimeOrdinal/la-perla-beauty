@@ -1,3 +1,5 @@
+import type { MutableRefObject } from "react"
+
 import clsx from "clsx"
 import React, { useRef, useState } from "react"
 import ReactImageGallery from "react-image-gallery"
@@ -31,10 +33,6 @@ export const ImageGalleryStyled: React.FC<ImageGalleryProps> = styled(
 )`
   ${compose(layout, position, space)}
 `
-
-// function renderCustomControls() {
-//   return <button type="button" className='image-gallery-custom-action' onClick={this._customAction.bind(this)} />
-// }
 
 const renderLeftNav = (onClick, disabled) => {
   return (
@@ -77,76 +75,64 @@ const renderFullscreenButton = (onClick, isFullscreen) => {
   )
 }
 
-function onMouseOver(event) {
-  const img = event.target;
-  const topOffset = img.offsetTop;
-  const leftOffset = img.offsetLeft;
-  const height = img.height;
-  const width = img.width;
-
-  img.style.transformOrigin =
-    ((event.pageX - leftOffset) / width) * 50 +
-    "% " +
-    ((event.pageY - topOffset) / height) * 50 +
-    "%";
-}
-
 export const ImageGallery: React.FC<ImageGalleryProps> = props => {
-  let [isFullScreen, setIsFullScreen] = useState(false);
-  let [hasRegistered, setHasRegistered] = useState(false);
+  let [isFullScreen, setIsFullScreen] = useState(false)
+  let [hasRegistered, setHasRegistered] = useState(false)
 
-  let image = useRef(null);
+  let image = useRef() as MutableRefObject<HTMLDivElement>
 
   function handleClick(event) {
     if (!isFullScreen) {
-      return;
+      return
     }
 
-    const img = event.target;
+    const img = event.target
 
-    image.current = img;
+    image.current = img
 
-    img.className = "tile";
+    img.className = "tile"
 
-    if (img.style.transform === "scale(2.5)") {
-      // here we are zooming out
-      img.style.transform = "scale(1)";
-      img.style.cursor = "zoom-in";
-      img.removeEventListener("mousemove", onMouseOver);
-      setHasRegistered(false);
-      return;
-    }
+    if (image?.current) {
+      const containerRect = image.current.getBoundingClientRect()
+      const imageRect = image.current.firstElementChild?.getBoundingClientRect() as DOMRect
 
-    // here we are zooming in
-    img.style.transform = "scale(2.5)";
-    img.style.cursor = "zoom-out";
+      const offsetX = event.clientX - containerRect.left // x position within the element bounds
+      const offsetY = event.clientY - containerRect.top // y position within the element bounds
 
-    if (!hasRegistered) {
-      img.addEventListener("mousemove", onMouseOver);
-      setHasRegistered(true);
+      const posX = offsetX + image.current.scrollLeft // x click position within entire element
+      const posY = offsetY + image.current.scrollTop // x click position within entire element
+
+      const percentX = (posX / imageRect.width) * 100 // x click position within entire element as percentage
+      const percentY = (posY / imageRect.height) * 100 // x click position within entire element as percentage
+
+      const scrollX = (imageRect.width / 100) * percentX * (hasRegistered ? 0.5 : 2)
+      const scrollY = (imageRect.height / 100) * percentY * (hasRegistered ? 0.5 : 2)
+
+      const scrollXoffset = scrollX - containerRect.width * 0.5
+      const scrollYoffset = scrollY - containerRect.height * 0.5
+
+      setHasRegistered(!hasRegistered)
+
+      setTimeout(() => {
+        image.current.scroll({
+          left: scrollXoffset,
+          top: scrollYoffset,
+        })
+      }, 5)
     }
   }
 
   function onScreenChange(fullScreenElem) {
     if (fullScreenElem) {
-      setIsFullScreen(true);
-
-      if (image?.current) {
-        image.current.style.cursor = "zoom-in";
-      }
+      setIsFullScreen(true)
     } else {
-      setIsFullScreen(false);
-
-      if (image?.current) {
-        image.current.style.cursor = "auto";
-        image.current.style.transform = "scale(1)";
-        image.current.removeEventListener("mousemove", onMouseOver);
-      }
+      setIsFullScreen(false)
     }
   }
 
   return (
     <ImageGalleryStyled
+      additionalClass={hasRegistered ? "zoomed" : undefined}
       onClick={handleClick}
       onScreenChange={onScreenChange}
       renderLeftNav={renderLeftNav}
