@@ -78,15 +78,22 @@ export const Layout: React.FC<LayoutProps> = ({
           }
         }
       }
-      siteSearchIndex {
-        index
-      }
       bigCommerceGQL {
         site {
           settings {
             status
           }
         }
+      }
+      contentstackBanners {
+        title
+        url {
+          href
+          title
+        }
+      }
+      siteSearchIndex {
+        index
       }
     }
   `)
@@ -104,9 +111,15 @@ export const Layout: React.FC<LayoutProps> = ({
 
         {type === "full" ? (
           <React.Fragment>
-            <Banner to="/shipping" variant="primary">
-              Standard Shipping &amp; Returns Lorem Ipsum
-            </Banner>
+            {data?.contentstackBanners?.title && (
+              <Banner
+                to={data?.contentstackBanners?.url?.href}
+                title={data?.contentstackBanners?.url?.title}
+                variant="primary"
+              >
+                {data?.contentstackBanners?.title}
+              </Banner>
+            )}
             <Header
               siteTitle={data?.site?.siteMetadata?.title || `Title`}
               data={data}
@@ -124,7 +137,6 @@ export const Layout: React.FC<LayoutProps> = ({
             <StyledContentArea className="flex">{children}</StyledContentArea>
           </StyledPageContainer>
         )}
-
       </StyledSiteContainer>
     </ThemeProvider>
   )
