@@ -29,7 +29,7 @@ import {
 export const MenuActionsStyle = styled(ListPlain)`
   align-items: center;
   display: grid;
-  gap: ${themeGet("space.3")}px;
+  gap: ${themeGet("space.4")}px;
   grid-auto-flow: column;
   justify-content: end;
   padding: ${themeGet("space.2")}px;
@@ -48,13 +48,13 @@ export const MenuActionsStyle = styled(ListPlain)`
         object-fit: contain;
         object-position: center;
       }
+    }
 
-      .profile {
-        display: none;
+    &.profile {
+      display: none;
 
-        ${mediaQueries.md} {
-          display: block;
-        }
+      ${mediaQueries.md} {
+        display: block;
       }
     }
   }
@@ -87,8 +87,8 @@ export const MenuActions: React.FC<MenuActionsProps> = ({
         <Search />
       </Link>
     </li>
-    <li>
-      <Link className="profile" to={myAccountPath} display={{ _: "none", md: "block" }}>
+    <li className="profile">
+      <Link to={myAccountPath}>
         <Profile />
       </Link>
     </li>
