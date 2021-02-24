@@ -150,6 +150,7 @@
   touch-action: auto;
 }
 .image-gallery-content.fullscreen .image-gallery-image {
+  border-radius: unset;
   min-height: 100vh;
   min-width: 100vw;
   pointer-events: none;
