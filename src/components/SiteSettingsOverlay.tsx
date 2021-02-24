@@ -121,7 +121,7 @@ export const SiteSettingsOverlay = ({
             <option value="">GBP £</option>
           </select>
           <Button className="button" variant="primary">
-            Continue Shopping
+            Continue shopping
           </Button>
         </form>
       </WrapperStyled>
