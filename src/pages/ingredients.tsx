@@ -33,7 +33,7 @@ const InformationSection = styled.section`
     text-transform: uppercase;
   }
   h1 {
-    margin-block-start: ${themeGet("space.3")}px;
+    margin-block-start: ${themeGet("space.6")}px;
     margin-block-end: ${themeGet("space.4")}px;
     font-size: ${themeGet("fontSizes.6")}px;
     ${mediaQueries.md} {
