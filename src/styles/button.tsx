@@ -10,7 +10,6 @@ export const styles = `
     display: flex;
     font-family: "Quicksand";
     font-size: var(--font-size-body, 13px);
-    gap: ${theme.space[3]}px;
     justify-content: center;
     justify-items: center;
     letter-spacing: 1px;
@@ -23,13 +22,17 @@ export const styles = `
     }
 
     ${theme.mediaQueries.md} {
-        gap: ${theme.space[4]}px;
         padding: ${theme.space[5]}px ${theme.space[4]}px;
     }
 
     svg {
-        width: ${theme.space[6]}px;
+        margin-inline-start: ${theme.space[2]}px;
         object-fit: contain;
+        width: ${theme.space[6]}px;
+
+        ${theme.mediaQueries.md} {
+            margin-inline-start: ${theme.space[3]}px;
+        }
     }
 `
 
