@@ -22,10 +22,10 @@ type FontSizesProp = Array<number> & {
 }
 
 export const breakpoints: BreakpointsProp = [
-  "40rem",
-  "60rem",
-  "72rem",
-  "100rem",
+  "640px",
+  "960px",
+  "1280px",
+  "1440px",
 ]
 
 // aliases
@@ -37,6 +37,8 @@ breakpoints.xl = breakpoints[3]
 export const fontSizes: FontSizesProp = [11, 12, 13, 14, 16, 18, 24, 32]
 
 fontSizes.small = fontSizes[0]
+fontSizes.smallDesktop = fontSizes[1]
+fontSizes.smallMobile = fontSizes[0]
 fontSizes.bodyDesktop = fontSizes[3]
 fontSizes.bodyMobile = fontSizes[2]
 fontSizes.heading4Desktop = fontSizes[2]
@@ -53,6 +55,9 @@ export const mediaQueries = {
   md: `@media screen and (min-width: ${breakpoints[1]})`,
   lg: `@media screen and (min-width: ${breakpoints[2]})`,
   xl: `@media screen and (min-width: ${breakpoints[3]})`,
+  smDown: `@media screen and (max-width: calc(${breakpoints[1]} - 1px))`,
+  mdDown: `@media screen and (max-width: calc(${breakpoints[2]} - 1px))`,
+  lgDown: `@media screen and (max-width: calc(${breakpoints[3]} - 1px))`,
 }
 
 export const theme: DefaultTheme = {
