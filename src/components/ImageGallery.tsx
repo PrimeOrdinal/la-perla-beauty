@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React from "react"
+import React, { useRef, useState } from "react"
 import ReactImageGallery from "react-image-gallery"
 import styled from "styled-components"
 import {
@@ -77,11 +77,82 @@ const renderFullscreenButton = (onClick, isFullscreen) => {
   )
 }
 
-export const ImageGallery: React.FC<ImageGalleryProps> = props => (
-  <ImageGalleryStyled
-    renderLeftNav={renderLeftNav}
-    renderRightNav={renderRightNav}
-    renderFullscreenButton={renderFullscreenButton}
-    {...props}
-  />
-)
+function onMouseOver(event) {
+  const img = event.target;
+  const topOffset = img.offsetTop;
+  const leftOffset = img.offsetLeft;
+  const height = img.height;
+  const width = img.width;
+
+  img.style.transformOrigin =
+    ((event.pageX - leftOffset) / width) * 50 +
+    "% " +
+    ((event.pageY - topOffset) / height) * 50 +
+    "%";
+}
+
+export const ImageGallery: React.FC<ImageGalleryProps> = props => {
+  let [isFullScreen, setIsFullScreen] = useState(false);
+  let [hasRegistered, setHasRegistered] = useState(false);
+
+  let image = useRef(null);
+
+  function handleClick(event) {
+    if (!isFullScreen) {
+      return;
+    }
+
+    const img = event.target;
+
+    image.current = img;
+
+    img.className = "tile";
+
+    if (img.style.transform === "scale(2.5)") {
+      // here we are zooming out
+      img.style.transform = "scale(1)";
+      img.style.cursor = "zoom-in";
+      img.removeEventListener("mousemove", onMouseOver);
+      setHasRegistered(false);
+      return;
+    }
+
+    // here we are zooming in
+    img.style.transform = "scale(2.5)";
+    img.style.cursor = "zoom-out";
+
+    if (!hasRegistered) {
+      img.addEventListener("mousemove", onMouseOver);
+      setHasRegistered(true);
+    }
+  }
+
+  function onScreenChange(fullScreenElem) {
+    if (fullScreenElem) {
+      setIsFullScreen(true);
+
+      if (image?.current) {
+        image.current.style.cursor = "zoom-in";
+      }
+    } else {
+      setIsFullScreen(false);
+
+      if (image?.current) {
+        image.current.style.cursor = "auto";
+        image.current.style.transform = "scale(1)";
+        image.current.removeEventListener("mousemove", onMouseOver);
+      }
+    }
+  }
+
+  return (
+    <ImageGalleryStyled
+      onClick={handleClick}
+      onScreenChange={onScreenChange}
+      renderLeftNav={renderLeftNav}
+      renderRightNav={renderRightNav}
+      renderFullscreenButton={renderFullscreenButton}
+      {...props}
+    />
+  )
+}
