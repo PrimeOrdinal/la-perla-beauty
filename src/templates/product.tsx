@@ -56,7 +56,7 @@ const ProductStyled = styled.article`
 
   .categories {
     display: grid;
-    font-size: ${themeGet("fontSizes.small")}px;
+    font-size: var(--font-size-small, 12px);
     gap: 1rem;
     grid-auto-flow: column;
     justify-content: start;

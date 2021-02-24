@@ -9,7 +9,7 @@ export const fonts = `
 
     small,
     .small {
-        font-size: 11px;
+        font-size: var(--font-size-small, 12px);
         letter-spacing: 0.7px;
         line-height: 15px;
     }

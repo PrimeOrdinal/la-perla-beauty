@@ -18,7 +18,7 @@ export const Tag: React.FC<TagProps> = styled.span`
   background-color: ${themeGet("colors.orange")};
   border-radius: ${themeGet("radii.2")}px;
   display: block;
-  font-size: ${themeGet("fontSizes.small")}px;
+  font-size: var(--font-size-small, 12px);
   padding: ${themeGet("space.1")}px ${themeGet("space.3")}px;
   text-align: center;
   text-transform: uppercase;
