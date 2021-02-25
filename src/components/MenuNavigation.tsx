@@ -3,7 +3,7 @@ import type {
   LayoutQuery,
 } from "../../graphql-types"
 
-import { Link } from "./Button"
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -15,9 +15,10 @@ import {
   LayoutProps,
   SpaceProps,
 } from "styled-system"
-import { themeGet } from "@styled-system/theme-get"
+
 import { useHover } from "../hooks/useHover"
 
+import { Link } from "./Button"
 import { ListPlain } from "./ListPlain"
 
 const StyledMenu = styled.div`
