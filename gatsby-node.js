@@ -34,29 +34,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         allBigCommerceProducts {
           edges {
             node {
+              bigcommerce_id
               custom_url {
                 url
               }
+            }
+          }
+        }
+        allBigCommerceCategories {
+          edges {
+            node {
               bigcommerce_id
+              custom_url {
+                url
+              }
+              description
+              name
             }
           }
         }
         bigCommerceGQL {
           site {
-            categoryTree {
-              children {
-                description
-                entityId
-                name
-                path
-                productCount
-              }
-              description
-              entityId
-              name
-              path
-              productCount
-            }
             settings {
               status
               storeHash
@@ -96,8 +94,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create pages for categories.
   const categoryTemplate = path.resolve(`src/pages/category.tsx`)
 
-  result.data.bigCommerceGQL.site.categoryTree.forEach((node) => {
-    const pagePath = node.path
+  result.data.allBigCommerceCategories.edges.forEach(({ node }) => {
+    const pagePath = node.custom_url?.url
 
     createPage({
       path: pagePath,
@@ -106,7 +104,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // as a GraphQL variable to query for data from the API.
       context: {
         category: node,
-        id: node.entityId
+        id: node.bigcommerce_id
       },
     })
   })
