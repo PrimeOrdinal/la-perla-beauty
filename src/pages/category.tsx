@@ -87,13 +87,13 @@ const CategoryPage: React.FC<
         view={view}
       />
 
-      <section className={clsx("container")}>
+      <main className={clsx("container")}>
         <Listing
           products={products}
           promotionalBanners={promotionalBanners}
           view={view}
         />
-      </section>
+      </main>
 
     </Layout>
   )

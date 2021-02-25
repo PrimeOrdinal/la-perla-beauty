@@ -26,7 +26,7 @@ const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
     <Layout>
       <SEO title={page?.title} />
 
-      <div className={clsx("container")}>
+      <main className={clsx("container")}>
         
         <header>
           <h1>{data?.site?.siteMetadata?.title}</h1>
@@ -48,7 +48,7 @@ const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
 
         </header>
 
-      </div>
+      </main>
 
     </Layout>
   )
