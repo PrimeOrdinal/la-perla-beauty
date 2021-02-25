@@ -1,11 +1,24 @@
 import { graphql } from "gatsby"
 export const Contentstack_productsFragment = graphql`
   fragment Contentstack_productsFragment on Contentstack_products {
-    application
+    accordion {
+      panels {
+        heading
+        panel
+      }
+    }
     description
     description_extended
     id
-    key_ingredients {
+    key_features {
+      item {
+        colour
+        icon
+        text
+        title
+      }
+    }
+    ingredients {
       type
       ingredient {
         id
@@ -14,8 +27,19 @@ export const Contentstack_productsFragment = graphql`
         url
       }
     }
-    perfumer_notes
+    leaf {
+      orientation
+      layout
+      heading
+      text
+    }
     product_id
     title
+    video {
+      video {
+        url
+        title
+      }
+    }
   }
 `

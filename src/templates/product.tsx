@@ -203,6 +203,50 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
     showPlayButton: false,
   }
 
+  const accordion = [
+    {
+      heading: "Key Ingredients",
+      panel: (
+        <dl className="ingedients">
+          {data?.contentstackProducts?.ingredients?.map(
+            (ingredient) => (
+              <React.Fragment>
+                <dt>{ingredient?.type}</dt>
+                {ingredient?.ingredient?.map(ingredient => (
+                  <dd>
+                    <Link to={ingredient?.url}>
+                      {ingredient?.title}
+                    </Link>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: ingredient?.information as string,
+                      }}
+                    />
+                  </dd>
+                ))}
+              </React.Fragment>
+            )
+          )}
+        </dl>
+      ),
+    }
+  ]
+
+  data?.contentstackProducts?.accordion?.panels && accordion.push(...data?.contentstackProducts?.accordion?.panels?.map(
+    (panel) => (
+      {
+        heading: panel?.heading,
+        panel: (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: panel?.panel as string,
+            }}
+          />
+        ),
+      }
+    )
+  ))
+
   return (
     <Layout>
       <SEO title={name} />
@@ -223,41 +267,16 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
           <IconList
             display={{ _: "none", md: "grid" }}
             gridAutoFlow={{ _: "row", md: "column" }}
-            items={[
-              {
-                icon: "plant",
-                color: "green",
-                heading: "Viste ram docet ",
-                body: (
-                  <p>
-                    Quisque eu tincidunt arcu. Aenean ullamcorper docet vist
-                    sum.
-                  </p>
-                ),
-              },
-              {
-                icon: "envelope",
-                color: "purple",
-                heading: "Viste ram docet ",
-                body: (
-                  <p>
-                    Quisque eu tincidunt arcu. Aenean ullamcorper docet vist
-                    sum.
-                  </p>
-                ),
-              },
-              {
-                icon: "recycle",
-                color: "orange",
-                heading: "Viste ram docet ",
-                body: (
-                  <p>
-                    Quisque eu tincidunt arcu. Aenean ullamcorper docet vist
-                    sum.
-                  </p>
-                ),
-              },
-            ]}
+            items={data?.contentstackProducts?.key_features?.item?.map((item) => 
+                ({
+                  icon: item?.icon,
+                  color: item?.colour,
+                  heading: item?.heading,
+                  body: (
+                    <p>{item?.text}</p>
+                  ),
+                })
+            )}
           ></IconList>
         </div>
 
@@ -395,65 +414,15 @@ const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
             allowMultipleExpanded={true}
             allowZeroExpanded={true}
             className="accordion"
-            items={[
-              {
-                heading: "Perfumer Notes",
-                panel: (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: data?.contentstackProducts
-                        ?.perfumer_notes as string,
-                    }}
-                  />
-                ),
-              },
-              {
-                heading: "Appliction",
-                panel: (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: data?.contentstackProducts?.application as string,
-                    }}
-                  />
-                ),
-              },
-              {
-                heading: "Key Ingredients",
-                panel: (
-                  <dl className="ingedients">
-                    {data?.contentstackProducts?.key_ingredients?.map(
-                      key_ingredient => (
-                        <React.Fragment>
-                          <dt>{key_ingredient?.type}</dt>
-                          {key_ingredient?.ingredient?.map(ingredient => (
-                            <dd>
-                              <Link to={ingredient?.url}>
-                                {ingredient?.title}
-                              </Link>
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: ingredient?.information as string,
-                                }}
-                              />
-                            </dd>
-                          ))}
-                        </React.Fragment>
-                      )
-                    )}
-                  </dl>
-                ),
-              },
-            ]}
+            items={accordion}
           />
           <DeliveryAndReturnsInformation className="delivery-and-returns-information" />
-          <Leaf variant="secondary">
-            <h2>Risk-free purchase</h2>
-            <p>
-              Phasellus hendrerit nisl justo, non visto sollicitudin justo in.
-              Quisque eu tincidunt arcu. Aenean ullamcorper augue vel ex
-              iaculis.
-            </p>
-          </Leaf>
+          {data?.contentstackProducts?.leaf && (
+            <Leaf variant="secondary" layout={data?.contentstackProducts?.leaf?.layout} orientation={data?.contentstackProducts?.leaf?.orientation}>
+              <h2>{data?.contentstackProducts?.leaf?.heading}</h2>
+              <p>{data?.contentstackProducts?.leaf?.text}</p>
+            </Leaf>
+          )}
         </main>
       </ProductStyled>
       <Helmet>
