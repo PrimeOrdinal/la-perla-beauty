@@ -114,6 +114,11 @@ const StyledMenuMainHeadings = styled(ListPlain)`
     aspect-ratio: 1;
     width: 100%;
   }
+
+  .title {
+    display: inline-block;
+    margin-block-start: ${themeGet("space.6")}px;
+  }
 `
 
 export type MenuNavigationProps = GridProps &
@@ -175,7 +180,7 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
                               className="image"
                               src={image?.image?.url}
                             />
-                            <span>{image?.url?.title as string}</span>
+                            <span className="title">{image?.url?.title as string}</span>
                           </Link>
                         )}
                       </React.Fragment>
