@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
@@ -13,6 +14,7 @@ import {
   SpaceProps,
   VariantProps,
 } from "styled-system"
+
 export type IconListProps = GridProps & LayoutProps &
   PositionProps &
   SpaceProps &
@@ -56,6 +58,7 @@ import GiftWrap from "../images/GiftWrap.svg"
 
 export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
   display: grid;
+  gap: ${themeGet("space.4")}px;
   grid-auto-flow: ${props =>
     props.orientation === "horizontal" ? "column" : "row"};
   justify-items: ${props =>
