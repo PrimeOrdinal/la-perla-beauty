@@ -36,7 +36,6 @@ const StyledMenu = styled.div`
 
 const StyledMenuMainHeadings = styled(ListPlain)`
   display: grid;
-  gap: ${themeGet("space.7")}px;
   grid-auto-flow: column;
   padding-block-start: ${themeGet("space.7")}px;
   place-content: center;
@@ -48,8 +47,12 @@ const StyledMenuMainHeadings = styled(ListPlain)`
     letter-spacing: 1px;
 
     a {
+      border-bottom-color: transparent;
+      border-bottom-style: solid;
       color: inherit;
       display: inline-block;
+      margin-inline-end: ${themeGet("space.3")}px;
+      margin-inline-start: ${themeGet("space.3")}px;
       text-decoration: none;
       font-weight: inherit;
       text-transform: uppercase;
@@ -58,7 +61,6 @@ const StyledMenuMainHeadings = styled(ListPlain)`
       &:active,
       &:hover {
         border-bottom-color: ${themeGet("colors.black")};
-        border-bottom-style: solid;
       }
 
       &.level-1 {
@@ -71,7 +73,7 @@ const StyledMenuMainHeadings = styled(ListPlain)`
     background-color: ${themeGet("colors.white")};
     border-bottom-right-radius: ${themeGet("radii.4")}px;
     border-bottom-left-radius: ${themeGet("radii.4")}px;
-    display: grid;
+    display: none;
     gap: ${themeGet("space.10")}px;
     grid-auto-flow: column;
     grid-template-columns: repeat(4, 1fr);
@@ -80,6 +82,15 @@ const StyledMenuMainHeadings = styled(ListPlain)`
     padding: ${themeGet("space.9")}px;
     position: absolute;
     width: 70%;
+  }
+
+  .menu-item {
+    &:focus-within,
+    &:hover {
+      .sub-menu {
+        display: grid;
+      }
+    }
   }
 
   .links {
@@ -105,43 +116,6 @@ const StyledMenuMainHeadings = styled(ListPlain)`
   }
 `
 
-const StyledMenuMainExpanded = styled.div`
-  background-color: ${themeGet("colors.white")};
-  border-bottom-right-radius: ${themeGet("radii.4")}px;
-  border-bottom-left-radius: ${themeGet("radii.4")}px;
-  display: ${props => (props.active ? "grid" : "none")};
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
-  left: 10%;
-  margin-top: ${themeGet("border.width")};
-  padding-block-end: 1rem;
-  padding-block-start: 1rem;
-  padding-inline-end: 1rem;
-  padding-inline-start: 1rem;
-  position: absolute;
-  width: 80%;
-
-  ul {
-    list-style: none;
-    padding: 0;
-
-    li {
-      text-align: left;
-      padding: 0.5rem 0;
-
-      a {
-        text-decoration: none;
-        color: inherit;
-
-        span {
-          display: inline-block;
-          margin-block-start: 1rem;
-        }
-      }
-    }
-  }
-`
-
 export type MenuNavigationProps = GridProps &
   LayoutProps &
   SpaceProps & {
@@ -162,7 +136,7 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
         .map(({ node: menu }) => (
           <StyledMenuMainHeadings id={menu.slot as string} key={menu.id}>
             {menu?.links?.map((linkLevel1, indexLevel1) => (
-              <li key={indexLevel1}>
+              <li className="menu-item" key={indexLevel1}>
                 <Link
                   className="level-1"
                   to={linkLevel1?.url?.href as string}
@@ -172,33 +146,39 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
                 </Link>
                 {linkLevel1?.sub_menus?.map((sub_menu, indexLevel2) => (
                   <div className="sub-menu">
-                    {sub_menu && <ul className="links">
-                      {sub_menu?.links?.map((linkLevel2, indexLevel2) => (
-                        <li key={indexLevel2}>
-                          <Link
-                          className="level-2"
-                            to={linkLevel2?.url?.href as string}
-                            title={linkLevel2?.url?.title as string}
-                          >
-                            {linkLevel2?.text}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>}
+                    {sub_menu && (
+                      <ul className="links">
+                        {sub_menu?.links?.map((linkLevel2, indexLevel2) => (
+                          <li key={indexLevel2}>
+                            <Link
+                              className="level-2"
+                              to={linkLevel2?.url?.href as string}
+                              title={linkLevel2?.url?.title as string}
+                            >
+                              {linkLevel2?.text}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                     {sub_menu?.images?.map((image, index) => (
-                      <Link
-                        className="image-container"
-                        key={index}
-                        to={image?.url?.href as string}
-                        title={image?.url?.title as string}
-                      >
-                        <img
-                          alt={image?.image?.title}
-                          className="image"
-                          src={image?.image?.url}
-                        />
-                        <span>{image?.url?.title as string}</span>
-                      </Link>
+                      <React.Fragment>
+                        {image?.image?.url && (
+                          <Link
+                            className="image-container"
+                            key={index}
+                            to={image?.url?.href as string}
+                            title={image?.url?.title as string}
+                          >
+                            <img
+                              alt={image?.image?.title}
+                              className="image"
+                              src={image?.image?.url}
+                            />
+                            <span>{image?.url?.title as string}</span>
+                          </Link>
+                        )}
+                      </React.Fragment>
                     ))}
                   </div>
                 ))}
@@ -206,36 +186,6 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
             ))}
           </StyledMenuMainHeadings>
         ))}
-      <StyledMenuMainExpanded active={isHovered}>
-        {data?.allContentstackMenus?.edges
-          ?.filter(({ node: menu }) =>
-            menu.slot?.startsWith("footer-secondary")
-          )
-          ?.map(({ node: menu }) => (
-            <ul id={menu.slot as string} key={menu.id}>
-              {menu?.links?.map((link, index) => (
-                <li key={index}>
-                  {link?.url?.href?.startsWith("http") ? (
-                    <a
-                      href={link?.url?.href as string}
-                      rel="external"
-                      title={link?.url?.title as string}
-                    >
-                      {link?.text}
-                    </a>
-                  ) : (
-                    <Link
-                      to={link?.url?.href as string}
-                      title={link?.url?.title as string}
-                    >
-                      {link?.text}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          ))}
-      </StyledMenuMainExpanded>
     </StyledMenu>
   )
 }
