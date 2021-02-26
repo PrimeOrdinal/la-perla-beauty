@@ -1,5 +1,5 @@
 import { themeGet } from "@styled-system/theme-get"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 
 import { Layout } from "../../components/Layout"
@@ -88,6 +88,8 @@ const GridStyled = styled.section`
 `
 
 const AccountPage: React.FC = () => {
+  const [userIsSignedIn, setUserIsSignedIn] = useState(false)
+
   return (
     <Layout>
       <SEO title="Account" />
@@ -101,7 +103,7 @@ const AccountPage: React.FC = () => {
               Please enter your email address and password below to access your
               account
             </p>
-            <form action="/account/information">
+            <form action={userIsSignedIn ? "/account/information" : "/account/sign-up"}>
               <label htmlFor="email address">email address*</label>
               <input className="input-focus" type="email" />
               <label htmlFor="password">password</label>
