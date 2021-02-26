@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a24bb729-2aa2-4565-942a-f5c0cef6e809/deploy-status)](https://app.netlify.com/sites/la-perla-beauty/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1b746c0f-a282-4910-93ed-07ef219c91a7/deploy-status)](https://app.netlify.com/sites/la-perla-beauty-row/deploys)
 
 ### Research
 
