@@ -16,6 +16,7 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
   if (!GATSBY_SITE_URL) {
     return {
       body: "Environment variable missing",
+      headers: {"content-type": "application/json"},
       statusCode: 400,
     }
   }
@@ -36,6 +37,7 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
         console.log(valid)
 
         return {
+          headers: {"content-type": "application/json"},
           statusCode: 200,
           body: event.body,
         }
@@ -43,6 +45,7 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
     }
 
     return {
+      headers: {"content-type": "application/json"},
       statusCode: 500,
       body: "Unknown error",
     }
@@ -50,6 +53,7 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
     console.error(error)
 
     return {
+      headers: {"content-type": "application/json"},
       statusCode: 500,
       body: JSON.stringify({ msg: error.message }),
     }

@@ -3,11 +3,10 @@ import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
 import { mediaQueries } from "../../theme"
 
+import { AccountLayout } from "../../components/AccountLayout"
 import { Layout } from "../../components/Layout"
 import { ListPlain } from "../../components/ListPlain"
 import { OrdersItem } from "../../components/OrdersItem"
-import { PromotionalBanner } from "../../components/PromotionalBanner"
-import { AccountLayout } from "../../components/AccountLayout"
 import { SEO } from "../../components/SEO"
 
 const OrdersColumn = styled.section`
@@ -61,6 +60,7 @@ const PromoBannerArgs = {
   title: "Promo Banner",
   width: { _: 1, md: 1 / 2 },
 }
+
 const OrdersPage: React.FC = () => (
   <Layout>
     <AccountLayout>
