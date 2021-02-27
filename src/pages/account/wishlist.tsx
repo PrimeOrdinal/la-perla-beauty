@@ -40,7 +40,7 @@ const WishlistPage: React.FC = () => (
   <Layout>
     <AccountLayout>
       <SEO title="My wishlist" />
-      <WishlistColumn className="container">
+      <WishlistColumn>
         <h1 className="wishlist-title">Wishlist</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
