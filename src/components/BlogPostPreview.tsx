@@ -28,18 +28,10 @@ export type BlogPostPreviewProps = GridProps &
     tag: string
     body: string
     link: string
+    aspectRatio: string
   }
 
 const BlogPostPreviewStyled = styled.article`
-  img {
-    height: 250px;
-    width: 100%;
-    object-fit: cover;
-    ${mediaQueries.md} {
-      max-width: 100%;
-      height: 415px;
-    }
-  }
   span {
     display: block;
     text-transform: uppercase;
@@ -56,15 +48,21 @@ export const BlogPostPreview: React.FC<BlogPostPreviewProps> = ({
   tag,
   body,
   link,
+  aspectRatio,
 }) => (
   <BlogPostPreviewStyled>
     {headingAbove && <h2>{headingAbove}</h2>}
-    <img
-      src={`https://picsum.photos/905/740?${
-        Math.floor(Math.random() * 10) + 1
-      }`}
-      alt="placeholder image"
-    />
+    {aspectRatio && (
+      <figure aspect-ratio={aspectRatio}>
+        <img
+          src={`https://picsum.photos/600/400?${
+            Math.floor(Math.random() * 10) + 1
+          }`}
+          alt="placeholder image"
+        />
+      </figure>
+    )}
+
     {tag && <span>{tag}</span>}
     {headingBelow && <h2>{headingBelow}</h2>}
     {body && <p>{body}</p>}
