@@ -11,8 +11,8 @@ import { Breadcrumb } from "../../components/Breadcrumb"
 import { BlogPostPreview } from "../../components/BlogPostPreview"
 import { ImageGallery } from "../../components/ImageGallery"
 import { MenuSubCategory } from "../../components/MenuSubCategory"
-import { VideoPlayer } from "../../components/VideoPlayer"
 import { ListPlain } from "../../components/ListPlain"
+import { LeafAlt } from "../../components/LeafAlt"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceGql_Category
@@ -77,7 +77,7 @@ const FeaturedGrid = styled(ListPlain)`
   gap: 34px;
   grid-auto-flow: row;
   ${mediaQueries.md} {
-    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
   }
   border-bottom: 1px ${themeGet("border.color")} solid;
   padding-block-end: ${themeGet("space.12")}px;
@@ -96,15 +96,6 @@ const RecommendedGrid = styled(ListPlain)`
     &:nth-child(even) {
       align-self: flex-end;
     }
-    article {
-      img {
-        width: 100%;
-        height: 213px;
-        ${mediaQueries.md} {
-          height: 376px;
-        }
-      }
-    }
   }
 `
 
@@ -118,7 +109,7 @@ const BlogLandingPage: React.FC<PageProps<PageContextCategory>> = ({
   return (
     <Layout>
       <Breadcrumb crumbs={crumbs} />
-      <ImageGallery {...imageprops} />
+      <ImageGallery {...imageprops} className="img-bl" />
       <MenuSubCategory>View All</MenuSubCategory>
       <MainStyled>
         <section className="container first-section">
@@ -134,6 +125,7 @@ const BlogLandingPage: React.FC<PageProps<PageContextCategory>> = ({
                   tag="be inspired"
                   headingBelow="The exquisite sense of mere tranquil existence"
                   link="explore & shop"
+                  aspectRatio="615/413"
                 />
               </li>
               <li>
@@ -141,6 +133,7 @@ const BlogLandingPage: React.FC<PageProps<PageContextCategory>> = ({
                   tag="featured"
                   headingBelow="Never was there a greater artist than there is now"
                   link="explore & shop"
+                  aspectRatio="615/413"
                 />
               </li>
             </FeaturedGrid>
@@ -160,12 +153,14 @@ const BlogLandingPage: React.FC<PageProps<PageContextCategory>> = ({
                   headingAbove="Etiam aliquet vist metus"
                   body="Luxuary with integrity"
                   link="read more"
+                  aspectRatio="3/4"
                 />
               </li>
               <li>
                 <BlogPostPreview
                   headingAbove="Etiam aliquet vist metus"
                   body="Luxuary with integrity"
+                  aspectRatio="3/4"
                   link="read more"
                 />
               </li>
@@ -173,6 +168,7 @@ const BlogLandingPage: React.FC<PageProps<PageContextCategory>> = ({
                 <BlogPostPreview
                   headingAbove="Etiam aliquet vist metus"
                   body="Luxuary with integrity"
+                  aspectRatio="3/4"
                   link="read more"
                 />
               </li>
@@ -180,6 +176,7 @@ const BlogLandingPage: React.FC<PageProps<PageContextCategory>> = ({
                 <BlogPostPreview
                   headingAbove="Etiam aliquet vist metus"
                   body="Luxuary with integrity"
+                  aspectRatio="3/4"
                   link="read more"
                 />
               </li>
