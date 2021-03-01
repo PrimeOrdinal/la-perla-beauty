@@ -22,10 +22,12 @@ import { input } from "./input"
 import { label } from "./label"
 import { select } from "./select"
 import { svg } from "./svg"
+import { aspectRatio } from "./aspectRatio"
 
 export const GlobalStyle = createGlobalStyle`
     ${accessibility}
     ${anchor}
+    ${aspectRatio}
     ${blockquote}
     ${body}
     ${border}
