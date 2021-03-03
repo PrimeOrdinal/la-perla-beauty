@@ -8,6 +8,11 @@ const path = require("path")
 
 const stripSlashes = (text) => text.replace(/([^:]\/)\/+/g, "$1")
 
+// exports.onCreatePage = ({ page, actions }) => {
+//   const { createPage, deletePage } = actions
+//   console.log(page)
+// }
+
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -19,6 +24,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         allContentstackPages {
           edges {
             node {
+              id
               locale
               publish_details {
                 time
@@ -80,12 +86,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   result.data.allContentstackPages.edges.forEach(({ node }) => {
     const pagePath = node.url
 
+    console.log("node.id", node.id)
+
     createPage({
       path: pagePath,
-      component: path.resolve(`src/pages/${node.template}.tsx`),
+      component: path.resolve(`src/templates/${node.template}.tsx`),
       // In your template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the API.
       context: {
+        id: node.id,
         page: node,
       },
     })
@@ -124,3 +133,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 }
+
+// exports.createSchemaCustomization = ({ actions }) => {
+//   const { createTypes } = actions
+//   const typeDefs = `
+//     type Contentstack_page_sectionsModular_blocks implements Node {
+//       menu {
+          
+//       }
+//     }
+//   `
+//   createTypes(typeDefs)
+// }
