@@ -104,7 +104,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const categoryTemplate = path.resolve(`src/pages/category.tsx`)
 
   result.data.allBigCommerceCategories.edges.forEach(({ node }) => {
-    const pagePath = node.custom_url?.url
+    const pagePath = node.custom_url.url
 
     createPage({
       path: pagePath,
@@ -122,7 +122,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const productTemplate = path.resolve(`src/templates/product.tsx`)
   
   result.data.allBigCommerceProducts.edges.forEach(({ node }) => {
-    const pagePath = node.custom_url?.url
+    const pagePath = node.custom_url.url
 
     createPage({
       path: pagePath,
