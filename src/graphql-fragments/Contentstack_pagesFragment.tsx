@@ -1,10 +1,10 @@
 import { graphql } from "gatsby"
 export const Contentstack_pagesFragment = graphql`
   fragment Contentstack_pagesFragment on Contentstack_pages {
+    breadcrumb {
+      show
+    }
     id
-    template
-    title
-    url
     page_section {
       background_image {
         attachment
@@ -30,14 +30,55 @@ export const Contentstack_pagesFragment = graphql`
           preset
         }
       }
+      container
       modular_blocks {
-        introduction {
-          heading
+        accordion {
+          panels {
+            heading
+            panel
+          }
+        }
+        article_card {
+          title_secondary
+          title_primary
+          paragraph
+          title
           link {
             href
             title
           }
-          paragraph
+        }
+        breadcrumb {
+          show
+        }
+        horizontal_rule {
+          colour
+          margins {
+            bottom
+            left
+            right
+            top
+          }
+        }
+        icon_list {
+          item {
+            colour
+            icon
+            text
+            title
+          }
+          margins {
+            bottom
+            left
+            right
+            top
+          }
+        }
+        image {
+          image {
+            title
+            url
+          }
         }
         image_with_overlay {
           image {
@@ -52,6 +93,17 @@ export const Contentstack_pagesFragment = graphql`
           title_primary
           title_secondary
         }
+        introduction {
+          heading {
+            semantic_level
+            text
+          }
+          link {
+            href
+            title
+          }
+          paragraph
+        }
         leaf {
           heading
           layout
@@ -63,6 +115,7 @@ export const Contentstack_pagesFragment = graphql`
           text
         }
         menu {
+          justify_content
           menu {
             links {
               attributes {
@@ -74,10 +127,25 @@ export const Contentstack_pagesFragment = graphql`
             title
           }
         }
+        paragraph {
+          paragraph
+        }
+        quotation {
+          quotation
+        }
+        video {
+          video {
+            url
+            title
+          }
+        }
       }
       id
       title
       uid
     }
+    template
+    title
+    url
   }
 `

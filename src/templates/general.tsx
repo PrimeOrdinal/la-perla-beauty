@@ -5,7 +5,12 @@ import { PageProps, graphql } from "gatsby"
 import React from "react"
 import styled, { css } from "styled-components"
 
+import { Accordion } from "../components/Accordion"
 import { Breadcrumb } from "../components/Breadcrumb"
+// import { Heading } from "../components/Heading"
+import { HoriontalRule } from "../components/HoriontalRule"
+import { IconList } from "../components/IconList"
+import { Introduction } from "../components/Introduction"
 import { Link } from "../components/Button"
 import { Leaf } from "../components/Leaf"
 import { Layout } from "../components/Layout"
@@ -30,14 +35,9 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
     <Layout>
       <SEO title={page?.title} />
 
-      <div className={clsx("container")} page-id={data?.contentstackPages?.id}>
+      {data?.contentstackPages?.breadcrumb?.show && (
         <Breadcrumb crumbs={crumbs} />
-      </div>
-
-      <header className={clsx("container")}>
-        <h1>{page?.title}</h1>
-        <h2>{data?.contentstackPages?.title}</h2>
-      </header>
+      )}
 
       {data?.contentstackPages?.page_section?.map(page_section => {
         const SectionStyled = styled.section`
@@ -84,35 +84,91 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
                   ?.preset};
               `}
           min-height: 25vh;
-          padding: 1rem;
         `
 
         return (
-          <SectionStyled id={page_section?.id} key={page_section?.id}>
-            <h2>{page_section?.title}</h2>
+          <SectionStyled
+            className={clsx(page_section?.container && "container")}
+            id={page_section?.id}
+            key={page_section?.id}
+          >
+            {/* <h2>{page_section?.title}</h2> */}
             {page_section?.modular_blocks.map(modular_block => {
-              console.log("modular_block", modular_block)
               let component
 
               Object.entries(modular_block).forEach(([key, value]) => {
-                console.log("key", key)
-
                 if (value === null) {
                   return
                 }
 
-                console.log("value", value)
+                // console.log("value", value)
 
                 switch (key) {
+                  case "accordion":
+                    component = (
+                      <Accordion
+                        allowMultipleExpanded={true}
+                        allowZeroExpanded={true}
+                        className="footer-secondary-accordion"
+                        items={value?.panels?.map((panel, index) => ({
+                          heading: panel.heading,
+                          panel: <div key={index}>{panel?.panel}</div>,
+                        }))}
+                      />
+                    )
+                    break
+                  case "breadcrumb":
+                    component = <p>{value?.show}</p>
+                    break
+                  case "horizontal_rule":
+                    component = (
+                      <HoriontalRule
+                        className={value?.colour}
+                        marginBottom={{ _: 4, md: value?.margins?.bottom }}
+                        marginLeft={{ _: 4, md: value?.margins?.left }}
+                        marginRight={{ _: 4, md: value?.margins?.right }}
+                        marginTop={{ _: 4, md: value?.margins?.top }}
+                      />
+                    )
+                    break
+                  case "icon_list":
+                    component = (
+                      <IconList
+                        gridAutoFlow={{ _: "row", md: "column" }}
+                        marginBottom={{ _: 4, md: value?.margins?.bottom }}
+                        marginLeft={{ _: 4, md: value?.margins?.left }}
+                        marginRight={{ _: 4, md: value?.margins?.right }}
+                        marginTop={{ _: 4, md: value?.margins?.top }}
+                        items={value?.item?.map(item => ({
+                          icon: item?.icon,
+                          color: item?.colour,
+                          heading: item?.title,
+                          body: <p>{item?.text}</p>,
+                        }))}
+                        orientation="horizontal"
+                      ></IconList>
+                    )
+                    break
+                  case "image":
+                    component = <PromotionalBanner inlineView {...value} />
+                    break
                   case "image_with_overlay":
-                    component = <PromotionalBanner inlineView text={value?.paragraph} title={value?.title_primary} {...value} />
+                    component = (
+                      <PromotionalBanner
+                        inlineView
+                        text={value?.paragraph}
+                        title={value?.title_primary}
+                        {...value}
+                      />
+                    )
                     break
                   case "introduction":
-                    component = (
-                      <div className="introduction">
-                        <h2>{value?.heading}</h2>
+                    component = 
+                    (
+                      <Introduction>
+                        {/* <Heading level={value?.heading?.semantic_level}>{value?.heading?.text}</Heading> */}
                         <p>{value?.paragraph}</p>
-                      </div>
+                      </Introduction>
                     )
                     break
                   case "leaf":
@@ -120,7 +176,7 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
                     break
                   case "menu":
                     component = (
-                      <MenuSubCategory>
+                      <MenuSubCategory justifyContent={value?.justify_content}>
                         {value?.menu?.[0]?.links?.map(link => (
                           <Link title={link?.url?.title} to={link?.url?.href}>
                             {link?.text}
@@ -129,8 +185,11 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
                       </MenuSubCategory>
                     )
                     break
+                  case "paragraph":
+                    component = <p>{value?.paragraph}</p>
+                    break
                   default:
-                    console.log("the two sweetest words")
+                    console.log(`Unmapped modular block type: ${key}`)
                     break
                 }
               })
