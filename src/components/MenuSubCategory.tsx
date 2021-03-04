@@ -20,7 +20,8 @@ export const MenuSubCategoryContainerStyled: React.FC<MenuSubCategoryProps> = st
   background-color: ${themeGet("colors.pink")};
   display: grid;
   overflow-x: auto;
-  padding: ${themeGet("space.5")}px;
+  padding-block-end: ${themeGet("space.5")}px;
+  padding-block-start: ${themeGet("space.5")}px;
 
   ${compose(layout, position, space)}
 `
@@ -29,9 +30,7 @@ export const MenuSubCategoryStyled: React.FC<MenuSubCategoryProps> = styled.nav`
   column-gap: ${themeGet("space.10")}px;
   display: inline-grid;
   grid-auto-flow: column;
-  justify-content: center;
-  padding-inline-end: ${themeGet("space.5")}px;
-  padding-inline-start: ${themeGet("space.5")}px;
+  justify-content: ${props => props.justifyContent ? props.justifyContent : "center"};
 
   a {
     color: inherit;
@@ -42,7 +41,7 @@ export const MenuSubCategoryStyled: React.FC<MenuSubCategoryProps> = styled.nav`
 `
 
 export const MenuSubCategory: React.FC<MenuSubCategoryProps> = ({ children, ...props }) => (
-  <MenuSubCategoryContainerStyled {...props}>
-    <MenuSubCategoryStyled>{children}</MenuSubCategoryStyled>
+  <MenuSubCategoryContainerStyled className="container" {...props}>
+    <MenuSubCategoryStyled {...props}>{children}</MenuSubCategoryStyled>
   </MenuSubCategoryContainerStyled>
 )

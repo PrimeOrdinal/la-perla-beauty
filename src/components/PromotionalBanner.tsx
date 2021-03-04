@@ -80,42 +80,48 @@ const PromotionalBannerView = styled(LayoutBase)`
   //prop: desktopFull = The reusable hero component used on other pages
   //prop: listView = The promo banner that spans full width. Is two columns - img & content
   //default style is the column that spans two which has pink bg with image above
-  position: ${props => (props.inlineView ? "relative" : "static")};
+  background-color: ${props => props.desktopFull ? "transparent" : themeGet(`colors.${props.color}`)};
   border-radius: ${props => (props.desktopFull ? "0px" : "10px")};
-  background-color: ${props =>
-    props.desktopFull ? "transparent" : themeGet(`colors.${props.color}`)};
   grid-auto-flow: ${props => (props.listView ? "column" : "row")};
   place-items: ${props => (props.listView ? "center" : "unset")};
+  position: ${props => (props.inlineView ? "relative" : "static")};
+
   img {
     border-radius: ${props => (props.desktopFull ? "10px" : "0px")};
   }
+
   div {
-    color: ${props => (props.inlineView ? "whitesmoke" : "inherit")};
-    position: ${props => (props.inlineView ? "absolute" : "static")};
-    left: 0;
-    right: 0;
     bottom: ${themeGet("space.7")}px;
+    color: ${props => (props.inlineView ? "whitesmoke" : "inherit")};
+    left: 0;
+    position: ${props => (props.inlineView ? "absolute" : "static")};
+    right: 0;
     padding: ${props => {
       if (props.listView) {
         return "120px"
       } else if (props.desktopFull) {
-        return "0px"
-      } else return "20px"
+        return "unset"
+      } else {
+        return undefined
+      }
     }};
   }
 `
 
 export type PromotionalBannerProps = LayoutProps &
   SpaceProps & {
-    color: "beige" | "pink" | "lightgreen"
-    layout: "inlineView" | "desktopFull" | "listView"
+    color: "beige" | "lightgreen" | "pink"
+    layout: "desktopFull" | "inlineView" | "listView"
     description: string
     image: {
       alt: string
       src: string
     }
     link: {
-      href: string
+      attributes?: {
+        href: string
+        title: string
+      }
       text: string
     }
     name: string
@@ -139,9 +145,10 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
           title={image?.title as string}
         />
       )}
-      <div>
-        <h1>{title}</h1> <span>{text}</span>
-        <Link to={link?.href}>{link?.text}</Link>
+      <div className="container">
+        {title && <h1>{title}</h1>}
+        {link && <Link title={link?.attributes?.title} to={link?.attributes?.href}>{link?.text}</Link>}
+        {text && <span>{text}</span>}
       </div>
     </React.Fragment>
   )
