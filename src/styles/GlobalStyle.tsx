@@ -16,6 +16,7 @@ import { formCheckboxContainer } from "./formCheckboxContainer"
 import { formField } from "./formField"
 import { formRadioContainer } from "./formRadioContainer"
 import { headings } from "./headings"
+import { hr } from "./hr"
 import { html } from "./html"
 import { img } from "./img"
 import { input } from "./input"
@@ -42,6 +43,7 @@ export const GlobalStyle = createGlobalStyle`
     ${formField}
     ${formRadioContainer}
     ${headings}
+    ${hr}
     ${html}
     ${img}
     ${input}
