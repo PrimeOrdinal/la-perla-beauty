@@ -167,10 +167,12 @@ const IngredientsPage: React.FC<PageProps<PageContextCategory>> = ({
   return (
     <Layout>
       <Breadcrumb crumbs={crumbs} />
+
       <ImgBannerStyled
         src="https://picsum.photos/800/800"
         alt="placeholder image"
       />
+
       <main>
         <InformationSection className="container">
           <span>La perla beauty</span>

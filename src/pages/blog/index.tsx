@@ -109,6 +109,7 @@ const BlogLandingPage: React.FC<PageProps<PageContextCategory>> = ({
   return (
     <Layout>
       <Breadcrumb crumbs={crumbs} />
+
       <ImageGallery {...imageprops} className="img-bl" />
       <MenuSubCategory>View All</MenuSubCategory>
       <MainStyled>

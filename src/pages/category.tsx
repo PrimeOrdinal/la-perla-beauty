@@ -53,8 +53,9 @@ const CategoryPage: React.FC<
     <Layout>
       <SEO title={page?.title} />
 
+      <Breadcrumb crumbs={crumbs} />
+
       <div className={clsx("container")} category-id={category?.entityId}>
-        <Breadcrumb crumbs={crumbs} />
 
         <CategoryHeader>
           <h1>{category?.name}</h1>

@@ -22,6 +22,7 @@ export const ArticlePage: React.FC<PageProps<PageContextCategory>> = ({
   return (
     <Layout>
       <Breadcrumb crumbs={crumbs} />
+
       <main>
         <img
           src={`https://picsum.photos/905/440?${
