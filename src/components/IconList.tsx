@@ -15,7 +15,8 @@ import {
   VariantProps,
 } from "styled-system"
 
-export type IconListProps = GridProps & LayoutProps &
+export type IconListProps = GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
@@ -144,8 +145,10 @@ export const IconList: React.FC<IconListProps> = ({ items, ...props }) => (
               <span className="sr-only">{item.icon}</span>
             </div>
           )}
-          {item.heading && <h3>{item.heading}</h3>}
-          {item.body}
+          <div>
+            {item.heading && <h3>{item.heading}</h3>}
+            {item.body}
+          </div>
         </li>
       ))}
   </IconListStyled>
