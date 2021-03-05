@@ -12,7 +12,7 @@ import { BlogPostPreview } from "../../components/BlogPostPreview"
 import { ImageGallery } from "../../components/ImageGallery"
 import { MenuSubCategory } from "../../components/MenuSubCategory"
 import { ListPlain } from "../../components/ListPlain"
-import { LeafAlt } from "../../components/LeafAlt"
+import { ProductCardAlt } from "../../components/ProductCardAlt"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceGql_Category
@@ -70,6 +70,19 @@ const MainStyled = styled.main`
   .first-section {
     padding-block-start: ${themeGet("space.10")}px;
   }
+  .fourth-section {
+    background: #bfcea5;
+  }
+  .fifth-section {
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      ${mediaQueries.md} {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
 `
 
 const FeaturedGrid = styled(ListPlain)`
@@ -86,16 +99,31 @@ const RecommendedGrid = styled(ListPlain)`
   display: grid;
   grid-template-columns: auto auto;
   gap: 15px;
-  height: 770px;
+  min-height: 770px;
   ${mediaQueries.md} {
     grid-auto-flow: column;
     gap: 40px;
-    height: 600px;
+    min-height: 600px;
   }
   li {
     &:nth-child(even) {
       align-self: flex-end;
     }
+  }
+`
+
+const ProductCardSection = styled(ListPlain)`
+  display: grid;
+  grid-auto-flow: row;
+  gap: 1rem;
+  place-content: center;
+  ${mediaQueries.md} {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  ${mediaQueries.lg} {
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: unset;
   }
 `
 
@@ -184,7 +212,119 @@ const BlogLandingPage: React.FC<PageProps<PageContextCategory>> = ({
             </RecommendedGrid>
           </div>
         </section>
-        <section className="video-content container"></section>
+        <section className="container third-section">
+          <BlogPostPreview
+            tag="videos"
+            headingBelow="The buzz of the little wolrd"
+            link="learn more"
+            aspectRatio="615/413"
+          />
+        </section>
+        <section className="container fourth-section">
+          <ProductCardSection>
+            <li>
+              <ProductCardAlt
+                image={{
+                  src: `https://picsum.photos/277/277?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                  alt: "placeholder",
+                }}
+                category="EAU DE PARFUM"
+                name="The Scent of La Perla"
+                price="123"
+              />
+            </li>
+            <li>
+              <ProductCardAlt
+                image={{
+                  src: `https://picsum.photos/277/277?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                  alt: "placeholder",
+                }}
+                category="EAU DE PARFUM"
+                name="The Scent of La Perla"
+                price="123"
+              />
+            </li>
+            <li>
+              <ProductCardAlt
+                image={{
+                  src: `https://picsum.photos/277/277?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                  alt: "placeholder",
+                }}
+                category="EAU DE PARFUM"
+                name="The Scent of La Perla"
+                price="123"
+              />
+            </li>
+            <li>
+              <ProductCardAlt
+                image={{
+                  src: `https://picsum.photos/277/277?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                  alt: "placeholder",
+                }}
+                category="EAU DE PARFUM"
+                name="The Scent of La Perla"
+                price="123"
+              />
+            </li>
+          </ProductCardSection>
+        </section>
+        <section className="container fifth-section">
+          <h1>Don't miss</h1>
+          <hr />
+          <p>
+            Etiam aliquet metus mauris, tempus odio feugiat non. Praesent eu
+            magna id hendrerit bibendum. Aenean eget aliquet nisl. Pellentesque.
+          </p>
+          <BlogPostPreview
+            headingBelow="The breath of that universal love"
+            link="explore & shop"
+            aspectRatio="615/413"
+            body="Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus a felis et odio viverra dignissim."
+          />
+          <ListPlain>
+            <li>
+              <BlogPostPreview
+                headingAbove="The breath of that universal love"
+                link="explore & shop"
+                aspectRatio="3/4"
+                body="Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus a felis et odio viverra dignissim."
+              />
+            </li>
+
+            <li>
+              <BlogPostPreview
+                headingBelow="The breath of that universal love"
+                link="explore & shop"
+                aspectRatio="3/4"
+                body="Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus a felis et odio viverra dignissim."
+              />
+            </li>
+            <li>
+              <BlogPostPreview
+                headingAbove="The breath of that universal love"
+                link="explore & shop"
+                aspectRatio="3/4"
+                body="Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus a felis et odio viverra dignissim."
+              />
+            </li>
+            <li>
+              <BlogPostPreview
+                headingBelow="The breath of that universal love"
+                link="explore & shop"
+                aspectRatio="3/4"
+                body="Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus a felis et odio viverra dignissim."
+              />
+            </li>
+          </ListPlain>
+        </section>
       </MainStyled>
     </Layout>
   )
