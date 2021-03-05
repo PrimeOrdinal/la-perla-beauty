@@ -206,8 +206,8 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
 export default GeneralPage
 
 export const query = graphql`
-  query GeneralPage($id: String!) {
-    contentstackPages(id: { eq: $id }) {
+  query GeneralPage($contentstackId: String!) {
+    contentstackPages(id: { eq: $contentstackId }) {
       ...Contentstack_pagesFragment
     }
   }

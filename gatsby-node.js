@@ -94,7 +94,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // In your template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the API.
       context: {
-        id: node.id,
+        contentstackId: node.id,
         page: node,
       },
     })
