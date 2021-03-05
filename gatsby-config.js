@@ -16,10 +16,11 @@ module.exports = {
         allExtensions: true, // defaults to false
       },
     },
-    "gatsby-plugin-lint-queries",
+    // "gatsby-plugin-extract-schema",
     {
       resolve: "gatsby-plugin-graphql-codegen",
       options: {
+        codegen: process.env.GRAPHQL_CODEGEN,
         // fileName: `./gatsby-graphql.ts`,
         documentPaths: [
           './src/**/*.{tsx}',
