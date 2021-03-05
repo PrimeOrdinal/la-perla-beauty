@@ -16,7 +16,7 @@ module.exports = {
         allExtensions: true, // defaults to false
       },
     },
-    "gatsby-plugin-lint-queries",
+    // "gatsby-plugin-extract-schema",
     {
       resolve: "gatsby-plugin-graphql-codegen",
       options: {
