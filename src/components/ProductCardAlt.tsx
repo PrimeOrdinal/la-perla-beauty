@@ -1,8 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
-import WishlistAbsent from "../images/WishlistAbsent.svg"
-import Share from "../images/Share.svg"
+import Share from "../../static/icons//Share.svg"
+import WishlistAbsent from "../../static/icons//WishlistAbsent.svg"
+
 import { Button } from "./Button"
 
 const ProductCardAltStyled = styled.article`
@@ -93,7 +94,7 @@ export const ProductCardAlt: React.FC<ProductCardAltProps> = ({
         {price && <span className="price">£{price}</span>}
       </div>
       <Button variant="primary">Add to basket</Button>
-      <Button variant="tertiary">view product</Button>
+      <Button variant="tertiary">View product</Button>
     </ProductCardAltStyled>
   )
 }
