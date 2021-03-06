@@ -305,6 +305,7 @@ module.exports = {
     //     }
     //   },
     // },
+    "gatsby-plugin-stylelint",
     "gatsby-plugin-netlify",
   ],
 }
