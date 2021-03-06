@@ -23,13 +23,13 @@ module.exports = {
         codegen: process.env.GRAPHQL_CODEGEN,
         // fileName: `./gatsby-graphql.ts`,
         documentPaths: [
-          './src/**/*.{tsx}',
+          "./src/**/*.{tsx}",
           // './node_modules/gatsby-*/**/*.js',
-          './node_modules/gatsby*/!(node_modules)/**/*.js',
-          './gatsby-node.js',
+          "./node_modules/gatsby*/!(node_modules)/**/*.js",
+          "./gatsby-node.js",
           // './gatsby-node.ts',
         ],
-      }
+      },
     },
     "gatsby-plugin-react-helmet",
     // {
@@ -87,7 +87,10 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: "bigCommerceGQL",
         // Url to query from
-        url: "https://" + process.env.BIGCOMMERCE_STORE_SUBDOMAIN + ".mybigcommerce.com/graphql",
+        url:
+          "https://" +
+          process.env.BIGCOMMERCE_STORE_SUBDOMAIN +
+          ".mybigcommerce.com/graphql",
         headers: {
           // Learn about environment variables: https://gatsby.dev/env-vars
           Authorization: "Bearer " + process.env.BIGCOMMERCE_STOREFRONT_TOKEN,
@@ -178,7 +181,7 @@ module.exports = {
         resolvers: {
           // List how to resolve the fields" values
           BigCommerceProducts: {
-          // BigCommerceGql_Product: {
+            // BigCommerceGql_Product: {
             image_url: function (node) {
               return node.image_url
               // return node.image[0]
