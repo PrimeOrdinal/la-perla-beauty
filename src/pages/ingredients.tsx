@@ -72,7 +72,7 @@ const LetterBanner = styled.div`
   }
   span {
     font-size: ${themeGet("fontSizes.6")}px;
-    font-family: "Tiempos";
+    font-family: "Tiempos", serif;
     ${mediaQueries.md} {
       font-size: ${themeGet("fontSizes.7")}px;
     }
@@ -134,7 +134,7 @@ const IngredientList = styled(ListPlain)`
             grid-auto-flow: row;
             gap: ${themeGet("space.4")}px;
             h3 {
-              font-family: "Quicksand";
+              font-family: "Quicksand", sans-serif;
               font-size: ${themeGet("fontSizes.bodyMobile")}px;
               text-transform: uppercase;
               font-weight: bold;

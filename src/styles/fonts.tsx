@@ -1,6 +1,6 @@
 export const fonts = `
     @font-face {
-        font-family: "Tiempos";
+        font-family: "Tiempos", serif;
         font-style: normal;
         font-weight: lighter;
         src: url("../fonts/tiempos-fine-web-light.woff2") format("woff2"),
@@ -15,11 +15,11 @@ export const fonts = `
     }
 
     .tiempos {
-        font-family: "Tiempos";
+        font-family: "Tiempos", serif;
         font-weight: lighter;
     }
 
     .quicksand {
-        font-family: "Quicksand";
+        font-family: "Quicksand", sans-serif;
     }
 `

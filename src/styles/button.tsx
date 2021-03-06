@@ -8,7 +8,7 @@ export const styles = `
     border: unset;
     cursor: pointer;
     display: flex;
-    font-family: "Quicksand";
+    font-family: "Quicksand", sans-serif;
     font-size: var(--font-size-body, 13px);
     justify-content: center;
     justify-items: center;

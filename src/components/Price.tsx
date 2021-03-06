@@ -21,7 +21,7 @@ export type PriceProps = ColorProps &
   VariantProps
 
 export const PriceStyled: React.FC<PriceProps> = styled.div`
-  font-family: "Tiempos";
+  font-family: "Tiempos", serif;
   font-weight: lighter;
 
   &:disabled {

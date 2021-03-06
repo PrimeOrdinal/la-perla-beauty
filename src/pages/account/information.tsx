@@ -74,15 +74,12 @@ const ColumnTwoStyled = styled.section`
       }
     }
     .password-accordion {
-      border-bottom: ${themeGet("border.width")} solid
-        ${themeGet("border.color")};
+      border-bottom-style: solid;
     }
   }
   h2 {
-    margin: 0;
     font-size: 20px;
-    ${mediaQueries.md} {
-    }
+    margin: 0;
   }
 `
 

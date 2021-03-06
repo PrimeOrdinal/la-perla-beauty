@@ -21,17 +21,17 @@ const MainStyled = styled.main`
   grid-auto-flow: row;
 
   ${mediaQueries.md} {
-    grid-auto-flow: column;
     align-items: flex-start;
     gap: 5rem;
-    margin-block-end: 70px;
-    margin-block-start: 70px;
+    grid-auto-flow: column;
     grid-template-columns: minmax(200px, 300px) minmax(400px, 650px);
     justify-content: space-between;
+    margin-block-end: 70px;
+    margin-block-start: 70px;
   }
 
   .section-title {
-    font-family: "Quicksand";
+    font-family: "Quicksand", sans-serif;
     font-size: 13px;
     font-weight: bold;
     margin: 0;
@@ -74,8 +74,8 @@ const AccountNav = styled(ListPlain)`
 
       ${mediaQueries.md} {
         border-bottom-style: solid;
-        padding-block-end: 12px;
         justify-content: start;
+        padding-block-end: 12px;
 
         &.active {
           border-bottom-color: ${themeGet("colors.black")};

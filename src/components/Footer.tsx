@@ -90,7 +90,7 @@ const FooterStyle = styled.footer`
 
       ${mediaQueries.md} {
         display: block;
-        font-family: "Tiempos";
+        font-family: "Tiempos", serif;
         font-weight: lighter;
         font-size: ${themeGet("fontSizes.6")}px;
         letter-spacing: 0.5px;

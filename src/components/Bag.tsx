@@ -69,7 +69,7 @@ const GridStyled = styled.div`
         padding-block-start: 1rem;
 
         h2 {
-          font-family: "Quicksand";
+          font-family: "Quicksand", sans-serif;
           font-size: ${themeGet("fontSizes.bodyMobile")}px;
           font-weight: bold;
           margin-block-start: 0;
@@ -129,7 +129,7 @@ const GridStyled = styled.div`
     }
 
     .price {
-      font-family: "Tiempos";
+      font-family: "Tiempos", serif;
       font-size: ${themeGet("fontSizes.heading3Mobile")}px;
       font-weight: lighter;
     }

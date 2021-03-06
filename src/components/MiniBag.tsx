@@ -86,7 +86,7 @@ export const MiniBagStyled: React.FC<MiniBagProps> = styled.div`
     }
 
     .price {
-      font-family: "Tiempos";
+      font-family: "Tiempos", serif;
       font-size: ${themeGet("fontSizes.heading3Mobile")}px;
       font-weight: lighter;
     }

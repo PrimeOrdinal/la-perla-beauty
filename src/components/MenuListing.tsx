@@ -79,9 +79,6 @@ const MenuListingStyled = styled.section`
     padding-block-start: ${themeGet("space.3")}px;
   }
 
-  .menu-view-and-refine {
-  }
-
   .menu-refine {
     background-color: ${themeGet("colors.white")};
     left: 20%;

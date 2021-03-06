@@ -19,7 +19,7 @@ const BreadcrumbStyled = styled.div`
     flex-wrap: wrap;
     list-style: none;
     margin: 0;
-    padding-left: 0;
+    padding-inline-start: unset;
     text-transform: uppercase;
   }
 
@@ -41,6 +41,8 @@ const BreadcrumbStyled = styled.div`
   }
 
   .breadcrumb__separator {
+    padding-inline-end: ${themeGet("space.2")}px;
+    padding-inline-start: ${themeGet("space.2")}px;
   }
 
   [aria-current="page"] {

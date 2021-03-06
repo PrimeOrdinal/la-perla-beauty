@@ -12,7 +12,7 @@ const BlockQuoteStyled = styled.div`
   margin-block-start: ${themeGet("space.8")}px;
   margin-block-end: ${themeGet("space.8")}px;
   blockquote {
-    font-family: "Tiempos";
+    font-family: "Tiempos", serif;
     font-size: ${themeGet("fontSizes.heading2Mobile")}px;
     max-width: ${themeGet("space.12")}ch;
     position: relative;

@@ -77,21 +77,13 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
     background-image: url(${PlusIcon});
   }
 
-  .accordion__button[aria-expanded="true"]::after,
-  .accordion__button[aria-selected="true"]::after {
-  }
-
-  .accordion__button[aria-expanded="false"]::after,
-  .accordion__button[aria-selected="false"]::after {
-  }
-
   [hidden] {
     display: none;
   }
 
   .accordion__panel {
-    padding: 0;
     animation: fadein 0.35s ease-in;
+    padding: 0;
   }
 
   .accordion__panel ul {

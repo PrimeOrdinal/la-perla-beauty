@@ -153,10 +153,6 @@ const ProductStyled = styled.article`
     dd {
       margin-block-end: ${themeGet("space.4")}px;
     }
-
-    dd,
-    dt {
-    }
   }
 `
 

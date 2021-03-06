@@ -46,7 +46,7 @@ const MenuRefineMobileStyled = styled.section`
     h1 {
       border-bottom: ${themeGet("border.color")} solid
         ${themeGet("border.width")};
-      font-family: "Quicksand";
+      font-family: "Quicksand", sans-serif;
       font-size: ${themeGet("fontSizes.bodyMobile")}px;
       font-weight: bold;
       text-transform: uppercase;

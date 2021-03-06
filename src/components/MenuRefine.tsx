@@ -46,20 +46,19 @@ const MenuRefineStyled = styled.section`
   }
 
   h1 {
-    font-family: "Quicksand";
-    font-weight: bold;
-    text-transform: uppercase;
-    padding-block-end: ${themeGet("space.6")}px;
     border-bottom: ${themeGet("border.width")} solid ${themeGet("border.color")};
+    font-family: "Quicksand", sans-serif;
+    font-weight: bold;
+    padding-block-end: ${themeGet("space.6")}px;
+    text-transform: uppercase;
   }
 
   h2 {
-    font-family: "Quicksand";
+    font-family: "Quicksand", sans-serif;
+    font-size: ${themeGet("fontSizes.heading4Desktop")}px;
     font-weight: normal;
     margin: 0;
-    font-size: inherit;
     text-transform: uppercase;
-    font-size: ${themeGet("fontSizes.heading4Desktop")}px;
   }
 
   .fancy-radio-label,

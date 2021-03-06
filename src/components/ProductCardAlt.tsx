@@ -48,7 +48,7 @@ const ProductCardAltStyled = styled.article`
       font-size: 14px;
     }
     .price {
-      font-family: "Tiempos";
+      font-family: "Tiempos", serif;
       font-weight: 300;
       font-size: 16px;
     }

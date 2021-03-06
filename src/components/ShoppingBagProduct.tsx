@@ -87,7 +87,7 @@ const ShoppingBagProductStyled = styled.div`
       }
 
       .price {
-        font-family: "Tiempos";
+        font-family: "Tiempos", serif;
         font-size: 14px;
         font-weight: lighter;
         text-align: end;

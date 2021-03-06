@@ -99,7 +99,7 @@ const ProductCardStyled = styled.article`
 
   .product-name {
     align-self: flex-end;
-    font-family: "Tiempos";
+    font-family: "Tiempos", serif;
     font-size: ${themeGet("fontSizes.heading2Desktop")}px;
     font-weight: lighter;
 
@@ -109,7 +109,7 @@ const ProductCardStyled = styled.article`
   }
 
   .product-price {
-    font-family: "Tiempos";
+    font-family: "Tiempos", serif;
     font-size: ${themeGet("fontSizes.heading2Desktop")}px;
     font-weight: lighter;
   }
