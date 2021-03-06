@@ -1,0 +1,12 @@
+{
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": false,
+        "transpileTemplateLiterals": true
+      }
+    ]
+  ],
+  "presets": [["babel-preset-gatsby"]]
+}
