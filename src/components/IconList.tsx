@@ -44,18 +44,18 @@ export type IconListProps = GridProps &
 
 import { ListPlain } from "../components/ListPlain"
 
-import Diamond from "../images/Diamond.svg"
-import WishlistAbsent from "../images/WishlistAbsent.svg"
-import Tracking from "../images/Tracking.svg"
-import Shipping from "../images/Shipping.svg"
-import Return from "../images/Return.svg"
-import Newsletter from "../images/Newsletter.svg"
-import Plant from "../images/Plant.svg"
-import Recycle from "../images/Recycle.svg"
-import Perfume from "../images/Perfume.svg"
-import Cookies from "../images/Cookies.svg"
-import Nib from "../images/Nib.svg"
-import GiftWrap from "../images/GiftWrap.svg"
+import Diamond from "../../static/icons/Diamond.svg"
+import WishlistAbsent from "../../static/icons/WishlistAbsent.svg"
+import Tracking from "../../static/icons/Tracking.svg"
+import Shipping from "../../static/icons/Shipping.svg"
+import Return from "../../static/icons/Return.svg"
+import Newsletter from "../../static/icons/Newsletter.svg"
+import Plant from "../../static/icons/Plant.svg"
+import Recycle from "../../static/icons/Recycle.svg"
+import Perfume from "../../static/icons/Perfume.svg"
+import Cookies from "../../static/icons/Cookies.svg"
+import Nib from "../../static/icons/Nib.svg"
+import GiftWrap from "../../static/icons/GiftWrap.svg"
 
 export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
   display: grid;
@@ -106,17 +106,21 @@ export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
     &.perfume {
       background-image: url(${Perfume});
     }
-    &.purple {
-      background-color: #d3cbd6;
+    &.lilac {
+      background-color: ${themeGet("colors.lilac")};
     }
-    &.green {
-      background-color: #bfcea5;
+    &.green,
+    &.lightgreen {
+      background-color: ${themeGet("colors.lightgreen")};
     }
     &.orange {
-      background-color: #debf9b;
+      background-color: ${themeGet("colors.orange")};
     }
     &.pink {
-      background-color: #feebdf;
+      background-color: ${themeGet("colors.pink")};
+    }
+    &.beige {
+      background-color: ${themeGet("colors.beige")};
     }
   }
   li {

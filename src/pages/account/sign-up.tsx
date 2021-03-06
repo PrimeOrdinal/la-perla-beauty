@@ -10,13 +10,15 @@ import { SEO } from "../../components/SEO"
 
 interface Values {
   emailAddress: string
+  firstName: string
+  lastName: string
   password: string
 }
 
 const SignInSchema = Yup.object().shape({
+  emailAddress: Yup.string().email("Invalid email").required("Required"),
   firstName: Yup.string().min(2, "Name is too short").required("Required"),
   lastName: Yup.string().min(2, "Name is too short").required("Required"),
-  emailAddress: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string().min(2, "Password is too short").required("Required"),
 })
 
@@ -28,6 +30,8 @@ const SignUpPage: React.FC = () => (
       <Formik
         initialValues={{
           emailAddress: "",
+          firstName: "",
+          lastName: "",
           password: "",
         }}
         onSubmit={async (

@@ -16,8 +16,6 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { useHover } from "../hooks/useHover"
-
 import { Link } from "./Button"
 import { ListPlain } from "./ListPlain"
 
@@ -132,11 +130,8 @@ export type MenuNavigationProps = GridProps &
 export const MenuNavigation: React.FC<MenuNavigationProps> = ({
   data,
   ...props
-}) => {
-  const [hoverRef, isHovered] = useHover()
-
-  return (
-    <StyledMenu ref={hoverRef} {...props}>
+}) => (
+    <StyledMenu {...props}>
       {data?.allContentstackMenus?.edges
         ?.filter(({ node: menu }) => menu.slot?.startsWith("header-navigation"))
         .map(({ node: menu }) => (
@@ -150,8 +145,8 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
                 >
                   {linkLevel1?.text}
                 </Link>
-                {linkLevel1?.sub_menus?.map((sub_menu, indexLevel2) => (
-                  <div className="sub-menu">
+                {linkLevel1?.sub_menus?.map((sub_menu, subMenuIndex) => (
+                  <div className="sub-menu" key={subMenuIndex}>
                     {sub_menu && (
                       <ul className="links">
                         {sub_menu?.links?.map((linkLevel2, indexLevel2) => (
@@ -194,4 +189,3 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
         ))}
     </StyledMenu>
   )
-}

@@ -14,8 +14,8 @@ import {
   VariantProps,
 } from "styled-system"
 
-import { ReactComponent as WishlistAbsentIcon } from "../images/WishlistAbsent.svg"
-import { ReactComponent as WishlistPresentIcon } from "../images/WishlistPresent.svg"
+import { ReactComponent as WishlistAbsentIcon } from "../../static/icons/WishlistAbsent.svg"
+import { ReactComponent as WishlistPresentIcon } from "../../static/icons/WishlistPresent.svg"
 
 import { Button } from "./Button"
 

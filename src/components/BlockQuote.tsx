@@ -3,8 +3,8 @@ import styled from "styled-components"
 import { mediaQueries } from "../theme"
 import { themeGet } from "@styled-system/theme-get"
 
-import OpenQuote from "../images/OpenQuote.svg"
-import CloseQuote from "../images/CloseQuote.svg"
+import OpenQuote from "../../static/icons/OpenQuote.svg"
+import CloseQuote from "../../static/icons/CloseQuote.svg"
 
 const BlockQuoteStyled = styled.div`
   display: flex;

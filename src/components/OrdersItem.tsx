@@ -1,7 +1,7 @@
-import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
   layout,
   position,
@@ -99,6 +99,8 @@ const SecondColumnStyled = styled(ListPlain)`
       }
     }
   }
+
+  ${compose(color, layout, position, space)}
 `
 
 export const OrdersItem: React.FC<OrdersItemProps> = ({

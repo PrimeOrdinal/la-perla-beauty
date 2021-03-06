@@ -15,9 +15,9 @@ import {
   VariantProps,
 } from "styled-system"
 
-import { ReactComponent as Arrow } from "../images/Arrow.svg"
-import { ReactComponent as ZoomIn } from "../images/ZoomIn.svg"
-import { ReactComponent as Close } from "../images/Close.svg"
+import { ReactComponent as Arrow } from "../../static/icons/Arrow.svg"
+import { ReactComponent as ZoomIn } from "../../static/icons/ZoomIn.svg"
+import { ReactComponent as Close } from "../../static/icons/Close.svg"
 
 import "./ImageGallery.css"
 

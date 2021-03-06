@@ -6,10 +6,10 @@ import { mediaQueries } from "../theme"
 
 import { Button } from "./Button"
 import { ShoppingBagProduct } from "./ShoppingBagProduct"
-import applepay from "../images/applepay.svg"
-import googlepay from "../images/googlepay.svg"
-import mastercard from "../images/mastercard.svg"
-import visa from "../images/visa.svg"
+import applepay from "../../static/icons/applepay.svg"
+import googlepay from "../../static/icons/googlepay.svg"
+import mastercard from "../../static/icons/mastercard.svg"
+import visa from "../../static/icons/visa.svg"
 
 const GridStyled = styled.div`
   display: grid;

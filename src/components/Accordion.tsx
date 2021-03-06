@@ -19,8 +19,8 @@ import {
   VariantProps,
 } from "styled-system"
 
-import MinusIcon from "../images/Minus.svg"
-import PlusIcon from "../images/Plus.svg"
+import MinusIcon from "../../static/icons/Minus.svg"
+import PlusIcon from "../../static/icons/Plus.svg"
 
 export type AccordionProps = LayoutProps &
   PositionProps &

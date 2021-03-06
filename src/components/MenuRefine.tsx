@@ -165,6 +165,9 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                         <label htmlFor={`sort-${index}`} className="fancy-radio-label">
                           {option}
                         </label>
+                        {errors.sort && touched.sort ? (
+                          <div className="error">{errors.sort}</div>
+                        ) : undefined}
                       </div>
                     ))}
                   </div>
@@ -303,6 +306,11 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
                         </label>
                       </div>
                     </div>
+                  </div>
+                  <div className="form-row">
+                  {errors.filter && touched.filter ? (
+                    <div className="error">{errors.filter}</div>
+                  ) : undefined}
                   </div>
                 </section>
               </div>

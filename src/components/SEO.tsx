@@ -7,9 +7,9 @@
 
 import type { SeoQuery } from "../../graphql-types"
 
+import { useStaticQuery, graphql } from "gatsby"
 import React from "react"
 import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
 
 export type metaProp =
   | { name: string; content: string; property?: undefined }

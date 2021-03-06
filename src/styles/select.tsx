@@ -1,6 +1,6 @@
 import { theme } from "../theme"
 
-import ChevronIcon from "../images/Chevron.svg"
+import ChevronIcon from "../../static/icons/Chevron.svg"
 
 export const select = `
     select {

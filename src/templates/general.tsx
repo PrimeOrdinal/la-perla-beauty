@@ -1,4 +1,4 @@
-import type { Contentstack_Pages } from "../../graphql-types"
+import type { Contentstack_Pages, GeneralPageQuery } from "../../graphql-types"
 
 import clsx from "clsx"
 import { PageProps, graphql } from "gatsby"
@@ -22,7 +22,7 @@ type PageContextPage = PageContextTypeBreadcrumb & {
   page: Contentstack_Pages
 }
 
-const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
+const GeneralPage: React.FC<PageProps<GeneralPageQuery, PageContextPage>> = ({
   data,
   pageContext,
 }) => {
@@ -96,12 +96,19 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
             {page_section?.modular_blocks.map(modular_block => {
               let component
 
-              Object.entries(modular_block).forEach(([key, value]) => {
+              Object.entries(modular_block).forEach(([key, value]: [key: string, value: any]) => {
                 if (value === null) {
                   return
                 }
 
-                // console.log("value", value)
+                console.log("value", value)
+
+                const margins = {
+                  marginBottom: { _: 0, md: value?.margins?.bottom },
+                  marginLeft: { _: 0, md: value?.margins?.left },
+                  marginRight: { _: 0, md: value?.margins?.right },
+                  marginTop: { _: 0, md: value?.margins?.top },
+                }
 
                 switch (key) {
                   case "accordion":
@@ -117,17 +124,11 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
                       />
                     )
                     break
-                  case "breadcrumb":
-                    component = <p>{value?.show}</p>
-                    break
                   case "horizontal_rule":
                     component = (
                       <HoriontalRule
                         className={value?.colour}
-                        marginBottom={{ _: 4, md: value?.margins?.bottom }}
-                        marginLeft={{ _: 4, md: value?.margins?.left }}
-                        marginRight={{ _: 4, md: value?.margins?.right }}
-                        marginTop={{ _: 4, md: value?.margins?.top }}
+                        {...margins}
                       />
                     )
                     break
@@ -135,10 +136,6 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
                     component = (
                       <IconList
                         gridAutoFlow={{ _: "row", md: "column" }}
-                        marginBottom={{ _: 4, md: value?.margins?.bottom }}
-                        marginLeft={{ _: 4, md: value?.margins?.left }}
-                        marginRight={{ _: 4, md: value?.margins?.right }}
-                        marginTop={{ _: 4, md: value?.margins?.top }}
                         items={value?.item?.map(item => ({
                           icon: item?.icon,
                           color: item?.colour,
@@ -146,11 +143,12 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
                           body: <p>{item?.text}</p>,
                         }))}
                         orientation="horizontal"
+                        {...margins}
                       ></IconList>
                     )
                     break
                   case "image":
-                    component = <PromotionalBanner inlineView {...value} />
+                    component = <PromotionalBanner inlineView {...value} {...margins} />
                     break
                   case "image_with_overlay":
                     component = (
@@ -158,6 +156,7 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
                         inlineView
                         text={value?.paragraph}
                         title={value?.title_primary}
+                        {...margins}
                         {...value}
                       />
                     )
@@ -165,18 +164,18 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
                   case "introduction":
                     component = 
                     (
-                      <Introduction>
+                      <Introduction {...margins}>
                         {/* <Heading level={value?.heading?.semantic_level}>{value?.heading?.text}</Heading> */}
                         <p>{value?.paragraph}</p>
                       </Introduction>
                     )
                     break
                   case "leaf":
-                    component = <Leaf {...value} />
+                    component = <Leaf {...value} {...margins} />
                     break
                   case "menu":
                     component = (
-                      <MenuSubCategory justifyContent={value?.justify_content}>
+                      <MenuSubCategory justifyContent={value?.justify_content} {...margins}>
                         {value?.menu?.[0]?.links?.map(link => (
                           <Link title={link?.url?.title} to={link?.url?.href}>
                             {link?.text}
@@ -186,7 +185,7 @@ const GeneralPage: React.FC<PageProps<null, PageContextPage>> = ({
                     )
                     break
                   case "paragraph":
-                    component = <p>{value?.paragraph}</p>
+                    component = <p {...margins}>{value?.paragraph}</p>
                     break
                   default:
                     console.log(`Unmapped modular block type: ${key}`)

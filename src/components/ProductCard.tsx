@@ -8,8 +8,8 @@ import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
 
 import { useToggle } from "../hooks/useToggle"
 
-import { ReactComponent as MinusIcon } from "../images/Minus.svg"
-import { ReactComponent as PlusIcon } from "../images/Plus.svg"
+import { ReactComponent as MinusIcon } from "../../static/icons/Minus.svg"
+import { ReactComponent as PlusIcon } from "../../static/icons/Plus.svg"
 
 import { mediaQueries } from "../theme"
 

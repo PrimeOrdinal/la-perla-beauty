@@ -1,4 +1,4 @@
-import { mediaQueries, theme } from "../theme"
+import { mediaQueries } from "../theme"
 
 export const formRadioContainer = `
   .fancy-radio {

@@ -12,8 +12,8 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ReactComponent as Close } from "../images/Close.svg"
-import { ReactComponent as Hamburger } from "../images/Hamburger.svg"
+import { ReactComponent as Close } from "../../static/icons/Close.svg"
+import { ReactComponent as Hamburger } from "../../static/icons/Hamburger.svg"
 
 import { mediaQueries } from "../theme"
 

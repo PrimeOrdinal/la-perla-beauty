@@ -19,6 +19,8 @@ type FontSizesProp = Array<number> & {
   heading2Mobile?: number
   heading3Mobile?: number
   heading4Mobile?: number
+  smallDesktop?: number
+  smallMobile?: number
 }
 
 export const breakpoints: BreakpointsProp = [

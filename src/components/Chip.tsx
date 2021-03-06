@@ -13,7 +13,7 @@ import {
   VariantProps,
 } from "styled-system"
 
-import { ReactComponent as CloseIcon } from "../images/Close.svg"
+import { ReactComponent as CloseIcon } from "../../static/icons/Close.svg"
 
 export type ChipProps = ColorProps &
   LayoutProps &

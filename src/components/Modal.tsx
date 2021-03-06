@@ -15,7 +15,7 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ReactComponent as Close } from "../images/Close.svg"
+import { ReactComponent as Close } from "../../static/icons/Close.svg"
 
 import { Button } from "./Button"
 

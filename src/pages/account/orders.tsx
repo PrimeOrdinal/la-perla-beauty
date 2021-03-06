@@ -45,21 +45,6 @@ const OrdersColumn = styled.section`
     gap: ${themeGet("space.9")}px;
   }
 `
-const PromoBannerArgs = {
-  description:
-    "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt.",
-  image: {
-    description:
-      "A grey placeholder image with the dimensions overlayed in white text",
-    src: "https://via.placeholder.com/282",
-  },
-  link: {
-    href: "/learn-more",
-    text: "Learn more",
-  },
-  title: "Promo Banner",
-  width: { _: 1, md: 1 / 2 },
-}
 
 const OrdersPage: React.FC = () => (
   <Layout>

@@ -1,13 +1,14 @@
 import React from "react"
 
-import clsx from "clsx"
 import styled from "styled-components"
 import {
+  color,
   compose,
   grid,
   layout,
   position,
   space,
+  ColorProps,
   GridProps,
   LayoutProps,
   PositionProps,
@@ -16,19 +17,18 @@ import {
 } from "styled-system"
 
 import { Link } from "./Button"
-import { mediaQueries } from "../theme"
 
-export type BlogPostPreviewProps = GridProps &
+export type BlogPostPreviewProps = ColorProps & GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
+    aspectRatio: string
+    body: string
     headingAbove: string
     headingBelow: string
-    tag: string
-    body: string
     link: string
-    aspectRatio: string
+    tag: string
   }
 
 const BlogPostPreviewStyled = styled.article`
@@ -40,6 +40,8 @@ const BlogPostPreviewStyled = styled.article`
     text-transform: uppercase;
     font-weight: bold;
   }
+
+  ${compose(color, grid, layout, position, space)}
 `
 
 export const BlogPostPreview: React.FC<BlogPostPreviewProps> = ({

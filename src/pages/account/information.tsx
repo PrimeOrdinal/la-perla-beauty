@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
-import Chevron from "../../images/Chevron.svg"
+import Chevron from "../../../static/icons/Chevron.svg"
 import { Layout } from "../../components/Layout"
 import { Button } from "../../components/Button"
 import { Accordion } from "../../components/Accordion"

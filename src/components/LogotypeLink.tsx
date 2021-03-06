@@ -11,7 +11,7 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ReactComponent as Logotype } from "../images/Logotype.svg"
+import { ReactComponent as Logotype } from "../../static/icons/Logotype.svg"
 
 import { mediaQueries } from "../theme"
 

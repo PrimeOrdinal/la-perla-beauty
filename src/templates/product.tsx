@@ -1,6 +1,6 @@
 import type { ImageObject, Offer, ProductGroup } from "schema-dts"
 
-import type { BigCommerceGql_Product } from "../../graphql-types"
+import type { BigCommerceGql_Product, ProductPageQuery } from "../../graphql-types"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -168,7 +168,7 @@ type PageContextProduct = PageContextTypeBreadcrumb & {
   node: BigCommerceGql_Product
 }
 
-const ProductPage: React.FC<PageProps<null, PageContextProduct>> = ({
+const ProductPage: React.FC<PageProps<ProductPageQuery, PageContextProduct>> = ({
   data,
   pageContext,
 }) => {

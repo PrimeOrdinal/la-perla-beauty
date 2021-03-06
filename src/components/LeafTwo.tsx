@@ -1,10 +1,10 @@
-import React from "react"
-import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
+import React from "react"
+import styled from "styled-components"
+
 import { mediaQueries } from "../theme"
 
-import { LeafWrapper } from "./LeafWrapper"
 import { Link } from "./Button"
 
 export type LeafTwoProps = {

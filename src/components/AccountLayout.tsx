@@ -1,21 +1,24 @@
-import React, { useState } from "react"
-import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
-import { ReactComponent as Profile } from "../images/Profile.svg"
-import { ReactComponent as Newsletter } from "../images/Newsletter.svg"
-import { ReactComponent as Shipping } from "../images/Shipping.svg"
-import { ReactComponent as Return } from "../images/Return.svg"
-import { ReactComponent as Address } from "../images/Address.svg"
-import { ReactComponent as WishlistAbsent } from "../images/WishlistAbsent.svg"
+import React from "react"
+import styled from "styled-components"
+
+import { ReactComponent as Profile } from "../../static/icons/Profile.svg"
+import { ReactComponent as Newsletter } from "../../static/icons/Newsletter.svg"
+import { ReactComponent as Shipping } from "../../static/icons/Shipping.svg"
+import { ReactComponent as Return } from "../../static/icons/Return.svg"
+import { ReactComponent as Address } from "../../static/icons/Address.svg"
+import { ReactComponent as WishlistAbsent } from "../../static/icons/WishlistAbsent.svg"
+
+import { Link } from "../components/Button"
 
 import { mediaQueries } from "../theme"
+
 import { ListPlain } from "./ListPlain"
-import { Link } from "../components/Button"
 
 const MainStyled = styled.main`
   display: grid;
-  grid-auto-flow: row;
   gap: 1rem;
+  grid-auto-flow: row;
 
   ${mediaQueries.md} {
     grid-auto-flow: column;
@@ -26,12 +29,14 @@ const MainStyled = styled.main`
     grid-template-columns: minmax(200px, 300px) minmax(400px, 650px);
     justify-content: space-between;
   }
+
   .section-title {
     font-family: "Quicksand";
-    font-weight: bold;
     font-size: 13px;
+    font-weight: bold;
     margin: 0;
     text-transform: uppercase;
+
     ${mediaQueries.md} {
       display: none;
     }
@@ -74,7 +79,7 @@ const AccountNav = styled(ListPlain)`
 
         &.active {
           border-bottom-color: ${themeGet("colors.black")};
-          font-weight: bold,
+          font-weight: bold;
         }
       }
 
@@ -86,55 +91,47 @@ const AccountNav = styled(ListPlain)`
   }
 `
 
-export const AccountLayout = ({ children }) => {
-  const [active, setActive] = useState(false)
-
-  const handleClick = () => {
-    setActive(!active)
-  }
-
-  return (
-    <MainStyled className="container">
-      <h1 className="section-title">Navigate to section</h1>
-      <AccountNav>
-        <li>
-          <Link to="/account/information">
-            <Profile />
-            Account information
-          </Link>
-        </li>
-        <li>
-          <Link to="/account/orders">
-            <Shipping />
-            Orders
-          </Link>
-        </li>
-        <li>
-          <Link to="/account/returns">
-            <Return />
-            Returns
-          </Link>
-        </li>
-        <li>
-          <Link to="/account/address-book">
-            <Address />
-            Address book
-          </Link>
-        </li>
-        <li>
-          <Link to="/account/wishlist">
-            <WishlistAbsent />
-            Wishlist
-          </Link>
-        </li>
-        <li>
-          <Link to="/account/newsletter-preferences">
-            <Newsletter />
-            Newsletter preferences
-          </Link>
-        </li>
-      </AccountNav>
-      {children}
-    </MainStyled>
-  )
-}
+export const AccountLayout = ({ children }) => (
+  <MainStyled className="container">
+    <h1 className="section-title">Navigate to section</h1>
+    <AccountNav>
+      <li>
+        <Link to="/account/information">
+          <Profile />
+          Account information
+        </Link>
+      </li>
+      <li>
+        <Link to="/account/orders">
+          <Shipping />
+          Orders
+        </Link>
+      </li>
+      <li>
+        <Link to="/account/returns">
+          <Return />
+          Returns
+        </Link>
+      </li>
+      <li>
+        <Link to="/account/address-book">
+          <Address />
+          Address book
+        </Link>
+      </li>
+      <li>
+        <Link to="/account/wishlist">
+          <WishlistAbsent />
+          Wishlist
+        </Link>
+      </li>
+      <li>
+        <Link to="/account/newsletter-preferences">
+          <Newsletter />
+          Newsletter preferences
+        </Link>
+      </li>
+    </AccountNav>
+    {children}
+  </MainStyled>
+)

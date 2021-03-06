@@ -8,7 +8,12 @@ declare global {
     }
 
     interface Navigator {
+      canShare?: boolean;
       share? : (data? : ShareData) => Promise<void>;
     }
+  }
+
+  interface Navigator {
+    canShare?: boolean;
   }
 }

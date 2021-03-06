@@ -11,9 +11,9 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ReactComponent as Basket } from "../images/Basket.svg"
-import { ReactComponent as Profile } from "../images/Profile.svg"
-import { ReactComponent as Search } from "../images/Search.svg"
+import { ReactComponent as Basket } from "../../static/icons/Basket.svg"
+import { ReactComponent as Profile } from "../../static/icons/Profile.svg"
+import { ReactComponent as Search } from "../../static/icons/Search.svg"
 
 import { mediaQueries } from "../theme"
 

@@ -11,9 +11,9 @@ import {
 } from "styled-system"
 import { mediaQueries } from "../theme"
 
-import { ReactComponent as CloseIcon } from "../images/Close.svg"
-import { ReactComponent as MinusIcon } from "../images/Minus.svg"
-import { ReactComponent as PlusIcon } from "../images/Plus.svg"
+import { ReactComponent as CloseIcon } from "../../static/icons/Close.svg"
+import { ReactComponent as MinusIcon } from "../../static/icons/Minus.svg"
+import { ReactComponent as PlusIcon } from "../../static/icons/Plus.svg"
 
 const ShoppingBagProductStyled = styled.div`
   display: grid;

@@ -2,7 +2,6 @@ import type { Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
 import React, { useState } from "react"
-import { Modal } from "./Modal"
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -13,7 +12,7 @@ import {
   LivejournalShareButton,
   MailruShareButton,
   OKShareButton,
-  PinterestShareButton,
+  // PinterestShareButton,
   PocketShareButton,
   RedditShareButton,
   TelegramShareButton,
@@ -25,7 +24,7 @@ import {
   WorkplaceShareButton,
   EmailIcon,
   FacebookIcon,
-  FacebookMessengerIcon,
+  // FacebookMessengerIcon,
   HatenaIcon,
   InstapaperIcon,
   LineIcon,
@@ -33,7 +32,7 @@ import {
   LivejournalIcon,
   MailruIcon,
   OKIcon,
-  PinterestIcon,
+  // PinterestIcon,
   PocketIcon,
   RedditIcon,
   TelegramIcon,
@@ -41,7 +40,7 @@ import {
   TwitterIcon,
   ViberIcon,
   VKIcon,
-  WeiboIcon,
+  // WeiboIcon,
   WhatsappIcon,
   WorkplaceIcon,
 } from "react-share"
@@ -57,18 +56,15 @@ import {
   VariantProps,
 } from "styled-system"
 
-import { ReactComponent as ShareIcon } from "../images/Share.svg"
+import { ReactComponent as ShareIcon } from "../../static/icons/Share.svg"
 
 import { Button } from "./Button"
+import { Modal } from "./Modal"
 
 export type QuickShareProps = LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & { product: Product }
-
-interface Values {
-  identifier: string
-}
 
 export const QuickShareStyled: React.FC<QuickShareProps> = styled.div`
   ${compose(layout, position, space)}
@@ -162,9 +158,9 @@ export const QuickShare: React.FC<QuickShareProps> = ({
             <OKShareButton url={window.location.href}>
               <OKIcon />
             </OKShareButton>
-            <PinterestShareButton url={window.location.href}>
+            {/* <PinterestShareButton url={window.location.href}>
               <PinterestIcon />
-            </PinterestShareButton>
+            </PinterestShareButton> */}
             <PocketShareButton url={window.location.href}>
               <PocketIcon />
             </PocketShareButton>

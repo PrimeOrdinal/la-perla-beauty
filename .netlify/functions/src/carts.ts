@@ -29,6 +29,10 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
   const apiURL = `https://api.bigcommerce.com/stores/${BIGCOMMERCE_STORE_HASH}/v3`
 
   try {
+    if(!event.headers.cookie) {
+      return
+    }
+
     const cookies = cookie.parse(event.headers.cookie)
 
     const hasCartIdCookie = cookies.hasOwnProperty("cartId")
@@ -36,7 +40,7 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
     console.assert(hasCartIdCookie, cookies)
 
     const path = hasCartIdCookie
-      ? `carts/${cookies.cartId.value}`
+      ? `carts/${cookies.cartId}`
       : `carts`
 
     const url = new URL(`/${path}`, `${apiURL}`)
@@ -65,7 +69,7 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
       method: hasCartIdCookie ? "get" : "post"
     })
 
-    let cookieHeader = cookie.serialize("cartId", undefined, { maxAge: -1 })
+    let cookieHeader = cookie.serialize("cartId", "", { maxAge: -1 })
 
     if (response.ok) {
       const data = await response.json()

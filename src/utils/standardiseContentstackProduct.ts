@@ -7,11 +7,11 @@ export function standardiseContentstackProduct(
     Contentstack_Products,
     "title" | "id" | "url" | "product_id" | "rich_text_editor"
   >
-): Product {
+): WithContext<Product> {
   const data: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product?.title,
+    name: product?.title as string | undefined,
     // description: product?.description,
     url: product?.url as string | undefined,
   }

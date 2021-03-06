@@ -9,7 +9,6 @@ import { mediaQueries } from "../theme"
 const LayoutBase = styled.aside`
   background-color: ${props =>
     props.color ? themeGet(`colors.${props.color}`) : themeGet("colors.pink")};
-  border-radius: ${themeGet("radii.4")}px;
   display: grid;
   overflow: hidden;
 

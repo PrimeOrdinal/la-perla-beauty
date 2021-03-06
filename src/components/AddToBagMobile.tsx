@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { ReactComponent as CloseIcon } from "../images/Close.svg"
+import { ReactComponent as CloseIcon } from "../../static/icons/Close.svg"
 
 import { Button } from "./Button"
 

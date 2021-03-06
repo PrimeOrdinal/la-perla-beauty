@@ -1,4 +1,4 @@
-import type { ProducGroup } from "schema-dts"
+import type { ProductGroup } from "schema-dts"
 
 import clsx from "clsx"
 import { Field } from "formik"
@@ -34,7 +34,7 @@ export type ProductSelectorColourProps = LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    product: ProducGroup[]
+    product: ProductGroup[]
   }
 
 export const ProductSelectorColour: React.FC<ProductSelectorColourProps> = ({

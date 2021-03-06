@@ -33,7 +33,7 @@ export const DeliveryAndReturnsInformationStyled: React.FC<DeliveryAndReturnsInf
   ${compose(color, layout, space)}
 `
 
-export const TabsStyled: React.FC<TabsProps> = styled(ReactTabs)`
+export const TabsStyled = styled(ReactTabs)`
   label {
     font-weight: normal;
     text-transform: unset;
@@ -44,7 +44,7 @@ export const TabsStyled: React.FC<TabsProps> = styled(ReactTabs)`
   }
 `
 
-export const TabListStyled: React.FC<TabListProps> = styled(ReactTabList)`
+export const TabListStyled = styled(ReactTabList)`
   display: grid;
   grid-auto-flow: column;
   list-style: none;
@@ -52,7 +52,7 @@ export const TabListStyled: React.FC<TabListProps> = styled(ReactTabList)`
   padding-inline-start: unset;
 `
 
-export const TabStyled: React.FC<TabProps> = styled(ReactTab)`
+export const TabStyled = styled(ReactTab)`
   border-bottom-style: solid;
   border-bottom-width: 2px;
   cursor: pointer;
@@ -68,6 +68,10 @@ export const TabStyled: React.FC<TabProps> = styled(ReactTab)`
   }
 `
 
+interface Values {
+  country: string
+}
+
 export const DeliveryAndReturnsInformation: React.FC<DeliveryAndReturnsInformationProps> = ({
   children,
   ...props
@@ -81,7 +85,7 @@ export const DeliveryAndReturnsInformation: React.FC<DeliveryAndReturnsInformati
       <ReactTabPanel>
         <Formik
           initialValues={{
-            emailAddress: "",
+            country: "",
           }}
           onSubmit={async (
             values: Values,
@@ -91,7 +95,7 @@ export const DeliveryAndReturnsInformation: React.FC<DeliveryAndReturnsInformati
 
             const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
-            const response = await fetch(url, {
+            const response = await fetch(url.toString(), {
               body: JSON.stringify(values),
               headers: {
                 Accept: "application/json",

@@ -1,18 +1,19 @@
+import type { BigCommerceGql_Category, BlogLandingPageQuery } from "/../../graphql-types"
+
+import { themeGet } from "@styled-system/theme-get"
+import { PageProps } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { themeGet } from "@styled-system/theme-get"
-import { mediaQueries } from "../../theme"
 
-import type { BigCommerceGql_Category } from "/../../graphql-types"
-import { PageProps } from "gatsby"
-
-import { Layout } from "../../components/Layout"
-import { Breadcrumb } from "../../components/Breadcrumb"
 import { BlogPostPreview } from "../../components/BlogPostPreview"
+import { Breadcrumb } from "../../components/Breadcrumb"
 import { ImageGallery } from "../../components/ImageGallery"
-import { MenuSubCategory } from "../../components/MenuSubCategory"
+import { Layout } from "../../components/Layout"
 import { ListPlain } from "../../components/ListPlain"
+import { MenuSubCategory } from "../../components/MenuSubCategory"
 import { ProductCardAlt } from "../../components/ProductCardAlt"
+
+import { mediaQueries } from "../../theme"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceGql_Category
@@ -127,7 +128,7 @@ const ProductCardSection = styled(ListPlain)`
   }
 `
 
-const BlogLandingPage: React.FC<PageProps<PageContextCategory>> = ({
+const BlogLandingPage: React.FC<PageProps<BlogLandingPageQuery, PageContextCategory>> = ({
   pageContext,
 }) => {
   const {

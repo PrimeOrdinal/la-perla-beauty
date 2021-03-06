@@ -20,7 +20,7 @@ import { Formik, Field, Form, FormikHelpers } from "formik"
 import { mediaQueries, theme } from "../theme"
 import { themeGet } from "@styled-system/theme-get"
 
-import { ReactComponent as Minus } from "../images/Minus.svg"
+import { ReactComponent as Minus } from "../../static/icons/Minus.svg"
 import { Button } from "./Button"
 import { Accordion } from "./Accordion"
 
@@ -117,7 +117,8 @@ export type MenuRefineProps = ColorProps &
   }
 
 interface Values {
-  emailAddress: string
+  filter: string[]
+  sort: "best sellers"
 }
 
 export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
@@ -208,6 +209,9 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
                           >
                             {option}
                           </label>
+                          {errors.sort && touched.sort ? (
+                            <div className="error">{errors.sort}</div>
+                          ) : undefined}
                         </div>
                       ))}
                     </div>
@@ -363,6 +367,9 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
                         },
                       ]}
                     />
+                    {errors.filter && touched.filter ? (
+                      <div className="error">{errors.filter}</div>
+                    ) : undefined}
                   </section>
                 </div>
 

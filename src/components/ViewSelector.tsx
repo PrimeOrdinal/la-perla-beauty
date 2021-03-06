@@ -5,8 +5,8 @@ import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
 
-import { ReactComponent as Grid } from "../images/Grid.svg"
-import { ReactComponent as List } from "../images/List.svg"
+import { ReactComponent as Grid } from "../../static/icons/Grid.svg"
+import { ReactComponent as List } from "../../static/icons/List.svg"
 
 import { mediaQueries } from "../theme"
 
@@ -31,7 +31,7 @@ const ViewSelectorStyled = styled.nav`
   }
 `
 
-export type ViewSelectorProps = {
+export type ViewSelectorProps = React.HTMLAttributes<HTMLElement> & {
   setView: React.Dispatch<SetStateAction<string>>
   view: "grid" | "list"
 }
@@ -40,27 +40,25 @@ export const ViewSelector: React.FC<ViewSelectorProps> = ({
   setView,
   view,
   ...props
-}) => {
-  return (
-    <ViewSelectorStyled {...props}>
-      <Button
-        active={view === "grid" ? "active" : "inactive"}
-        className={clsx("button")}
-        grid
-        onClick={() => setView("grid")}
-      >
-        Grid
-        <Grid />
-      </Button>
-      <Button
-        active={view === "list" ? "active" : "inactive"}
-        className={clsx("button")}
-        list
-        onClick={() => setView("list")}
-      >
-        List
-        <List />
-      </Button>
-    </ViewSelectorStyled>
-  )
-}
+}) => (
+  <ViewSelectorStyled {...props}>
+    <Button
+      active={view === "grid" ? "active" : "inactive"}
+      className={clsx("button")}
+      grid
+      onClick={() => setView("grid")}
+    >
+      Grid
+      <Grid />
+    </Button>
+    <Button
+      active={view === "list" ? "active" : "inactive"}
+      className={clsx("button")}
+      list
+      onClick={() => setView("list")}
+    >
+      List
+      <List />
+    </Button>
+  </ViewSelectorStyled>
+)

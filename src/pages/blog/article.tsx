@@ -1,19 +1,19 @@
+import type { ArticlePageQuery, BigCommerceGql_Category } from "/../../graphql-types"
+
+import { PageProps } from "gatsby"
 import React from "react"
 
-import type { BigCommerceGql_Category } from "/../../graphql-types"
-import { PageProps } from "gatsby"
-
+import { BlogPostPreview } from "../../components/BlogPostPreview"
 import { Breadcrumb } from "../../components/Breadcrumb"
 import { Layout } from "../../components/Layout"
 import { Leaf } from "../../components/Leaf"
 import { Link } from "../../components/Button"
-import { BlogPostPreview } from "../../components/BlogPostPreview"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceGql_Category
 }
 
-export const ArticlePage: React.FC<PageProps<PageContextCategory>> = ({
+export const ArticlePage: React.FC<PageProps<ArticlePageQuery, PageContextCategory>> = ({
   pageContext,
 }) => {
   const {

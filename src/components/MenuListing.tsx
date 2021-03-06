@@ -15,8 +15,8 @@ import {
   VariantProps,
 } from "styled-system"
 
-import { ReactComponent as FilterIcon } from "../images/Filter.svg"
-import { ReactComponent as MinusIcon } from "../images/Minus.svg"
+import { ReactComponent as FilterIcon } from "../../static/icons/Filter.svg"
+import { ReactComponent as MinusIcon } from "../../static/icons/Minus.svg"
 
 import { useToggle } from "../hooks/useToggle"
 

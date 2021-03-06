@@ -30,6 +30,8 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
     }
   }
 
+  console.log(event)
+
   const urlBigCommerce = new URL(
     `/stores/${BIGCOMMERCE_STORE_HASH}/v3/catalog/products`,
     `https://api.bigcommerce.com`

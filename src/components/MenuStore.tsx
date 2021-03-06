@@ -10,7 +10,7 @@ import {
   SpaceProps,
 } from "styled-system"
 
-import { ReactComponent as ChevronIcon } from "../images/Chevron.svg"
+import { ReactComponent as ChevronIcon } from "../../static/icons/Chevron.svg"
 
 import { Button } from "./Button"
 import { ListPlain } from "./ListPlain"
