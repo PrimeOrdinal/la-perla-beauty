@@ -140,8 +140,8 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
               <li className="menu-item" key={indexLevel1}>
                 <Link
                   className="level-1"
-                  to={linkLevel1?.url?.href as string}
                   title={linkLevel1?.url?.title as string}
+                  to={linkLevel1?.url?.href as string}
                 >
                   {linkLevel1?.text}
                 </Link>
@@ -163,13 +163,12 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
                       </ul>
                     )}
                     {sub_menu?.images?.map((image, index) => (
-                      <React.Fragment>
+                      <React.Fragment key={index}>
                         {image?.image?.url && (
                           <Link
                             className="image-container"
-                            key={index}
-                            to={image?.url?.href as string}
                             title={image?.url?.title as string}
+                            to={image?.url?.href as string}
                           >
                             <img
                               alt={image?.image?.title}

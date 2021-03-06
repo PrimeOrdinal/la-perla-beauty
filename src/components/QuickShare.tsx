@@ -88,8 +88,8 @@ export const QuickShare: React.FC<QuickShareProps> = ({
 }) => {
   const onButtonClick = async () => {
     const shareData = {
-      title: "MDN",
-      text: "Learn web development on MDN!",
+      text: "Beauty by La Perla",
+      title: "La Perla Beauty",
       url: window.location.href,
     }
 

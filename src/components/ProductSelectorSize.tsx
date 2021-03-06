@@ -40,27 +40,29 @@ export type ProductSelectorSizeProps = LayoutProps &
 export const ProductSelectorSize: React.FC<ProductSelectorSizeProps> = ({
   product,
   ...props
-}) => {
-  return (
-    <ProductSelectorSizeStyled {...props}>
-      <h3 className="title" id="group_label_sizes">
-        Sizes
-      </h3>
-      <div aria-labelledby="group_label_sizes" className={clsx("form-fields")}>
-        {product?.hasVariant.map((variant, index) => <div className="field">
+}) => (
+  <ProductSelectorSizeStyled {...props}>
+    <h3 className="title" id="group_label_sizes">
+      Sizes
+    </h3>
+    <div aria-labelledby="group_label_sizes" className={clsx("form-fields")}>
+      {product?.hasVariant.map((variant, index) => (
+        <div className="field" key={index}>
           <Field
-            type="radio"
-            name="size"
-            id={`size-option-${index}`}
-            key={index}
-            value={variant?.size}
             className="fancy-product"
+            id={`size-option-${index}`}
+            name="size"
+            type="radio"
+            value={variant?.size}
           />
-          <label htmlFor={`size-option-${index}`} className="product-radio-label">
+          <label
+            className="product-radio-label"
+            htmlFor={`size-option-${index}`}
+          >
             {variant.size}
           </label>
-        </div>)}
-      </div>
-    </ProductSelectorSizeStyled>
-  )
-}
+        </div>
+      ))}
+    </div>
+  </ProductSelectorSizeStyled>
+)

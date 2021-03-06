@@ -1,6 +1,6 @@
 import type {
   // FooterQuery
-  Contentstack_MenusFragmentFragment,
+  Contentstack_Menus,
   LayoutQuery,
 } from "../../graphql-types"
 
@@ -274,17 +274,20 @@ export const Footer: React.FC<FooterProps> = (
           .filter(({ node: menu }) => menu.slot?.startsWith("footer-secondary"))
           .sort(function (
             a: {
-              node: Contentstack_MenusFragmentFragment
+              node: Contentstack_Menus
             },
             b: {
-              node: Contentstack_MenusFragmentFragment
+              node: Contentstack_Menus
             }
           ) {
-            if (a?.node?.slot < b?.node?.slot) {
+            const slotA = a?.node?.slot as string
+            const slotB = b?.node?.slot as string
+
+            if (slotA < slotB) {
               return -1
             }
 
-            if (a?.node?.slot > b?.node?.slot) {
+            if (slotA > slotB) {
               return 1
             }
 

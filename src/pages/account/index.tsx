@@ -2,9 +2,9 @@ import { themeGet } from "@styled-system/theme-get"
 import React, { useState } from "react"
 import styled from "styled-components"
 
-import { Layout } from "../../components/Layout"
-import { IconList } from "../../components/IconList"
 import { Button } from "../../components/Button"
+import { IconList } from "../../components/IconList"
+import { Layout } from "../../components/Layout"
 import { SEO } from "../../components/SEO"
 
 import { mediaQueries } from "../../theme"
@@ -12,6 +12,7 @@ import { mediaQueries } from "../../theme"
 const MainStyled = styled.main`
   display: grid;
   place-content: center;
+
   .desktop-heading {
     display: none;
 
@@ -31,10 +32,11 @@ const GridStyled = styled.section`
   ${mediaQueries.md} {
     gap: 105px;
     grid-template-columns: minmax(400px, 550px) minmax(400px, 550px);
-    place-content: center;
-    margin-block-start: ${themeGet("space.12")}px;
     margin-block-end: 70px;
+    margin-block-start: ${themeGet("space.12")}px;
+    place-content: center;
   }
+
   .sign-in {
     display: grid;
     gap: 1rem;
@@ -49,6 +51,7 @@ const GridStyled = styled.section`
         margin: 0;
       }
     }
+
     .mobile-heading {
       font-size: ${themeGet("fontSizes.6")}px;
       margin: 0;

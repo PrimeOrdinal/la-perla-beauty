@@ -209,17 +209,17 @@ const ProductPage: React.FC<PageProps<ProductPageQuery, PageContextProduct>> = (
       panel: (
         <dl className="ingedients">
           {data?.contentstackProducts?.ingredients?.map(
-            (ingredient) => (
-              <React.Fragment>
+            (ingredient, ingredientIndex) => (
+              <React.Fragment key={ingredientIndex}>
                 <dt>{ingredient?.type}</dt>
-                {ingredient?.ingredient?.map(ingredient => (
-                  <dd>
-                    <Link to={ingredient?.url}>
-                      {ingredient?.title}
+                {ingredient?.ingredient?.map((individualIngredient, individualIngredientIndex) => (
+                  <dd key={individualIngredientIndex}>
+                    <Link to={individualIngredient?.url}>
+                      {individualIngredient?.title}
                     </Link>
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: ingredient?.information as string,
+                        __html: individualIngredient?.information as string,
                       }}
                     />
                   </dd>

@@ -1,7 +1,6 @@
 import type {
-//   BigCommerceProducts,
+  BigCommerceProducts,
 //   ProductsPageQuery,
-  BigCommerceProductsFragment,
   Contentstack_Products
 } from "../../graphql-types"
 
@@ -30,7 +29,7 @@ export type YouMayAlsoLikeProps =
   VariantProps & {
     allBigCommerceProducts: {
       edges: Array<{
-          node: BigCommerceProductsFragment;
+          node: BigCommerceProducts;
       }>;
     };
     allContentstackProducts: {

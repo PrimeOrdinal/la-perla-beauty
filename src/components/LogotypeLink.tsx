@@ -1,4 +1,3 @@
-import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -17,13 +16,15 @@ import { mediaQueries } from "../theme"
 
 import { home as homePath } from "../utils/paths"
 
+import { Link } from "./Button"
+
 const LogotypeLinkStyled = styled(Link)`
   text-align: center;
 
   ${compose(grid, layout, space)}
 `
 
-const LogotypeStyle = styled(Logotype)`
+const LogotypeStyled = styled(Logotype)`
   height: 20px;
   width: auto;
 
@@ -36,7 +37,7 @@ const LogotypeStyle = styled(Logotype)`
 
 export type LogotypeLinkProps = GridProps &
   LayoutProps &
-  SpaceProps & {
+  SpaceProps & React.HTMLProps<HTMLAnchorElement> &{
     siteTitle: string
   }
 
@@ -46,6 +47,6 @@ export const LogotypeLink: React.FC<LogotypeLinkProps> = ({ siteTitle, ...props 
     to={homePath}
     {...props}
   >
-    <LogotypeStyle />
+    <LogotypeStyled />
   </LogotypeLinkStyled>
 )
