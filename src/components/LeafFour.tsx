@@ -1,7 +1,11 @@
+import type { Colour } from "../../types/theme"
+
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
+
+import { colourClasses } from "../styles/colourClasses"
 
 import { mediaQueries } from "../theme"
 
@@ -12,27 +16,18 @@ export type LeafFourProps = {
     src: string
     alt?: string
   }
-  heading: string
   body: string
+  color: Colour
+  heading: string
   link: React.ReactNode
-  color: "purple" | "green" | "orange" | "pink"
 }
 
 const LeafWrapperStyled = styled.div`
-  .purple {
-    background-color: #d3cbd6;
-  }
-  .green {
-    background-color: #bfcea5;
-  }
-  .orange {
-    background-color: #debf9b;
-  }
-  .pink {
-    background-color: #feebdf;
-  }
   margin-block-start: ${themeGet("space.11")}px;
   margin-block-end: ${themeGet("space.11")}px;
+
+  ${colourClasses}
+
   .leaf-container {
     display: flex;
     justify-content: center;

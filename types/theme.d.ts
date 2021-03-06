@@ -1,0 +1,16 @@
+export type Colour = "beige" | "lightgreen" | "lilac" | "orange" | "pink"
+
+export type Icon =
+  | "checkout"
+  | "cookies"
+  | "diamond"
+  | "envelope"
+  | "gift-wrap"
+  | "heart"
+  | "nib"
+  | "perfume"
+  | "plant"
+  | "recycle"
+  | "return"
+  | "shipping"
+  | "tracking"

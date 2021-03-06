@@ -19,7 +19,6 @@ const PromoTest: React.FC = () => (
       <PromotionalBanner
         color="beige"
         layout="desktopFull"
-        desktopFull
         title="Desktop Full prop"
         showImage={true}
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
@@ -34,7 +33,6 @@ const PromoTest: React.FC = () => (
       <PromotionalBanner
         color="beige"
         layout="inlineView"
-        inlineView
         title="Inline View prop"
         showImage={true}
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
@@ -48,7 +46,6 @@ const PromoTest: React.FC = () => (
       <PromotionalBanner
         color="beige"
         layout="listView"
-        listView
         title="List View prop"
         showImage
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."

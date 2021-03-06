@@ -101,8 +101,6 @@ const GeneralPage: React.FC<PageProps<GeneralPageQuery, PageContextPage>> = ({
                   return
                 }
 
-                console.log("value", value)
-
                 const margins = {
                   marginBottom: { _: 0, md: value?.margins?.bottom },
                   marginLeft: { _: 0, md: value?.margins?.left },
@@ -148,12 +146,12 @@ const GeneralPage: React.FC<PageProps<GeneralPageQuery, PageContextPage>> = ({
                     )
                     break
                   case "image":
-                    component = <PromotionalBanner inlineView {...value} {...margins} />
+                    component = <PromotionalBanner layout="hero" {...value} {...margins} />
                     break
                   case "image_with_overlay":
                     component = (
                       <PromotionalBanner
-                        inlineView
+                        layout="hero"
                         text={value?.paragraph}
                         title={value?.title_primary}
                         {...margins}
