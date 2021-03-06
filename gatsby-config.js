@@ -31,7 +31,7 @@ module.exports = {
         codegen: process.env.GRAPHQL_CODEGEN,
         // fileName: `./gatsby-graphql.ts`,
         documentPaths: [
-          "./src/**/*.{tsx}",
+          "./src/**/*.tsx",
           // './node_modules/gatsby-*/**/*.js',
           "./node_modules/gatsby*/!(node_modules)/**/*.js",
           "./gatsby-node.js",
