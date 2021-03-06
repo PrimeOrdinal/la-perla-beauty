@@ -305,7 +305,14 @@ module.exports = {
     //     }
     //   },
     // },
-    "gatsby-plugin-stylelint",
+    {
+      resolve: "gatsby-plugin-stylelint",
+      options: {
+        emitError: false,
+        emitWarning: true,
+        files: ["**/*.{ts,tsx}"],
+      },
+    },
     "gatsby-plugin-netlify",
   ],
 }
