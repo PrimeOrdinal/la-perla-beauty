@@ -7,6 +7,14 @@ module.exports = {
     siteUrl: process.env.GATSBY_SITE_URL,
     title: process.env.SITE_TITLE,
   },
+  flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
+    FAST_REFRESH: true,
+    PARALLEL_SOURCING: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    PRESERVE_WEBPACK_CACHE: true,
+  },
   plugins: [
     {
       resolve: "gatsby-plugin-typescript",
