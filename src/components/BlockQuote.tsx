@@ -11,31 +11,35 @@ const BlockQuoteStyled = styled.div`
   justify-content: center;
   margin-block-start: ${themeGet("space.8")}px;
   margin-block-end: ${themeGet("space.8")}px;
+
   blockquote {
     font-family: "Tiempos", serif;
     font-size: ${themeGet("fontSizes.heading2Mobile")}px;
-    max-width: ${themeGet("space.12")}ch;
-    position: relative;
-    margin: 0;
-    padding-top: ${themeGet("space.6")}px;
-    padding-bottom: ${themeGet("space.6")}px;
     line-height: ${themeGet("space.7")}px;
+    margin: 0;
+    max-width: ${themeGet("space.12")}ch;
+    padding-bottom: ${themeGet("space.6")}px;
+    padding-top: ${themeGet("space.6")}px;
+    position: relative;
+
     ${mediaQueries.md} {
       font-size: ${themeGet("fontSizes.heading1Desktop")}px;
       line-height: ${themeGet("space.8")}px;
     }
+
     &::before {
-      content: "";
-      background: url(${OpenQuote});
+      background-position: top;
       background-repeat: no-repeat;
       background-size: contain;
-      background-position: top;
+      background: url(${OpenQuote});
+      content: "";
       height: 37px;
-      width: 51px;
+      left: 0px;
       position: absolute;
       top: 0;
-      left: 0px;
+      width: 51px;
       z-index: -1;
+
       ${mediaQueries.md} {
         height: 56px;
         width: 78px;
@@ -44,22 +48,23 @@ const BlockQuoteStyled = styled.div`
       }
     }
     &::after {
-      content: "";
-      background: url(${CloseQuote});
+      background-position: bottom;
       background-repeat: no-repeat;
       background-size: contain;
-      background-position: bottom;
+      background: url(${CloseQuote});
+      bottom: 0;
+      content: "";
       height: 37px;
-      width: 51px;
       position: absolute;
       right: 0;
-      bottom: 0;
+      width: 51px;
       z-index: -1;
+
       ${mediaQueries.md} {
-        height: 56px;
-        width: 78px;
-        right: -10%;
-        transform: translateX(10%);
+          height: 56px;
+          right: -10%;
+          transform: translateX(10%);
+          width: 78px;
       }
     }
   }
