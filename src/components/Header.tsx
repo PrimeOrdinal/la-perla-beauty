@@ -79,6 +79,8 @@ export const Header: React.FC<HeaderProps> = (
         <MenuStore
           display={{ _: "none", md: "flex" }}
           gridArea="menu-primary"
+          left="-12px"
+          position="relative"
         />
         <HamburgerMenu data={data} gridArea="menu-primary" />
         <MenuActions

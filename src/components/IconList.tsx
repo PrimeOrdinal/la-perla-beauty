@@ -68,6 +68,7 @@ export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
       margin: 0;
     }
   }
+
   ${compose(grid, layout, position, space)}
 `
 export const IconList: React.FC<IconListProps> = ({ items, ...props }) => (

@@ -4,9 +4,11 @@ import {
   compose,
   grid,
   layout,
+  position,
   space,
   GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
 } from "styled-system"
 
@@ -17,14 +19,14 @@ import { ListPlain } from "./ListPlain"
 import { SiteSettingsOverlay } from "./SiteSettingsOverlay"
 
 const MenuStoreStyled = styled(ListPlain)`
-  ${compose(grid, layout, space)}
+  ${compose(grid, layout, position, space)}
 `
 
 const ChevronIconStyled = styled(ChevronIcon)`
   width: 14px;
 `
 
-export type MenuStoreProps = GridProps & LayoutProps & SpaceProps
+export type MenuStoreProps = GridProps & LayoutProps & PositionProps & SpaceProps
 
 export const MenuStore: React.FC<MenuStoreProps> = props => {
   const [modalIsOpen, setIsOpen] = useState(false)
