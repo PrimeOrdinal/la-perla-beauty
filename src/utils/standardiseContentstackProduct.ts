@@ -5,7 +5,7 @@ import type { Contentstack_Products } from "../../graphql-types"
 export function standardiseContentstackProduct(
   product: Pick<
     Contentstack_Products,
-    "title" | "id" | "url" | "product_id" | "rich_text_editor"
+    "title" | "id" | "url" | "product_id" | "description"
   >
 ): WithContext<Product> {
   const data: WithContext<Product> = {
