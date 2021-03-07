@@ -1,4 +1,4 @@
-import type { ModularBlocksTypes } from "../../types/ModularBlocks"
+import type { ModularBlocksTypes, ModularBlock, ModularBlockImage, ModularBlockIntroduction, ModularBlockMenu, ModularBlockParagraph, ModularBlockQuotation, ModularBlockVideo } from "../../types/ModularBlocks"
 
 import React from "react"
 
@@ -23,12 +23,12 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
       let component
 
       Object.entries(modular_block).forEach(
-        ([key, value]: [key: string, value: any]) => {
+        ([key, value]: [key: string, value: ModularBlock]) => {
           if (value === null) {
             return
           }
 
-          // const value: ModularBlocksTypes["image"] = value1
+          // const value: MakePick<ModularBlocksTypes, "image" | "margins"> = value1
 
           const margins = {
             marginBottom: { _: 0, md: value?.margins?.bottom },
@@ -72,8 +72,9 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               )
               break
             case "image":
+              const image = value as ModularBlockImage
               component = (
-                <PromotionalBanner layout="overlay" {...value} {...margins} />
+                <PromotionalBanner layout="overlay" {...image} {...margins} />
               )
               break
             case "image_with_overlay":
@@ -88,10 +89,11 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               )
               break
             case "introduction":
+              const introduction = value as ModularBlockIntroduction
               component = (
                 <Introduction {...margins}>
                   {/* <Heading level={value?.heading?.semantic_level}>{value?.heading?.text}</Heading> */}
-                  <p>{value?.paragraph}</p>
+                  <p>{introduction?.paragraph}</p>
                 </Introduction>
               )
               break
@@ -99,12 +101,13 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               component = <Leaf {...value} {...margins} />
               break
             case "menu":
+              const menu = value as ModularBlockMenu
               component = (
                 <MenuSubCategory
-                  justifyContent={value?.justify_content}
+                  justifyContent={menu?.justify_content}
                   {...margins}
                 >
-                  {value?.menu?.[0]?.links?.map(link => (
+                  {menu?.menu?.[0]?.links?.map(link => (
                     <Link title={link?.url?.title} to={link?.url?.href}>
                       {link?.text}
                     </Link>
@@ -113,7 +116,8 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               )
               break
             case "paragraph":
-              component = <p {...margins}>{value?.paragraph}</p>
+              const paragraph = value as ModularBlockParagraph
+              component = <p {...margins}>{paragraph?.paragraph}</p>
               break
             default:
               console.log(`Unmapped modular block type: ${key}`)

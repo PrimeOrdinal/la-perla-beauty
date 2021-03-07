@@ -17,30 +17,29 @@ export type ModularBlockImage = ModularBlock & {
 }
 
 export type ModularBlockIntroduction = ModularBlock & {
-  introduction: {
-    heading?: {
-      semantic_level?: string
-      text?: string
-    }
-    link?: {
-      href: string
-      title: string
-    }
-    paragraph?: string
+  heading?: {
+    semantic_level?: string
+    text?: string
   }
+  link?: {
+    href: string
+    title: string
+  }
+  paragraph?: string
 }
 
 export type ModularBlockMenu = ModularBlock & {
-  menu: {
-    justify_content?: string
-    menu?: Array<{
-      links?: Array<{
+  justify_content?: string
+  menu?: Array<{
+    links?: Array<{
+      text?: string
+      url?: {
         href: string
         title: string
-      }>
-      title?: string
+      }
     }>
-  }
+    title?: string
+  }>
 }
 
 export type ModularBlockParagraph = ModularBlock & {
