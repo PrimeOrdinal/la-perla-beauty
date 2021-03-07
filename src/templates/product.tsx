@@ -18,6 +18,7 @@ import { IconList } from "../components/IconList"
 import { ImageGallery } from "../components/ImageGallery"
 import { Leaf } from "../components/Leaf"
 import { Layout } from "../components/Layout"
+import { PageSections } from "../components/PageSections"
 import { Price } from "../components/Price"
 import { SEO } from "../components/SEO"
 import { ProductSelectorColour } from "../components/ProductSelectorColour"
@@ -35,6 +36,10 @@ import {
 import { getCartId } from "../utils/carts"
 
 import { standardiseBigCommerceProductGroup } from "../utils/standardiseBigCommerceProduct"
+
+const EditorialStyled = styled.aside`
+  margin-block-start: ${themeGet("space.12")}px;
+`
 
 const ProductStyled = styled.article`
   align-items: start;
@@ -243,6 +248,8 @@ const ProductPage: React.FC<PageProps<ProductPageQuery, PageContextProduct>> = (
     )
   ))
 
+  console.log("data?.contentstackPages?.page_sections", data?.contentstackPages?.page_sections)
+
   return (
     <Layout>
       <SEO title={name} />
@@ -421,6 +428,9 @@ const ProductPage: React.FC<PageProps<ProductPageQuery, PageContextProduct>> = (
           )}
         </main>
       </ProductStyled>
+      <EditorialStyled>
+        <PageSections pageSections={data?.contentstackProducts?.page_sections} />
+      </EditorialStyled>
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(product)}</script>
       </Helmet>

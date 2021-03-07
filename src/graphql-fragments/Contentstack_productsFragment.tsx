@@ -10,14 +10,6 @@ export const Contentstack_productsFragment = graphql`
     description
     description_extended
     id
-    key_features {
-      item {
-        colour
-        icon
-        text
-        title
-      }
-    }
     ingredients {
       type
       ingredient {
@@ -27,11 +19,22 @@ export const Contentstack_productsFragment = graphql`
         url
       }
     }
+    key_features {
+      item {
+        colour
+        icon
+        text
+        title
+      }
+    }
     leaf {
       orientation
       layout
       heading
       text
+    }
+    page_sections {
+      ...Contentstack_page_sectionsFragment
     }
     product_id
     title
