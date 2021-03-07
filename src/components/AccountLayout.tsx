@@ -25,7 +25,6 @@ const MainStyled = styled.main`
     gap: 5rem;
     grid-auto-flow: column;
     grid-template-columns: minmax(200px, 300px) minmax(400px, 650px);
-    justify-content: space-between;
     margin-block-end: 70px;
     margin-block-start: 70px;
   }
