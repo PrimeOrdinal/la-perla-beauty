@@ -35,7 +35,7 @@ export type PageSectionsProps = {
     }
     container: boolean
     id: string
-    modular_blocks: ModularBlocksTypes
+    modular_blocks: ModularBlocksTypes[]
     title: string
   }>
 }

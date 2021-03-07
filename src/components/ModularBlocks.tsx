@@ -1,4 +1,15 @@
-import type { ModularBlocksTypes, ModularBlock, ModularBlockImage, ModularBlockIntroduction, ModularBlockMenu, ModularBlockParagraph, ModularBlockQuotation, ModularBlockVideo } from "../../types/ModularBlocks"
+import type {
+  ModularBlocksTypes,
+  ModularBlock,
+  ModularBlockHorizontalRule,
+  ModularBlockIconList,
+  ModularBlockImage,
+  ModularBlockIntroduction,
+  ModularBlockMenu,
+  ModularBlockParagraph,
+  ModularBlockQuotation,
+  ModularBlockVideo,
+} from "../../types/ModularBlocks"
 
 import React from "react"
 
@@ -10,6 +21,7 @@ import { Link } from "../components/Button"
 import { Leaf } from "../components/Leaf"
 import { PromotionalBanner } from "../components/PromotionalBanner"
 import { MenuSubCategory } from "../components/MenuSubCategory"
+import { VideoPlayer } from "../components/VideoPlayer"
 
 export type ModularBlocksProps = {
   modularBlocks: ModularBlocksTypes[]
@@ -43,7 +55,6 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 <Accordion
                   allowMultipleExpanded={true}
                   allowZeroExpanded={true}
-                  className="footer-secondary-accordion"
                   items={value?.panels?.map((panel, index) => ({
                     heading: panel.heading,
                     panel: <div key={index}>{panel?.panel}</div>,
@@ -52,15 +63,20 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               )
               break
             case "horizontal_rule":
+              const horizontalRule = value as ModularBlockHorizontalRule
               component = (
-                <HoriontalRule className={value?.colour} {...margins} />
+                <HoriontalRule
+                  className={horizontalRule?.colour}
+                  {...margins}
+                />
               )
               break
             case "icon_list":
+              const iconList = value as ModularBlockIconList
               component = (
                 <IconList
                   gridAutoFlow={{ _: "row", md: "column" }}
-                  items={value?.item?.map(item => ({
+                  items={iconList?.item?.map(item => ({
                     icon: item?.icon,
                     color: item?.colour,
                     heading: item?.title,
@@ -118,6 +134,18 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             case "paragraph":
               const paragraph = value as ModularBlockParagraph
               component = <p {...margins}>{paragraph?.paragraph}</p>
+              break
+            case "quotation":
+              const quotation = value as ModularBlockQuotation
+              component = (
+                <blockquote {...margins}>{quotation?.quotation}</blockquote>
+              )
+              break
+              case "video":
+              const video = value as ModularBlockVideo
+              component = (
+                <VideoPlayer light={video?.poster?.url} url={video?.video?.url} {...margins} />
+              )
               break
             default:
               console.log(`Unmapped modular block type: ${key}`)

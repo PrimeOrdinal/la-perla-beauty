@@ -39,9 +39,11 @@ export const Contentstack_productsFragment = graphql`
     product_id
     title
     video {
+      poster {
+        url
+      }
       video {
         url
-        title
       }
     }
   }

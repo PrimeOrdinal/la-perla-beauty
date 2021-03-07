@@ -1,3 +1,5 @@
+import { Colour, Icon } from "theme"
+
 export type ModularBlock = {
   margins?: {
     bottom?: number
@@ -7,22 +9,36 @@ export type ModularBlock = {
   }
 }
 
+export type ModularBlockHorizontalRule = ModularBlock & {
+  colour?: string
+}
+
+export type ModularBlockIconList = ModularBlock & {
+  item: Array<{
+    colour?: Icon
+    icon?: Colour
+    text?: string
+    title?: string
+  }>
+}
+
+
 export type ModularBlockImage = ModularBlock & {
   image: {
     image?: {
       title?: string
-      url?: string
+      url?: URL
     }
   }
 }
 
 export type ModularBlockIntroduction = ModularBlock & {
   heading?: {
-    semantic_level?: string
+    semantic_level?: number
     text?: string
   }
   link?: {
-    href: string
+    href: URL
     title: string
   }
   paragraph?: string
@@ -34,7 +50,7 @@ export type ModularBlockMenu = ModularBlock & {
     links?: Array<{
       text?: string
       url?: {
-        href: string
+        href: URL
         title: string
       }
     }>
@@ -55,11 +71,11 @@ export type ModularBlockQuotation = ModularBlock & {
 }
 
 export type ModularBlockVideo = ModularBlock & {
+  poster: {
+    url?: URL
+  }
   video: {
-    video?: {
-      title?: string
-      url?: string
-    }
+    url?: URL
   }
 }
 

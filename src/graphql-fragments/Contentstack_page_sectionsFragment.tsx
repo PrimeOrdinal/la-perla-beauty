@@ -129,9 +129,11 @@ export const Contentstack_page_sectionsFragment = graphql`
         quotation
       }
       video {
+        poster {
+          url
+        }
         video {
           url
-          title
         }
       }
     }

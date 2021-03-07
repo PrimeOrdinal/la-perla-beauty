@@ -1,7 +1,7 @@
 import type {
   BigCommerceProducts,
-//   ProductsPageQuery,
-  Contentstack_Products
+  //   ProductsPageQuery,
+  Contentstack_Products,
 } from "../../graphql-types"
 
 import React from "react"
@@ -22,21 +22,23 @@ import { standardiseContentstackProduct } from "../utils/standardiseContentstack
 
 import { Listing } from "./Listing"
 
-export type YouMayAlsoLikeProps = 
-  LayoutProps &
+export type YouMayAlsoLikeProps = LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
     allBigCommerceProducts: {
       edges: Array<{
-          node: BigCommerceProducts;
-      }>;
-    };
+        node: BigCommerceProducts
+      }>
+    }
     allContentstackProducts: {
-        edges: Array<{
-            node: Pick<Contentstack_Products, 'id' | 'product_id' | 'rich_text_editor' | 'title' | 'url'>;
-        }>;
-    };
+      edges: Array<{
+        node: Pick<
+          Contentstack_Products,
+          "id" | "product_id" | "description" | "title" | "url"
+        >
+      }>
+    }
   }
 
 export const YouMayAlsoLikeStyled: React.FC<YouMayAlsoLikeProps> = styled.aside`
@@ -46,7 +48,7 @@ export const YouMayAlsoLikeStyled: React.FC<YouMayAlsoLikeProps> = styled.aside`
   ${compose(layout, position, space)}
 `
 
-export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({data}) => (
+export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({ data }) => (
   <YouMayAlsoLikeStyled>
     <h1>You May Also Like</h1>
     {data.allContentstackProducts && (
