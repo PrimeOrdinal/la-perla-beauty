@@ -18,7 +18,7 @@ const PromoTest: React.FC = () => (
     <MainStyled className={clsx("container")}>
       <PromotionalBanner
         color="beige"
-        layout="desktopFull"
+        layout="row"
         title="Desktop Full prop"
         showImage={true}
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
@@ -32,11 +32,11 @@ const PromoTest: React.FC = () => (
       />
       <PromotionalBanner
         color="beige"
-        layout="inlineView"
-        title="Inline View prop"
+        layout="overlay"
+        link={{ text: "learn more" }}
         showImage={true}
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
-        link={{ text: "learn more" }}
+        title="Inline View prop"
         image={{
           src: `https://picsum.photos/405/712?${
             Math.floor(Math.random() * 10) + 1
@@ -45,11 +45,11 @@ const PromoTest: React.FC = () => (
       />
       <PromotionalBanner
         color="beige"
-        layout="listView"
-        title="List View prop"
+        layout="column"
+        link={{ text: "learn more" }}
         showImage
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
-        link={{ text: "learn more" }}
+        title="List View prop"
         image={{
           src: `https://picsum.photos/405/712?${
             Math.floor(Math.random() * 10) + 1
@@ -58,10 +58,10 @@ const PromoTest: React.FC = () => (
       />
       <PromotionalBanner
         color="beige"
-        title="Default"
+        link={{ text: "learn more" }}
         showImage={true}
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
-        link={{ text: "learn more" }}
+        title="Default"
         image={{
           src: `https://picsum.photos/405/712?${
             Math.floor(Math.random() * 10) + 1

@@ -81,49 +81,49 @@ const LayoutBase = styled.aside`
 
 const PromotionalBannerView = styled(LayoutBase)`
   background-color: ${props =>
-    ["desktopFull", "hero"].includes(props.layout)
+    ["row", "hero"].includes(props.layout)
       ? "transparent"
       : themeGet(`colors.${props.color}`)};
   border-radius: ${props =>
-    ["desktopFull", "hero"].includes(props.layout) ? "unset" : "10px"};
-  grid-auto-flow: ${props => (props.layout === "listView" ? "column" : "row")};
-  place-items: ${props => (props.layout === "listView" ? "center" : "unset")};
+    ["hero", "row"].includes(props.layout) ? "unset" : "10px"};
+  grid-auto-flow: ${props => (props.layout === "column" ? "column" : "row")};
+  place-items: ${props => (props.layout === "column" ? "center" : "unset")};
   position: ${props =>
-    ["hero", "inlineView"].includes(props.layout) ? "relative" : "static"};
+    ["hero", "overlay"].includes(props.layout) ? "relative" : "static"};
 
   img {
     border-radius: ${props =>
-      props.layout === "desktopFull" ? "10px" : "unset"};
+      props.layout === "row" ? "10px" : "unset"};
   }
 
   div {
     bottom: ${themeGet("space.7")}px;
     color: ${props =>
-      ["hero", "inlineView"].includes(props.layout)
+      ["hero", "overlay"].includes(props.layout)
         ? themeGet("colors.white")
         : "inherit"};
     left: 0;
     padding: ${props => {
-      if (props.layout === "listView") {
+      if (props.layout === "column") {
         return "120px"
-      } else if (["hero", "inlineView"].includes(props.layout)) {
-        return undefined
-      } else {
+      } else if (props.layout === "row") {
         return "20px"
+      } else {
+        return undefined
       }
     }};
     position: ${props =>
-      ["hero", "inlineView"].includes(props.layout) ? "absolute" : "static"};
+      ["hero", "overlay"].includes(props.layout) ? "absolute" : "static"};
     right: 0;
   }
 `
 
 enum Layout {
-  desktopFull, // The reusable hero component used on other pages
-  hero, // When text is inside image, no rounded corners
-  inlineView, // When text is inside image
-  listView, // The promo banner that spans full width. Is two columns - img & content
-  undefined, // The default style is the column that spans two which has pink bg with image above
+  column, // two columns - image & content
+  hero, // content overlaid on the background image, no rounded corners
+  overlay, // content overlaid on the background image, rounded corners
+  row, // two rows - image & content
+  undefined, // default style is the column that spans two which has pink bg with image above
 }
 
 export type PromotionalBannerProps = LayoutProps &
