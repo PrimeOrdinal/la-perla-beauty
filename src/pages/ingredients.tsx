@@ -1,5 +1,8 @@
 import React from "react"
-import type { BigCommerceGql_Category, IngredientsPageQuery } from "../../graphql-types"
+import type {
+  BigCommerceGql_Category,
+  IngredientsPageQuery,
+} from "../../graphql-types"
 import { PageProps } from "gatsby"
 
 import styled from "styled-components"
@@ -158,9 +161,9 @@ const LoadingButton = styled.section`
   justify-content: center;
 `
 
-const IngredientsPage: React.FC<PageProps<IngredientsPageQuery, PageContextCategory>> = ({
-  pageContext,
-}) => {
+const IngredientsPage: React.FC<
+  PageProps<IngredientsPageQuery, PageContextCategory>
+> = ({ pageContext }) => {
   const {
     breadcrumb: { crumbs },
   } = pageContext
@@ -171,6 +174,7 @@ const IngredientsPage: React.FC<PageProps<IngredientsPageQuery, PageContextCateg
       <ImgBannerStyled
         src="https://picsum.photos/800/800"
         alt="placeholder image"
+        className="img-bl"
       />
 
       <main>
