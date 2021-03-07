@@ -7,10 +7,16 @@ import type {
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -22,7 +28,10 @@ import { standardiseContentstackProduct } from "../utils/standardiseContentstack
 
 import { Listing } from "./Listing"
 
-export type YouMayAlsoLikeProps = LayoutProps &
+export type YouMayAlsoLikeProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
@@ -45,7 +54,7 @@ export const YouMayAlsoLikeStyled: React.FC<YouMayAlsoLikeProps> = styled.aside`
   column-gap: 2rem;
   display: grid;
 
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({ data }) => (

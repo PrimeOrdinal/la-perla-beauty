@@ -5,11 +5,15 @@ import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
   grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
   PositionProps,
@@ -20,7 +24,9 @@ import {
 import { colourClasses } from "../styles/colourClasses"
 import { iconClasses } from "../styles/iconClasses"
 
-export type IconListProps = GridProps &
+export type IconListProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
@@ -69,7 +75,7 @@ export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
     }
   }
 
-  ${compose(grid, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 export const IconList: React.FC<IconListProps> = ({ items, ...props }) => (
   <IconListStyled {...props}>

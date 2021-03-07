@@ -4,11 +4,17 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
+  grid,
   layout,
+  position,
   space,
   variant,
   ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
@@ -16,7 +22,10 @@ import {
 import { ReactComponent as CloseIcon } from "../../static/icons/Close.svg"
 
 export type ChipProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
+  PositionProps &
   SpaceProps &
   VariantProps & {
     children: React.ReactNode
@@ -54,7 +63,7 @@ export const ChipStyled: React.FC<ChipProps> = styled.button`
     },
   })}
 
-  ${compose(color, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const Chip: React.FC<ChipProps> = ({ children, ...props }) => (

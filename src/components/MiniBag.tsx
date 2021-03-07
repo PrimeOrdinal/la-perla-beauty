@@ -4,10 +4,14 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
   ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -20,6 +24,8 @@ import { LinkButton } from "./Button"
 import { ShoppingBagProduct } from "./ShoppingBagProduct"
 
 export type MiniBagProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
@@ -92,7 +98,7 @@ export const MiniBagStyled: React.FC<MiniBagProps> = styled.div`
     }
   }
 
-  ${compose(color, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const MiniBag: React.FC<MiniBagProps> = props => (
@@ -110,8 +116,12 @@ export const MiniBag: React.FC<MiniBagProps> = props => (
         <span className="title">Total (inc vat)</span>
         <span className="price">£100</span>
       </div>
-      <LinkButton to="/bag" variant="secondary">View Bag</LinkButton>
-      <LinkButton to="/checkout" variant="primary">Checkout</LinkButton>
+      <LinkButton to="/bag" variant="secondary">
+        View Bag
+      </LinkButton>
+      <LinkButton to="/checkout" variant="primary">
+        Checkout
+      </LinkButton>
     </section>
   </MiniBagStyled>
 )

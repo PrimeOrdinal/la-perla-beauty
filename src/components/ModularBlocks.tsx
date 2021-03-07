@@ -1,9 +1,11 @@
 import type {
   ModularBlocksTypes,
   ModularBlock,
+  ModularBlockAccordion,
   ModularBlockHorizontalRule,
   ModularBlockIconList,
   ModularBlockImage,
+  ModularBlockImageWithOverlay,
   ModularBlockIntroduction,
   ModularBlockMenu,
   ModularBlockParagraph,
@@ -51,11 +53,12 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
 
           switch (key) {
             case "accordion":
+              const accordion = value as ModularBlockAccordion
               component = (
                 <Accordion
                   allowMultipleExpanded={true}
                   allowZeroExpanded={true}
-                  items={value?.panels?.map((panel, index) => ({
+                  items={accordion?.panels?.map((panel, index) => ({
                     heading: panel.heading,
                     panel: <div key={index}>{panel?.panel}</div>,
                   }))}
@@ -94,11 +97,12 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               )
               break
             case "image_with_overlay":
+              const imageWithOverlay = value as ModularBlockImageWithOverlay
               component = (
                 <PromotionalBanner
                   layout="hero"
-                  text={value?.paragraph}
-                  title={value?.title_primary}
+                  text={imageWithOverlay?.paragraph}
+                  title={imageWithOverlay?.title_primary}
                   {...margins}
                   {...value}
                 />

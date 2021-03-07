@@ -5,17 +5,26 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
+  grid,
   layout,
+  position,
   space,
   variant,
   ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
 export type BannerProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
+  PositionProps &
   SpaceProps &
   VariantProps & {
     children: React.ReactNode
@@ -54,10 +63,14 @@ export const BannerStyled: React.FC<BannerProps> = styled.div`
     },
   })}
 
-  ${compose(color, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const Banner: React.FC<BannerProps> = ({ children, variant, ...props }) => (
+export const Banner: React.FC<BannerProps> = ({
+  children,
+  variant,
+  ...props
+}) => (
   <BannerStyled variant={variant} {...props}>
     <Link {...props}>{children}</Link>
   </BannerStyled>

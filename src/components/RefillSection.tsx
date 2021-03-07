@@ -1,29 +1,37 @@
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-export type RefillSectionProps = 
+export type RefillSectionProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps
 
 export const RefillSectionStyled: React.FC<RefillSectionProps> = styled.div`
-  column-gap: 2rem;  
+  column-gap: 2rem;
   display: grid;
-  grid-template-columns: repeat(6,1fr);
+  grid-template-columns: repeat(6, 1fr);
   justify-items: start;
 
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const RefillSection: React.FC<RefillSectionProps> = props => (

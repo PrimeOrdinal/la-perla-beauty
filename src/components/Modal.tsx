@@ -4,15 +4,18 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
   grid,
   layout,
   position,
   space,
   ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
+  VariantProps,
 } from "styled-system"
 
 import { ReactComponent as Close } from "../../static/icons/Close.svg"
@@ -48,14 +51,16 @@ const WrapperStyled = styled.div`
     text-align: center;
   }
 
-  ${compose(color, grid, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export type ModalProps = ColorProps &
+  FlexboxProps &
   GridProps &
   LayoutProps &
   PositionProps &
-  SpaceProps & {
+  SpaceProps &
+  VariantProps & {
     closeModal: React.DispatchWithoutAction
     modalIsOpen: boolean
   }

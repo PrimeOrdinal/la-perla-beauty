@@ -5,10 +5,16 @@ import clsx from "clsx"
 import React, { useState } from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -88,7 +94,7 @@ const MenuListingStyled = styled.section`
     width: 80%;
   }
 
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 const RefineStyled = styled.div`
@@ -115,7 +121,10 @@ const RefineStyled = styled.div`
   }
 `
 
-export type MenuListingProps = LayoutProps &
+export type MenuListingProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
@@ -139,7 +148,11 @@ export const MenuListing: React.FC<MenuListingProps> = ({
     <MenuListingStyled {...props}>
       <div className={clsx("container", "menu-view-and-refine")}>
         <div className={clsx("menu")}>
-          <ViewSelector className="view-selector" setView={setView} view={view} />
+          <ViewSelector
+            className="view-selector"
+            setView={setView}
+            view={view}
+          />
           <RefineStyled>
             <Button
               onClick={() => {

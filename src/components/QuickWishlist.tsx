@@ -4,10 +4,16 @@ import { Formik, Form, FormikHelpers } from "formik"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -19,7 +25,10 @@ import { ReactComponent as WishlistPresentIcon } from "../../static/icons/Wishli
 
 import { Button } from "./Button"
 
-export type QuickWishlistProps = LayoutProps &
+export type QuickWishlistProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & { product: Product }
@@ -29,7 +38,7 @@ interface Values {
 }
 
 export const QuickWishlistStyled: React.FC<QuickWishlistProps> = styled.div`
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const QuickWishlist: React.FC<QuickWishlistProps> = ({

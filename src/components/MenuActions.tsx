@@ -2,13 +2,20 @@ import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
   grid,
   layout,
+  position,
   space,
+  ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
+  VariantProps,
 } from "styled-system"
 
 import { ReactComponent as Basket } from "../../static/icons/Basket.svg"
@@ -59,12 +66,16 @@ export const MenuActionsStyle = styled(ListPlain)`
     }
   }
 
-  ${compose(grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type MenuActionsProps = GridProps &
+export type MenuActionsProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
-  SpaceProps & {
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
     toggleMiniBagVisibility: React.DispatchWithoutAction
     toggleQuickSearchVisibility: React.DispatchWithoutAction
   }

@@ -1,3 +1,4 @@
+import { ReactElement } from "react"
 import { Colour, Icon } from "theme"
 
 export type ModularBlock = {
@@ -9,6 +10,12 @@ export type ModularBlock = {
   }
 }
 
+export type ModularBlockAccordion = ModularBlock & {
+  panels?: Array<{
+    heading: string
+    panel: ReactElement
+  }>
+}
 export type ModularBlockHorizontalRule = ModularBlock & {
   colour?: string
 }

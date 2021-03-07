@@ -3,13 +3,20 @@ import { Link } from "./Button"
 import React, { useState } from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
   grid,
   layout,
+  position,
   space,
+  ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
+  VariantProps,
 } from "styled-system"
 
 import { ReactComponent as Close } from "../../static/icons/Close.svg"
@@ -48,19 +55,27 @@ const StyledHamburger = styled.div`
     top: 0;
   }
 
-  ${compose(grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type HamburgerMenuProps = GridProps & LayoutProps & SpaceProps
+export type HamburgerMenuProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps
 
-export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ data, ...props }) => {
+export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
+  data,
+  ...props
+}) => {
   const [toggle, setToggle] = useState(false)
 
   return (
     <StyledHamburger {...props}>
       <button onClick={() => setToggle(!toggle)}>
-        {toggle && <Close /> || <Hamburger />}
-        
+        {(toggle && <Close />) || <Hamburger />}
       </button>
 
       {toggle && (
@@ -72,7 +87,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ data, ...props }) 
                 .find(({ node: menu }) =>
                   menu.slot?.startsWith("mobile-navigation")
                 )
-                ?.node?.links.map((panel) => ({
+                ?.node?.links.map(panel => ({
                   heading: panel.text,
                   panel: (
                     <ul>

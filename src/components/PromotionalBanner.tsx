@@ -4,7 +4,22 @@ import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
-import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
+import {
+  color,
+  compose,
+  flexbox,
+  grid,
+  layout,
+  position,
+  space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
 
 import { mediaQueries } from "../theme"
 
@@ -76,7 +91,8 @@ const LayoutBase = styled.aside`
       }
     }
   }
-  ${compose(layout, space)}
+
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 const PromotionalBannerView = styled(LayoutBase)`
@@ -92,8 +108,7 @@ const PromotionalBannerView = styled(LayoutBase)`
     ["hero", "overlay"].includes(props.layout) ? "relative" : "static"};
 
   img {
-    border-radius: ${props =>
-      props.layout === "row" ? "10px" : "unset"};
+    border-radius: ${props => (props.layout === "row" ? "10px" : "unset")};
   }
 
   div {
@@ -126,8 +141,13 @@ enum Layout {
   undefined, // default style is the column that spans two which has pink bg with image above
 }
 
-export type PromotionalBannerProps = LayoutProps &
-  SpaceProps & {
+export type PromotionalBannerProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
     color: Colour
     description: string
     image: {

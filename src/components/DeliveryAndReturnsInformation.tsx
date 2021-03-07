@@ -1,28 +1,39 @@
 import { themeGet } from "@styled-system/theme-get"
 import { Formik, Field, Form, FormikHelpers } from "formik"
 import React from "react"
-import styled from "styled-components"
-import {
-  color,
-  compose,
-  layout,
-  space,
-  ColorProps,
-  LayoutProps,
-  SpaceProps,
-} from "styled-system"
 import {
   Tab as ReactTab,
   Tabs as ReactTabs,
   TabList as ReactTabList,
   TabPanel as ReactTabPanel,
 } from "react-tabs"
+import styled from "styled-components"
+import {
+  color,
+  compose,
+  flexbox,
+  grid,
+  layout,
+  position,
+  space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
 
 import { Button } from "./Button"
 
 export type DeliveryAndReturnsInformationProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
-  SpaceProps & {
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
     children: React.ReactNode
   }
 
@@ -30,7 +41,7 @@ export const DeliveryAndReturnsInformationStyled: React.FC<DeliveryAndReturnsInf
   display: grid;
   grid-auto-flow: column;
 
-  ${compose(color, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const TabsStyled = styled(ReactTabs)`

@@ -5,10 +5,16 @@ import { Field } from "formik"
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -27,10 +33,13 @@ const ProductSelectorColourStyled = styled.div`
     justify-content: start;
   }
 
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type ProductSelectorColourProps = LayoutProps &
+export type ProductSelectorColourProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {

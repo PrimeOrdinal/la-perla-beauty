@@ -4,11 +4,17 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
+  grid,
   layout,
+  position,
   space,
   variant,
   ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
@@ -16,7 +22,10 @@ import {
 import { mediaQueries } from "../theme"
 
 export type LeafProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
+  PositionProps &
   SpaceProps &
   VariantProps & {
     children: React.ReactNode
@@ -29,7 +38,7 @@ export const LeafStyled: React.FC<LeafProps> = styled.div`
   color: ${themeGet("colors.black")};
   display: grid;
   font-size: var(--font-size-body, 13px);
-  grid-auto-flow:row;
+  grid-auto-flow: row;
   justify-items: start;
   padding: ${themeGet("space.8")}px ${themeGet("space.11")}px;
   position: relative;
@@ -68,7 +77,7 @@ export const LeafStyled: React.FC<LeafProps> = styled.div`
     },
   })}
 
-  ${compose(color, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const Leaf: React.FC<LeafProps> = ({ children, ...props }) => (

@@ -2,10 +2,16 @@ import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -14,7 +20,13 @@ import {
 
 import "react-tabs/style/react-tabs.css"
 
-export type MenuSubCategoryProps = LayoutProps & PositionProps & SpaceProps & VariantProps
+export type MenuSubCategoryProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps
 
 export const MenuSubCategoryContainerStyled: React.FC<MenuSubCategoryProps> = styled.div`
   background-color: ${themeGet("colors.pink")};
@@ -23,14 +35,15 @@ export const MenuSubCategoryContainerStyled: React.FC<MenuSubCategoryProps> = st
   padding-block-end: ${themeGet("space.5")}px;
   padding-block-start: ${themeGet("space.5")}px;
 
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const MenuSubCategoryStyled: React.FC<MenuSubCategoryProps> = styled.nav`
   column-gap: ${themeGet("space.10")}px;
   display: inline-grid;
   grid-auto-flow: column;
-  justify-content: ${props => props.justifyContent ? props.justifyContent : "center"};
+  justify-content: ${props =>
+    props.justifyContent ? props.justifyContent : "center"};
 
   a {
     color: inherit;
@@ -40,7 +53,10 @@ export const MenuSubCategoryStyled: React.FC<MenuSubCategoryProps> = styled.nav`
   }
 `
 
-export const MenuSubCategory: React.FC<MenuSubCategoryProps> = ({ children, ...props }) => (
+export const MenuSubCategory: React.FC<MenuSubCategoryProps> = ({
+  children,
+  ...props
+}) => (
   <MenuSubCategoryContainerStyled className="container" {...props}>
     <MenuSubCategoryStyled {...props}>{children}</MenuSubCategoryStyled>
   </MenuSubCategoryContainerStyled>

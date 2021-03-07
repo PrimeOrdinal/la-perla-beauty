@@ -1,14 +1,22 @@
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
   grid,
   layout,
+  position,
   space,
+  ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
+  VariantProps,
 } from "styled-system"
+
 import { mediaQueries } from "../theme"
 
 import { ReactComponent as CloseIcon } from "../../static/icons/Close.svg"
@@ -95,12 +103,16 @@ const ShoppingBagProductStyled = styled.div`
     }
   }
 
-  ${compose(grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type ShoppingBagProductProps = GridProps &
+export type ShoppingBagProductProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
-  SpaceProps & {
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
     layout: "compact" | "full"
   }
 

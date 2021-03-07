@@ -4,17 +4,20 @@ import React from "react"
 import styled, { css } from "styled-components"
 import {
   buttonStyle,
-  color,
+  color, 
   compose,
+  flexbox,
   grid,
   layout,
+  position,
   space,
-  flexbox,
   variant,
   ButtonStyleProps,
   ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
@@ -23,9 +26,8 @@ import { styles as buttonStyles } from "../styles/button"
 
 export type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   ButtonStyleProps &
-  ColorProps &
-  GridProps &
-  LayoutProps &
+  ColorProps & FlexboxProps & GridProps &
+  LayoutProps & PositionProps &
   SpaceProps &
   VariantProps & {
     active: "active" | "inactive"
@@ -70,7 +72,7 @@ export const baseStyles = css`
     },
   })}
 
-  ${compose(buttonStyle, color, flexbox, grid, layout, space)}
+  ${compose(buttonStyle, color, flexbox, grid, layout, position, space)}
 `
 
 // Since DOM elements <a> cannot receive activeClassName
@@ -105,25 +107,25 @@ export const LinkContextual = ({ children, to, ...other }) => {
 export const Anchor: React.FC<LinkProps> = styled.a`
   ${baseStyles}
 
-  ${compose(color, flexbox, grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const Button: React.FC<ButtonProps> = styled.button`
   ${buttonStyles}
   ${baseStyles}
 
-  ${compose(buttonStyle, color, flexbox, grid, layout, space)}
+  ${compose(buttonStyle, color, flexbox, grid, layout, position, space)}
 `
 
 export const Link: React.FC<LinkProps> = styled(LinkContextual)`
   ${baseStyles}
 
-  ${compose(color, flexbox, grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const LinkButton: React.FC<LinkProps> = styled(LinkContextual)`
   ${buttonStyles}
   ${baseStyles}
 
-  ${compose(color, flexbox, grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `

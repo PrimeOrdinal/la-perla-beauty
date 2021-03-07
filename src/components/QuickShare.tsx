@@ -46,10 +46,16 @@ import {
 } from "react-share"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -61,13 +67,16 @@ import { ReactComponent as ShareIcon } from "../../static/icons/Share.svg"
 import { Button } from "./Button"
 import { Modal } from "./Modal"
 
-export type QuickShareProps = LayoutProps &
+export type QuickShareProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & { product: Product }
 
 export const QuickShareStyled: React.FC<QuickShareProps> = styled.div`
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const FallbackShareOptions = styled.div`
@@ -111,7 +120,7 @@ export const QuickShare: React.FC<QuickShareProps> = ({
     setIsOpen(true)
   }
 
-  if(typeof navigator !== 'undefined') {
+  if (typeof navigator !== "undefined") {
     const output = navigator.canShare ? (
       <Button onClick={onButtonClick} type="button">
         <span className="sr-only">Share</span>

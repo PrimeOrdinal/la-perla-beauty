@@ -5,10 +5,16 @@ import React, { useRef, useState } from "react"
 import ReactImageGallery from "react-image-gallery"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -21,7 +27,10 @@ import { ReactComponent as Close } from "../../static/icons/Close.svg"
 
 import "./ImageGallery.css"
 
-export type ImageGalleryProps = LayoutProps &
+export type ImageGalleryProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
@@ -31,7 +40,7 @@ export type ImageGalleryProps = LayoutProps &
 export const ImageGalleryStyled: React.FC<ImageGalleryProps> = styled(
   ReactImageGallery
 )`
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 const renderLeftNav = (onClick, disabled) => {
@@ -105,8 +114,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = props => {
       const percentX = (posX / imageRect.width) * 100 // x click position within entire element as percentage
       const percentY = (posY / imageRect.height) * 100 // x click position within entire element as percentage
 
-      const scrollX = (imageRect.width / 100) * percentX * (hasRegistered ? 0.5 : 2)
-      const scrollY = (imageRect.height / 100) * percentY * (hasRegistered ? 0.5 : 2)
+      const scrollX =
+        (imageRect.width / 100) * percentX * (hasRegistered ? 0.5 : 2)
+      const scrollY =
+        (imageRect.height / 100) * percentY * (hasRegistered ? 0.5 : 2)
 
       const scrollXoffset = scrollX - containerRect.width * 0.5
       const scrollYoffset = scrollY - containerRect.height * 0.5

@@ -9,10 +9,16 @@ import {
 } from "react-accessible-accordion"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -22,7 +28,10 @@ import {
 import MinusIcon from "../../static/icons/Minus.svg"
 import PlusIcon from "../../static/icons/Plus.svg"
 
-export type AccordionProps = LayoutProps &
+export type AccordionProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
@@ -125,7 +134,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
     }
   }
 
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const Accordion: React.FC<AccordionProps> = ({ items, ...props }) => (

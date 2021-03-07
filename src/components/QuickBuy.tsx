@@ -6,10 +6,16 @@ import { Formik, Form, FormikHelpers } from "formik"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -20,7 +26,10 @@ import { Button } from "./Button"
 import { ProductSelectorColour } from "../components/ProductSelectorColour"
 import { ProductSelectorSize } from "./ProductSelectorSize"
 
-export type QuickBuyProps = LayoutProps &
+export type QuickBuyProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & { product: Product }
@@ -30,7 +39,7 @@ interface Values {
 }
 
 export const QuickBuyStyled: React.FC<QuickBuyProps> = styled.div`
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {

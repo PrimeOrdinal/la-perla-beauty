@@ -6,13 +6,20 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
   grid,
   layout,
+  position,
   space,
+  ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
+  VariantProps,
 } from "styled-system"
 
 import { ProductCard } from "./ProductCard"
@@ -27,12 +34,16 @@ const ListingStyled = styled.ul`
     grid-column: ${props => (props.view === "grid" ? "span 2" : "span 1")};
   }
 
-  ${compose(grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type ListingProps = GridProps &
+export type ListingProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
-  SpaceProps & {
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
     products?: Array<{
       node: WithContext<Product>
     }>
@@ -68,19 +79,31 @@ export const Listing: React.FC<ListingProps> = ({
     <ListingStyled
       borderTop={1}
       gridAutoFlow="row"
-      gridColumnGap={view === "grid" ? { _: 6, sm: 6, md: 8, lg: 10 } : { _: 6, sm: 6, md: 8, lg: 10 }}
-      gridRowGap={view === "grid" ? { _: 4, sm: 6, md: 8, lg: 10 } : { _: 4, sm: 6, md: 8, lg: 10 }}
-      gridTemplateColumns={view === "grid" ? {
-        _: "repeat(2, 1fr)",
-        sm: "repeat(2, 1fr)",
-        md: "repeat(4, 1fr)",
-        xl: "repeat(4, 1fr)",
-      } : {
-        _: "repeat(1, 1fr)",
-        sm: "repeat(1, 1fr)",
-        md: "repeat(2, 1fr)",
-        xl: "repeat(2, 1fr)",
-      }}
+      gridColumnGap={
+        view === "grid"
+          ? { _: 6, sm: 6, md: 8, lg: 10 }
+          : { _: 6, sm: 6, md: 8, lg: 10 }
+      }
+      gridRowGap={
+        view === "grid"
+          ? { _: 4, sm: 6, md: 8, lg: 10 }
+          : { _: 4, sm: 6, md: 8, lg: 10 }
+      }
+      gridTemplateColumns={
+        view === "grid"
+          ? {
+              _: "repeat(2, 1fr)",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(4, 1fr)",
+              xl: "repeat(4, 1fr)",
+            }
+          : {
+              _: "repeat(1, 1fr)",
+              sm: "repeat(1, 1fr)",
+              md: "repeat(2, 1fr)",
+              xl: "repeat(2, 1fr)",
+            }
+      }
       view={view}
     >
       {items}

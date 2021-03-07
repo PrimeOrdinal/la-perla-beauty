@@ -4,7 +4,22 @@ import { themeGet } from "@styled-system/theme-get"
 import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
-import { compose, layout, space, LayoutProps, SpaceProps } from "styled-system"
+import {
+  color,
+  compose,
+  flexbox,
+  grid,
+  layout,
+  position,
+  space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
 
 import { useToggle } from "../hooks/useToggle"
 
@@ -114,10 +129,15 @@ const ProductCardStyled = styled.article`
     font-weight: lighter;
   }
 
-  ${compose(layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
-export type ProductCardProps = LayoutProps &
-  SpaceProps & { product: Product; showImage: boolean }
+export type ProductCardProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps & { product: Product; showImage: boolean }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
@@ -166,18 +186,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="product-information">
         <div className="product-category-wrapper">
           {Array.isArray(product?.category) &&
-            product?.category.map(category => (
-              <Link
-                className="product-category"
-                id={category?.identifier}
-                key={category?.identifier}
-                itemProp="category"
-                title={category?.name}
-                to={category?.url}
-              >
-                <span itemProp="name">{category?.name}</span>
-              </Link>
-            )).pop()}
+            product?.category
+              .map(category => (
+                <Link
+                  className="product-category"
+                  id={category?.identifier}
+                  key={category?.identifier}
+                  itemProp="category"
+                  title={category?.name}
+                  to={category?.url}
+                >
+                  <span itemProp="name">{category?.name}</span>
+                </Link>
+              ))
+              .pop()}
         </div>
         {product?.brand?.name && (
           <span className="product-brand" itemProp="brand">
@@ -202,8 +224,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {product?.name}
         </span>
       )}
-      {!quickBuyOpen && offer && <Price display={{ _: "none", md: "block" }} offer={offer} />}
-      {quickBuyOpen && <QuickBuy className="quick-buy" marginBottom={{ _: 6, md: 0 }} product={product} />}
+      {!quickBuyOpen && offer && (
+        <Price display={{ _: "none", md: "block" }} offer={offer} />
+      )}
+      {quickBuyOpen && (
+        <QuickBuy
+          className="quick-buy"
+          marginBottom={{ _: 6, md: 0 }}
+          product={product}
+        />
+      )}
     </ProductCardStyled>
   )
 }

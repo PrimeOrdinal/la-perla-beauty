@@ -6,10 +6,14 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
   ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -101,10 +105,12 @@ const MenuRefineMobileStyled = styled.section`
     margin-bottom: ${themeGet("space.6")}px;
   }
 
-  ${compose(color, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export type MenuRefineProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &

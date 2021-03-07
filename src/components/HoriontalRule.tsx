@@ -1,16 +1,25 @@
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-export type HoriontalRuleProps = LayoutProps &
+export type HoriontalRuleProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
@@ -18,5 +27,5 @@ export type HoriontalRuleProps = LayoutProps &
   }
 
 export const HoriontalRule: React.FC<HoriontalRuleProps> = styled.hr`
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `

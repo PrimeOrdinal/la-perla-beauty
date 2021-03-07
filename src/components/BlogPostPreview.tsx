@@ -4,11 +4,13 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
   grid,
   layout,
   position,
   space,
   ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
   PositionProps,
@@ -18,7 +20,9 @@ import {
 
 import { Link } from "./Button"
 
-export type BlogPostPreviewProps = ColorProps & GridProps &
+export type BlogPostPreviewProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
@@ -41,7 +45,7 @@ const BlogPostPreviewStyled = styled.article`
     font-weight: bold;
   }
 
-  ${compose(color, grid, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const BlogPostPreview: React.FC<BlogPostPreviewProps> = ({

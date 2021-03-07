@@ -3,10 +3,14 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
   ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -14,6 +18,8 @@ import {
 } from "styled-system"
 
 export type ReviewProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
@@ -25,7 +31,7 @@ export const ReviewStyled: React.FC<ReviewProps> = styled.div`
     cursor: "not-allowed";
   }
 
-  ${compose(color, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const Review: React.FC<ReviewProps> = props => (

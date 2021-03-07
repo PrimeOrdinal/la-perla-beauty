@@ -4,19 +4,26 @@ import React from "react"
 import ReactPlayer from "react-player/lazy"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-// import Profile from "../../static/icons/Profile.svg"
-
-export type VideoPlayerProps = LayoutProps &
+export type VideoPlayerProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps
@@ -24,7 +31,7 @@ export type VideoPlayerProps = LayoutProps &
 export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled(
   ReactPlayer
 )`
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = props => (

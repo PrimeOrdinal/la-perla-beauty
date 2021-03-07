@@ -7,11 +7,13 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
   grid,
   layout,
   position,
   space,
   ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
   PositionProps,
@@ -29,7 +31,7 @@ const QuickSearchStyled = styled.div`
     margin: ${themeGet("space.2")}px;
   }
 
-  ${compose(color, grid, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 const ResultsStyled = styled.ul`
@@ -44,6 +46,7 @@ const ResultsStyled = styled.ul`
 `
 
 export type QuickSearchProps = ColorProps &
+  FlexboxProps &
   GridProps &
   LayoutProps &
   PositionProps &

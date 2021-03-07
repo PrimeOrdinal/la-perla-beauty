@@ -4,10 +4,14 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
   ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -15,6 +19,8 @@ import {
 } from "styled-system"
 
 export type PriceProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
@@ -29,10 +35,10 @@ export const PriceStyled: React.FC<PriceProps> = styled.div`
     cursor: "not-allowed";
   }
 
-  ${compose(color, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const Price: React.FC<PriceProps> = ({offer, ...props}) => (
+export const Price: React.FC<PriceProps> = ({ offer, ...props }) => (
   <PriceStyled
     itemProp="offers"
     itemScope

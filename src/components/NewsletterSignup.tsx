@@ -4,10 +4,16 @@ import fetch from "node-fetch"
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -75,10 +81,13 @@ const NewsletterStyled = styled.div`
     border: 1px solid ${themeGet("colors.black")};
   }
 
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type NewsletterSignupProps = LayoutProps &
+export type NewsletterSignupProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps

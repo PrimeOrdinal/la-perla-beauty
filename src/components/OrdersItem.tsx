@@ -3,9 +3,14 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -15,7 +20,10 @@ import { ListPlain } from "./ListPlain"
 import { Button, Link } from "./Button"
 import { mediaQueries } from "../theme"
 
-export type OrdersItemProps = LayoutProps &
+export type OrdersItemProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
@@ -100,7 +108,7 @@ const SecondColumnStyled = styled(ListPlain)`
     }
   }
 
-  ${compose(color, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const OrdersItem: React.FC<OrdersItemProps> = ({

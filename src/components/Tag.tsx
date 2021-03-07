@@ -3,16 +3,28 @@ import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
+  grid,
   layout,
+  position,
   space,
   variant,
   ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-export type TagProps = ColorProps & LayoutProps & SpaceProps & VariantProps
+export type TagProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps
 
 export const Tag: React.FC<TagProps> = styled.span`
   background-color: ${themeGet("colors.orange")};
@@ -53,5 +65,5 @@ export const Tag: React.FC<TagProps> = styled.span`
     },
   })}
 
-  ${compose(color, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `

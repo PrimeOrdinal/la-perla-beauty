@@ -7,13 +7,20 @@ import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
   grid,
   layout,
+  position,
   space,
+  ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
+  VariantProps,
 } from "styled-system"
 
 import { Link } from "./Button"
@@ -30,7 +37,7 @@ const StyledMenu = styled.div`
     margin-block-end: 0;
   }
 
-  ${compose(grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 const StyledMenuMainHeadings = styled(ListPlain)`
@@ -120,9 +127,13 @@ const StyledMenuMainHeadings = styled(ListPlain)`
   }
 `
 
-export type MenuNavigationProps = GridProps &
+export type MenuNavigationProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
-  SpaceProps & {
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
     // data?: MenuNavigationQuery
     data?: LayoutQuery
   }
@@ -131,60 +142,62 @@ export const MenuNavigation: React.FC<MenuNavigationProps> = ({
   data,
   ...props
 }) => (
-    <StyledMenu {...props}>
-      {data?.allContentstackMenus?.edges
-        ?.filter(({ node: menu }) => menu.slot?.startsWith("header-navigation"))
-        .map(({ node: menu }) => (
-          <StyledMenuMainHeadings id={menu.slot as string} key={menu.id}>
-            {menu?.links?.map((linkLevel1, indexLevel1) => (
-              <li className="menu-item" key={indexLevel1}>
-                <Link
-                  className="level-1"
-                  title={linkLevel1?.url?.title as string}
-                  to={linkLevel1?.url?.href as string}
-                >
-                  {linkLevel1?.text}
-                </Link>
-                {linkLevel1?.sub_menus?.map((sub_menu, subMenuIndex) => (
-                  <div className="sub-menu" key={subMenuIndex}>
-                    {sub_menu && (
-                      <ul className="links">
-                        {sub_menu?.links?.map((linkLevel2, indexLevel2) => (
-                          <li key={indexLevel2}>
-                            <Link
-                              className="level-2"
-                              to={linkLevel2?.url?.href as string}
-                              title={linkLevel2?.url?.title as string}
-                            >
-                              {linkLevel2?.text}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {sub_menu?.images?.map((image, index) => (
-                      <React.Fragment key={index}>
-                        {image?.image?.url && (
+  <StyledMenu {...props}>
+    {data?.allContentstackMenus?.edges
+      ?.filter(({ node: menu }) => menu.slot?.startsWith("header-navigation"))
+      .map(({ node: menu }) => (
+        <StyledMenuMainHeadings id={menu.slot as string} key={menu.id}>
+          {menu?.links?.map((linkLevel1, indexLevel1) => (
+            <li className="menu-item" key={indexLevel1}>
+              <Link
+                className="level-1"
+                title={linkLevel1?.url?.title as string}
+                to={linkLevel1?.url?.href as string}
+              >
+                {linkLevel1?.text}
+              </Link>
+              {linkLevel1?.sub_menus?.map((sub_menu, subMenuIndex) => (
+                <div className="sub-menu" key={subMenuIndex}>
+                  {sub_menu && (
+                    <ul className="links">
+                      {sub_menu?.links?.map((linkLevel2, indexLevel2) => (
+                        <li key={indexLevel2}>
                           <Link
-                            className="image-container"
-                            title={image?.url?.title as string}
-                            to={image?.url?.href as string}
+                            className="level-2"
+                            to={linkLevel2?.url?.href as string}
+                            title={linkLevel2?.url?.title as string}
                           >
-                            <img
-                              alt={image?.image?.title}
-                              className="image"
-                              src={image?.image?.url}
-                            />
-                            <span className="title">{image?.url?.title as string}</span>
+                            {linkLevel2?.text}
                           </Link>
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                ))}
-              </li>
-            ))}
-          </StyledMenuMainHeadings>
-        ))}
-    </StyledMenu>
-  )
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {sub_menu?.images?.map((image, index) => (
+                    <React.Fragment key={index}>
+                      {image?.image?.url && (
+                        <Link
+                          className="image-container"
+                          title={image?.url?.title as string}
+                          to={image?.url?.href as string}
+                        >
+                          <img
+                            alt={image?.image?.title}
+                            className="image"
+                            src={image?.image?.url}
+                          />
+                          <span className="title">
+                            {image?.url?.title as string}
+                          </span>
+                        </Link>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              ))}
+            </li>
+          ))}
+        </StyledMenuMainHeadings>
+      ))}
+  </StyledMenu>
+)
