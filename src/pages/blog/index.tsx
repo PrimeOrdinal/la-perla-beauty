@@ -3,7 +3,6 @@ import type {
   BlogLandingPageQuery,
 } from "/../../graphql-types"
 
-import { themeGet } from "@styled-system/theme-get"
 import { PageProps } from "gatsby"
 import React from "react"
 import styled from "styled-components"
@@ -12,7 +11,6 @@ import { BlogPostPreview } from "../../components/BlogPostPreview"
 import { Breadcrumb } from "../../components/Breadcrumb"
 import { ImageGallery } from "../../components/ImageGallery"
 import { Layout } from "../../components/Layout"
-import { ListPlain } from "../../components/ListPlain"
 import { MenuSubCategory } from "../../components/MenuSubCategory"
 import { ProductCardAlt } from "../../components/ProductCardAlt"
 
@@ -23,6 +21,7 @@ type PageContextCategory = PageContextTypeBreadcrumb & {
 }
 
 const imageprops = {
+  bulletClass: true,
   items: [
     {
       original: "https://picsum.photos/id/1018/600/600/",
@@ -43,10 +42,9 @@ const imageprops = {
       original: "https://picsum.photos/id/1019/600/600/",
     },
   ],
-  showPlayButton: false,
-  bulletClass: true,
   showFullscreenButton: false,
   showNav: false,
+  showPlayButton: false,
   showThumbnails: false,
 }
 
