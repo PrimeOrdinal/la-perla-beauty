@@ -22,8 +22,8 @@ export type ModularBlockHorizontalRule = ModularBlock & {
 
 export type ModularBlockIconList = ModularBlock & {
   item: Array<{
-    colour?: Icon
-    icon?: Colour
+    colour?: Colour
+    icon?: Icon
     text?: string
     title?: string
   }>
@@ -39,6 +39,22 @@ export type ModularBlockImage = ModularBlock & {
   }
 }
 
+export type ModularBlockImageWithOverlay = ModularBlock & {
+  image: {
+    image?: {
+      title?: string
+      url?: URL
+    }
+  }
+  link?: {
+    href: URL
+    title: string
+  }
+  paragraph?: string
+  title_primary: string
+  title_secondary: string
+}
+
 export type ModularBlockIntroduction = ModularBlock & {
   heading?: {
     semantic_level?: number
@@ -49,6 +65,24 @@ export type ModularBlockIntroduction = ModularBlock & {
     title: string
   }
   paragraph?: string
+}
+
+export type ModularBlockLeaf = ModularBlock & {
+  colour: Colour
+  heading?: string
+  image: {
+    image?: {
+      title?: string
+      url?: URL
+    }
+  }
+  layout: string,
+  link?: {
+    href: URL
+    title: string
+  }
+  orientation: null,
+  text?: string
 }
 
 export type ModularBlockMenu = ModularBlock & {
@@ -88,6 +122,7 @@ export type ModularBlockVideo = ModularBlock & {
 
 export type ModularBlocksTypes =
   | ModularBlockImage
+  | ModularBlockImageWithOverlay
   | ModularBlockIntroduction
   | ModularBlockMenu
   | ModularBlockParagraph
