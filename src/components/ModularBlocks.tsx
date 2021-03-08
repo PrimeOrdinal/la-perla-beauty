@@ -169,6 +169,17 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 />
               )
               break
+            case "wysiwyg":
+              const wysiwyg = value as ModularBlockWYSIWYG
+              component = (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: wysiwyg?.markup as string,
+                  }}
+                  {...margins}
+                />
+              )
+              break
             default:
               console.log(`Unmapped modular block type: ${key}`)
               break

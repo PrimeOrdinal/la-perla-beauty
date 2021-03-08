@@ -138,6 +138,9 @@ export const Contentstack_page_sectionsFragment = graphql`
           url
         }
       }
+      wysiwyg {
+        markup
+      }
     }
     id
     title

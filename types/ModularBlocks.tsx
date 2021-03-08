@@ -120,6 +120,10 @@ export type ModularBlockVideo = ModularBlock & {
   }
 }
 
+export type ModularBlockWYSIWYG = ModularBlock & {
+  markup: string
+}
+
 export type ModularBlocksTypes =
   | ModularBlockImage
   | ModularBlockImageWithOverlay
