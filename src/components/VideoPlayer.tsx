@@ -26,21 +26,40 @@ export type VideoPlayerProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps
+  VariantProps & {
+    aspectRatio: string
+  }
 
-export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled(
-  ReactPlayer
-)`
+export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
+  padding-top: 56.25%;
+  position: relative;
+
+  .react-player {
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const VideoPlayer: React.FC<VideoPlayerProps> = props => (
-  <VideoPlayerStyled
-    playIcon={
-      <IconContext.Provider value={{ color: "white", size: "2rem" }}>
-        <FiPlay />
-      </IconContext.Provider>
-    }
-    {...props}
-  />
-)
+export const VideoPlayer: React.FC<VideoPlayerProps> = ({
+  aspectRatio,
+  ...props
+}) => {
+  console.log("aspectRatio", aspectRatio)
+  return(
+  <VideoPlayerStyled aspect-ratio={aspectRatio}>
+    <ReactPlayer
+      className="react-player"
+      height="100%"
+      playIcon={
+        <IconContext.Provider value={{ color: "white", size: "2rem" }}>
+          <FiPlay />
+        </IconContext.Provider>
+      }
+      width="100%"
+      {...props}
+    />
+  </VideoPlayerStyled>
+)}
