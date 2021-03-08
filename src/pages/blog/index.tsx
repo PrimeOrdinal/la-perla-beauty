@@ -6,15 +6,16 @@ import type {
 import { PageProps } from "gatsby"
 import React from "react"
 import styled from "styled-components"
+import { mediaQueries } from "../../theme"
 
 import { BlogPostPreview } from "../../components/BlogPostPreview"
 import { Breadcrumb } from "../../components/Breadcrumb"
 import { ImageGallery } from "../../components/ImageGallery"
 import { Layout } from "../../components/Layout"
 import { MenuSubCategory } from "../../components/MenuSubCategory"
-import { ProductCardAlt } from "../../components/ProductCardAlt"
-
-import { mediaQueries } from "../../theme"
+import { ArticleGrid } from "../../components/ArticleGrid"
+import { ArticleSlider } from "../../components/ArticleSlider"
+import { ProductCardAltGrid } from "../../components/ProductCardAltGrid"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceGql_Category
@@ -105,31 +106,6 @@ const MainStyled = styled.main`
         margin-block-end: 2rem;
       }
     }
-    &__grid {
-      ${mediaQueries.md} {
-        display: grid;
-        grid-auto-flow: column;
-        gap: 46px;
-        min-height: 650px;
-        margin-block-end: 2rem;
-      }
-      .col1,
-      .col2 {
-        display: grid;
-        grid-auto-flow: column;
-        gap: 46px;
-        min-height: 375px;
-        ${mediaQueries.md} {
-          min-height: auto;
-        }
-        article:last-child {
-          align-self: flex-end;
-        }
-      }
-      .col2 {
-        margin-block-end: 1rem;
-      }
-    }
   }
   .third {
     margin-block-end: 1rem;
@@ -173,21 +149,6 @@ const MainStyled = styled.main`
           margin-left: unset;
           margin-right: unset;
         }
-      }
-    }
-  }
-  .sixth {
-    padding-right: 0;
-    ${mediaQueries.md} {
-      padding-right: var(--app-gutter-x, 0.75rem);
-    }
-    &__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 200px);
-      gap: 2rem;
-      overflow-x: scroll;
-      ${mediaQueries.md} {
-        grid-template-columns: repeat(4, auto);
       }
     }
   }
@@ -236,36 +197,7 @@ const BlogLandingPage: React.FC<
             nec, tincidunt nisl. Sed bibendum eu sapien eleifend feugiat. Cras
             efficitur erat aliquam.
           </p>
-          <div className="second__grid">
-            <div className="col1">
-              <BlogPostPreview
-                headingBelow="Etiam aliquet vist metus"
-                body="Luxury with integrity​"
-                link="read more"
-                aspectRatio="3/4"
-              />
-              <BlogPostPreview
-                headingBelow="Etiam aliquet vist metus"
-                body="Luxury with integrity​"
-                link="read more"
-                aspectRatio="3/4"
-              />
-            </div>
-            <div className="col2">
-              <BlogPostPreview
-                headingBelow="Etiam aliquet vist metus"
-                body="Luxury with integrity​"
-                link="read more"
-                aspectRatio="3/4"
-              />
-              <BlogPostPreview
-                headingBelow="Etiam aliquet vist metus"
-                body="Luxury with integrity​"
-                link="read more"
-                aspectRatio="3/4"
-              />
-            </div>
-          </div>
+          <ArticleGrid />
         </section>
         <section className="third container">
           <BlogPostPreview
@@ -275,58 +207,7 @@ const BlogLandingPage: React.FC<
             aspectRatio="615/413"
           />
         </section>
-        <section className="fourth">
-          <div className="fourth__grid container">
-            <ProductCardAlt
-              image={{
-                src: `https://picsum.photos/231/231?${
-                  Math.floor(Math.random() * 10) + 1
-                }`,
-                alt: "something",
-              }}
-              size="120"
-              name="The Scent of La Perla"
-              price="120"
-              category="Eau de parfum"
-            />
-            <ProductCardAlt
-              image={{
-                src: `https://picsum.photos/231/231?${
-                  Math.floor(Math.random() * 10) + 1
-                }`,
-                alt: "something",
-              }}
-              size="120"
-              name="The Scent of La Perla"
-              price="120"
-              category="Eau de parfum"
-            />
-            <ProductCardAlt
-              image={{
-                src: `https://picsum.photos/231/231?${
-                  Math.floor(Math.random() * 10) + 1
-                }`,
-                alt: "something",
-              }}
-              size="120"
-              name="The Scent of La Perla"
-              price="120"
-              category="Eau de parfum"
-            />
-            <ProductCardAlt
-              image={{
-                src: `https://picsum.photos/231/231?${
-                  Math.floor(Math.random() * 10) + 1
-                }`,
-                alt: "something",
-              }}
-              size="120"
-              name="The Scent of La Perla"
-              price="120"
-              category="Eau de parfum"
-            />
-          </div>
-        </section>
+        <ProductCardAltGrid />
         <section className="fifth container">
           <h2>Don't Miss</h2>
           <p>
@@ -340,34 +221,7 @@ const BlogLandingPage: React.FC<
             aspectRatio="615/413"
           />
         </section>
-        <section className="sixth container">
-          <div className="sixth__grid">
-            <BlogPostPreview
-              headingAbove="The key to more success is to get a massage"
-              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              link="read more"
-              aspectRatio="3/4"
-            />
-            <BlogPostPreview
-              headingBelow="Don’t panic, when it gets crazy and rough"
-              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              link="read more"
-              aspectRatio="3/4"
-            />
-            <BlogPostPreview
-              headingAbove="The key to more success is to get a massage"
-              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              link="read more"
-              aspectRatio="3/4"
-            />
-            <BlogPostPreview
-              headingBelow="Don’t panic, when it gets crazy and rough"
-              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              link="read more"
-              aspectRatio="3/4"
-            />
-          </div>
-        </section>
+        <ArticleSlider />
       </MainStyled>
     </Layout>
   )
