@@ -43,9 +43,6 @@ export const Contentstack_page_sectionsFragment = graphql`
           title
         }
       }
-      breadcrumb {
-        show
-      }
       horizontal_rule {
         colour
         margins {
@@ -100,7 +97,12 @@ export const Contentstack_page_sectionsFragment = graphql`
         paragraph
       }
       leaf {
+        colour
         heading
+        image {
+          title
+          url
+        }
         layout
         link {
           href
