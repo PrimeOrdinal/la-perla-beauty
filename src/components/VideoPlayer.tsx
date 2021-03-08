@@ -46,20 +46,22 @@ export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   aspectRatio,
   ...props
-}) => {
-  console.log("aspectRatio", aspectRatio)
-  return(
+}) => (
   <VideoPlayerStyled aspect-ratio={aspectRatio}>
     <ReactPlayer
       className="react-player"
+      controls={false}
       height="100%"
+      loop={false}
       playIcon={
         <IconContext.Provider value={{ color: "white", size: "2rem" }}>
           <FiPlay />
         </IconContext.Provider>
       }
+      playing={true}
+      playsinline={true}
       width="100%"
       {...props}
     />
   </VideoPlayerStyled>
-)}
+)
