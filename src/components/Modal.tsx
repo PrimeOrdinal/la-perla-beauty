@@ -1,3 +1,5 @@
+import type * as CSS from 'csstype';
+
 import React from "react"
 import ReactModal from "react-modal"
 import styled from "styled-components"
@@ -18,21 +20,19 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { theme } from "../theme"
+
 import { ReactComponent as Close } from "../../static/icons/Close.svg"
 
 import { Button } from "./Button"
 
-const ModalOverlayStyle = {
-  content: {
-    position: "absolute",
-    inset: "180px 40px",
-    border: "1px solid rgb(114, 114, 114)",
-    background: "rgb(255, 255, 255) none repeat scroll 0% 0%",
-    overflow: "auto",
-    borderRadius: "10px",
-    outline: "currentcolor none medium",
-    padding: "20px 30px",
-  },
+const ModalOverlayStyleDefault: CSS.Properties = {
+  backgroundColor: "rgb(255, 255, 255)",
+  borderRadius: theme.radii[4],
+  inset: "180px 40px",
+  overflow: "auto",
+  padding: "20px 30px",
+  position: "absolute",
 }
 
 const WrapperStyled = styled.div`
@@ -62,7 +62,9 @@ export type ModalProps = ColorProps &
   SpaceProps &
   VariantProps & {
     closeModal: React.DispatchWithoutAction
-    modalIsOpen: boolean
+    contentLabel: string
+    isOpen: boolean
+    ModalOverlayStyleCustom?: CSS.Properties
   }
 
 function afterOpenModal() {
@@ -70,11 +72,12 @@ function afterOpenModal() {
   ReactModal.defaultStyles.overlay.zIndex = "99999"
 }
 
-export const Modal = ({
+export const Modal: React.FC<ModalProps> = ({
   children,
   closeModal,
   contentLabel,
   isOpen = false,
+  ModalOverlayStyleCustom,
   ...props
 }) => {
   return (
@@ -83,7 +86,9 @@ export const Modal = ({
       isOpen={isOpen}
       onAfterOpen={afterOpenModal}
       onRequestClose={closeModal}
-      style={ModalOverlayStyle}
+      style={{
+        content: { ...ModalOverlayStyleDefault, ...ModalOverlayStyleCustom },
+      }}
     >
       <WrapperStyled {...props}>
         <Button className="close-button" onClick={closeModal}>

@@ -2,11 +2,13 @@ import type {
   ModularBlocksTypes,
   ModularBlock,
   ModularBlockAccordion,
+  ModularBlockArticleCard,
   ModularBlockHorizontalRule,
   ModularBlockIconList,
   ModularBlockImage,
   ModularBlockImageWithOverlay,
   ModularBlockIntroduction,
+  ModularBlockLeaf,
   ModularBlockMenu,
   ModularBlockParagraph,
   ModularBlockQuotation,
@@ -16,11 +18,12 @@ import type {
 import React from "react"
 
 import { Accordion } from "../components/Accordion"
+import { BlockQuote } from "../components/BlockQuote"
 import { HoriontalRule } from "../components/HoriontalRule"
 import { IconList } from "../components/IconList"
 import { Introduction } from "../components/Introduction"
 import { Link } from "../components/Button"
-import { Leaf } from "../components/Leaf"
+import { LeafTwo } from "../components/LeafTwo"
 import { PromotionalBanner } from "../components/PromotionalBanner"
 import { MenuSubCategory } from "../components/MenuSubCategory"
 import { VideoPlayer } from "../components/VideoPlayer"
@@ -65,6 +68,14 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 />
               )
               break
+            // case "article_card":
+            //   const articleCard = value as ModularBlockArticleCard
+            //   component = ()
+            //   break
+            // case "article_cards":
+            //   const articleCards = value as ModularBlockArticleCards
+            //   component = ()
+            //   break
             case "horizontal_rule":
               const horizontalRule = value as ModularBlockHorizontalRule
               component = (
@@ -102,7 +113,8 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 <PromotionalBanner
                   layout="hero"
                   text={imageWithOverlay?.paragraph}
-                  title={imageWithOverlay?.title_primary}
+                  titlePrimary={imageWithOverlay?.title_primary}
+                  titleSecondary={imageWithOverlay?.title_secondary}
                   {...margins}
                   {...value}
                 />
@@ -118,7 +130,8 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               )
               break
             case "leaf":
-              component = <Leaf {...value} {...margins} />
+              const leaf = value as ModularBlockLeaf
+              component = <LeafTwo body={leaf?.text as string} color={leaf?.colour} heading={leaf?.heading as string} link={<Link to={leaf?.link?.href}>{leaf?.link?.title}</Link>} {...margins} />
               break
             case "menu":
               const menu = value as ModularBlockMenu
@@ -142,13 +155,18 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             case "quotation":
               const quotation = value as ModularBlockQuotation
               component = (
-                <blockquote {...margins}>{quotation?.quotation}</blockquote>
+                <BlockQuote {...margins}>{quotation?.quotation}</BlockQuote>
               )
               break
-              case "video":
+            case "video":
               const video = value as ModularBlockVideo
               component = (
-                <VideoPlayer light={video?.poster?.url} url={video?.video?.url} {...margins} />
+                <VideoPlayer
+                  aspectRatio="16/9"
+                  light={video?.poster?.url}
+                  url={video?.video?.url}
+                  {...margins}
+                />
               )
               break
             default:

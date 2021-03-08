@@ -12,13 +12,13 @@ import { mediaQueries } from "../theme"
 import { Link } from "./Button"
 
 export type LeafTwoProps = {
-  img?: {
-    src: string
-    alt?: string
-  }
   body: string
   color: Colour
   heading: string
+  img?: {
+    alt?: string
+    src: string
+  }
   link: React.ReactNode
 }
 
@@ -93,11 +93,11 @@ const LeafWrapperStyled = styled.div`
 `
 
 export const LeafTwo: React.FC<LeafTwoProps> = ({
-  img,
-  heading,
   body,
-  link,
   color,
+  heading,
+  img,
+  link,
 }) => {
   return (
     <LeafWrapperStyled className="container">

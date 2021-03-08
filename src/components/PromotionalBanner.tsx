@@ -58,13 +58,19 @@ const LayoutBase = styled.aside`
   }
 
   div {
+    display: grid;
+
     h1 {
-      color: inherit;
       font-size: 20px;
 
       ${mediaQueries.md} {
         font-size: 24px;
       }
+    }
+
+    h2 {
+      font-size: var(--font-size-small, 12px);
+      order: -1;
     }
 
     span {

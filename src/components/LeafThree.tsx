@@ -12,13 +12,14 @@ import { mediaQueries } from "../theme"
 import { Link } from "./Button"
 
 export type LeafThreeProps = {
-  img?: {
-    src: string
-    alt?: string
-  }
+
   body: string
   color: Colour
   heading: string
+  img?: {
+    alt?: string
+    src: string
+  }
   link: string
 }
 
