@@ -10,8 +10,9 @@ const ProductCardAltStyled = styled.article`
   background: white;
   border-radius: 20px;
   display: inline-grid;
-  padding: 1rem;
+  padding: 34px;
   margin-top: 5rem;
+  margin-bottom: 1rem;
   gap: 1rem;
   .productImage {
     margin-top: -5rem;
