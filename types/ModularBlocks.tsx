@@ -70,11 +70,9 @@ export type ModularBlockIntroduction = ModularBlock & {
 export type ModularBlockLeaf = ModularBlock & {
   colour: Colour
   heading?: string
-  image: {
-    image?: {
-      title?: string
-      url?: URL
-    }
+  image?: {
+    title?: string
+    url?: URL
   }
   layout: string,
   link?: {

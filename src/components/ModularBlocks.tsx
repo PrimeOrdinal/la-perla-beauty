@@ -131,7 +131,20 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               break
             case "leaf":
               const leaf = value as ModularBlockLeaf
-              component = <LeafTwo body={leaf?.text as string} color={leaf?.colour} heading={leaf?.heading as string} link={<Link to={leaf?.link?.href}>{leaf?.link?.title}</Link>} {...margins} />
+              const img = {
+                alt: leaf?.image?.title as string,
+                src: leaf?.image?.url?.toString(),
+              }
+              component = (
+                <LeafTwo
+                  body={leaf?.text as string}
+                  color={leaf?.colour}
+                  heading={leaf?.heading as string}
+                  img={img}
+                  link={<Link to={leaf?.link?.href}>{leaf?.link?.title}</Link>}
+                  {...margins}
+                />
+              )
               break
             case "menu":
               const menu = value as ModularBlockMenu
