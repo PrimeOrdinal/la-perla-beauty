@@ -1,5 +1,9 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1b746c0f-a282-4910-93ed-07ef219c91a7/deploy-status)](https://app.netlify.com/sites/la-perla-beauty-row/deploys)
 
+# Beauty by La Perla Site Deployments
+
+https://docs.google.com/spreadsheets/d/12t6VzoMRThSGNqsFaFbnvhcAuE5pZFUtOiMamb8slxI/edit#gid=0
+
 ### Research
 
 Lorem ipsum
@@ -24,7 +28,7 @@ react-onclickoutside
 
 # Repository Settings
 
-On a MacOS system, run `git config core.ignorecase false` in order to use this repository with case sensitive file names which otherwise may result in diferences in behaviour to the Linux-based deployment tools.
+On a MacOS or Windows environment, run `git config core.ignorecase false` in order to use this repository with case sensitive file names which otherwise may result in diferences in behaviour to the Linux-based deployment tools.
 
 # Tools
 
