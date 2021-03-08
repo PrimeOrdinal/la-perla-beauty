@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components"
 
 import { accessibility } from "./accessibility"
 import { anchor } from "./anchor"
+import { aspectRatio } from "./aspectRatio"
 import { body } from "./body"
 import { blockquote } from "./blockquote"
 import { border } from "./border"
@@ -23,7 +24,7 @@ import { input } from "./input"
 import { label } from "./label"
 import { select } from "./select"
 import { svg } from "./svg"
-import { aspectRatio } from "./aspectRatio"
+import { table } from "./table"
 
 export const GlobalStyle = createGlobalStyle`
     ${accessibility}
@@ -50,4 +51,5 @@ export const GlobalStyle = createGlobalStyle`
     ${label}
     ${select}
     ${svg}
+    ${table}
 `
