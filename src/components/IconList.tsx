@@ -33,7 +33,7 @@ export type IconListProps = ColorProps &
   VariantProps & {
     items: Array<{
       color: Colour
-      heading: string
+      title: string
       icon: Icon
       body: React.ReactNode
     }>
@@ -88,7 +88,7 @@ export const IconList: React.FC<IconListProps> = ({ items, ...props }) => (
             </div>
           )}
           <div>
-            {item.heading && <h3>{item.heading}</h3>}
+            {item.title && <h3>{item.title}</h3>}
             {item.body}
           </div>
         </li>

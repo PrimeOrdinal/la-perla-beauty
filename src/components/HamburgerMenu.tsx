@@ -88,7 +88,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                   menu.slot?.startsWith("mobile-navigation")
                 )
                 ?.node?.links.map(panel => ({
-                  heading: panel.text,
+                  title: panel.text,
                   panel: (
                     <ul>
                       {panel.sub_menus?.[0]?.links?.map((link, index) => (

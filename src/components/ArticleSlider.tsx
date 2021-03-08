@@ -25,25 +25,25 @@ export const ArticleSlider: React.FC = () => {
     <ArticleSliderStyled className="container">
       <div className="grid">
         <BlogPostPreview
-          headingAbove="The key to more success is to get a massage"
+          titleAbove="The key to more success is to get a massage"
           body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           link="read more"
           aspectRatio="3/4"
         />
         <BlogPostPreview
-          headingBelow="Don’t panic, when it gets crazy and rough"
+          titleBelow="Don’t panic, when it gets crazy and rough"
           body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           link="read more"
           aspectRatio="3/4"
         />
         <BlogPostPreview
-          headingAbove="The key to more success is to get a massage"
+          titleAbove="The key to more success is to get a massage"
           body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           link="read more"
           aspectRatio="3/4"
         />
         <BlogPostPreview
-          headingBelow="Don’t panic, when it gets crazy and rough"
+          titleBelow="Don’t panic, when it gets crazy and rough"
           body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           link="read more"
           aspectRatio="3/4"

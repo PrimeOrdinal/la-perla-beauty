@@ -29,8 +29,8 @@ export type BlogPostPreviewProps = ColorProps &
   VariantProps & {
     aspectRatio: string
     body: string
-    headingAbove: string
-    headingBelow: string
+    titleAbove: string
+    titleBelow: string
     link: string
     tag: string
   }
@@ -54,15 +54,15 @@ const BlogPostPreviewStyled = styled.article`
 `
 
 export const BlogPostPreview: React.FC<BlogPostPreviewProps> = ({
-  headingAbove,
-  headingBelow,
+  titleAbove,
+  titleBelow,
   tag,
   body,
   link,
   aspectRatio,
 }) => (
   <BlogPostPreviewStyled>
-    {headingAbove && <h2>{headingAbove}</h2>}
+    {titleAbove && <h2>{titleAbove}</h2>}
     {aspectRatio && (
       <figure aspect-ratio={aspectRatio}>
         <img
@@ -75,7 +75,7 @@ export const BlogPostPreview: React.FC<BlogPostPreviewProps> = ({
     )}
 
     {tag && <span>{tag}</span>}
-    {headingBelow && <h2>{headingBelow}</h2>}
+    {titleBelow && <h2>{titleBelow}</h2>}
     {body && <p>{body}</p>}
     {link && <Link>{link}</Link>}
   </BlogPostPreviewStyled>

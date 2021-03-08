@@ -176,13 +176,13 @@ const BlogLandingPage: React.FC<
           </p>
           <div className="first__grid">
             <BlogPostPreview
-              headingBelow="The exquisite sense of mere tranquil existence"
+              titleBelow="The exquisite sense of mere tranquil existence"
               tag="Be inspired"
               link="explore and shop"
               aspectRatio="615/413"
             />
             <BlogPostPreview
-              headingBelow="Never was there a greater artist than there is now"
+              titleBelow="Never was there a greater artist than there is now"
               tag="featured"
               link="explore and shop"
               aspectRatio="615/413"
@@ -201,7 +201,7 @@ const BlogLandingPage: React.FC<
         </section>
         <section className="third container">
           <BlogPostPreview
-            headingBelow="The buzz of the little world"
+            titleBelow="The buzz of the little world"
             tag="videos"
             link="learn more"
             aspectRatio="615/413"
@@ -215,7 +215,7 @@ const BlogLandingPage: React.FC<
             magna id hendrerit bibendum. Aenean eget aliquet nisl. Pellentesque.{" "}
           </p>
           <BlogPostPreview
-            headingBelow="The buzz of the little world"
+            titleBelow="The buzz of the little world"
             body="Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus a felis et odio viverra dignissim."
             link="explore & shop"
             aspectRatio="615/413"

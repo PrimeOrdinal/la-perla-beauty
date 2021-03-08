@@ -14,7 +14,7 @@ import { Link } from "./Button"
 export type LeafFourProps = {
   body: string
   color: Colour
-  heading: string
+  title: string
   img?: {
     alt?: string
     src: string
@@ -132,7 +132,7 @@ const LeafWrapperStyled = styled.div`
 
 export const LeafFour: React.FC<LeafFourProps> = ({
   img,
-  heading,
+  title,
   body,
   link,
   color,
@@ -148,14 +148,14 @@ export const LeafFour: React.FC<LeafFourProps> = ({
           )}
           <div className={clsx(color, "mobileLeaf")}>
             <div className="mobileContent">
-              {heading && <h2>{heading}</h2>}
+              {title && <h2>{title}</h2>}
               {body && <p>{body}</p>}
               {link && <Link to="#">{link}</Link>}
             </div>
           </div>
           <div className="desktopLeaf">
             <div className="desktopContent">
-              {heading && <h2>{heading}</h2>}
+              {title && <h2>{title}</h2>}
               {body && <p>{body}</p>}
               {link && <Link to="#">{link}</Link>}
             </div>

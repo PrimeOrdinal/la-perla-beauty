@@ -261,7 +261,7 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
                       allowZeroExpanded={true}
                       items={[
                         {
-                          heading: "Scent Types",
+                          title: "Scent Types",
                           panel: (
                             <div className="form-column">
                               <div className="field">
@@ -298,7 +298,7 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
                           ),
                         },
                         {
-                          heading: "Category",
+                          title: "Category",
                           panel: (
                             <div className="form-column">
                               <div className="field">
@@ -335,7 +335,7 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
                           ),
                         },
                         {
-                          heading: "Perfume Strength",
+                          title: "Perfume Strength",
                           panel: (
                             <div className="form-column">
                               <div className="field">

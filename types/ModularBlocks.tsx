@@ -12,7 +12,7 @@ export type ModularBlock = {
 
 export type ModularBlockAccordion = ModularBlock & {
   panels?: Array<{
-    heading: string
+    title: string
     panel: ReactElement
   }>
 }
@@ -28,7 +28,6 @@ export type ModularBlockIconList = ModularBlock & {
     title?: string
   }>
 }
-
 
 export type ModularBlockImage = ModularBlock & {
   image: {
@@ -56,7 +55,7 @@ export type ModularBlockImageWithOverlay = ModularBlock & {
 }
 
 export type ModularBlockIntroduction = ModularBlock & {
-  heading?: {
+  title?: {
     semantic_level?: number
     text?: string
   }
@@ -69,17 +68,17 @@ export type ModularBlockIntroduction = ModularBlock & {
 
 export type ModularBlockLeaf = ModularBlock & {
   colour: Colour
-  heading?: string
+  title?: string
   image?: {
     title?: string
     url?: URL
   }
-  layout: string,
+  layout: string
   link?: {
     href: URL
     title: string
   }
-  orientation: null,
+  orientation: null
   text?: string
 }
 

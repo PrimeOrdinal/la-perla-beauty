@@ -1,6 +1,9 @@
 import type { ImageObject, Offer, ProductGroup } from "schema-dts"
 
-import type { BigCommerceGql_Product, ProductPageQuery } from "../../graphql-types"
+import type {
+  BigCommerceGql_Product,
+  ProductPageQuery,
+} from "../../graphql-types"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -169,10 +172,9 @@ type PageContextProduct = PageContextTypeBreadcrumb & {
   node: BigCommerceGql_Product
 }
 
-const ProductPage: React.FC<PageProps<ProductPageQuery, PageContextProduct>> = ({
-  data,
-  pageContext,
-}) => {
+const ProductPage: React.FC<
+  PageProps<ProductPageQuery, PageContextProduct>
+> = ({ data, pageContext }) => {
   const {
     breadcrumb: { crumbs },
   } = pageContext
@@ -206,37 +208,39 @@ const ProductPage: React.FC<PageProps<ProductPageQuery, PageContextProduct>> = (
 
   const accordion = [
     {
-      heading: "Key Ingredients",
+      title: "Key Ingredients",
       panel: (
         <dl className="ingedients">
           {data?.contentstackProducts?.ingredients?.map(
             (ingredient, ingredientIndex) => (
               <React.Fragment key={ingredientIndex}>
                 <dt>{ingredient?.type}</dt>
-                {ingredient?.ingredient?.map((individualIngredient, individualIngredientIndex) => (
-                  <dd key={individualIngredientIndex}>
-                    <Link to={individualIngredient?.url}>
-                      {individualIngredient?.title}
-                    </Link>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: individualIngredient?.information as string,
-                      }}
-                    />
-                  </dd>
-                ))}
+                {ingredient?.ingredient?.map(
+                  (individualIngredient, individualIngredientIndex) => (
+                    <dd key={individualIngredientIndex}>
+                      <Link to={individualIngredient?.url}>
+                        {individualIngredient?.title}
+                      </Link>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: individualIngredient?.information as string,
+                        }}
+                      />
+                    </dd>
+                  )
+                )}
               </React.Fragment>
             )
           )}
         </dl>
       ),
-    }
+    },
   ]
 
-  data?.contentstackProducts?.accordion?.panels && accordion.push(...data?.contentstackProducts?.accordion?.panels?.map(
-    (panel) => (
-      {
-        heading: panel?.heading,
+  data?.contentstackProducts?.accordion?.panels &&
+    accordion.push(
+      ...data?.contentstackProducts?.accordion?.panels?.map(panel => ({
+        title: panel?.title,
         panel: (
           <div
             dangerouslySetInnerHTML={{
@@ -244,11 +248,13 @@ const ProductPage: React.FC<PageProps<ProductPageQuery, PageContextProduct>> = (
             }}
           />
         ),
-      }
+      }))
     )
-  ))
 
-  console.log("data?.contentstackPages?.page_sections", data?.contentstackPages?.page_sections)
+  console.log(
+    "data?.contentstackPages?.page_sections",
+    data?.contentstackPages?.page_sections
+  )
 
   return (
     <Layout>
@@ -270,15 +276,13 @@ const ProductPage: React.FC<PageProps<ProductPageQuery, PageContextProduct>> = (
           <IconList
             display={{ _: "none", md: "grid" }}
             gridAutoFlow={{ _: "row", md: "column" }}
-            items={data?.contentstackProducts?.key_features?.item?.map((item) => 
-                ({
-                  icon: item?.icon,
-                  color: item?.colour,
-                  heading: item?.heading,
-                  body: (
-                    <p>{item?.text}</p>
-                  ),
-                })
+            items={data?.contentstackProducts?.key_features?.item?.map(
+              item => ({
+                icon: item?.icon,
+                color: item?.colour,
+                title: item?.title,
+                body: <p>{item?.text}</p>,
+              })
             )}
           ></IconList>
         </div>
@@ -421,15 +425,21 @@ const ProductPage: React.FC<PageProps<ProductPageQuery, PageContextProduct>> = (
           />
           <DeliveryAndReturnsInformation className="delivery-and-returns-information" />
           {data?.contentstackProducts?.leaf && (
-            <Leaf variant="secondary" layout={data?.contentstackProducts?.leaf?.layout} orientation={data?.contentstackProducts?.leaf?.orientation}>
-              <h2>{data?.contentstackProducts?.leaf?.heading}</h2>
+            <Leaf
+              variant="secondary"
+              layout={data?.contentstackProducts?.leaf?.layout}
+              orientation={data?.contentstackProducts?.leaf?.orientation}
+            >
+              <h2>{data?.contentstackProducts?.leaf?.title}</h2>
               <p>{data?.contentstackProducts?.leaf?.text}</p>
             </Leaf>
           )}
         </main>
       </ProductStyled>
       <EditorialStyled>
-        <PageSections pageSections={data?.contentstackProducts?.page_sections} />
+        <PageSections
+          pageSections={data?.contentstackProducts?.page_sections}
+        />
       </EditorialStyled>
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(product)}</script>

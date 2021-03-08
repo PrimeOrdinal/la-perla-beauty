@@ -240,7 +240,7 @@ export const Footer: React.FC<FooterProps> = (
               menu.slot?.startsWith("footer-secondary")
             )
             .map(({ node: menu }) => ({
-              heading: menu.title,
+              title: menu.title,
               panel: (
                 <ul key={menu.id}>
                   {menu.links?.map((link, index) => (

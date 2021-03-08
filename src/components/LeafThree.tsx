@@ -14,7 +14,7 @@ import { Link } from "./Button"
 export type LeafThreeProps = {
   body: string
   color: Colour
-  heading: string
+  title: string
   img?: {
     alt?: string
     src: string
@@ -99,7 +99,7 @@ const LeafWrapperStyled = styled.div`
 
 export const LeafThree: React.FC<LeafThreeProps> = ({
   img,
-  heading,
+  title,
   body,
   link,
   color,
@@ -114,7 +114,7 @@ export const LeafThree: React.FC<LeafThreeProps> = ({
             </figure>
           )}
           <div className={clsx(color)}>
-            {heading && <h2>{heading}</h2>}
+            {title && <h2>{title}</h2>}
             {body && <p>{body}</p>}
             {link && <Link>{link}</Link>}
           </div>

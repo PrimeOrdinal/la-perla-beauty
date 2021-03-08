@@ -138,7 +138,7 @@ const InformationPage: React.FC = () => (
             className="password-accordion"
             items={[
               {
-                heading: "change password",
+                title: "change password",
                 panel: (
                   <AccordionGrid>
                     <label htmlFor="password">password*</label>

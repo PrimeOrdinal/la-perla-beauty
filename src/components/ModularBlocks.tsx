@@ -63,7 +63,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                   allowMultipleExpanded={true}
                   allowZeroExpanded={true}
                   items={accordion?.panels?.map((panel, index) => ({
-                    heading: panel.heading,
+                    title: panel.title,
                     panel: <div key={index}>{panel?.panel}</div>,
                   }))}
                 />
@@ -94,7 +94,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                   items={iconList?.item?.map(item => ({
                     icon: item?.icon,
                     color: item?.colour,
-                    heading: item?.title,
+                    title: item?.title,
                     body: <p>{item?.text}</p>,
                   }))}
                   orientation="horizontal"
@@ -126,7 +126,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               const introduction = value as ModularBlockIntroduction
               component = (
                 <Introduction {...margins}>
-                  {/* <Heading level={value?.heading?.semantic_level}>{value?.heading?.text}</Heading> */}
+                  {/* <Heading level={value?.title?.semantic_level}>{value?.title?.text}</Heading> */}
                   <p>{introduction?.paragraph}</p>
                 </Introduction>
               )
@@ -141,7 +141,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 <LeafTwo
                   body={leaf?.text as string}
                   color={leaf?.colour}
-                  heading={leaf?.heading as string}
+                  title={leaf?.title as string}
                   img={img}
                   link={<Link to={leaf?.link?.href}>{leaf?.link?.title}</Link>}
                   {...margins}

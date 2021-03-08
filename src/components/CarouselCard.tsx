@@ -43,14 +43,14 @@ export type CarouselCardProps = {
     alt: string
   }
   date: string
-  heading: string
+  title: string
   body: string
 }
 
 export const CarouselCard: React.FC<CarouselCardProps> = ({
   image,
   date,
-  heading,
+  title,
   body,
 }) => {
   return (
@@ -60,7 +60,7 @@ export const CarouselCard: React.FC<CarouselCardProps> = ({
       </figure>
       <div>
         <time>{date}</time>
-        <h2>{heading}</h2>
+        <h2>{title}</h2>
         <p>{body}</p>
       </div>
     </CarouselCardStyled>

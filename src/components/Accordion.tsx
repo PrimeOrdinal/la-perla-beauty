@@ -37,7 +37,7 @@ export type AccordionProps = ColorProps &
   VariantProps & {
     allowMultipleExpanded: boolean
     items: Array<{
-      heading: string
+      title: string
       panel: React.ReactNode
     }>
   }
@@ -144,7 +144,7 @@ export const Accordion: React.FC<AccordionProps> = ({ items, ...props }) => (
         <ReactAccessibleAccordionItem key={index}>
           <ReactAccessibleAccordionItemHeading>
             <ReactAccessibleAccordionItemButton>
-              {item.heading}
+              {item.title}
             </ReactAccessibleAccordionItemButton>
           </ReactAccessibleAccordionItemHeading>
           <ReactAccessibleAccordionItemPanel>

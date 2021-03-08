@@ -36,13 +36,13 @@ export const ArticleGrid: React.FC = () => {
     <GridStyled>
       <div className="col1">
         <BlogPostPreview
-          headingBelow="Etiam aliquet vist metus"
+          titleBelow="Etiam aliquet vist metus"
           body="Luxury with integrity​"
           link="read more"
           aspectRatio="3/4"
         />
         <BlogPostPreview
-          headingBelow="Etiam aliquet vist metus"
+          titleBelow="Etiam aliquet vist metus"
           body="Luxury with integrity​"
           link="read more"
           aspectRatio="3/4"
@@ -50,13 +50,13 @@ export const ArticleGrid: React.FC = () => {
       </div>
       <div className="col2">
         <BlogPostPreview
-          headingBelow="Etiam aliquet vist metus"
+          titleBelow="Etiam aliquet vist metus"
           body="Luxury with integrity​"
           link="read more"
           aspectRatio="3/4"
         />
         <BlogPostPreview
-          headingBelow="Etiam aliquet vist metus"
+          titleBelow="Etiam aliquet vist metus"
           body="Luxury with integrity​"
           link="read more"
           aspectRatio="3/4"
