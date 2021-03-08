@@ -112,6 +112,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               component = (
                 <PromotionalBanner
                   layout="hero"
+                  link={imageWithOverlay?.link}
                   text={imageWithOverlay?.paragraph}
                   titlePrimary={imageWithOverlay?.title_primary}
                   titleSecondary={imageWithOverlay?.title_secondary}
