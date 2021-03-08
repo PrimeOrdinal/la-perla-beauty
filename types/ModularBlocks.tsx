@@ -1,3 +1,5 @@
+import type { Offer, Product } from "schema-dts"
+
 import { ReactElement } from "react"
 import { Colour, Icon } from "theme"
 
@@ -16,6 +18,19 @@ export type ModularBlockAccordion = ModularBlock & {
     panel: ReactElement
   }>
 }
+
+export type ModularBlockBlogPostPreview = ModularBlock & {
+  aspectRatio: string
+  body: string
+  headingAbove: string
+  headingBelow: string
+  link?: {
+    href: URL
+    title: string
+  }
+  tag: string
+}
+
 export type ModularBlockHorizontalRule = ModularBlock & {
   colour?: string
 }
@@ -100,6 +115,11 @@ export type ModularBlockParagraph = ModularBlock & {
   paragraph: {
     paragraph?: string
   }
+}
+
+export type ModularBlockProductCard = ModularBlock & {
+  product: Product
+  view: "alternative" | "default"
 }
 
 export type ModularBlockQuotation = ModularBlock & {

@@ -3,6 +3,7 @@ import type {
   ModularBlock,
   ModularBlockAccordion,
   ModularBlockArticleCard,
+  ModularBlockBlogPostPreview,
   ModularBlockHorizontalRule,
   ModularBlockIconList,
   ModularBlockImage,
@@ -11,6 +12,7 @@ import type {
   ModularBlockLeaf,
   ModularBlockMenu,
   ModularBlockParagraph,
+  ModularBlockProductCard,
   ModularBlockQuotation,
   ModularBlockWYSIWYG,
   ModularBlockVideo,
@@ -20,11 +22,14 @@ import React from "react"
 
 import { Accordion } from "../components/Accordion"
 import { BlockQuote } from "../components/BlockQuote"
+import { BlogPostPreview } from "../components/BlogPostPreview"
 import { HoriontalRule } from "../components/HoriontalRule"
 import { IconList } from "../components/IconList"
 import { Introduction } from "../components/Introduction"
 import { Link } from "../components/Button"
 import { LeafTwo } from "../components/LeafTwo"
+import { ProductCard } from "../components/ProductCard"
+import { ProductCardAlt } from "../components/ProductCardAlt"
 import { PromotionalBanner } from "../components/PromotionalBanner"
 import { MenuSubCategory } from "../components/MenuSubCategory"
 import { VideoPlayer } from "../components/VideoPlayer"
@@ -77,6 +82,14 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             //   const articleCards = value as ModularBlockArticleCards
             //   component = ()
             //   break
+            case "blog_post_preview":
+              const blogPostPreview = value as ModularBlockBlogPostPreview
+              component = (
+                <BlogPostPreview
+                  {...margins}
+                />
+              )
+              break
             case "horizontal_rule":
               const horizontalRule = value as ModularBlockHorizontalRule
               component = (
@@ -135,7 +148,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               const leaf = value as ModularBlockLeaf
               const img = {
                 alt: leaf?.image?.title as string,
-                src: leaf?.image?.url?.toString(),
+                src: leaf?.image?.url?.toString() as string,
               }
               component = (
                 <LeafTwo
@@ -166,6 +179,15 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             case "paragraph":
               const paragraph = value as ModularBlockParagraph
               component = <p {...margins}>{paragraph?.paragraph}</p>
+              break
+            case "product_card":
+              const productCard = value as ModularBlockProductCard
+              component =
+                productCard?.view === "alternative" ? (
+                  <ProductCardAlt product={productCard?.product} {...margins} />
+                ) : (
+                  <ProductCard product={productCard?.product} {...margins} />
+                )
               break
             case "quotation":
               const quotation = value as ModularBlockQuotation
