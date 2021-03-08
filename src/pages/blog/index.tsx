@@ -63,6 +63,8 @@ const MainStyled = styled.main`
       }
     }
     p {
+      max-width: 95ch;
+      margin-block-end: 2rem;
       ${mediaQueries.md} {
         font-size: 14px;
       }
@@ -70,7 +72,7 @@ const MainStyled = styled.main`
     &__grid {
       display: grid;
       grid-auto-flow: row;
-      gap: 1rem;
+      gap: 36px;
       ${mediaQueries.md} {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -83,6 +85,11 @@ const MainStyled = styled.main`
             margin-right: unset;
           }
         }
+        h2 {
+          ${mediaQueries.md} {
+            font-size: 24px;
+          }
+        }
       }
     }
   }
@@ -90,33 +97,44 @@ const MainStyled = styled.main`
     h2 {
       font-size: 21px;
       ${mediaQueries.md} {
-        font-size: 32px;
+        font-size: 24px;
       }
     }
     p {
       ${mediaQueries.md} {
         font-size: 14px;
+        max-width: 95ch;
+        margin-block-end: 2rem;
       }
     }
     &__grid {
       ${mediaQueries.md} {
         display: grid;
         grid-auto-flow: column;
-        gap: 1rem;
+        gap: 46px;
+        min-height: 650px;
+        margin-block-end: 2rem;
       }
       .col1,
       .col2 {
         display: grid;
         grid-auto-flow: column;
-        gap: 1rem;
+        gap: 46px;
         min-height: 375px;
+        ${mediaQueries.md} {
+          min-height: auto;
+        }
         article:last-child {
           align-self: flex-end;
         }
       }
+      .col2 {
+        margin-block-end: 1rem;
+      }
     }
   }
   .third {
+    margin-block-end: 1rem;
     article {
       figure {
         margin-left: -10%;
@@ -132,6 +150,7 @@ const MainStyled = styled.main`
     background: #bfcea5;
     padding-block-start: 1rem;
     padding-block-end: 1rem;
+    margin-block-end: 1rem;
     &__grid {
       display: grid;
       grid-auto-flow: row;
@@ -141,16 +160,37 @@ const MainStyled = styled.main`
         grid-template-columns: auto auto;
       }
       ${mediaQueries.md} {
-        grid-auto-flow: column;
+        grid-template-columns: repeat(4, auto);
+        gap: 24px;
       }
     }
   }
   .fifth {
+    margin-block-end: 2rem;
+    article {
+      figure {
+        margin-left: -10%;
+        margin-right: -10%;
+        ${mediaQueries.md} {
+          margin-left: unset;
+          margin-right: unset;
+        }
+      }
+    }
+  }
+  .sixth {
+    padding-right: 0;
+    ${mediaQueries.md} {
+      padding-right: var(--app-gutter-x, 0.75rem);
+    }
     &__grid {
       display: grid;
       grid-template-columns: repeat(4, 200px);
       gap: 2rem;
       overflow-x: scroll;
+      ${mediaQueries.md} {
+        grid-template-columns: repeat(4, auto);
+      }
     }
   }
 `
@@ -238,7 +278,7 @@ const BlogLandingPage: React.FC<
           />
         </section>
         <section className="fourth">
-          <div className="fourth__grid">
+          <div className="fourth__grid container">
             <ProductCardAlt
               image={{
                 src: `https://picsum.photos/231/231?${
@@ -295,8 +335,15 @@ const BlogLandingPage: React.FC<
             Etiam aliquet metus mauris, tempus odio feugiat non. Praesent eu
             magna id hendrerit bibendum. Aenean eget aliquet nisl. Pellentesque.{" "}
           </p>
-          <BlogPostPreview />
-          <div className="fifth__grid">
+          <BlogPostPreview
+            headingBelow="The buzz of the little world"
+            body="Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus a felis et odio viverra dignissim."
+            link="explore & shop"
+            aspectRatio="615/413"
+          />
+        </section>
+        <section className="sixth container">
+          <div className="sixth__grid">
             <BlogPostPreview
               headingAbove="The key to more success is to get a massage"
               body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
