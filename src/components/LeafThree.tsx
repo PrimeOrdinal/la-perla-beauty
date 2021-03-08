@@ -12,7 +12,6 @@ import { mediaQueries } from "../theme"
 import { Link } from "./Button"
 
 export type LeafThreeProps = {
-
   body: string
   color: Colour
   heading: string
@@ -30,11 +29,12 @@ const LeafWrapperStyled = styled.div`
   ${colourClasses}
 
   .leaf-container {
-    background: #ffff;
     display: flex;
     justify-content: center;
 
     ${mediaQueries.md} {
+      background: #ffff;
+
       padding-top: ${themeGet("space.14")}px;
       padding-bottom: ${themeGet("space.14")}px;
     }
@@ -48,15 +48,17 @@ const LeafWrapperStyled = styled.div`
         top: 50%;
         transform: translateY(-50%);
         img {
+          height: 215px !important;
+          width: 161px !important;
           ${mediaQueries.md} {
-            height: 25rem;
-            width: 18.75rem;
+            height: 400px !important;
+            width: 300px !important;
           }
         }
       }
     }
     div {
-      margin-right: ${themeGet("space.13")}px;
+      margin-right: 91px;
       padding-right: ${themeGet("space.14")}px;
       padding-left: ${themeGet("space.9")}px;
       display: flex;
@@ -65,7 +67,7 @@ const LeafWrapperStyled = styled.div`
       min-height: 18.75rem;
       border-radius: 67px 0 67px 0;
       max-width: 98ch;
-
+      min-width: 255px;
       ${mediaQueries.md} {
         margin-right: 150px;
         padding-right: 207px;

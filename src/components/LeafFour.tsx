@@ -51,15 +51,17 @@ const LeafWrapperStyled = styled.div`
         top: 50%;
         transform: translateY(-50%);
         img {
+          height: 215px !important;
+          width: 161px !important;
           ${mediaQueries.md} {
-            height: 25rem;
-            width: 18.75rem;
+            height: 400px !important;
+            width: 300px !important;
           }
         }
       }
     }
     .mobileLeaf {
-      margin-left: ${themeGet("space.13")}px;
+      margin-left: 91px;
       padding-left: ${themeGet("space.14")}px;
       padding-right: ${themeGet("space.9")}px;
       display: flex;
@@ -68,7 +70,7 @@ const LeafWrapperStyled = styled.div`
       min-height: 18.75rem;
       border-radius: 67px 0 67px 0;
       max-width: 98ch;
-
+      min-width: 255px;
       ${mediaQueries.md} {
         margin-left: 150px;
         padding-left: 207px;
