@@ -137,6 +137,10 @@ export const QuickShare: React.FC<QuickShareProps> = ({
           contentLabel="Share"
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
+          ModalOverlayStyleCustom={{
+            inset: "25% 30%",
+            padding: "20px 30px",
+          }}
         >
           <h1 className="title">Share</h1>
           <FallbackShareOptions>
