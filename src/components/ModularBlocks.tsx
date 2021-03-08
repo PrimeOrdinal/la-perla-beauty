@@ -12,6 +12,7 @@ import type {
   ModularBlockMenu,
   ModularBlockParagraph,
   ModularBlockQuotation,
+  ModularBlockWYSIWYG,
   ModularBlockVideo,
 } from "../../types/ModularBlocks"
 
