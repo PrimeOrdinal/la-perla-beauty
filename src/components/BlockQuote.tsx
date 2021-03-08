@@ -27,18 +27,21 @@ const BlockQuoteStyled = styled.div`
       line-height: ${themeGet("space.8")}px;
     }
 
-    &::before {
-      background-position: top;
+    &::before,
+    &::after {
       background-repeat: no-repeat;
       background-size: contain;
-      background: url(${OpenQuote});
       content: "";
       height: 37px;
-      left: 0px;
       position: absolute;
-      top: 0;
-      width: 51px;
       z-index: -1;
+      width: 51px;
+    }
+    &::before {
+      background-image: url(${OpenQuote});
+      background-position: top;
+      left: 0;
+      top: 0;
 
       ${mediaQueries.md} {
         height: 56px;
@@ -48,17 +51,10 @@ const BlockQuoteStyled = styled.div`
       }
     }
     &::after {
+      background-image: url(${CloseQuote});
       background-position: bottom;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background: url(${CloseQuote});
       bottom: 0;
-      content: "";
-      height: 37px;
-      position: absolute;
       right: 0;
-      width: 51px;
-      z-index: -1;
 
       ${mediaQueries.md} {
           height: 56px;

@@ -62,6 +62,7 @@ const LayoutBase = styled.aside`
 
     h1 {
       font-size: 20px;
+      margin-block-start: unset;
 
       ${mediaQueries.md} {
         font-size: 24px;
@@ -69,8 +70,10 @@ const LayoutBase = styled.aside`
     }
 
     h2 {
+      font-family: "Quicksand", sans-serif;
       font-size: var(--font-size-small, 12px);
       order: -1;
+      text-transform: uppercase;
     }
 
     span {
@@ -199,7 +202,7 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
       {titlePrimary && <h1>{titlePrimary}</h1>}
       {titleSecondary && <h2>{titleSecondary}</h2>}
       {link && (
-        <Link title={link?.attributes?.title} to={link?.attributes?.href}>
+        <Link title={link?.title} to={link?.href}>
           {link?.text}
         </Link>
       )}

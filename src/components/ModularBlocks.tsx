@@ -12,6 +12,7 @@ import type {
   ModularBlockMenu,
   ModularBlockParagraph,
   ModularBlockQuotation,
+  ModularBlockWYSIWYG,
   ModularBlockVideo,
 } from "../../types/ModularBlocks"
 
@@ -112,6 +113,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               component = (
                 <PromotionalBanner
                   layout="hero"
+                  link={imageWithOverlay?.link}
                   text={imageWithOverlay?.paragraph}
                   titlePrimary={imageWithOverlay?.title_primary}
                   titleSecondary={imageWithOverlay?.title_secondary}
@@ -131,7 +133,20 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               break
             case "leaf":
               const leaf = value as ModularBlockLeaf
-              component = <LeafTwo body={leaf?.text as string} color={leaf?.colour} heading={leaf?.heading as string} link={<Link to={leaf?.link?.href}>{leaf?.link?.title}</Link>} {...margins} />
+              const img = {
+                alt: leaf?.image?.title as string,
+                src: leaf?.image?.url?.toString(),
+              }
+              component = (
+                <LeafTwo
+                  body={leaf?.text as string}
+                  color={leaf?.colour}
+                  heading={leaf?.heading as string}
+                  img={img}
+                  link={<Link to={leaf?.link?.href}>{leaf?.link?.title}</Link>}
+                  {...margins}
+                />
+              )
               break
             case "menu":
               const menu = value as ModularBlockMenu
@@ -165,6 +180,17 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                   aspectRatio="16/9"
                   light={video?.poster?.url}
                   url={video?.video?.url}
+                  {...margins}
+                />
+              )
+              break
+            case "wysiwyg":
+              const wysiwyg = value as ModularBlockWYSIWYG
+              component = (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: wysiwyg?.markup as string,
+                  }}
                   {...margins}
                 />
               )
