@@ -3,8 +3,14 @@ import styled from "styled-components"
 import { mediaQueries } from "../theme"
 import { themeGet } from "@styled-system/theme-get"
 
+import type { Colour } from "../../types/theme"
+
 import OpenQuote from "../../static/icons/OpenQuote.svg"
 import CloseQuote from "../../static/icons/CloseQuote.svg"
+
+export type BlockQuoteProps = {
+  color: Colour
+}
 
 const BlockQuoteStyled = styled.div`
   display: flex;
@@ -38,8 +44,12 @@ const BlockQuoteStyled = styled.div`
       width: 51px;
     }
     &::before {
-      background-image: url(${OpenQuote});
-      background-position: top;
+      background-color: ${props =>
+        props.color
+          ? themeGet(`colors.${props.color}`)
+          : themeGet(`colors.lightgrey`)};
+      mask: url(${OpenQuote}) no-repeat top;
+      mask-size: contain;
       left: 0;
       top: 0;
 
@@ -51,24 +61,31 @@ const BlockQuoteStyled = styled.div`
       }
     }
     &::after {
-      background-image: url(${CloseQuote});
-      background-position: bottom;
+      background-color: ${props =>
+        props.color
+          ? themeGet(`colors.${props.color}`)
+          : themeGet(`colors.lightgrey`)};
+      mask: url(${CloseQuote}) no-repeat bottom;
+      mask-size: contain;
       bottom: 0;
       right: 0;
 
       ${mediaQueries.md} {
-          height: 56px;
-          right: -10%;
-          transform: translateX(10%);
-          width: 78px;
+        height: 56px;
+        right: -10%;
+        transform: translateX(10%);
+        width: 78px;
       }
     }
   }
 `
 
-export const BlockQuote: React.FC = ({ children }) => {
+export const BlockQuote: React.FC<BlockQuoteProps> = ({
+  children,
+  ...props
+}) => {
   return (
-    <BlockQuoteStyled className="container">
+    <BlockQuoteStyled className="container" {...props}>
       <blockquote className="container">{children}</blockquote>
     </BlockQuoteStyled>
   )
