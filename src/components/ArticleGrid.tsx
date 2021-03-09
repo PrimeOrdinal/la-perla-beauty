@@ -5,63 +5,45 @@ import { mediaQueries } from "../theme"
 import { BlogPostPreview } from "./BlogPostPreview"
 
 const GridStyled = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  article:nth-child(even) {
+    margin-top: 2rem;
+  }
   ${mediaQueries.md} {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 46px;
-    min-height: 580px;
-    margin-block-end: 2rem;
-  }
-  .col1,
-  .col2 {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 1rem;
-    min-height: 375px;
-    ${mediaQueries.md} {
-      min-height: auto;
-      gap: 46px;
-    }
-    article:last-child {
-      align-self: flex-end;
-    }
-  }
-  .col2 {
-    margin-block-end: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
   }
 `
 
 export const ArticleGrid: React.FC = () => {
   return (
     <GridStyled>
-      <div className="col1">
-        <BlogPostPreview
-          titleBelow="Etiam aliquet vist metus"
-          body="Luxury with integrity​"
-          link="read more"
-          aspectRatio="3/4"
-        />
-        <BlogPostPreview
-          titleBelow="Etiam aliquet vist metus"
-          body="Luxury with integrity​"
-          link="read more"
-          aspectRatio="3/4"
-        />
-      </div>
-      <div className="col2">
-        <BlogPostPreview
-          titleBelow="Etiam aliquet vist metus"
-          body="Luxury with integrity​"
-          link="read more"
-          aspectRatio="3/4"
-        />
-        <BlogPostPreview
-          titleBelow="Etiam aliquet vist metus"
-          body="Luxury with integrity​"
-          link="read more"
-          aspectRatio="3/4"
-        />
-      </div>
+      <BlogPostPreview
+        titleBelow="Etiam aliquet vist metus"
+        body="Luxury with integrity​"
+        link="read more"
+        aspectRatio="3/4"
+      />
+      <BlogPostPreview
+        titleBelow="Etiam aliquet vist metus"
+        body="Luxury with integrity​"
+        link="read more"
+        aspectRatio="3/4"
+      />
+      <BlogPostPreview
+        titleBelow="Etiam aliquet vist metus"
+        body="Luxury with integrity​"
+        link="read more"
+        aspectRatio="3/4"
+      />
+      <BlogPostPreview
+        titleBelow="Etiam aliquet vist metus"
+        body="Luxury with integrity​"
+        link="read more"
+        aspectRatio="3/4"
+      />
     </GridStyled>
   )
 }
