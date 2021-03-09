@@ -15,16 +15,15 @@ const MainStyled = styled.main`
 const PromoTest: React.FC = () => (
   <Layout>
     <SEO title="404: Not found" />
-    <MainStyled className={clsx("container")}>
+    <MainStyled>
       <PromotionalBanner
-        color="beige"
         layout="row"
         title="Row prop"
         showImage={true}
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
         link={{ text: "learn more" }}
         image={{
-          src: `https://picsum.photos/405/712?${
+          url: `https://picsum.photos/405/712?${
             Math.floor(Math.random() * 10) + 1
           }`,
           alt: "something here",
@@ -38,7 +37,7 @@ const PromoTest: React.FC = () => (
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
         title="Overlay prop"
         image={{
-          src: `https://picsum.photos/405/712?${
+          url: `https://picsum.photos/405/712?${
             Math.floor(Math.random() * 10) + 1
           }`,
         }}
@@ -51,19 +50,20 @@ const PromoTest: React.FC = () => (
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
         title="Column prop"
         image={{
-          src: `https://picsum.photos/405/712?${
+          url: `https://picsum.photos/405/712?${
             Math.floor(Math.random() * 10) + 1
           }`,
         }}
       />
       <PromotionalBanner
         color="beige"
+        layout="undefined"
         link={{ text: "learn more" }}
         showImage={true}
         text="Don't take it personal! Take the bitter with the sweet! Some good things come to an end."
         title="Default prop"
         image={{
-          src: `https://picsum.photos/405/712?${
+          url: `https://picsum.photos/405/712?${
             Math.floor(Math.random() * 10) + 1
           }`,
         }}
