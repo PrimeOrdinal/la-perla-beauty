@@ -1,4 +1,4 @@
-import type { Colour } from "../../types/theme"
+import type { Colour as ColourProp, Link as LinkProp, Image as ImageProp } from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -12,14 +12,11 @@ import { mediaQueries } from "../theme"
 import { Link } from "./Button"
 
 export type LeafFourProps = {
-  body: string
-  color: Colour
+  colour: ColourProp
+  image?: ImageProp
+  link?: LinkProp
+  text: string
   title: string
-  img?: {
-    alt?: string
-    src: string
-  }
-  link: React.ReactNode
 }
 
 const LeafWrapperStyled = styled.div`
@@ -131,33 +128,33 @@ const LeafWrapperStyled = styled.div`
 `
 
 export const LeafFour: React.FC<LeafFourProps> = ({
-  img,
-  title,
-  body,
+  colour,
+  image,
   link,
-  color,
+  text,
+  title,
 }) => {
   return (
     <LeafWrapperStyled className="container">
       <div className="leaf-container">
         <article>
-          {img && (
+          {image && (
             <figure>
-              <img src={img.src} alt={img.alt} className="img-bl" />
+              <img src={image.src} alt={image.alt} className="img-bl" />
             </figure>
           )}
-          <div className={clsx(color, "mobileLeaf")}>
+          <div className={clsx(colour, "mobileLeaf")}>
             <div className="mobileContent">
               {title && <h2>{title}</h2>}
-              {body && <p>{body}</p>}
+              {text && <p>{text}</p>}
               {link && <Link to="#">{link}</Link>}
             </div>
           </div>
           <div className="desktopLeaf">
             <div className="desktopContent">
               {title && <h2>{title}</h2>}
-              {body && <p>{body}</p>}
-              {link && <Link to="#">{link}</Link>}
+              {text && <p>{text}</p>}
+              {link && <Link to={link?.href}>{link?.title}</Link>}
             </div>
           </div>
         </article>

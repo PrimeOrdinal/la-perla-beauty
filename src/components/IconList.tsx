@@ -1,4 +1,4 @@
-import type { Colour, Icon } from "../../types/theme"
+import type { Colour as ColourProp, Icon as IconProp } from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -32,9 +32,9 @@ export type IconListProps = ColorProps &
   SpaceProps &
   VariantProps & {
     items: Array<{
-      color: Colour
-      title: string
-      icon: Icon
+      color: ColourProp
+      heading: string
+      icon: IconProp
       body: React.ReactNode
     }>
     orientation: "horizontal" | "vertical"

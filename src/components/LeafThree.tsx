@@ -1,4 +1,4 @@
-import type { Colour } from "../../types/theme"
+import type { Colour as ColourProp, Link as LinkProp, Image as ImageProp } from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -12,14 +12,11 @@ import { mediaQueries } from "../theme"
 import { Link } from "./Button"
 
 export type LeafThreeProps = {
-  body: string
-  color: Colour
+  colour: ColourProp
+  img?: ImageProp
+  link?: LinkProp
+  text: string
   title: string
-  img?: {
-    alt?: string
-    src: string
-  }
-  link: string
 }
 
 const LeafWrapperStyled = styled.div`
@@ -98,11 +95,11 @@ const LeafWrapperStyled = styled.div`
 `
 
 export const LeafThree: React.FC<LeafThreeProps> = ({
+  colour,
   img,
-  title,
-  body,
   link,
-  color,
+  text,
+  title,
 }) => {
   return (
     <LeafWrapperStyled className="container">
@@ -113,10 +110,10 @@ export const LeafThree: React.FC<LeafThreeProps> = ({
               <img src={img.src} alt={img.alt} className="img-bl" />
             </figure>
           )}
-          <div className={clsx(color)}>
+          <div className={clsx(colour)}>
             {title && <h2>{title}</h2>}
-            {body && <p>{body}</p>}
-            {link && <Link>{link}</Link>}
+            {text && <p>{text}</p>}
+            {link && <Link to={link?.href}>{link?.title}</Link>}
           </div>
         </article>
       </div>
