@@ -1,5 +1,10 @@
+import type {
+  // FooterQuery
+  // Contentstack_Menus,
+  LayoutQuery,
+} from "../../graphql-types"
+
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "./Button"
 import React, { useState } from "react"
 import styled from "styled-components"
 import {
@@ -25,6 +30,7 @@ import { ReactComponent as Hamburger } from "../../static/icons/Hamburger.svg"
 import { mediaQueries } from "../theme"
 
 import { Accordion } from "./Accordion"
+import { Link } from "./Button"
 
 const StyledHamburger = styled.div`
   button {
@@ -64,7 +70,9 @@ export type HamburgerMenuProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps
+  VariantProps & {
+    data?: LayoutQuery
+  }
 
 export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   data,
