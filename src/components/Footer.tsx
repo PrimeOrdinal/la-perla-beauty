@@ -232,8 +232,6 @@ export const Footer: React.FC<FooterProps> = (
 
       <div className="footer-nav-mobile">
         <Accordion
-          allowMultipleExpanded={true}
-          allowZeroExpanded={true}
           className="footer-secondary-accordion"
           items={data?.allContentstackMenus?.edges
             .filter(({ node: menu }) =>

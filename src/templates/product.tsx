@@ -202,8 +202,7 @@ const ProductPage: React.FC<
             original: (product?.image as ImageObject)?.contentUrl,
             thumbnail: (product?.image as ImageObject)?.contentUrl,
           },
-        ],
-    showPlayButton: false,
+        ]
   }
 
   const accordion = [
@@ -418,8 +417,6 @@ const ProductPage: React.FC<
             </section>
           )}
           <Accordion
-            allowMultipleExpanded={true}
-            allowZeroExpanded={true}
             className="accordion"
             items={accordion}
           />

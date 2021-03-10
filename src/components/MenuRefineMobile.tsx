@@ -257,8 +257,6 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
                       </div>
                     </div>
                     <Accordion
-                      allowMultipleExpanded={true}
-                      allowZeroExpanded={true}
                       items={[
                         {
                           title: "Scent Types",

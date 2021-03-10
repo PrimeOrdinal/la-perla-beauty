@@ -43,7 +43,7 @@ export type ProductSelectorColourProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    product: ProductGroup[]
+    productGroup: ProductGroup
   }
 
 export const ProductSelectorColour: React.FC<ProductSelectorColourProps> = ({

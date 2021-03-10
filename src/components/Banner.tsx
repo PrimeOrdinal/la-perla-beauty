@@ -68,10 +68,9 @@ export const BannerStyled: React.FC<BannerProps> = styled.div`
 
 export const Banner: React.FC<BannerProps> = ({
   children,
-  variant,
   ...props
 }) => (
-  <BannerStyled variant={variant} {...props}>
+  <BannerStyled {...props}>
     <Link {...props}>{children}</Link>
   </BannerStyled>
 )

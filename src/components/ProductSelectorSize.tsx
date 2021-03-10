@@ -43,7 +43,7 @@ export type ProductSelectorSizeProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    product: ProductGroup[]
+    productGroup: ProductGroup
   }
 
 export const ProductSelectorSize: React.FC<ProductSelectorSizeProps> = ({

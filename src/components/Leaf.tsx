@@ -29,7 +29,6 @@ export type LeafProps = ColorProps &
   SpaceProps &
   VariantProps & {
     children: React.ReactNode
-    to?: string
   }
 
 export const LeafStyled: React.FC<LeafProps> = styled.div`

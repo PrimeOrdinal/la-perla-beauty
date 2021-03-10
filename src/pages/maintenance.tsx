@@ -24,7 +24,7 @@ type PageContextPage = PageContextTypeBreadcrumb & {
 const MaintenancePage: React.FC<PageProps<MaintenancePageQuery, PageContextPage>> = ({data}) => {
 
   return (
-    <Layout type="minimal">
+    <Layout type="compact">
       <SEO title="Down for maintenance" />
 
       <StyledContainer className={clsx("container")}>

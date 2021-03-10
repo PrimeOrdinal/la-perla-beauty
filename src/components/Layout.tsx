@@ -43,7 +43,7 @@ const StyledContentArea = styled.div`
 
 export type LayoutProps = {
   children?: React.ReactNode
-  type?: "full" | "minimal"
+  type?: "compact" | "full"
 }
 
 export const Layout: React.FC<LayoutProps> = ({

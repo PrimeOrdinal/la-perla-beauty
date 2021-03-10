@@ -22,9 +22,7 @@ export type HoriontalRuleProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & {
-    showPlayButton: boolean
-  }
+  VariantProps
 
 export const HoriontalRule: React.FC<HoriontalRuleProps> = styled.hr`
   ${compose(color, flexbox, grid, layout, position, space)}

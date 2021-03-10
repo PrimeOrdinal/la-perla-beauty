@@ -36,6 +36,7 @@ export type AccordionProps = ColorProps &
   SpaceProps &
   VariantProps & {
     allowMultipleExpanded: boolean
+    allowZeroExpanded: boolean
     items: Array<{
       title: string
       panel: React.ReactNode
@@ -137,8 +138,8 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const Accordion: React.FC<AccordionProps> = ({ items, ...props }) => (
-  <AccordionStyled {...props}>
+export const Accordion: React.FC<AccordionProps> = ({ allowMultipleExpanded=true, allowZeroExpanded=true, items, ...props }) => (
+  <AccordionStyled allowMultipleExpanded={allowMultipleExpanded} allowZeroExpanded={allowZeroExpanded} {...props}>
     {items?.length &&
       items.map((item, index) => (
         <ReactAccessibleAccordionItem key={index}>

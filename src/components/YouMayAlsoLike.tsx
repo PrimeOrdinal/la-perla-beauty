@@ -62,9 +62,9 @@ export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({ data }) => (
     <h1>You May Also Like</h1>
     {data.allContentstackProducts && (
       <Listing
-        edges={data.allContentstackProducts.edges.map(({ node }) => ({
-          node: standardiseContentstackProduct(node),
-        }))}
+        products={data.allContentstackProducts.edges.map(({ node }) =>
+          standardiseContentstackProduct(node)
+        )}
       />
       // <Listing
       //   edges={data.allBigCommerceProducts.edges.map(({ node }) => ({

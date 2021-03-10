@@ -84,7 +84,7 @@ const renderFullscreenButton = (onClick, isFullscreen) => {
   )
 }
 
-export const ImageGallery: React.FC<ImageGalleryProps> = props => {
+export const ImageGallery: React.FC<ImageGalleryProps> = ({showPlayButton=false, ...props}) => {
   let [isFullScreen, setIsFullScreen] = useState(false)
   let [hasRegistered, setHasRegistered] = useState(false)
 
@@ -149,6 +149,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = props => {
       renderLeftNav={renderLeftNav}
       renderRightNav={renderRightNav}
       renderFullscreenButton={renderFullscreenButton}
+      showPlayButton={showPlayButton}
       {...props}
     />
   )

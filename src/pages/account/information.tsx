@@ -133,8 +133,6 @@ const InformationPage: React.FC = () => (
           </div>
 
           <Accordion
-            allowMultipleExpanded={true}
-            allowZeroExpanded={true}
             className="password-accordion"
             items={[
               {
