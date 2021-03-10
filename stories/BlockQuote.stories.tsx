@@ -11,5 +11,5 @@ export default {
 const Template: Story<BlockquoteProps> = args => <Blockquote {...args} />
 export const Example = Template.bind({})
 Example.args = {
-  color: "beige"
+  colour: "beige"
 }

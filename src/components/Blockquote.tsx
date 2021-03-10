@@ -9,7 +9,7 @@ import OpenQuote from "../../static/icons/OpenQuote.svg"
 import CloseQuote from "../../static/icons/CloseQuote.svg"
 
 export type BlockquoteProps = {
-  color: Colour
+  colour: Colour
 }
 
 const BlockquoteStyled = styled.div`
