@@ -3,35 +3,39 @@ import React from "react"
 import styled from "styled-components"
 
 const CarouselCardStyled = styled.div`
-  display: inline-grid;
-  grid-auto-flow: row;
   background-color: #98825a;
   border-radius: ${themeGet("radii.4")}px;
+  display: inline-grid;
+  grid-auto-flow: row;
   margin: 4rem;
+
   figure {
     margin: 0;
 
     img {
-      width: 100%;
+      border-radius: ${themeGet("radii.4")}px ${themeGet("radii.4")}px 0 0;
       height: 100%;
       object-fit: cover;
-      border-radius: ${themeGet("radii.4")}px ${themeGet("radii.4")}px 0 0;
+      width: 100%;
     }
   }
   div {
+    display: grid;
+    gap: 16px;
+    grid-auto-flow: row;
+    padding-block-end: 32px;
+    padding-block-start: 32px;
     padding: 20px;
     text-align: center;
-    display: grid;
-    grid-auto-flow: row;
-    gap: 16px;
-    padding-block-start: 32px;
-    padding-block-end: 32px;
+
     time {
       font-size: 13px;
     }
+
     h2 {
       margin: 0;
     }
+
     p {
       margin: 0;
     }
