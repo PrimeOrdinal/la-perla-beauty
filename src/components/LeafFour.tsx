@@ -1,4 +1,8 @@
-import type { Colour as ColourProp, Link as LinkProp, Image as ImageProp } from "../../types/components"
+import type {
+  Colour as ColourProp,
+  Link as LinkProp,
+  Image as ImageProp,
+} from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -28,8 +32,7 @@ const LeafWrapperStyled = styled.div`
   .leaf-container {
     display: flex;
     justify-content: center;
-    background-color: ${themeGet("colors.white")}
-    ${mediaQueries.md} {
+    background-color: ${themeGet("colors.white")} ${mediaQueries.md} {
       padding-block-start: ${themeGet("space.14")}px;
       padding-block-end: ${themeGet("space.14")}px;
     }
@@ -82,7 +85,7 @@ const LeafWrapperStyled = styled.div`
         h2 {
           margin: 0;
           ${mediaQueries.md} {
-            font-size: ${themeGet("fontSizes.6")}px;
+            font-size: var(--font-size-lg, 24px);
           }
         }
         p {
@@ -108,7 +111,7 @@ const LeafWrapperStyled = styled.div`
       h2 {
         margin: 0;
         ${mediaQueries.md} {
-          font-size: ${themeGet("fontSizes.6")}px;
+          font-size: var(--font-size-lg, 24px);
         }
       }
       p {

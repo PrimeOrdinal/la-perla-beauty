@@ -38,9 +38,8 @@ const InformationSection = styled.section`
   h1 {
     margin-block-start: ${themeGet("space.6")}px;
     margin-block-end: ${themeGet("space.4")}px;
-    font-size: ${themeGet("fontSizes.6")}px;
+    font-size: var(--font-size-xl, 24px);
     ${mediaQueries.md} {
-      font-size: ${themeGet("fontSizes.7")}px;
       margin-block-end: ${themeGet("space.7")}px;
     }
   }
@@ -74,11 +73,8 @@ const LetterBanner = styled.div`
     padding-block-start: ${themeGet("space.5")}px;
   }
   span {
-    font-size: ${themeGet("fontSizes.6")}px;
+    font-size: var(--font-size-lg, 24px);
     font-family: "Tiempos", serif;
-    ${mediaQueries.md} {
-      font-size: ${themeGet("fontSizes.7")}px;
-    }
   }
 `
 
@@ -102,7 +98,7 @@ const IngredientList = styled(ListPlain)`
       h2 {
         margin: 0;
         ${mediaQueries.md} {
-          font-size: ${themeGet("fontSizes.6")}px;
+          font-size: var(--font-size-lg, 24px);
         }
       }
       .contents {

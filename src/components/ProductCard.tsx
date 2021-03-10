@@ -115,17 +115,13 @@ const ProductCardStyled = styled.article`
   .product-name {
     align-self: flex-end;
     font-family: "Tiempos", serif;
-    font-size: ${themeGet("fontSizes.heading2Desktop")}px;
+    font-size: var(--font-size-heading-2, 18px);
     font-weight: lighter;
-
-    ${mediaQueries.sm} {
-      font-size: ${themeGet("fontSizes.5")}px;
-    }
   }
 
   .product-price {
     font-family: "Tiempos", serif;
-    font-size: ${themeGet("fontSizes.heading2Desktop")}px;
+    font-size: var(--font-size-heading-2, 18px);
     font-weight: lighter;
   }
 

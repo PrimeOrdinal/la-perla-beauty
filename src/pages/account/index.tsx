@@ -47,13 +47,13 @@ const GridStyled = styled.section`
 
       ${mediaQueries.md} {
         display: initial;
-        font-size: ${themeGet("fontSizes.6")}px;
+        font-size: var(--font-size-lg, 24px);
         margin: 0;
       }
     }
 
     .mobile-heading {
-      font-size: ${themeGet("fontSizes.6")}px;
+      font-size: var(--font-size-xl, 24px);
       margin: 0;
 
       ${mediaQueries.md} {
@@ -80,7 +80,7 @@ const GridStyled = styled.section`
     grid-auto-flow: row;
     align-items: flex-start;
     h1 {
-      font-size: ${themeGet("fontSizes.6")}px;
+      font-size: var(--font-size-lg, 24px);
       margin: 0;
     }
 
@@ -106,13 +106,22 @@ const AccountPage: React.FC = () => {
               Please enter your email address and password below to access your
               account
             </p>
-            <form action={userIsSignedIn ? "/account/information" : "/account/sign-up"}>
+            <form
+              action={
+                userIsSignedIn ? "/account/information" : "/account/sign-up"
+              }
+            >
               <label htmlFor="email address">email address*</label>
               <input className="input-focus" type="email" />
               <label htmlFor="password">password</label>
               <input className="input-focus" type="password" />
               <span>forgot your password?</span>
-              <Button type="submit" variant="secondary" p={5} className="sign-in">
+              <Button
+                type="submit"
+                variant="secondary"
+                p={5}
+                className="sign-in"
+              >
                 Sign in
               </Button>
             </form>

@@ -14,10 +14,9 @@ const ColumnTwoStyled = styled.section`
   grid-auto-flow: row;
   gap: ${themeGet("space.5")}px;
   .account-title {
-    font-size: ${themeGet("fontSizes.6")}px;
+    font-size: var(--font-size-xl, 24px);
     margin: 0;
     ${mediaQueries.md} {
-      font-size: ${themeGet("fontSizes.7")}px;
       display: initial;
     }
   }

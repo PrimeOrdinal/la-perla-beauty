@@ -28,12 +28,8 @@ const GridStyled = styled.div`
     padding-block-end: 1rem;
 
     h1 {
-      font-size: ${themeGet("fontSizes.6")}px;
+      font-size: var(--font-size-xl, 24px);
       margin: 0;
-
-      ${mediaQueries.md} {
-        font-size: ${themeGet("fontSizes.7")}px;
-      }
     }
   }
   .column-2 {
@@ -130,7 +126,7 @@ const GridStyled = styled.div`
 
     .price {
       font-family: "Tiempos", serif;
-      font-size: ${themeGet("fontSizes.heading3Mobile")}px;
+      font-size: var(--font-size-heading-3, 14px);
       font-weight: lighter;
     }
   }

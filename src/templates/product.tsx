@@ -82,7 +82,7 @@ const ProductStyled = styled.article`
   }
 
   .price {
-    font-size: ${themeGet("fontSizes.5")}px;
+    font-size: var(--font-size-lg, 18px);
     margin-block-end: ${themeGet("space.6")}px;
   }
 
@@ -202,7 +202,7 @@ const ProductPage: React.FC<
             original: (product?.image as ImageObject)?.contentUrl,
             thumbnail: (product?.image as ImageObject)?.contentUrl,
           },
-        ]
+        ],
   }
 
   const accordion = [
@@ -416,10 +416,7 @@ const ProductPage: React.FC<
               </dl>
             </section>
           )}
-          <Accordion
-            className="accordion"
-            items={accordion}
-          />
+          <Accordion className="accordion" items={accordion} />
           <DeliveryAndReturnsInformation className="delivery-and-returns-information" />
           {data?.contentstackProducts?.leaf && (
             <Leaf

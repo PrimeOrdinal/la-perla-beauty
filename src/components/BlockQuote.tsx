@@ -20,7 +20,7 @@ const BlockQuoteStyled = styled.div`
 
   blockquote {
     font-family: "Tiempos", serif;
-    font-size: ${themeGet("fontSizes.heading2Mobile")}px;
+    font-size: var(--font-size-heading-2, 16px);
     line-height: ${themeGet("space.7")}px;
     margin: 0;
     max-width: ${themeGet("space.12")}ch;
@@ -29,7 +29,7 @@ const BlockQuoteStyled = styled.div`
     position: relative;
 
     ${mediaQueries.md} {
-      font-size: ${themeGet("fontSizes.heading1Desktop")}px;
+      font-size: var(--font-size-heading-1, 18px);
       line-height: ${themeGet("space.8")}px;
     }
 

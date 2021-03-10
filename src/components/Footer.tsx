@@ -92,7 +92,7 @@ const FooterStyle = styled.footer`
         display: block;
         font-family: "Tiempos", serif;
         font-weight: lighter;
-        font-size: ${themeGet("fontSizes.6")}px;
+        font-size: var(--font-size-lg, 24px);
         letter-spacing: 0.5px;
         text-transform: capitalize;
       }
@@ -112,7 +112,7 @@ const FooterStyle = styled.footer`
 
       h3 {
         font-family: ${themeGet("fontFamily", "Quicksand")};
-        font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+        font-size: var(--font-size-heading-3, 14px);
         padding-block-end: ${themeGet("space.8")}px;
         font-weight: bold;
       }
@@ -123,7 +123,7 @@ const FooterStyle = styled.footer`
         list-style: none;
         padding: 0;
         li {
-          font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+          font-size: var(--font-size-heading-3, 14px);
 
           a {
             text-decoration: none;
@@ -174,7 +174,7 @@ const FooterStyle = styled.footer`
         display: none;
         ${mediaQueries.md} {
           display: block;
-          font-size: ${themeGet("fontSizes.heading3Desktop")}px;
+          font-size: var(--font-size-heading-3, 14px);
           font-weight: bold;
         }
       }
@@ -189,7 +189,7 @@ const ContainerStyled = styled.div`
   h2 {
     margin-block-end: 1.25rem;
     font-family: ${themeGet("fontFamily", "Tiempos")};
-    font-size: ${themeGet("fontSizes.heading1Mobile")}px;
+    font-size: var(--font-size-heading-1, 18px);
     font-weight: 100;
     text-transform: capitalize;
     ${mediaQueries.md} {

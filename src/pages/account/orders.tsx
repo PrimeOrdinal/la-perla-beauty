@@ -14,17 +14,14 @@ const OrdersColumn = styled.section`
     text-transform: capitalize;
     margin: 0;
     font-weight: lighter;
-    font-size: ${themeGet("fontSizes.6")}px;
-    ${mediaQueries.md} {
-      font-size: ${themeGet("fontSizes.7")}px;
-    }
+    font-size: var(--font-size-xl, 24px);
   }
 
   .current-orders {
     h2 {
       font-size: 20px;
       ${mediaQueries.md} {
-        font-size: ${themeGet("fontSizes.6")}px;
+        font-size: var(--font-size-lg, 24px);
       }
     }
     display: grid;

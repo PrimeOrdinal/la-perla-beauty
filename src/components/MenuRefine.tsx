@@ -61,7 +61,7 @@ const MenuRefineStyled = styled.section`
 
   h2 {
     font-family: "Quicksand", sans-serif;
-    font-size: ${themeGet("fontSizes.heading4Desktop")}px;
+    font-size: var(--font-size-heading-4, 13px);
     font-weight: normal;
     margin: 0;
     text-transform: uppercase;
@@ -69,7 +69,7 @@ const MenuRefineStyled = styled.section`
 
   .fancy-radio-label,
   .fancy-checkbox-label {
-    font-size: ${themeGet("fontSizes.heading4Desktop")}px;
+    font-size: var(--font-size-heading-4, 13px);
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}
