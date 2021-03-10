@@ -9,46 +9,55 @@ import { Button } from "./Button"
 
 const ProductCardAltStyled = styled.article`
   background-color: ${themeGet("colors.white")};
-  border-radius: 20px;
+  border-radius: ${themeGet("radii.4")}px;
   display: inline-grid;
-  padding: 34px;
-  margin-block-start: 5rem;
-  margin-block-end: 1rem;
   gap: 1rem;
+  margin-block-end: 1rem;
+  margin-block-start: 5rem;
+  padding: 34px;
+
   .productImage {
     margin-block-start: -5rem;
   }
+
   .productType {
     display: flex;
     justify-content: space-between;
+
     span {
-      text-transform: uppercase;
       font-size: 12px;
+      text-transform: uppercase;
     }
+
     .productIcons {
       display: grid;
-      grid-auto-flow: column;
       gap: 1rem;
+      grid-auto-flow: column;
+
       img {
         width: 21px;
         height: 18px;
       }
     }
   }
+
   h3 {
+    border-bottom: 1px solid #aeaeae;
     font-size: 18px;
     margin: 0;
     padding-block-end: 1rem;
-    border-bottom: 1px solid #aeaeae;
   }
+
   .productInfo {
     display: grid;
     grid-auto-flow: column;
     justify-content: space-between;
+
     span {
       font-weight: bold;
       font-size: 14px;
     }
+
     .price {
       font-family: "Tiempos", serif;
       font-weight: 300;

@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 
@@ -5,7 +6,7 @@ const CarouselCardStyled = styled.div`
   display: inline-grid;
   grid-auto-flow: row;
   background-color: #98825a;
-  border-radius: 18px;
+  border-radius: ${themeGet("radii.4")}px;
   margin: 4rem;
   figure {
     margin: 0;
@@ -14,7 +15,7 @@ const CarouselCardStyled = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 18px 18px 0 0;
+      border-radius: ${themeGet("radii.4")}px ${themeGet("radii.4")}px 0 0;
     }
   }
   div {

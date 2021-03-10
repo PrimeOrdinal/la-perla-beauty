@@ -63,7 +63,6 @@ export const mediaQueries = {
 }
 
 export const theme: DefaultTheme = {
-  borderRadius: "5px",
   breakpoints,
   colors: {
     black: "#363139",
