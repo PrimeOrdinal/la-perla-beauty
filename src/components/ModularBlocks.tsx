@@ -84,7 +84,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             case "blog_post_preview":
               const blogPostPreview = value as ModularBlockBlogPostPreview
               // aspectRatio: string
-              // body: string
+              // text: string
               // headingAbove: string
               // headingBelow: string
               // link?: {
@@ -94,7 +94,6 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               // tag: string
               component = (
                 <BlogPostPreview
-                  {...args}
                   {...margins}
                 />
               )
@@ -117,7 +116,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                     icon: item?.icon,
                     color: item?.colour,
                     title: item?.title,
-                    body: <p>{item?.text}</p>,
+                    text: <p>{item?.text}</p>,
                   }))}
                   orientation="horizontal"
                   {...margins}
@@ -161,8 +160,8 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               }
               component = (
                 <LeafTwo
-                  body={leaf?.text as string}
-                  color={leaf?.colour}
+                  text={leaf?.text as string}
+                  colour={leaf?.colour}
                   title={leaf?.title as string}
                   img={img}
                   link={leaf?.link}
