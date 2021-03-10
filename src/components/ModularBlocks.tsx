@@ -21,7 +21,7 @@ import type {
 import React from "react"
 
 import { Accordion } from "../components/Accordion"
-import { BlockQuote } from "../components/BlockQuote"
+import { Blockquote } from "./Blockquote"
 import { BlogPostPreview } from "../components/BlogPostPreview"
 import { HoriontalRule } from "../components/HoriontalRule"
 import { IconList } from "../components/IconList"
@@ -199,9 +199,10 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 )
               break
             case "quotation":
-              const quotation = value as ModularBlockQuotation
+              const blockquote = value as ModularBlockQuotation
+              const { quotation, ...props } = blockquote
               component = (
-                <BlockQuote {...margins}>{quotation?.quotation}</BlockQuote>
+                <Blockquote {...props} {...margins}>{quotation}</Blockquote>
               )
               break
             case "video":
