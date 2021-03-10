@@ -1,3 +1,5 @@
+import type { Product } from "schema-dts"
+
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
@@ -29,7 +31,9 @@ export type MiniBagProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps
+  VariantProps & {
+    items: Product[]
+  }
 
 export const MiniBagStyled: React.FC<MiniBagProps> = styled.div`
   &:disabled {
