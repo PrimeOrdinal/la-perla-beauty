@@ -13,7 +13,7 @@ import type {
   ModularBlockMenu,
   ModularBlockParagraph,
   ModularBlockProductCard,
-  ModularBlockQuotation,
+  ModularBlockquote,
   ModularBlockWYSIWYG,
   ModularBlockVideo,
 } from "../../types/ModularBlocks"
@@ -198,7 +198,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 )
               break
             case "quotation":
-              const blockquote = value as ModularBlockQuotation
+              const blockquote = value as ModularBlockquote
               const { quotation, ...props } = blockquote
               component = (
                 <Blockquote {...props} {...margins}>{quotation}</Blockquote>
