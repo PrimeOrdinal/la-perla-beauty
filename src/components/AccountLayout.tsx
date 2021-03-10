@@ -43,8 +43,9 @@ const MainStyled = styled.main`
 `
 
 const AccountNav = styled(ListPlain)`
-  border-radius: 15px;
-  border: 1px solid black;
+  border-color: black;
+  border-radius: ${themeGet("radii.4")}px
+  border-style: solid;
   display: grid;
   gap: 1.5rem;
   grid-auto-flow: row;

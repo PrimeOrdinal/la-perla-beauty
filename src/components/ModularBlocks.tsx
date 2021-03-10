@@ -13,7 +13,7 @@ import type {
   ModularBlockMenu,
   ModularBlockParagraph,
   ModularBlockProductCard,
-  ModularBlockQuotation,
+  ModularBlockquote,
   ModularBlockWYSIWYG,
   ModularBlockVideo,
 } from "../../types/ModularBlocks"
@@ -21,7 +21,7 @@ import type {
 import React from "react"
 
 import { Accordion } from "../components/Accordion"
-import { BlockQuote } from "../components/BlockQuote"
+import { Blockquote } from "./Blockquote"
 import { BlogPostPreview } from "../components/BlogPostPreview"
 import { HoriontalRule } from "../components/HoriontalRule"
 import { IconList } from "../components/IconList"
@@ -84,7 +84,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             case "blog_post_preview":
               const blogPostPreview = value as ModularBlockBlogPostPreview
               // aspectRatio: string
-              // body: string
+              // text: string
               // headingAbove: string
               // headingBelow: string
               // link?: {
@@ -94,7 +94,6 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               // tag: string
               component = (
                 <BlogPostPreview
-                  {...args}
                   {...margins}
                 />
               )
@@ -117,7 +116,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                     icon: item?.icon,
                     color: item?.colour,
                     title: item?.title,
-                    body: <p>{item?.text}</p>,
+                    text: <p>{item?.text}</p>,
                   }))}
                   orientation="horizontal"
                   {...margins}
@@ -161,8 +160,8 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               }
               component = (
                 <LeafTwo
-                  body={leaf?.text as string}
-                  color={leaf?.colour}
+                  text={leaf?.text as string}
+                  colour={leaf?.colour}
                   title={leaf?.title as string}
                   img={img}
                   link={leaf?.link}
@@ -199,9 +198,10 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 )
               break
             case "quotation":
-              const quotation = value as ModularBlockQuotation
+              const blockquote = value as ModularBlockquote
+              const { quotation, ...props } = blockquote
               component = (
-                <BlockQuote {...margins}>{quotation?.quotation}</BlockQuote>
+                <Blockquote {...props} {...margins}>{quotation}</Blockquote>
               )
               break
             case "video":

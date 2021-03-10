@@ -37,7 +37,7 @@ import { Button } from "./Button"
 import { Price } from "./Price"
 import { QuickBuy } from "./QuickBuy"
 import { QuickWishlist } from "./QuickWishlist"
-import { Tag } from "./Tag"
+import { ItemAvailability } from "./ItemAvailability"
 
 const ProductCardStyled = styled.article`
   align-content: space-between;
@@ -133,11 +133,10 @@ export type ProductCardProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & { product: Product; showImage: boolean }
+  VariantProps & { product: Product; }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  showImage = true,
   ...props
 }) => {
   const [quickBuyOpen, toggleQuickBuyOpen] = useToggle()
@@ -161,7 +160,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       data-id={product?.["@id"]}
       {...props}
     >
-      {(showImage && product?.url && (
+      {(image && product?.url && (
         <Link
           className="image-container"
           to={product?.url as string}
@@ -172,12 +171,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       )) ||
         image}
       {offer?.availability && (
-        <Tag
+        <ItemAvailability
           className="availability"
           availability={availabilitySchemaToShortName(offer?.availability)}
         >
           {availabilitySchemaToHumanReadableText(offer?.availability)}
-        </Tag>
+        </ItemAvailability>
       )}
       <div className="product-information">
         <div className="product-category-wrapper">

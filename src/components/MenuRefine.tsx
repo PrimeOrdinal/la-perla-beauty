@@ -82,11 +82,9 @@ export type MenuRefineProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    productCount: number
     setFilterChips: React.Dispatch<SetStateAction<Array<string>>>
     setFiltersCount: React.Dispatch<SetStateAction<number>>
     setSortBy: React.Dispatch<SetStateAction<string>>
-    view: "grid" | "list"
   }
 
 interface Values {
@@ -100,11 +98,9 @@ interface Values {
 }
 
 export const MenuRefine: React.FC<MenuRefineProps> = ({
-  productCount,
   setFiltersCount,
   setFilterChips,
   setSortBy,
-  view,
   ...props
 }) => {
   const handleBlur = async (event: Values) => {

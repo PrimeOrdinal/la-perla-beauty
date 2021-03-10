@@ -1,4 +1,4 @@
-import { mediaQueries, theme } from "../theme"
+import { theme } from "../theme"
 
 export const formCheckboxContainer = `
   .fancy-checkbox {

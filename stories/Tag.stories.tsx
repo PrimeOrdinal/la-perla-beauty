@@ -1,11 +1,11 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { Tag, TagProps } from "../src/components/Tag"
+import { ItemAvailability, ItemAvailabilityProps } from "../src/components/ItemAvailability"
 
 export default {
-  title: "Tag",
-  component: Tag,
+  title: "ItemAvailability",
+  component: ItemAvailability,
   argTypes: {
     backgroundColor: { control: "color" },
     variant: {
@@ -17,7 +17,7 @@ export default {
   },
 } as Meta
 
-const Template: Story<TagProps> = args => <Tag {...args} />
+const Template: Story<ItemAvailabilityProps> = args => <ItemAvailability {...args} />
 
 export const Example = Template.bind({})
 Example.args = {
@@ -27,5 +27,5 @@ Example.args = {
   maxWidth: 256
 }
 Example.argTypes = {
-  onClick: { action: "Tag clicked" },
+  onClick: { action: "ItemAvailability clicked" },
 }

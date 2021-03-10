@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -17,11 +18,11 @@ import {
   VariantProps,
 } from "styled-system"
 
-import { mediaQueries } from "../theme"
-
 import { ReactComponent as CloseIcon } from "../../static/icons/Close.svg"
 import { ReactComponent as MinusIcon } from "../../static/icons/Minus.svg"
 import { ReactComponent as PlusIcon } from "../../static/icons/Plus.svg"
+
+import { mediaQueries } from "../theme"
 
 const ShoppingBagProductStyled = styled.div`
   display: grid;
@@ -30,7 +31,7 @@ const ShoppingBagProductStyled = styled.div`
     props.layout === "compact" ? "auto 1fr" : "1fr 2fr"};
 
   .bagCol-1 {
-    border-radius: 12px;
+    border-radius: ${themeGet("radii.3")}px;
     height: 160px;
 
     ${mediaQueries.md} {

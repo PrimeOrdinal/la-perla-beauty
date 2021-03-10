@@ -28,7 +28,7 @@ import { ProductSelectorColour } from "../components/ProductSelectorColour"
 import { ProductSelectorSize } from "../components/ProductSelectorSize"
 import { QuickShare } from "../components/QuickShare"
 import { QuickWishlist } from "../components/QuickWishlist"
-import { Tag } from "../components/Tag"
+import { ItemAvailability } from "../components/ItemAvailability"
 
 import { mediaQueries } from "../theme"
 
@@ -308,14 +308,14 @@ const ProductPage: React.FC<
             )}
 
             {offer?.availability && (
-              <Tag
+              <ItemAvailability
                 className="availability"
                 availability={availabilitySchemaToShortName(
                   offer?.availability
                 )}
               >
                 {availabilitySchemaToHumanReadableText(offer?.availability)}
-              </Tag>
+              </ItemAvailability>
             )}
 
             <h1 className={clsx("name", "title")}>{name}</h1>

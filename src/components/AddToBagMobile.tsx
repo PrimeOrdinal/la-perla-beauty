@@ -7,20 +7,21 @@ import { ReactComponent as CloseIcon } from "../../static/icons/Close.svg"
 import { Button } from "./Button"
 
 const ContainerStyled = styled.div`
-  border: 1px solid;
   background-color: ${themeGet("colors.white")};
-  border-radius: 13px;
-  padding-block-end: 1rem;
-  display: grid;
-  grid-auto-flow: row;
-  gap: 1rem;
-  width: 100%;
-  position: absolute;
+  border-radius: ${themeGet("radii.3")}px
+  border-style: solid;
   bottom: 0px;
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: row;
+  padding-block-end: 1rem;
+  position: absolute;
+  width: 100%;
+
   .title {
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding-block-end: 1rem;
     padding-block-start: 1rem;
   }

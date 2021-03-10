@@ -1,5 +1,3 @@
-import { theme } from "../theme"
-
 export const headings = `
     h1,
     h2,

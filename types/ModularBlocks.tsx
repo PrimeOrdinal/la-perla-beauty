@@ -1,4 +1,4 @@
-import type { Link as LinkProp } from "../../types/components"
+import type { Link as LinkProp } from "./components"
 
 import type { Product } from "schema-dts"
 
@@ -112,7 +112,8 @@ export type ModularBlockProductCard = ModularBlock & {
   view: "alternative" | "default"
 }
 
-export type ModularBlockQuotation = ModularBlock & {
+export type ModularBlockquote = ModularBlock & {
+  colour: Colour
   quotation: {
     quotation?: string
   }
@@ -143,6 +144,6 @@ export type ModularBlocksTypes =
   | ModularBlockMenu
   | ModularBlockParagraph
   | ModularBlockProductCard
-  | ModularBlockQuotation
+  | ModularBlockquote
   | ModularBlockVideo
   | ModularBlockWYSIWYG
