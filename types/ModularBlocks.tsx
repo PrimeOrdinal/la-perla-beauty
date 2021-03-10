@@ -1,4 +1,4 @@
-import type { Link as LinkProp } from "../../types/components"
+import type { Link as LinkProp } from "./components"
 
 import type { Product } from "schema-dts"
 
