@@ -37,7 +37,7 @@ import { Button } from "./Button"
 import { Price } from "./Price"
 import { QuickBuy } from "./QuickBuy"
 import { QuickWishlist } from "./QuickWishlist"
-import { Tag } from "./Tag"
+import { ItemAvailability } from "./ItemAvailability"
 
 const ProductCardStyled = styled.article`
   align-content: space-between;
@@ -176,12 +176,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       )) ||
         image}
       {offer?.availability && (
-        <Tag
+        <ItemAvailability
           className="availability"
           availability={availabilitySchemaToShortName(offer?.availability)}
         >
           {availabilitySchemaToHumanReadableText(offer?.availability)}
-        </Tag>
+        </ItemAvailability>
       )}
       <div className="product-information">
         <div className="product-category-wrapper">

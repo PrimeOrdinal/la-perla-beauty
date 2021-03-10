@@ -18,7 +18,7 @@ import {
   VariantProps,
 } from "styled-system"
 
-export type TagProps = ColorProps &
+export type ItemAvailabilityProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -26,7 +26,7 @@ export type TagProps = ColorProps &
   SpaceProps &
   VariantProps
 
-export const Tag: React.FC<TagProps> = styled.span`
+export const ItemAvailability: React.FC<ItemAvailabilityProps> = styled.span`
   background-color: ${themeGet("colors.orange")};
   border-radius: ${themeGet("radii.2")}px;
   display: block;
