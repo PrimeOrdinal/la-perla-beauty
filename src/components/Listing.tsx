@@ -1,4 +1,4 @@
-import type { Product, WithContext } from "schema-dts"
+import type { Product } from "schema-dts"
 
 import type { Contentstack_CategoriesPromotional_Banners } from "../../graphql-types"
 
@@ -44,9 +44,7 @@ export type ListingProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    products?: Array<{
-      node: WithContext<Product>
-    }>
+    products?: Product[]
     promotionalBanners?: Contentstack_CategoriesPromotional_Banners
     view: "grid" | "list"
   }
