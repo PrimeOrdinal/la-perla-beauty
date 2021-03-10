@@ -33,6 +33,7 @@ import { ProductCardAlt } from "../components/ProductCardAlt"
 import { PromotionalBanner } from "../components/PromotionalBanner"
 import { MenuSubCategory } from "../components/MenuSubCategory"
 import { VideoPlayer } from "../components/VideoPlayer"
+import { WYSIWYG } from "../components/WYSIWYG"
 
 export type ModularBlocksProps = {
   modularBlocks: ModularBlocksTypes[]
@@ -65,8 +66,6 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               const accordion = value as ModularBlockAccordion
               component = (
                 <Accordion
-                  allowMultipleExpanded={true}
-                  allowZeroExpanded={true}
                   items={accordion?.panels?.map((panel, index) => ({
                     title: panel.title,
                     panel: <div key={index}>{panel?.panel}</div>,
@@ -84,8 +83,18 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             //   break
             case "blog_post_preview":
               const blogPostPreview = value as ModularBlockBlogPostPreview
+              // aspectRatio: string
+              // body: string
+              // headingAbove: string
+              // headingBelow: string
+              // link?: {
+              //   href: URL
+              //   title: string
+              // }
+              // tag: string
               component = (
                 <BlogPostPreview
+                  {...args}
                   {...margins}
                 />
               )
@@ -156,7 +165,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                   color={leaf?.colour}
                   title={leaf?.title as string}
                   img={img}
-                  link={<Link to={leaf?.link?.href}>{leaf?.link?.title}</Link>}
+                  link={leaf?.link}
                   {...margins}
                 />
               )
@@ -209,10 +218,8 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             case "wysiwyg":
               const wysiwyg = value as ModularBlockWYSIWYG
               component = (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: wysiwyg?.markup as string,
-                  }}
+                <WYSIWYG
+                  markup={wysiwyg?.markup}
                   {...margins}
                 />
               )

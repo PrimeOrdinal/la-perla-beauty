@@ -1,3 +1,4 @@
+import type { Background } from "../../types/components"
 import type { ModularBlocksTypes } from "../../types/ModularBlocks"
 
 import clsx from "clsx"
@@ -6,82 +7,60 @@ import styled, { css } from "styled-components"
 
 import { ModularBlocks } from "../components/ModularBlocks"
 
+export type PageSection = {
+  background: Background
+  container: boolean
+  id: string
+  modular_blocks: ModularBlocksTypes[]
+  title: string
+}
+
 export type PageSectionsProps = {
-  pageSections: Array<{
-    background_image: {
-      attachment: string
-      colour: {
-        colour_picker: string
-        transparent: boolean
-      }
-      file: {
-        description: string
-        title: string
-        url: string
-      }
-      position: {
-        custom_position: string
-        horizontal_position: string
-        vertical_position: string
-      }
-      repeat: {
-        horizontal_repetition_behaviour: string
-        vertical_repetition_behaviour: string
-      }
-      size: {
-        custom_size: string
-        preset: string
-      }
-    }
-    container: boolean
-    id: string
-    modular_blocks: ModularBlocksTypes[]
-    title: string
-  }>
+  pageSections: PageSection[]
 }
 
 export const PageSections: React.FC<PageSectionsProps> = ({ pageSections }) => (
   <React.Fragment>
     {pageSections?.map(page_section => {
       const SectionStyled = styled.section`
-        ${page_section?.background_image?.attachment &&
+        ${page_section?.background?.attachment &&
         css`
-          background-attachment: ${page_section?.background_image?.attachment};
+          background-attachment: ${page_section?.background?.attachment};
         `}
-        ${page_section?.background_image?.colour?.transparent === false &&
-        page_section?.background_image?.colour?.colour_picker &&
+        ${page_section?.background?.colour?.transparent === false &&
+        page_section?.background?.colour?.colour_picker &&
         css`
-          background-color: ${page_section?.background_image?.colour
+          background-color: ${page_section?.background?.colour
             ?.colour_picker};
         `}
-            ${page_section?.background_image?.file?.url &&
+            ${page_section?.background?.file?.url &&
         css`
-          background-image: url("${page_section?.background_image?.file?.url}");
+          background-image: url("${page_section?.background?.file?.url}");
         `}
-          ${page_section?.background_image?.position?.custom_position !== ""
+          ${page_section?.background?.position?.custom_position !== ""
           ? css`
-              background-position: ${page_section?.background_image?.position
+              background-position: ${page_section?.background?.position
                 ?.custom_position};
             `
           : css`
-              background-position: ${page_section?.background_image?.position
+              background-position: ${page_section?.background?.position
                   ?.horizontal_position}
-                ${page_section?.background_image?.position?.vertical_position};
+                ${page_section?.background?.position?.vertical_position};
             `}
-          ${page_section?.background_image?.repeat &&
+          ${page_section?.background?.repeat &&
         css`
-          background-repeat: ${page_section?.background_image?.repeat
+          background-repeat: ${page_section?.background?.repeat
               ?.horizontal_repetition_behaviour}
-            ${page_section?.background_image?.repeat
+            ${page_section?.background?.repeat
               ?.vertical_repetition_behaviour};
         `}
-          ${page_section?.background_image?.size?.custom_size !== ""
+          ${page_section?.background?.size?.custom_size !== ""
           ? css`
-              background-size: ${page_section?.background_image?.size
+              background-size: ${page_section?.background?.size
                 ?.custom_size};
             `
           : css`
-              background-size: ${page_section?.background_image?.size?.preset};
+              background-size: ${page_section?.background?.size?.preset};
             `}
           min-height: 25vh;
       `

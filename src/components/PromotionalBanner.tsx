@@ -1,4 +1,4 @@
-import type { Colour } from "../../types/theme"
+import type { Colour } from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"

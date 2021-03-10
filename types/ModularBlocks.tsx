@@ -1,7 +1,9 @@
-import type { Offer, Product } from "schema-dts"
+import type { Link as LinkProp } from "../../types/components"
+
+import type { Product } from "schema-dts"
 
 import { ReactElement } from "react"
-import { Colour, Icon } from "theme"
+import { Colour, Icon } from "components"
 
 export type ModularBlock = {
   margins?: {
@@ -24,10 +26,7 @@ export type ModularBlockBlogPostPreview = ModularBlock & {
   body: string
   headingAbove: string
   headingBelow: string
-  link?: {
-    href: URL
-    title: string
-  }
+  link?: LinkProp
   tag: string
 }
 
@@ -48,7 +47,7 @@ export type ModularBlockImage = ModularBlock & {
   image: {
     image?: {
       title?: string
-      url?: URL
+      url?: string
     }
   }
 }
@@ -57,13 +56,10 @@ export type ModularBlockImageWithOverlay = ModularBlock & {
   image: {
     image?: {
       title?: string
-      url?: URL
+      url?: string
     }
   }
-  link?: {
-    href: URL
-    title: string
-  }
+  link?: LinkProp
   paragraph?: string
   title_primary: string
   title_secondary: string
@@ -74,10 +70,7 @@ export type ModularBlockIntroduction = ModularBlock & {
     semantic_level?: number
     text?: string
   }
-  link?: {
-    href: URL
-    title: string
-  }
+  link?: LinkProp
   paragraph?: string
 }
 
@@ -86,14 +79,11 @@ export type ModularBlockLeaf = ModularBlock & {
   title?: string
   image?: {
     title?: string
-    url?: URL
+    url?: string
   }
-  layout: string
-  link?: {
-    href: URL
-    title: string
-  }
-  orientation: null
+  layout: string,
+  link?: LinkProp
+  orientation: null,
   text?: string
 }
 
@@ -103,7 +93,7 @@ export type ModularBlockMenu = ModularBlock & {
     links?: Array<{
       text?: string
       url?: {
-        href: URL
+        href: string
         title: string
       }
     }>
@@ -130,10 +120,10 @@ export type ModularBlockQuotation = ModularBlock & {
 
 export type ModularBlockVideo = ModularBlock & {
   poster: {
-    url?: URL
+    url?: string
   }
   video: {
-    url?: URL
+    url?: string
   }
 }
 
@@ -142,10 +132,17 @@ export type ModularBlockWYSIWYG = ModularBlock & {
 }
 
 export type ModularBlocksTypes =
+  | ModularBlockAccordion
+  | ModularBlockBlogPostPreview
+  | ModularBlockHorizontalRule
+  | ModularBlockIconList
   | ModularBlockImage
   | ModularBlockImageWithOverlay
   | ModularBlockIntroduction
+  | ModularBlockLeaf
   | ModularBlockMenu
   | ModularBlockParagraph
+  | ModularBlockProductCard
   | ModularBlockQuotation
   | ModularBlockVideo
+  | ModularBlockWYSIWYG
