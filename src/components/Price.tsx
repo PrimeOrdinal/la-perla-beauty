@@ -1,3 +1,5 @@
+import type { Offer } from "schema-dts"
+
 import getSymbolFromCurrency from "currency-symbol-map"
 import React from "react"
 import styled from "styled-components"
@@ -24,7 +26,9 @@ export type PriceProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps
+  VariantProps & {
+    offer: Offer
+  }
 
 export const PriceStyled: React.FC<PriceProps> = styled.div`
   font-family: "Tiempos", serif;
