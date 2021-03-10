@@ -3,18 +3,21 @@ import type {
   CategoryPageQuery,
 } from "../../graphql-types"
 
+import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import { PageProps, graphql } from "gatsby"
 import React, { useState } from "react"
+import styled from "styled-components"
 
 import { Breadcrumb } from "../components/Breadcrumb"
 import { Link } from "../components/Button"
-import { CategoryHeader } from "../components/CategoryHeader"
 import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"
 import { MenuListing } from "../components/MenuListing"
 import { SEO } from "../components/SEO"
 import { MenuSubCategory } from "../components/MenuSubCategory"
+
+import { mediaQueries } from "../theme"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 // import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
@@ -22,6 +25,24 @@ import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommercePr
 type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceGql_Category
 }
+
+const CategoryHeaderStyled = styled.header`
+  display: grid;
+  justify-items: center;
+  margin-block-end: ${themeGet("space.7")}px;
+  text-align: center;
+
+  span {
+    font-size: 12px;
+  }
+
+  ${mediaQueries.md} {
+    text-align: center;
+    span {
+      font-size: revert;
+    }
+  }
+`
 
 const CategoryPage: React.FC<
   PageProps<CategoryPageQuery, PageContextCategory>
@@ -57,14 +78,14 @@ const CategoryPage: React.FC<
 
       <div className={clsx("container")} category-id={category?.entityId}>
 
-        <CategoryHeader>
+        <CategoryHeaderStyled>
           <h1>{category?.name}</h1>
           {category?.description && <div
             dangerouslySetInnerHTML={{
               __html: category?.description as string,
             }}
           ></div>}
-        </CategoryHeader>
+        </CategoryHeaderStyled>
       </div>
 
       {tabs?.length && (
