@@ -1,5 +1,3 @@
-import type { Product } from "schema-dts"
-
 import { themeGet } from "@styled-system/theme-get"
 import React, { useState } from "react"
 import {
@@ -73,7 +71,7 @@ export type QuickShareProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & { product: Product }
+  VariantProps
 
 export const QuickShareStyled: React.FC<QuickShareProps> = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
@@ -92,7 +90,6 @@ export const FallbackShareOptions = styled.div`
 `
 
 export const QuickShare: React.FC<QuickShareProps> = ({
-  product,
   ...props
 }) => {
   const onButtonClick = async () => {
