@@ -2,6 +2,7 @@ import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
+
 import { mediaQueries } from "../theme"
 
 const AnchorStyled = styled.a`
@@ -9,12 +10,13 @@ const AnchorStyled = styled.a`
   color: ${props => (props.href ? "#363139" : "#363139")};
   font-size: var(--font-size-body, 13px);
   padding: ${themeGet("space.6")}px ${themeGet("space.7")}px;
-
   text-decoration: none;
   text-transform: uppercase;
+
   ${mediaQueries.md} {
     padding: ${themeGet("space.6")}px ${themeGet("space.9")}px;
   }
+
   &.current {
     font-weight: bold;
   }

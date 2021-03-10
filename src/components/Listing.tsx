@@ -44,17 +44,17 @@ export type ListingProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    products?: Product[]
+    items?: Product[]
     promotionalBanners?: Contentstack_CategoriesPromotional_Banners
     view: "grid" | "list"
   }
 
 export const Listing: React.FC<ListingProps> = ({
   view,
-  products,
+  items,
   promotionalBanners,
 }) => {
-  const items = products?.map((product: Product, index) => (
+  const gridItems = items?.map((product: Product, index) => (
     <li className="product" key={`product-${index}`}>
       <ProductCard key={index} product={product} />
       <Helmet>
@@ -64,7 +64,7 @@ export const Listing: React.FC<ListingProps> = ({
   ))
 
   promotionalBanners?.forEach((promotionalBanner, index) => {
-    items.splice(
+    gridItems.splice(
       promotionalBanner?.grid_position,
       0,
       <li className="promotional-banner" key={`promotional-banner-${index}`}>
@@ -104,7 +104,7 @@ export const Listing: React.FC<ListingProps> = ({
       }
       view={view}
     >
-      {items}
+      {gridItems}
     </ListingStyled>
   )
 }
