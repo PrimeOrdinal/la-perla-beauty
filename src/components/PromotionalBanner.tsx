@@ -171,7 +171,6 @@ export type PromotionalBannerProps = ColorProps &
       }
       text: string
     }
-    showImage: boolean
     text: string
     title: String
     titlePrimary: String
@@ -181,7 +180,6 @@ export type PromotionalBannerProps = ColorProps &
 export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
   image,
   link,
-  showImage = true,
   text,
   title,
   titlePrimary,
@@ -189,7 +187,7 @@ export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
   ...props
 }) => (
   <PromotionalBannerView {...props}>
-    {showImage && (
+    {image && (
       <img
         alt={image?.description as string}
         className="img-bl"

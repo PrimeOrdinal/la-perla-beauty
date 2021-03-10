@@ -137,11 +137,10 @@ export type ProductCardProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & { product: Product; showImage: boolean }
+  VariantProps & { product: Product; }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  showImage = true,
   ...props
 }) => {
   const [quickBuyOpen, toggleQuickBuyOpen] = useToggle()
@@ -165,7 +164,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       data-id={product?.["@id"]}
       {...props}
     >
-      {(showImage && product?.url && (
+      {(image && product?.url && (
         <Link
           className="image-container"
           to={product?.url as string}
