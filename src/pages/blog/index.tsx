@@ -46,7 +46,6 @@ const imageprops = {
   ],
   showFullscreenButton: false,
   showNav: false,
-  showPlayButton: false,
   showThumbnails: false,
 }
 
@@ -112,11 +111,11 @@ const MainStyled = styled.main`
     margin-block-end: 1rem;
     article {
       figure {
-        margin-left: -10%;
-        margin-right: -10%;
+        margin-inline-start: -10%;
+        margin-inline-end: -10%;
         ${mediaQueries.md} {
-          margin-left: unset;
-          margin-right: unset;
+          margin-inline-start: unset;
+          margin-inline-end: unset;
         }
       }
     }
