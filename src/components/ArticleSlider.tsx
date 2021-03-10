@@ -5,9 +5,9 @@ import { mediaQueries } from "../theme"
 import { BlogPostPreview } from "../components/BlogPostPreview"
 
 const ArticleSliderStyled = styled.section`
-  padding-right: 0;
+  padding-inline-end: 0;
   ${mediaQueries.md} {
-    padding-right: var(--app-gutter-x, 0.75rem);
+    padding-inline-end: var(--app-gutter-x, 0.75rem);
   }
   .grid {
     display: grid;

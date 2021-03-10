@@ -8,14 +8,14 @@ export type LeafWrapperProps = {
 }
 
 const StyledLeafWrapper = styled.section`
-  background: none;
+  background-color: none;
 
   ${mediaQueries.md} {
     background-image: url("https://picsum.photos/600/500?grayscale");
     background-position: top;
     background-repeat: no-repeat;
     background-size: contain;
-    padding-top: 87px;
+    padding-block-start: 87px;
   }
 `
 

@@ -24,8 +24,8 @@ const BlockQuoteStyled = styled.div`
     line-height: ${themeGet("space.7")}px;
     margin: 0;
     max-width: ${themeGet("space.12")}ch;
-    padding-bottom: ${themeGet("space.6")}px;
-    padding-top: ${themeGet("space.6")}px;
+    padding-block-end: ${themeGet("space.6")}px;
+    padding-block-start: ${themeGet("space.6")}px;
     position: relative;
 
     ${mediaQueries.md} {

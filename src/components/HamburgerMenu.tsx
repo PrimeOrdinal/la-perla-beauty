@@ -49,7 +49,7 @@ const StyledHamburger = styled.div`
     height: 100vh;
     left: 0;
     overflow-y: auto;
-    padding-top: ${themeGet("space.12")}px;
+    padding-block-start: ${themeGet("space.12")}px;
     position: absolute;
     right: 0;
     top: 0;

@@ -7,15 +7,15 @@ import WishlistAbsent from "../../static/icons//WishlistAbsent.svg"
 import { Button } from "./Button"
 
 const ProductCardAltStyled = styled.article`
-  background: white;
+  background-color: ${themeGet("colors.white")};
   border-radius: 20px;
   display: inline-grid;
   padding: 34px;
-  margin-top: 5rem;
-  margin-bottom: 1rem;
+  margin-block-start: 5rem;
+  margin-block-end: 1rem;
   gap: 1rem;
   .productImage {
-    margin-top: -5rem;
+    margin-block-start: -5rem;
   }
   .productType {
     display: flex;

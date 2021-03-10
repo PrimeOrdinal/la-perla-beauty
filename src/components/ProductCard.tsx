@@ -41,7 +41,7 @@ import { Tag } from "./Tag"
 
 const ProductCardStyled = styled.article`
   align-content: space-between;
-  background: none;
+  background-color: none;
   display: grid;
   gap: ${themeGet("space.5")}px;
 

@@ -5,7 +5,7 @@ import { mediaQueries } from "../theme"
 import { ProductCardAlt } from "./ProductCardAlt"
 
 const ProductCardGrid = styled.section`
-  background: #bfcea5;
+  background-color: ${themeGet("lightgreen")};
   padding-block-start: 1rem;
   padding-block-end: 1rem;
   margin-block-end: 1rem;

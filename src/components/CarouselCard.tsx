@@ -4,7 +4,7 @@ import styled from "styled-components"
 const CarouselCardStyled = styled.div`
   display: inline-grid;
   grid-auto-flow: row;
-  background: #98825a;
+  background-color: #98825a;
   border-radius: 18px;
   margin: 4rem;
   figure {

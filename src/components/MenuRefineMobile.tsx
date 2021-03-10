@@ -102,7 +102,7 @@ const MenuRefineMobileStyled = styled.section`
   }
 
   .accordion__panel {
-    margin-bottom: ${themeGet("space.6")}px;
+    margin-block-end: ${themeGet("space.6")}px;
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}

@@ -73,7 +73,7 @@ const NewsletterStyled = styled.div`
   }
 
   &:focus-within button {
-    background: ${themeGet("colors.black")};
+    background-color: ${themeGet("colors.black")};
     color: ${themeGet("colors.white")};
   }
 

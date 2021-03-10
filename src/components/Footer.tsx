@@ -28,7 +28,7 @@ const SocialContainerStyled = styled.div`
       display: block;
       font-size: 0.875rem;
       font-weight: bold;
-      margin-right: 1rem;
+      margin-inline-end: 1rem;
     }
   }
 `
@@ -57,10 +57,10 @@ const FooterStyle = styled.footer`
   border-bottom-style: solid;
   margin-block-start: ${themeGet("space.9")}px;
   margin-block-end: ${themeGet("space.9")}px;
-  padding-top: 1.5rem;
+  padding-block-start: 1.5rem;
 
   ${mediaQueries.md} {
-    padding-top: 2.25rem;
+    padding-block-start: 2.25rem;
     border-bottom: none;
     margin-block-end: initial;
   }
@@ -76,13 +76,13 @@ const FooterStyle = styled.footer`
   }
 
   .footer-newsletter {
-    padding-bottom: 1rem;
+    padding-block-end: 1rem;
 
     ${mediaQueries.md} {
       align-items: center;
       display: grid;
       grid-template-columns: auto 4fr;
-      padding-bottom: 2.25rem;
+      padding-block-end: 2.25rem;
     }
 
     span {
@@ -187,7 +187,7 @@ const FooterStyle = styled.footer`
 
 const ContainerStyled = styled.div`
   h2 {
-    margin-bottom: 1.25rem;
+    margin-block-end: 1.25rem;
     font-family: ${themeGet("fontFamily", "Tiempos")};
     font-size: ${themeGet("fontSizes.heading1Mobile")}px;
     font-weight: 100;

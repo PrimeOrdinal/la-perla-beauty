@@ -22,32 +22,32 @@ export const aspectRatio = `
 
   [aspect-ratio="3/2"] {
       &::before {
-        padding-top: calc(100% / (3/2));
+        padding-block-start: calc(100% / (3/2));
         aspect-ratio: 3 / 2;
       }    
   }
 
   [aspect-ratio="16/9"] {
       &::before {
-          padding-top: calc(100% / (16/9));
+          padding-block-start: calc(100% / (16/9));
           aspect-ratio: 16 / 9;
       }
   }
   [aspect-ratio="1/1"]{
       &::before {
-          padding-top: calc(100% /(1/1));
+          padding-block-start: calc(100% /(1/1));
           aspect-ratio: 1 / 1;
       }
   }
   [aspect-ratio="3/4"] {
       &::before {
-          padding-top: calc(100% / (3/4));
+          padding-block-start: calc(100% / (3/4));
           aspect-ratio: 3 / 4
       }
   }
   [aspect-ratio="615/413"] {
     &::before {
-        padding-top: calc(100% / (615/413));
+        padding-block-start: calc(100% / (615/413));
         aspect-ratio: 615 / 413;
     }
 }

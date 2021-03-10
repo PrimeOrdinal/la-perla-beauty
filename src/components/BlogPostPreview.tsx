@@ -47,7 +47,7 @@ const BlogPostPreviewStyled = styled.article`
   a {
     text-transform: uppercase;
     font-weight: bold;
-    margin-top: 8px;
+    margin-block-start: 8px;
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}

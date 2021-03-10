@@ -23,8 +23,8 @@ export type LeafTwoProps = {
 }
 
 const LeafWrapperStyled = styled.div`
-  margin-block-start: ${themeGet("space.11")}px;
   margin-block-end: ${themeGet("space.11")}px;
+  margin-block-start: ${themeGet("space.11")}px;
 
   ${colourClasses}
 
@@ -32,9 +32,9 @@ const LeafWrapperStyled = styled.div`
     display: flex;
     justify-content: center;
     ${mediaQueries.md} {
-      background: #ffff;
-      padding-top: ${themeGet("space.14")}px;
-      padding-bottom: ${themeGet("space.14")}px;
+      background-color: ${themeGet("colors.white")};
+      padding-block-start: ${themeGet("space.14")}px;
+      padding-block-end: ${themeGet("space.14")}px;
     }
     article {
       position: relative;
@@ -55,9 +55,9 @@ const LeafWrapperStyled = styled.div`
       }
     }
     div {
-      margin-left: 91px;
-      padding-left: ${themeGet("space.14")}px;
-      padding-right: ${themeGet("space.9")}px;
+      margin-inline-start: 91px;
+      padding-inline-start: ${themeGet("space.14")}px;
+      padding-inline-end: ${themeGet("space.9")}px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -66,9 +66,9 @@ const LeafWrapperStyled = styled.div`
       max-width: 98ch;
       min-width: 255px;
       ${mediaQueries.md} {
-        margin-left: 150px;
-        padding-left: 207px;
-        padding-right: 57px;
+        margin-inline-start: 150px;
+        padding-inline-start: 207px;
+        padding-inline-end: 57px;
         border-radius: 100px 0 100px 0;
         min-height: 486px;
       }
@@ -79,11 +79,11 @@ const LeafWrapperStyled = styled.div`
         }
       }
       p {
-        margin-top: 10px;
-        margin-bottom: 15px;
+        margin-block-start: 10px;
+        margin-block-end: 15px;
         ${mediaQueries.md} {
-          margin-top: 15px;
-          margin-bottom: 20px;
+          margin-block-start: 15px;
+          margin-block-end: 20px;
         }
       }
       a {

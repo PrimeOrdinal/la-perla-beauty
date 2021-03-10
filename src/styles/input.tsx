@@ -15,14 +15,14 @@ export const input = `
         }
 
         &:focus {
-            background: none;
+            background-color: none;
             box-shadow: none;
             outline: none;
             border: 1px solid ${theme.colors.black};
         }
 
         &::selection {
-            background: none;
+            background-color: none;
             box-shadow: none;
             outline: none;
         }

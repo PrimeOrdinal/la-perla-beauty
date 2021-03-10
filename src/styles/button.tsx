@@ -3,7 +3,7 @@ import { theme } from "../theme"
 export const styles = `
     align-items: center;
     appearance: unset;
-    background: unset;
+    background-color: unset;
     border-radius: ${theme.radii[3]}px;
     border: unset;
     cursor: pointer;

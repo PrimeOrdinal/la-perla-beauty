@@ -24,7 +24,7 @@ export const formRadioContainer = `
   }
 
   label.fancy-radio-label:before {
-    background: #FFF;
+    background-color: #fff;
     border-radius: 3px;
     border: 1px solid #363139;
     content: " ";
@@ -38,7 +38,7 @@ export const formRadioContainer = `
     }
 
   label.fancy-radio-label:after {
-    background: #363139;
+    background-color: #363139;
     border-radius: 3px;
     border: 1px solid white;
     content: " ";
@@ -82,7 +82,7 @@ export const formRadioContainer = `
   }
 
   label.product-radio-label:after {
-    background: #363139;
+    background-color: #363139;
     bottom: 0px;
     content: " ";
     display: inline-block;

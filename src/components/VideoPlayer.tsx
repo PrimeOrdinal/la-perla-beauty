@@ -31,7 +31,7 @@ export type VideoPlayerProps = ColorProps &
   }
 
 export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
-  padding-top: 56.25%;
+  padding-block-start: 56.25%;
   position: relative;
 
   .react-player {
