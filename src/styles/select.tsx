@@ -10,7 +10,7 @@ export const select = `
         background-repeat: no-repeat;
         border-radius: ${theme.radii[3]}px;
         border: 1px solid ${theme.colors.black};
-        font-size: ${theme.fontSizes.heading4Desktop}px;
+        font-size: var(--font-size-heading-4, 12px);
         padding: ${theme.space[4]}px ${theme.space[3]}px;
         width: 100%;
 
@@ -19,7 +19,7 @@ export const select = `
         }
 
         option {
-            font-size: ${theme.fontSizes.heading4Desktop}px;
+            font-size: var(--font-size-heading-4, 12px);
         }
     }
 `

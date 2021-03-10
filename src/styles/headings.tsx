@@ -13,25 +13,25 @@ export const headings = `
     }
 
     .heading1 {
-        font-size: ${theme.fontSizes.heading1Desktop}px;
+        font-size: var(--font-size-heading-1, 16px);
         letter-spacing: 0.5px;
         line-height: 30px;
     }
 
     .heading2 {
-        font-size: ${theme.fontSizes.heading2Desktop}px;
+        font-size: var(--font-size-heading-2, 14px);
         letter-spacing: 0.7px;
         line-height: 15px;
     }
 
     .heading3 {
-        font-size: ${theme.fontSizes.heading3Desktop}px;
+        font-size: var(--font-size-heading-3, 13px);
         letter-spacing: 0.7px;
         line-height: 15px;
     }
 
     .heading4 {
-        font-size: ${theme.fontSizes.heading4Desktop}px;
+        font-size: var(--font-size-heading-4, 12px);
         letter-spacing: 0.7px;
         line-height: 15px;
     }

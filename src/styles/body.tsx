@@ -5,6 +5,8 @@ export const body = `
         --font-size-body: ${theme.fontSizes.bodyMobile}px;
         --font-size-heading-1: ${theme.fontSizes.heading1Mobile}px;
         --font-size-heading-2: ${theme.fontSizes.heading2Mobile}px;
+        --font-size-heading-3: ${theme.fontSizes.heading3Mobile}px;
+        --font-size-heading-4: ${theme.fontSizes.heading4Mobile}px;
         --font-size-small: ${theme.fontSizes.smallMobile}px;
         --header-min-height: 38px;
 
@@ -16,25 +18,13 @@ export const body = `
             --font-size-body: ${theme.fontSizes.bodyDesktop}px;
             --font-size-heading-1: ${theme.fontSizes.heading1Desktop}px;
             --font-size-heading-2: ${theme.fontSizes.heading2Desktop}px;
+            --font-size-heading-3: ${theme.fontSizes.heading3Desktop}px;
+            --font-size-heading-4: ${theme.fontSizes.heading4Desktop}px;
             --font-size-small: ${theme.fontSizes.smallDesktop}px;
         }
-    
+
         ${mediaQueries.md} {
             --header-min-height: 112px;
         }
-
-        /*
-        ${mediaQueries.md} {
-            --font-size-body: 16px;
-        }
-    
-        ${mediaQueries.lg} {
-            --font-size-body: 18px;
-        }
-    
-        ${mediaQueries.xl} {
-            --font-size-body: 20px;
-        }
-        */
     }
 `

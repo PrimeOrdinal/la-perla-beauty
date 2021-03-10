@@ -3,6 +3,7 @@ import type {
   BlogLandingPageQuery,
 } from "/../../graphql-types"
 
+import { themeGet } from "@styled-system/theme-get"
 import { PageProps } from "gatsby"
 import React from "react"
 import styled from "styled-components"
@@ -77,11 +78,11 @@ const MainStyled = styled.main`
       }
       article {
         figure {
-          margin-left: -10%;
-          margin-right: -10%;
+          margin-inline-start: -10%;
+          margin-inline-end: -10%;
           ${mediaQueries.md} {
-            margin-left: unset;
-            margin-right: unset;
+            margin-inline-start: unset;
+            margin-inline-end: unset;
           }
         }
         h2 {
@@ -121,7 +122,7 @@ const MainStyled = styled.main`
     }
   }
   .fourth {
-    background: #bfcea5;
+    background-color: ${themeGet("lightgreen")};
     padding-block-start: 1rem;
     padding-block-end: 1rem;
     margin-block-end: 1rem;
@@ -143,11 +144,11 @@ const MainStyled = styled.main`
     margin-block-end: 2rem;
     article {
       figure {
-        margin-left: -10%;
-        margin-right: -10%;
+        margin-inline-start: -10%;
+        margin-inline-end: -10%;
         ${mediaQueries.md} {
-          margin-left: unset;
-          margin-right: unset;
+          margin-inline-start: unset;
+          margin-inline-end: unset;
         }
       }
     }

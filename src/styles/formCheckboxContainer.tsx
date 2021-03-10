@@ -1,3 +1,5 @@
+import { mediaQueries, theme } from "../theme"
+
 export const formCheckboxContainer = `
   .fancy-checkbox {
     clip: rect(1px, 1px, 1px, 1px);
@@ -18,9 +20,9 @@ export const formCheckboxContainer = `
   }
   
   label.fancy-checkbox-label:before {
-    background: #FFF;
+    background-color: ${theme.colors.white};
     border-radius: 3px;
-    border: 1px solid #363139;
+    border-style: solid;
     content: " ";
     display: block;
     height: 18px;
@@ -32,8 +34,8 @@ export const formCheckboxContainer = `
   }
   
   label.fancy-checkbox-label:after {
-    border-bottom: 1px solid #363139;
-    border-left: 1px solid #363139;
+    border-bottom-style: solid;
+    border-left-style: solid;
     content: " ";
     height: 7px;
     opacity: 0;

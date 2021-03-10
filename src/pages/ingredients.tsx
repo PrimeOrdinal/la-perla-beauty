@@ -68,7 +68,7 @@ const InformationSection = styled.section`
 const LetterBanner = styled.div`
   padding-block-end: ${themeGet("space.3")}px;
   padding-block-start: ${themeGet("space.3")}px;
-  background-color: #bfcea5;
+  background-color: ${themeGet("lightgreen")};
   ${mediaQueries.md} {
     padding-block-end: ${themeGet("space.5")}px;
     padding-block-start: ${themeGet("space.5")}px;

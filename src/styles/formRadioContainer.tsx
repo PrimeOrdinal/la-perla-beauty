@@ -1,4 +1,4 @@
-import { mediaQueries } from "../theme"
+import { mediaQueries, theme } from "../theme"
 
 export const formRadioContainer = `
   .fancy-radio {
@@ -24,9 +24,9 @@ export const formRadioContainer = `
   }
 
   label.fancy-radio-label:before {
-    background-color: #fff;
+    background-color: ${theme.colors.white};
     border-radius: 3px;
-    border: 1px solid #363139;
+    border-style: solid;
     content: " ";
     display: block;
     height: 18px;
@@ -38,7 +38,6 @@ export const formRadioContainer = `
     }
 
   label.fancy-radio-label:after {
-    background-color: #363139;
     border-radius: 3px;
     border: 1px solid white;
     content: " ";
@@ -82,7 +81,6 @@ export const formRadioContainer = `
   }
 
   label.product-radio-label:after {
-    background-color: #363139;
     bottom: 0px;
     content: " ";
     display: inline-block;
