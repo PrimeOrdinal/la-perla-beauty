@@ -76,3 +76,22 @@ ImageAndTextOutside.args = {
 ImageAndTextOutside.argTypes = {
   onClick: { action: "Leaf clicked" },
 }
+
+export const TextOutsideAndImage = Template.bind({})
+TextOutsideAndImage.args = {
+  colour: "lilac",
+  image: {
+    alt: "Test",
+    src: "https://picsum.photos/200/300"
+  },
+  layout: "text-outside-and-image",
+  link: {
+    href: "/test",
+    title: "Test"
+  },
+  text: "Etiam aliquet metus mauris, in tempus ves odio feugiat non. Docet praesent eu magna id arcu docet ves.",
+  title: "Lorem ipsum"
+}
+TextOutsideAndImage.argTypes = {
+  onClick: { action: "Leaf clicked" },
+}
