@@ -14,6 +14,6 @@ export default {
 const Template: Story<MenuActionsProps> = args => <MenuActions {...args} />
 export const Example = Template.bind({})
 Example.args = {
-  toggleMiniBagVisibility: false,
+  toggleBagPreviewVisibility: false,
   toggleQuickSearchVisibility: false,
 }

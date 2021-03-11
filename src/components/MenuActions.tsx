@@ -76,12 +76,12 @@ export type MenuActionsProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    toggleMiniBagVisibility: React.DispatchWithoutAction
+    toggleBagPreviewVisibility: React.DispatchWithoutAction
     toggleQuickSearchVisibility: React.DispatchWithoutAction
   }
 
 export const MenuActions: React.FC<MenuActionsProps> = ({
-  toggleMiniBagVisibility,
+  toggleBagPreviewVisibility,
   toggleQuickSearchVisibility,
   ...props
 }) => (
@@ -108,7 +108,7 @@ export const MenuActions: React.FC<MenuActionsProps> = ({
         to={bagPath}
         onClick={event => {
           // TODO: Only intercept link on desktop
-          toggleMiniBagVisibility()
+          toggleBagPreviewVisibility()
           event?.preventDefault()
         }}
       >

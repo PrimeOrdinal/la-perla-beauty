@@ -16,7 +16,7 @@ import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
 import { MenuMainNavigation } from "./MenuMainNavigation"
 import { MenuStore } from "./MenuStore"
-import { MiniBag } from "./MiniBag"
+import { BagPreview } from "./BagPreview"
 import { QuickSearch } from "./QuickSearch"
 
 const GlobalHeaderStyled = styled.header`
@@ -68,7 +68,7 @@ export const GlobalHeader: React.FC<HeaderProps> = (
     opaque: true,
   }
 ) => {
-  const [miniBagVisibility, toggleMiniBagVisibility] = useToggle()
+  const [miniBagVisibility, toggleBagPreviewVisibility] = useToggle()
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
   return (
@@ -89,7 +89,7 @@ export const GlobalHeader: React.FC<HeaderProps> = (
         <MenuActions
           className="permanent"
           gridArea="menu-secondary"
-          toggleMiniBagVisibility={toggleMiniBagVisibility}
+          toggleBagPreviewVisibility={toggleBagPreviewVisibility}
           toggleQuickSearchVisibility={toggleQuickSearchVisibility}
         />
         {quickSearchVisibility !== true && (
@@ -100,7 +100,7 @@ export const GlobalHeader: React.FC<HeaderProps> = (
           />
         )}
         {miniBagVisibility && (
-          <MiniBag position="absolute" right="1rem" top="6rem" className="minibag" />
+          <BagPreview position="absolute" right="1rem" top="6rem" className="minibag" />
         )}
         {quickSearchVisibility && (
           <QuickSearch

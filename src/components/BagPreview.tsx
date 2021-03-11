@@ -25,7 +25,7 @@ import { mediaQueries } from "../theme"
 import { LinkButton } from "./Button"
 import { ShoppingBagProduct } from "./ShoppingBagProduct"
 
-export type MiniBagProps = ColorProps &
+export type BagPreviewProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -35,7 +35,7 @@ export type MiniBagProps = ColorProps &
     items: Product[]
   }
 
-export const MiniBagStyled: React.FC<MiniBagProps> = styled.div`
+export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
   &:disabled {
     color: "disabled";
     cursor: "not-allowed";
@@ -101,8 +101,8 @@ export const MiniBagStyled: React.FC<MiniBagProps> = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const MiniBag: React.FC<MiniBagProps> = props => (
-  <MiniBagStyled {...props}>
+export const BagPreview: React.FC<BagPreviewProps> = props => (
+  <BagPreviewStyled {...props}>
     <section className="items">
       <ShoppingBagProduct layout="compact" />
       <ShoppingBagProduct layout="compact" />
@@ -123,5 +123,5 @@ export const MiniBag: React.FC<MiniBagProps> = props => (
         Checkout
       </LinkButton>
     </section>
-  </MiniBagStyled>
+  </BagPreviewStyled>
 )
