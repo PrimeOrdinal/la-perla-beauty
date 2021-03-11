@@ -8,7 +8,6 @@ import type {
   ModularBlockIconList,
   ModularBlockImage,
   ModularBlockImageWithOverlay,
-  ModularBlockIntroduction,
   ModularBlockLeaf,
   ModularBlockMenu,
   ModularBlockParagraph,
@@ -25,7 +24,6 @@ import { Blockquote } from "./Blockquote"
 import { BlogPostPreview } from "../components/BlogPostPreview"
 import { HoriontalRule } from "../components/HoriontalRule"
 import { IconList } from "../components/IconList"
-import { Introduction } from "../components/Introduction"
 import { Link } from "../components/Button"
 import { LeafTwo } from "../components/LeafTwo"
 import { ProductCard } from "../components/ProductCard"
@@ -142,15 +140,6 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                   {...margins}
                   {...value}
                 />
-              )
-              break
-            case "introduction":
-              const introduction = value as ModularBlockIntroduction
-              component = (
-                <Introduction {...margins}>
-                  {/* <Heading level={value?.title?.semantic_level}>{value?.title?.text}</Heading> */}
-                  <p>{introduction?.paragraph}</p>
-                </Introduction>
               )
               break
             case "leaf":

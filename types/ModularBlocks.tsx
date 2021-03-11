@@ -65,15 +65,6 @@ export type ModularBlockImageWithOverlay = ModularBlock & {
   title_secondary: string
 }
 
-export type ModularBlockIntroduction = ModularBlock & {
-  title?: {
-    semantic_level?: number
-    text?: string
-  }
-  link?: LinkProp
-  paragraph?: string
-}
-
 export type ModularBlockLeaf = ModularBlock & {
   colour: Colour
   title?: string
@@ -139,7 +130,6 @@ export type ModularBlocksTypes =
   | ModularBlockIconList
   | ModularBlockImage
   | ModularBlockImageWithOverlay
-  | ModularBlockIntroduction
   | ModularBlockLeaf
   | ModularBlockMenu
   | ModularBlockParagraph
