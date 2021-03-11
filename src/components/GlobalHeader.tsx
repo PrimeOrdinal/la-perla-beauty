@@ -22,14 +22,16 @@ import { QuickSearch } from "./QuickSearch"
 const GlobalHeaderStyled = styled.header`
   background-color: ${props =>
     props.opaque ? themeGet("colors.white") : "transparent"};
-  border-bottom-style: solid;
-  margin-block-end: ${themeGet("space.7")}px;
+  border-bottom-style: ${props => (props.opaque ? "solid" : "none")};
   min-height: var(--header-min-height, 38px);
   padding-block-start: ${themeGet("space.3")}px;
   position: sticky;
   top: 0;
   z-index: 999;
-
+  &:hover {
+    background-color: ${themeGet("colors.white")};
+    transition: all ease-in 0.25s;
+  }
   ${mediaQueries.md} {
     padding-block-start: ${themeGet("space.8")}px;
   }
