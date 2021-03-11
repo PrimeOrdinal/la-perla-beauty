@@ -4,7 +4,7 @@ import { Story, Meta } from "@storybook/react"
 import { BagDetails } from "../src/components/BagDetails"
 
 export default {
-  title: "Bag",
+  title: "BagDetails",
   component: BagDetails,
 } as Meta
 
