@@ -25,7 +25,7 @@ import { BlogPostPreview } from "../components/BlogPostPreview"
 import { HoriontalRule } from "../components/HoriontalRule"
 import { IconList } from "../components/IconList"
 import { Link } from "../components/Button"
-import { LeafTwo } from "../components/LeafTwo"
+import { Leaf } from "../components/Leaf"
 import { ProductCard } from "../components/ProductCard"
 import { ProductCardAlt } from "../components/ProductCardAlt"
 import { PromotionalBanner } from "../components/PromotionalBanner"
@@ -149,12 +149,18 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 src: leaf?.image?.url?.toString() as string,
               }
               component = (
-                <LeafTwo
-                  text={leaf?.text as string}
+                <Leaf
                   colour={leaf?.colour}
-                  title={leaf?.title as string}
-                  img={img}
+                  // image={leaf?.image}
+                  image={img}
+                  // layout={leaf?.layout || "text-inside-and-image"}
+                  layout="text-inside-and-image"
+                  // layout="image-and-text-inside"
+                  // layout="image-and-text-outside"
+                  // layout="text-outside-and-image"
                   link={leaf?.link}
+                  text={leaf?.text as string}
+                  title={leaf?.title as string}
                   {...margins}
                 />
               )
