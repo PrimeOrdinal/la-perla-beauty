@@ -28,16 +28,18 @@ export type VideoPlayerProps = ColorProps &
   SpaceProps &
   VariantProps & {
     aspectRatio: string
+    paddingRemove: boolean
   }
 
 export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
-  padding-block-start: 56.25%;
+  padding-block-start: ${props => (props.paddingRemove ? "0px" : "56.25%")};
   position: relative;
 
   .react-player {
     left: 0;
     position: absolute;
     top: 0;
+    object-fit: cover;
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}
@@ -45,9 +47,10 @@ export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   aspectRatio,
+  paddingRemove,
   ...props
 }) => (
-  <VideoPlayerStyled aspect-ratio={aspectRatio}>
+  <VideoPlayerStyled aspect-ratio={aspectRatio} paddingRemove={paddingRemove}>
     <ReactPlayer
       className="react-player"
       controls={false}
