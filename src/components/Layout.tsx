@@ -16,7 +16,7 @@ import { GlobalStyle } from "../styles/GlobalStyle"
 import { theme } from "../theme"
 
 import { Banner } from "./Banner"
-import { GlobalFooter } from "./GlobalGlobalFooter"
+import { GlobalFooter } from "./GlobalFooter"
 import { GlobalHeader } from "./GlobalHeader"
 import { SiteSelector } from "./SiteSelector"
 

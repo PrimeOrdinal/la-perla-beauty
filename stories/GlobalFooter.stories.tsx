@@ -1,7 +1,7 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { GlobalFooter, GlobalFooterProps } from "../src/components/GlobalGlobalFooter"
+import { GlobalFooter, GlobalFooterProps } from "../src/components/GlobalFooter"
 
 export default {
   title: "GlobalFooter",
