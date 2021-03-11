@@ -78,7 +78,7 @@ const WrapperStyled = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type SiteSettingsOverlayProps = ColorProps &
+export type ModalSiteSettingsProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -89,7 +89,7 @@ export type SiteSettingsOverlayProps = ColorProps &
     modalIsOpen: boolean
   }
 
-export const SiteSettingsOverlay = ({
+export const ModalSiteSettings = ({
   closeModal,
   modalIsOpen = false,
   ...props

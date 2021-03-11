@@ -21,7 +21,7 @@ import { ReactComponent as ChevronIcon } from "../../static/icons/Chevron.svg"
 
 import { Button } from "./Button"
 import { ListPlain } from "./ListPlain"
-import { SiteSettingsOverlay } from "./SiteSettingsOverlay"
+import { ModalSiteSettings } from "./ModalSiteSettings"
 
 const MenuStoreStyled = styled(ListPlain)`
   ${compose(color, flexbox, grid, layout, position, space)}
@@ -61,7 +61,7 @@ export const MenuStore: React.FC<MenuStoreProps> = ({currentCurrency, currentLoc
         <ChevronIconStyled />
       </Button>
 
-      <SiteSettingsOverlay closeModal={closeModal} modalIsOpen={modalIsOpen} />
+      <ModalSiteSettings closeModal={closeModal} modalIsOpen={modalIsOpen} />
     </MenuStoreStyled>
   )
 }
