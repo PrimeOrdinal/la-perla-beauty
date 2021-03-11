@@ -75,7 +75,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               break
             // case "article_card":
             //   const articleCard = value as ModularBlockArticleCard
-            //   component = ()
+            //   component = (<ArticleCard />)
             //   break
             // case "article_cards":
             //   const articleCards = value as ModularBlockArticleCards
@@ -94,6 +94,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               // tag: string
               component = (
                 <BlogPostPreview
+                  {...blogPostPreview}
                   {...margins}
                 />
               )

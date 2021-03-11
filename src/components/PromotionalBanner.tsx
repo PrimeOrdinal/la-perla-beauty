@@ -157,7 +157,7 @@ export type PromotionalBannerProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    color: Colour
+    colour: Colour
     description: string
     image: {
       alt: string

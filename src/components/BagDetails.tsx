@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { mediaQueries } from "../theme"
 
 import { Button } from "./Button"
-import { ShoppingBagProduct } from "./ShoppingBagProduct"
+import { ShoppingBagDetailsProduct } from "./ShoppingBagDetailsProduct"
 import applepay from "../../static/icons/applepay.svg"
 import googlepay from "../../static/icons/googlepay.svg"
 import mastercard from "../../static/icons/mastercard.svg"
@@ -132,18 +132,18 @@ const GridStyled = styled.div`
   }
 `
 
-export const Bag: React.FC = () => {
+export const BagDetails: React.FC = () => {
   return (
     <div className="container">
       <GridStyled>
         <section className="column-1">
           <h1>Your bag</h1>
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
+          <ShoppingBagDetailsProduct />
+          <ShoppingBagDetailsProduct />
+          <ShoppingBagDetailsProduct />
+          <ShoppingBagDetailsProduct />
+          <ShoppingBagDetailsProduct />
+          <ShoppingBagDetailsProduct />
         </section>
         <section className="column-2">
           <div className="column-2-wrapper">

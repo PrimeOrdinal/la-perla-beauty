@@ -1,12 +1,12 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { Bag } from "../src/components/Bag"
+import { BagDetails } from "../src/components/BagDetails"
 
 export default {
   title: "Bag",
-  component: Bag,
+  component: BagDetails,
 } as Meta
 
-const Template: Story = args => <Bag {...args} />
+const Template: Story = args => <BagDetails {...args} />
 export const Primary = Template.bind({})

@@ -111,7 +111,7 @@ const CategoryPage: React.FC<
 
       <main className={clsx("container")}>
         <Listing
-          products={products}
+          items={products}
           promotionalBanners={promotionalBanners}
           view={view}
         />

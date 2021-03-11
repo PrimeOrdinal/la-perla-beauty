@@ -1,23 +1,20 @@
 import type {
   ArticlePageQuery,
-  BigCommerceGql_Category,
+  Contentstack_Article,
 } from "/../../graphql-types"
 
 import { PageProps } from "gatsby"
 import React from "react"
 
-import { BlogPostPreview } from "../../components/BlogPostPreview"
 import { Breadcrumb } from "../../components/Breadcrumb"
 import { Layout } from "../../components/Layout"
-import { Leaf } from "../../components/Leaf"
-import { Link } from "../../components/Button"
 
-type PageContextCategory = PageContextTypeBreadcrumb & {
-  category: BigCommerceGql_Category
+type PageContextArticle = PageContextTypeBreadcrumb & {
+  article: Contentstack_Article
 }
 
 export const ArticlePage: React.FC<
-  PageProps<ArticlePageQuery, PageContextCategory>
+  PageProps<ArticlePageQuery, PageContextArticle>
 > = ({ pageContext }) => {
   const {
     breadcrumb: { crumbs },

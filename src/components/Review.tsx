@@ -1,3 +1,5 @@
+import type { Product } from "schema-dts"
+
 import React from "react"
 import styled from "styled-components"
 import {
@@ -23,7 +25,9 @@ export type ReviewProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps
+  VariantProps & {
+    product: Product
+  }
 
 export const ReviewStyled: React.FC<ReviewProps> = styled.div`
   &:disabled {

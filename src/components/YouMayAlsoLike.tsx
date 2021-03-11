@@ -23,8 +23,7 @@ import {
   VariantProps,
 } from "styled-system"
 
-// import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
-import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
+import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 
 import { Listing } from "./Listing"
 
@@ -60,19 +59,12 @@ export const YouMayAlsoLikeStyled: React.FC<YouMayAlsoLikeProps> = styled.aside`
 export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({ data }) => (
   <YouMayAlsoLikeStyled>
     <h1>You May Also Like</h1>
-    {data.allContentstackProducts && (
+    {data.allBigCommerceProducts && (
       <Listing
-        products={data.allContentstackProducts.edges.map(({ node }) =>
-          standardiseContentstackProduct(node)
+        items={data.allBigCommerceProducts.edges.map(({ node }) =>
+          standardiseBigCommerceProduct(node)
         )}
       />
-      // <Listing
-      //   edges={data.allBigCommerceProducts.edges.map(({ node }) => ({
-      //     node: standardiseBigCommerceProduct(
-      //       (node as unknown) as BigCommerceProducts
-      //     ),
-      //   }))}
-      // />
     )}
   </YouMayAlsoLikeStyled>
 )

@@ -32,7 +32,7 @@ export type IconListProps = ColorProps &
   SpaceProps &
   VariantProps & {
     items: Array<{
-      color: ColourProp
+      colour: ColourProp
       heading: string
       icon: IconProp
       body: React.ReactNode

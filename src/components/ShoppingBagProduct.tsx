@@ -1,3 +1,5 @@
+import type { Product } from "schema-dts"
+
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
@@ -115,6 +117,7 @@ export type ShoppingBagProductProps = ColorProps &
   SpaceProps &
   VariantProps & {
     layout: "compact" | "full"
+    product: Product
   }
 
 export const ShoppingBagProduct: React.FC<ShoppingBagProductProps> = ({
