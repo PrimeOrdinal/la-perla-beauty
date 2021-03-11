@@ -1,4 +1,4 @@
-import type { Background } from "../../types/components"
+import type { Background as BackgroundProp } from "../../types/components"
 import type { ModularBlocksTypes } from "../../types/ModularBlocks"
 
 import clsx from "clsx"
@@ -8,7 +8,7 @@ import styled, { css } from "styled-components"
 import { ModularBlocks } from "../components/ModularBlocks"
 
 export type PageSection = {
-  background: Background
+  background: BackgroundProp
   container: boolean
   id: string
   modular_blocks: ModularBlocksTypes[]

@@ -3,13 +3,13 @@ import styled from "styled-components"
 import { mediaQueries } from "../theme"
 import { themeGet } from "@styled-system/theme-get"
 
-import type { Colour } from "../../types/components"
+import type { Colour as ColourProp } from "../../types/components"
 
 import OpenQuote from "../../static/icons/OpenQuote.svg"
 import CloseQuote from "../../static/icons/CloseQuote.svg"
 
 export type BlockquoteProps = {
-  colour: Colour
+  colour: ColourProp
 }
 
 const BlockquoteStyled = styled.div`

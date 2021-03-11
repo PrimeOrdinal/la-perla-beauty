@@ -1,4 +1,4 @@
-import type { Colour } from "../../types/components"
+import type { Colour as ColourProp, BackgroundPosition as BackgroundPositionProp, Image as ImageProp } from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -142,7 +142,7 @@ const PromotionalBannerView = styled(LayoutBase)`
   }
 `
 
-enum Layout {
+enum LayoutProp {
   column, // two columns - image & content
   hero, // content overlaid on the background image, no rounded corners
   overlay, // content overlaid on the background image, rounded corners
@@ -157,13 +157,10 @@ export type PromotionalBannerProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    colour: Colour
-    description: string
-    image: {
-      alt: string
-      src: string
-    }
-    layout: Layout
+    colour: ColourProp
+    image: ImageProp
+    backgroundPosition: BackgroundPositionProp
+    layout: LayoutProp
     link: {
       attributes?: {
         href: string
