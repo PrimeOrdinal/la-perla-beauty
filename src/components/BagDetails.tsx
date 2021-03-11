@@ -2,14 +2,16 @@ import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 
-import { mediaQueries } from "../theme"
-
-import { Button } from "./Button"
-import { ShoppingBagDetailsProduct } from "./ShoppingBagDetailsProduct"
 import applepay from "../../static/icons/applepay.svg"
 import googlepay from "../../static/icons/googlepay.svg"
 import mastercard from "../../static/icons/mastercard.svg"
 import visa from "../../static/icons/visa.svg"
+
+import { mediaQueries } from "../theme"
+
+import { Button } from "./Button"
+import { ShoppingBagProduct } from "./ShoppingBagProduct"
+
 
 const GridStyled = styled.div`
   display: grid;
@@ -138,12 +140,12 @@ export const BagDetails: React.FC = () => {
       <GridStyled>
         <section className="column-1">
           <h1>Your bag</h1>
-          <ShoppingBagDetailsProduct />
-          <ShoppingBagDetailsProduct />
-          <ShoppingBagDetailsProduct />
-          <ShoppingBagDetailsProduct />
-          <ShoppingBagDetailsProduct />
-          <ShoppingBagDetailsProduct />
+          <ShoppingBagProduct />
+          <ShoppingBagProduct />
+          <ShoppingBagProduct />
+          <ShoppingBagProduct />
+          <ShoppingBagProduct />
+          <ShoppingBagProduct />
         </section>
         <section className="column-2">
           <div className="column-2-wrapper">
