@@ -10,7 +10,7 @@ import visa from "../../static/icons/visa.svg"
 import { mediaQueries } from "../theme"
 
 import { Button } from "./Button"
-import { ShoppingBagProduct } from "./ShoppingBagProduct"
+import { BagProduct } from "./BagProduct"
 
 
 const GridStyled = styled.div`
@@ -140,12 +140,12 @@ export const BagDetails: React.FC = () => {
       <GridStyled>
         <section className="column-1">
           <h1>Your bag</h1>
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
-          <ShoppingBagProduct />
+          <BagProduct />
+          <BagProduct />
+          <BagProduct />
+          <BagProduct />
+          <BagProduct />
+          <BagProduct />
         </section>
         <section className="column-2">
           <div className="column-2-wrapper">

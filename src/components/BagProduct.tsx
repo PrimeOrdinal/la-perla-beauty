@@ -26,7 +26,7 @@ import { ReactComponent as PlusIcon } from "../../static/icons/Plus.svg"
 
 import { mediaQueries } from "../theme"
 
-const ShoppingBagProductStyled = styled.div`
+const BagProductStyled = styled.div`
   display: grid;
   gap: 1.5rem;
   grid-template-columns: ${props =>
@@ -109,7 +109,7 @@ const ShoppingBagProductStyled = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type ShoppingBagProductProps = ColorProps &
+export type BagProductProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -120,11 +120,11 @@ export type ShoppingBagProductProps = ColorProps &
     product: Product
   }
 
-export const ShoppingBagProduct: React.FC<ShoppingBagProductProps> = ({
+export const BagProduct: React.FC<BagProductProps> = ({
   ...props
 }) => {
   return (
-    <ShoppingBagProductStyled {...props}>
+    <BagProductStyled {...props}>
       <img
         className="bagCol-1"
         src="https://cdn11.bigcommerce.com/s-9o6tufixs6/products/116/images/404/LaPerla_Collection_120ml__IT__14539.1612958270.386.513.jpg?c=1"
@@ -152,6 +152,6 @@ export const ShoppingBagProduct: React.FC<ShoppingBagProductProps> = ({
           <span className="price">£124</span>
         </form>
       </aside>
-    </ShoppingBagProductStyled>
+    </BagProductStyled>
   )
 }

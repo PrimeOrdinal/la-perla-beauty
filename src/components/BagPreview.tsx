@@ -23,7 +23,7 @@ import {
 import { mediaQueries } from "../theme"
 
 import { LinkButton } from "./Button"
-import { ShoppingBagProduct } from "./ShoppingBagProduct"
+import { BagProduct } from "./BagProduct"
 
 export type BagPreviewProps = ColorProps &
   FlexboxProps &
@@ -104,12 +104,12 @@ export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
 export const BagPreview: React.FC<BagPreviewProps> = props => (
   <BagPreviewStyled {...props}>
     <section className="items">
-      <ShoppingBagProduct layout="compact" />
-      <ShoppingBagProduct layout="compact" />
-      <ShoppingBagProduct layout="compact" />
-      <ShoppingBagProduct layout="compact" />
-      <ShoppingBagProduct layout="compact" />
-      <ShoppingBagProduct layout="compact" />
+      <BagProduct layout="compact" />
+      <BagProduct layout="compact" />
+      <BagProduct layout="compact" />
+      <BagProduct layout="compact" />
+      <BagProduct layout="compact" />
+      <BagProduct layout="compact" />
     </section>
     <section className="checkout-section">
       <div className="grid-wrapper">
