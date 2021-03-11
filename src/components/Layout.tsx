@@ -115,12 +115,10 @@ export const Layout: React.FC<LayoutProps> = ({
           <React.Fragment>
             {data?.contentstackBanners?.title && (
               <Banner
-                to={data?.contentstackBanners?.url?.href}
+                href={data?.contentstackBanners?.url?.href}
                 title={data?.contentstackBanners?.url?.title}
                 variant="primary"
-              >
-                {data?.contentstackBanners?.title}
-              </Banner>
+              />
             )}
             <Header
               siteTitle={data?.site?.siteMetadata?.title || `Title`}

@@ -1,5 +1,4 @@
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -20,6 +19,8 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { Link } from "./Button"
+
 export type BannerProps = ColorProps &
   FlexboxProps &
   GridProps &
@@ -28,7 +29,6 @@ export type BannerProps = ColorProps &
   SpaceProps &
   VariantProps & {
     children: React.ReactNode
-    to?: string
   }
 
 export const BannerStyled: React.FC<BannerProps> = styled.div`
@@ -68,9 +68,11 @@ export const BannerStyled: React.FC<BannerProps> = styled.div`
 
 export const Banner: React.FC<BannerProps> = ({
   children,
+  href,
+  title,
   ...props
 }) => (
   <BannerStyled {...props}>
-    <Link {...props}>{children}</Link>
+    <Link to={href}>{title}</Link>
   </BannerStyled>
 )
