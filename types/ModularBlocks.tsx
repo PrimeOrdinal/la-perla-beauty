@@ -1,4 +1,4 @@
-import type { Link as LinkProp } from "./components"
+import type { Image as ImageProp, Link as LinkProp } from "./components"
 
 import type { Product } from "schema-dts"
 
@@ -44,21 +44,11 @@ export type ModularBlockIconList = ModularBlock & {
 }
 
 export type ModularBlockImage = ModularBlock & {
-  image: {
-    image?: {
-      title?: string
-      url?: string
-    }
-  }
+  image?: ImageProp
 }
 
 export type ModularBlockImageWithOverlay = ModularBlock & {
-  image: {
-    image?: {
-      title?: string
-      url?: string
-    }
-  }
+  image?: ImageProp
   link?: LinkProp
   paragraph?: string
   title_primary: string
@@ -67,15 +57,15 @@ export type ModularBlockImageWithOverlay = ModularBlock & {
 
 export type ModularBlockLeaf = ModularBlock & {
   colour: Colour
-  title?: string
-  image?: {
-    title?: string
-    url?: string
-  }
-  layout: string,
+  image?: ImageProp
+  layout:
+    | "image-and-text-inside"
+    | "image-and-text-outside"
+    | "text-inside-and-image"
   link?: LinkProp
-  orientation: null,
+  orientation: null
   text?: string
+  title?: string
 }
 
 export type ModularBlockMenu = ModularBlock & {
