@@ -13,7 +13,7 @@ import { BlogPostPreview } from "../../components/BlogPostPreview"
 import { Breadcrumb } from "../../components/Breadcrumb"
 import { ImageGallery } from "../../components/ImageGallery"
 import { Layout } from "../../components/Layout"
-import { MenuSubCategory } from "../../components/MenuSubCategory"
+import { MenuCategory } from "../../components/MenuCategory"
 import { ArticleGrid } from "../../components/ArticleGrid"
 import { ArticleSlider } from "../../components/ArticleSlider"
 import { ProductCardAltGrid } from "../../components/ProductCardAltGrid"
@@ -166,7 +166,7 @@ const BlogLandingPage: React.FC<
       <Breadcrumb crumbs={crumbs} />
 
       <ImageGallery {...imageprops} className="img-bl" />
-      <MenuSubCategory>View All</MenuSubCategory>
+      <MenuCategory>View All</MenuCategory>
       <MainStyled>
         <section className="first container">
           <h1>Top Stories</h1>

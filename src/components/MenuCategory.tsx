@@ -20,7 +20,7 @@ import {
 
 import "react-tabs/style/react-tabs.css"
 
-export type MenuSubCategoryProps = ColorProps &
+export type MenuCategoryProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -28,7 +28,7 @@ export type MenuSubCategoryProps = ColorProps &
   SpaceProps &
   VariantProps
 
-export const MenuSubCategoryContainerStyled: React.FC<MenuSubCategoryProps> = styled.div`
+export const MenuCategoryContainerStyled: React.FC<MenuCategoryProps> = styled.div`
   background-color: ${themeGet("colors.pink")};
   display: grid;
   overflow-x: auto;
@@ -38,7 +38,7 @@ export const MenuSubCategoryContainerStyled: React.FC<MenuSubCategoryProps> = st
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const MenuSubCategoryStyled: React.FC<MenuSubCategoryProps> = styled.nav`
+export const MenuCategoryStyled: React.FC<MenuCategoryProps> = styled.nav`
   column-gap: ${themeGet("space.10")}px;
   display: inline-grid;
   grid-auto-flow: column;
@@ -53,11 +53,11 @@ export const MenuSubCategoryStyled: React.FC<MenuSubCategoryProps> = styled.nav`
   }
 `
 
-export const MenuSubCategory: React.FC<MenuSubCategoryProps> = ({
+export const MenuCategory: React.FC<MenuCategoryProps> = ({
   children,
   ...props
 }) => (
-  <MenuSubCategoryContainerStyled className="container" {...props}>
-    <MenuSubCategoryStyled {...props}>{children}</MenuSubCategoryStyled>
-  </MenuSubCategoryContainerStyled>
+  <MenuCategoryContainerStyled className="container" {...props}>
+    <MenuCategoryStyled {...props}>{children}</MenuCategoryStyled>
+  </MenuCategoryContainerStyled>
 )

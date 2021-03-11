@@ -29,7 +29,7 @@ import { LeafTwo } from "../components/LeafTwo"
 import { ProductCard } from "../components/ProductCard"
 import { ProductCardAlt } from "../components/ProductCardAlt"
 import { PromotionalBanner } from "../components/PromotionalBanner"
-import { MenuSubCategory } from "../components/MenuSubCategory"
+import { MenuCategory } from "../components/MenuCategory"
 import { VideoPlayer } from "../components/VideoPlayer"
 import { WYSIWYG } from "../components/WYSIWYG"
 
@@ -162,7 +162,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             case "menu":
               const menu = value as ModularBlockMenu
               component = (
-                <MenuSubCategory
+                <MenuCategory
                   justifyContent={menu?.justify_content}
                   {...margins}
                 >
@@ -171,7 +171,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                       {link?.text}
                     </Link>
                   ))}
-                </MenuSubCategory>
+                </MenuCategory>
               )
               break
             case "paragraph":

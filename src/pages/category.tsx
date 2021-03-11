@@ -15,7 +15,7 @@ import { Layout } from "../components/Layout"
 import { Listing } from "../components/Listing"
 import { MenuListing } from "../components/MenuListing"
 import { SEO } from "../components/SEO"
-import { MenuSubCategory } from "../components/MenuSubCategory"
+import { MenuCategory } from "../components/MenuCategory"
 
 import { mediaQueries } from "../theme"
 
@@ -89,7 +89,7 @@ const CategoryPage: React.FC<
       </div>
 
       {tabs?.length && (
-        <MenuSubCategory marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}>
+        <MenuCategory marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}>
           {tabs.map(category => (
             <Link
               id={category?.entityId}
@@ -100,7 +100,7 @@ const CategoryPage: React.FC<
               {category?.name}
             </Link>
           ))}
-        </MenuSubCategory>
+        </MenuCategory>
       )}
 
       <MenuListing
