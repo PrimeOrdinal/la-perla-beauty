@@ -20,7 +20,8 @@ import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
 
 const HeaderStyled = styled.header`
-  background-color: ${themeGet("colors.white")};
+  background-color: ${props =>
+    props.opaque ? themeGet("colors.white") : "transparent"};
   border-bottom-style: solid;
   margin-block-end: ${themeGet("space.7")}px;
   min-height: var(--header-min-height, 38px);
@@ -58,18 +59,20 @@ export type HeaderProps = {
   // data?: HeaderQuery
   data?: LayoutQuery
   siteTitle?: string
+  opaque: boolean
 }
 
 export const Header: React.FC<HeaderProps> = (
-  { data, siteTitle } = {
+  { data, siteTitle, opaque } = {
     siteTitle: "Site Title",
+    opaque: true,
   }
 ) => {
   const [miniBagVisibility, toggleMiniBagVisibility] = useToggle()
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
   return (
-    <HeaderStyled>
+    <HeaderStyled opaque={opaque}>
       <ContainerStyled className="container">
         <LogotypeLink
           className="permanent"

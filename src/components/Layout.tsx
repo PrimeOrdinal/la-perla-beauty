@@ -44,11 +44,13 @@ const StyledContentArea = styled.div`
 export type LayoutProps = {
   children?: React.ReactNode
   type?: "compact" | "full"
+  opaque: boolean
 }
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
   type = "full",
+  opaque,
   ...props
 }) => {
   const data: LayoutQuery = useStaticQuery(graphql`
@@ -123,6 +125,7 @@ export const Layout: React.FC<LayoutProps> = ({
             <Header
               siteTitle={data?.site?.siteMetadata?.title || `Title`}
               data={data}
+              opaque={opaque}
             />
             <StyledPageContainer>
               <StyledContentArea>{children}</StyledContentArea>
