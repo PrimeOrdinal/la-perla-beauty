@@ -64,7 +64,7 @@ const StyledHamburger = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type HamburgerMenuProps = ColorProps &
+export type MenuHamburgerProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -74,7 +74,7 @@ export type HamburgerMenuProps = ColorProps &
     data?: LayoutQuery
   }
 
-export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
+export const MenuHamburger: React.FC<MenuHamburgerProps> = ({
   data,
   ...props
 }) => {

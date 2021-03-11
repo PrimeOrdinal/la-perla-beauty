@@ -11,7 +11,7 @@ import { useToggle } from "../hooks/useToggle"
 
 import { mediaQueries } from "../theme"
 
-import { HamburgerMenu } from "./HamburgerMenu"
+import { MenuHamburger } from "./MenuHamburger"
 import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
 import { MenuNavigation } from "./MenuNavigation"
@@ -85,7 +85,7 @@ export const GlobalHeader: React.FC<HeaderProps> = (
           left="-12px"
           position="relative"
         />
-        <HamburgerMenu data={data} gridArea="menu-primary" />
+        <MenuHamburger data={data} gridArea="menu-primary" />
         <MenuActions
           className="permanent"
           gridArea="menu-secondary"
