@@ -61,8 +61,11 @@ export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({ data }) => (
     <h1>You May Also Like</h1>
     {data.allBigCommerceProducts && (
       <Listing
-        items={data.allBigCommerceProducts.edges.map(({ node }) =>
-          standardiseBigCommerceProduct(node)
+        items={data.allBigCommerceProducts.edges.map(
+          ({ node: productFormatBigCommerce }) =>
+            standardiseBigCommerceProduct({
+              productFormatBigCommerce,
+            })
         )}
       />
     )}
