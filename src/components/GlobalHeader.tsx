@@ -1,5 +1,5 @@
 import type {
-  // HeaderQuery
+  // GlobalHeaderQuery
   LayoutQuery,
 } from "../../graphql-types"
 
@@ -19,7 +19,7 @@ import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
 
-const HeaderStyled = styled.header`
+const GlobalHeaderStyled = styled.header`
   background-color: ${props =>
     props.opaque ? themeGet("colors.white") : "transparent"};
   border-bottom-style: solid;
@@ -55,14 +55,14 @@ const ContainerStyled = styled.div`
   }
 `
 
-export type HeaderProps = {
-  // data?: HeaderQuery
+export type GlobalHeaderProps = {
+  // data?: GlobalHeaderQuery
   data?: LayoutQuery
   siteTitle?: string
   opaque: boolean
 }
 
-export const Header: React.FC<HeaderProps> = (
+export const GlobalHeader: React.FC<HeaderProps> = (
   { data, siteTitle, opaque } = {
     siteTitle: "Site Title",
     opaque: true,
@@ -72,7 +72,7 @@ export const Header: React.FC<HeaderProps> = (
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
   return (
-    <HeaderStyled opaque={opaque}>
+    <GlobalHeaderStyled opaque={opaque}>
       <ContainerStyled className="container">
         <LogotypeLink
           className="permanent"
@@ -109,6 +109,6 @@ export const Header: React.FC<HeaderProps> = (
           />
         )}
       </ContainerStyled>
-    </HeaderStyled>
+    </GlobalHeaderStyled>
   )
 }

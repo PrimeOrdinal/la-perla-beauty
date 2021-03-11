@@ -1,5 +1,5 @@
 import type {
-  // FooterQuery
+  // GlobalFooterQuery
   Contentstack_Menus,
   LayoutQuery,
 } from "../../graphql-types"
@@ -52,7 +52,7 @@ const SocialLinkListStyled = styled(ListPlain)`
   }
 `
 
-const FooterStyle = styled.footer`
+const GlobalFooterStyle = styled.footer`
   border-top-style: solid;
   border-bottom-style: solid;
   margin-block-start: ${themeGet("space.9")}px;
@@ -210,18 +210,18 @@ const ContainerStyled = styled.div`
   }
 `
 
-export type FooterProps = {
-  // data?: FooterQuery
+export type GlobalFooterProps = {
+  // data?: GlobalFooterQuery
   data?: LayoutQuery
   siteTitle?: string
 }
 
-export const Footer: React.FC<FooterProps> = (
+export const GlobalFooter: React.FC<GlobalFooterProps> = (
   { data, siteTitle } = {
     siteTitle: "Site Title",
   }
 ) => (
-  <FooterStyle>
+  <GlobalFooterStyle>
     <ContainerStyled className="container">
       <h2>Newsletter</h2>
 
@@ -347,5 +347,5 @@ export const Footer: React.FC<FooterProps> = (
         </p>
       </ContainerStyled>
     </div>
-  </FooterStyle>
+  </GlobalFooterStyle>
 )

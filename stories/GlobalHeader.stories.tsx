@@ -1,17 +1,17 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { Header, HeaderProps } from "../src/components/Header"
+import { GlobalHeader, GlobalHeaderProps } from "../src/components/GlobalHeader"
 
 export default {
-  title: "Header",
-  component: Header,
+  title: "GlobalHeader",
+  component: GlobalHeader,
   argTypes: {
     backgroundColor: { control: "color" },
   },
 } as Meta
 
-const Template: Story<HeaderProps> = args => <Header {...args} />
+const Template: Story<GlobalHeaderProps> = args => <GlobalHeader {...args} />
 
 export const Example = Template.bind({})
 Example.args = {
@@ -250,7 +250,7 @@ Example.args = {
               },
             ],
             slot: "header-navigation",
-            title: "Header Navigation",
+            title: "GlobalHeader Navigation",
           },
         },
         {
@@ -1352,5 +1352,5 @@ Example.args = {
   },
 }
 Example.argTypes = {
-  onClick: { action: "Header clicked" },
+  onClick: { action: "GlobalHeader clicked" },
 }

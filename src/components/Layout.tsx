@@ -16,8 +16,8 @@ import { GlobalStyle } from "../styles/GlobalStyle"
 import { theme } from "../theme"
 
 import { Banner } from "./Banner"
-import { Footer } from "./Footer"
-import { Header } from "./Header"
+import { GlobalFooter } from "./GlobalGlobalFooter"
+import { GlobalHeader } from "./GlobalHeader"
 import { SiteSelector } from "./SiteSelector"
 
 const StyledSiteContainer = styled.div`
@@ -120,7 +120,7 @@ export const Layout: React.FC<LayoutProps> = ({
                 variant="primary"
               />
             )}
-            <Header
+            <GlobalHeader
               siteTitle={data?.site?.siteMetadata?.title || `Title`}
               data={data}
               opaque={opaque}
@@ -128,7 +128,7 @@ export const Layout: React.FC<LayoutProps> = ({
             <StyledPageContainer>
               <StyledContentArea>{children}</StyledContentArea>
             </StyledPageContainer>
-            <Footer
+            <GlobalFooter
               siteTitle={data?.site?.siteMetadata?.title || `Title`}
               data={data}
             />

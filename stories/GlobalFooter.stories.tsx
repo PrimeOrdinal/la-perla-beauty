@@ -1,17 +1,17 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { Footer, FooterProps } from "../src/components/Footer"
+import { GlobalFooter, GlobalFooterProps } from "../src/components/GlobalGlobalFooter"
 
 export default {
-  title: "Footer",
-  component: Footer,
+  title: "GlobalFooter",
+  component: GlobalFooter,
   argTypes: {
     backgroundColor: { control: "color" },
   },
 } as Meta
 
-const Template: Story<FooterProps> = args => <Footer {...args} />
+const Template: Story<GlobalFooterProps> = args => <GlobalFooter {...args} />
 
 export const Example = Template.bind({})
 Example.args = {
@@ -167,5 +167,5 @@ Example.args = {
   siteTitle: "La Perla Beauty"
 }
 Example.argTypes = {
-  onClick: { action: "Footer clicked" },
+  onClick: { action: "GlobalFooter clicked" },
 }
