@@ -30,34 +30,24 @@ export const PageSections: React.FC<PageSectionsProps> = ({ pageSections }) => (
         ${page_section?.background?.colour?.transparent === false &&
         page_section?.background?.colour?.colour_picker &&
         css`
-          background-color: ${page_section?.background?.colour
-            ?.colour_picker};
+          background-color: ${page_section?.background?.colour?.colour_picker};
         `}
             ${page_section?.background?.file?.url &&
         css`
           background-image: url("${page_section?.background?.file?.url}");
         `}
-          ${page_section?.background?.position?.custom_position !== ""
-          ? css`
-              background-position: ${page_section?.background?.position
-                ?.custom_position};
-            `
-          : css`
-              background-position: ${page_section?.background?.position
-                  ?.horizontal_position}
-                ${page_section?.background?.position?.vertical_position};
-            `}
-          ${page_section?.background?.repeat &&
+
+        background-position: ${page_section?.background?.position};
+
+        ${page_section?.background?.repeat &&
         css`
           background-repeat: ${page_section?.background?.repeat
               ?.horizontal_repetition_behaviour}
-            ${page_section?.background?.repeat
-              ?.vertical_repetition_behaviour};
+            ${page_section?.background?.repeat?.vertical_repetition_behaviour};
         `}
-          ${page_section?.background?.size?.custom_size !== ""
+        ${page_section?.background?.size?.custom_size !== ""
           ? css`
-              background-size: ${page_section?.background?.size
-                ?.custom_size};
+              background-size: ${page_section?.background?.size?.custom_size};
             `
           : css`
               background-size: ${page_section?.background?.size?.preset};
