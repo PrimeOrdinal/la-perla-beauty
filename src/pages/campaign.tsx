@@ -2,76 +2,154 @@ import clsx from "clsx"
 import React, { useRef } from "react"
 import { useOnScreen } from "../hooks/useOnScreen"
 
+import styled from "styled-components"
+
+import { ArticleGrid } from "../components/ArticleGrid"
+import { LeafFour } from "../components/LeafFour"
+import { Link } from "../components/Button"
 import { Layout } from "../components/Layout"
+import { PromotionalBanner } from "../components/PromotionalBanner"
 import { SEO } from "../components/SEO"
+import { VideoPlayer } from "../components/VideoPlayer"
+
+import hero from "../videos/hero.mp4"
+import bottle from "../images/bottle.png"
+import flower from "../images/flowerPattern.svg"
+
+const PatternSection = styled.div`
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    height: 65%;
+    width: 100%;
+    background-image: url(${flower});
+    background-position: left;
+    background-repeat: no-repeat;
+    z-index: -1;
+    -webkit-transform: rotate(31deg);
+    -ms-transform: rotate(31deg);
+    transform: rotate(-8deg);
+    left: -177px;
+    bottom: 0px;
+    transform-origin: top left;
+    overflow: hidden;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    height: 65%;
+    width: 100%;
+    background-image: url(${flower});
+    background-position: right;
+    background-repeat: no-repeat;
+    z-index: -1;
+    -webkit-transform: rotate(31deg);
+    -ms-transform: rotate(31deg);
+    transform: rotate(13deg);
+    right: 0;
+    bottom: 0px;
+    transform-origin: top right;
+    overflow: hidden;
+  }
+`
 
 const CampaignPage: React.FC = () => {
   const ref = useRef(null)
   const onScreen = useOnScreen(ref, "-300px")
 
-
   return (
     <Layout opaque={onScreen}>
       <SEO title="Campaign Landing Page" />
-      <main>
-        <section className={clsx("one")}>
-          <img
-            src="https://picsum.photos/400"
-            style={{
-              width: "100%",
-              height: "100vh",
-              objectFit: "cover",
-              marginTop: "-145px",
-            }}
-            alt="something"
-            className="img-bl"
-          />
-        </section>
-        <section
-          className={clsx("container", "two")}
-          style={{ height: "100vh" }}
-          ref={ref}
-        >
-          {onScreen ? (
-            <React.Fragment>
-              <h1>This is the campaign page</h1>
+      <VideoPlayer
+        style={{
+          width: "100%",
+          height: "90vh",
+          objectFit: "cover",
+          marginTop: "calc(var(--header-min-height) * -1.12)",
+        }}
+        alt="something"
+        className="img-bl"
+        url={hero}
+        paddingRemove={true}
+        muted={true}
+      />
+
+      <main className={clsx("container")} ref={ref} style={{ height: "100%" }}>
+        {onScreen ? (
+          <React.Fragment>
+            <section>
+              <div style={{ textAlign: "center" }}>
+                <span>EAU DE PARFUM</span>
+                <h1>The Signature Fragrance</h1>
+                <p>
+                  The other day the grass was brown, now it’s green because I
+                  ain’t give up. Never surrender. In life there will be road
+                  blocks.
+                </p>
+                <Link>Discover More</Link>
+                <PatternSection
+                  className={clsx("bottleSection")}
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <img
+                    src={bottle}
+                    alt="bottle"
+                    style={{
+                      height: "700px",
+                      width: "auto",
+                    }}
+                  />
+                </PatternSection>
+              </div>
+            </section>
+            <section>
+              <h2>What's behind the scent?</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                vestibulum dictum blandit. Fusce bibendum ante ornare massa
-                blandit, et euismod sem tempus. Quisque sit amet dictum sapien.
-                Aenean sed nunc commodo, rhoncus mi ac, consequat ipsum. Etiam
-                vitae risus ut purus imperdiet efficitur vel sed nunc. Aenean ut
-                dui fringilla lacus ultricies euismod. Aenean eget nisl
-                molestie, ullamcorper lacus vitae, faucibus mi. In eu magna
-                laoreet, scelerisque lorem ut, consequat eros. Mauris iaculis
-                est sit amet sem suscipit viverra. Ut egestas sollicitudin enim
-                et congue. Maecenas molestie commodo neque vitae volutpat.
-                Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                Vivamus posuere sem vel elit ultricies pretium. Etiam placerat
-                nisi non metus dignissim, in rutrum ligula semper. Praesent
-                blandit sapien urna.
+                As it floats around us in an eternity of bliss; and then, my
+                friend, when darkness overspreads my eyes, and heaven and earth
+                seem to dwell in my soul and absorb its power.
               </p>
+            </section>
+            <section>
+              <PromotionalBanner
+                color="beige"
+                layout="overlay"
+                showImage={true}
+                title="Overlay prop"
+                image={{
+                  url: `https://picsum.photos/405/712?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                }}
+              />
+            </section>
+            <section>
+              <h2>The making of...</h2>
               <p>
-                In eget lectus in urna aliquam malesuada et eget justo. Proin at
-                blandit est. Nullam vestibulum in magna sed blandit. Quisque
-                quis sodales quam. Maecenas pulvinar at ipsum id sodales.
-                Pellentesque consectetur magna massa, in fermentum lorem rutrum
-                eu. Phasellus dignissim metus euismod turpis elementum
-                convallis. Duis feugiat odio dolor, nec venenatis leo fermentum
-                in. Etiam venenatis ex et magna volutpat malesuada. Morbi
-                pulvinar est sit amet euismod tincidunt. Pellentesque non enim
-                fringilla massa faucibus mollis pellentesque vehicula urna. Duis
-                dictum euismod purus, gravida sagittis arcu cursus sed.
-                Pellentesque facilisis, lorem in euismod mollis, neque dui
-                ultricies erat, ut tempor nisl odio a leo. Nunc auctor maximus
-                diam lobortis bibendum. Morbi quis magna egestas, fermentum sem
-                ut, condimentum erat.
+                As it floats around us in an eternity of bliss; and then, my
+                friend, when darkness overspreads my eyes, and heaven and earth
+                seem to dwell in my soul and absorb its power.
               </p>
-            </React.Fragment>
-          ) : (
-            <h1>Hey K, look I'm not on screen!</h1>
-          )}
-        </section>
+              <ArticleGrid />
+            </section>
+            <section>
+              <LeafFour
+                image={{
+                  src: `https://picsum.photos/405/712?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                  alt: "leaf image",
+                }}
+                title="What's behind responsible beauty?"
+                text="The other day the grass was brown, now it’s green because I ain’t give up. Never surrender. In life there will be road blocks."
+                colour="lilac"
+              />
+            </section>
+          </React.Fragment>
+        ) : (
+          <h1>Hey K, look I'm not on screeeeen!</h1>
+        )}
       </main>
     </Layout>
   )
