@@ -1,17 +1,17 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { MenuNavigation } from "../src/components/MenuNavigation"
+import { MenuMainNavigation } from "../src/components/MenuMainNavigation"
 
 export default {
-  title: "MenuNavigation",
-  component: MenuNavigation,
+  title: "MenuMainNavigation",
+  component: MenuMainNavigation,
   argTypes: {
     backgroundColor: { control: "color" },
   },
 } as Meta
 
-const Template: Story = args => <MenuNavigation {...args} />
+const Template: Story = args => <MenuMainNavigation {...args} />
 
 export const Example = Template.bind({})
 Example.args = {

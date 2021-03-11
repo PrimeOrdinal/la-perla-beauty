@@ -1,5 +1,5 @@
 import type {
-  // MenuNavigationQuery
+  // MenuMainNavigationQuery
   LayoutQuery,
 } from "../../graphql-types"
 
@@ -127,18 +127,18 @@ const StyledMenuMainHeadings = styled(ListPlain)`
   }
 `
 
-export type MenuNavigationProps = ColorProps &
+export type MenuMainNavigationProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    // data?: MenuNavigationQuery
+    // data?: MenuMainNavigationQuery
     data?: LayoutQuery
   }
 
-export const MenuNavigation: React.FC<MenuNavigationProps> = ({
+export const MenuMainNavigation: React.FC<MenuMainNavigationProps> = ({
   data,
   ...props
 }) => (

@@ -14,7 +14,7 @@ import { mediaQueries } from "../theme"
 import { MenuHamburger } from "./MenuHamburger"
 import { LogotypeLink } from "./LogotypeLink"
 import { MenuActions } from "./MenuActions"
-import { MenuNavigation } from "./MenuNavigation"
+import { MenuMainNavigation } from "./MenuMainNavigation"
 import { MenuStore } from "./MenuStore"
 import { MiniBag } from "./MiniBag"
 import { QuickSearch } from "./QuickSearch"
@@ -93,7 +93,7 @@ export const GlobalHeader: React.FC<HeaderProps> = (
           toggleQuickSearchVisibility={toggleQuickSearchVisibility}
         />
         {quickSearchVisibility !== true && (
-          <MenuNavigation
+          <MenuMainNavigation
             display={{ _: "none", md: "block" }}
             gridArea="menu-navigation"
             data={data}
