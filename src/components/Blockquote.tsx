@@ -9,6 +9,7 @@ import OpenQuote from "../../static/icons/OpenQuote.svg"
 import CloseQuote from "../../static/icons/CloseQuote.svg"
 
 export type BlockquoteProps = {
+  children: React.ReactNode
   colour: ColourProp
 }
 
