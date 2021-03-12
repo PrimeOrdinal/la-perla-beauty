@@ -11,5 +11,6 @@ export default {
 const Template: Story<BlockquoteProps> = args => <Blockquote {...args} />
 export const Example = Template.bind({})
 Example.args = {
+  children: "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
   colour: "beige"
 }
