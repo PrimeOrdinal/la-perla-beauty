@@ -42,7 +42,7 @@ const GlobalHeaderStyled = styled.header`
   }
 
   .minibag {
-    box-shadow: 2px 3px 10px 2px rgba(204,204,204,0.5);
+    box-shadow: 2px 3px 10px 2px rgba(204, 204, 204, 0.5);
   }
 `
 
@@ -64,12 +64,11 @@ export type GlobalHeaderProps = {
   opaque?: boolean
 }
 
-export const GlobalHeader: React.FC<HeaderProps> = (
-  { data, siteTitle, opaque } = {
-    siteTitle: "Site Title",
-    opaque: true,
-  }
-) => {
+export const GlobalHeader: React.FC<GlobalHeaderProps> = ({
+  data,
+  siteTitle = "Site",
+  opaque = true,
+}) => {
   const [miniBagVisibility, toggleBagPreviewVisibility] = useToggle()
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
@@ -102,7 +101,12 @@ export const GlobalHeader: React.FC<HeaderProps> = (
           />
         )}
         {miniBagVisibility && (
-          <BagPreview position="absolute" right="1rem" top="6rem" className="minibag" />
+          <BagPreview
+            position="absolute"
+            right="1rem"
+            top="6rem"
+            className="minibag"
+          />
         )}
         {quickSearchVisibility && (
           <QuickSearch
