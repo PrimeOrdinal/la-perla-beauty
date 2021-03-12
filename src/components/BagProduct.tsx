@@ -74,25 +74,32 @@ const BagProductStyled = styled.div`
       display: flex;
       justify-content: space-between;
       width: 100%;
+
       ${mediaQueries.md} {
         bottom: 30%;
       }
+
       .button-wrapper {
-        display: grid;
-        grid-auto-flow: column;
-        gap: 1rem;
         align-items: center;
+        display: grid;
+        gap: 0.25rem;
+        grid-auto-flow: column;
+
         .quantity-icon {
           border: solid 1px black;
           height: 30px;
           padding: 0px;
           width: 30px;
+
+          svg {
+            margin: unset;
+          }
         }
 
         .total {
           border: none;
           padding: unset;
-          text-align: center;
+          text-align: right;
           width: 2rem;
         }
       }
@@ -100,7 +107,6 @@ const BagProductStyled = styled.div`
       .price {
         font-family: "Tiempos", serif;
         font-size: 14px;
-        font-weight: lighter;
         text-align: end;
       }
     }
