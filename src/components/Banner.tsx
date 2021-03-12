@@ -1,4 +1,4 @@
-import type { Colour as ColourProp, BackgroundPosition as BackgroundPositionProp, Image as ImageProp } from "../../types/components"
+import type { Colour as ColourProp, BackgroundPosition as BackgroundPositionProp, Image as ImageProp, Link as LinkProp } from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -27,7 +27,7 @@ import { Link } from "./Button"
 
 const LayoutBase = styled.aside`
   background-color: ${props =>
-    props.color ? themeGet(`colors.${props.color}`) : themeGet("colors.pink")};
+    props.colour ? themeGet(`colors.${props.colour}`) : themeGet("colors.pink")};
   display: grid;
   overflow: hidden;
 
@@ -108,7 +108,7 @@ const BannerView = styled(LayoutBase)`
   background-color: ${props =>
     ["row", "hero"].includes(props.layout)
       ? "transparent"
-      : themeGet(`colors.${props.color}`)};
+      : themeGet(`colors.${props.colour}`)};
   border-radius: ${props =>
     ["hero", "row"].includes(props.layout) ? "unset" : "10px"};
   grid-auto-flow: ${props => (props.layout === "column" ? "column" : "row")};
@@ -157,48 +157,42 @@ export type BannerProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
+    backgroundPosition: BackgroundPositionProp
     colour: ColourProp
     image: ImageProp
-    backgroundPosition: BackgroundPositionProp
     layout: LayoutProp
-    link: {
-      attributes?: {
-        href: string
-        title: string
-      }
-      text: string
-    }
+    link: LinkProp
+    tag: String
     text: string
     title: String
-    titlePrimary: String
-    titleSecondary: String
   }
 
 export const Banner: React.FC<BannerProps> = ({
+  backgroundPosition,
+  colour,
   image,
+  layout,
   link,
+  tag,
   text,
   title,
-  titlePrimary,
-  titleSecondary,
   ...props
 }) => (
   <BannerView {...props}>
     {image && (
       <img
-        alt={image?.description as string}
+        alt={image?.alt as string}
         className="img-bl"
-        src={image?.url as string}
+        src={image?.src as string}
         title={image?.title as string}
       />
     )}
-    <div className={clsx(props.layout === "hero" && "container")}>
+    <div className={clsx(layout === "hero" && "container")}>
       {title && <h1>{title}</h1>}
-      {titlePrimary && <h1>{titlePrimary}</h1>}
-      {titleSecondary && <h2>{titleSecondary}</h2>}
+      {tag && <h2>{tag}</h2>}
       {link && (
-        <Link title={link?.title} to={link?.href}>
-          {link?.text}
+        <Link to={link?.href}>
+          {link?.title}
         </Link>
       )}
       {text && <span>{text}</span>}
