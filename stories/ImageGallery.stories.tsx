@@ -41,5 +41,5 @@ Example.args = {
       thumbnail: "https://picsum.photos/id/1019/100/100/",
     },
   ],
-  showPlayButton: true
+  showPlayButton: false
 }
