@@ -21,7 +21,7 @@ import {
 
 import { Link } from "./Button"
 
-export type BannerProps = ColorProps &
+export type PromotionalBannerProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -31,7 +31,7 @@ export type BannerProps = ColorProps &
     children: React.ReactNode
   }
 
-export const BannerStyled: React.FC<BannerProps> = styled.div`
+export const PromotionalBannerStyled: React.FC<PromotionalBannerProps> = styled.div`
   background-color: ${themeGet("colors.lilac")};
   color: ${themeGet("colors.black")};
   display: grid;
@@ -66,13 +66,13 @@ export const BannerStyled: React.FC<BannerProps> = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const Banner: React.FC<BannerProps> = ({
+export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
   children,
   href,
   title,
   ...props
 }) => (
-  <BannerStyled {...props}>
+  <PromotionalBannerStyled {...props}>
     <Link to={href}>{title}</Link>
-  </BannerStyled>
+  </PromotionalBannerStyled>
 )
