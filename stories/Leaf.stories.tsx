@@ -1,6 +1,5 @@
-import { Link } from "../src/components/Button"
-import React from "react"
 import { Story, Meta } from "@storybook/react"
+import React from "react"
 
 import { Leaf, LeafProps } from "../src/components/Leaf"
 
