@@ -4,21 +4,21 @@ import { Story, Meta } from "@storybook/react"
 import { Accordion, AccordionProps } from "../src/components/Accordion"
 
 export default {
-  title: "Accordion",
-  component: Accordion,
   argTypes: {
     backgroundColor: { control: "color" },
   },
+  component: Accordion,
+  title: "Accordion",
 } as Meta
 
 const Template: Story<AccordionProps> = args => <Accordion {...args} />
+
 export const Example = Template.bind({})
+
 Example.args = {
-  allowMultipleExpanded: false,
-  allowZeroExpanded: false,
   items: [
     {
-      heading: "About Us",
+      title: "About Us",
       panel: (
         <React.Fragment>
           <p>
@@ -32,7 +32,7 @@ Example.args = {
       ),
     },
     {
-      heading: "Delivery & Return",
+      title: "Delivery & Return",
       panel: (
         <React.Fragment>
           <p>
@@ -46,4 +46,5 @@ Example.args = {
       ),
     },
   ],
+  width: { _: 1, sm: 1/2, md: 1/3, lg: 1/4 },
 }
