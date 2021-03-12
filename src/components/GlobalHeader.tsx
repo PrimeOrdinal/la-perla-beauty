@@ -61,7 +61,7 @@ export type GlobalHeaderProps = {
   // data?: GlobalHeaderQuery
   data?: LayoutQuery
   siteTitle?: string
-  opaque: boolean
+  opaque?: boolean
 }
 
 export const GlobalHeader: React.FC<HeaderProps> = (
