@@ -80,7 +80,7 @@ const OrdersPage: React.FC = () => (
         </div>
       </OrdersColumn>
     </AccountLayout>
-    {/* <PromotionalBanner {...PromoBannerArgs} inlineView /> */}
+    {/* <Banner {...PromoBannerArgs} inlineView /> */}
   </Layout>
 )
 

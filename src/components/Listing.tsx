@@ -23,7 +23,7 @@ import {
 } from "styled-system"
 
 import { ProductCard } from "./ProductCard"
-import { PromotionalBanner } from "./PromotionalBanner"
+import { Banner } from "./Banner"
 
 const ListingStyled = styled.ul`
   display: grid;
@@ -68,7 +68,7 @@ export const Listing: React.FC<ListingProps> = ({
       promotionalBanner?.grid_position,
       0,
       <li className="promotional-banner" key={`promotional-banner-${index}`}>
-        <PromotionalBanner {...promotionalBanner?.promotional_banner?.[0]} />
+        <Banner {...promotionalBanner?.promotional_banner?.[0]} />
       </li>
     )
   })

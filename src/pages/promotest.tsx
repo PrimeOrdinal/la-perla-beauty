@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import { Layout } from "../components/Layout"
-import { PromotionalBanner } from "../components/PromotionalBanner"
+import { Banner } from "../components/Banner"
 import { SEO } from "../components/SEO"
 
 const MainStyled = styled.main`
@@ -15,7 +15,7 @@ const PromoTest: React.FC = () => (
   <Layout>
     <SEO title="404: Not found" />
     <MainStyled>
-      <PromotionalBanner
+      <Banner
         layout="row"
         title="Row prop"
         showImage={true}
@@ -28,7 +28,7 @@ const PromoTest: React.FC = () => (
           alt: "something here",
         }}
       />
-      <PromotionalBanner
+      <Banner
         color="beige"
         layout="overlay"
         link={{ text: "learn more" }}
@@ -41,7 +41,7 @@ const PromoTest: React.FC = () => (
           }`,
         }}
       />
-      <PromotionalBanner
+      <Banner
         color="beige"
         layout="column"
         link={{ text: "learn more" }}
@@ -54,7 +54,7 @@ const PromoTest: React.FC = () => (
           }`,
         }}
       />
-      <PromotionalBanner
+      <Banner
         color="beige"
         layout="undefined"
         link={{ text: "learn more" }}

@@ -28,7 +28,7 @@ import { Link } from "../components/Button"
 import { Leaf } from "../components/Leaf"
 import { ProductCard } from "../components/ProductCard"
 import { ProductCardAlt } from "../components/ProductCardAlt"
-import { PromotionalBanner } from "../components/PromotionalBanner"
+import { Banner } from "../components/Banner"
 import { MenuCategory } from "../components/MenuCategory"
 import { VideoPlayer } from "../components/VideoPlayer"
 import { WYSIWYG } from "../components/WYSIWYG"
@@ -125,13 +125,13 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             case "image":
               const image = value as ModularBlockImage
               component = (
-                <PromotionalBanner layout="overlay" {...image} {...margins} />
+                <Banner layout="overlay" {...image} {...margins} />
               )
               break
             case "image_with_overlay":
               const imageWithOverlay = value as ModularBlockImageWithOverlay
               component = (
-                <PromotionalBanner
+                <Banner
                   layout="hero"
                   link={imageWithOverlay?.link}
                   text={imageWithOverlay?.paragraph}

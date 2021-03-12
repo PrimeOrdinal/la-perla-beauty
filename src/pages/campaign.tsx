@@ -5,10 +5,10 @@ import { useOnScreen } from "../hooks/useOnScreen"
 import styled from "styled-components"
 
 import { ArticleGrid } from "../components/ArticleGrid"
-import { LeafFour } from "../components/LeafFour"
+import { Leaf } from "../components/Leaf"
 import { Link } from "../components/Button"
 import { Layout } from "../components/Layout"
-import { PromotionalBanner } from "../components/PromotionalBanner"
+import { Banner } from "../components/Banner"
 import { SEO } from "../components/SEO"
 import { VideoPlayer } from "../components/VideoPlayer"
 
@@ -112,7 +112,7 @@ const CampaignPage: React.FC = () => {
               </p>
             </section>
             <section>
-              <PromotionalBanner
+              <Banner
                 color="beige"
                 layout="overlay"
                 showImage={true}
@@ -134,16 +134,17 @@ const CampaignPage: React.FC = () => {
               <ArticleGrid />
             </section>
             <section>
-              <LeafFour
+              <Leaf
+                colour="lilac"
                 image={{
+                  alt: "leaf image",
                   src: `https://picsum.photos/405/712?${
                     Math.floor(Math.random() * 10) + 1
                   }`,
-                  alt: "leaf image",
                 }}
-                title="What's behind responsible beauty?"
+                layout="image-and-text-outside"
                 text="The other day the grass was brown, now it’s green because I ain’t give up. Never surrender. In life there will be road blocks."
-                colour="lilac"
+                title="What's behind responsible beauty?"
               />
             </section>
           </React.Fragment>
