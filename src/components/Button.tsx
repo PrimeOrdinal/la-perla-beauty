@@ -117,6 +117,12 @@ export const Button: React.FC<ButtonProps> = styled.button`
   ${compose(buttonStyle, color, flexbox, grid, layout, position, space)}
 `
 
+export const ButtonUnstyled: React.FC<ButtonProps> = styled.button`
+  ${baseStyles}
+
+  ${compose(buttonStyle, color, flexbox, grid, layout, position, space)}
+`
+
 export const Link: React.FC<LinkProps> = styled(LinkContextual)`
   ${baseStyles}
 
