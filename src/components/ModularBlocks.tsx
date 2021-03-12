@@ -144,17 +144,12 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               break
             case "leaf":
               const leaf = value as ModularBlockLeaf
-              const img = {
-                alt: leaf?.image?.title as string,
-                src: leaf?.image?.url?.toString() as string,
-              }
               component = (
                 <Leaf
                   colour={leaf?.colour}
-                  // image={leaf?.image}
-                  image={img}
-                  // layout={leaf?.layout || "text-inside-and-image"}
-                  layout="text-inside-and-image"
+                  image={leaf?.image}
+                  layout={leaf?.layout || "text-inside-and-image"}
+                  // layout="text-inside-and-image"
                   // layout="image-and-text-inside"
                   // layout="image-and-text-outside"
                   // layout="text-outside-and-image"
