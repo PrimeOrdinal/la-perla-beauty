@@ -33,9 +33,9 @@ export type IconListProps = ColorProps &
   VariantProps & {
     items: Array<{
       colour: ColourProp
-      heading: string
       icon: IconProp
-      body: React.ReactNode
+      string: string
+      title: string
     }>
     orientation: "horizontal" | "vertical"
   }
@@ -83,7 +83,7 @@ export const IconList: React.FC<IconListProps> = ({ items, ...props }) => (
       items.map((item, index) => (
         <li key={index}>
           {item.icon && (
-            <div className={clsx("icon", item.color, item.icon)}>
+            <div className={clsx("icon", item.colour, item.icon)}>
               <span className="sr-only">{item.icon}</span>
             </div>
           )}
