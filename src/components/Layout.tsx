@@ -15,7 +15,7 @@ import { GlobalStyle } from "../styles/GlobalStyle"
 
 import { theme } from "../theme"
 
-import { Banner } from "PromotionalBanner"
+import { PromotionalBanner } from "./PromotionalBanner"
 import { GlobalFooter } from "./GlobalFooter"
 import { GlobalHeader } from "./GlobalHeader"
 import { SiteSelector } from "./SiteSelector"
@@ -114,7 +114,7 @@ export const Layout: React.FC<LayoutProps> = ({
         {type === "full" ? (
           <React.Fragment>
             {data?.contentstackBanners?.title && (
-              <Banner
+              <PromotionalBanner
                 href={data?.contentstackBanners?.url?.href}
                 title={data?.contentstackBanners?.url?.title}
                 variant="primary"
