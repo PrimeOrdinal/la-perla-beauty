@@ -420,13 +420,11 @@ const ProductPage: React.FC<
           <DeliveryAndReturnsInformation className="delivery-and-returns-information" />
           {data?.contentstackProducts?.leaf && (
             <Leaf
-              variant="secondary"
+              colour={data?.contentstackProducts?.leaf?.colour}
               layout={data?.contentstackProducts?.leaf?.layout}
-              orientation={data?.contentstackProducts?.leaf?.orientation}
-            >
-              <h2>{data?.contentstackProducts?.leaf?.title}</h2>
-              <p>{data?.contentstackProducts?.leaf?.text}</p>
-            </Leaf>
+              text={data?.contentstackProducts?.leaf?.text}
+              title={data?.contentstackProducts?.leaf?.title}
+            />
           )}
         </main>
       </ProductStyled>
