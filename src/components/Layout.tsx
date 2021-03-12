@@ -44,7 +44,7 @@ const StyledContentArea = styled.div`
 export type LayoutProps = {
   children?: React.ReactNode
   type?: "compact" | "full"
-  opaque: boolean
+  opaque?: boolean
 }
 
 export const Layout: React.FC<LayoutProps> = ({
