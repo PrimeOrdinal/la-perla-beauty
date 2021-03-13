@@ -5,22 +5,23 @@ import type {
 
 import React from "react"
 
-import { Accordion, AccordionProps } from "../components/Accordion"
+import { standardiseContentstackImageField } from "../utils/standardiseContentstackImageField"
+
+import { Accordion, AccordionProps } from "./Accordion"
 import {
   ArticleCardGallery,
   ArticleCardGalleryProps,
-} from "../components/ArticleCardGallery"
-import { BlogPostPreview } from "../components/BlogPostPreview"
-import { HoriontalRule, HoriontalRuleProps } from "../components/HoriontalRule"
-import { IconList, IconListProps } from "../components/IconList"
-import { Link } from "../components/Button"
-import { Leaf } from "../components/Leaf"
-import { ProductCard } from "../components/ProductCard"
-import { ProductCardAlt } from "../components/ProductCardAlt"
-import { Banner } from "../components/Banner"
-import { MenuCategory } from "../components/MenuCategory"
-import { VideoPlayer } from "../components/VideoPlayer"
-import { WYSIWYG } from "../components/WYSIWYG"
+} from "./ArticleCardGallery"
+import { Banner, BannerProps } from "./Banner"
+import { BlogPostPreview, BlogPostPreviewProps } from "./BlogPostPreview"
+import { HoriontalRule, HoriontalRuleProps } from "./HoriontalRule"
+import { IconList, IconListProps } from "./IconList"
+import { Leaf, LeafProps } from "./Leaf"
+import { ProductCard, ProductCardProps } from "./ProductCard"
+import { ProductCardAlt, ProductCardAltProps } from "./ProductCardAlt"
+import { MenuCategory, MenuCategoryProps } from "./MenuCategory"
+import { VideoPlayer, VideoPlayerProps } from "./VideoPlayer"
+import { WYSIWYG, WYSIWYGProps } from "./WYSIWYG"
 
 export type ModularBlocksProps = {
   modularBlocks: ModularBlocksTypes[]
@@ -31,7 +32,6 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
 }) => (
   <React.Fragment>
     {modularBlocks?.map(modular_block => {
-      console.log("modular_block", modular_block)
       let component
 
       Object.entries(modular_block).forEach(
@@ -40,21 +40,18 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             return
           }
 
-          // const value: MakePick<ModularBlocksTypes, "image" | "margins"> = value1
-
           const margins = {
             marginBottom: { _: value?.margins?.[0], md: value?.margins?.[2] },
             marginTop: { _: value?.margins?.[1], md: value?.margins?.[3] },
           }
 
-          // TODO: These are all the same so far so replace case statements with a single mapping
           switch (key) {
             case "accordion":
               const {
                 accordion,
               }: { accordion: AccordionProps[] } = value as any
               component = accordion?.map((props, index) => (
-                <Accordion key={index} {...props} {...margins} />
+                <Accordion key={index} {...margins} {...props} />
               ))
               break
             case "article_card_gallery":
@@ -64,12 +61,24 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 article_card_gallery: ArticleCardGalleryProps[]
               } = value as any
               component = article_card_gallery?.map((props, index) => (
-                <ArticleCardGallery key={index} {...props} {...margins} />
+                <ArticleCardGallery key={index} {...margins} {...props} />
+              ))
+              break
+            case "banner":
+              const { banner }: { banner: BannerProps[] } = value as any
+              component = banner?.map((props, index) => (
+                <Banner
+                  key={index}
+                  {...margins}
+                  {...props}
+                  image={standardiseContentstackImageField(props.image)}
+                  layout="overlay"
+                />
               ))
               break
             case "horizontal_rule":
               const props: HoriontalRuleProps[] = value as any
-              component = <HoriontalRule {...props} {...margins} />
+              component = <HoriontalRule {...margins} {...props} />
               break
             case "icon_list":
               const {
@@ -78,7 +87,37 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 icon_list: IconListProps[]
               } = value as any
               component = icon_list?.map((props, index) => (
-                <IconList key={index} {...props} {...margins} orientation="vertical" mobileView={props.mobile_view} />
+                <IconList
+                  key={index}
+                  {...margins}
+                  {...props}
+                  mobileView={props.mobile_view}
+                />
+              ))
+              break
+            case "leaf":
+              const {
+                leaf,
+              }: {
+                leaf: LeafProps[]
+              } = value as any
+              component = leaf?.map((props, index) => (
+                <Leaf
+                  key={index}
+                  {...margins}
+                  {...props}
+                  image={standardiseContentstackImageField(props.image)}
+                />
+              ))
+              break
+            case "wysiwyg":
+              const {
+                wysiwyg,
+              }: {
+                wysiwyg: WYSIWYGProps[]
+              } = value as any
+              component = wysiwyg?.map((props, index) => (
+                <WYSIWYG key={index} {...margins} {...props} />
               ))
               break
             default:
