@@ -10,7 +10,6 @@ import {
   ArticleCardGallery,
   ArticleCardGalleryProps,
 } from "../components/ArticleCardGallery"
-import { Blockquote } from "./Blockquote"
 import { BlogPostPreview } from "../components/BlogPostPreview"
 import { HoriontalRule, HoriontalRuleProps } from "../components/HoriontalRule"
 import { IconList, IconListProps } from "../components/IconList"
