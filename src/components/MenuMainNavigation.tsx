@@ -107,7 +107,7 @@ const StyledMenuMainHeadings = styled(ListPlain)`
     padding-inline-start: unset;
 
     a {
-      font-size: var(--font-size-small, 12px);
+      font-size: var(--font-size-sm, 12px);
       font-weight: lighter;
     }
   }

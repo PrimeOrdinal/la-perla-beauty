@@ -97,7 +97,7 @@ const ProductCardStyled = styled.article`
 
   .product-category {
     color: inherit;
-    font-size: var(--font-size-small, 12px);
+    font-size: var(--font-size-sm, 12px);
     letter-spacing: 1px;
     overflow: hidden;
     text-decoration: none;

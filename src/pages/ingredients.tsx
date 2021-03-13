@@ -73,7 +73,7 @@ const LetterBanner = styled.div`
     padding-block-start: ${themeGet("space.5")}px;
   }
   span {
-    font-size: var(--font-size-lg, 24px);
+    font-size: var(--font-size-lg, 18px);
     font-family: "Tiempos", serif;
   }
 `
@@ -98,7 +98,7 @@ const IngredientList = styled(ListPlain)`
       h2 {
         margin: 0;
         ${mediaQueries.md} {
-          font-size: var(--font-size-lg, 24px);
+          font-size: var(--font-size-lg, 18px);
         }
       }
       .contents {

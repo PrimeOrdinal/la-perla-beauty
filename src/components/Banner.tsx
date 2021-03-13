@@ -71,7 +71,7 @@ const LayoutBase = styled.aside`
 
     h2 {
       font-family: "Quicksand", sans-serif;
-      font-size: var(--font-size-small, 12px);
+      font-size: var(--font-size-sm, 12px);
       order: -1;
       text-transform: uppercase;
     }

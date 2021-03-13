@@ -11,7 +11,7 @@ const BreadcrumbStyled = styled.div`
   }
 
   .breadcrumb {
-    font-size: var(--font-size-small, 12px);
+    font-size: var(--font-size-sm, 12px);
   }
 
   .breadcrumb__list {

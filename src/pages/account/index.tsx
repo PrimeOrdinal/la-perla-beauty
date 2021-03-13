@@ -49,7 +49,7 @@ const GridStyled = styled.section`
 
       ${mediaQueries.md} {
         display: initial;
-        font-size: var(--font-size-lg, 24px);
+        font-size: var(--font-size-lg, 18px);
         margin: 0;
       }
     }
@@ -67,7 +67,7 @@ const GridStyled = styled.section`
     }
     form {
       span {
-        font-size: var(--font-size-small, 12px);
+        font-size: var(--font-size-sm, 12px);
         text-transform: uppercase;
 
         ${mediaQueries.md} {
@@ -82,7 +82,7 @@ const GridStyled = styled.section`
     grid-auto-flow: row;
     align-items: flex-start;
     h1 {
-      font-size: var(--font-size-lg, 24px);
+      font-size: var(--font-size-lg, 18px);
       margin: 0;
     }
 

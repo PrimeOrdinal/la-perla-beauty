@@ -35,7 +35,7 @@ const ProductSectionStyled = styled.section`
 
   .categories {
     display: grid;
-    font-size: var(--font-size-small, 12px);
+    font-size: var(--font-size-sm, 12px);
     gap: 1rem;
     grid-auto-flow: column;
     justify-content: start;

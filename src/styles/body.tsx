@@ -7,8 +7,8 @@ export const body = `
         --font-size-heading-2: ${theme.fontSizes.heading2Mobile}px;
         --font-size-heading-3: ${theme.fontSizes.heading3Mobile}px;
         --font-size-heading-4: ${theme.fontSizes.heading4Mobile}px;
-        --font-size-small: ${theme.fontSizes.smallMobile}px;
 
+        --font-size-sm: ${theme.fontSizes.smallMobile}px;
         --font-size-lg: ${theme.fontSizes[5]}px;
         --font-size-xl: ${theme.fontSizes[6]}px;
 
@@ -24,8 +24,8 @@ export const body = `
             --font-size-heading-2: ${theme.fontSizes.heading2Desktop}px;
             --font-size-heading-3: ${theme.fontSizes.heading3Desktop}px;
             --font-size-heading-4: ${theme.fontSizes.heading4Desktop}px;
-            --font-size-small: ${theme.fontSizes.smallDesktop}px;
-
+            
+            --font-size-sm: ${theme.fontSizes.smallDesktop}px;
             --font-size-lg: ${theme.fontSizes[6]}px;
             --font-size-xl: ${theme.fontSizes[7]}px;
         }

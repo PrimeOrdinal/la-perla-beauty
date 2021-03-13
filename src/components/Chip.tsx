@@ -36,7 +36,7 @@ export const ChipStyled: React.FC<ChipProps> = styled.button`
   border-radius: ${themeGet("radii.1")}px;
   color: ${themeGet("colors.black")};
   display: grid;
-  font-size: var(--font-size-small, 12px);
+  font-size: var(--font-size-sm, 12px);
   text-align: center;
   grid-auto-flow: column;
   padding: ${themeGet("space.3")}px ${themeGet("space.4")}px;

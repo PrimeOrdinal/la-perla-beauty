@@ -92,7 +92,7 @@ const GlobalFooterStyle = styled.footer`
         display: block;
         font-family: "Tiempos", serif;
         font-weight: lighter;
-        font-size: var(--font-size-lg, 24px);
+        font-size: var(--font-size-lg, 18px);
         letter-spacing: 0.5px;
         text-transform: capitalize;
       }

@@ -30,7 +30,7 @@ export const ItemAvailability: React.FC<ItemAvailabilityProps> = styled.span`
   background-color: ${themeGet("colors.orange")};
   border-radius: ${themeGet("radii.2")}px;
   display: block;
-  font-size: var(--font-size-small, 12px);
+  font-size: var(--font-size-sm, 12px);
   padding: ${themeGet("space.1")}px ${themeGet("space.3")}px;
   text-align: center;
   text-transform: uppercase;

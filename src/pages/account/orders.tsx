@@ -21,7 +21,7 @@ const OrdersColumn = styled.section`
     h2 {
       font-size: 20px;
       ${mediaQueries.md} {
-        font-size: var(--font-size-lg, 24px);
+        font-size: var(--font-size-lg, 18px);
       }
     }
     display: grid;
