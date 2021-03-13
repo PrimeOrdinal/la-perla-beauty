@@ -10,6 +10,7 @@ export const styles = `
     display: flex;
     font-family: "Quicksand", sans-serif;
     font-size: var(--font-size-body, 13px);
+    gap: 1rem;
     justify-content: center;
     justify-items: center;
     letter-spacing: 1px;
