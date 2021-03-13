@@ -60,16 +60,12 @@ const LayoutBase = styled.aside`
   div {
     display: grid;
 
-    h1 {
-      font-size: 20px;
+    .title {
+      font-size: var(--font-size-lg, 18px);
       margin-block-start: unset;
-
-      ${mediaQueries.md} {
-        font-size: 24px;
-      }
     }
 
-    h2 {
+    .tag {
       font-family: "Quicksand", sans-serif;
       font-size: var(--font-size-sm, 12px);
       order: -1;
@@ -105,6 +101,9 @@ const LayoutBase = styled.aside`
 `
 
 const BannerView = styled(LayoutBase)`
+  --content-padding: ${themeGet("space.4")};
+
+  align-items: ${props => (props.layout === "column" ? "center" : "unset")};  
   background-color: ${props =>
     ["row", "hero"].includes(props.layout)
       ? "transparent"
@@ -112,7 +111,6 @@ const BannerView = styled(LayoutBase)`
   border-radius: ${props =>
     ["hero", "row"].includes(props.layout) ? "unset" : "10px"};
   grid-auto-flow: ${props => (props.layout === "column" ? "column" : "row")};
-  place-items: ${props => (props.layout === "column" ? "center" : "unset")};
   position: ${props =>
     ["hero", "overlay"].includes(props.layout) ? "relative" : "static"};
 
@@ -120,22 +118,18 @@ const BannerView = styled(LayoutBase)`
     border-radius: ${props => (props.layout === "row" ? "10px" : "unset")};
   }
 
-  div {
-    bottom: ${themeGet("space.7")}px;
+  .content {
+    bottom: 0;
     color: ${props =>
       ["hero", "overlay"].includes(props.layout)
         ? themeGet("colors.white")
         : "inherit"};
+    justify-items: start;
     left: 0;
-    padding: ${props => {
-      if (props.layout === "column") {
-        return "120px"
-      } else if (props.layout === "row") {
-        return "20px"
-      } else {
-        return undefined
-      }
-    }};
+    padding-block: ${props => ["hero", "overlay"].includes(props.layout) ? themeGet("space.8") : themeGet("space.4")}px;
+    margin-inline: ${props => ["column", "overlay", "row"].includes(props.layout) ? themeGet("space.8") : 0}px;
+    padding-inline: ${props => ["column", "overlay", "row"].includes(props.layout) ? "unset" : "var(--app-gutter-x, 4rem)"};
+
     position: ${props =>
       ["hero", "overlay"].includes(props.layout) ? "absolute" : "static"};
     right: 0;
@@ -147,7 +141,6 @@ enum LayoutProp {
   hero, // content overlaid on the background image, no rounded corners
   overlay, // content overlaid on the background image, rounded corners
   row, // two rows - image & content
-  undefined, // default style is the column that spans two which has pink bg with image above
 }
 
 export type BannerProps = ColorProps &
@@ -167,35 +160,25 @@ export type BannerProps = ColorProps &
     title: String
   }
 
-export const Banner: React.FC<BannerProps> = ({
-  backgroundPosition,
-  colour,
-  image,
-  layout,
-  link,
-  tag,
-  text,
-  title,
-  ...props
-}) => (
+export const Banner: React.FC<BannerProps> = (props) => (
   <BannerView {...props}>
-    {image && (
+    {props?.image && (
       <img
-        alt={image?.alt as string}
+        alt={props?.image?.alt as string}
         className="img-bl"
-        src={image?.src as string}
-        title={image?.title as string}
+        src={props?.image?.src as string}
+        title={props?.image?.title as string}
       />
     )}
-    <div className={clsx(layout === "hero" && "container")}>
-      {title && <h1>{title}</h1>}
-      {tag && <h2>{tag}</h2>}
-      {link && (
-        <Link to={link?.href}>
-          {link?.title}
+    <div className={clsx("content", props?.layout === "hero" && "container", ["hero", "overlay"].includes(props.layout) && "image-overlay-gradient")}>
+      {props?.title && <h1 className="title">{props?.title}</h1>}
+      {props?.tag && <h2 className="tag">{props?.tag}</h2>}
+      {props?.text && <span>{props?.text}</span>}
+      {props?.link && (
+        <Link to={props?.link?.href}>
+          {props?.link?.title}
         </Link>
       )}
-      {text && <span>{text}</span>}
     </div>
   </BannerView>
 )
