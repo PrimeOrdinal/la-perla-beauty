@@ -192,7 +192,7 @@ export const Leaf: React.FC<LeafProps> = ({
         <article>
           {image && (
             <figure>
-              <img src={image?.src} alt={image?.alt} className="img-bl" />
+              <img alt={image?.alt} src={image?.src} title={image?.title} className="img-bl" />
             </figure>
           )}
           <div className={clsx(colour, "leaf")}>
