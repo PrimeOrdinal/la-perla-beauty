@@ -33,6 +33,21 @@ export const Contentstack_sectionFragment = graphql`
         colour
         margins
       }
+      icon_list {
+        icon_list {
+          id
+          items {
+            colour
+            icon
+            text
+            title
+          }
+          mobile_view
+          orientation
+          title
+        }
+        margins
+      }
     }
     title
   }

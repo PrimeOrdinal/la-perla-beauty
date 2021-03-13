@@ -1,4 +1,7 @@
-import type { Colour as ColourProp, Icon as IconProp } from "../../types/components"
+import type {
+  Colour as ColourProp,
+  Icon as IconProp,
+} from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -24,6 +27,8 @@ import {
 import { colourClasses } from "../styles/colourClasses"
 import { iconClasses } from "../styles/iconClasses"
 
+import { mediaQueries } from "../theme"
+
 export type IconListProps = ColorProps &
   FlexboxProps &
   GridProps &
@@ -34,45 +39,66 @@ export type IconListProps = ColorProps &
     items: Array<{
       colour: ColourProp
       icon: IconProp
-      string: string
+      text: string
       title: string
     }>
+    mobile_view: "stack" | "swipe"
     orientation: "horizontal" | "vertical"
+    title: string
   }
 
 import { ListPlain } from "../components/ListPlain"
 
 export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
+  --item-gap: 1rem;
+  --item-height: 40px;
+
   display: grid;
   gap: ${themeGet("space.4")}px;
-  grid-auto-flow: ${props =>
-    props.orientation === "horizontal" ? "column" : "row"};
-  justify-items: ${props =>
-    props.orientation == "horizontal" ? "start" : "center"};
-  .icon {
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-  }
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
 
   ${colourClasses}
   ${iconClasses}
 
+  ${mediaQueries.smDown} {
+    max-height: ${props => (props.mobile_view == "stack" ? "calc(var(--item-height, 40px) + var(--item-gap, 1rem))" : "unset")};
+  }
+
+  ${mediaQueries.md} {
+    grid-auto-flow: column;
+  }
+
   li {
-    display: grid;
-    grid-auto-flow: ${props =>
-      props.orientation === "horizontal" ? "column" : "row"};
-    gap: 1rem;
     align-items: center;
-    justify-items: ${props =>
-      props.orientation === "horizontal" ? "start" : "center"};
-    text-align: ${props =>
-      props.orientation === "horizontal" ? "left" : "center"};
-    h3 {
-      margin: 0;
+    display: grid;
+    gap: var(--item-gap, 1rem);
+    scroll-snap-align: start;
+
+    ${mediaQueries.smDown} {
+      grid-auto-flow: column;
     }
+
+    ${mediaQueries.md} {
+      grid-auto-flow: ${props =>
+        props.orientation === "horizontal" ? "column" : "row"};
+      justify-items: ${props =>
+        props.orientation === "horizontal" ? "start" : "center"};
+      text-align: ${props =>
+        props.orientation === "horizontal" ? "left" : "center"};
+    }
+  }
+
+  .title {
+    margin: unset;
+  }
+
+  .icon {
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    height: var(--item-height, 40px);
+    width: var(--item-height, 40px);
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}
@@ -88,8 +114,8 @@ export const IconList: React.FC<IconListProps> = ({ items, ...props }) => (
             </div>
           )}
           <div>
-            {item.title && <h3>{item.title}</h3>}
-            {item.body}
+            {item.title && <h3 className="title">{item.title}</h3>}
+            {item.text}
           </div>
         </li>
       ))}

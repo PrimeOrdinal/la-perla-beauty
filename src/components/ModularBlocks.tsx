@@ -6,11 +6,14 @@ import type {
 import React from "react"
 
 import { Accordion, AccordionProps } from "../components/Accordion"
-import { ArticleCardGallery, ArticleCardGalleryProps } from "../components/ArticleCardGallery"
+import {
+  ArticleCardGallery,
+  ArticleCardGalleryProps,
+} from "../components/ArticleCardGallery"
 import { Blockquote } from "./Blockquote"
 import { BlogPostPreview } from "../components/BlogPostPreview"
 import { HoriontalRule, HoriontalRuleProps } from "../components/HoriontalRule"
-import { IconList } from "../components/IconList"
+import { IconList, IconListProps } from "../components/IconList"
 import { Link } from "../components/Button"
 import { Leaf } from "../components/Leaf"
 import { ProductCard } from "../components/ProductCard"
@@ -68,6 +71,16 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
             case "horizontal_rule":
               const props: HoriontalRuleProps[] = value as any
               component = <HoriontalRule {...props} {...margins} />
+              break
+            case "icon_list":
+              const {
+                icon_list,
+              }: {
+                icon_list: IconListProps[]
+              } = value as any
+              component = icon_list?.map((props, index) => (
+                <IconList key={index} {...props} {...margins} orientation="vertical" mobileView={props.mobile_view} />
+              ))
               break
             default:
               console.log(`Unmapped modular block type: ${key}`)
