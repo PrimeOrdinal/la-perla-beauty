@@ -162,6 +162,13 @@ const LeafWrapperStyled = styled.div`
       }
     }
   }
+
+  &.image-and-text-outside,
+  &.text-outside-and-image {
+    .leaf-container {
+      padding-inline: ${themeGet("space.14")}px;
+    }
+  }
 `
 
 export const Leaf: React.FC<LeafProps> = ({
