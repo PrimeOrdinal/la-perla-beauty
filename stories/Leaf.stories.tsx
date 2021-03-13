@@ -8,10 +8,10 @@ export default {
   component: Leaf,
   argTypes: {
     backgroundColor: { control: "color" },
-    variant: {
+    layout: {
       control: {
         type: "inline-radio",
-        options: ["primary", "secondary", "tertiary"],
+        options: ["image-and-text-inside", "image-and-text-outside", "text-inside-and-image", "text-outside-and-image"],
       },
     },
   },
