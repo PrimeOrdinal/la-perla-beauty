@@ -1,4 +1,4 @@
-import type { ImageObject, Offer, ProductGroup } from "schema-dts"
+import type { ImageObject, ProductGroup } from "schema-dts"
 
 import type {
   BigCommerceGql_Product,
@@ -22,20 +22,15 @@ import { ImageGallery } from "../components/ImageGallery"
 import { Leaf } from "../components/Leaf"
 import { Layout } from "../components/Layout"
 import { PageSections } from "../components/PageSections"
-import { Price } from "../components/Price"
+import { ProductSection } from "../components/ProductSection"
 import { SEO } from "../components/SEO"
 import { ProductSelectorColour } from "../components/ProductSelectorColour"
 import { ProductSelectorSize } from "../components/ProductSelectorSize"
 import { QuickShare } from "../components/QuickShare"
 import { QuickWishlist } from "../components/QuickWishlist"
-import { ItemAvailability } from "../components/ItemAvailability"
 
 import { mediaQueries } from "../theme"
 
-import {
-  availabilitySchemaToHumanReadableText,
-  availabilitySchemaToShortName,
-} from "../utils/schema-org"
 import { getCartId } from "../utils/carts"
 
 import { standardiseBigCommerceProductGroup } from "../utils/standardiseBigCommerceProduct"
@@ -57,33 +52,8 @@ const ProductStyled = styled.article`
     margin-block-end: ${themeGet("space.12")}px;
   }
 
-  header,
   main {
     display: grid;
-  }
-
-  .categories {
-    display: grid;
-    font-size: var(--font-size-small, 12px);
-    gap: 1rem;
-    grid-auto-flow: column;
-    justify-content: start;
-    text-transform: uppercase;
-  }
-
-  .availability {
-    justify-self: end;
-  }
-
-  .name {
-    font-size: ${themeGet("fontSizes.7")}px;
-    margin-block-end: ${themeGet("space.8")}px;
-    margin-block-start: unset;
-  }
-
-  .price {
-    font-size: var(--font-size-lg, 18px);
-    margin-block-end: ${themeGet("space.6")}px;
   }
 
   .form {
@@ -187,10 +157,6 @@ const ProductPage: React.FC<
     productFormatBigCommerce,
   }) as ProductGroup
 
-  const name = product?.name as string
-
-  const offer = product?.offers as Offer
-
   const imageGalleryArguments = {
     items: Array.isArray(product?.image)
       ? product?.image?.map((image: ImageObject) => ({
@@ -210,7 +176,7 @@ const ProductPage: React.FC<
       title: "Key Ingredients",
       panel: (
         <dl className="ingedients">
-          {data?.contentstackProducts?.ingredients?.map(
+          {data?.contentstackProduct?.ingredients?.map(
             (ingredient, ingredientIndex) => (
               <React.Fragment key={ingredientIndex}>
                 <dt>{ingredient?.type}</dt>
@@ -236,9 +202,9 @@ const ProductPage: React.FC<
     },
   ]
 
-  data?.contentstackProducts?.accordion?.panels &&
+  data?.contentstackProduct?.accordion?.panels &&
     accordion.push(
-      ...data?.contentstackProducts?.accordion?.panels?.map(panel => ({
+      ...data?.contentstackProduct?.accordion?.panels?.map(panel => ({
         title: panel?.title,
         panel: (
           <div
@@ -250,14 +216,9 @@ const ProductPage: React.FC<
       }))
     )
 
-  console.log(
-    "data?.contentstackPages?.page_sections",
-    data?.contentstackPages?.page_sections
-  )
-
   return (
     <Layout>
-      <SEO title={name} />
+      <SEO title={product?.name as string} />
 
       <Breadcrumb crumbs={crumbs} />
 
@@ -275,53 +236,17 @@ const ProductPage: React.FC<
           <IconList
             display={{ _: "none", md: "grid" }}
             gridAutoFlow={{ _: "row", md: "column" }}
-            items={data?.contentstackProducts?.key_features?.item?.map(
-              item => ({
-                icon: item?.icon,
-                color: item?.colour,
-                title: item?.title,
-                body: <p>{item?.text}</p>,
-              })
-            )}
+            items={data?.contentstackProduct?.key_features?.item?.map(item => ({
+              icon: item?.icon,
+              color: item?.colour,
+              title: item?.title,
+              body: <p>{item?.text}</p>,
+            }))}
           ></IconList>
         </div>
 
         <main>
-          <header>
-            {Array.isArray(product?.category) && (
-              <div className="categories">
-                {product?.category
-                  .map(category => (
-                    <Link
-                      className="product-category"
-                      id={category?.identifier}
-                      key={category?.identifier}
-                      itemProp="category"
-                      title={category?.name}
-                      to={category?.url}
-                    >
-                      <span itemProp="name">{category?.name}</span>
-                    </Link>
-                  ))
-                  .pop()}
-              </div>
-            )}
-
-            {offer?.availability && (
-              <ItemAvailability
-                className="availability"
-                availability={availabilitySchemaToShortName(
-                  offer?.availability
-                )}
-              >
-                {availabilitySchemaToHumanReadableText(offer?.availability)}
-              </ItemAvailability>
-            )}
-
-            <h1 className={clsx("name", "title")}>{name}</h1>
-
-            <Price className="price" offer={offer} />
-          </header>
+          <ProductSection product={product} />
 
           <div className="actions">
             <QuickShare />
@@ -387,7 +312,7 @@ const ProductPage: React.FC<
           <div
             className="description"
             dangerouslySetInnerHTML={{
-              __html: data?.contentstackProducts?.description as string,
+              __html: data?.contentstackProduct?.description as string,
             }}
           />
           <Button
@@ -400,7 +325,7 @@ const ProductPage: React.FC<
             <div
               className="description-extended"
               dangerouslySetInnerHTML={{
-                __html: data?.contentstackProducts
+                __html: data?.contentstackProduct
                   ?.description_extended as string,
               }}
             />
@@ -418,20 +343,18 @@ const ProductPage: React.FC<
           )}
           <Accordion className="accordion" items={accordion} />
           <DeliveryAndReturnsInformation className="delivery-and-returns-information" />
-          {data?.contentstackProducts?.leaf && (
+          {data?.contentstackProduct?.leaf && (
             <Leaf
-              colour={data?.contentstackProducts?.leaf?.colour}
-              layout={data?.contentstackProducts?.leaf?.layout}
-              text={data?.contentstackProducts?.leaf?.text}
-              title={data?.contentstackProducts?.leaf?.title}
+              colour={data?.contentstackProduct?.leaf?.colour}
+              layout={data?.contentstackProduct?.leaf?.layout}
+              text={data?.contentstackProduct?.leaf?.text}
+              title={data?.contentstackProduct?.leaf?.title}
             />
           )}
         </main>
       </ProductStyled>
       <EditorialStyled>
-        <PageSections
-          pageSections={data?.contentstackProducts?.page_sections}
-        />
+        <PageSections sections={data?.contentstackProduct?.sections} />
       </EditorialStyled>
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(product)}</script>
@@ -444,8 +367,8 @@ export default ProductPage
 
 export const query = graphql`
   query ProductPage($id: Int!) {
-    contentstackProducts(product_id: { eq: $id }) {
-      ...Contentstack_productsFragment
+    contentstackProduct(product_id: { eq: $id }) {
+      ...Contentstack_productFragment
     }
     bigCommerceGQL {
       site {

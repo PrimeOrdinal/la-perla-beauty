@@ -9,6 +9,8 @@ import { SEO } from "../../components/SEO"
 
 import { mediaQueries } from "../../theme"
 
+import { myAccount as myAccountPath } from "../../utils/paths"
+
 const MainStyled = styled.main`
   display: grid;
   place-content: center;
@@ -108,7 +110,7 @@ const AccountPage: React.FC = () => {
             </p>
             <form
               action={
-                userIsSignedIn ? "/account/information" : "/account/sign-up"
+                userIsSignedIn ? `${myAccountPath}/information` : `${myAccountPath}/sign-up`
               }
             >
               <label htmlFor="email address">email address*</label>

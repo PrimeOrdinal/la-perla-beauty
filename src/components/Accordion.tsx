@@ -38,8 +38,8 @@ export type AccordionProps = ColorProps &
     allowMultipleExpanded: boolean
     allowZeroExpanded: boolean
     items: Array<{
+      panel: string
       title: string
-      panel: React.ReactNode
     }>
   }
 
@@ -138,19 +138,30 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const Accordion: React.FC<AccordionProps> = ({ allowMultipleExpanded=true, allowZeroExpanded=true, items, ...props }) => (
-  <AccordionStyled allowMultipleExpanded={allowMultipleExpanded} allowZeroExpanded={allowZeroExpanded} {...props}>
+export const Accordion: React.FC<AccordionProps> = ({
+  allowMultipleExpanded = true,
+  allowZeroExpanded = true,
+  items,
+  ...props
+}) => (
+  <AccordionStyled
+    allowMultipleExpanded={allowMultipleExpanded}
+    allowZeroExpanded={allowZeroExpanded}
+    {...props}
+  >
     {items?.length &&
       items.map((item, index) => (
         <ReactAccessibleAccordionItem key={index}>
           <ReactAccessibleAccordionItemHeading>
             <ReactAccessibleAccordionItemButton>
-              {item.title}
+              {item?.title}
             </ReactAccessibleAccordionItemButton>
           </ReactAccessibleAccordionItemHeading>
-          <ReactAccessibleAccordionItemPanel>
-            {item.panel}
-          </ReactAccessibleAccordionItemPanel>
+          <ReactAccessibleAccordionItemPanel
+            dangerouslySetInnerHTML={{
+              __html: item?.panel as string,
+            }}
+          ></ReactAccessibleAccordionItemPanel>
         </ReactAccessibleAccordionItem>
       ))}
   </AccordionStyled>

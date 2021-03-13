@@ -11,6 +11,8 @@ import { ReactComponent as WishlistAbsent } from "../../static/icons/WishlistAbs
 
 import { Link } from "../components/Button"
 
+import { myAccount as myAccountPath } from "../utils/paths"
+
 import { mediaQueries } from "../theme"
 
 import { ListPlain } from "./ListPlain"
@@ -44,7 +46,7 @@ const MainStyled = styled.main`
 
 const AccountNav = styled(ListPlain)`
   border-color: black;
-  border-radius: ${themeGet("radii.4")}px
+  border-radius: ${themeGet("radii.4")}px;
   border-style: solid;
   display: grid;
   gap: 1.5rem;
@@ -96,37 +98,37 @@ export const AccountLayout = ({ children }) => (
     <h1 className="section-title">Navigate to section</h1>
     <AccountNav>
       <li>
-        <Link to="/account/information">
+        <Link to={`${myAccountPath}/information`}>
           <Profile />
           Account information
         </Link>
       </li>
       <li>
-        <Link to="/account/orders">
+        <Link to={`${myAccountPath}/orders`}>
           <Shipping />
           Orders
         </Link>
       </li>
       <li>
-        <Link to="/account/returns">
+        <Link to={`${myAccountPath}/returns`}>
           <Return />
           Returns
         </Link>
       </li>
       <li>
-        <Link to="/account/address-book">
+        <Link to={`${myAccountPath}/address-book`}>
           <Address />
           Address book
         </Link>
       </li>
       <li>
-        <Link to="/account/wishlist">
+        <Link to={`${myAccountPath}/wishlist`}>
           <WishlistAbsent />
           Wishlist
         </Link>
       </li>
       <li>
-        <Link to="/account/newsletter-preferences">
+        <Link to={`${myAccountPath}/newsletter-preferences`}>
           <Newsletter />
           Newsletter preferences
         </Link>

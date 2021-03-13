@@ -1,5 +1,7 @@
-import type { Product } from "schema-dts"
+import type { Offer, Product } from "schema-dts"
 
+import { themeGet } from "@styled-system/theme-get"
+import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -19,10 +21,41 @@ import {
   VariantProps,
 } from "styled-system"
 
+import {
+  availabilitySchemaToHumanReadableText,
+  availabilitySchemaToShortName,
+} from "../utils/schema-org"
+
+import { Link } from "../components/Button"
+import { ItemAvailability } from "./ItemAvailability"
+import { Price } from "./Price"
+
 const ProductSectionStyled = styled.section`
   display: grid;
-  grid-auto-flow: column;
-  padding: ${props => props.theme.space[3]}px;
+
+  .categories {
+    display: grid;
+    font-size: var(--font-size-small, 12px);
+    gap: 1rem;
+    grid-auto-flow: column;
+    justify-content: start;
+    text-transform: uppercase;
+  }
+
+  .availability {
+    justify-self: end;
+  }
+
+  .name {
+    font-size: ${themeGet("fontSizes.7")}px;
+    margin-block-end: ${themeGet("space.8")}px;
+    margin-block-start: unset;
+  }
+
+  .price {
+    font-size: var(--font-size-lg, 18px);
+    margin-block-end: ${themeGet("space.6")}px;
+  }
 
   ${compose(color, flexbox, grid, layout, position, space)}
 `
@@ -36,74 +69,41 @@ export type ProductSectionProps = ColorProps &
   VariantProps & { product: Product }
 
 export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
+  const offer = product?.offers as Offer
+
   return (
-    <ProductSectionStyled itemScope itemType="https://schema.org/Product">
-      <span itemProp="name">{product.name}</span>
-      <img
-        itemProp="image"
-        src="kenmore-microwave-17in.jpg"
-        alt={`Kenmore 17" Microwave`}
-      />
-      <div
-        itemProp="aggregateRating"
-        itemScope
-        itemType="https://schema.org/AggregateRating"
-      >
-        Rated <span itemProp="ratingValue">3.5</span>/5 based on{" "}
-        <span itemProp="reviewCount">11</span> customer reviews
-      </div>
-      <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
-        <span itemProp="priceCurrency" content="USD">
-          $
-        </span>
-        <span itemProp="price" content={product.price}>
-          {product.price}
-        </span>
-        <link itemProp="availability" href="https://schema.org/InStock" />
-        In stock
-      </div>
-      Product description:
-      <span itemProp="description">
-        0.7 cubic feet countertop microwave. Has six preset cooking categories
-        and convenience features like Add-A-Minute and Child Lock.
-      </span>
-      Customer reviews:
-      <div itemProp="review" itemScope itemType="https://schema.org/Review">
-        <span itemProp="name">Not a happy camper</span> - by{" "}
-        <span itemProp="author">Ellie</span>,
-        <meta itemProp="datePublished" content="2011-04-01" />
-        April 1, 2011
-        <div
-          itemProp="reviewRating"
-          itemScope
-          itemType="https://schema.org/Rating"
-        >
-          <meta itemProp="worstRating" content="1" />
-          <span itemProp="ratingValue">1</span>/
-          <span itemProp="bestRating">5</span>stars
+    <ProductSectionStyled>
+      {Array.isArray(product?.category) && (
+        <div className="categories">
+          {product?.category
+            .map(category => (
+              <Link
+                className="product-category"
+                id={category?.identifier}
+                key={category?.identifier}
+                itemProp="category"
+                title={category?.name}
+                to={category?.url}
+              >
+                <span itemProp="name">{category?.name}</span>
+              </Link>
+            ))
+            .pop()}
         </div>
-        <span itemProp="reviewBody">
-          The lamp burned out and now I have to replace it.{" "}
-        </span>
-      </div>
-      <div itemProp="review" itemScope itemType="https://schema.org/Review">
-        <span itemProp="name">Value purchase</span> - by{" "}
-        <span itemProp="author">Lucas</span>,
-        <meta itemProp="datePublished" content="2011-03-25" />
-        March 25, 2011
-        <div
-          itemProp="reviewRating"
-          itemScope
-          itemType="https://schema.org/Rating"
+      )}
+
+      {offer?.availability && (
+        <ItemAvailability
+          className="availability"
+          availability={availabilitySchemaToShortName(offer?.availability)}
         >
-          <meta itemProp="worstRating" content="1" />
-          <span itemProp="ratingValue">4</span>/
-          <span itemProp="bestRating">5</span>stars
-        </div>
-        <span itemProp="reviewBody">
-          Great microwave for the price. It is small and fits in my apartment.
-        </span>
-      </div>
+          {availabilitySchemaToHumanReadableText(offer?.availability)}
+        </ItemAvailability>
+      )}
+
+      <h1 className={clsx("name", "title")}>{product?.name}</h1>
+
+      <Price className="price" offer={offer} />
     </ProductSectionStyled>
   )
 }

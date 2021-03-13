@@ -1,4 +1,3 @@
-import type { Background as BackgroundProp } from "../../types/components"
 import type { ModularBlocksTypes } from "../../types/ModularBlocks"
 
 import clsx from "clsx"
@@ -7,8 +6,13 @@ import styled, { css } from "styled-components"
 
 import { ModularBlocks } from "../components/ModularBlocks"
 
-export type PageSection = {
-  background: BackgroundProp
+export type Section = {
+  background_attachment: string
+  background_colour: string
+  background_image: string
+  background_position: string
+  background_repeat: string
+  background_size: string
   container: boolean
   id: string
   modular_blocks: ModularBlocksTypes[]
@@ -16,53 +20,53 @@ export type PageSection = {
 }
 
 export type PageSectionsProps = {
-  pageSections: PageSection[]
+  sections: Section[]
 }
 
-export const PageSections: React.FC<PageSectionsProps> = ({ pageSections }) => (
+export const PageSections: React.FC<PageSectionsProps> = ({ sections }) => (
   <React.Fragment>
-    {pageSections?.map(page_section => {
+    {sections?.map(section => {
       const SectionStyled = styled.section`
-        ${page_section?.background?.attachment &&
+        ${section?.background_attachment &&
         css`
-          background-attachment: ${page_section?.background?.attachment};
-        `}
-        ${page_section?.background?.colour?.transparent === false &&
-        page_section?.background?.colour?.colour_picker &&
-        css`
-          background-color: ${page_section?.background?.colour?.colour_picker};
-        `}
-            ${page_section?.background?.file?.url &&
-        css`
-          background-image: url("${page_section?.background?.file?.url}");
+          background-attachment: ${section?.background_attachment};
         `}
 
-        background-position: ${page_section?.background?.position};
-
-        ${page_section?.background?.repeat &&
+        ${section?.background_colour &&
         css`
-          background-repeat: ${page_section?.background?.repeat
-              ?.horizontal_repetition_behaviour}
-            ${page_section?.background?.repeat?.vertical_repetition_behaviour};
+          background-color: ${section?.background_colour};
         `}
-        ${page_section?.background?.size?.custom_size !== ""
-          ? css`
-              background-size: ${page_section?.background?.size?.custom_size};
-            `
-          : css`
-              background-size: ${page_section?.background?.size?.preset};
-            `}
-          min-height: 25vh;
+
+        ${section?.background_image &&
+        css`
+          background-image: url("${section?.background_image}");
+        `}
+
+        ${section?.background_position &&
+        css`
+          background-position: ${section?.background_position};
+        `}
+
+        ${section?.background_repeat &&
+        css`
+          background-repeat: ${section?.background_repeat};
+        `}
+
+        ${section?.background_size &&
+        css`
+          background-size: ${section?.background_size};
+        `}
+        
+        min-height: 25vh;
       `
 
       return (
         <SectionStyled
-          className={clsx(page_section?.container && "container")}
-          id={page_section?.id}
-          key={page_section?.id}
+          className={clsx(section?.container && "container")}
+          id={section?.id}
+          key={section?.id}
         >
-          {/* <h2>{page_section?.title}</h2> */}
-          <ModularBlocks modularBlocks={page_section?.modular_blocks} />
+          <ModularBlocks modularBlocks={section?.modular_blocks} />
         </SectionStyled>
       )
     })}

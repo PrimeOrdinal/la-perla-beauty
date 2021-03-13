@@ -132,10 +132,10 @@ export const query = graphql`
         }
       }
     }
-    allContentstackProducts {
+    allContentstackProduct {
       edges {
         node {
-          ...Contentstack_productsFragment
+          ...Contentstack_productFragment
         }
       }
     }

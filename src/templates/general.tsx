@@ -25,11 +25,11 @@ const GeneralPage: React.FC<PageProps<GeneralPageQuery, PageContextPage>> = ({
     <Layout>
       <SEO title={page?.title} />
 
-      {data?.contentstackPages?.breadcrumb?.show && (
+      {data?.contentstackPage?.breadcrumb?.show && (
         <Breadcrumb crumbs={crumbs} />
       )}
 
-      <PageSections pageSections={data?.contentstackPages?.page_sections} />
+      <PageSections sections={data?.contentstackPage?.sections} />
     </Layout>
   )
 }
@@ -38,8 +38,8 @@ export default GeneralPage
 
 export const query = graphql`
   query GeneralPage($contentstackId: String!) {
-    contentstackPages(id: { eq: $contentstackId }) {
-      ...Contentstack_pagesFragment
+    contentstackPage(id: { eq: $contentstackId }) {
+      ...Contentstack_pageFragment
     }
   }
 `

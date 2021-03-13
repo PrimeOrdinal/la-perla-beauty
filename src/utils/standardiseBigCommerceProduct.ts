@@ -1,8 +1,6 @@
 import type {
-  ImageObject,
   Product,
   ProductGroup,
-  Thing,
   WithContext,
 } from "schema-dts"
 
@@ -43,10 +41,10 @@ export function standardiseBigCommerceProduct({
       ({ node: category }) =>
         ({
           "@type": "Thing",
-          identifier: category?.entityId as number | undefined,
+          identifier: category?.entityId?.toString() as string | undefined,
           name: category?.name,
           url: category?.path,
-        } as Thing)
+        })
     ),
     depth: productFormatBigCommerce?.depth,
     description: productFormatBigCommerce?.description,
@@ -57,10 +55,11 @@ export function standardiseBigCommerceProduct({
       ?.edges as BigCommerceGql_ImageEdge[])?.map(
       ({ node: image }) =>
         ({
+          "@type": "ImageObject",
           caption: image?.altText,
           contentUrl: image?.urlOriginal,
           representativeOfPage: image?.isDefault,
-        } as ImageObject)
+        })
     ),
     // mpn: productFormatBigCommerce?.mpn,
     name: productFormatBigCommerce?.name,
@@ -109,7 +108,7 @@ export function standardiseBigCommerceVariant({
           identifier: category?.entityId as number | undefined,
           name: category?.name,
           url: category?.path,
-        } as Thing)
+        })
     ),
     depth: productFormatBigCommerce?.depth,
     description: productFormatBigCommerce?.description,
@@ -120,10 +119,11 @@ export function standardiseBigCommerceVariant({
       ?.edges as BigCommerceGql_ImageEdge[])?.map(
       ({ node: image }) =>
         ({
+          "@type": "ImageObject",
           caption: image?.altText,
           contentUrl: image?.urlOriginal,
           representativeOfPage: image?.isDefault,
-        } as ImageObject)
+        })
     ),
     // mpn: productFormatBigCommerce?.mpn,
     name: productFormatBigCommerce?.name,

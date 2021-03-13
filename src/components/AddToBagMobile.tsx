@@ -42,7 +42,7 @@ const ContainerStyled = styled.div`
 
   .container {
     background-color: ${themeGet("colors.white")};
-    border-radius: ${themeGet("radii.3")}px
+    border-radius: ${themeGet("radii.3")}px;
     border-style: solid;
     bottom: 0px;
     display: grid;

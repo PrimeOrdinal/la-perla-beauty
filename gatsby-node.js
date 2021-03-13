@@ -21,7 +21,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Query for markdown nodes to use in creating pages.
   const result = await graphql(`
       query AllProducts {
-        allContentstackPages {
+        allContentstackPage {
           edges {
             node {
               id
@@ -83,10 +83,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   // Create pages for pages.
-  result.data.allContentstackPages.edges.forEach(({ node }) => {
+  result.data.allContentstackPage.edges.forEach(({ node }) => {
     const pagePath = node.url
-
-    console.log("node.id", node.id)
 
     createPage({
       path: pagePath,
@@ -137,7 +135,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 // exports.createSchemaCustomization = ({ actions }) => {
 //   const { createTypes } = actions
 //   const typeDefs = `
-//     type Contentstack_page_sectionsModular_blocks implements Node {
+//     type Contentstack_sectionsModular_blocks implements Node {
 //       menu {
           
 //       }
