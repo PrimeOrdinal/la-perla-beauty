@@ -1,3 +1,4 @@
+import Checkout from "../../static/icons/Checkout.svg"
 import Cookies from "../../static/icons/Cookies.svg"
 import Diamond from "../../static/icons/Diamond.svg"
 import GiftWrap from "../../static/icons/GiftWrap.svg"
@@ -12,6 +13,10 @@ import Tracking from "../../static/icons/Tracking.svg"
 import WishlistAbsent from "../../static/icons/WishlistAbsent.svg"
 
 export const iconClasses = `
+    .checkout {
+        background-image: url(${Checkout});
+    }
+
     .cookies {
         background-image: url(${Cookies});
     }
