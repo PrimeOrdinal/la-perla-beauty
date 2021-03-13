@@ -32,8 +32,7 @@ const LeafWrapperStyled = styled.div`
   --image-height: clamp(160px, 50vw, 400px);
   --image-width: clamp(120px, 35.7vw, 300px);
 
-  margin-block-end: ${themeGet("space.11")}px;
-  margin-block-start: ${themeGet("space.11")}px;
+  margin-block: ${themeGet("space.11")}px;
 
   ${colourClasses}
 
@@ -43,8 +42,7 @@ const LeafWrapperStyled = styled.div`
 
     ${mediaQueries.md} {
       background-color: ${themeGet("colors.white")};
-      padding-block-start: ${themeGet("space.14")}px;
-      padding-block-end: ${themeGet("space.14")}px;
+      padding-block: ${themeGet("space.14")}px;
     }
   }
 
