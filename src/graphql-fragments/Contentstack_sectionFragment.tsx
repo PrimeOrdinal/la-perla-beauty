@@ -29,6 +29,27 @@ export const Contentstack_sectionFragment = graphql`
         }
         margins
       }
+      banner {
+        banner {
+          backround_position
+          colour
+          id
+          image {
+            description
+            title
+            url
+          }
+          layout
+          link {
+            href
+            title
+          }
+          tag
+          text
+          text_justification
+          title
+        }
+      }
       horizontal_rule {
         colour
         margins
@@ -47,6 +68,31 @@ export const Contentstack_sectionFragment = graphql`
           title
         }
         margins
+      }
+      leaf {
+        leaf {
+          colour
+          id
+          image {
+            description
+            title
+            url
+          }
+          layout
+          link {
+            href
+            title
+          }
+          justify
+          text
+          title
+        }
+      }
+      wysiwyg {
+        wysiwyg {
+          id
+          markup
+        }
       }
     }
     title
