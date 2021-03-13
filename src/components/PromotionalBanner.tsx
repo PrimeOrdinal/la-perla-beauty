@@ -1,3 +1,5 @@
+import type { Colour as ColourProp, Link as LinkProp } from "../../types/components"
+
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
@@ -9,7 +11,6 @@ import {
   layout,
   position,
   space,
-  variant,
   ColorProps,
   FlexboxProps,
   GridProps,
@@ -27,12 +28,12 @@ export type PromotionalBannerProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & {
-    children: React.ReactNode
+  VariantProps & LinkProp & {
+    colour: ColourProp
   }
 
 export const PromotionalBannerStyled: React.FC<PromotionalBannerProps> = styled.div`
-  background-color: ${themeGet("colors.lilac")};
+  background-color: ${props => props.colour ? themeGet(`colors.${props.colour}`) : themeGet("colors.pink")};
   color: ${themeGet("colors.black")};
   display: grid;
   font-size: var(--font-size-body, 13px);
@@ -46,28 +47,10 @@ export const PromotionalBannerStyled: React.FC<PromotionalBannerProps> = styled.
     text-decoration: none;
   }
 
-  ${variant({
-    variants: {
-      primary: {
-        backgroundColor: "lilac",
-        color: "black",
-      },
-      secondary: {
-        backgroundColor: "pink",
-        color: "black",
-      },
-      tertiary: {
-        backgroundColor: "beige",
-        color: "black",
-      },
-    },
-  })}
-
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const PromotionalBanner: React.FC<PromotionalBannerProps> = ({
-  children,
   href,
   title,
   ...props

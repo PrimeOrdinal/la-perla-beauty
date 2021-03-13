@@ -8,10 +8,10 @@ export default {
   component: PromotionalBanner,
   argTypes: {
     backgroundColor: { control: "color" },
-    variant: {
+    colour: {
       control: {
         type: "inline-radio",
-        options: ["primary", "secondary", "tertiary"],
+        options: ["beige", "lightgreen", "lilac", "orange", "pink"],
       },
     },
   },
@@ -21,7 +21,8 @@ const Template: Story<PromotionalBannerProps> = args => <PromotionalBanner {...a
 
 export const Example = Template.bind({})
 Example.args = {
-  children: "Lorem ipsum dolor sit amet",
+  href: "/test",
+  "title": "Lorem ipsum",
   variant: "primary",
 }
 Example.argTypes = {
