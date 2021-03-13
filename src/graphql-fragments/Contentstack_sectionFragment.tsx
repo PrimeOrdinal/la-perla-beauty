@@ -18,6 +18,7 @@ export const Contentstack_sectionFragment = graphql`
           }
           title
         }
+        margins
       }
       article_card_gallery {
         article_card_gallery {
@@ -26,9 +27,11 @@ export const Contentstack_sectionFragment = graphql`
           text_justification
           title
         }
+        margins
       }
       horizontal_rule {
         colour
+        margins
       }
     }
     title

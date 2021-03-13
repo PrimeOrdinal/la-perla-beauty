@@ -41,21 +41,29 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
           // const value: MakePick<ModularBlocksTypes, "image" | "margins"> = value1
 
           const margins = {
-            marginBottom: { _: 0, md: value?.margins?.bottom },
-            marginLeft: { _: 0, md: value?.margins?.left },
-            marginRight: { _: 0, md: value?.margins?.right },
-            marginTop: { _: 0, md: value?.margins?.top },
+            marginBottom: { _: value?.margins?.[0], md: value?.margins?.[2] },
+            marginTop: { _: value?.margins?.[1], md: value?.margins?.[3] },
           }
 
           // TODO: These are all the same so far so replace case statements with a single mapping
           switch (key) {
             case "accordion":
-              const { accordion }: { accordion: AccordionProps[] } = value as any
-              component = accordion?.map((props, index) => <Accordion key={index} {...props} {...margins} />)
+              const {
+                accordion,
+              }: { accordion: AccordionProps[] } = value as any
+              component = accordion?.map((props, index) => (
+                <Accordion key={index} {...props} {...margins} />
+              ))
               break
             case "article_card_gallery":
-              const { article_card_gallery }: { article_card_gallery: ArticleCardGalleryProps[] } = value as any
-              component = article_card_gallery?.map((props, index) => <ArticleCardGallery key={index} {...props} {...margins} />)
+              const {
+                article_card_gallery,
+              }: {
+                article_card_gallery: ArticleCardGalleryProps[]
+              } = value as any
+              component = article_card_gallery?.map((props, index) => (
+                <ArticleCardGallery key={index} {...props} {...margins} />
+              ))
               break
             case "horizontal_rule":
               const props: HoriontalRuleProps[] = value as any
