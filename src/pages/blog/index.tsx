@@ -51,39 +51,48 @@ const imageprops = {
 
 const MainStyled = styled.main`
   overflow-x: hidden;
+
   ${mediaQueries.md} {
     overflow-x: unset;
   }
+
   .first {
     h1 {
       font-size: 21px;
+
       ${mediaQueries.md} {
         font-size: 32px;
       }
     }
+
     p {
-      max-width: 95ch;
       margin-block-end: 2rem;
+      max-width: 95ch;
+
       ${mediaQueries.md} {
         font-size: 14px;
       }
     }
+
     &__grid {
       display: grid;
-      grid-auto-flow: row;
       gap: 36px;
+      grid-auto-flow: row;
+
       ${mediaQueries.md} {
         grid-template-columns: repeat(2, 1fr);
       }
+
       article {
         figure {
-          margin-inline-start: -10%;
-          margin-inline-end: -10%;
+          margin-inline: -10%;
+
           ${mediaQueries.md} {
             margin-inline-start: unset;
             margin-inline-end: unset;
           }
         }
+
         h2 {
           ${mediaQueries.md} {
             font-size: 24px;
@@ -92,6 +101,7 @@ const MainStyled = styled.main`
       }
     }
   }
+
   .second {
     h2 {
       font-size: 21px;
@@ -99,20 +109,23 @@ const MainStyled = styled.main`
         font-size: 24px;
       }
     }
+
     p {
       ${mediaQueries.md} {
         font-size: 14px;
-        max-width: 95ch;
         margin-block-end: 2rem;
+        max-width: 95ch;
       }
     }
   }
+
   .third {
     margin-block-end: 1rem;
+
     article {
       figure {
-        margin-inline-start: -10%;
-        margin-inline-end: -10%;
+        margin-inline: -10%;
+
         ${mediaQueries.md} {
           margin-inline-start: unset;
           margin-inline-end: unset;
@@ -120,34 +133,38 @@ const MainStyled = styled.main`
       }
     }
   }
+
   .fourth {
     background-color: ${themeGet("lightgreen")};
-    padding-block-start: 1rem;
-    padding-block-end: 1rem;
     margin-block-end: 1rem;
+    padding-block: 1rem;
+
     &__grid {
       display: grid;
-      grid-auto-flow: row;
       gap: 1rem;
+      grid-auto-flow: row;
       place-items: center;
+
       ${mediaQueries.sm} {
         grid-template-columns: auto auto;
       }
+
       ${mediaQueries.md} {
         grid-template-columns: repeat(4, auto);
         gap: 24px;
       }
     }
   }
+
   .fifth {
     margin-block-end: 2rem;
+
     article {
       figure {
-        margin-inline-start: -10%;
-        margin-inline-end: -10%;
+        margin-inline: -10%;
+
         ${mediaQueries.md} {
-          margin-inline-start: unset;
-          margin-inline-end: unset;
+          margin-inline: unset;
         }
       }
     }
