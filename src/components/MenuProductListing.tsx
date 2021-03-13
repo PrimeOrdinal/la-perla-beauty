@@ -34,7 +34,7 @@ import { MenuRefine } from "./MenuRefine"
 import { MenuRefineMobile } from "./MenuRefineMobile"
 import { ViewSelector } from "./ViewSelector"
 
-const MenuListingStyled = styled.section`
+const MenuProductListingStyled = styled.section`
   .view-selector {
     ${mediaQueries.smDown} {
       left: -${themeGet("space.4")}px;
@@ -121,7 +121,7 @@ const RefineStyled = styled.div`
   }
 `
 
-export type MenuListingProps = ColorProps &
+export type MenuProductListingProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -133,7 +133,7 @@ export type MenuListingProps = ColorProps &
     view: "grid" | "list"
   }
 
-export const MenuListing: React.FC<MenuListingProps> = ({
+export const MenuProductListing: React.FC<MenuProductListingProps> = ({
   productCount,
   setView,
   view,
@@ -145,7 +145,7 @@ export const MenuListing: React.FC<MenuListingProps> = ({
   const [sortBy, setSortBy] = useState("best sellers")
 
   return (
-    <MenuListingStyled {...props}>
+    <MenuProductListingStyled {...props}>
       <div className={clsx("container", "menu-view-and-refine")}>
         <div className={clsx("menu")}>
           <ViewSelector
@@ -198,6 +198,6 @@ export const MenuListing: React.FC<MenuListingProps> = ({
       <span className="product-count-mobile container">
         Showing 1 - {productCount} of 100
       </span>
-    </MenuListingStyled>
+    </MenuProductListingStyled>
   )
 }

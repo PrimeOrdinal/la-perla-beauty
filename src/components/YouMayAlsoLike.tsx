@@ -25,7 +25,7 @@ import {
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 
-import { Listing } from "./Listing"
+import { ProductListing } from "./ProductListing"
 
 export type YouMayAlsoLikeProps = ColorProps &
   FlexboxProps &
@@ -60,7 +60,7 @@ export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({ data }) => (
   <YouMayAlsoLikeStyled>
     <h1>You May Also Like</h1>
     {data.allBigCommerceProducts && (
-      <Listing
+      <ProductListing
         items={data.allBigCommerceProducts.edges.map(
           ({ node: productFormatBigCommerce }) =>
             standardiseBigCommerceProduct({

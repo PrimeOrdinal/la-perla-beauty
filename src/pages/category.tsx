@@ -12,8 +12,8 @@ import styled from "styled-components"
 import { Breadcrumb } from "../components/Breadcrumb"
 import { Link } from "../components/Button"
 import { Layout } from "../components/Layout"
-import { Listing } from "../components/Listing"
-import { MenuListing } from "../components/MenuListing"
+import { ProductListing } from "../components/ProductListing"
+import { MenuProductListing } from "../components/MenuProductListing"
 import { SEO } from "../components/SEO"
 import { MenuCategory } from "../components/MenuCategory"
 
@@ -103,14 +103,14 @@ const CategoryPage: React.FC<
         </MenuCategory>
       )}
 
-      <MenuListing
+      <MenuProductListing
         productCount={products.length}
         setView={setView}
         view={view}
       />
 
       <main className={clsx("container")}>
-        <Listing
+        <ProductListing
           items={products}
           promotionalBanners={promotionalBanners}
           view={view}

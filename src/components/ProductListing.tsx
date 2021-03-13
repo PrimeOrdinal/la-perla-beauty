@@ -25,7 +25,7 @@ import {
 import { ProductCard } from "./ProductCard"
 import { Banner } from "./Banner"
 
-const ListingStyled = styled.ul`
+const ProductListingStyled = styled.ul`
   display: grid;
   list-style: none;
   padding: 0;
@@ -37,7 +37,7 @@ const ListingStyled = styled.ul`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type ListingProps = ColorProps &
+export type ProductListingProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -49,10 +49,10 @@ export type ListingProps = ColorProps &
     view: "grid" | "list"
   }
 
-export const Listing: React.FC<ListingProps> = ({
-  view,
+export const ProductListing: React.FC<ProductListingProps> = ({
   items,
   promotionalBanners,
+  view,
 }) => {
   const gridItems = items?.map((product: Product, index) => (
     <li className="product" key={`product-${index}`}>
@@ -74,7 +74,7 @@ export const Listing: React.FC<ListingProps> = ({
   })
 
   return (
-    <ListingStyled
+    <ProductListingStyled
       borderTop={1}
       gridAutoFlow="row"
       gridColumnGap={
@@ -105,6 +105,6 @@ export const Listing: React.FC<ListingProps> = ({
       view={view}
     >
       {gridItems}
-    </ListingStyled>
+    </ProductListingStyled>
   )
 }
