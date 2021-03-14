@@ -15,6 +15,7 @@ import {
 import { Banner, BannerProps } from "./Banner"
 import { BlogPostPreview, BlogPostPreviewProps } from "./BlogPostPreview"
 import { BannerGallery, BannerGalleryProps } from "./BannerGallery"
+import { BannerGallery } from "./BannerGallery"
 import { Link } from "./Button"
 import { HoriontalRule, HoriontalRuleProps } from "./HoriontalRule"
 import { IconList, IconListProps } from "./IconList"
