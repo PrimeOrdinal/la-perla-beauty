@@ -30,11 +30,9 @@ export type ModularBlocksProps = {
   modularBlocks: ModularBlocksTypes[]
 }
 
-export const ModularBlocks: React.FC<ModularBlocksProps> = ({
-  modularBlocks,
-}) => (
+export const ModularBlocks: React.FC<ModularBlocksProps> = (props) => (
   <React.Fragment>
-    {modularBlocks?.map(modular_block => {
+    {props.modularBlocks?.map(modular_block => {
       let component
 
       Object.entries(modular_block).forEach(
