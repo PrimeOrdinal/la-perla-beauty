@@ -21,7 +21,7 @@ import {
 
 import { mediaQueries } from "../theme"
 
-import { BlogPostPreview } from "./BlogPostPreview"
+import { ArticleCard, ArticleCardProps } from "./ArticleCard"
 
 const ArticleCardGalleryStyled = styled.div`
   display: grid;
@@ -47,51 +47,18 @@ export type ArticleCardGalleryProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    items: Array<{
-      title: string
-      text_justification: JustifyProp
-    }>
+    items: ArticleCardProps[]
     text: string
     title: string
   }
 
-
-export const ArticleCardGallery: React.FC<ArticleCardGalleryProps> = ({
-  id,
-  items,
-  text,
-  text_justification
-}) => {
-  console.log("items", items)
-  console.log("text", text)
-  return (
+export const ArticleCardGallery: React.FC<ArticleCardGalleryProps> = (props) => (
     <ArticleCardGalleryStyled>
-      <BlogPostPreview
-        titleBelow="Etiam aliquet vist metus"
-        body="Luxury with integrity​"
-        link="read more"
-        aspectRatio="3/4"
-      />
-      <BlogPostPreview
-        titleBelow="Etiam aliquet vist metus"
-        body="Luxury with integrity​"
-        link="read more"
-        aspectRatio="3/4"
-      />
-      <BlogPostPreview
-        titleBelow="Etiam aliquet vist metus"
-        body="Luxury with integrity​"
-        link="read more"
-        aspectRatio="3/4"
-      />
-      <BlogPostPreview
-        titleBelow="Etiam aliquet vist metus"
-        body="Luxury with integrity​"
-        link="read more"
-        aspectRatio="3/4"
-      />
+      ${props.items?.map((item, index) => <ArticleCard
+        key={index}
+        {...item}
+      />)}
     </ArticleCardGalleryStyled>
   )
-}
 
 export default ArticleCardGallery

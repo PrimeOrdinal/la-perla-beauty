@@ -1,8 +1,27 @@
+import { Justify as JustifyProp } from "../../types/components"
+
 import React from "react"
 import styled from "styled-components"
+import {
+  color,
+  compose,
+  flexbox,
+  grid,
+  layout,
+  position,
+  space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
+
 import { mediaQueries } from "../theme"
 
-import { BlogPostPreview } from "./BlogPostPreview"
+import { ArticleCard } from "./ArticleCard"
 
 const GridStyled = styled.div`
   display: grid;
@@ -15,30 +34,48 @@ const GridStyled = styled.div`
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
   }
+
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const ArticleGrid: React.FC = () => {
+export type ArticleCardGridProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
+    items: Array<{
+      title: string
+      text_justification: JustifyProp
+    }>
+    text: string
+    title: string
+  }
+
+
+export const ArticleCardGrid: React.FC = (props) => {
   return (
     <GridStyled>
-      <BlogPostPreview
+      <ArticleCard
         titleBelow="Etiam aliquet vist metus"
         body="Luxury with integrity​"
         link="read more"
         aspectRatio="3/4"
       />
-      <BlogPostPreview
+      <ArticleCard
         titleBelow="Etiam aliquet vist metus"
         body="Luxury with integrity​"
         link="read more"
         aspectRatio="3/4"
       />
-      <BlogPostPreview
+      <ArticleCard
         titleBelow="Etiam aliquet vist metus"
         body="Luxury with integrity​"
         link="read more"
         aspectRatio="3/4"
       />
-      <BlogPostPreview
+      <ArticleCard
         titleBelow="Etiam aliquet vist metus"
         body="Luxury with integrity​"
         link="read more"
@@ -48,4 +85,4 @@ export const ArticleGrid: React.FC = () => {
   )
 }
 
-export default ArticleGrid
+export default ArticleCardGrid

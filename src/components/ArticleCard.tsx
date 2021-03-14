@@ -1,3 +1,5 @@
+import type { Image as ImageProp, Link as LinkProp } from "../../types/components"
+
 import React from "react"
 
 import styled from "styled-components"
@@ -20,7 +22,7 @@ import {
 
 import { Link } from "./Button"
 
-export type BlogPostPreviewProps = ColorProps &
+export type ArticleCardProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -28,14 +30,15 @@ export type BlogPostPreviewProps = ColorProps &
   SpaceProps &
   VariantProps & {
     aspectRatio: string
-    body: string
-    titleAbove: string
-    titleBelow: string
-    link: string
+    image: ImageProp
+    link: LinkProp
     tag: string
+    text: string
+    title: string
+    titlePosition: "bottom" | "top"
   }
 
-const BlogPostPreviewStyled = styled.article`
+const ArticleCardStyled = styled.article`
   span {
     display: block;
     text-transform: uppercase;
@@ -53,30 +56,21 @@ const BlogPostPreviewStyled = styled.article`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const BlogPostPreview: React.FC<BlogPostPreviewProps> = ({
-  titleAbove,
-  titleBelow,
-  tag,
-  body,
-  link,
-  aspectRatio,
-}) => (
-  <BlogPostPreviewStyled>
-    {titleAbove && <h2>{titleAbove}</h2>}
-    {aspectRatio && (
-      <figure aspect-ratio={aspectRatio}>
+export const ArticleCard: React.FC<ArticleCardProps> = (props) => (
+  <ArticleCardStyled>
+    {props.titlePosition === "top" && <h2>{props.title}</h2>}
+    {props.aspectRatio && (
+      <figure aspect-ratio={props.aspectRatio}>
         <img
-          src={`https://picsum.photos/600/400?${
-            Math.floor(Math.random() * 10) + 1
-          }`}
+          src={props.image?.aaa}
           alt="placeholder image"
         />
       </figure>
     )}
 
-    {tag && <span>{tag}</span>}
-    {titleBelow && <h2>{titleBelow}</h2>}
-    {body && <p>{body}</p>}
-    {link && <Link>{link}</Link>}
-  </BlogPostPreviewStyled>
+    {props.tag && <span>{props.tag}</span>}
+    {props.titlePosition === "bottom" && <h2>{props.title}</h2>}
+    {props.text && <p>{props.text}</p>}
+    {props.link && <Link to={props.link?.href}>{props.link?.title}</Link>}
+  </ArticleCardStyled>
 )

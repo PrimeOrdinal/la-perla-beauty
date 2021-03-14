@@ -9,12 +9,12 @@ import React from "react"
 import styled from "styled-components"
 import { mediaQueries } from "../../theme"
 
-import { BlogPostPreview } from "../../components/BlogPostPreview"
+import { ArticleCard } from "../../components/ArticleCard"
 import { Breadcrumb } from "../../components/Breadcrumb"
 import { ImageGallery } from "../../components/ImageGallery"
 import { Layout } from "../../components/Layout"
 import { MenuCategory } from "../../components/MenuCategory"
-import { ArticleGrid } from "../../components/ArticleGrid"
+import { ArticleCardGrid } from "../../components/ArticleCardGrid"
 import { ArticleSlider } from "../../components/ArticleSlider"
 import { ProductCardAlternateGallery } from "../../components/ProductCardAlternateGallery"
 
@@ -192,13 +192,13 @@ const BlogLandingPage: React.FC<
             Vivamus at tortor ullamcorper, aliquam lorem nec, varius arcu.
           </p>
           <div className="first__grid">
-            <BlogPostPreview
+            <ArticleCard
               titleBelow="The exquisite sense of mere tranquil existence"
               tag="Be inspired"
               link="explore and shop"
               aspectRatio="615/413"
             />
-            <BlogPostPreview
+            <ArticleCard
               titleBelow="Never was there a greater artist than there is now"
               tag="featured"
               link="explore and shop"
@@ -214,10 +214,10 @@ const BlogLandingPage: React.FC<
             nec, tincidunt nisl. Sed bibendum eu sapien eleifend feugiat. Cras
             efficitur erat aliquam.
           </p>
-          <ArticleGrid />
+          <ArticleCardGrid />
         </section>
         <section className="third container">
-          <BlogPostPreview
+          <ArticleCard
             titleBelow="The buzz of the little world"
             tag="videos"
             link="learn more"
@@ -231,7 +231,7 @@ const BlogLandingPage: React.FC<
             Etiam aliquet metus mauris, tempus odio feugiat non. Praesent eu
             magna id hendrerit bibendum. Aenean eget aliquet nisl. Pellentesque.{" "}
           </p>
-          <BlogPostPreview
+          <ArticleCard
             titleBelow="The buzz of the little world"
             body="Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus a felis et odio viverra dignissim."
             link="explore & shop"

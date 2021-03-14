@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { mediaQueries } from "../theme"
 
-import { BlogPostPreview } from "../components/BlogPostPreview"
+import { ArticleCard } from "../components/ArticleCard"
 
 const ArticleSliderStyled = styled.section`
   padding-inline-end: 0;
@@ -24,27 +24,31 @@ export const ArticleSlider: React.FC = () => {
   return (
     <ArticleSliderStyled className="container">
       <div className="grid">
-        <BlogPostPreview
-          titleAbove="The key to more success is to get a massage"
-          body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        <ArticleCard
+          title="The key to more success is to get a massage"
+          titlePosition="top"
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           link="read more"
           aspectRatio="3/4"
         />
-        <BlogPostPreview
-          titleBelow="Don’t panic, when it gets crazy and rough"
-          body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        <ArticleCard
+          title="Don’t panic, when it gets crazy and rough"
+          titlePosition="bottom"
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           link="read more"
           aspectRatio="3/4"
         />
-        <BlogPostPreview
-          titleAbove="The key to more success is to get a massage"
-          body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        <ArticleCard
+          title="The key to more success is to get a massage"
+          titlePosition="top"
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           link="read more"
           aspectRatio="3/4"
         />
-        <BlogPostPreview
-          titleBelow="Don’t panic, when it gets crazy and rough"
-          body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        <ArticleCard
+          title="Don’t panic, when it gets crazy and rough"
+          titlePosition="bottom"
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           link="read more"
           aspectRatio="3/4"
         />
