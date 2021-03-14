@@ -15,6 +15,7 @@ import {
 import { Banner, BannerProps } from "./Banner"
 import { BlogPostPreview, BlogPostPreviewProps } from "./BlogPostPreview"
 import { BannerGallery, BannerGalleryProps } from "./BannerGallery"
+import { Link } from "./Button"
 import { HoriontalRule, HoriontalRuleProps } from "./HoriontalRule"
 import { IconList, IconListProps } from "./IconList"
 import { Leaf, LeafProps } from "./Leaf"
@@ -111,14 +112,14 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 />
               ))
               break
-            case "video":
+            case "menu":
               const {
-                video,
+                menu,
               }: {
-                video: VideoPlayerProps[]
+                menu: MenuCategoryProps[]
               } = value as any
-              component = video?.map((props, index) => (
-                <VideoPlayer key={index} {...margins} {...props} />
+              component = menu?.map((props, index) => (
+                <MenuCategory key={index} {...margins} {...props}>{props.links.map((link, index) => <Link key={index} to={link?.url?.href}>{link?.url?.title}</Link>)}</MenuCategory>
               ))
               break
               case "video":
