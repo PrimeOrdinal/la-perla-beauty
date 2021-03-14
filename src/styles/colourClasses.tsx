@@ -20,4 +20,8 @@ export const colourClasses = `
     .pink {
         background-color: ${theme.colors.pink};
     }
+
+    .lightgrey {
+        background-color: ${theme.colors.lightgrey};
+    }
 `
