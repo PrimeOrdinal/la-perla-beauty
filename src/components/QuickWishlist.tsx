@@ -1,5 +1,6 @@
 import type { Product } from "schema-dts"
 
+import clsx from "clsx"
 import { Formik, Form, FormikHelpers } from "formik"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
@@ -108,9 +109,9 @@ export const QuickWishlist: React.FC<QuickWishlistProps> = ({
         }}
       >
         <Form>
-          <Button type="submit">
-            <span className="sr-only">Add to Wishlist</span>
-            {isInWishlist ? <WishlistPresentIcon /> : <WishlistAbsentIcon />}
+          <Button type="submit" variant={props.type === "text" && "primary"}>
+            <span className={clsx(props.type !== "text" && "sr-only")}>Add to Wishlist</span>
+            {props.type !== "text" && (isInWishlist ? <WishlistPresentIcon /> : <WishlistAbsentIcon />)}
           </Button>
         </Form>
       </Formik>

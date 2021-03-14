@@ -32,7 +32,7 @@ export type QuickBuyProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & { product: Product }
+  VariantProps & { product: Product; showPrice: boolean; showVariants: boolean; }
 
 interface Values {
   identifier: string
@@ -103,46 +103,54 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
         }}
       >
         <Form className={clsx("quick-buy")}>
-          {Array.isArray(product?.hasVariant) &&
-          product?.hasVariant?.some(variant => variant.variesBy === "Size") ? (
-            <ProductSelectorSize
-              marginBottom={{ _: 2, md: 4 }}
-              product={product}
-            />
-          ) : (
-            <ProductSelectorColour
-              marginBottom={{ _: 2, md: 4 }}
-              product={product}
-            />
-          )}
+          {props.showVariants &&
+            (Array.isArray(product?.hasVariant) &&
+            product?.hasVariant?.some(
+              variant => variant.variesBy === "Size"
+            ) ? (
+              <ProductSelectorSize
+                marginBottom={{ _: 2, md: 4 }}
+                product={product}
+              />
+            ) : (
+              <ProductSelectorColour
+                marginBottom={{ _: 2, md: 4 }}
+                product={product}
+              />
+            ))}
           <Button type="submit" variant="primary" py={{ md: 4 }} px={{ md: 9 }}>
-            <span
-              itemProp="offers"
-              itemScope
-              itemType="https://schema.org/Offer"
-            >
-              <span
-                className="product-price"
-                content={offer?.priceCurrency as string}
-                itemProp="priceCurrency"
-              >
-                {getSymbolFromCurrency(offer?.priceCurrency as string)}
-              </span>
-              <span
-                className="product-price"
-                content={offer?.price as number}
-                itemProp="price"
-              >
-                {offer?.price}
-              </span>
-              {offer?.availability && (
-                <link
-                  href={offer?.availability as string}
-                  itemProp="availability"
-                />
-              )}
-            </span>{" "}
-            | <span>{isInBag ? "Added to bag" : "Add to bag"}</span>
+            {props.showPrice && (
+              <React.Fragment>
+                <span
+                  itemProp="offers"
+                  itemScope
+                  itemType="https://schema.org/Offer"
+                >
+                  <span
+                    className="product-price"
+                    content={offer?.priceCurrency as string}
+                    itemProp="priceCurrency"
+                  >
+                    {getSymbolFromCurrency(offer?.priceCurrency as string)}
+                  </span>
+                  <span
+                    className="product-price"
+                    content={offer?.price as number}
+                    itemProp="price"
+                  >
+                    {offer?.price}
+                  </span>
+                  {offer?.availability && (
+                    <link
+                      href={offer?.availability as string}
+                      itemProp="availability"
+                    />
+                  )}
+                </span>{" "}
+                |
+              </React.Fragment>
+            )}
+            <span>{isInBag ? "Added to bag" : "Add to bag"}</span>
           </Button>
         </Form>
       </Formik>

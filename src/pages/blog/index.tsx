@@ -16,7 +16,7 @@ import { Layout } from "../../components/Layout"
 import { MenuCategory } from "../../components/MenuCategory"
 import { ArticleGrid } from "../../components/ArticleGrid"
 import { ArticleSlider } from "../../components/ArticleSlider"
-import { ProductCardAltGrid } from "../../components/ProductCardAltGrid"
+import { ProductCardAlternateGallery } from "../../components/ProductCardAlternateGallery"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceGql_Category
@@ -224,7 +224,7 @@ const BlogLandingPage: React.FC<
             aspectRatio="615/413"
           />
         </section>
-        <ProductCardAltGrid />
+        <ProductCardAlternateGallery />
         <section className="fifth container">
           <h2>Don't Miss</h2>
           <p>

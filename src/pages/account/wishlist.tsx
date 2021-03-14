@@ -54,10 +54,10 @@ const WishlistPage: React.FC = () => (
                 "@context": "https://schema.org",
                 "@type": "ProductGroup",
                 category: [
-                  { name: "Fragrances", url: "/fragrances/" },
-                  { name: "Shop All", url: "/shop-all/" },
+                  { "@type": "Thing", name: "Fragrances", url: "/fragrances/" },
+                  { "@type": "Thing", name: "Shop All", url: "/shop-all/" },
                   {
-                    name: "Fragrances sub-category 1",
+                    "@type": "Thing", name: "Fragrances sub-category 1",
                     url: "/fragrances/fragrances-sub-category-1/",
                   },
                 ],
@@ -65,30 +65,35 @@ const WishlistPage: React.FC = () => (
                 identifier: "141",
                 image: [
                   {
+                    "@type": "ImageObject",
                     caption: "Bottle",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/141/379/LaPerla_Collection_120ml__LTDB__36380.1613651451.jpg",
                     representativeOfPage: true,
                   },
                   {
+                    "@type": "ImageObject",
                     caption: "Ravine",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/141/409/1015-600x600__02193.1613651452.jpg",
                     representativeOfPage: false,
                   },
                   {
+                    "@type": "ImageObject",
                     caption: "Mountain",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/141/410/1016-600x600__38046.1613651452.jpg",
                     representativeOfPage: false,
                   },
                   {
+                    "@type": "ImageObject",
                     caption: "Clouds",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/141/408/1019-600x600__22691.1613651452.jpg",
                     representativeOfPage: false,
                   },
                   {
+                    "@type": "ImageObject",
                     caption: "Mist",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/141/411/1021-600x600__03146.1613661248.jpg",
@@ -167,11 +172,12 @@ const WishlistPage: React.FC = () => (
               product={{
                 "@context": "https://schema.org",
                 "@type": "ProductGroup",
-                category: [{ name: "Shop All", url: "/shop-all/" }],
+                category: [{ "@type": "Thing", name: "Shop All", url: "/shop-all/" }],
                 description: "About That Night | 12ml EDP | Miniature",
                 identifier: "113",
                 image: [
                   {
+                    "@type": "ImageObject",
                     caption: "",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/113/407/LaPerla_Collection_120ml__MD__86621.1612958300.jpg",
@@ -214,11 +220,12 @@ const WishlistPage: React.FC = () => (
               product={{
                 "@context": "https://schema.org",
                 "@type": "ProductGroup",
-                category: [{ name: "Shop All", url: "/shop-all/" }],
+                category: [{ "@type": "Thing", name: "Shop All", url: "/shop-all/" }],
                 description: "Invisible Touch | 12ml EDP | Miniature",
                 identifier: "114",
                 image: [
                   {
+                    "@type": "ImageObject",
                     caption: "",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/114/406/LaPerla_Collection_120ml__LTDB__37833.1612958287.jpg",
@@ -263,9 +270,10 @@ const WishlistPage: React.FC = () => (
                 "@context": "https://schema.org",
                 "@type": "ProductGroup",
                 category: [
-                  { name: "Shop All", url: "/shop-all/" },
-                  { name: "Fragrances", url: "/fragrances/" },
+                  { "@type": "Thing", name: "Shop All", url: "/shop-all/" },
+                  { "@type": "Thing", name: "Fragrances", url: "/fragrances/" },
                   {
+                    "@type": "Thing",
                     name: "Fragrances sub-category 1",
                     url: "/fragrances/fragrances-sub-category-1/",
                   },
@@ -274,6 +282,7 @@ const WishlistPage: React.FC = () => (
                 identifier: "138",
                 image: [
                   {
+                    "@type": "ImageObject",
                     caption: "",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/138/382/LaPerla_Collection_120ml__P__97038.1612958040.jpg",
@@ -319,11 +328,14 @@ const WishlistPage: React.FC = () => (
               product={{
                 "@context": "https://schema.org",
                 "@type": "ProductGroup",
-                category: [{ name: "Shop All", url: "/shop-all/" }],
+                category: [
+                  { "@type": "Thing", name: "Shop All", url: "/shop-all/" },
+                ],
                 description: "Invisible Touch | 12ml EDP | Miniature",
                 identifier: "114",
                 image: [
                   {
+                    "@type": "ImageObject",
                     caption: "",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/114/406/LaPerla_Collection_120ml__LTDB__37833.1612958287.jpg",
@@ -367,11 +379,14 @@ const WishlistPage: React.FC = () => (
               product={{
                 "@context": "https://schema.org",
                 "@type": "ProductGroup",
-                category: [{ name: "Shop All", url: "/shop-all/" }],
+                category: [
+                  { "@type": "Thing", name: "Shop All", url: "/shop-all/" },
+                ],
                 description: "About That Night | 12ml EDP | Miniature",
                 identifier: "113",
                 image: [
                   {
+                    "@type": "ImageObject",
                     caption: "",
                     contentUrl:
                       "https://cdn11.bigcommerce.com/s-9o6tufixs6/images/stencil/original/products/113/407/LaPerla_Collection_120ml__MD__86621.1612958300.jpg",
