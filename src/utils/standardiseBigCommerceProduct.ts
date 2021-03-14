@@ -1,8 +1,4 @@
-import type {
-  Product,
-  ProductGroup,
-  WithContext,
-} from "schema-dts"
+import type { Product, ProductGroup, WithContext } from "schema-dts"
 
 import type {
   BigCommerceGql_CategoryEdge,
@@ -37,30 +33,24 @@ export function standardiseBigCommerceProduct({
     "@context": "https://schema.org",
     "@type": "Product",
     category: (productFormatBigCommerce?.categories
-      ?.edges as BigCommerceGql_CategoryEdge[])?.map(
-      ({ node: category }) =>
-        ({
-          "@type": "Thing",
-          identifier: category?.entityId?.toString() as string | undefined,
-          name: category?.name,
-          url: category?.path,
-        })
-    ),
+      ?.edges as BigCommerceGql_CategoryEdge[])?.map(({ node: category }) => ({
+      "@type": "Thing",
+      identifier: category?.entityId?.toString() as string | undefined,
+      name: category?.name,
+      url: category?.path,
+    })),
     depth: productFormatBigCommerce?.depth,
     description: productFormatBigCommerce?.description,
     // gtin: productFormatBigCommerce?.gtin,
     height: productFormatBigCommerce?.height,
     identifier: productFormatBigCommerce?.entityId.toString(),
     image: (productFormatBigCommerce?.images
-      ?.edges as BigCommerceGql_ImageEdge[])?.map(
-      ({ node: image }) =>
-        ({
-          "@type": "ImageObject",
-          caption: image?.altText,
-          contentUrl: image?.urlOriginal,
-          representativeOfPage: image?.isDefault,
-        })
-    ),
+      ?.edges as BigCommerceGql_ImageEdge[])?.map(({ node: image }) => ({
+      "@type": "ImageObject",
+      caption: image?.altText,
+      contentUrl: image?.urlOriginal,
+      representativeOfPage: image?.isDefault,
+    })),
     // mpn: productFormatBigCommerce?.mpn,
     name: productFormatBigCommerce?.name,
     offers: {
@@ -101,30 +91,24 @@ export function standardiseBigCommerceVariant({
     "@context": "https://schema.org",
     "@type": "Product",
     category: (productFormatBigCommerce?.categories
-      ?.edges as BigCommerceGql_CategoryEdge[])?.map(
-      ({ node: category }) =>
-        ({
-          "@type": "Thing",
-          identifier: category?.entityId as number | undefined,
-          name: category?.name,
-          url: category?.path,
-        })
-    ),
+      ?.edges as BigCommerceGql_CategoryEdge[])?.map(({ node: category }) => ({
+      "@type": "Thing",
+      identifier: category?.entityId as number | undefined,
+      name: category?.name,
+      url: category?.path,
+    })),
     depth: productFormatBigCommerce?.depth,
     description: productFormatBigCommerce?.description,
     // gtin: productFormatBigCommerce?.gtin,
     height: productFormatBigCommerce?.height,
     identifier: productFormatBigCommerce?.entityId.toString(),
     image: (productFormatBigCommerce?.images
-      ?.edges as BigCommerceGql_ImageEdge[])?.map(
-      ({ node: image }) =>
-        ({
-          "@type": "ImageObject",
-          caption: image?.altText,
-          contentUrl: image?.urlOriginal,
-          representativeOfPage: image?.isDefault,
-        })
-    ),
+      ?.edges as BigCommerceGql_ImageEdge[])?.map(({ node: image }) => ({
+      "@type": "ImageObject",
+      caption: image?.altText,
+      contentUrl: image?.urlOriginal,
+      representativeOfPage: image?.isDefault,
+    })),
     // mpn: productFormatBigCommerce?.mpn,
     name: productFormatBigCommerce?.name,
     offers: {
