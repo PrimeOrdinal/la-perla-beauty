@@ -1,7 +1,6 @@
 import type { Offer, Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -33,7 +32,7 @@ import {
   availabilitySchemaToShortName,
 } from "../utils/schema-org"
 
-import { Button } from "./Button"
+import { Button, Link } from "./Button"
 import { Price } from "./Price"
 import { QuickBuy } from "./QuickBuy"
 import { QuickWishlist } from "./QuickWishlist"
@@ -227,6 +226,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           className="quick-buy"
           marginBottom={{ _: 6, md: 0 }}
           product={product}
+          showPrice={true}
+          showVariants={true}
         />
       )}
     </ProductCardStyled>

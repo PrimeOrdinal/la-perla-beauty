@@ -56,8 +56,8 @@ export const YouMayAlsoLikeStyled: React.FC<YouMayAlsoLikeProps> = styled.aside`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({ data }) => (
-  <YouMayAlsoLikeStyled>
+export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({ data, ...props }) => (
+  <YouMayAlsoLikeStyled {...props}>
     <h1>You May Also Like</h1>
     {data.allBigCommerceProducts && (
       <ProductListing

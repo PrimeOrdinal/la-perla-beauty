@@ -1,3 +1,5 @@
+import type { Image as ImageProp } from "../../types/components"
+
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
@@ -43,30 +45,22 @@ const CarouselCardStyled = styled.div`
 `
 
 export type CarouselCardProps = {
-  image: {
-    src: string
-    alt: string
-  }
+  image: ImageProp
   date: string
   title: string
   body: string
 }
 
-export const CarouselCard: React.FC<CarouselCardProps> = ({
-  image,
-  date,
-  title,
-  body,
-}) => {
+export const CarouselCard: React.FC<CarouselCardProps> = (props) => {
   return (
     <CarouselCardStyled>
       <figure>
-        <img className="img-bl" src={image.src} alt={image.alt} />
+        <img alt={props.image?.alt} className="img-bl" src={props.image?.src} />
       </figure>
       <div>
-        <time>{date}</time>
-        <h2>{title}</h2>
-        <p>{body}</p>
+        <time>{props.date}</time>
+        <h2>{props.title}</h2>
+        <p>{props.body}</p>
       </div>
     </CarouselCardStyled>
   )

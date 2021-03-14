@@ -138,19 +138,14 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const Accordion: React.FC<AccordionProps> = ({
-  allowMultipleExpanded = true,
-  allowZeroExpanded = true,
-  items,
-  ...props
-}) => (
+export const Accordion: React.FC<AccordionProps> = (props) => (
   <AccordionStyled
-    allowMultipleExpanded={allowMultipleExpanded}
-    allowZeroExpanded={allowZeroExpanded}
+    allowMultipleExpanded={true}
+    allowZeroExpanded={true}
     {...props}
   >
-    {items?.length &&
-      items.map((item, index) => (
+    {props.items?.length &&
+      props.items.map((item, index) => (
         <ReactAccessibleAccordionItem key={index}>
           <ReactAccessibleAccordionItemHeading>
             <ReactAccessibleAccordionItemButton>

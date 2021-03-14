@@ -75,15 +75,13 @@ function afterOpenModal() {
 export const Modal: React.FC<ModalProps> = ({
   children,
   closeModal,
-  contentLabel,
-  isOpen = false,
   ModalOverlayStyleCustom,
   ...props
 }) => {
   return (
     <ReactModal
-      contentLabel={contentLabel}
-      isOpen={isOpen}
+      contentLabel={props.contentLabel}
+      isOpen={props.isOpen ? props.isOpen : false}
       onAfterOpen={afterOpenModal}
       onRequestClose={closeModal}
       style={{

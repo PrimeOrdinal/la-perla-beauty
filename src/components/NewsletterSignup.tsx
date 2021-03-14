@@ -43,6 +43,7 @@ const NewsletterStyled = styled.div`
 
   input {
     height: 100%;
+
     ${themeGet("mediaQueries.md")} {
       min-width: 14rem;
     }
@@ -65,9 +66,9 @@ const NewsletterStyled = styled.div`
     }
 
     p {
-      text-align: left;
       font-size: var(--font-size-sm, 12px);
       font-weight: lighter;
+      text-align: left;
       text-transform: unset;
     }
   }

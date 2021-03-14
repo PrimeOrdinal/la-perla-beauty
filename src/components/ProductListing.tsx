@@ -49,12 +49,8 @@ export type ProductListingProps = ColorProps &
     view: "grid" | "list"
   }
 
-export const ProductListing: React.FC<ProductListingProps> = ({
-  items,
-  promotionalBanners,
-  view,
-}) => {
-  const gridItems = items?.map((product: Product, index) => (
+export const ProductListing: React.FC<ProductListingProps> = (props) => {
+  const gridItems = props.items?.map((product: Product, index) => (
     <li className="product" key={`product-${index}`}>
       <ProductCard key={index} product={product} />
       <Helmet>
@@ -63,7 +59,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({
     </li>
   ))
 
-  promotionalBanners?.forEach((promotionalBanner, index) => {
+  props.promotionalBanners?.forEach((promotionalBanner, index) => {
     gridItems.splice(
       promotionalBanner?.grid_position,
       0,
@@ -78,17 +74,17 @@ export const ProductListing: React.FC<ProductListingProps> = ({
       borderTop={1}
       gridAutoFlow="row"
       gridColumnGap={
-        view === "grid"
+        props.view === "grid"
           ? { _: 6, sm: 6, md: 8, lg: 10 }
           : { _: 6, sm: 6, md: 8, lg: 10 }
       }
       gridRowGap={
-        view === "grid"
+        props.view === "grid"
           ? { _: 4, sm: 6, md: 8, lg: 10 }
           : { _: 4, sm: 6, md: 8, lg: 10 }
       }
       gridTemplateColumns={
-        view === "grid"
+        props.view === "grid"
           ? {
               _: "repeat(2, 1fr)",
               sm: "repeat(2, 1fr)",
@@ -102,7 +98,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({
               xl: "repeat(2, 1fr)",
             }
       }
-      view={view}
+      view={props.view}
     >
       {gridItems}
     </ProductListingStyled>

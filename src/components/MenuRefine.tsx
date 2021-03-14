@@ -22,7 +22,7 @@ import {
 } from "styled-system"
 
 import { themeGet } from "@styled-system/theme-get"
-import { mediaQueries, theme } from "../theme"
+import { mediaQueries } from "../theme"
 
 import { Button } from "./Button"
 

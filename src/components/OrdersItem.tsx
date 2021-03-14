@@ -111,10 +111,7 @@ const SecondColumnStyled = styled(ListPlain)`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const OrdersItem: React.FC<OrdersItemProps> = ({
-  current,
-  previous,
-}) => {
+export const OrdersItem: React.FC<OrdersItemProps> = (props) => {
   return (
     <OrderItemStyled>
       <img src="https://picsum.photos/220" alt="image" />
@@ -137,10 +134,10 @@ export const OrdersItem: React.FC<OrdersItemProps> = ({
         </ListPlain>
 
         <li>
-          {previous && <Link className="view-mobile">view order details</Link>}
+          {props.previous && <Link className="view-mobile">view order details</Link>}
         </li>
       </SecondColumnStyled>
-      {current && (
+      {props.current && (
         <div className="items">
           <Button variant="primary" py="5" px="7">
             view order details
@@ -151,7 +148,7 @@ export const OrdersItem: React.FC<OrdersItemProps> = ({
         </div>
       )}
 
-      {previous && <Link className="view-desktop">View order details</Link>}
+      {props.previous && <Link className="view-desktop">View order details</Link>}
     </OrderItemStyled>
   )
 }

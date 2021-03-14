@@ -49,8 +49,6 @@ export type LayoutProps = {
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
-  type = "full",
-  opaque,
   ...props
 }) => {
   const data: LayoutQuery = useStaticQuery(graphql`
@@ -111,7 +109,11 @@ export const Layout: React.FC<LayoutProps> = ({
         <GlobalStyle theme={theme} />
         <SiteSelector />
 
-        {type === "full" ? (
+        {props.type === "compact" ? (
+          <StyledPageContainer>
+            <StyledContentArea className="flex">{children}</StyledContentArea>
+          </StyledPageContainer>
+        ) : (
           <React.Fragment>
             {data?.contentstackBanners?.title && (
               <PromotionalBanner
@@ -123,7 +125,7 @@ export const Layout: React.FC<LayoutProps> = ({
             <GlobalHeader
               siteTitle={data?.site?.siteMetadata?.title || `Title`}
               data={data}
-              opaque={opaque}
+              opaque={props.opaque}
             />
             <StyledPageContainer>
               <StyledContentArea>{children}</StyledContentArea>
@@ -133,10 +135,6 @@ export const Layout: React.FC<LayoutProps> = ({
               data={data}
             />
           </React.Fragment>
-        ) : (
-          <StyledPageContainer>
-            <StyledContentArea className="flex">{children}</StyledContentArea>
-          </StyledPageContainer>
         )}
       </StyledSiteContainer>
     </ThemeProvider>

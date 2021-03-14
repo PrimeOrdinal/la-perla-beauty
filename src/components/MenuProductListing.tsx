@@ -134,9 +134,7 @@ export type MenuProductListingProps = ColorProps &
   }
 
 export const MenuProductListing: React.FC<MenuProductListingProps> = ({
-  productCount,
   setView,
-  view,
   ...props
 }) => {
   const [filtersVisibility, toggleFiltersVisibility] = useToggle()
@@ -151,7 +149,7 @@ export const MenuProductListing: React.FC<MenuProductListingProps> = ({
           <ViewSelector
             className="view-selector"
             setView={setView}
-            view={view}
+            view={props.view}
           />
           <RefineStyled>
             <Button
@@ -164,7 +162,7 @@ export const MenuProductListing: React.FC<MenuProductListingProps> = ({
               {filtersVisibility ? <MinusIcon /> : <FilterIcon />}
             </Button>
             <span className="product-count-desktop">
-              {productCount} products
+              {props.productCount} products
             </span>
           </RefineStyled>
         </div>
@@ -196,7 +194,7 @@ export const MenuProductListing: React.FC<MenuProductListingProps> = ({
         {sortBy && <span className="sortBy">Sort by: {sortBy}</span>}
       </div>
       <span className="product-count-mobile container">
-        Showing 1 - {productCount} of 100
+        Showing 1 - {props.productCount} of 100
       </span>
     </MenuProductListingStyled>
   )

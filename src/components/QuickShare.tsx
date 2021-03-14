@@ -89,9 +89,7 @@ export const FallbackShareOptions = styled.div`
   }
 `
 
-export const QuickShare: React.FC<QuickShareProps> = ({
-  ...props
-}) => {
+export const QuickShare: React.FC<QuickShareProps> = (props) => {
   const onButtonClick = async () => {
     const shareData = {
       text: "Beauty by La Perla",

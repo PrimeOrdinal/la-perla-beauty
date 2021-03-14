@@ -38,12 +38,11 @@ export type ViewSelectorProps = React.HTMLAttributes<HTMLElement> & {
 
 export const ViewSelector: React.FC<ViewSelectorProps> = ({
   setView,
-  view,
   ...props
 }) => (
   <ViewSelectorStyled {...props}>
     <Button
-      active={view === "grid" ? "active" : "inactive"}
+      active={props.view === "grid" ? "active" : "inactive"}
       className={clsx("button", "grid")}
       onClick={() => setView("grid")}
     >
@@ -51,7 +50,7 @@ export const ViewSelector: React.FC<ViewSelectorProps> = ({
       <Grid />
     </Button>
     <Button
-      active={view === "list" ? "active" : "inactive"}
+      active={props.view === "list" ? "active" : "inactive"}
       className={clsx("button", "list")}
       onClick={() => setView("list")}
     >

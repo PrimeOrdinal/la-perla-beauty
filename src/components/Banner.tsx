@@ -1,6 +1,5 @@
 import type {
   Colour as ColourProp,
-  BackgroundPosition as BackgroundPositionProp,
   Image as ImageProp,
   Link as LinkProp,
 } from "../../types/components"
@@ -171,7 +170,6 @@ export type BannerProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    backgroundPosition: BackgroundPositionProp
     colour: ColourProp
     image: ImageProp
     layout: LayoutProp

@@ -103,10 +103,10 @@ export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
 
   ${compose(color, flexbox, grid, layout, position, space)}
 `
-export const IconList: React.FC<IconListProps> = ({ items, ...props }) => (
+export const IconList: React.FC<IconListProps> = (props) => (
   <IconListStyled {...props}>
-    {items?.length &&
-      items.map((item, index) => (
+    {props.items?.length &&
+      props.items.map((item, index) => (
         <li key={index}>
           {item.icon && (
             <div className={clsx("icon", item.colour, item.icon)}>

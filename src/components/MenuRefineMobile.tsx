@@ -21,7 +21,7 @@ import {
 } from "styled-system"
 import { Formik, Field, Form, FormikHelpers } from "formik"
 
-import { mediaQueries, theme } from "../theme"
+import { mediaQueries } from "../theme"
 import { themeGet } from "@styled-system/theme-get"
 
 import { ReactComponent as Minus } from "../../static/icons/Minus.svg"

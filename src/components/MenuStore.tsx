@@ -42,7 +42,7 @@ export type MenuStoreProps = ColorProps &
     currentLocale: string
   }
 
-export const MenuStore: React.FC<MenuStoreProps> = ({currentCurrency, currentLocale, ...props}) => {
+export const MenuStore: React.FC<MenuStoreProps> = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -57,7 +57,7 @@ export const MenuStore: React.FC<MenuStoreProps> = ({currentCurrency, currentLoc
     <MenuStoreStyled {...props}>
       <Button onClick={openModal}>
         <span>UK | ENGLISH | £</span>
-        {/* <span>{currentLocale} | {currentCurrency}</span> */}
+        {/* <span>{props.currentLocale} | {props.currentCurrency}</span> */}
         <ChevronIconStyled />
       </Button>
 

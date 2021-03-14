@@ -169,31 +169,24 @@ const LeafWrapperStyled = styled.div`
   }
 `
 
-export const Leaf: React.FC<LeafProps> = ({
-  colour,
-  image,
-  layout,
-  link,
-  text,
-  title,
-}) => {
+export const Leaf: React.FC<LeafProps> = (props) => {
   const content = (
     <React.Fragment>
-      {title && <h2>{title}</h2>}
-      {text && <p>{text}</p>}
-      {link && <Link to={link?.href}>{link?.title}</Link>}
+      {props.title && <h2>{props.title}</h2>}
+      {props.text && <p>{props.text}</p>}
+      {props.link && <Link to={props.link?.href}>{props.link?.title}</Link>}
     </React.Fragment>
   )
   return (
-    <LeafWrapperStyled className={clsx("container", layout)}>
+    <LeafWrapperStyled className={clsx("container", props.layout)}>
       <div className={clsx("leaf-container")}>
         <article>
-          {image && (
+          {props.image && (
             <figure>
-              <img alt={image?.alt} src={image?.src} title={image?.title} className="img-bl" />
+              <img alt={props.image?.alt} src={props.image?.src} title={props.image?.title} className="img-bl" />
             </figure>
           )}
-          <div className={clsx(colour, "leaf")}>
+          <div className={clsx(props.colour, "leaf")}>
             <div className={clsx("content", "inside")}>{content}</div>  
           </div>
           <div className={clsx("content", "outside")}>{content}</div>

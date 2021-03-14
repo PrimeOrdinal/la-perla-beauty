@@ -66,19 +66,18 @@ export type GlobalHeaderProps = {
 
 export const GlobalHeader: React.FC<GlobalHeaderProps> = ({
   data,
-  siteTitle = "Site",
-  opaque = true,
+  ...props
 }) => {
   const [miniBagVisibility, toggleBagPreviewVisibility] = useToggle()
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
   return (
-    <GlobalHeaderStyled opaque={opaque}>
+    <GlobalHeaderStyled opaque={props.opaque}>
       <ContainerStyled className="container">
         <LogotypeLink
           className="permanent"
           gridArea="logo"
-          siteTitle={siteTitle}
+          siteTitle={props.siteTitle}
         />
         <MenuStore
           display={{ _: "none", md: "flex" }}

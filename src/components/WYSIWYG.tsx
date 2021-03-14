@@ -31,8 +31,9 @@ export const WYSIWYGStyled: React.FC<WYSIWYGProps> = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const WYSIWYG: React.FC<WYSIWYGProps> = ({ markup }) => (
+export const WYSIWYG: React.FC<WYSIWYGProps> = ({ markup, ...props }) => (
   <WYSIWYGStyled
+    {...props}
     dangerouslySetInnerHTML={{
       __html: markup as string,
     }}

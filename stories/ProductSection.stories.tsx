@@ -3,7 +3,10 @@ import type { Product } from "schema-dts"
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { ProductSection, ProductSectionProps } from "../src/components/ProductSection"
+import {
+  ProductSection,
+  ProductSectionProps,
+} from "../src/components/ProductSection"
 
 export default {
   title: "ProductSection",
@@ -13,7 +16,9 @@ export default {
   },
 } as Meta
 
-const Template: Story<ProductSectionProps> = args => <ProductSection {...args} />
+const Template: Story<ProductSectionProps> = args => (
+  <ProductSection {...args} />
+)
 
 export const Primary = Template.bind({})
 Primary.args = {

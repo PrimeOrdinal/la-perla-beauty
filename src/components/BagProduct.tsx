@@ -127,9 +127,7 @@ export type BagProductProps = ColorProps &
     product: Product
   }
 
-export const BagProduct: React.FC<BagProductProps> = ({
-  ...props
-}) => {
+export const BagProduct: React.FC<BagProductProps> = (props) => {
   return (
     <BagProductStyled {...props}>
       <img
