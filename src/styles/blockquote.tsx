@@ -4,27 +4,22 @@ import OpenQuote from "../../static/icons/OpenQuote.svg"
 import { mediaQueries, theme } from "../theme"
 
 export const blockquote = `
-    blockquote {
-        margin-inline: unset;
+    --blockquote-symbol-height: 37px;
+    --blockquote-symbol-width: 50px;
 
-        &:after {
-            content: "”";
-            display: inline-block;
-        }
-
-        &:before {
-            content: "‟";
-            display: inline-block;
-        }
+    ${mediaQueries.md} {
+        --blockquote-symbol-height: 56px;
+        --blockquote-symbol-width: 78px;
     }
 
     blockquote {
         font-family: "Tiempos", serif;
         font-size: var(--font-size-heading-2, 16px);
         line-height: ${theme.space[7]}px;
-        margin: 0;
+        margin: unset;
+        padding-block: var(--blockquote-symbol-height, 37px);
+        padding-inline: calc(var(--blockquote-symbol-width, 50px) * 1.5);
         max-width: ${theme.space[12]}ch;
-        padding-block: ${theme.space[6]}px;
         position: relative;
         z-index: 1;
     
@@ -39,37 +34,27 @@ export const blockquote = `
             background-repeat: no-repeat;
             background-size: contain;
             content: "";
-            height: 37px;
+            height: var(--blockquote-symbol-height, 37px);
+            mask-repeat: no-repeat;
             mask-size: contain;
             position: absolute;
-            width: 51px;
+            transform: translateX(10%);
+            width: var(--blockquote-symbol-width, 50px);
             z-index: -1;
-
-            ${mediaQueries.md} {
-                height: 56px;
-                transform: translateX(10%) translateZ(10px);
-                width: 78px;
-            }
         }
 
         &::before {
             left: 0;
-            mask: url(${OpenQuote}) no-repeat top;
-            top: 0;
-    
-            ${mediaQueries.md} {
-                left: -10%;
-            }
+            mask-image: url(${OpenQuote});
+            mask-position: top;
+            top: 15%;
         }
 
         &::after {
-            bottom: 0;
-            mask: url(${CloseQuote}) no-repeat bottom;
+            bottom: 15%;
+            mask-image: url(${CloseQuote});
+            mask-position: bottom;
             right: 0;
-    
-            ${mediaQueries.md} {
-                right: -10%;
-            }
         }
     }
 `
