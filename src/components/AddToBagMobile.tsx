@@ -41,7 +41,7 @@ const ContainerStyled = styled.div`
   position: relative;
 
   .container {
-    background-color: ${themeGet("colors.white")};
+    background-color: ${themeGet("colors.background")};
     border-radius: ${themeGet("radii.3")}px;
     border-style: solid;
     bottom: 0px;

@@ -41,7 +41,7 @@ const LeafWrapperStyled = styled.div`
     justify-content: center;
 
     ${mediaQueries.md} {
-      background-color: ${themeGet("colors.white")};
+      background-color: ${themeGet("colors.background")};
       padding-block: ${themeGet("space.14")}px;
     }
   }
@@ -134,7 +134,7 @@ const LeafWrapperStyled = styled.div`
   &.image-and-text-outside,
   &.text-outside-and-image {
     .leaf-container {
-      background-color: ${themeGet("colors.white")};
+      background-color: ${themeGet("colors.background")};
     }
 
     article {

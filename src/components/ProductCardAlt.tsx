@@ -8,7 +8,7 @@ import WishlistAbsent from "../../static/icons//WishlistAbsent.svg"
 import { Button } from "./Button"
 
 const ProductCardAltStyled = styled.article`
-  background-color: ${themeGet("colors.white")};
+  background-color: ${themeGet("colors.background")};
   border-radius: ${themeGet("radii.4")}px;
   display: inline-grid;
   gap: 1rem;

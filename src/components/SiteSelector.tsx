@@ -6,8 +6,8 @@ import styled from "styled-components"
 import { mediaQueries } from "../theme"
 
 const AnchorStyled = styled.a`
-  background-color: ${props => (props.href ? "#EFEEE9" : "white")};
-  color: ${props => (props.href ? "#363139" : "#363139")};
+  background-color: ${props => (props.href ? themeGet("colors.lightgrey") : themeGet("colors.white"))};
+  color: ${themeGet("colors.black")};
   font-size: var(--font-size-body, 13px);
   padding: ${themeGet("space.6")}px ${themeGet("space.7")}px;
   text-decoration: none;

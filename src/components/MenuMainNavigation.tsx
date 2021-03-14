@@ -76,7 +76,7 @@ const StyledMenuMainHeadings = styled(ListPlain)`
   }
 
   .sub-menu {
-    background-color: ${themeGet("colors.white")};
+    background-color: ${themeGet("colors.background")};
     border-bottom-right-radius: ${themeGet("radii.4")}px;
     border-bottom-left-radius: ${themeGet("radii.4")}px;
     display: none;

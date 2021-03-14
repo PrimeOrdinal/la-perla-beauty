@@ -29,7 +29,7 @@ const GlobalHeaderStyled = styled.header`
   top: 0;
   z-index: 999;
   &:hover {
-    background-color: ${themeGet("colors.white")};
+    background-color: ${themeGet("colors.background")};
     transition: all ease-in 0.25s;
   }
   ${mediaQueries.md} {

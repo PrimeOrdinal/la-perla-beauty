@@ -78,7 +78,8 @@ const NewsletterStyled = styled.div`
   }
 
   &:focus-within input {
-    border: 1px solid ${themeGet("colors.black")};
+    border-color: ${themeGet("colors.black")};
+    border-style: solid;
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}

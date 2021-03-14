@@ -63,7 +63,7 @@ export const LayoutStyled = styled.aside`
           `colors.${props.colour ? props.colour : themeGet("colors.pink")}`
         )};
   border-radius: ${props =>
-    ["hero"].includes(props.layout) ? "unset" : "10px"};
+    ["hero"].includes(props.layout) ? "unset" : themeGet("radii.4")};
   display: grid;
   grid-auto-flow: ${props => (props.layout === "column" ? "column" : "row")};
   overflow: hidden;

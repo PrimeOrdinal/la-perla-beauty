@@ -35,7 +35,7 @@ const MenuRefineStyled = styled.section`
 
   .menu {
     align-items: center;
-    border-bottom: ${theme.border.width} solid ${theme.border.color};
+    border-bottom: ${themeGet("border.width")} solid ${themeGet("border.color")};
     display: flex;
     justify-content: space-between;
     padding-block-end: ${themeGet("space.7")};

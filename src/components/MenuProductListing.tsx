@@ -26,7 +26,7 @@ import { ReactComponent as MinusIcon } from "../../static/icons/Minus.svg"
 
 import { useToggle } from "../hooks/useToggle"
 
-import { theme, mediaQueries } from "../theme"
+import { mediaQueries } from "../theme"
 
 import { Button } from "./Button"
 import { Chip } from "./Chip"
@@ -79,14 +79,14 @@ const MenuProductListingStyled = styled.section`
   }
 
   .menu {
-    background-color: ${themeGet("colors.white")};
+    background-color: ${themeGet("colors.background")};
     border-bottom-style: solid;
     padding-block-end: ${themeGet("space.3")}px;
     padding-block-start: ${themeGet("space.3")}px;
   }
 
   .menu-refine {
-    background-color: ${themeGet("colors.white")};
+    background-color: ${themeGet("colors.background")};
     left: 20%;
     position: absolute;
     padding-block-end: ${themeGet("space.10")}px;
@@ -107,7 +107,7 @@ const RefineStyled = styled.div`
     position: relative;
   }
 
-  ${theme.mediaQueries.md} {
+  ${mediaQueries.md} {
     gap: ${themeGet("space.10")}px;
   }
 

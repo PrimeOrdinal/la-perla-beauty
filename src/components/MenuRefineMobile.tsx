@@ -39,7 +39,7 @@ const MenuRefineMobileStyled = styled.section`
   }
 
   h1 {
-    border-top: ${theme.border.width} solid ${theme.border.color};
+    border-top: ${themeGet("border.width")} solid ${themeGet("border.color")};
     margin: 0px;
     padding-block-end: ${themeGet("space.6")}px;
     padding-block-start: ${themeGet("space.6")}px;
@@ -58,9 +58,10 @@ const MenuRefineMobileStyled = styled.section`
   }
 
   .mobile-menu {
-    background-color: ${themeGet("colors.white")};
+    background-color: ${themeGet("colors.background")};
+    border-color:  ${themeGet("colors.background")};
     border-radius: ${themeGet("space.4")}px 0px 0px 0px;
-    border: 0.5px solid gray;
+    border-style: solid;
     padding: ${themeGet("space.6")}px;
     position: absolute;
     right: 0px;

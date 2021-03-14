@@ -86,7 +86,8 @@ const BagProductStyled = styled.div`
         grid-auto-flow: column;
 
         .quantity-icon {
-          border: solid 1px black;
+          border-style: solid;
+          border-color: ${themeGet("colors.black")};
           height: 30px;
           padding: 0px;
           width: 30px;

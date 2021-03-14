@@ -41,7 +41,7 @@ export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
     cursor: "not-allowed";
   }
 
-  background-color: ${themeGet("colors.white")};
+  background-color: ${themeGet("colors.background")};
   border-radius: ${themeGet("radii.4")}px;
   border-style: solid;
   display: grid;

@@ -50,7 +50,7 @@ const StyledHamburger = styled.div`
   }
 
   .container {
-    background-color: ${themeGet("colors.white")};
+    background-color: ${themeGet("colors.background")};
     bottom: 0;
     height: 100vh;
     left: 0;

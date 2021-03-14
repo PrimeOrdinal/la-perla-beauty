@@ -109,7 +109,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__panel ul li a {
-    color: #363139;
+    color: ${themeGet("colors.black")};
     text-decoration: none;
   }
 
