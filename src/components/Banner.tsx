@@ -1,4 +1,9 @@
-import type { Colour as ColourProp, BackgroundPosition as BackgroundPositionProp, Image as ImageProp, Link as LinkProp } from "../../types/components"
+import type {
+  Colour as ColourProp,
+  BackgroundPosition as BackgroundPositionProp,
+  Image as ImageProp,
+  Link as LinkProp,
+} from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
@@ -25,40 +30,74 @@ import { mediaQueries } from "../theme"
 
 import { Link } from "./Button"
 
-const LayoutBase = styled.aside`
-  background-color: ${props =>
-    props.colour ? themeGet(`colors.${props.colour}`) : themeGet("colors.pink")};
-  display: grid;
-  overflow: hidden;
+export const LayoutStyled = styled.aside`
+  --content-padding: ${themeGet("space.4")};
 
-  img {
-    height: 100%;
-    object-fit: cover;
-    width: 100%;
-
-    @supports (aspect-ratio: 1) {
-      aspect-ratio: 21 / 14;
-
-      ${mediaQueries.md} {
-        aspect-ratio: 2 / 1;
-      }
-    }
-
-    @supports not (aspect-ratio: 1) {
-      height: calc(80vw - 2rem);
-
-      ${mediaQueries.md} {
-        height: calc(50vw - 2rem);
-      }
-
-      ${mediaQueries.lg} {
-        height: calc(25vw - 2rem);
-      }
+  @supports (aspect-ratio: 1) {
+    aspect-ratio: ${props =>
+      ["hero", "overlay"].includes(props.layout) ? "16 / 9" : undefined};
+    aspect-ratio: ${props =>
+        ["short-hero"].includes(props.layout) ? "21 / 9" : undefined};
+    
+    ${mediaQueries.md} {
+      aspect-ratio: ${props =>
+        ["hero", "overlay"].includes(props.layout) ? "2 / 1" : undefined};
+      aspect-ratio: ${props =>
+          ["short-hero"].includes(props.layout) ? "3 / 1" : undefined};
     }
   }
 
-  div {
+  @supports not (aspect-ratio: 1) {
+    padding-top: 56.25%;
+
+    ${mediaQueries.md} {
+      padding-top: 50%;
+    }
+  }
+
+  align-items: ${props => (props.layout === "column" ? "center" : "unset")};
+  background-color: ${props =>
+    ["row", "hero"].includes(props.layout)
+      ? "transparent"
+      : themeGet(
+          `colors.${props.colour ? props.colour : themeGet("colors.pink")}`
+        )};
+  border-radius: ${props =>
+    ["hero"].includes(props.layout) ? "unset" : "10px"};
+  display: grid;
+  grid-auto-flow: ${props => (props.layout === "column" ? "column" : "row")};
+  overflow: hidden;
+  position: ${props =>
+    ["hero", "overlay"].includes(props.layout) ? "relative" : "static"};
+
+  .media {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .content {
+    bottom: 0;
+    color: ${props =>
+      ["hero", "overlay"].includes(props.layout)
+        ? themeGet("colors.white")
+        : "inherit"};
     display: grid;
+    justify-items: start;
+    left: 0;
+    padding-block: ${props =>
+      ["hero", "overlay"].includes(props.layout)
+        ? themeGet("space.8")
+        : themeGet("space.4")}px;
+    padding-inline: ${themeGet("space.12")}px;
+    padding-inline: ${props =>
+      ["hero"].includes(props.layout)
+        ? "var(--app-gutter-x, 4rem)"
+        : null};
+
+    position: ${props =>
+      ["hero", "overlay"].includes(props.layout) ? "absolute" : "static"};
+    right: 0;
 
     .title {
       font-size: var(--font-size-lg, 18px);
@@ -72,7 +111,7 @@ const LayoutBase = styled.aside`
       text-transform: uppercase;
     }
 
-    span {
+    .text {
       color: inherit;
       font-size: 13px;
 
@@ -100,40 +139,8 @@ const LayoutBase = styled.aside`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-const BannerView = styled(LayoutBase)`
-  --content-padding: ${themeGet("space.4")};
+export const BannerStyled = styled(LayoutStyled)`
 
-  align-items: ${props => (props.layout === "column" ? "center" : "unset")};  
-  background-color: ${props =>
-    ["row", "hero"].includes(props.layout)
-      ? "transparent"
-      : themeGet(`colors.${props.colour}`)};
-  border-radius: ${props =>
-    ["hero", "row"].includes(props.layout) ? "unset" : "10px"};
-  grid-auto-flow: ${props => (props.layout === "column" ? "column" : "row")};
-  position: ${props =>
-    ["hero", "overlay"].includes(props.layout) ? "relative" : "static"};
-
-  img {
-    border-radius: ${props => (props.layout === "row" ? "10px" : "unset")};
-  }
-
-  .content {
-    bottom: 0;
-    color: ${props =>
-      ["hero", "overlay"].includes(props.layout)
-        ? themeGet("colors.white")
-        : "inherit"};
-    justify-items: start;
-    left: 0;
-    padding-block: ${props => ["hero", "overlay"].includes(props.layout) ? themeGet("space.8") : themeGet("space.4")}px;
-    margin-inline: ${props => ["column", "overlay", "row"].includes(props.layout) ? themeGet("space.8") : 0}px;
-    padding-inline: ${props => ["column", "overlay", "row"].includes(props.layout) ? "unset" : "var(--app-gutter-x, 4rem)"};
-
-    position: ${props =>
-      ["hero", "overlay"].includes(props.layout) ? "absolute" : "static"};
-    right: 0;
-  }
 `
 
 enum LayoutProp {
@@ -142,6 +149,20 @@ enum LayoutProp {
   overlay, // content overlaid on the background image, rounded corners
   row, // two rows - image & content
 }
+
+export const getContent: React.FC<BannerProps> = props => (
+  <div
+    className={clsx(
+      "content",
+      ["hero", "overlay"].includes(props.layout) && "image-overlay-gradient"
+    )}
+  >
+    {props?.title && <h1 className="title">{props?.title}</h1>}
+    {props?.tag && <h2 className="tag">{props?.tag}</h2>}
+    {props?.text && <span className="text">{props?.text}</span>}
+    {props?.link && <Link to={props?.link?.href}>{props?.link?.title}</Link>}
+  </div>
+)
 
 export type BannerProps = ColorProps &
   FlexboxProps &
@@ -160,25 +181,16 @@ export type BannerProps = ColorProps &
     title: String
   }
 
-export const Banner: React.FC<BannerProps> = (props) => (
-  <BannerView {...props}>
+export const Banner: React.FC<BannerProps> = props => (
+  <BannerStyled {...props}>
     {props?.image && (
       <img
         alt={props?.image?.alt as string}
-        className="img-bl"
+        className={clsx("img-bl", "media")}
         src={props?.image?.src as string}
         title={props?.image?.title as string}
       />
     )}
-    <div className={clsx("content", props?.layout === "hero" && "container", ["hero", "overlay"].includes(props.layout) && "image-overlay-gradient")}>
-      {props?.title && <h1 className="title">{props?.title}</h1>}
-      {props?.tag && <h2 className="tag">{props?.tag}</h2>}
-      {props?.text && <span>{props?.text}</span>}
-      {props?.link && (
-        <Link to={props?.link?.href}>
-          {props?.link?.title}
-        </Link>
-      )}
-    </div>
-  </BannerView>
+    {getContent(props)}
+  </BannerStyled>
 )

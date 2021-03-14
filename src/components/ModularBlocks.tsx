@@ -14,6 +14,7 @@ import {
 } from "./ArticleCardGallery"
 import { Banner, BannerProps } from "./Banner"
 import { BlogPostPreview, BlogPostPreviewProps } from "./BlogPostPreview"
+import { BannerGallery, BannerGalleryProps } from "./BannerGallery"
 import { HoriontalRule, HoriontalRuleProps } from "./HoriontalRule"
 import { IconList, IconListProps } from "./IconList"
 import { Leaf, LeafProps } from "./Leaf"
@@ -66,15 +67,15 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
               break
             case "banner":
               const { banner }: { banner: BannerProps[] } = value as any
-              component = banner?.map((props, index) => (
+              const banners = banner?.map((props, index) => (
                 <Banner
                   key={index}
                   {...margins}
                   {...props}
                   image={standardiseContentstackImageField(props.image)}
-                  layout="overlay"
                 />
               ))
+              component = <BannerGallery>{banners}</BannerGallery>
               break
             case "horizontal_rule":
               const props: HoriontalRuleProps[] = value as any
