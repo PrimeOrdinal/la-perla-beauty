@@ -16,41 +16,69 @@ import hero from "../videos/hero.mp4"
 import bottle from "../images/bottle.png"
 import flower from "../images/flowerPattern.svg"
 
-const PatternSection = styled.div`
-  position: relative;
-  &:before {
-    content: "";
-    position: absolute;
-    height: 65%;
-    width: 100%;
-    background-image: url(${flower});
-    background-position: left;
-    background-repeat: no-repeat;
-    z-index: -1;
-    -webkit-transform: rotate(31deg);
-    -ms-transform: rotate(31deg);
-    transform: rotate(-8deg);
-    left: -177px;
-    bottom: 0px;
-    transform-origin: top left;
-    overflow: hidden;
+const SectionOne = styled.section`
+  padding-block-start: 40px;
+  padding-block-end: 40px;
+  .contents {
+    text-align: center;
+    h2 {
+      font-size: var(--font-size-xl, 24px);
+      margin-block-start: 10px;
+      margin-block-end: 10px;
+    }
+    p {
+      max-width: 85ch;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    a {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
   }
-  &:after {
-    content: "";
-    position: absolute;
-    height: 65%;
-    width: 100%;
-    background-image: url(${flower});
-    background-position: right;
-    background-repeat: no-repeat;
-    z-index: -1;
-    -webkit-transform: rotate(31deg);
-    -ms-transform: rotate(31deg);
-    transform: rotate(13deg);
-    right: 0;
-    bottom: 0px;
-    transform-origin: top right;
-    overflow: hidden;
+  .bottleSection {
+    margin-block-start: 3rem;
+    display: flex;
+    justify-content: center;
+    img {
+      max-width: 40%;
+    }
+  }
+`
+const SectionTwo = styled.section`
+  text-align: center;
+  h2 {
+    font-size: var(--font-size-xl, 24px);
+  }
+  p {
+    max-width: 85ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+`
+
+const SectionThree = styled.section`
+  aside {
+    border-radius: 0;
+    div {
+      margin-inline-start: 0;
+      margin-inline-end: 0;
+      text-align: center;
+      h1 {
+        width: 100%;
+      }
+    }
+  }
+`
+const SectionFour = styled.section`
+  .sectionTitle {
+    text-align: center;
+    font-size: var(--font-size-xl, 24px);
+  }
+  .sectionPara {
+    text-align: center;
   }
 `
 
@@ -74,83 +102,66 @@ const CampaignPage: React.FC = () => {
         paddingRemove={true}
         muted={true}
       />
-
-      <main className={clsx("container")} ref={ref} style={{ height: "100%" }}>
-        {onScreen ? (
-          <React.Fragment>
-            <section>
-              <div style={{ textAlign: "center" }}>
-                <span>EAU DE PARFUM</span>
-                <h1>The Signature Fragrance</h1>
-                <p>
-                  The other day the grass was brown, now it’s green because I
-                  ain’t give up. Never surrender. In life there will be road
-                  blocks.
-                </p>
-                <Link>Discover More</Link>
-                <PatternSection
-                  className={clsx("bottleSection")}
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
-                  <img
-                    src={bottle}
-                    alt="bottle"
-                    style={{
-                      height: "700px",
-                      width: "auto",
-                    }}
-                  />
-                </PatternSection>
-              </div>
-            </section>
-            <section>
-              <h2>What's behind the scent?</h2>
-              <p>
-                As it floats around us in an eternity of bliss; and then, my
-                friend, when darkness overspreads my eyes, and heaven and earth
-                seem to dwell in my soul and absorb its power.
-              </p>
-            </section>
-            <section>
-              <Banner
-                color="beige"
-                layout="overlay"
-                showImage={true}
-                title="Overlay prop"
-                image={{
-                  url: `https://picsum.photos/405/712?${
-                    Math.floor(Math.random() * 10) + 1
-                  }`,
-                }}
-              />
-            </section>
-            <section>
-              <h2>The making of...</h2>
-              <p>
-                As it floats around us in an eternity of bliss; and then, my
-                friend, when darkness overspreads my eyes, and heaven and earth
-                seem to dwell in my soul and absorb its power.
-              </p>
-              <ArticleGrid />
-            </section>
-            <section>
-              <Leaf
-                colour="lilac"
-                image={{
-                  alt: "leaf image",
-                  src: `https://picsum.photos/405/712?${
-                    Math.floor(Math.random() * 10) + 1
-                  }`,
-                }}
-                layout="image-and-text-outside"
-                text="The other day the grass was brown, now it’s green because I ain’t give up. Never surrender. In life there will be road blocks."
-                title="What's behind responsible beauty?"
-              />
-            </section>
-          </React.Fragment>
-        ) : (
-          <h1>Hey K, look I'm not on screeeeen!</h1>
-        )}
+      <main ref={ref}>
+        <SectionOne className={clsx("container")}>
+          <div className={clsx("contents")}>
+            <span>EAU DE PARFUM</span>
+            <h2>The Signature Fragrance</h2>
+            <p>
+              The other day the grass was brown, now it’s green because I ain’t
+              give up. Never surrender. In life there will be road blocks.
+            </p>
+            <Link>Discover More</Link>
+            <div className={clsx("bottleSection")}>
+              <img src={bottle} alt="bottle" />
+            </div>
+          </div>
+        </SectionOne>
+        <SectionTwo className={clsx("container")}>
+          <h2>What's behind the scent?</h2>
+          <p>
+            As it floats around us in an eternity of bliss; and then, my friend,
+            when darkness overspreads my eyes, and heaven and earth seem to
+            dwell in my soul and absorb its power.
+          </p>
+        </SectionTwo>
+        <SectionThree>
+          <Banner
+            color="lightgrey"
+            layout="overlay"
+            showImage={true}
+            title="What's behind the woman we see?"
+            className="img-bl"
+            image={{
+              src: `https://picsum.photos/405/712?${
+                Math.floor(Math.random() * 10) + 1
+              }`,
+            }}
+          />
+        </SectionThree>
+        <SectionFour className={clsx("container")}>
+          <h2 className={clsx("sectionTitle")}>The making of...</h2>
+          <p className={clsx("sectionPara")}>
+            As it floats around us in an eternity of bliss; and then, my friend,
+            when darkness overspreads my eyes, and heaven and earth seem to
+            dwell in my soul and absorb its power.
+          </p>
+          <ArticleGrid />
+        </SectionFour>
+        <section>
+          <Leaf
+            colour="lightgrey"
+            image={{
+              alt: "leaf image",
+              src: `https://picsum.photos/405/712?${
+                Math.floor(Math.random() * 10) + 1
+              }`,
+            }}
+            layout="image-and-text-inside"
+            text="The other day the grass was brown, now it’s green because I ain’t give up. Never surrender. In life there will be road blocks."
+            title="What's behind responsible beauty?"
+          />
+        </section>
       </main>
     </Layout>
   )
