@@ -88,6 +88,20 @@ export const Contentstack_sectionFragment = graphql`
           title
         }
       }
+      video {
+        video {
+          image {
+            url
+          }
+          tag
+          text
+          text_justification
+          title
+          video {
+            url
+          }
+        }
+      }
       wysiwyg {
         wysiwyg {
           id

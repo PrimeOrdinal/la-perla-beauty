@@ -111,6 +111,26 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = ({
                 />
               ))
               break
+            case "video":
+              const {
+                video,
+              }: {
+                video: VideoPlayerProps[]
+              } = value as any
+              component = video?.map((props, index) => (
+                <VideoPlayer key={index} {...margins} {...props} />
+              ))
+              break
+              case "video":
+                const {
+                  video,
+                }: {
+                  video: VideoPlayerProps[]
+                } = value as any
+                component = video?.map((props, index) => (
+                  <VideoPlayer key={index} {...margins} {...props} />
+                ))
+                break
             case "wysiwyg":
               const {
                 wysiwyg,

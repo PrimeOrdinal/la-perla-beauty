@@ -20,6 +20,8 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { getContent, LayoutStyled } from "./Banner"
+
 export type VideoPlayerProps = ColorProps &
   FlexboxProps &
   GridProps &
@@ -28,43 +30,42 @@ export type VideoPlayerProps = ColorProps &
   SpaceProps &
   VariantProps & {
     aspectRatio: string
-    paddingRemove: boolean
   }
 
 export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
-  padding-block-start: ${props => (props.paddingRemove ? "0px" : "56.25%")};
   position: relative;
 
-  .react-player {
+  .react-player-old {
     left: 0;
+    object-fit: cover;
     position: absolute;
     top: 0;
-    object-fit: cover;
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const VideoPlayer: React.FC<VideoPlayerProps> = ({
-  aspectRatio,
-  paddingRemove,
-  ...props
-}) => (
-  <VideoPlayerStyled aspect-ratio={aspectRatio} paddingRemove={paddingRemove}>
-    <ReactPlayer
-      className="react-player"
-      controls={false}
-      height="100%"
-      loop={false}
-      playIcon={
-        <IconContext.Provider value={{ color: "white", size: "2rem" }}>
-          <FiPlay />
-        </IconContext.Provider>
-      }
-      playing={true}
-      playsinline={true}
-      width="100%"
-      {...props}
-    />
-  </VideoPlayerStyled>
+export const VideoPlayer: React.FC<VideoPlayerProps> = (props) => (
+  <LayoutStyled {...props} layout="overlay">
+    <VideoPlayerStyled aspect-ratio={props.aspectRatio} className="media">
+      <ReactPlayer
+        className="react-player"
+        controls={false}
+        height="100%"
+        light={props.image?.url}
+        loop={true}
+        playIcon={
+          <IconContext.Provider value={{ color: "white", size: "2rem" }}>
+            <FiPlay />
+          </IconContext.Provider>
+        }
+        playing={true}
+        playsinline={true}
+        url={props.video?.url}
+        width="100%"
+        {...props}
+      />
+    </VideoPlayerStyled>
+    {getContent({...props, layout: "overlay"})}
+  </LayoutStyled>
 )
