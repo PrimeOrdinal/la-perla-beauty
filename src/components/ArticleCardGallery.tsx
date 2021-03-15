@@ -54,7 +54,7 @@ export type ArticleCardGalleryProps = ColorProps &
 
 export const ArticleCardGallery: React.FC<ArticleCardGalleryProps> = (props) => (
     <ArticleCardGalleryStyled>
-      ${props.items?.map((item, index) => <ArticleCard
+      {props.items?.map((item, index) => <ArticleCard
         key={index}
         {...item}
       />)}
