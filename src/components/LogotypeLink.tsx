@@ -53,9 +53,9 @@ export type LogotypeLinkProps = ColorProps &
     siteTitle: string
   }
 
-export const LogotypeLink: React.FC<LogotypeLinkProps> = (props) => (
+export const LogotypeLink: React.FC<LogotypeLinkProps> = (siteTitle, ...props) => (
   <LogotypeLinkStyled
-    title={`Return to the ${props.siteTitle} homepage`}
+    title={`Return to the ${siteTitle} homepage`}
     to={homePath}
     {...props}
   >
