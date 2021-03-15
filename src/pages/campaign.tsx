@@ -1,10 +1,10 @@
 import clsx from "clsx"
 import React, { useRef } from "react"
-import { useOnScreen } from "../hooks/useOnScreen"
+import { useIntersection } from "../hooks/useIntersection"
 
 import styled from "styled-components"
 
-import { ArticleGrid } from "../components/ArticleGrid"
+import { ArticleCardGrid } from "../components/ArticleCardGrid"
 import { Leaf } from "../components/Leaf"
 import { Link } from "../components/Button"
 import { Layout } from "../components/Layout"
@@ -83,11 +83,30 @@ const SectionFour = styled.section`
 `
 
 const CampaignPage: React.FC = () => {
-  const ref = useRef(null)
-  const onScreen = useOnScreen(ref, "-300px")
+  const ref = useRef()
+  const intersection = useIntersection(ref, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.2,
+  })
+
+  var tumble = [
+    { transform: "rotate(0) translate3D(-50%, -50%, 0)", color: "#000" },
+  ]
+
+  var timing = {
+    duration: 3000,
+    iterations: Infinity,
+  }
+
+  const animation = element => element.animate(tumble, timing)
+
+  intersection && intersection.intersectionRatio < 0.2
+    ? animation(".animate")
+    : animation(".animate")
 
   return (
-    <Layout opaque={onScreen}>
+    <Layout opaque={intersection}>
       <SEO title="Campaign Landing Page" />
       <VideoPlayer
         style={{
@@ -102,12 +121,14 @@ const CampaignPage: React.FC = () => {
         paddingRemove={true}
         muted={true}
       />
-      <main ref={ref}>
-        <SectionOne className={clsx("container")}>
+      <main>
+        <SectionOne className={clsx("container")} ref={ref}>
           <div className={clsx("contents")}>
-            <span>EAU DE PARFUM</span>
-            <h2>The Signature Fragrance</h2>
-            <p>
+            <span className={clsx("animate")} ref={ref}>
+              EAU DE PARFUM
+            </span>
+            <h2 className={clsx("animate")}>The Signature Fragrance</h2>
+            <p className={clsx("animate")}>
               The other day the grass was brown, now it’s green because I ain’t
               give up. Never surrender. In life there will be road blocks.
             </p>
@@ -146,7 +167,7 @@ const CampaignPage: React.FC = () => {
             when darkness overspreads my eyes, and heaven and earth seem to
             dwell in my soul and absorb its power.
           </p>
-          <ArticleGrid />
+          <ArticleCardGrid />
         </SectionFour>
         <section>
           <Leaf
