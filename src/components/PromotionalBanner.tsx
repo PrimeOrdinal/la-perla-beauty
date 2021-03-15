@@ -40,7 +40,9 @@ export const PromotionalBannerStyled: React.FC<PromotionalBannerProps> = styled.
   text-align: center;
   grid-auto-flow: column;
   padding: ${themeGet("space.6")}px;
+  position: relative;
   text-transform: uppercase;
+  z-index: 1;
 
   a {
     color: inherit;
