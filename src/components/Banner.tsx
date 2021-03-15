@@ -87,6 +87,7 @@ export const LayoutStyled = styled.aside`
     display: grid;
     justify-items: start;
     left: 0;
+    min-height: 200px;
     padding-block: ${props =>
       ["hero", "overlay"].includes(props.layout)
         ? themeGet("space.8")
