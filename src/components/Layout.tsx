@@ -44,7 +44,7 @@ const StyledContentArea = styled.div`
 export type LayoutProps = {
   children?: React.ReactNode
   type?: "compact" | "full"
-  opaque?: boolean
+  transparent?: boolean
 }
 
 export const Layout: React.FC<LayoutProps> = ({
@@ -125,7 +125,7 @@ export const Layout: React.FC<LayoutProps> = ({
             <GlobalHeader
               siteTitle={data?.site?.siteMetadata?.title || `Title`}
               data={data}
-              opaque={props.opaque}
+              transparent={props.transparent}
             />
             <StyledPageContainer>
               <StyledContentArea>{children}</StyledContentArea>
