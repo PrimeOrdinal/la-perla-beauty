@@ -448,5 +448,4 @@ Example.args = {
   ],
   view: "grid",
   variantType: "size",
-  width: { _: 1, sm: 1 / 2, md: 1 / 2, lg: 1 / 6 },
 }
