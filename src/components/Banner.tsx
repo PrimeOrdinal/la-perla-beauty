@@ -36,13 +36,13 @@ export const LayoutStyled = styled.aside`
     aspect-ratio: ${props =>
       ["hero", "overlay"].includes(props.layout) ? "16 / 9" : undefined};
     aspect-ratio: ${props =>
-        ["short-hero"].includes(props.layout) ? "21 / 9" : undefined};
-    
+      ["short-hero"].includes(props.layout) ? "21 / 9" : undefined};
+
     ${mediaQueries.md} {
       aspect-ratio: ${props =>
         ["hero", "overlay"].includes(props.layout) ? "2 / 1" : undefined};
       aspect-ratio: ${props =>
-          ["short-hero"].includes(props.layout) ? "3 / 1" : undefined};
+        ["short-hero"].includes(props.layout) ? "3 / 1" : undefined};
     }
   }
 
@@ -94,9 +94,7 @@ export const LayoutStyled = styled.aside`
         : themeGet("space.4")}px;
     padding-inline: ${themeGet("space.12")}px;
     padding-inline: ${props =>
-      ["hero"].includes(props.layout)
-        ? "var(--app-gutter-x, 4rem)"
-        : null};
+      ["hero"].includes(props.layout) ? "var(--app-gutter-x, 4rem)" : null};
 
     position: ${props =>
       ["hero", "overlay"].includes(props.layout) ? "absolute" : "static"};
@@ -142,9 +140,7 @@ export const LayoutStyled = styled.aside`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const BannerStyled = styled(LayoutStyled)`
-
-`
+export const BannerStyled = styled(LayoutStyled)``
 
 enum LayoutProp {
   column, // two columns - image & content
@@ -193,6 +189,9 @@ export const Banner: React.FC<BannerProps> = props => (
         title={props?.image?.title as string}
       />
     )}
-    {getContent(props)}
+    {props?.title ||
+      props?.tag ||
+      props?.text ||
+      (props?.link && getContent(props))}
   </BannerStyled>
 )
