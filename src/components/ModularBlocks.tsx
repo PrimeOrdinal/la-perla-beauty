@@ -13,15 +13,20 @@ import {
   ArticleCardGalleryProps,
 } from "./ArticleCardGallery"
 import { Banner, BannerProps } from "./Banner"
-import { BlogPostPreview, BlogPostPreviewProps } from "./BlogPostPreview"
 import { BannerGallery, BannerGalleryProps } from "./BannerGallery"
-import { BannerGallery } from "./BannerGallery"
 import { Link } from "./Button"
 import { HoriontalRule, HoriontalRuleProps } from "./HoriontalRule"
 import { IconList, IconListProps } from "./IconList"
 import { Leaf, LeafProps } from "./Leaf"
-import { ProductCard, ProductCardProps } from "./ProductCard"
-import { ProductCardAlt, ProductCardAltProps } from "./ProductCardAlt"
+// import { ProductCard, ProductCardProps } from "./ProductCard"
+import {
+  ProductCardAlternate,
+  ProductCardAlternateProps,
+} from "./ProductCardAlternate"
+import {
+  ProductCardAlternateGallery,
+  ProductCardAlternateGalleryProps,
+} from "./ProductCardAlternateGallery"
 import { MenuCategory, MenuCategoryProps } from "./MenuCategory"
 import { VideoPlayer, VideoPlayerProps } from "./VideoPlayer"
 import { WYSIWYG, WYSIWYGProps } from "./WYSIWYG"
@@ -30,7 +35,7 @@ export type ModularBlocksProps = {
   modularBlocks: ModularBlocksTypes[]
 }
 
-export const ModularBlocks: React.FC<ModularBlocksProps> = (props) => (
+export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
   <React.Fragment>
     {props.modularBlocks?.map(modular_block => {
       let component
@@ -118,19 +123,49 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = (props) => (
                 menu: MenuCategoryProps[]
               } = value as any
               component = menu?.map((props, index) => (
-                <MenuCategory key={index} {...margins} {...props}>{props.links.map((link, index) => <Link key={index} to={link?.url?.href}>{link?.url?.title}</Link>)}</MenuCategory>
+                <MenuCategory key={index} {...margins} {...props}>
+                  {props.links.map((link, index) => (
+                    <Link key={index} to={link?.url?.href}>
+                      {link?.url?.title}
+                    </Link>
+                  ))}
+                </MenuCategory>
               ))
               break
-              case "video":
-                const {
-                  video,
-                }: {
-                  video: VideoPlayerProps[]
-                } = value as any
-                component = video?.map((props, index) => (
-                  <VideoPlayer key={index} {...margins} {...props} />
-                ))
-                break
+            case "product_card_alternate_gallery":
+              const {
+                product_card_alternate_gallery,
+              }: {
+                product_card_alternate_gallery: ProductCardAlternateGalleryProps[]
+              } = value as any
+              component = product_card_alternate_gallery?.map(
+                (props, index) => (
+                  <ProductCardAlternateGallery
+                    key={index}
+                    {...margins}
+                    {...props}
+                  >
+                    {props.items.map((product_card_alternate, index) => (
+                      <ProductCardAlternate
+                        key={index}
+                        {...margins}
+                        {...product_card_alternate}
+                      />
+                    ))}
+                  </ProductCardAlternateGallery>
+                )
+              )
+              break
+            case "video":
+              const {
+                video,
+              }: {
+                video: VideoPlayerProps[]
+              } = value as any
+              component = video?.map((props, index) => (
+                <VideoPlayer key={index} {...margins} {...props} />
+              ))
+              break
             case "wysiwyg":
               const {
                 wysiwyg,

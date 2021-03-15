@@ -32,7 +32,7 @@ import { ProductCardAlternate } from "./ProductCardAlternate"
 const ProductCardAlternateGalleryStyled = styled.section`
   --button-height: 24px;
 
-  background-color: ${themeGet("colors.lightgreen")};
+  background-color: ${props => props.colour ? themeGet(`colors.${props.colour}`) : themeGet("colors.lightgreen")};
   display: grid;
   gap: 1rem;
   grid-auto-flow: row;
@@ -100,14 +100,13 @@ export type ProductCardAlternateGalleryProps = ColorProps &
     variantType: "color" | "size"
   }
 
-export const ProductCardAlternateGallery: React.FC<ProductCardAlternateGalleryProps> = props => (
-  <ProductCardAlternateGalleryStyled>
+export const ProductCardAlternateGallery: React.FC<ProductCardAlternateGalleryProps> = (props) => (
+  <ProductCardAlternateGalleryStyled {...props}>
     <div className="wrapper">
       <div className="items">
         {props.items.map((product, index) => (
           <ProductCardAlternate
             key={index}
-            colour={props.colour}
             product={product}
             variantType={props.variantType}
           />
