@@ -181,8 +181,7 @@
     "lint:js:fix": "npm run-script lint:js -- --fix",
     "serve": "gatsby serve",
     "serve:build": "http-server public",
-    "start": "npm run-script serve",
-    "start:netlify": "netlify dev",
+    "start": "netlify dev",
     "storybook": "NODE_ENV=production start-storybook -s ./static -p 6006",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "type-check": "tsc --noEmit"
