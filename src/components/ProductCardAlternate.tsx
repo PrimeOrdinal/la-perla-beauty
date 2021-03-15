@@ -32,6 +32,7 @@ import { QuickWishlist } from "./QuickWishlist"
 const ProductCardAlternateStyled = styled.article`
   background-color: ${themeGet("colors.background")};
   border-radius: ${themeGet("radii.4")}px;
+  box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.1);
   display: inline-grid;
   gap: 1rem;
   margin-block-end: 1rem;
