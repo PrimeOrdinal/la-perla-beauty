@@ -71,7 +71,10 @@ export const LayoutStyled = styled.aside`
 
   .media {
     height: 100%;
+    left: 0;
     object-fit: cover;
+    position: absolute;
+    top: 0;
     width: 100%;
   }
 
