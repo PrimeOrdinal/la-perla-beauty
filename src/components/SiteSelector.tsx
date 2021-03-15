@@ -10,8 +10,10 @@ const AnchorStyled = styled.a`
   color: ${themeGet("colors.black")};
   font-size: var(--font-size-body, 13px);
   padding: ${themeGet("space.6")}px ${themeGet("space.7")}px;
+  position: relative;
   text-decoration: none;
   text-transform: uppercase;
+  z-index: 1;
 
   ${mediaQueries.md} {
     padding: ${themeGet("space.6")}px ${themeGet("space.9")}px;

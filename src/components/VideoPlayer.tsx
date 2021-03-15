@@ -28,7 +28,7 @@ export type VideoPlayerProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & {
+  VariantProps & ReactPlayer & {
     aspectRatio: string
   }
 
@@ -46,7 +46,7 @@ export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
 `
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = (props) => (
-  <LayoutStyled {...props} layout="overlay">
+  <LayoutStyled layout="overlay" {...props}>
     <VideoPlayerStyled aspect-ratio={props.aspectRatio} className="media">
       <ReactPlayer
         className="react-player"

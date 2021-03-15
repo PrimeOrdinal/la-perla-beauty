@@ -104,6 +104,16 @@ export const Contentstack_sectionFragment = graphql`
           slot
         }
       }
+      product_card_alternate_gallery {
+        product_card_alternate_gallery {
+          colour
+          items {
+            title
+            url
+          }
+          title
+        }
+      }
       video {
         video {
           image {
