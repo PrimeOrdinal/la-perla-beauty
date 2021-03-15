@@ -21,8 +21,8 @@ import { QuickSearch } from "./QuickSearch"
 
 const GlobalHeaderStyled = styled.header`
   background-color: ${props =>
-    props.opaque ? themeGet("colors.white") : "transparent"};
-  border-bottom-style: ${props => (props.opaque ? "solid" : "none")};
+    props.transparent ? "transparent" : themeGet("colors.white")};
+  border-bottom-style: ${props => (props.transparent ? "none" : "solid")};
   min-height: var(--header-min-height, 38px);
   padding-block-start: ${themeGet("space.3")}px;
   position: sticky;
@@ -61,7 +61,7 @@ export type GlobalHeaderProps = {
   // data?: GlobalHeaderQuery
   data?: LayoutQuery
   siteTitle?: string
-  opaque?: boolean
+  transparent?: boolean
 }
 
 export const GlobalHeader: React.FC<GlobalHeaderProps> = ({
@@ -72,7 +72,7 @@ export const GlobalHeader: React.FC<GlobalHeaderProps> = ({
   const [quickSearchVisibility, toggleQuickSearchVisibility] = useToggle()
 
   return (
-    <GlobalHeaderStyled opaque={props.opaque}>
+    <GlobalHeaderStyled transparent={props.transparent}>
       <ContainerStyled className="container">
         <LogotypeLink
           className="permanent"

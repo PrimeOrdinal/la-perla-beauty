@@ -107,7 +107,7 @@ module.exports = {
         dataLoaderOptions: {
           maxBatchSize: 10,
         },
-        refetchInterval: 360,
+        // refetchInterval: 3600,
       },
     },
     {
