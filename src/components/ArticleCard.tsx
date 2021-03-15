@@ -44,9 +44,11 @@ const ArticleCardStyled = styled.article`
     text-transform: uppercase;
     margin: 8px 0;
   }
+
   h2 {
     font-size: 20px;
   }
+
   a {
     text-transform: uppercase;
     font-weight: bold;
