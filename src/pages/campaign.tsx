@@ -4,7 +4,7 @@ import { useOnScreen } from "../hooks/useOnScreen"
 
 import styled from "styled-components"
 
-import { ArticleGrid } from "../components/ArticleGrid"
+import { ArticleCardGrid } from "../components/ArticleCardGrid"
 import { Leaf } from "../components/Leaf"
 import { Link } from "../components/Button"
 import { Layout } from "../components/Layout"
@@ -146,7 +146,7 @@ const CampaignPage: React.FC = () => {
             when darkness overspreads my eyes, and heaven and earth seem to
             dwell in my soul and absorb its power.
           </p>
-          <ArticleGrid />
+          <ArticleCardGrid />
         </SectionFour>
         <section>
           <Leaf
