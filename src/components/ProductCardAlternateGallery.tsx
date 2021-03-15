@@ -104,7 +104,7 @@ export const ProductCardAlternateGallery: React.FC<ProductCardAlternateGalleryPr
   <ProductCardAlternateGalleryStyled {...props}>
     <div className="wrapper">
       <div className="items">
-        {props.items.map((product, index) => (
+        {props.items?.map((product, index) => (
           <ProductCardAlternate
             key={index}
             product={product}
