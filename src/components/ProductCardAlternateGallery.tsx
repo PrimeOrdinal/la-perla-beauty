@@ -3,6 +3,7 @@ import type { Product } from "schema-dts"
 import type { Colour as ColourProp } from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
+import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -22,11 +23,15 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { ReactComponent as Arrow } from "../../static/icons/Arrow.svg"
+
 import { mediaQueries } from "../theme"
 
 import { ProductCardAlternate } from "./ProductCardAlternate"
 
 const ProductCardAlternateGalleryStyled = styled.section`
+  --button-height: 24px;
+
   background-color: ${themeGet("colors.lightgreen")};
   display: grid;
   gap: 1rem;
@@ -35,19 +40,55 @@ const ProductCardAlternateGalleryStyled = styled.section`
   padding-block: 1rem;
   place-items: center;
 
-  ${mediaQueries.sm} {  
-    grid-template-columns: auto auto;
+  .wrapper {
+    position: relative;
+    
+    ${mediaQueries.sm} {
+      max-width: 550px;
+    }
+
+    ${mediaQueries.md} {
+      max-width: 1078px;
+    }
   }
 
-  ${mediaQueries.md} {
-    grid-template-columns: repeat(4, auto);
-    gap: 24px;
+  .items {
+    display: grid;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+
+    ${mediaQueries.sm} {
+      gap: 24px;
+      grid-auto-flow: column;
+    }
+
+    ${mediaQueries.md} {
+      gap: 24px;
+    }
+
+    & > * {
+      scroll-snap-align: start;
+    }
+  }
+
+  .ui-button {
+    height: var(--button-height, 24px);
+    position: absolute;
+    top: calc(50% - (var(--button-height, 24px) * 0.5));
+  }
+
+  .image-gallery-left-nav {
+    left: -60px;
+  }
+
+  .image-gallery-right-nav {
+    right: -60px;
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type ProductCardAlternateProps = ColorProps &
+export type ProductCardAlternateGalleryProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -59,12 +100,27 @@ export type ProductCardAlternateProps = ColorProps &
     variantType: "color" | "size"
   }
 
-export const ProductCardAlternateGallery: React.FC<ProductCardAlternateProps> = (props) => (
-    <ProductCardAlternateGalleryStyled>
-      <div className="container">
-        ${props.items.map((product, index) => <ProductCardAlternate key={index} colour={props.colour} product={product} variantType={props.variantType} />)}
+export const ProductCardAlternateGallery: React.FC<ProductCardAlternateGalleryProps> = props => (
+  <ProductCardAlternateGalleryStyled>
+    <div className="wrapper">
+      <div className="items">
+        {props.items.map((product, index) => (
+          <ProductCardAlternate
+            key={index}
+            colour={props.colour}
+            product={product}
+            variantType={props.variantType}
+          />
+        ))}
       </div>
-    </ProductCardAlternateGalleryStyled>
-  )
+      <button className={clsx("ui-button", "image-gallery-left-nav")}>
+        <Arrow className="image-gallery-svg" />
+      </button>
+      <button className={clsx("ui-button", "image-gallery-right-nav")}>
+        <Arrow className={clsx("image-gallery-svg", "ui", "zoom-in")} />
+      </button>
+    </div>
+  </ProductCardAlternateGalleryStyled>
+)
 
 export default ProductCardAlternateGallery
