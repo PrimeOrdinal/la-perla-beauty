@@ -66,8 +66,7 @@ export const LayoutStyled = styled.aside`
   display: grid;
   grid-auto-flow: ${props => (props.layout === "column" ? "column" : "row")};
   overflow: hidden;
-  position: ${props =>
-    ["hero", "overlay"].includes(props.layout) ? "relative" : "static"};
+  position: relative;
 
   .media {
     height: 100%;
