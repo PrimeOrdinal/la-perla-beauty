@@ -60,6 +60,7 @@ const BlurCardStyled = styled.article`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: whitesmoke;
     a {
       text-transform: uppercase;
       font-weight: bold;
