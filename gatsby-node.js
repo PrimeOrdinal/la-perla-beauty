@@ -118,7 +118,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     createPage({
       path: pagePath,
-      component: path.resolve(`src/templates/general.tsx`),
+      component: path.resolve(`src/templates/article.tsx`),
       // In your template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the API.
       context: {
