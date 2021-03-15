@@ -32,8 +32,8 @@ import { QuickWishlist } from "./QuickWishlist"
 const ProductCardAlternateStyled = styled.article`
   background-color: ${themeGet("colors.background")};
   border-radius: ${themeGet("radii.4")}px;
+  box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.1);
   display: inline-grid;
-  gap: 1rem;
   margin-block-end: 1rem;
   margin-block-start: 5rem;
   padding: 34px;
@@ -77,10 +77,14 @@ const ProductCardAlternateStyled = styled.article`
     }
   }
 
-  h3 {
+  .product-name {
     border-bottom: 1px solid #aeaeae;
     font-size: 18px;
     margin: 0;
+  }
+
+  .product-information,
+  .product-name {
     padding-block-end: 1rem;
   }
 
@@ -88,10 +92,15 @@ const ProductCardAlternateStyled = styled.article`
     display: grid;
     grid-auto-flow: column;
     justify-content: space-between;
+    padding-block-start: 1rem;
 
     span {
-      font-weight: bold;
       font-size: 14px;
+    }
+
+    .label {
+      font-weight: bold;
+      text-transform: uppercase;
     }
 
     .color {
@@ -114,7 +123,7 @@ const ProductCardAlternateStyled = styled.article`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type ProductCardAltProps = ColorProps &
+export type ProductCardAlternateProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -126,7 +135,7 @@ export type ProductCardAltProps = ColorProps &
     variantType: "color" | "size"
   }
 
-export const ProductCardAlternate: React.FC<ProductCardAltProps> = ({
+export const ProductCardAlternate: React.FC<ProductCardAlternateProps> = ({
   product,
   ...props
 }) => {
@@ -153,7 +162,7 @@ export const ProductCardAlternate: React.FC<ProductCardAltProps> = ({
           {image}
         </Link>
       )) ||
-        image}
+        <div className="image-container">{image}</div>}
       <div className="product-type">
         <div className="product-category-wrapper">
           {Array.isArray(product?.category) &&
@@ -177,7 +186,11 @@ export const ProductCardAlternate: React.FC<ProductCardAltProps> = ({
           <QuickWishlist product={product} type="icon" />
         </div>
       </div>
-      <h3>{product.name}</h3>
+      {product?.name && (
+        <span className="product-name" itemProp="name">
+          {product?.name}
+        </span>
+      )}
       <div className="product-information">
         {(props.variantType === "size" && (
           <div className="size">

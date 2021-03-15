@@ -77,7 +77,7 @@ export const theme: DefaultTheme = {
     darkgrey: "#858585",
     disabled: "#ccc",
     text: "#363139",
-    background: "#f5f5f5",
+    background: "#ffffff",
     modes: {
       dark: {
         text: "#ffffff",

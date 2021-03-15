@@ -1,7 +1,7 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { ProductListing } from "../src/components/ProductListing"
+import { ProductListing, ProductListingProps } from "../src/components/ProductListing"
 
 export default {
   title: "ProductListing",
@@ -16,7 +16,7 @@ export default {
   },
 } as Meta
 
-const Template: Story = args => <ProductListing {...args} />
+const Template: Story<ProductListingProps> = args => <ProductListing {...args} />
 
 export const Example = Template.bind({})
 Example.args = {
