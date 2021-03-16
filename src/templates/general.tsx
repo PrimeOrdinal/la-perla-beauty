@@ -29,7 +29,7 @@ const GeneralPage: React.FC<PageProps<GeneralPageQuery, PageContextPage>> = ({
         <Breadcrumb crumbs={crumbs} />
       )}
 
-      <PageSections sections={data?.contentstackPage?.sections} />
+      <PageSections sections={data?.contentstackPage?.sections} bestSellingProducts={data?.bigCommerceGQL?.site?.bestSellingProducts?.edges.map(({node}) => node)} featuredProducts={data?.bigCommerceGQL?.site?.featuredProducts?.edges.map(({node}) => node)} />
     </Layout>
   )
 }
@@ -38,6 +38,24 @@ export default GeneralPage
 
 export const query = graphql`
   query GeneralPage($contentstackId: String!) {
+    bigCommerceGQL {
+      site {
+        bestSellingProducts {
+          edges {
+            node {
+              ...BigCommerceGQL_ProductFragment
+            }
+          }
+        }
+        featuredProducts {
+          edges {
+            node {
+              ...BigCommerceGQL_ProductFragment
+            }
+          }
+        }
+      }
+    }
     contentstackPage(id: { eq: $contentstackId }) {
       ...Contentstack_pageFragment
     }

@@ -133,6 +133,13 @@ export const Contentstack_sectionFragment = graphql`
           id
           markup
         }
+        margins
+      }
+      you_may_also_like {
+        you_may_also_like {
+          title
+        }
+        margins
       }
     }
     title

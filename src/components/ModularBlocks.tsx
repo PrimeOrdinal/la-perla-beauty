@@ -18,7 +18,6 @@ import { Link } from "./Button"
 import { HoriontalRule, HoriontalRuleProps } from "./HoriontalRule"
 import { IconList, IconListProps } from "./IconList"
 import { Leaf, LeafProps } from "./Leaf"
-// import { ProductCard, ProductCardProps } from "./ProductCard"
 import {
   ProductCardAlternate,
   ProductCardAlternateProps,
@@ -30,8 +29,11 @@ import {
 import { MenuCategory, MenuCategoryProps } from "./MenuCategory"
 import { VideoPlayer, VideoPlayerProps } from "./VideoPlayer"
 import { WYSIWYG, WYSIWYGProps } from "./WYSIWYG"
+import { YouMayAlsoLike, YouMayAlsoLikeProps } from "./YouMayAlsoLike"
 
 export type ModularBlocksProps = {
+  bestSellingProducts: BigCommerceGql_Product[]
+  featuredProducts: BigCommerceGql_Product[]
   modularBlocks: ModularBlocksTypes[]
 }
 
@@ -172,8 +174,25 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               }: {
                 wysiwyg: WYSIWYGProps[]
               } = value as any
-              component = wysiwyg?.map((props, index) => (
-                <WYSIWYG key={index} {...margins} {...props} />
+              component = wysiwyg?.map((instance, index) => (
+                <WYSIWYG key={index} {...margins} {...instance} />
+              ))
+              break
+            case "you_may_also_like":
+              const {
+                you_may_also_like,
+              }: {
+                you_may_also_like: YouMayAlsoLikeProps[]
+              } = value as any
+              console.log("you_may_also_like", props.bestSellingProducts)
+              component = you_may_also_like?.map((instance, index) => (
+                <YouMayAlsoLike
+                  key={index}
+                  bestSellingProducts={props.bestSellingProducts}
+                  featuredProducts={props.featuredProducts}
+                  {...margins}
+                  {...instance}
+                />
               ))
               break
             default:

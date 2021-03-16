@@ -1,5 +1,6 @@
 import type {
   BigCommerceProducts,
+  BigCommerceGql_Product,
   //   ProductsPageQuery,
   Contentstack_Products,
 } from "../../graphql-types"
@@ -34,6 +35,8 @@ export type YouMayAlsoLikeProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
+    bestSellingProducts: BigCommerceGql_Product[]
+    featuredProducts: BigCommerceGql_Product[]
     allBigCommerceProducts: {
       edges: Array<{
         node: BigCommerceProducts
@@ -56,17 +59,17 @@ export const YouMayAlsoLikeStyled: React.FC<YouMayAlsoLikeProps> = styled.aside`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = ({ data, ...props }) => (
+export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = props => (
   <YouMayAlsoLikeStyled {...props}>
     <h1>You May Also Like</h1>
-    {data.allBigCommerceProducts && (
+    {props.featuredProducts && (
       <ProductListing
-        items={data.allBigCommerceProducts.edges.map(
-          ({ node: productFormatBigCommerce }) =>
-            standardiseBigCommerceProduct({
-              productFormatBigCommerce,
-            })
+        items={props.featuredProducts.map(productFormatBigCommerce =>
+          standardiseBigCommerceProduct({
+            productFormatBigCommerce,
+          })
         )}
+        view="grid"
       />
     )}
   </YouMayAlsoLikeStyled>

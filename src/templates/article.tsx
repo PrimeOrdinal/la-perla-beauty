@@ -38,6 +38,24 @@ export default Article
 
 export const query = graphql`
   query Article($contentstackId: String!) {
+    bigCommerceGQL {
+      site {
+        bestSellingProducts {
+          edges {
+            node {
+              ...BigCommerceGQL_ProductFragment
+            }
+          }
+        }
+        featuredProducts {
+          edges {
+            node {
+              ...BigCommerceGQL_ProductFragment
+            }
+          }
+        }
+      }
+    }
     contentstackArticle(id: { eq: $contentstackId }) {
       ...Contentstack_articleFragment
     }

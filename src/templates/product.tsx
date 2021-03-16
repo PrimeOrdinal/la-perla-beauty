@@ -372,6 +372,13 @@ export const query = graphql`
     }
     bigCommerceGQL {
       site {
+        featuredProducts {
+          edges {
+            node {
+              ...BigCommerceGQL_ProductFragment
+            }
+          }
+        }
         product(entityId: $id) {
           ...BigCommerceGQL_ProductFragment
         }
