@@ -17,7 +17,7 @@ export type Section = {
   background_position: string
   background_repeat: string
   background_size: string
-  container: boolean
+  container: "compact" | "full" | "normal"
   id: string
   modular_blocks: ModularBlocksTypes[]
   title: string
@@ -68,7 +68,7 @@ export const PageSections: React.FC<PageSectionsProps> = (props) => (
 
       return (
         <SectionStyled
-          className={clsx(section?.container && "container")}
+          className={clsx(section?.container === "normal" && "container", section?.container === "compact" && "container-compact")}
           id={section?.id}
           key={section?.id}
         >
