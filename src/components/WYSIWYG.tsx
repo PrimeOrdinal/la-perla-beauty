@@ -25,9 +25,12 @@ export type WYSIWYGProps = ColorProps &
   SpaceProps &
   VariantProps & {
     markup: string
+    width: "compact" | "full"
   }
 
 export const WYSIWYGStyled: React.FC<WYSIWYGProps> = styled.div`
+  max-width: ${props => props.width === "compact" ? "50%" : "100%"};
+
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
