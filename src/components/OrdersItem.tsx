@@ -1,3 +1,4 @@
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -16,9 +17,11 @@ import {
   SpaceProps,
   VariantProps,
 } from "styled-system"
-import { ListPlain } from "./ListPlain"
-import { Button, Link } from "./Button"
+
 import { mediaQueries } from "../theme"
+
+import { Button, Link } from "./Button"
+import { ListPlain } from "./ListPlain"
 
 export type OrdersItemProps = ColorProps &
   FlexboxProps &
@@ -36,27 +39,33 @@ const OrderItemStyled = styled.article`
   gap: 1rem;
   grid-template-columns: auto auto;
   place-content: start;
+
   ${mediaQueries.md} {
     grid-auto-flow: column;
   }
+
   img {
     width: 100%;
     object-fit: cover;
   }
+
   .items {
     display: grid;
     gap: 1rem;
     grid-auto-flow: row;
     grid-column: span 2;
+
     ${mediaQueries.md} {
       grid-column: span 1;
       place-content: start;
     }
   }
+
   .view-desktop {
-    text-transform: uppercase;
-    font-weight: bold;
     display: none;
+    font-weight: bold;
+    text-transform: uppercase;
+
     ${mediaQueries.md} {
       display: block;
     }
@@ -64,44 +73,53 @@ const OrderItemStyled = styled.article`
 `
 const SecondColumnStyled = styled(ListPlain)`
   display: grid;
-  grid-auto-flow: row;
   gap: 1rem;
+  grid-auto-flow: row;
+
   .order {
     display: grid;
     grid-auto-flow: row;
+
     .order-name {
-      text-transform: uppercase;
       font-size: ${themeGet("fontSizes.0")}px;
+      text-transform: uppercase;
     }
+
     .order-number {
       font-family: "Tiempos", serif;
-      font-weight: lighter;
       font-size: ${themeGet("fontSizes.3")}px;
+      font-weight: lighter;
     }
   }
+
   .price {
     font-family: "Tiempos", serif;
-    font-weight: lighter;
     font-size: ${themeGet("fontSizes.3")}px;
+    font-weight: lighter;
   }
+
   .order-history {
     display: grid;
-    grid-auto-flow: row;
     gap: 8px;
+    grid-auto-flow: row;
+
     li {
+      font-size: ${themeGet("fontSizes.0")}px;
       font-weight: bold;
       text-transform: uppercase;
-      font-size: ${themeGet("fontSizes.0")}px;
+
       span {
         font-weight: normal;
       }
     }
   }
+
   li {
     .view-mobile {
-      text-transform: uppercase;
-      font-weight: bold;
       font-size: ${themeGet("fontSizes.2")}px;
+      font-weight: bold;
+      text-transform: uppercase;
+
       ${mediaQueries.md} {
         display: none;
       }
