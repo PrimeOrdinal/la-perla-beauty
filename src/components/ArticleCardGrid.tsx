@@ -21,9 +21,9 @@ import {
 
 import { mediaQueries } from "../theme"
 
-import { ArticleCard } from "./ArticleCard"
+import { ArticleCard, ArticleCardProps } from "./ArticleCard"
 
-const GridStyled = styled.div`
+const GridStyled = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
@@ -45,44 +45,20 @@ export type ArticleCardGridProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    items: Array<{
-      title: string
-      text_justification: JustifyProp
-    }>
+    items: ArticleCardProps[]
     text: string
     title: string
   }
 
 
-export const ArticleCardGrid: React.FC = (props) => {
-  return (
+export const ArticleCardGrid: React.FC<ArticleCardGridProps> = (props) => (
     <GridStyled>
-      <ArticleCard
-        titleBelow="Etiam aliquet vist metus"
-        body="Luxury with integrity​"
-        link="read more"
-        aspectRatio="3/4"
-      />
-      <ArticleCard
-        titleBelow="Etiam aliquet vist metus"
-        body="Luxury with integrity​"
-        link="read more"
-        aspectRatio="3/4"
-      />
-      <ArticleCard
-        titleBelow="Etiam aliquet vist metus"
-        body="Luxury with integrity​"
-        link="read more"
-        aspectRatio="3/4"
-      />
-      <ArticleCard
-        titleBelow="Etiam aliquet vist metus"
-        body="Luxury with integrity​"
-        link="read more"
-        aspectRatio="3/4"
-      />
+      {props.items?.map((item, index) => <ArticleCard
+        key={index}
+        titlePosition="bottom"
+        {...item}
+      />)}
     </GridStyled>
   )
-}
 
 export default ArticleCardGrid

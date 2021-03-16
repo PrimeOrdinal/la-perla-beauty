@@ -23,7 +23,7 @@ import { mediaQueries } from "../theme"
 
 import { ArticleCard, ArticleCardProps } from "./ArticleCard"
 
-const ArticleCardGalleryStyled = styled.div`
+const ArticleCardGalleryStyled = styled.section`
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
@@ -52,13 +52,12 @@ export type ArticleCardGalleryProps = ColorProps &
     title: string
   }
 
-export const ArticleCardGallery: React.FC<ArticleCardGalleryProps> = (props) => (
-    <ArticleCardGalleryStyled>
-      {props.items?.map((item, index) => <ArticleCard
-        key={index}
-        {...item}
-      />)}
-    </ArticleCardGalleryStyled>
-  )
+export const ArticleCardGallery: React.FC<ArticleCardGalleryProps> = props => (
+  <ArticleCardGalleryStyled>
+    {props.items?.map((item, index) => (
+      <ArticleCard key={index} {...item} titlePosition={index % 2 == 0 ? "bottom" : "top"} />
+    ))}
+  </ArticleCardGalleryStyled>
+)
 
 export default ArticleCardGallery
