@@ -35,18 +35,11 @@ export type VideoPlayerProps = ColorProps &
 export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
   position: relative;
 
-  .react-player-old {
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-  }
-
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = (props) => (
-  <LayoutStyled layout="overlay" {...props}>
+  <LayoutStyled layout="video" {...props}>
     <VideoPlayerStyled aspect-ratio={props.aspectRatio} className="media">
       <ReactPlayer
         className="react-player"
@@ -66,6 +59,6 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = (props) => (
         {...props}
       />
     </VideoPlayerStyled>
-    {getContent({...props, layout: "overlay"})}
+    {getContent({...props, layout: "video"})}
   </LayoutStyled>
 )

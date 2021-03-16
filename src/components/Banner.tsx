@@ -34,7 +34,7 @@ export const LayoutStyled = styled.aside`
 
   @supports (aspect-ratio: 1) {
     aspect-ratio: ${props =>
-      ["hero", "overlay"].includes(props.layout) ? "16 / 9" : undefined};
+      ["hero", "overlay", "video"].includes(props.layout) ? "16 / 9" : undefined};
     aspect-ratio: ${props =>
       ["short-hero"].includes(props.layout) ? "21 / 9" : undefined};
 
@@ -72,32 +72,38 @@ export const LayoutStyled = styled.aside`
     height: 100%;
     left: 0;
     object-fit: cover;
-    position: absolute;
+    position: ${props => (props.layout === "video" ? "relative" : "absolute")};
     top: 0;
     width: 100%;
   }
 
   .content {
+    align-items: start;
     bottom: 0;
     color: ${props =>
-      ["hero", "overlay"].includes(props.layout)
+      ["hero", "overlay", "video"].includes(props.layout)
         ? themeGet("colors.white")
         : "inherit"};
     display: grid;
     justify-items: start;
     left: 0;
-    min-height: 200px;
-    padding-block: ${props =>
-      ["hero", "overlay"].includes(props.layout)
-        ? themeGet("space.8")
-        : themeGet("space.4")}px;
-    padding-inline: ${themeGet("space.12")}px;
-    padding-inline: ${props =>
-      ["hero"].includes(props.layout) ? "var(--app-gutter-x, 4rem)" : null};
-
+    min-height: 20%;
+    padding-block: ${themeGet("space.4")}px;
+    padding-inline: ${themeGet("space.9")}px;
+    pointer-events: none;
     position: ${props =>
-      ["hero", "overlay"].includes(props.layout) ? "absolute" : "static"};
+      ["hero", "overlay", "video"].includes(props.layout) ? "absolute" : "static"};
     right: 0;
+
+    ${mediaQueries.md} {
+      padding-block: ${props =>
+        ["hero", "overlay", "video"].includes(props.layout)
+          ? themeGet("space.8")
+          : themeGet("space.4")}px;
+      padding-inline: ${themeGet("space.12")}px;
+      padding-inline: ${props =>
+        ["hero"].includes(props.layout) ? "var(--app-gutter-x, 4rem)" : null};
+    }
 
     .title {
       font-size: var(--font-size-lg, 18px);
@@ -146,13 +152,14 @@ enum LayoutProp {
   hero, // content overlaid on the background image, no rounded corners
   overlay, // content overlaid on the background image, rounded corners
   row, // two rows - image & content
+  video, // content overlaid on the background video
 }
 
 export const getContent: React.FC<BannerProps> = props => (
   <div
     className={clsx(
       "content",
-      ["hero", "overlay"].includes(props.layout) && "image-overlay-gradient"
+      ["hero", "overlay", "video"].includes(props.layout) && "image-overlay-gradient"
     )}
   >
     {props?.title && <h1 className="title">{props?.title}</h1>}
