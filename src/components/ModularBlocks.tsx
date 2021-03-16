@@ -7,8 +7,6 @@ import type {
 
 import React from "react"
 
-import { standardiseContentstackImageField } from "../utils/standardiseContentstackImageField"
-
 import { Accordion, AccordionProps } from "./Accordion"
 import {
   ArticleCardGallery,
@@ -92,7 +90,6 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
                   key={index}
                   {...margins}
                   {...instance}
-                  image={standardiseContentstackImageField(instance.image)}
                 />
               ))
               component = <BannerGallery>{banners}</BannerGallery>
@@ -127,7 +124,6 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
                   key={index}
                   {...margins}
                   {...instance}
-                  image={standardiseContentstackImageField(instance.image)}
                 />
               ))
               break

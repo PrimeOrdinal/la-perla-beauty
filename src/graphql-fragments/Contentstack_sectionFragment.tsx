@@ -62,9 +62,9 @@ export const Contentstack_sectionFragment = graphql`
           colour
           id
           image {
-            description
+            alt: description
             title
-            url
+            src: url
           }
           layout
           link {
@@ -102,9 +102,9 @@ export const Contentstack_sectionFragment = graphql`
           colour
           id
           image {
-            description
+            alt: description
             title
-            url
+            src: url
           }
           layout
           link {
@@ -148,7 +148,7 @@ export const Contentstack_sectionFragment = graphql`
       video {
         video {
           image {
-            url
+            src: url
           }
           tag
           text
