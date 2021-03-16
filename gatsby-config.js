@@ -61,12 +61,13 @@ module.exports = {
     //   },
     // },
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: "gatsby-plugin-google-fonts",
       options: {
-        google: {
-          families: ["Quicksand:400,600"],
-        },
-      },
+        fonts: [
+          "Quicksand:400,600",
+        ],
+        display: 'swap'
+      }
     },
     "gatsby-plugin-svgr",
     "gatsby-transformer-sharp",
