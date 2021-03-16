@@ -39,6 +39,10 @@ export type ArticleCardProps = ColorProps &
   }
 
 const ArticleCardStyled = styled.article`
+  figure {
+    margin: unset;
+  }
+
   span {
     display: block;
     text-transform: uppercase;
@@ -61,15 +65,12 @@ const ArticleCardStyled = styled.article`
 export const ArticleCard: React.FC<ArticleCardProps> = (props) => (
   <ArticleCardStyled>
     {props.titlePosition === "top" && <h2>{props.title}</h2>}
-    {props.aspectRatio && (
-      <figure aspect-ratio={props.aspectRatio}>
-        <img
-          src={props.image?.src}
-          alt="placeholder image"
-        />
-      </figure>
-    )}
-
+    <figure aspect-ratio={props.aspectRatio}>
+      <img
+        alt={props.image?.title}
+        src={props.image?.src}
+      />
+    </figure>
     {props.tag && <span>{props.tag}</span>}
     {props.titlePosition === "bottom" && <h2>{props.title}</h2>}
     {props.text && <p>{props.text}</p>}

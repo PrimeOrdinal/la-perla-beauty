@@ -23,6 +23,15 @@ export const Contentstack_sectionFragment = graphql`
       article_card_gallery {
         article_card_gallery {
           id
+          items {
+            image {
+              alt: description
+              title
+              src: url
+            }
+            title
+            url
+          }
           text
           text_justification
           title
@@ -32,6 +41,15 @@ export const Contentstack_sectionFragment = graphql`
       article_card_grid {
         article_card_grid {
           id
+          items {
+            image {
+              alt: description
+              title
+              src: url
+            }
+            title
+            url
+          }
           text
           text_justification
           title
