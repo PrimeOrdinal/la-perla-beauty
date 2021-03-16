@@ -32,7 +32,7 @@ const GridStyled = styled.section`
   grid-auto-flow: row;
 
   ${mediaQueries.md} {
-    gap: 105px;
+    gap: 6rem;
     grid-template-columns: minmax(400px, 550px) minmax(400px, 550px);
     margin-block-end: 70px;
     margin-block-start: ${themeGet("space.12")}px;

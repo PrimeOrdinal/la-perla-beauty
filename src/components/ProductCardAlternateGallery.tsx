@@ -58,12 +58,12 @@ const ProductCardAlternateGalleryStyled = styled.section`
     scroll-snap-type: x mandatory;
 
     ${mediaQueries.sm} {
-      gap: 24px;
+      gap: 1.5rem;
       grid-auto-flow: column;
     }
 
     ${mediaQueries.md} {
-      gap: 24px;
+      gap: 1.5rem;
     }
 
     & > * {

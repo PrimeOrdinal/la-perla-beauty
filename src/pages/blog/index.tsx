@@ -152,7 +152,7 @@ const MainStyled = styled.main`
 
       ${mediaQueries.md} {
         grid-template-columns: repeat(4, auto);
-        gap: 24px;
+        gap: 1.5rem;
       }
     }
   }

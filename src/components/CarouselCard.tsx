@@ -23,7 +23,7 @@ const CarouselCardStyled = styled.div`
   }
   div {
     display: grid;
-    gap: 16px;
+    gap: 1rem;
     grid-auto-flow: row;
     padding-block-end: 32px;
     padding-block-start: 32px;
