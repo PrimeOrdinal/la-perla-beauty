@@ -12,7 +12,7 @@ export const formCheckboxContainer = `
   .fancy-checkbox-label {
     cursor: pointer;
     display: block;
-    font-size: 14px;
+    font-size: ${theme.fontSizes[3]}px;
     font-weight: normal;
     position: relative;
     text-transform: capitalize;

@@ -70,7 +70,7 @@ const MainStyled = styled.main`
       max-width: 95ch;
 
       ${mediaQueries.md} {
-        font-size: 14px;
+        font-size: ${themeGet("fontSizes.3")}px;
       }
     }
 
@@ -113,7 +113,7 @@ const MainStyled = styled.main`
 
     p {
       ${mediaQueries.md} {
-        font-size: 14px;
+        font-size: ${themeGet("fontSizes.3")}px;
         margin-block-end: 2rem;
         max-width: 95ch;
       }

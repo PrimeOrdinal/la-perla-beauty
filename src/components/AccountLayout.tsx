@@ -33,7 +33,7 @@ const MainStyled = styled.main`
 
   .section-title {
     font-family: "Quicksand", sans-serif;
-    font-size: 13px;
+    font-size: ${themeGet("fontSizes.2")}px;
     font-weight: bold;
     margin: 0;
     text-transform: uppercase;

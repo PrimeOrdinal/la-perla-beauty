@@ -31,7 +31,7 @@ const CarouselCardStyled = styled.div`
     text-align: center;
 
     time {
-      font-size: 13px;
+      font-size: ${themeGet("fontSizes.2")}px;
     }
 
     h2 {

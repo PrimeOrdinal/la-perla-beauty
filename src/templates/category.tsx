@@ -33,7 +33,7 @@ const CategoryHeaderStyled = styled.header`
   text-align: center;
 
   span {
-    font-size: 12px;
+    font-size: ${themeGet("fontSizes.1")}px;
   }
 
   ${mediaQueries.md} {

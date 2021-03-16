@@ -97,7 +97,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   }
 
   .accordion__panel ul {
-    font-size: 13px;
+    font-size: ${themeGet("fontSizes.2")}px;
     list-style: none;
     margin: 0;
     padding-block-end: 12px;

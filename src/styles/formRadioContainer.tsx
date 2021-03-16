@@ -12,14 +12,14 @@ export const formRadioContainer = `
   .fancy-radio-label {
     cursor: pointer;
     display: block;
-    font-size: 13px;
+    font-size: ${theme.fontSizes[2]}px;
     font-weight: normal;
     position: relative;
     text-transform: uppercase;
     width: 100%;
 
     ${mediaQueries.md}{
-      font-size: 14px;
+      font-size: ${theme.fontSizes[3]}px;
     }
   }
 
@@ -69,14 +69,14 @@ export const formRadioContainer = `
   label.product-radio-label {
     cursor: pointer;
     display: inline-block;
-    font-size: 13px;
+    font-size: ${theme.fontSizes[2]}px;
     font-weight: normal;
     padding-block-end: 0.5rem;
     position: relative;
     text-transform: unset;
 
     ${mediaQueries.md}{
-      font-size: 14px;
+      font-size: ${theme.fontSizes[3]}px;
     }
   }
 

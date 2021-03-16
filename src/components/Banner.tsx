@@ -119,17 +119,17 @@ export const LayoutStyled = styled.aside`
 
     .text {
       color: inherit;
-      font-size: 13px;
+      font-size: ${themeGet("fontSizes.2")}px;
 
       ${mediaQueries.md} {
-        font-size: 14px;
+        font-size: ${themeGet("fontSizes.3")}px;
       }
     }
 
     a {
       color: inherit;
       display: block;
-      font-size: 13px;
+      font-size: ${themeGet("fontSizes.2")}px;
       font-weight: bold;
       margin-block-start: ${themeGet("space.6")}px;
       padding-block-end: ${themeGet("space.6")}px;
@@ -137,7 +137,7 @@ export const LayoutStyled = styled.aside`
       text-transform: uppercase;
 
       ${mediaQueries.md} {
-        font-size: 14px;
+        font-size: ${themeGet("fontSizes.3")}px;
       }
     }
   }

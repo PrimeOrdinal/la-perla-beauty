@@ -55,7 +55,7 @@ const ProductCardAlternateStyled = styled.article`
     justify-content: space-between;
 
     span {
-      font-size: 12px;
+      font-size: ${themeGet("fontSizes.1")}px;
       text-transform: uppercase;
     }
   }
@@ -79,7 +79,7 @@ const ProductCardAlternateStyled = styled.article`
 
   .product-name {
     border-bottom: 1px solid #aeaeae;
-    font-size: 18px;
+    font-size: ${themeGet("fontSizes.5")}px;
     margin: 0;
   }
 
@@ -95,7 +95,7 @@ const ProductCardAlternateStyled = styled.article`
     padding-block-start: 1rem;
 
     span {
-      font-size: 14px;
+      font-size: ${themeGet("fontSizes.3")}px;
     }
 
     .label {
@@ -116,7 +116,7 @@ const ProductCardAlternateStyled = styled.article`
     .price {
       font-family: "Tiempos", serif;
       font-weight: 300;
-      font-size: 16px;
+      font-size: ${themeGet("fontSizes.4")}px;
     }
   }
 

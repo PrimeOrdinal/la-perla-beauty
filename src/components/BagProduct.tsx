@@ -57,7 +57,7 @@ const BagProductStyled = styled.div`
       padding-block-start: 1rem;
 
       h1 {
-        font-size: 16px;
+        font-size: ${themeGet("fontSizes.4")}px;
         font-weight: lighter;
         margin: 0;
       }
@@ -107,7 +107,7 @@ const BagProductStyled = styled.div`
 
       .price {
         font-family: "Tiempos", serif;
-        font-size: 14px;
+        font-size: ${themeGet("fontSizes.3")}px;
         text-align: end;
       }
     }

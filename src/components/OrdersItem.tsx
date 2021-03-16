@@ -71,18 +71,18 @@ const SecondColumnStyled = styled(ListPlain)`
     grid-auto-flow: row;
     .order-name {
       text-transform: uppercase;
-      font-size: 11px;
+      font-size: ${themeGet("fontSizes.0")}px;
     }
     .order-number {
       font-family: "Tiempos", serif;
       font-weight: lighter;
-      font-size: 14px;
+      font-size: ${themeGet("fontSizes.3")}px;
     }
   }
   .price {
     font-family: "Tiempos", serif;
     font-weight: lighter;
-    font-size: 14px;
+    font-size: ${themeGet("fontSizes.3")}px;
   }
   .order-history {
     display: grid;
@@ -91,7 +91,7 @@ const SecondColumnStyled = styled(ListPlain)`
     li {
       font-weight: bold;
       text-transform: uppercase;
-      font-size: 11px;
+      font-size: ${themeGet("fontSizes.0")}px;
       span {
         font-weight: normal;
       }
@@ -101,7 +101,7 @@ const SecondColumnStyled = styled(ListPlain)`
     .view-mobile {
       text-transform: uppercase;
       font-weight: bold;
-      font-size: 13px;
+      font-size: ${themeGet("fontSizes.2")}px;
       ${mediaQueries.md} {
         display: none;
       }
