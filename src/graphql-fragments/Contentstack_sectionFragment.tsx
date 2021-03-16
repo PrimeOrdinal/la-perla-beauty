@@ -164,7 +164,6 @@ export const Contentstack_sectionFragment = graphql`
         wysiwyg {
           id
           markup
-          width
         }
         margins
       }
