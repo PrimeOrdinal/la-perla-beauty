@@ -26,7 +26,7 @@ import {
 import { Link } from "./Button"
 import { ListPlain } from "./ListPlain"
 
-const StyledMenu = styled.div`
+const MenuMainNavigationStyled = styled.nav`
   align-items: center;
   display: grid;
   list-style: none;
@@ -40,7 +40,7 @@ const StyledMenu = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-const StyledMenuMainHeadings = styled(ListPlain)`
+const HeadingsStyled = styled(ListPlain)`
   display: grid;
   grid-auto-flow: column;
   padding-block-start: ${themeGet("space.7")}px;
@@ -142,11 +142,11 @@ export const MenuMainNavigation: React.FC<MenuMainNavigationProps> = ({
   data,
   ...props
 }) => (
-  <StyledMenu {...props}>
+  <MenuMainNavigationStyled {...props}>
     {data?.allContentstackMenus?.edges
       ?.filter(({ node: menu }) => menu.slot?.startsWith("header-navigation"))
       .map(({ node: menu }) => (
-        <StyledMenuMainHeadings id={menu.slot as string} key={menu.id}>
+        <HeadingsStyled id={menu.slot as string} key={menu.id}>
           {menu?.links?.map((linkLevel1, indexLevel1) => (
             <li className="menu-item" key={indexLevel1}>
               <Link
@@ -197,7 +197,7 @@ export const MenuMainNavigation: React.FC<MenuMainNavigationProps> = ({
               ))}
             </li>
           ))}
-        </StyledMenuMainHeadings>
+        </HeadingsStyled>
       ))}
-  </StyledMenu>
+  </MenuMainNavigationStyled>
 )

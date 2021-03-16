@@ -32,7 +32,7 @@ import { mediaQueries } from "../theme"
 import { Accordion } from "./Accordion"
 import { Link } from "./Button"
 
-const StyledHamburger = styled.div`
+const StyledHamburger = styled.nav`
   button {
     left: -${themeGet("space.5")}px;
     position: relative;

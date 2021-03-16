@@ -25,7 +25,7 @@ export type BannerGalleryProps = ColorProps &
   SpaceProps &
   VariantProps
 
-export const BannerGalleryStyled: React.FC<BannerGalleryProps> = styled.div`
+export const BannerGalleryStyled: React.FC<BannerGalleryProps> = styled.section`
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 100%;
