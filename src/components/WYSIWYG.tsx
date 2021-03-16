@@ -28,7 +28,7 @@ export type WYSIWYGProps = ColorProps &
     width: "compact" | "full"
   }
 
-export const WYSIWYGStyled: React.FC<WYSIWYGProps> = styled.div`
+export const WYSIWYGStyled: React.FC<WYSIWYGProps> = styled.section`
   max-width: ${props => props.width === "compact" ? "50%" : "100%"};
 
   ${compose(color, flexbox, grid, layout, position, space)}
