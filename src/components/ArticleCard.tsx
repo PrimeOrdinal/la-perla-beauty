@@ -64,7 +64,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = (props) => (
     {props.aspectRatio && (
       <figure aspect-ratio={props.aspectRatio}>
         <img
-          src={props.image?.aaa}
+          src={props.image?.src}
           alt="placeholder image"
         />
       </figure>
