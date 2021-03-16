@@ -1,3 +1,5 @@
+import type { BigCommerceGql_Product } from "../../graphql-types"
+
 import type {
   ModularBlocksTypes,
   ModularBlock,
@@ -12,6 +14,7 @@ import {
   ArticleCardGallery,
   ArticleCardGalleryProps,
 } from "./ArticleCardGallery"
+import { ArticleCardGrid, ArticleCardGridProps } from "./ArticleCardGrid"
 import { Banner, BannerProps } from "./Banner"
 import { BannerGallery, BannerGalleryProps } from "./BannerGallery"
 import { Link } from "./Button"
@@ -58,8 +61,8 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               const {
                 accordion,
               }: { accordion: AccordionProps[] } = value as any
-              component = accordion?.map((props, index) => (
-                <Accordion key={index} {...margins} {...props} />
+              component = accordion?.map((instance, index) => (
+                <Accordion key={index} {...margins} {...instance} />
               ))
               break
             case "article_card_gallery":
@@ -68,25 +71,35 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               }: {
                 article_card_gallery: ArticleCardGalleryProps[]
               } = value as any
-              component = article_card_gallery?.map((props, index) => (
-                <ArticleCardGallery key={index} {...margins} {...props} />
+              component = article_card_gallery?.map((instance, index) => (
+                <ArticleCardGallery key={index} {...margins} {...instance} />
+              ))
+              break
+            case "article_card_grid":
+              const {
+                article_card_grid,
+              }: {
+                article_card_grid: ArticleCardGridProps[]
+              } = value as any
+              component = article_card_grid?.map((instance, index) => (
+                <ArticleCardGrid key={index} {...margins} {...instance} />
               ))
               break
             case "banner":
               const { banner }: { banner: BannerProps[] } = value as any
-              const banners = banner?.map((props, index) => (
+              const banners = banner?.map((instance, index) => (
                 <Banner
                   key={index}
                   {...margins}
-                  {...props}
-                  image={standardiseContentstackImageField(props.image)}
+                  {...instance}
+                  image={standardiseContentstackImageField(instance.image)}
                 />
               ))
               component = <BannerGallery>{banners}</BannerGallery>
               break
             case "horizontal_rule":
-              const props: HoriontalRuleProps[] = value as any
-              component = <HoriontalRule {...margins} {...props} />
+              const instance: HoriontalRuleProps[] = value as any
+              component = <HoriontalRule {...margins} {...instance} />
               break
             case "icon_list":
               const {
@@ -94,12 +107,12 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               }: {
                 icon_list: IconListProps[]
               } = value as any
-              component = icon_list?.map((props, index) => (
+              component = icon_list?.map((instance, index) => (
                 <IconList
                   key={index}
                   {...margins}
-                  {...props}
-                  mobileView={props.mobile_view}
+                  {...instance}
+                  mobileView={instance.mobile_view}
                 />
               ))
               break
@@ -109,12 +122,12 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               }: {
                 leaf: LeafProps[]
               } = value as any
-              component = leaf?.map((props, index) => (
+              component = leaf?.map((instance, index) => (
                 <Leaf
                   key={index}
                   {...margins}
-                  {...props}
-                  image={standardiseContentstackImageField(props.image)}
+                  {...instance}
+                  image={standardiseContentstackImageField(instance.image)}
                 />
               ))
               break
@@ -124,9 +137,9 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               }: {
                 menu: MenuCategoryProps[]
               } = value as any
-              component = menu?.map((props, index) => (
-                <MenuCategory key={index} {...margins} {...props}>
-                  {props.links.map((link, index) => (
+              component = menu?.map((instance, index) => (
+                <MenuCategory key={index} {...margins} {...instance}>
+                  {instance.links.map((link, index) => (
                     <Link key={index} to={link?.url?.href}>
                       {link?.url?.title}
                     </Link>
@@ -141,19 +154,24 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
                 product_card_alternate_gallery: ProductCardAlternateGalleryProps[]
               } = value as any
               component = product_card_alternate_gallery?.map(
-                (props, index) => (
+                (instance, index) => (
                   <ProductCardAlternateGallery
                     key={index}
                     {...margins}
-                    {...props}
+                    {...instance}
                   >
-                    {props.items.map((product_card_alternate, index) => (
-                      <ProductCardAlternate
-                        key={index}
-                        {...margins}
-                        {...product_card_alternate}
-                      />
-                    ))}
+                    {instance.items.map(
+                      (
+                        product_card_alternate: ProductCardAlternateProps,
+                        index
+                      ) => (
+                        <ProductCardAlternate
+                          key={index}
+                          {...margins}
+                          {...product_card_alternate}
+                        />
+                      )
+                    )}
                   </ProductCardAlternateGallery>
                 )
               )
@@ -164,8 +182,8 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               }: {
                 video: VideoPlayerProps[]
               } = value as any
-              component = video?.map((props, index) => (
-                <VideoPlayer key={index} {...margins} {...props} />
+              component = video?.map((instance, index) => (
+                <VideoPlayer key={index} {...margins} {...instance} />
               ))
               break
             case "wysiwyg":

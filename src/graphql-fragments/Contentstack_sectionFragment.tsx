@@ -29,6 +29,15 @@ export const Contentstack_sectionFragment = graphql`
         }
         margins
       }
+      article_card_grid {
+        article_card_grid {
+          id
+          text
+          text_justification
+          title
+        }
+        margins
+      }
       banner {
         banner {
           backround_position
@@ -49,6 +58,7 @@ export const Contentstack_sectionFragment = graphql`
           text_justification
           title
         }
+        margins
       }
       horizontal_rule {
         colour
@@ -87,6 +97,7 @@ export const Contentstack_sectionFragment = graphql`
           text
           title
         }
+        margins
       }
       menu {
         menu {
@@ -103,6 +114,7 @@ export const Contentstack_sectionFragment = graphql`
           title
           slot
         }
+        margins
       }
       product_card_alternate_gallery {
         product_card_alternate_gallery {
@@ -113,6 +125,7 @@ export const Contentstack_sectionFragment = graphql`
           }
           title
         }
+        margins
       }
       video {
         video {
@@ -127,6 +140,7 @@ export const Contentstack_sectionFragment = graphql`
             url
           }
         }
+        margins
       }
       wysiwyg {
         wysiwyg {

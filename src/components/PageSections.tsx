@@ -29,9 +29,9 @@ export type PageSectionsProps = {
   sections: Section[]
 }
 
-export const PageSections: React.FC<PageSectionsProps> = ({ sections }) => (
+export const PageSections: React.FC<PageSectionsProps> = (props) => (
   <React.Fragment>
-    {sections?.map(section => {
+    {props.sections?.map(section => {
       const SectionStyled = styled.section`
         ${section?.background_attachment &&
         css`
