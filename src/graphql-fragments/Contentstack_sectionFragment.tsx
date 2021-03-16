@@ -29,6 +29,7 @@ export const Contentstack_sectionFragment = graphql`
               title
               src: url
             }
+            summary
             title
             url
           }
@@ -47,6 +48,7 @@ export const Contentstack_sectionFragment = graphql`
               title
               src: url
             }
+            summary
             title
             url
           }

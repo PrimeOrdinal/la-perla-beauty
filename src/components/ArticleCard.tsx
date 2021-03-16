@@ -32,10 +32,11 @@ export type ArticleCardProps = ColorProps &
     aspectRatio: string
     image: ImageProp
     link: LinkProp
+    summary: string
     tag: string
-    text: string
     title: string
     titlePosition: "bottom" | "top"
+    url: string
   }
 
 const ArticleCardStyled = styled.article`
@@ -73,7 +74,8 @@ export const ArticleCard: React.FC<ArticleCardProps> = (props) => (
     </figure>
     {props.tag && <span>{props.tag}</span>}
     {props.titlePosition === "bottom" && <h2>{props.title}</h2>}
-    {props.text && <p>{props.text}</p>}
+    {props.summary && <p>{props.summary}</p>}
     {props.link && <Link to={props.link?.href}>{props.link?.title}</Link>}
+    {props.url && <Link to={props.url}>Read more</Link>}
   </ArticleCardStyled>
 )
