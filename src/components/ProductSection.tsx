@@ -47,7 +47,7 @@ const ProductSectionStyled = styled.section`
   }
 
   .name {
-    font-size: ${themeGet("fontSizes.7")}px;
+    font-size: ${themeGet("fontSizes.8")}px;
     margin-block-end: ${themeGet("space.8")}px;
     margin-block-start: unset;
   }

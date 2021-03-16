@@ -20,9 +20,9 @@ import {
   VariantProps,
 } from "styled-system"
 
-import { theme } from "../theme"
-
 import { ReactComponent as Close } from "../../static/icons/Close.svg"
+
+import { theme } from "../theme"
 
 import { Button } from "./Button"
 

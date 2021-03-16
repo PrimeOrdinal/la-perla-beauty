@@ -36,7 +36,7 @@ breakpoints.md = breakpoints[1]
 breakpoints.lg = breakpoints[2]
 breakpoints.xl = breakpoints[3]
 
-export const fontSizes: FontSizesProp = [11, 12, 13, 14, 16, 18, 24, 32]
+export const fontSizes: FontSizesProp = [11, 12, 13, 14, 16, 18, 20, 24, 32]
 
 fontSizes.small = fontSizes[0]
 fontSizes.smallDesktop = fontSizes[1]

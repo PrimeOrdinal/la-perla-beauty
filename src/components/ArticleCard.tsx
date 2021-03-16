@@ -1,7 +1,7 @@
 import type { Image as ImageProp, Link as LinkProp } from "../../types/components"
 
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
-
 import styled from "styled-components"
 import {
   color,
@@ -46,7 +46,7 @@ const ArticleCardStyled = styled.article`
   }
 
   h2 {
-    font-size: 20px;
+    font-size: ${themeGet("fontSizes.6")}px;
   }
 
   a {

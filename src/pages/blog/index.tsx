@@ -58,7 +58,7 @@ const MainStyled = styled.main`
 
   .first {
     h1 {
-      font-size: 21px;
+      font-size: ${themeGet("fontSizes.6")}px;
 
       ${mediaQueries.md} {
         font-size: 32px;
@@ -95,7 +95,7 @@ const MainStyled = styled.main`
 
         h2 {
           ${mediaQueries.md} {
-            font-size: 24px;
+            font-size: ${themeGet("fontSizes.7")}px;
           }
         }
       }
@@ -104,9 +104,10 @@ const MainStyled = styled.main`
 
   .second {
     h2 {
-      font-size: 21px;
+      font-size: ${themeGet("fontSizes.6")}px;
+
       ${mediaQueries.md} {
-        font-size: 24px;
+        font-size: ${themeGet("fontSizes.7")}px;
       }
     }
 

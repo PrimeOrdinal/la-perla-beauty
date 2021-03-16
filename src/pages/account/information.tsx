@@ -77,7 +77,7 @@ const ColumnTwoStyled = styled.section`
     }
   }
   h2 {
-    font-size: 20px;
+    font-size: ${themeGet("fontSizes.6")}px;
     margin: 0;
   }
 `

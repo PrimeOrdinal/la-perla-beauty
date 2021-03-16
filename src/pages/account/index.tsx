@@ -20,7 +20,7 @@ const MainStyled = styled.main`
 
     ${mediaQueries.md} {
       display: initial;
-      font-size: ${themeGet("fontSizes.7")}px;
+      font-size: ${themeGet("fontSizes.8")}px;
       margin-block-start: 70px;
     }
   }

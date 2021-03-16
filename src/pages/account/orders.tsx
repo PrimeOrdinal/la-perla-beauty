@@ -19,7 +19,8 @@ const OrdersColumn = styled.section`
 
   .current-orders {
     h2 {
-      font-size: 20px;
+      font-size: ${themeGet("fontSizes.6")}px;
+
       ${mediaQueries.md} {
         font-size: var(--font-size-lg, 18px);
       }

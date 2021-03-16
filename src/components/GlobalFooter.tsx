@@ -47,7 +47,7 @@ const SocialLinkListStyled = styled(ListPlain)`
 
   a {
     color: inherit;
-    font-size: 2.125rem;
+    font-size: ${themeGet("fontSizes.8")}px;
     text-decoration: none;
   }
 `

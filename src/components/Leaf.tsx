@@ -91,7 +91,7 @@ const LeafWrapperStyled = styled.div`
     margin: 0;
 
     ${mediaQueries.md} {
-      font-size: ${themeGet("fontSizes.6")}px;
+      font-size: ${themeGet("fontSizes.7")}px;
     }
   }
 
