@@ -123,16 +123,16 @@ export const Layout: React.FC<LayoutProps> = ({
               />
             )}
             <GlobalHeader
-              siteTitle={data?.site?.siteMetadata?.title || `Title`}
               data={data}
+              siteTitle={data?.site?.siteMetadata?.title || `Title`}
               transparent={props.transparent}
             />
             <StyledPageContainer>
               <StyledContentArea>{children}</StyledContentArea>
             </StyledPageContainer>
             <GlobalFooter
-              siteTitle={data?.site?.siteMetadata?.title || `Title`}
               data={data}
+              siteTitle={data?.site?.siteMetadata?.title || `Title`}
             />
           </React.Fragment>
         )}
