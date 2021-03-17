@@ -80,6 +80,20 @@ export const Layout: React.FC<LayoutProps> = ({
       }
       bigCommerceGQL {
         site {
+          bestSellingProducts {
+            edges {
+              node {
+                ...BigCommerceGQL_ProductFragment
+              }
+            }
+          }
+          featuredProducts {
+            edges {
+              node {
+                ...BigCommerceGQL_ProductFragment
+              }
+            }
+          }
           settings {
             status
           }

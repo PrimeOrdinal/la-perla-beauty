@@ -38,24 +38,6 @@ export default GeneralPage
 
 export const query = graphql`
   query GeneralPage($contentstackId: String!) {
-    bigCommerceGQL {
-      site {
-        bestSellingProducts {
-          edges {
-            node {
-              ...BigCommerceGQL_ProductFragment
-            }
-          }
-        }
-        featuredProducts {
-          edges {
-            node {
-              ...BigCommerceGQL_ProductFragment
-            }
-          }
-        }
-      }
-    }
     contentstackPage(id: { eq: $contentstackId }) {
       ...Contentstack_pageFragment
     }
