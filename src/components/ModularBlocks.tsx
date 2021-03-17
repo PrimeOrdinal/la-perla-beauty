@@ -45,7 +45,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
       let component
 
       Object.entries(modular_block).forEach(
-        ([key, value]: [key: string, value: ModularBlock]) => {
+        ([key, value]: [key: string, value: ModularBlock], modularBlockIndex) => {
           if (value === null) {
             return
           }
@@ -87,13 +87,9 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
             case "banner":
               const { banner }: { banner: BannerProps[] } = value as any
               const banners = banner?.map((instance, index) => (
-                <Banner
-                  key={index}
-                  {...margins}
-                  {...instance}
-                />
+                <Banner key={index} {...margins} {...instance} />
               ))
-              component = <BannerGallery>{banners}</BannerGallery>
+              component = <BannerGallery key={`${key}-${modularBlockIndex}`}>{banners}</BannerGallery>
               break
             case "horizontal_rule":
               const instance: HoriontalRuleProps[] = value as any
@@ -131,11 +127,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
                 leaf: LeafProps[]
               } = value as any
               component = leaf?.map((instance, index) => (
-                <Leaf
-                  key={index}
-                  {...margins}
-                  {...instance}
-                />
+                <Leaf key={index} {...margins} {...instance} />
               ))
               break
             case "menu":
