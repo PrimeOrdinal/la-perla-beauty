@@ -24,35 +24,20 @@ module.exports = {
         allExtensions: true, // defaults to false
       },
     },
-    // "gatsby-plugin-extract-schema",
     {
       resolve: "gatsby-plugin-graphql-codegen",
       options: {
         codegen: process.env.GRAPHQL_CODEGEN,
-        // fileName: `./gatsby-graphql.ts`,
         documentPaths: [
           "./src/**/*.tsx",
-          // './node_modules/gatsby-*/**/*.js',
           "./node_modules/gatsby*/!(node_modules)/**/*.js",
           "./gatsby-node.js",
-          // './gatsby-node.ts',
         ],
       },
     },
     "gatsby-plugin-react-helmet",
-    // {
-    //   resolve: "gatsby-plugin-i18n",
-    //   options: {
-    //     langKeyDefault: "en",
-    //     useLangKeyLayout: false,
-    //   },
-    // },
-    {
-      resolve: "gatsby-plugin-styled-components",
-      options: {
-        // Add any options here
-      },
-    },
+    "gatsby-plugin-postcss",
+    "gatsby-plugin-styled-components",
     // {
     //   resolve: "gatsby-source-filesystem",
     //   options: {
@@ -85,8 +70,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-sitemap",
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
     "gatsby-plugin-offline",
     {
       resolve: "gatsby-source-graphql",
@@ -163,22 +146,6 @@ module.exports = {
 
         // Optional: Specify true if you want to download all your contentstack images locally
         downloadImages: false,
-
-        // transformSchema: ({
-        //   schema,
-        //   link,
-        //   resolver,
-        //   defaultTransforms,
-        //   options,
-        // }) => {
-        //   return wrapSchema(
-        //     {
-        //       schema,
-        //       executor: linkToExecutor(link),
-        //     },
-        //     defaultTransforms
-        //   )
-        // }
       },
     },
     {
@@ -270,42 +237,6 @@ module.exports = {
         routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-a11y-report',
-    //   options: {
-    //     showInProduction: false,
-    //     toastAutoClose: false,
-    //     query: "
-    //       {
-    //         allSitePage(
-    //           filter: {
-    //             path: { regex: "/^(?!/404/|/404.html|/dev-404-page/)/" }
-    //           }
-    //         ) {
-    //           edges {
-    //             node {
-    //               path
-    //             }
-    //           }
-    //         }
-    //       }
-    //     ",
-    //     ignoreCheck: [
-    //       '/404*',
-    //       '/tag/*'
-    //     ],
-    //     serverOptions: {
-    //       host: 'localhost',
-    //       port: '8341'
-    //     },
-    //     axeOptions: {
-    //       locale: 'en',
-    //     },
-    //     loggingOptions: {
-    //       result: ['violations', 'incomplete']
-    //     }
-    //   },
-    // },
     {
       resolve: "gatsby-plugin-stylelint",
       options: {
