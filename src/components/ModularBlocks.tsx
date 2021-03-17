@@ -18,6 +18,7 @@ import { BannerGallery, BannerGalleryProps } from "./BannerGallery"
 import { Link } from "./Button"
 import { HoriontalRule, HoriontalRuleProps } from "./HoriontalRule"
 import { IconList, IconListProps } from "./IconList"
+import { ImageGallery, ImageGalleryProps } from "./ImageGallery"
 import { Leaf, LeafProps } from "./Leaf"
 import {
   ProductCardAlternate,
@@ -111,6 +112,16 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
                   {...instance}
                   mobileView={instance.mobile_view}
                 />
+              ))
+              break
+            case "image_gallery":
+              const {
+                image_gallery,
+              }: {
+                image_gallery: ImageGalleryProps[]
+              } = value as any
+              component = image_gallery?.map((instance, index) => (
+                <ImageGallery key={index} {...margins} {...instance} />
               ))
               break
             case "leaf":

@@ -18,7 +18,7 @@ import { Breadcrumb } from "../components/Breadcrumb"
 import { Button, Link } from "../components/Button"
 import { DeliveryAndReturnsInformation } from "../components/DeliveryAndReturnsInformation"
 import { IconList } from "../components/IconList"
-import { ImageGallery } from "../components/ImageGallery"
+import { ProductImageGallery } from "../components/ProductImageGallery"
 import { Leaf } from "../components/Leaf"
 import { Layout } from "../components/Layout"
 import { PageSections } from "../components/PageSections"
@@ -228,7 +228,7 @@ const ProductPage: React.FC<
       >
         <div>
           {imageGalleryArguments.items?.length && (
-            <ImageGallery
+            <ProductImageGallery
               className={clsx("image-gallery")}
               {...imageGalleryArguments}
             />
@@ -249,7 +249,7 @@ const ProductPage: React.FC<
           <ProductSection product={product} />
 
           <div className="actions">
-            <QuickShare />
+            <ShareOverlay />
             <QuickWishlist />
           </div>
 
