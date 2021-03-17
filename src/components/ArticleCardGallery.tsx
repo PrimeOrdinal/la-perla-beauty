@@ -31,10 +31,10 @@ const ArticleCardGalleryStyled = styled.section`
 
   div {
     display: grid;
-    column-gap: 2rem;
-    grid-auto-columns: calc(25% - 2rem + 0.5rem);
+    column-gap: 1rem;
+    grid-auto-columns: calc(33.33% - 0.66rem);
     grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fill, calc(25% - 2rem + 0.5rem));
+    grid-template-columns: repeat(auto-fill, calc(33.33% - 0.66rem));
 
     & > * {
       scroll-snap-align: start;
