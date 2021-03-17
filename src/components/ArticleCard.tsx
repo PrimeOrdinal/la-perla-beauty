@@ -40,18 +40,32 @@ export type ArticleCardProps = ColorProps &
   }
 
 const ArticleCardStyled = styled.article`
+  header {
+    align-items: start;
+    display: grid;
+  }
+
   figure {
+    aspect-ratio: ${props => props.aspectRatio ? props.aspectRatio : "3/4"};
     margin: unset;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .title {
+    font-size: ${themeGet("fontSizes.7")}px;
+    margin-block-end: 1rem;
+    margin-block-start: 0.5rem;
+    order: ${props => (props.titlePosition === "top" ? "-1" : "unset")};
   }
 
   span {
     display: block;
     text-transform: uppercase;
     margin: 8px 0;
-  }
-
-  h2 {
-    font-size: ${themeGet("fontSizes.6")}px;
   }
 
   a {
@@ -64,16 +78,17 @@ const ArticleCardStyled = styled.article`
 `
 
 export const ArticleCard: React.FC<ArticleCardProps> = (props) => (
-  <ArticleCardStyled>
-    {props.titlePosition === "top" && <h2>{props.title}</h2>}
-    <figure aspect-ratio={props.aspectRatio}>
-      <img
-        alt={props.image?.title}
-        src={props.image?.src}
-      />
-    </figure>
+  <ArticleCardStyled {...props}>
+    <header>
+      <figure>
+        <img
+          alt={props.image?.title}
+          src={props.image?.src}
+        />
+      </figure>
+      <h1 className="title">{props.title}</h1>
+    </header>
     {props.tag && <span>{props.tag}</span>}
-    {props.titlePosition === "bottom" && <h2>{props.title}</h2>}
     {props.summary && <p>{props.summary}</p>}
     {props.link && <Link to={props.link?.href}>{props.link?.title}</Link>}
     {props.url && <Link to={props.url}>Read more</Link>}

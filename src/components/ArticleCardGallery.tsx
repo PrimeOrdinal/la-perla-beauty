@@ -24,17 +24,21 @@ import { mediaQueries } from "../theme"
 import { ArticleCard, ArticleCardProps } from "./ArticleCard"
 
 const ArticleCardGalleryStyled = styled.section`
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
+  max-width: 100vw;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
 
-  article:nth-child(even) {
-    margin-top: 2rem;
-  }
+  div {
+    display: grid;
+    column-gap: 2rem;
+    grid-auto-columns: calc(25% - 2rem + 0.5rem);
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fill, calc(25% - 2rem + 0.5rem));
 
-  ${mediaQueries.md} {
-    gap: 2rem;
-    grid-template-columns: repeat(4, 1fr);
+    & > * {
+      scroll-snap-align: start;
+    }
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}
@@ -54,9 +58,11 @@ export type ArticleCardGalleryProps = ColorProps &
 
 export const ArticleCardGallery: React.FC<ArticleCardGalleryProps> = props => (
   <ArticleCardGalleryStyled>
-    {props.items?.map((item, index) => (
-      <ArticleCard key={index} {...item} titlePosition={index % 2 == 0 ? "bottom" : "top"} />
-    ))}
+    <div>
+      {props.items?.map((item, index) => (
+        <ArticleCard key={index} {...item} titlePosition={index % 2 == 0 ? "bottom" : "top"} />
+      ))}
+    </div>
   </ArticleCardGalleryStyled>
 )
 
