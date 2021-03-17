@@ -88,20 +88,29 @@ export const LayoutStyled = styled.aside`
     justify-items: start;
     left: 0;
     min-height: 20%;
-    padding-block: ${themeGet("space.4")}px;
-    padding-inline: ${themeGet("space.9")}px;
+    padding-block-end: ${themeGet("space.4")}px;
+    padding-block-start: ${themeGet("space.4")}px;
+    padding-inline-end: ${themeGet("space.9")}px;
+    padding-inline-start: ${themeGet("space.9")}px;
     pointer-events: none;
     position: ${props =>
       ["hero", "overlay", "video"].includes(props.layout) ? "absolute" : "static"};
     right: 0;
 
     ${mediaQueries.md} {
-      padding-block: ${props =>
+      padding-block-end: ${props =>
         ["hero", "overlay", "video"].includes(props.layout)
           ? themeGet("space.8")
           : themeGet("space.4")}px;
-      padding-inline: ${themeGet("space.12")}px;
-      padding-inline: ${props =>
+      padding-block-start: ${props =>
+        ["hero", "overlay", "video"].includes(props.layout)
+          ? themeGet("space.8")
+          : themeGet("space.4")}px;
+      padding-inline-end: ${themeGet("space.12")}px;
+      padding-inline-start: ${themeGet("space.12")}px;
+      padding-inline-end: ${props =>
+        ["hero"].includes(props.layout) ? "var(--app-gutter-x, 4rem)" : null};
+      padding-inline-start: ${props =>
         ["hero"].includes(props.layout) ? "var(--app-gutter-x, 4rem)" : null};
     }
 

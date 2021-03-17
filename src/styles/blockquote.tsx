@@ -17,8 +17,10 @@ export const blockquote = `
         font-size: var(--font-size-heading-2, 16px);
         line-height: ${theme.space[7]}px;
         margin: unset;
-        padding-block: var(--blockquote-symbol-height, 37px);
-        padding-inline: calc(var(--blockquote-symbol-width, 50px) * 1.5);
+        padding-block-end: var(--blockquote-symbol-height, 37px);
+        padding-block-start: var(--blockquote-symbol-height, 37px);
+        padding-inline-end: calc(var(--blockquote-symbol-width, 50px) * 1.5);
+        padding-inline-start: calc(var(--blockquote-symbol-width, 50px) * 1.5);
         max-width: ${theme.space[12]}ch;
         position: relative;
         z-index: 1;

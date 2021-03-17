@@ -37,7 +37,8 @@ const ProductCardAlternateGalleryStyled = styled.section`
   gap: 1rem;
   grid-auto-flow: row;
   margin-block-end: 1rem;
-  padding-block: 1rem;
+  padding-block-end: 1rem;
+  padding-block-start: 1rem;
   place-items: center;
 
   .wrapper {

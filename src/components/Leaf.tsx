@@ -32,7 +32,8 @@ const LeafWrapperStyled = styled.div`
   --image-height: clamp(160px, 50vw, 400px);
   --image-width: clamp(120px, 35.7vw, 300px);
 
-  margin-block: ${themeGet("space.11")}px;
+  margin-block-end: ${themeGet("space.11")}px;
+  margin-block-start: ${themeGet("space.11")}px;
 
   ${colourClasses}
 
@@ -42,7 +43,8 @@ const LeafWrapperStyled = styled.div`
 
     ${mediaQueries.md} {
       background-color: ${themeGet("colors.background")};
-      padding-block: ${themeGet("space.14")}px;
+      padding-block-end: ${themeGet("space.14")}px;
+      padding-block-start: ${themeGet("space.14")}px;
     }
   }
 
@@ -53,8 +55,10 @@ const LeafWrapperStyled = styled.div`
 
   figure {
     height: var(--image-height, 215px);
-    margin-block: ${themeGet("space.12")}px;
-    margin-inline: unset;
+    margin-block-end: ${themeGet("space.12")}px;
+    margin-block-start: ${themeGet("space.12")}px;
+    margin-inline-end: unset;
+    margin-inline-start: unset;
     position: relative;
     width: var(--image-width, 160px);
 
@@ -80,10 +84,12 @@ const LeafWrapperStyled = styled.div`
   .content {
     align-content: center;
     display: grid;
-    padding-inline: ${themeGet("space.8")}px;
+    padding-inline-end: ${themeGet("space.8")}px;
+    padding-inline-start: ${themeGet("space.8")}px;
 
     ${mediaQueries.md} {
-      padding-inline: ${themeGet("space.14")}px;
+      padding-inline-end: ${themeGet("space.14")}px;
+      padding-inline-start: ${themeGet("space.14")}px;
     }
   }
 
@@ -164,7 +170,8 @@ const LeafWrapperStyled = styled.div`
   &.image-and-text-outside,
   &.text-outside-and-image {
     .leaf-container {
-      padding-inline: ${themeGet("space.14")}px;
+      padding-inline-end: ${themeGet("space.14")}px;
+      padding-inline-start: ${themeGet("space.14")}px;
     }
   }
 `

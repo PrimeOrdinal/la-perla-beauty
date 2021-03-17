@@ -85,11 +85,12 @@ const MainStyled = styled.main`
 
       article {
         figure {
-          margin-inline: -10%;
+          margin-inline-end: -10%;
+          margin-inline-start: -10%;
 
           ${mediaQueries.md} {
-            margin-inline-start: unset;
             margin-inline-end: unset;
+            margin-inline-start: unset;
           }
         }
 
@@ -125,11 +126,12 @@ const MainStyled = styled.main`
 
     article {
       figure {
-        margin-inline: -10%;
+        margin-inline-end: -10%;
+        margin-inline-start: -10%;
 
         ${mediaQueries.md} {
-          margin-inline-start: unset;
           margin-inline-end: unset;
+          margin-inline-start: unset;
         }
       }
     }
@@ -138,7 +140,8 @@ const MainStyled = styled.main`
   .fourth {
     background-color: ${themeGet("lightgreen")};
     margin-block-end: 1rem;
-    padding-block: 1rem;
+    padding-block-end: 1rem;
+    padding-block-start: 1rem;
 
     &__grid {
       display: grid;
@@ -162,10 +165,12 @@ const MainStyled = styled.main`
 
     article {
       figure {
-        margin-inline: -10%;
+        margin-inline-end: -10%;
+        margin-inline-start: -10%;
 
         ${mediaQueries.md} {
-          margin-inline: unset;
+          margin-inline-end: unset;
+          margin-inline-start: unset;
         }
       }
     }
