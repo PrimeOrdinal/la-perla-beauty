@@ -51,8 +51,8 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
           }
 
           const margins = {
-            marginBottom: { _: value?.margins?.[0], md: value?.margins?.[2] },
-            marginTop: { _: value?.margins?.[1], md: value?.margins?.[3] },
+            marginBottom: { _: value?.margins?.[1], md: value?.margins?.[3] },
+            marginTop: { _: value?.margins?.[0], md: value?.margins?.[2] },
           }
 
           switch (key) {
