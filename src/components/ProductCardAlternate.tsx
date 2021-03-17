@@ -26,7 +26,7 @@ import {
 import { Link, LinkButton } from "./Button"
 import { Price } from "./Price"
 import { QuickBuy } from "../components/QuickBuy"
-import { QuickShare } from "../components/QuickShare"
+import { ShareOverlay } from "../components/ShareOverlay"
 import { QuickWishlist } from "./QuickWishlist"
 
 const ProductCardAlternateStyled = styled.article`
@@ -182,7 +182,7 @@ export const ProductCardAlternate: React.FC<ProductCardAlternateProps> = ({
               .pop()}
         </div>
         <div className={clsx("product-actions", "icons")}>
-          <QuickShare />
+          <ShareOverlay />
           <QuickWishlist product={product} type="icon" />
         </div>
       </div>

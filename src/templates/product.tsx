@@ -26,7 +26,7 @@ import { ProductSection } from "../components/ProductSection"
 import { SEO } from "../components/SEO"
 import { ProductSelectorColour } from "../components/ProductSelectorColour"
 import { ProductSelectorSize } from "../components/ProductSelectorSize"
-import { QuickShare } from "../components/QuickShare"
+import { ShareOverlay } from "../components/ShareOverlay"
 import { QuickWishlist } from "../components/QuickWishlist"
 
 import { mediaQueries } from "../theme"

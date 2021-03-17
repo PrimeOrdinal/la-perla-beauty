@@ -65,7 +65,7 @@ import { ReactComponent as ShareIcon } from "../../static/icons/Share.svg"
 import { Button } from "./Button"
 import { Modal } from "./Modal"
 
-export type QuickShareProps = ColorProps &
+export type ShareOverlayProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -73,7 +73,7 @@ export type QuickShareProps = ColorProps &
   SpaceProps &
   VariantProps
 
-export const QuickShareStyled: React.FC<QuickShareProps> = styled.div`
+export const ShareOverlayStyled: React.FC<ShareOverlayProps> = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
@@ -89,7 +89,7 @@ export const FallbackShareOptions = styled.div`
   }
 `
 
-export const QuickShare: React.FC<QuickShareProps> = (props) => {
+export const ShareOverlay: React.FC<ShareOverlayProps> = (props) => {
   const onButtonClick = async () => {
     const shareData = {
       text: "Beauty by La Perla",
@@ -201,8 +201,8 @@ export const QuickShare: React.FC<QuickShareProps> = (props) => {
       </React.Fragment>
     )
 
-    return <QuickShareStyled {...props}>{output}</QuickShareStyled>
+    return <ShareOverlayStyled {...props}>{output}</ShareOverlayStyled>
   }
 
-  return <QuickShareStyled {...props}>share</QuickShareStyled>
+  return <ShareOverlayStyled {...props}>share</ShareOverlayStyled>
 }
