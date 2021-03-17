@@ -197,13 +197,13 @@ const BlogLandingPage: React.FC<
               titleBelow="The exquisite sense of mere tranquil existence"
               tag="Be inspired"
               link="explore and shop"
-              aspectRatio="615/413"
+              aspectRatio="3/2"
             />
             <ArticleCard
               titleBelow="Never was there a greater artist than there is now"
               tag="featured"
               link="explore and shop"
-              aspectRatio="615/413"
+              aspectRatio="3/2"
             />
           </div>
           <hr />
@@ -222,7 +222,7 @@ const BlogLandingPage: React.FC<
             titleBelow="The buzz of the little world"
             tag="videos"
             link="learn more"
-            aspectRatio="615/413"
+            aspectRatio="3/2"
           />
         </section>
         <ProductCardAlternateGallery />
@@ -236,7 +236,7 @@ const BlogLandingPage: React.FC<
             titleBelow="The buzz of the little world"
             body="Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Vivamus a felis et odio viverra dignissim."
             link="explore & shop"
-            aspectRatio="615/413"
+            aspectRatio="3/2"
           />
         </section>
         <ArticleSlider />
