@@ -13,6 +13,8 @@ export const blockquote = `
     }
 
     blockquote {
+        --background-color: ${theme.colors.lightgrey};
+
         font-family: "Tiempos", serif;
         font-size: var(--font-size-heading-2, 16px);
         line-height: ${theme.space[7]}px;
@@ -32,7 +34,7 @@ export const blockquote = `
     
         &::before,
         &::after {
-            background-color: ${theme.colors.lightgrey};
+            background-color: var(--background-color, ${theme.colors.lightgrey});
             background-repeat: no-repeat;
             background-size: contain;
             content: "";
