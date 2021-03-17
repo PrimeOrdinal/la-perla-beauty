@@ -78,7 +78,7 @@ export const LayoutStyled = styled.aside`
   }
 
   .content {
-    align-items: start;
+    align-items: end;
     bottom: 0;
     color: ${props =>
       ["hero", "overlay", "video"].includes(props.layout)
