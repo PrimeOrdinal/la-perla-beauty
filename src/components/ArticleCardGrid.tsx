@@ -1,5 +1,3 @@
-import { Justify as JustifyProp } from "../../types/components"
-
 import React from "react"
 import styled from "styled-components"
 import {
