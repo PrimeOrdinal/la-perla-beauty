@@ -89,7 +89,13 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               }: {
                 banner: BannerProps[]
               } = value as any
-              component = <BannerGallery key={`${key}-${modularBlockIndex}`} {...margins} items={banner} />
+              component = (
+                <BannerGallery
+                  key={`${key}-${modularBlockIndex}`}
+                  {...margins}
+                  items={banner}
+                />
+              )
               break
             case "horizontal_rule":
               const instance: HoriontalRuleProps[] = value as any
