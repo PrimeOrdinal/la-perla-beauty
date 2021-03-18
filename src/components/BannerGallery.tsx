@@ -17,35 +17,31 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { Banner, BannerProps } from "./Banner"
+import { Carousel } from "./Carousel"
+
 export type BannerGalleryProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps
-
-export const BannerGalleryStyled: React.FC<BannerGalleryProps> = styled.section`
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-
-  & > * {
-    scroll-snap-align: start;
+  VariantProps & {
+    items: BannerProps[]
+    text: string
+    title: string
   }
 
+export const BannerGalleryStyled: React.FC<BannerGalleryProps> = styled.section`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const BannerGallery: React.FC<BannerGalleryProps> = ({
-  children,
-  ...props
-}) => (
-  <BannerGalleryStyled
-    {...props}
-  >
-    {children}
+export const BannerGallery: React.FC<BannerGalleryProps> = props => (
+  <BannerGalleryStyled {...props}>
+    <Carousel columns={1} layout="overlay" showPickers>
+      {props.items?.map((item, index) => (
+        <Banner key={index} layout="image" {...item} />
+      ))}
+    </Carousel>
   </BannerGalleryStyled>
 )

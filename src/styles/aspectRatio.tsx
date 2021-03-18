@@ -29,6 +29,13 @@ export const aspectRatio = `
         }
     }
 
+    [aspect-ratio="2/3"] {
+        &::before {
+            aspect-ratio: 2/3;
+            padding-block-start: calc(100% / (2/3));
+        }
+    }
+
     [aspect-ratio="3/2"] {
         &::before {
             aspect-ratio: 3/2;

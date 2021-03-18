@@ -45,7 +45,10 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
       let component
 
       Object.entries(modular_block).forEach(
-        ([key, value]: [key: string, value: ModularBlock], modularBlockIndex) => {
+        (
+          [key, value]: [key: string, value: ModularBlock],
+          modularBlockIndex
+        ) => {
           if (value === null) {
             return
           }
@@ -85,11 +88,12 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               ))
               break
             case "banner":
-              const { banner }: { banner: BannerProps[] } = value as any
-              const banners = banner?.map((instance, index) => (
-                <Banner key={index} {...margins} {...instance} />
-              ))
-              component = <BannerGallery key={`${key}-${modularBlockIndex}`}>{banners}</BannerGallery>
+              const {
+                banner,
+              }: {
+                banner: BannerProps[]
+              } = value as any
+              component = <BannerGallery key={`${key}-${modularBlockIndex}`} {...margins} items={banner} />
               break
             case "horizontal_rule":
               const instance: HoriontalRuleProps[] = value as any
@@ -116,9 +120,15 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               }: {
                 image_gallery: ImageGalleryProps[]
               } = value as any
-              component = image_gallery?.map((instance, index) => (
-                <ImageGallery key={index} {...margins} {...instance} />
-              ))
+              component = image_gallery?.map((instance, index) => {
+                const mapped = {
+                  ...instance,
+                  items: instance.items.map(image => ({
+                    image,
+                  })),
+                }
+                return <ImageGallery key={index} {...margins} {...mapped} />
+              })
               break
             case "leaf":
               const {

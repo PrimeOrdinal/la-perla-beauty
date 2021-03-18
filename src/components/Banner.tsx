@@ -34,15 +34,19 @@ export const LayoutStyled = styled.aside`
 
   @supports (aspect-ratio: 1) {
     aspect-ratio: ${props =>
-      ["hero", "overlay", "video"].includes(props.layout) ? "16 / 9" : undefined};
+      ["hero", "overlay", "video"].includes(props.layout) ? "16/9" : undefined};
     aspect-ratio: ${props =>
-      ["short-hero"].includes(props.layout) ? "21 / 9" : undefined};
+      ["short-hero"].includes(props.layout) ? "21/9" : undefined};
+    aspect-ratio: ${props =>
+        ["image"].includes(props.layout) ? "3/4" : undefined};
 
     ${mediaQueries.md} {
       aspect-ratio: ${props =>
-        ["hero", "overlay"].includes(props.layout) ? "2 / 1" : undefined};
+        ["hero", "overlay"].includes(props.layout) ? "2/1" : undefined};
       aspect-ratio: ${props =>
-        ["short-hero"].includes(props.layout) ? "3 / 1" : undefined};
+        ["short-hero"].includes(props.layout) ? "3/1" : undefined};
+      aspect-ratio: ${props =>
+        ["image"].includes(props.layout) ? "3/4" : undefined};
     }
   }
 
@@ -159,6 +163,7 @@ export const BannerStyled = styled(LayoutStyled)``
 enum LayoutProp {
   column, // two columns - image & content
   hero, // content overlaid on the background image, no rounded corners
+  image, // background image, rounded corners
   overlay, // content overlaid on the background image, rounded corners
   row, // two rows - image & content
   video, // content overlaid on the background video

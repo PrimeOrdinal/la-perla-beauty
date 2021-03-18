@@ -22,10 +22,12 @@ import {
 
 import { ReactComponent as Arrow } from "../../static/icons/Arrow.svg"
 
-import { ArticleCard, ArticleCardProps } from "./ArticleCard"
 import { Button } from "./Button"
 
 const CarouselStyled = styled.section`
+  --column-gap: ${props => props.columns > 1 ? (1 / props.columns) * 2 : "0"}rem;
+  --column-width: ${props => props.columns ? 100 / props.columns : 100}%;
+
   position: relative;
 
   .scrollable-container {
@@ -50,16 +52,21 @@ const CarouselStyled = styled.section`
   .items {
     display: grid;
     column-gap: 1rem;
-    grid-auto-columns: calc(33.33% - 0.66rem);
+    grid-auto-columns: calc(var(--column-width, 100%) - var(--column-gap, 1rem));
     grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fill, calc(33.33% - 0.66rem));
+    grid-template-columns: repeat(auto-fill, calc(var(--column-width, 100%) - var(--column-gap, 1rem)));
     margin-block-start: 2rem;
   }
 
   .pickers {
-    display: grid;
+    bottom: 0;
+    display: ${props => props.showPickers ? "grid" : "none"};
     grid-auto-flow: column;
     justify-content: center;
+    left: 0;
+    pointer-events: none;
+    position: ${props => props.layout === "overlay" ? "absolute" : "unset"};
+    right: 0;
   }
 
   .item,
@@ -86,9 +93,11 @@ const CarouselStyled = styled.section`
 
   .picker {
     font-size: 2rem;
+    pointer-events: auto;
   }
 
   .ui-button {
+    display: ${props => props.showArrows ? "flex" : "none"};
     height: var(--button-height, 24px);
     position: absolute;
     top: calc(50% - (var(--button-height, 24px) * 0.5));
@@ -115,7 +124,10 @@ export type CarouselProps = ColorProps &
   SpaceProps &
   VariantProps & {
     children: React.ReactNode
-    items: ArticleCardProps[]
+    columns?: 1 | 2 | 3 | 4
+    layout?: "overlay" | "chrome"
+    showArrows?: boolean
+    showPickers?: boolean
   }
 
 export const Carousel: React.FC<CarouselProps> = props => {
@@ -192,14 +204,15 @@ export const Carousel: React.FC<CarouselProps> = props => {
   }
 
   return (
-    <CarouselStyled>
+    <CarouselStyled {...props}>
       <div className="scrollable-container">
         <div className="items" ref={itemsRef}>
           {props.children}
         </div>
       </div>
       <div className="pickers" ref={pickersRef}>
-        {props.items?.map((_item, index) => (
+
+        {props.children?.map((_item, index) => (
           <Button className="picker" key={index} onClick={() => setSlideIndex(index)}>
             •
           </Button>

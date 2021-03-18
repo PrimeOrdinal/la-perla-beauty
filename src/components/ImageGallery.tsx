@@ -52,16 +52,13 @@ export const ImageGalleryStyled: React.FC<ImageGalleryProps> = styled.section`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const ImageGallery: React.FC<ImageGalleryProps> = ({
-  children,
-  ...props
-}) => (
+export const ImageGallery: React.FC<ImageGalleryProps> = (props) => (
   <ImageGalleryStyled
     {...props}
   >
     <div>
       {props.items?.map((item, index) => (
-        <Banner key={index} {...item} />
+        <Banner key={index} layout="image" {...item} />
       ))}
     </div>
   </ImageGalleryStyled>
