@@ -99,6 +99,15 @@ export const Contentstack_sectionFragment = graphql`
         }
         margins
       }
+      image_gallery {
+        image_gallery {
+          items {
+            title
+            src: url
+          }
+          title
+        }
+      }
       leaf {
         leaf {
           colour
