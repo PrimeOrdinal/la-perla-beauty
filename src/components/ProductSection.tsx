@@ -26,7 +26,7 @@ import {
   availabilitySchemaToShortName,
 } from "../utils/schema-org"
 
-import { Link } from "../components/Button"
+import { Link } from "./Button"
 import { ItemAvailability } from "./ItemAvailability"
 import { Price } from "./Price"
 
