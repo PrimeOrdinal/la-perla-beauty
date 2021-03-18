@@ -55,7 +55,6 @@ const CarouselStyled = styled.section`
     grid-auto-columns: calc(var(--column-width, 100%) - var(--column-gap, 1rem));
     grid-auto-flow: column;
     grid-template-columns: repeat(auto-fill, calc(var(--column-width, 100%) - var(--column-gap, 1rem)));
-    margin-block-start: 2rem;
   }
 
   .pickers {
