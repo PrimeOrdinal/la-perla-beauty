@@ -21,10 +21,6 @@ import { IconList, IconListProps } from "./IconList"
 import { ImageGallery, ImageGalleryProps } from "./ImageGallery"
 import { Leaf, LeafProps } from "./Leaf"
 import {
-  ProductCardAlternate,
-  ProductCardAlternateProps,
-} from "./ProductCardAlternate"
-import {
   ProductCardAlternateGallery,
   ProductCardAlternateGalleryProps,
 } from "./ProductCardAlternateGallery"
@@ -168,20 +164,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
                     key={index}
                     {...margins}
                     {...instance}
-                  >
-                    {instance.items.map(
-                      (
-                        product_card_alternate: ProductCardAlternateProps,
-                        index
-                      ) => (
-                        <ProductCardAlternate
-                          key={index}
-                          {...margins}
-                          {...product_card_alternate}
-                        />
-                      )
-                    )}
-                  </ProductCardAlternateGallery>
+                  />
                 )
               )
               break
@@ -206,21 +189,12 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => (
               ))
               break
             case "you_may_also_like":
-              const {
-                you_may_also_like,
-              }: {
-                you_may_also_like: YouMayAlsoLikeProps[]
-              } = value as any
-              console.log("you_may_also_like", props.bestSellingProducts)
-              component = you_may_also_like?.map((instance, index) => (
+              component = (
                 <YouMayAlsoLike
-                  key={index}
-                  bestSellingProducts={props.bestSellingProducts}
-                  featuredProducts={props.featuredProducts}
+                  key={`${key}-${modularBlockIndex}`}
                   {...margins}
-                  {...instance}
                 />
-              ))
+              )
               break
             default:
               console.log(`Unmapped modular block type: ${key}`)

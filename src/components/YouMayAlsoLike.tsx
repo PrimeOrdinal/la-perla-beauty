@@ -5,7 +5,7 @@ import type {
   Contentstack_Products,
 } from "../../graphql-types"
 
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import {
   color,
@@ -23,6 +23,8 @@ import {
   SpaceProps,
   VariantProps,
 } from "styled-system"
+
+import { SiteContext } from "../components/Layout"
 
 import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 
@@ -59,18 +61,25 @@ export const YouMayAlsoLikeStyled: React.FC<YouMayAlsoLikeProps> = styled.aside`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = props => (
-  <YouMayAlsoLikeStyled {...props}>
-    <h1>You May Also Like</h1>
-    {props.featuredProducts && (
-      <ProductListing
-        items={props.featuredProducts.map(productFormatBigCommerce =>
-          standardiseBigCommerceProduct({
-            productFormatBigCommerce,
-          })
-        )}
-        view="grid"
-      />
-    )}
-  </YouMayAlsoLikeStyled>
-)
+export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = props => {
+  const site = useContext(SiteContext)
+
+  const items = site?.featuredProducts?.edges?.map(
+    ({ node: productFormatBigCommerce }) =>
+      standardiseBigCommerceProduct({
+        productFormatBigCommerce,
+      })
+  )
+
+  return (
+    <YouMayAlsoLikeStyled {...props}>
+      <h1>You May Also Like</h1>
+      {items && (
+        <ProductListing
+          items={items}
+          view="grid"
+        />
+      )}
+    </YouMayAlsoLikeStyled>
+  )
+}

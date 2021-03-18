@@ -43,7 +43,7 @@ export function standardiseBigCommerceProduct({
     description: productFormatBigCommerce?.description,
     // gtin: productFormatBigCommerce?.gtin,
     height: productFormatBigCommerce?.height,
-    identifier: productFormatBigCommerce?.entityId.toString(),
+    identifier: productFormatBigCommerce?.entityId?.toString(),
     image: (productFormatBigCommerce?.images
       ?.edges as BigCommerceGql_ImageEdge[])?.map(({ node: image }) => ({
       "@type": "ImageObject",
@@ -59,7 +59,7 @@ export function standardiseBigCommerceProduct({
       price: productFormatBigCommerce?.prices?.price.value,
       priceCurrency: productFormatBigCommerce?.prices?.price.currencyCode,
     },
-    productID: productFormatBigCommerce?.entityId.toString(),
+    productID: productFormatBigCommerce?.entityId?.toString(),
     sku: productFormatBigCommerce?.sku,
     // upc: productFormatBigCommerce?.upc,
     url: productFormatBigCommerce?.path,

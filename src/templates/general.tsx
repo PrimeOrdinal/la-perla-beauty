@@ -29,7 +29,7 @@ const GeneralPage: React.FC<PageProps<GeneralPageQuery, PageContextPage>> = ({
         <Breadcrumb crumbs={crumbs} />
       )}
 
-      <PageSections sections={data?.contentstackPage?.sections} bestSellingProducts={data?.bigCommerceGQL?.site?.bestSellingProducts?.edges.map(({node}) => node)} featuredProducts={data?.bigCommerceGQL?.site?.featuredProducts?.edges.map(({node}) => node)} />
+      <PageSections sections={data?.contentstackPage?.sections} />
     </Layout>
   )
 }

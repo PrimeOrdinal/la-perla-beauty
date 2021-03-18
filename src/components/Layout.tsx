@@ -5,7 +5,10 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import type { LayoutQuery } from "../../graphql-types"
+import type {
+  BigCommerceGql_Product,
+  LayoutQuery,
+} from "../../graphql-types"
 
 import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
@@ -46,6 +49,21 @@ export type LayoutProps = {
   type?: "compact" | "full"
   transparent?: boolean
 }
+
+const siteContextDefault: {
+  bestSellingProducts?: {
+    edges: Array<{
+      node: BigCommerceGql_Product
+    }>
+  },
+  featuredProducts?: {
+    edges: Array<{
+      node: BigCommerceGql_Product
+    }>
+  },
+} = {}
+
+export const SiteContext = React.createContext(siteContextDefault);
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
@@ -142,7 +160,9 @@ export const Layout: React.FC<LayoutProps> = ({
               transparent={props.transparent}
             />
             <StyledPageContainer>
-              <StyledContentArea>{children}</StyledContentArea>
+              <SiteContext.Provider value={data?.bigCommerceGQL?.site}>
+                <StyledContentArea>{children}</StyledContentArea>
+              </SiteContext.Provider>
             </StyledPageContainer>
             <GlobalFooter
               data={data}

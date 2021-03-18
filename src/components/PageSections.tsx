@@ -24,8 +24,6 @@ export type Section = {
 }
 
 export type PageSectionsProps = {
-  bestSellingProducts: BigCommerceGql_Product[]
-  featuredProducts: BigCommerceGql_Product[]
   sections: Section[]
 }
 

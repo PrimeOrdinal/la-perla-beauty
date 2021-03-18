@@ -170,9 +170,6 @@ export const Contentstack_sectionFragment = graphql`
         margins
       }
       you_may_also_like {
-        you_may_also_like {
-          title
-        }
         margins
       }
     }
