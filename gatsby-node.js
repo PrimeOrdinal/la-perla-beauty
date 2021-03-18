@@ -74,19 +74,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      bigCommerceGQL {
-        site {
-          settings {
-            status
-            storeHash
-            storeName
-            url {
-              cdnUrl
-              vanityUrl
-            }
-          }
-        }
-      }
     }
   `)
 
