@@ -104,12 +104,10 @@ const ProductCardAlternateStyled = styled.article`
     }
 
     .color {
-      color
       gap: 1rem;
     }
 
     .size {
-      color
       gap: 1rem;
     }
 
