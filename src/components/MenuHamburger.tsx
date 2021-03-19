@@ -1,6 +1,6 @@
 import type {
   // FooterQuery
-  // Contentstack_Menus,
+  // Contentstack_Menu_Component,
   LayoutQuery,
 } from "../../graphql-types"
 
