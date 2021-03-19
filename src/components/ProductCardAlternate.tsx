@@ -72,8 +72,8 @@ const ProductCardAlternateStyled = styled.article`
     }
 
     img {
-      width: 21px;
       height: 18px;
+      width: 21px;
     }
   }
 
