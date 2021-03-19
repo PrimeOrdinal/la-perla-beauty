@@ -152,7 +152,7 @@ export const Carousel: React.FC<CarouselProps> = props => {
       nextButtonRef.current.classList.remove("active")
     }
 
-    Array.from(items).forEach((item, index) => {
+    Array.from(items)?.forEach((item, index) => {
       item.classList.add("item")
 
       item.addEventListener("click", articleCardClicked, false);
@@ -164,7 +164,7 @@ export const Carousel: React.FC<CarouselProps> = props => {
       }
     })
 
-    items[slideIndex].scrollIntoView({
+    items[slideIndex]?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
     })
