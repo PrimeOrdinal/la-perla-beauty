@@ -185,7 +185,7 @@ export const Leaf: React.FC<LeafProps> = (props) => {
     </React.Fragment>
   )
   return (
-    <LeafWrapperStyled className={clsx("container", props.layout)}>
+    <LeafWrapperStyled className={clsx(props.layout)}>
       <div className={clsx("leaf-container")}>
         <article>
           {props.image && (
