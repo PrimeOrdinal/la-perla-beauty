@@ -1,5 +1,7 @@
 import type { ModularBlocksTypes } from "../../types/ModularBlocks"
 
+import type { Image as ImageProp } from "../../types/components"
+
 import clsx from "clsx"
 import React from "react"
 import styled, { css } from "styled-components"
@@ -9,7 +11,7 @@ import { ModularBlocks } from "../components/ModularBlocks"
 export type Section = {
   background_attachment: string
   background_colour: string
-  background_image: string
+  background_image: ImageProp[]
   background_position: string
   background_repeat: string
   background_size: string
@@ -39,7 +41,7 @@ export const PageSections: React.FC<PageSectionsProps> = (props) => (
 
         ${section?.background_image &&
         css`
-          background-image: url("${section?.background_image}");
+          background-image: url("${section?.background_image?.[0]?.src}");
         `}
 
         ${section?.background_position &&

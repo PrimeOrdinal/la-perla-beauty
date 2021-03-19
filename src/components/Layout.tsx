@@ -139,6 +139,7 @@ export const Layout: React.FC<LayoutProps> = ({
     <ThemeProvider theme={theme} {...props}>
       <StyledSiteContainer>
         <GlobalStyle theme={theme} />
+
         <SiteSelector />
 
         {props.type === "compact" ? (
@@ -153,16 +154,19 @@ export const Layout: React.FC<LayoutProps> = ({
                 variant="primary"
               />
             )}
+
             <GlobalHeader
               data={data}
               siteTitle={data?.site?.siteMetadata?.title || `Title`}
               transparent={props.transparent}
             />
+
             <StyledPageContainer>
               <SiteContext.Provider value={data?.bigCommerceGQL?.site}>
                 <StyledContentArea>{children}</StyledContentArea>
               </SiteContext.Provider>
             </StyledPageContainer>
+
             <GlobalFooter
               data={data}
               siteTitle={data?.site?.siteMetadata?.title || `Title`}
