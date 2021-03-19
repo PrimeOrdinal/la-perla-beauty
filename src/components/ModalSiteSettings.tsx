@@ -42,7 +42,7 @@ const WrapperStyled = styled.div`
     .label {
       text-transform: uppercase;
       font-weight: bold;
-      font-size: var(--font-size-heading-6, 13px);
+      font-size: var(--font-size-heading-4, 13px);
     }
 
     .shipping-label {
