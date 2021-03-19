@@ -65,6 +65,10 @@ export const WYSIWYGStyled: React.FC<WYSIWYGProps> = styled.section`
     font-size: var(--font-size-heading-6, 12px);
   }
 
+  p {
+    max-width: 80ch;
+  }
+
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
