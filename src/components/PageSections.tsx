@@ -1,7 +1,3 @@
-import type {
-  BigCommerceGql_Product
-} from "../../graphql-types"
-
 import type { ModularBlocksTypes } from "../../types/ModularBlocks"
 
 import clsx from "clsx"
@@ -70,7 +66,7 @@ export const PageSections: React.FC<PageSectionsProps> = (props) => (
           id={section?.id}
           key={section?.id}
         >
-          <ModularBlocks modularBlocks={section?.modular_blocks} bestSellingProducts={props.bestSellingProducts} featuredProducts={props.featuredProducts} />
+          <ModularBlocks modularBlocks={section?.modular_blocks} />
         </SectionStyled>
       )
     })}
