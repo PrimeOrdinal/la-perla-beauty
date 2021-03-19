@@ -1,17 +1,17 @@
 import type {
   // GlobalFooterQuery
-  Contentstack_Menus,
+  Contentstack_Menu_Component,
   LayoutQuery,
 } from "../../graphql-types"
 
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "./Button"
 import React from "react"
 import styled from "styled-components"
 
 import { mediaQueries } from "../theme"
 
 import { Accordion } from "./Accordion"
+import { Link } from "./Button"
 import { ListPlain } from "./ListPlain"
 import { NewsletterSignup } from "./NewsletterSignup"
 
@@ -233,7 +233,7 @@ export const GlobalFooter: React.FC<GlobalFooterProps> = (
       <div className="footer-nav-mobile">
         <Accordion
           className="footer-secondary-accordion"
-          items={data?.allContentstackMenus?.edges
+          items={data?.allContentstackMenuComponent?.edges
             .filter(({ node: menu }) =>
               menu.slot?.startsWith("footer-secondary")
             )
@@ -243,22 +243,7 @@ export const GlobalFooter: React.FC<GlobalFooterProps> = (
                 <ul key={menu.id}>
                   {menu.links?.map((link, index) => (
                     <li key={index}>
-                      {link?.url?.href?.startsWith("http") ? (
-                        <a
-                          href={link?.url?.href as string}
-                          rel="external"
-                          title={link?.url?.title as string}
-                        >
-                          {link?.text}
-                        </a>
-                      ) : (
-                        <Link
-                          to={link?.url?.href as string}
-                          title={link?.url?.title as string}
-                        >
-                          {link?.text}
-                        </Link>
-                      )}
+                      <Link to={link?.link?.href}>{link?.link?.title}</Link>
                     </li>
                   ))}
                 </ul>
@@ -268,14 +253,14 @@ export const GlobalFooter: React.FC<GlobalFooterProps> = (
       </div>
 
       <div className="footer-nav-desktop">
-        {data?.allContentstackMenus?.edges
+        {data?.allContentstackMenuComponent?.edges
           .filter(({ node: menu }) => menu.slot?.startsWith("footer-secondary"))
           .sort(function (
             a: {
-              node: Contentstack_Menus
+              node: Contentstack_Menu_Component
             },
             b: {
-              node: Contentstack_Menus
+              node: Contentstack_Menu_Component
             }
           ) {
             const slotA = a?.node?.slot as string
@@ -295,15 +280,10 @@ export const GlobalFooter: React.FC<GlobalFooterProps> = (
           .map(({ node: menu }) => (
             <section key={menu.id}>
               <h3>{menu.title}</h3>
-              <ul id={menu.slot as string}>
+              <ul id={menu.slot}>
                 {menu?.links?.map((link, index) => (
                   <li key={index}>
-                    <Link
-                      to={link?.url?.href as string}
-                      title={link?.url?.title as string}
-                    >
-                      {link?.text}
-                    </Link>
+                    <Link to={link?.link?.href}>{link?.link?.title}</Link>
                   </li>
                 ))}
               </ul>
@@ -314,25 +294,22 @@ export const GlobalFooter: React.FC<GlobalFooterProps> = (
     <div className="footer-social">
       <ContainerStyled className="container">
         <SocialContainerStyled>
-          {data?.allContentstackMenus?.edges
+          {data?.allContentstackMenuComponent?.edges
             .filter(({ node: menu }) =>
               menu.slot?.startsWith("footer-tertiary")
             )
             .map(({ node: menu }) => (
               <section key={menu.id}>
                 <h3>{menu.title}</h3>
-                <SocialLinkListStyled id={menu.slot as string} key={menu.id}>
+                <SocialLinkListStyled id={menu.slot} key={menu.id}>
                   {menu?.links?.map((link, index) => (
                     <li key={index}>
-                      <a
-                        href={link?.url?.href as string}
-                        title={link?.url?.title as string}
-                      >
-                        {link?.text && <span>{link?.text}</span>}
+                      <a href={link?.link?.href}>
+                        {link?.link?.title && <span>{link?.link?.title}</span>}
                         {link?.icon && (
                           <img
-                            src={link?.icon?.url as string}
-                            title={link?.icon?.title as string}
+                            src={link?.icon?.url}
+                            title={link?.icon?.title}
                           />
                         )}
                       </a>

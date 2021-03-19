@@ -17,7 +17,7 @@ export const Example = Template.bind({})
 Example.args = {
   data: {
     site: { siteMetadata: { title: "La Perla Beauty" } },
-    allContentstackMenus: {
+    allContentstackMenuComponent: {
       edges: [
         {
           node: {

@@ -1,12 +1,12 @@
 import { graphql } from "gatsby"
-export const Contentstack_categoriesFragment = graphql`
-  fragment Contentstack_categoriesFragment on Contentstack_categories {
+export const Contentstack_categoryFragment = graphql`
+  fragment Contentstack_categoryFragment on Contentstack_category {
     bigcommerce_id
     description
     id
-    promotional_banners {
+    banners {
       grid_position
-      promotional_banner {
+      banner {
         colour
         image {
           description

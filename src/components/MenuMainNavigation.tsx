@@ -143,18 +143,17 @@ export const MenuMainNavigation: React.FC<MenuMainNavigationProps> = ({
   ...props
 }) => (
   <MenuMainNavigationStyled {...props}>
-    {data?.allContentstackMenus?.edges
+    {data?.allContentstackMenuComponent?.edges
       ?.filter(({ node: menu }) => menu.slot?.startsWith("header-navigation"))
       .map(({ node: menu }) => (
-        <HeadingsStyled id={menu.slot as string} key={menu.id}>
+        <HeadingsStyled id={menu.slot} key={menu.id}>
           {menu?.links?.map((linkLevel1, indexLevel1) => (
             <li className="menu-item" key={indexLevel1}>
               <Link
                 className="level-1"
-                title={linkLevel1?.url?.title as string}
-                to={linkLevel1?.url?.href as string}
+                href={linkLevel1?.link?.href}
               >
-                {linkLevel1?.text}
+                {linkLevel1?.link?.title}
               </Link>
               {linkLevel1?.sub_menus?.map((sub_menu, subMenuIndex) => (
                 <div className="sub-menu" key={subMenuIndex}>
@@ -164,10 +163,9 @@ export const MenuMainNavigation: React.FC<MenuMainNavigationProps> = ({
                         <li key={indexLevel2}>
                           <Link
                             className="level-2"
-                            to={linkLevel2?.url?.href as string}
-                            title={linkLevel2?.url?.title as string}
+                            to={linkLevel2?.link?.href}
                           >
-                            {linkLevel2?.text}
+                            {linkLevel2?.link?.title}
                           </Link>
                         </li>
                       ))}
@@ -178,16 +176,17 @@ export const MenuMainNavigation: React.FC<MenuMainNavigationProps> = ({
                       {image?.image?.url && (
                         <Link
                           className="image-container"
-                          title={image?.url?.title as string}
-                          to={image?.url?.href as string}
+                          title={image?.link?.title}
+                          to={image?.link?.href}
                         >
                           <img
-                            alt={image?.image?.title}
+                            alt={image?.image?.description}
                             className="image"
                             src={image?.image?.url}
+                            title={image?.image?.title}
                           />
                           <span className="title">
-                            {image?.url?.title as string}
+                            {image?.link?.title}
                           </span>
                         </Link>
                       )}

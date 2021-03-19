@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
-export const Contentstack_menusFragment = graphql`
-  fragment Contentstack_menusFragment on Contentstack_menus {
+export const Contentstack_menu_componentFragment = graphql`
+  fragment Contentstack_menu_componentFragment on Contentstack_menu_component {
     id
     links {
       icon {
@@ -9,15 +9,19 @@ export const Contentstack_menusFragment = graphql`
         title
         url
       }
+      link {
+        href
+        title
+      }
       sub_menus {
         id
         images {
-          url {
-            href
-            title
-          }
           image {
+            title
             url
+          }
+          link {
+            href
             title
           }
         }
@@ -28,6 +32,10 @@ export const Contentstack_menusFragment = graphql`
             title
             url
           }
+          link {
+            href
+            title
+          }
           sub_menus {
             id
             links {
@@ -37,8 +45,7 @@ export const Contentstack_menusFragment = graphql`
                 title
                 url
               }
-              text
-              url {
+              link {
                 href
                 title
               }
@@ -46,18 +53,8 @@ export const Contentstack_menusFragment = graphql`
             slot
             title
           }
-          text
-          url {
-            href
-            title
-          }
         }
         slot
-        title
-      }
-      text
-      url {
-        href
         title
       }
     }

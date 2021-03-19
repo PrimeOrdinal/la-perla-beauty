@@ -16,7 +16,7 @@ const Template: Story = args => <MenuMainNavigation {...args} />
 export const Example = Template.bind({})
 Example.args = {
   data: {
-    allContentstackMenus: {
+    allContentstackMenuComponent: {
       edges: [
         {
           node: {

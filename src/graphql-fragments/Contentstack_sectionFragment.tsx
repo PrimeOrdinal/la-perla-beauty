@@ -134,8 +134,7 @@ export const Contentstack_sectionFragment = graphql`
             icon {
               url
             }
-            text
-            url {
+            link {
               href
               title
             }

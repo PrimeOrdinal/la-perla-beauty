@@ -1,6 +1,6 @@
 import type { Product } from "schema-dts"
 
-import type { Contentstack_CategoriesPromotional_Banners } from "../../graphql-types"
+import type { Contentstack_CategoryPromotional_Banner_Component } from "../../graphql-types"
 
 import React from "react"
 import { Helmet } from "react-helmet"
@@ -45,7 +45,7 @@ export type ProductListingProps = ColorProps &
   SpaceProps &
   VariantProps & {
     items?: Product[]
-    promotionalBanners?: Contentstack_CategoriesPromotional_Banners
+    promotionalBanners?: Contentstack_CategoryPromotional_Banner_Component
     view: "grid" | "list"
   }
 

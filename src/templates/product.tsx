@@ -183,7 +183,7 @@ const ProductPage: React.FC<
                 {ingredient?.ingredient?.map(
                   (individualIngredient, individualIngredientIndex) => (
                     <dd key={individualIngredientIndex}>
-                      <Link to={individualIngredient?.url}>
+                      <Link to={individualIngredient?.href}>
                         {individualIngredient?.title}
                       </Link>
                       <div
@@ -236,12 +236,7 @@ const ProductPage: React.FC<
           <IconList
             display={{ _: "none", md: "grid" }}
             gridAutoFlow={{ _: "row", md: "column" }}
-            items={data?.contentstackProduct?.key_features?.item?.map(item => ({
-              icon: item?.icon,
-              color: item?.colour,
-              title: item?.title,
-              body: <p>{item?.text}</p>,
-            }))}
+            items={data?.contentstackProduct?.key_features?.item}
           ></IconList>
         </div>
 
@@ -344,12 +339,7 @@ const ProductPage: React.FC<
           <Accordion className="accordion" items={accordion} />
           <DeliveryAndReturnsInformation className="delivery-and-returns-information" />
           {data?.contentstackProduct?.leaf && (
-            <Leaf
-              colour={data?.contentstackProduct?.leaf?.colour}
-              layout={data?.contentstackProduct?.leaf?.layout}
-              text={data?.contentstackProduct?.leaf?.text}
-              title={data?.contentstackProduct?.leaf?.title}
-            />
+            <Leaf {...data?.contentstackProduct?.leaf} />
           )}
         </main>
       </ProductStyled>

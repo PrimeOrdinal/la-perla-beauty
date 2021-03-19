@@ -16,7 +16,7 @@ const Template: Story<GlobalFooterProps> = args => <GlobalFooter {...args} />
 export const Example = Template.bind({})
 Example.args = {
   data: {
-    allContentstackMenus: {
+    allContentstackMenuComponent: {
       edges: [
         {
           node: {

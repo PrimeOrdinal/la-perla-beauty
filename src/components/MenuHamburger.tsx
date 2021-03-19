@@ -91,7 +91,7 @@ export const MenuHamburger: React.FC<MenuHamburgerProps> = ({
           {
             <Accordion
               className="hamburger-accordion"
-              items={data?.allContentstackMenus?.edges
+              items={data?.allContentstackMenuComponent?.edges
                 .find(({ node: menu }) =>
                   menu.slot?.startsWith("mobile-navigation")
                 )
@@ -101,12 +101,7 @@ export const MenuHamburger: React.FC<MenuHamburgerProps> = ({
                     <ul>
                       {panel.sub_menus?.[0]?.links?.map((link, index) => (
                         <li key={index}>
-                          <Link
-                            to={link?.url?.href as string}
-                            title={link?.url?.title as string}
-                          >
-                            {link?.text}
-                          </Link>
+                          <Link to={link?.link?.href}>{link?.link?.title}</Link>
                         </li>
                       ))}
                     </ul>

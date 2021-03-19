@@ -76,7 +76,7 @@ export const Layout: React.FC<LayoutProps> = ({
           title
         }
       }
-      allContentstackMenus(
+      allContentstackMenuComponent(
         filter: {
           slot: {
             in: [
@@ -92,7 +92,7 @@ export const Layout: React.FC<LayoutProps> = ({
       ) {
         edges {
           node {
-            ...Contentstack_menusFragment
+            ...Contentstack_menu_componentFragment
           }
         }
       }
@@ -117,12 +117,12 @@ export const Layout: React.FC<LayoutProps> = ({
           }
         }
       }
-      contentstackBanners {
-        title
-        url {
+      contentstackPromotionalBannerComponent {
+        link {
           href
           title
         }
+        title
       }
       siteSearchIndex {
         index
@@ -147,10 +147,9 @@ export const Layout: React.FC<LayoutProps> = ({
           </StyledPageContainer>
         ) : (
           <React.Fragment>
-            {data?.contentstackBanners?.title && (
+            {data?.contentstackPromotionalBannerComponent?.title && (
               <PromotionalBanner
-                href={data?.contentstackBanners?.url?.href}
-                title={data?.contentstackBanners?.url?.title}
+                {...data?.contentstackPromotionalBannerComponent?.link}
                 variant="primary"
               />
             )}

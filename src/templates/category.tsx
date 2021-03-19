@@ -63,7 +63,7 @@ const CategoryPage: React.FC<
   )
 
   const promotionalBanners =
-    data.allContentstackCategories?.edges?.[0]?.node?.promotional_banners
+    data.allContentstackCategory?.edges?.[0]?.node?.banners
 
   const tabs = data.bigCommerceGQL?.site?.categoryTree?.find(
     (categoryTreeItem: BigCommerceGql_Category) =>
@@ -125,10 +125,10 @@ export default CategoryPage
 
 export const query = graphql`
   query CategoryPage($id: Int) {
-    allContentstackCategories(filter: { bigcommerce_id: { eq: $id } }) {
+    allContentstackCategory(filter: { bigcommerce_id: { eq: $id } }) {
       edges {
         node {
-          ...Contentstack_categoriesFragment
+          ...Contentstack_categoryFragment
         }
       }
     }
