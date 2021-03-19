@@ -15,10 +15,14 @@ type FontSizesProp = Array<number> & {
   heading2Desktop?: number
   heading3Desktop?: number
   heading4Desktop?: number
+  heading5Desktop?: number
+  heading6Desktop?: number
   heading1Mobile?: number
   heading2Mobile?: number
   heading3Mobile?: number
   heading4Mobile?: number
+  heading5Mobile?: number
+  heading6Mobile?: number
   smallDesktop?: number
   smallMobile?: number
 }
@@ -43,14 +47,18 @@ fontSizes.smallDesktop = fontSizes[1]
 fontSizes.smallMobile = fontSizes[0]
 fontSizes.bodyDesktop = fontSizes[3]
 fontSizes.bodyMobile = fontSizes[2]
-fontSizes.heading4Desktop = fontSizes[2]
-fontSizes.heading3Desktop = fontSizes[3]
-fontSizes.heading2Desktop = fontSizes[4]
-fontSizes.heading1Desktop = fontSizes[5]
-fontSizes.heading4Mobile = fontSizes[0]
-fontSizes.heading3Mobile = fontSizes[3]
-fontSizes.heading2Mobile = fontSizes[4]
-fontSizes.heading1Mobile = fontSizes[5]
+fontSizes.heading6Desktop = fontSizes[2]
+fontSizes.heading5Desktop = fontSizes[3]
+fontSizes.heading4Desktop = fontSizes[4]
+fontSizes.heading3Desktop = fontSizes[5]
+fontSizes.heading2Desktop = fontSizes[7]
+fontSizes.heading1Desktop = fontSizes[8]
+fontSizes.heading6Mobile = fontSizes[0]
+fontSizes.heading5Mobile = fontSizes[3]
+fontSizes.heading4Mobile = fontSizes[4]
+fontSizes.heading3Mobile = fontSizes[5]
+fontSizes.heading2Mobile = fontSizes[6]
+fontSizes.heading1Mobile = fontSizes[7]
 
 export const mediaQueries = {
   sm: `@media screen and (min-width: ${breakpoints[0]})`,

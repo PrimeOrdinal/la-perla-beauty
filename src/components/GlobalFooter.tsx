@@ -112,7 +112,7 @@ const GlobalFooterStyle = styled.footer`
 
       h3 {
         font-family: ${themeGet("fontFamily", "Quicksand")};
-        font-size: var(--font-size-heading-3, 14px);
+        font-size: var(--font-size-heading-5, 14px);
         padding-block-end: ${themeGet("space.8")}px;
         font-weight: bold;
       }
@@ -123,7 +123,7 @@ const GlobalFooterStyle = styled.footer`
         list-style: none;
         padding: 0;
         li {
-          font-size: var(--font-size-heading-3, 14px);
+          font-size: var(--font-size-heading-5, 14px);
 
           a {
             text-decoration: none;
@@ -174,7 +174,7 @@ const GlobalFooterStyle = styled.footer`
         display: none;
         ${mediaQueries.md} {
           display: block;
-          font-size: var(--font-size-heading-3, 14px);
+          font-size: var(--font-size-heading-5, 14px);
           font-weight: bold;
         }
       }
@@ -189,7 +189,7 @@ const ContainerStyled = styled.div`
   h2 {
     margin-block-end: 1.25rem;
     font-family: ${themeGet("fontFamily", "Tiempos")};
-    font-size: var(--font-size-heading-1, 18px);
+    font-size: var(--font-size-heading-3, 18px);
     font-weight: 100;
     text-transform: capitalize;
     ${mediaQueries.md} {

@@ -16,7 +16,7 @@ export const blockquote = `
         --background-color: ${theme.colors.lightgrey};
 
         font-family: "Tiempos", serif;
-        font-size: var(--font-size-heading-2, 16px);
+        font-size: var(--font-size-heading-4, 16px);
         line-height: ${theme.space[7]}px;
         margin: unset;
         padding-block-end: var(--blockquote-symbol-height, 37px);
@@ -28,7 +28,7 @@ export const blockquote = `
         z-index: 1;
     
         ${mediaQueries.md} {
-            font-size: var(--font-size-heading-1, 18px);
+            font-size: var(--font-size-heading-3, 18px);
             line-height: ${theme.space[8]}px;
         }
     

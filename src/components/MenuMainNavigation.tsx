@@ -48,7 +48,7 @@ const HeadingsStyled = styled(ListPlain)`
 
   li {
     text-align: left;
-    font-size: var(--font-size-heading-3, 14px);
+    font-size: var(--font-size-heading-5, 14px);
     font-weight: bold;
     letter-spacing: 1px;
 

@@ -114,13 +114,13 @@ const ProductCardStyled = styled.article`
   .product-name {
     align-self: flex-end;
     font-family: "Tiempos", serif;
-    font-size: var(--font-size-heading-2, 18px);
+    font-size: var(--font-size-heading-4, 18px);
     font-weight: lighter;
   }
 
   .product-price {
     font-family: "Tiempos", serif;
-    font-size: var(--font-size-heading-2, 18px);
+    font-size: var(--font-size-heading-4, 18px);
     font-weight: lighter;
   }
 

@@ -128,7 +128,7 @@ const GridStyled = styled.div`
 
     .price {
       font-family: "Tiempos", serif;
-      font-size: var(--font-size-heading-3, 14px);
+      font-size: var(--font-size-heading-5, 14px);
       font-weight: lighter;
     }
   }
