@@ -145,7 +145,7 @@ export const ProductCardAlternate: React.FC<ProductCardAlternateProps> = ({
 
   const image = thumbnail ? (
     <img
-      alt={product?.name as string}
+      alt={product?.name}
       itemProp="image"
       src={thumbnail?.contentUrl}
     />
@@ -156,8 +156,8 @@ export const ProductCardAlternate: React.FC<ProductCardAlternateProps> = ({
       {(image && product?.url && (
         <Link
           className="image-container"
-          to={product?.url as string}
-          title={product?.title as string}
+          to={product?.url}
+          title={product?.title}
         >
           {image}
         </Link>
@@ -210,8 +210,8 @@ export const ProductCardAlternate: React.FC<ProductCardAlternateProps> = ({
       <div className={clsx("product-actions", "text")}>
         <QuickBuy product={product} showPrice={false} showVariants={false} />
         <LinkButton
-          title={product?.title as string}
-          to={product?.url as string}
+          title={product?.title}
+          to={product?.url}
           variant="tertiary"
         >
           View product
