@@ -1,4 +1,7 @@
+import type { ItemAvailability } from "schema-dts"
+
 import { themeGet } from "@styled-system/theme-get"
+import React from "react"
 import styled from "styled-components"
 import {
   color,
@@ -18,15 +21,22 @@ import {
   VariantProps,
 } from "styled-system"
 
-export type ItemAvailabilityProps = ColorProps &
+import {
+  availabilitySchemaToHumanReadableText,
+  availabilitySchemaToShortName,
+} from "../utils/schema-org"
+
+export type ItemAvailabilityLabelProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps
+  VariantProps & {
+    availability: ItemAvailability
+  }
 
-export const ItemAvailability: React.FC<ItemAvailabilityProps> = styled.span`
+export const ItemAvailabilityLabelStyled: React.FC<ItemAvailabilityLabelProps> = styled.span`
   background-color: ${themeGet("colors.orange")};
   border-radius: ${themeGet("radii.2")}px;
   display: block;
@@ -67,3 +77,15 @@ export const ItemAvailability: React.FC<ItemAvailabilityProps> = styled.span`
 
   ${compose(color, flexbox, grid, layout, position, space)}
 `
+
+export const ItemAvailabilityLabel: React.FC<ItemAvailabilityLabelProps> = ({
+  availability,
+  ...props
+}) => (
+  <ItemAvailabilityLabelStyled
+    {...props}
+    availability={availabilitySchemaToShortName(availability)}
+  >
+    {availabilitySchemaToHumanReadableText(availability)}
+  </ItemAvailabilityLabelStyled>
+)

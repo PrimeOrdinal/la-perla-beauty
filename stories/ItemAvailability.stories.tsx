@@ -2,13 +2,13 @@ import React from "react"
 import { Story, Meta } from "@storybook/react"
 
 import {
-  ItemAvailability,
-  ItemAvailabilityProps,
-} from "../src/components/ItemAvailability"
+  ItemAvailabilityLabel,
+  ItemAvailabilityLabelProps,
+} from "../src/components/ItemAvailabilityLabel"
 
 export default {
-  title: "ItemAvailability",
-  component: ItemAvailability,
+  title: "ItemAvailabilityLabel",
+  component: ItemAvailabilityLabel,
   argTypes: {
     backgroundColor: { control: "color" },
     availability: {
@@ -27,16 +27,15 @@ export default {
   },
 } as Meta
 
-const Template: Story<ItemAvailabilityProps> = args => (
-  <ItemAvailability {...args} />
+const Template: Story<ItemAvailabilityLabelProps> = args => (
+  <ItemAvailabilityLabel {...args} />
 )
 
 export const Example = Template.bind({})
 Example.args = {
-  children: "Pre-order",
-  availability: "InStock",
+  availability: "LimitedAvailability",
   maxWidth: 256,
 }
 Example.argTypes = {
-  onClick: { action: "ItemAvailability clicked" },
+  onClick: { action: "ItemAvailabilityLabel clicked" },
 }
