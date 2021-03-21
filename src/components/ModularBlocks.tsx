@@ -124,7 +124,7 @@ export const ModularBlocks: React.FC<ModularBlocksProps> = props => {
                     key={index}
                     {...margins}
                     {...instance}
-                    mobileView={instance.mobile_view}
+                    mobileView={instance.mobileView}
                   />
                 ))
                 break
