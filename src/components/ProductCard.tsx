@@ -27,16 +27,11 @@ import { ReactComponent as PlusIcon } from "../../static/icons/Plus.svg"
 
 import { mediaQueries } from "../theme"
 
-import {
-  availabilitySchemaToHumanReadableText,
-  availabilitySchemaToShortName,
-} from "../utils/schema-org"
-
 import { Button, Link } from "./Button"
 import { Price } from "./Price"
 import { QuickBuy } from "./QuickBuy"
 import { QuickWishlist } from "./QuickWishlist"
-import { ItemAvailability } from "./ItemAvailability"
+import { ItemAvailabilityLabel } from "./ItemAvailabilityLabel"
 
 const ProductCardStyled = styled.article`
   align-content: space-between;
@@ -118,12 +113,6 @@ const ProductCardStyled = styled.article`
     font-weight: lighter;
   }
 
-  .product-price {
-    font-family: "Tiempos", serif;
-    font-size: var(--font-size-heading-4, 18px);
-    font-weight: lighter;
-  }
-
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 export type ProductCardProps = ColorProps &
@@ -132,7 +121,7 @@ export type ProductCardProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & { product: Product; }
+  VariantProps & { product: Product }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
@@ -140,13 +129,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const [quickBuyOpen, toggleQuickBuyOpen] = useToggle()
 
-  const offer = product?.offers as Offer
+  const offers = product?.offers as Offer
+
+  const primaryOffer = Array.isArray(offers) ? offers?.[0] : offers
 
   const thumbnail = product?.image?.[0]
 
   const image = thumbnail ? (
     <img
-      alt={product?.name as string}
+      alt={product?.name}
       itemProp="image"
       src={thumbnail?.contentUrl}
     />
@@ -162,20 +153,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {(image && product?.url && (
         <Link
           className="image-container"
-          to={product?.url as string}
-          title={product?.title as string}
+          to={product?.url}
+          title={product?.title}
         >
           {image}
         </Link>
       )) ||
         image}
-      {offer?.availability && (
-        <ItemAvailability
+      {primaryOffer?.availability && (
+        <ItemAvailabilityLabel
+          availability={primaryOffer?.availability}
           className="availability"
-          availability={availabilitySchemaToShortName(offer?.availability)}
-        >
-          {availabilitySchemaToHumanReadableText(offer?.availability)}
-        </ItemAvailability>
+        />
       )}
       <div className="product-information">
         <div className="product-category-wrapper">
@@ -195,11 +184,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               ))
               .pop()}
         </div>
-        {product?.brand?.name && (
-          <span className="product-brand" itemProp="brand">
-            {product?.brand?.name}
-          </span>
-        )}
         <div className="product-actions">
           <QuickWishlist product={product} />
           <Button
@@ -218,8 +202,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {product?.name}
         </span>
       )}
-      {!quickBuyOpen && offer && (
-        <Price display={{ _: "none", md: "block" }} offer={offer} />
+      {!quickBuyOpen && primaryOffer && (
+        <Price display={{ _: "none", md: "block" }} offer={primaryOffer} />
       )}
       {quickBuyOpen && (
         <QuickBuy
