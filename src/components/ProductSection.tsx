@@ -27,7 +27,7 @@ import {
 } from "../utils/schema-org"
 
 import { Link } from "./Button"
-import { ItemAvailability } from "./ItemAvailability"
+import { ItemAvailabilityLabel } from "./ItemAvailabilityLabel"
 import { Price } from "./Price"
 
 const ProductSectionStyled = styled.section`
@@ -93,12 +93,10 @@ export const ProductSection: React.FC<ProductSectionProps> = ({ product }) => {
       )}
 
       {offer?.availability && (
-        <ItemAvailability
+        <ItemAvailabilityLabel
           className="availability"
-          availability={availabilitySchemaToShortName(offer?.availability)}
-        >
-          {availabilitySchemaToHumanReadableText(offer?.availability)}
-        </ItemAvailability>
+          availability={offer?.availability}
+        />
       )}
 
       <h1 className={clsx("name", "title")}>{product?.name}</h1>
