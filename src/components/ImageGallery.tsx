@@ -37,7 +37,7 @@ export const ImageGalleryStyled: React.FC<ImageGalleryProps> = styled.section`
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
 
-  div {
+  .items {
     display: grid;
     column-gap: 1rem;
     grid-auto-columns: calc(33.33% - 0.66rem);
@@ -56,7 +56,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = (props) => (
   <ImageGalleryStyled
     {...props}
   >
-    <div>
+    <div className="items">
       {props.items?.map((item, index) => (
         <Banner key={index} layout="image" {...item} />
       ))}

@@ -98,7 +98,7 @@ export const Contentstack_sectionFragment = graphql`
             text
             title
           }
-          mobile_view
+          mobileView: mobile_view
           orientation
           title
         }

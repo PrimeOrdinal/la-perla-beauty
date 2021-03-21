@@ -1,5 +1,6 @@
 import type { MutableRefObject } from "react"
 
+import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
@@ -25,17 +26,20 @@ import { ReactComponent as Arrow } from "../../static/icons/Arrow.svg"
 import { Button } from "./Button"
 
 const CarouselStyled = styled.section`
-  --column-gap: ${props => props.columns > 1 ? (1 / props.columns) * 2 : "0"}rem;
-  --column-width: ${props => props.columns ? 100 / props.columns : 100}%;
+  --item-gap: ${props => props.visibleItems > 1 ? (1 / props.visibleItems) * 2 : "0"}rem;
+  --item-size: ${props => props.visibleItems ? 100 / props.visibleItems : 100}%;
 
+  display: grid;
+  grid-auto-flow: column;
   position: relative;
 
   .scrollable-container {
-    max-width: 100vw;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    max-height: ${props => props.orientation === "vertical" ? "var(--item-size, 100%)" : "unset"};
+    max-width: ${props => props.orientation !== "vertical" ? "var(--item-size, 100%)" : "unset"};
+    overflow-x: ${props => props.orientation !== "vertical" ? "scroll" : "hidden"};
+    overflow-y: ${props => props.orientation === "vertical" ? "scroll" : "hidden"};
     scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: ${props => props.orientation === "vertical" ? "y mandatory" : "x mandatory"};
     transition-delay: 125ms;
     transition-duration: 125ms;
     transition-property: filter;
@@ -51,22 +55,37 @@ const CarouselStyled = styled.section`
 
   .items {
     display: grid;
-    column-gap: 1rem;
-    grid-auto-columns: calc(var(--column-width, 100%) - var(--column-gap, 1rem));
-    grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fill, calc(var(--column-width, 100%) - var(--column-gap, 1rem)));
+    gap: 1rem;
+    ${props => props.orientation === "vertical" ? `
+      grid-auto-rows: calc(var(--item-size, 100%) - var(--item-gap, 1rem));
+      grid-auto-flow: row;
+      grid-template-rows: repeat(auto-fill, calc(var(--item-size, 100%) - var(--item-gap, 1rem)));
+    ` : `
+      grid-auto-visibleItems: calc(var(--item-size, 100%) - var(--item-gap, 1rem));
+      grid-auto-flow: column;
+      grid-template-visibleItems: repeat(auto-fill, calc(var(--item-size, 100%) - var(--item-gap, 1rem)));
+    `}
   }
 
   .pickers {
+    align-content: center;
     bottom: 0;
     display: ${props => props.showPickers ? "grid" : "none"};
-    grid-auto-flow: column;
+    grid-auto-flow: ${props => props.orientation === "vertical" ? "row" : "column"};
     justify-content: center;
-    left: 0;
+    left: ${props => props.orientation === "vertical" ? "auto" : 0};
     pointer-events: none;
-    position: ${props => props.layout === "overlay" ? "absolute" : "unset"};
+    position: absolute;
     right: 0;
+    top: ${props => props.orientation !== "vertical" ? "auto" : 0};
   }
+
+  ${props => props.pickerColour === "dark" && `
+    .picker {
+      color: ${themeGet("colors.white")};
+      mix-blend-mode: overlay;
+    }
+  `}
 
   .item,
   .picker,
@@ -83,16 +102,10 @@ const CarouselStyled = styled.section`
     }
   }
 
-  .picker,
   .ui-button {
     &:not(.active) {
       opacity: 0.25;
     }
-  }
-
-  .picker {
-    font-size: 2rem;
-    pointer-events: auto;
   }
 
   .ui-button {
@@ -123,10 +136,12 @@ export type CarouselProps = ColorProps &
   SpaceProps &
   VariantProps & {
     children: React.ReactNode
-    columns?: 1 | 2 | 3 | 4
     layout?: "overlay" | "chrome"
+    orientation?: "horizontal" | "vertical"
+    pickerColour: "dark" | "light"
     showArrows?: boolean
     showPickers?: boolean
+    visibleItems?: 1 | 2 | 3 | 4
   }
 
 export const Carousel: React.FC<CarouselProps> = props => {
@@ -212,9 +227,7 @@ export const Carousel: React.FC<CarouselProps> = props => {
       <div className="pickers" ref={pickersRef}>
 
         {props.children?.map((_item, index) => (
-          <Button className="picker" key={index} onClick={() => setSlideIndex(index)}>
-            •
-          </Button>
+          <Button className="picker" key={index} onClick={() => setSlideIndex(index)} />
         ))}
       </div>
       <button className={clsx("ui-button", "ui-button-previous")} onClick={previousButtonClicked} ref={previousButtonRef}>

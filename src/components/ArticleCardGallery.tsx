@@ -44,7 +44,7 @@ export const ArticleCardGallery: React.FC<ArticleCardGalleryProps> = props => (
   <ArticleCardGalleryStyled>
     {props.title && <h1 className="title">{props.title}</h1>}
     {props.text && <p className="text">{props.text}</p>}
-    <Carousel columns={3} showArrows>
+    <Carousel visibleItems={3} showArrows>
       {props.items?.map((item, index) => (
         <ArticleCard
           {...item}

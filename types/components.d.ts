@@ -1,4 +1,4 @@
-export type Colour = "beige" | "lightgreen" | "lilac" | "orange" | "pink" | "lightgrey"
+export type Colour = "beige" | "lightgreen" | "lightgrey" | "lilac" | "orange" | "pink"
 
 export type Icon =
   | "checkout"

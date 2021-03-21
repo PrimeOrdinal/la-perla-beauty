@@ -60,11 +60,10 @@ export const LayoutStyled = styled.aside`
 
   align-items: ${props => (props.layout === "column" ? "center" : "unset")};
   background-color: ${props =>
-    ["row", "hero"].includes(props.layout)
-      ? "transparent"
-      : themeGet(
+    ["column", "row"].includes(props.layout)
+      ? themeGet(
           `colors.${props.colour ? props.colour : themeGet("colors.pink")}`
-        )};
+        ) : "transparent"};
   border-radius: ${props =>
     ["hero"].includes(props.layout) ? "0" : themeGet("radii.4")}px;
   display: grid;
@@ -76,7 +75,7 @@ export const LayoutStyled = styled.aside`
     height: 100%;
     left: 0;
     object-fit: cover;
-    position: ${props => (props.layout === "video" ? "relative" : "absolute")};
+    position: ${props => ["hero", "image", "overlay", "video"].includes(props.layout) ? "absolute" : "static"};
     top: 0;
     width: 100%;
   }
@@ -85,7 +84,7 @@ export const LayoutStyled = styled.aside`
     align-items: end;
     bottom: 0;
     color: ${props =>
-      ["hero", "overlay", "video"].includes(props.layout)
+      ["hero", "image", "overlay", "video"].includes(props.layout)
         ? themeGet("colors.white")
         : "inherit"};
     display: grid;
@@ -110,8 +109,14 @@ export const LayoutStyled = styled.aside`
         ["hero", "overlay", "video"].includes(props.layout)
           ? themeGet("space.8")
           : themeGet("space.4")}px;
-      padding-inline-end: ${themeGet("space.12")}px;
-      padding-inline-start: ${themeGet("space.12")}px;
+      padding-inline-end: ${props =>
+        ["hero", "overlay", "video"].includes(props.layout)
+          ? themeGet("space.12")
+          : themeGet("space.9")}px;
+      padding-inline-start: ${props =>
+        ["hero", "overlay", "video"].includes(props.layout)
+          ? themeGet("space.12")
+          : themeGet("space.9")}px;
       padding-inline-end: ${props =>
         ["hero"].includes(props.layout) ? "var(--app-gutter-x, 4rem)" : null};
       padding-inline-start: ${props =>
@@ -146,6 +151,7 @@ export const LayoutStyled = styled.aside`
       font-weight: bold;
       margin-block-start: ${themeGet("space.6")}px;
       padding-block-end: ${themeGet("space.6")}px;
+      pointer-events: auto;
       text-decoration: unset;
       text-transform: uppercase;
 
@@ -209,9 +215,9 @@ export const Banner: React.FC<BannerProps> = props => (
         title={props?.image?.title as string}
       />
     )}
-    {props?.title ||
-      props?.tag ||
+    {((props?.tag ||
       props?.text ||
-      (props?.link && getContent(props))}
+      props?.title ||
+      props?.link) && getContent(props))}
   </BannerStyled>
 )

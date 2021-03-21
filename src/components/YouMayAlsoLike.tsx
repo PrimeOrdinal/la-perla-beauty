@@ -45,7 +45,7 @@ export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = props => {
     <YouMayAlsoLikeStyled {...props}>
       <h1>You May Also Like</h1>
       {props.featuredProducts && (
-        <Carousel columns={4} showArrows>
+        <Carousel visibleItems={4} showArrows>
           {props.featuredProducts?.map((product, index) => (
             <ProductCard
               key={index}

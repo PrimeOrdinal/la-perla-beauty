@@ -12,7 +12,7 @@ export const Contentstack_productFragment = graphql`
     icons {
       title
       orientation
-      mobile_view
+      mobileView: mobile_view
       items {
         colour
         icon

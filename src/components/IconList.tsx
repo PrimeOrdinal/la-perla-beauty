@@ -29,6 +29,8 @@ import { iconClasses } from "../styles/iconClasses"
 
 import { mediaQueries } from "../theme"
 
+import { Carousel } from "./Carousel"
+
 export type IconListProps = ColorProps &
   FlexboxProps &
   GridProps &
@@ -42,37 +44,40 @@ export type IconListProps = ColorProps &
       text: string
       title: string
     }>
-    mobile_view: "stack" | "swipe"
+    mobileView: "stack" | "swipe"
     orientation: "horizontal" | "vertical"
-    title: string
   }
 
-import { ListPlain } from "../components/ListPlain"
-
-export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
-  --item-gap: 1rem;
+export const IconListStyled: React.FC<IconListProps> = styled.div`
   --item-height: 40px;
 
   display: grid;
   gap: ${themeGet("space.4")}px;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
 
   ${colourClasses}
   ${iconClasses}
 
   ${mediaQueries.smDown} {
-    max-height: ${props => (props.mobile_view == "stack" ? "calc(var(--item-height, 40px) + var(--item-gap, 1rem))" : "unset")};
+    max-height: ${props =>
+      props.mobileView == "stack" ? "var(--item-height, 40px)" : "unset"};
   }
 
   ${mediaQueries.md} {
     grid-auto-flow: column;
   }
 
-  li {
+  /*
+  .carousel {
+    height: var(--item-height, 40px);
+  }
+  */
+
+  .item {
+    align-content: center;
     align-items: center;
     display: grid;
-    gap: var(--item-gap, 1rem);
+    gap: 1rem;
+    justify-content: start;
     scroll-snap-align: start;
 
     ${mediaQueries.smDown} {
@@ -82,8 +87,9 @@ export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
     ${mediaQueries.md} {
       grid-auto-flow: ${props =>
         props.orientation === "horizontal" ? "column" : "row"};
-      justify-items: ${props =>
+      justify-content: ${props =>
         props.orientation === "horizontal" ? "start" : "center"};
+      justify-items: center;
       text-align: ${props =>
         props.orientation === "horizontal" ? "left" : "center"};
     }
@@ -103,21 +109,33 @@ export const IconListStyled: React.FC<IconListProps> = styled(ListPlain)`
 
   ${compose(color, flexbox, grid, layout, position, space)}
 `
-export const IconList: React.FC<IconListProps> = (props) => (
-  <IconListStyled {...props}>
-    {props.items?.length &&
-      props.items.map((item, index) => (
-        <li key={index}>
-          {item.icon && (
-            <div className={clsx("icon", item.colour, item.icon)}>
-              <span className="sr-only">{item.icon}</span>
-            </div>
-          )}
-          <div>
-            {item.title && <h3 className="title">{item.title}</h3>}
-            {item.text}
-          </div>
-        </li>
-      ))}
-  </IconListStyled>
-)
+export const IconList: React.FC<IconListProps> = props => {
+  const items = props.items?.map((item, index) => (
+    <div className="item" key={index}>
+      {item.icon && (
+        <div className={clsx("icon", item.colour, item.icon)}>
+          <span className="sr-only">{item.icon}</span>
+        </div>
+      )}
+      <div>
+        {item.title && <h3 className="title">{item.title}</h3>}
+        {item.text}
+      </div>
+    </div>
+  ))
+
+  const mql = window.matchMedia(mediaQueries.smDown)
+  console.log(mediaQueries.smDown, mql)
+
+  return (
+    <IconListStyled {...props}>
+      {mql.matches && props.mobileView === "swipe" ? (
+        <Carousel className="carousel" orientation="vertical" showPickers>
+          {items}
+        </Carousel>
+      ) : (
+        items
+      )}
+    </IconListStyled>
+  )
+}

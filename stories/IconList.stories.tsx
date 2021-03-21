@@ -10,8 +10,8 @@ export default {
 
 const Template: Story<IconListProps> = args => <IconList {...args} />
 
-export const Horizontal = Template.bind({})
-Horizontal.args = {
+export const HorizontalStack = Template.bind({})
+HorizontalStack.args = {
   items: [
     {
       colour: "beige",
@@ -32,11 +32,12 @@ Horizontal.args = {
       title: "Item 3",
     },
   ],
+  mobileView: "stack",
   orientation: "horizontal",
 }
 
-export const Vertical = Template.bind({})
-Vertical.args = {
+export const VerticalStack = Template.bind({})
+VerticalStack.args = {
   items: [
     {
       colour: "beige",
@@ -57,5 +58,58 @@ Vertical.args = {
       title: "Item 3",
     },
   ],
+  mobileView: "stack",
+  orientation: "vertical",
+}
+
+export const HorizontalSwipe = Template.bind({})
+HorizontalSwipe.args = {
+  items: [
+    {
+      colour: "beige",
+      icon: "nib",
+      text: "Lorem ipsum dolor sit amet",
+      title: "Item 1",
+    },
+    {
+      colour: "lightgreen",
+      icon: "plant",
+      text: "Lorem ipsum dolor sit amet",
+      title: "Item 2",
+    },
+    {
+      colour: "pink",
+      icon: "heart",
+      text: "Lorem ipsum dolor sit amet",
+      title: "Item 3",
+    },
+  ],
+  mobileView: "swipe",
+  orientation: "horizontal",
+}
+
+export const VerticalSwipe = Template.bind({})
+VerticalSwipe.args = {
+  items: [
+    {
+      colour: "beige",
+      icon: "nib",
+      text: "Lorem ipsum dolor sit amet",
+      title: "Item 1",
+    },
+    {
+      colour: "lightgreen",
+      icon: "plant",
+      text: "Lorem ipsum dolor sit amet",
+      title: "Item 2",
+    },
+    {
+      colour: "pink",
+      icon: "heart",
+      text: "Lorem ipsum dolor sit amet",
+      title: "Item 3",
+    },
+  ],
+  mobileView: "swipe",
   orientation: "vertical",
 }
