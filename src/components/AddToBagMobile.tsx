@@ -35,14 +35,15 @@ export type AddToBagMobileProps = ColorProps &
     visible: boolean
   }
 
-const ContainerStyled = styled.div`
+const AddToBagMobileStyled = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
-  height: 50vh;
+  height: 100vh;
   position: relative;
 
   .container {
     background-color: ${themeGet("colors.background")};
-    border-radius: ${themeGet("radii.3")}px;
+    border-top-left-radius: ${themeGet("radii.3")}px;
+    border-top-right-radius: ${themeGet("radii.3")}px;
     border-style: solid;
     bottom: 0px;
     display: grid;
@@ -52,7 +53,7 @@ const ContainerStyled = styled.div`
     position: absolute;
     width: 100%;
 
-    .item {
+    .panel {
       align-items: center;
       display: flex;
       justify-content: space-between;
@@ -75,9 +76,9 @@ const ContainerStyled = styled.div`
 `
 
 export const AddToBagMobile: React.FC<AddToBagMobileProps> = () => (
-  <ContainerStyled>
+  <AddToBagMobileStyled>
     <div className="container">
-      <div className="item">
+      <div className="panel">
         <span>Item added to bag</span>
 
         <ButtonUnstyled className="close">
@@ -88,5 +89,5 @@ export const AddToBagMobile: React.FC<AddToBagMobileProps> = () => (
       <Button variant="primary">View bag</Button>
       <Button variant="tertiary">Continue shopping</Button>
     </div>
-  </ContainerStyled>
+  </AddToBagMobileStyled>
 )
