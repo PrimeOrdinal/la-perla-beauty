@@ -2,6 +2,7 @@ import React from "react"
 import { Story, Meta } from "@storybook/react"
 
 import { Accordion, AccordionProps } from "../src/components/Accordion"
+import { Link } from "../src/components/Button"
 
 export default {
   argTypes: {
@@ -19,17 +20,10 @@ Example.args = {
   items: [
     {
       title: "About Us",
-      panel: (
-        <React.Fragment>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem
-            doloribus officia officiis qui eos iste dolorem eaque, maiores
-            quidem consequatur sequi harum sint repudiandae molestias non
-            temporibus nihil facilis veritatis sit facere inventore asperiores
-            itaque. Ut dolores reprehenderit praesentium eos.
-          </p>
-        </React.Fragment>
-      ),
+      panel: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic
+            aliquam laudantium pariatur tenetur perspiciatis eum! Ullam,
+            accusamus. Debitis animi, cumque porro, in eveniet accusamus
+            voluptas vel fugit, ex tenetur sit.`,
     },
     {
       title: "Delivery & Return",
@@ -41,7 +35,8 @@ Example.args = {
             accusamus. Debitis animi, cumque porro, in eveniet accusamus
             voluptas vel fugit, ex tenetur sit.
           </p>
-          <button>Test</button>
+          <img alt="Placeholder" src="https://via.placeholder.com/300x400" />
+          <Link to="/test">Test</Link>
         </React.Fragment>
       ),
     },

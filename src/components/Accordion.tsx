@@ -93,7 +93,11 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
 
   .accordion__panel {
     animation: fadein 0.35s ease-in;
-    padding: 0;
+    padding-block-end: 16px;
+  }
+
+  .accordion__panel :first-child {
+    margin-block-start: unset;
   }
 
   .accordion__panel ul {
@@ -138,7 +142,7 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const Accordion: React.FC<AccordionProps> = (props) => (
+export const Accordion: React.FC<AccordionProps> = props => (
   <AccordionStyled
     allowMultipleExpanded={true}
     allowZeroExpanded={true}
@@ -152,11 +156,17 @@ export const Accordion: React.FC<AccordionProps> = (props) => (
               {item?.title}
             </ReactAccessibleAccordionItemButton>
           </ReactAccessibleAccordionItemHeading>
-          <ReactAccessibleAccordionItemPanel
-            dangerouslySetInnerHTML={{
-              __html: item?.panel as string,
-            }}
-          ></ReactAccessibleAccordionItemPanel>
+          {React.isValidElement(item?.panel) ? (
+            <ReactAccessibleAccordionItemPanel>
+              {item?.panel}
+            </ReactAccessibleAccordionItemPanel>
+          ) : (
+            <ReactAccessibleAccordionItemPanel
+              dangerouslySetInnerHTML={{
+                __html: item?.panel as string,
+              }}
+            />
+          )}
         </ReactAccessibleAccordionItem>
       ))}
   </AccordionStyled>
