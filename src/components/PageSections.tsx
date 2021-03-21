@@ -41,7 +41,7 @@ export const PageSections: React.FC<PageSectionsProps> = (props) => (
 
         ${section?.background_image &&
         css`
-          background-image: url("${section?.background_image?.[0]?.src}");
+          background-image: ${section?.background_image.map(image => `url("${image?.src}")`)};
         `}
 
         ${section?.background_position &&
