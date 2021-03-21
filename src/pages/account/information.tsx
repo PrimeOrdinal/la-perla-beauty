@@ -20,11 +20,10 @@ const ColumnTwoStyled = styled.section`
       display: initial;
     }
   }
+
   .account-description {
+    font-size: var(--font-size-body, 13px);
     margin: 0;
-    ${mediaQueries.md} {
-      font-size: ${themeGet("fontSizes.bodyDesktop")}px;
-    }
   }
 
   form {
@@ -35,9 +34,11 @@ const ColumnTwoStyled = styled.section`
       padding-block-start: ${themeGet("space.6")}px;
       padding-block-end: ${themeGet("space.6")}px;
     }
+
     label {
-      font-size: ${themeGet("fontSizes.bodyMobile")}px;
+      font-size: var(--font-size-body, 13px);
     }
+
     .name-wrapper {
       display: grid;
       grid-auto-flow: row;

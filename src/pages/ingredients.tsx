@@ -53,10 +53,7 @@ const InformationSection = styled.section`
   }
   form {
     label {
-      font-size: ${themeGet("fontSizes.bodyMobile")}px;
-      ${mediaQueries.md} {
-        font-size: ${themeGet("fontSizes.bodyDesktop")}px;
-      }
+      font-size: var(--font-size-body, 13px);
     }
     select {
       max-width: 500px;
@@ -67,7 +64,7 @@ const InformationSection = styled.section`
 const LetterBanner = styled.div`
   padding-block-end: ${themeGet("space.3")}px;
   padding-block-start: ${themeGet("space.3")}px;
-  background-color: ${themeGet("lightgreen")};
+  background-color: ${themeGet("colors.lightgreen")};
   ${mediaQueries.md} {
     padding-block-end: ${themeGet("space.5")}px;
     padding-block-start: ${themeGet("space.5")}px;
@@ -134,13 +131,10 @@ const IngredientList = styled(ListPlain)`
             gap: ${themeGet("space.4")}px;
             h3 {
               font-family: "Quicksand", sans-serif;
-              font-size: ${themeGet("fontSizes.bodyMobile")}px;
+              font-size: var(--font-size-body, 13px);
               text-transform: uppercase;
               font-weight: bold;
               margin: 0;
-              ${mediaQueries.md} {
-                font-size: ${themeGet("fontSizes.bodyDesktop")}px;
-              }
             }
             p {
               margin: 0;
