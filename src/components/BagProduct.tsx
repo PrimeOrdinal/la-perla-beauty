@@ -1,6 +1,7 @@
-import type { Product } from "schema-dts"
+import type { Offer, Product } from "schema-dts"
 
 import { themeGet } from "@styled-system/theme-get"
+import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -26,13 +27,15 @@ import { ReactComponent as PlusIcon } from "../../static/icons/Plus.svg"
 
 import { mediaQueries } from "../theme"
 
+import { Price } from "./Price"
+
 const BagProductStyled = styled.div`
   display: grid;
   gap: 1.5rem;
   grid-template-columns: ${props =>
     props.layout === "compact" ? "auto 1fr" : "1fr 2fr"};
 
-  .bagCol-1 {
+  .image {
     border-radius: ${themeGet("radii.3")}px;
     height: 160px;
 
@@ -41,13 +44,19 @@ const BagProductStyled = styled.div`
     }
   }
 
-  .bagCol-2 {
+  .variants {
+    display: grid;
+    grid-auto-flow: column;
+  }
+
+  .details {
     align-content: space-between;
     display: grid;
-    span {
+
+    .variant {
       text-align: left;
-      display: block;
     }
+
     .title-wrapper {
       align-content: center;
       display: grid;
@@ -127,34 +136,63 @@ export type BagProductProps = ColorProps &
     product: Product
   }
 
-export const BagProduct: React.FC<BagProductProps> = (props) => {
+export const BagProduct: React.FC<BagProductProps> = ({
+  product,
+  ...props
+}) => {
+  const offers = product?.offers as Offer
+
+  const primaryOffer = Array.isArray(offers) ? offers?.[0] : offers
+
+  const thumbnail = product?.image?.[0]
+
+  const image = thumbnail ? (
+    <img
+      alt={product?.name}
+      className="image"
+      itemProp="image"
+      src={thumbnail?.contentUrl}
+    />
+  ) : undefined
+
   return (
     <BagProductStyled {...props}>
-      <img
-        className="bagCol-1"
-        src="https://cdn11.bigcommerce.com/s-9o6tufixs6/products/116/images/404/LaPerla_Collection_120ml__IT__14539.1612958270.386.513.jpg?c=1"
-      />
-      <aside className="bagCol-2">
+      {image}
+      <aside className="details">
         <div>
           <div className="title-wrapper">
-            <h1>Product Name</h1>
+            <h1>{product?.name}</h1>
             <button className="close-icon icon">
               <CloseIcon />
             </button>
           </div>
-          <span>200ml</span>
+          <div className="variants">
+            {"color" in product && (
+              <div className={clsx("variant", "color")}>
+                <span className={clsx("label", "sr-only")}>Colour</span>
+                <span className="value">{product?.color}</span>
+              </div>
+            )}
+            {"size" in product && (
+              <div className={clsx("variant", "size")}>
+                <span className={clsx("label", "sr-only")}>Size</span>
+                <span className="value">{product?.size?.value}</span>
+                <span className="unitText">{product?.size?.unitText}</span>
+              </div>
+            )}
+          </div>
         </div>
         <form className="quantity-wrapper">
           <div className="button-wrapper">
             <button className="quantity-icon icon">
               <MinusIcon />
             </button>
-            <input className="total" name="quantity" type="number" value="2" />
+            <input className="total" name="quantity" type="number" value="0" />
             <button className="quantity-icon icon">
               <PlusIcon />
             </button>
           </div>
-          <span className="price">£124</span>
+          <Price className="price" offer={primaryOffer} />
         </form>
       </aside>
     </BagProductStyled>

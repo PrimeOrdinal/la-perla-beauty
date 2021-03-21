@@ -36,6 +36,7 @@ const GridStyled = styled.div`
   }
   .column-2 {
     align-content: flex-start;
+
     ${mediaQueries.md} {
       align-items: flex-start;
       display: grid;
@@ -68,7 +69,7 @@ const GridStyled = styled.div`
 
         h2 {
           font-family: "Quicksand", sans-serif;
-          font-size: ${themeGet("fontSizes.bodyMobile")}px;
+          font-size: var(--font-size-body, 13px);
           font-weight: bold;
           margin-block-start: 0;
           text-transform: uppercase;
@@ -104,6 +105,7 @@ const GridStyled = styled.div`
         padding-block-start: 1rem;
       }
     }
+
     .payment-icons {
       display: grid;
       grid-auto-flow: column;
