@@ -3,17 +3,14 @@ import { Story, Meta } from "@storybook/react"
 
 import { PromotionalBanner, PromotionalBannerProps } from "../src/components/PromotionalBanner"
 
+import { colourPreset } from "./utils/argTypes"
+
 export default {
   title: "PromotionalBanner",
   component: PromotionalBanner,
   argTypes: {
-    backgroundColor: { control: "color" },
-    colour: {
-      control: {
-        type: "inline-radio",
-        options: ["beige", "lightgreen", "lilac", "orange", "pink"],
-      },
-    },
+    // backgroundColor: { control: "color" },
+    backgroundColor: colourPreset,
   },
 } as Meta
 
