@@ -168,14 +168,3 @@ theme.buttons = {
     "&:hover": {},
   },
 }
-
-theme.leaf = {
-  primary: {
-    backgroundColor: theme.colors.lightgreen,
-    color: theme.colors.white,
-  },
-  secondary: {
-    backgroundColor: theme.colors.lilac,
-    color: theme.colors.white,
-  },
-}

@@ -94,3 +94,18 @@ TextOutsideAndImage.args = {
 TextOutsideAndImage.argTypes = {
   onClick: { action: "Leaf clicked" },
 }
+
+export const NoImage = Template.bind({})
+NoImage.args = {
+  colour: "beige",
+  layout: "image-and-text-inside",
+  link: {
+    href: "/test",
+    title: "Test"
+  },
+  text: "Etiam aliquet metus mauris, in tempus ves odio feugiat non. Docet praesent eu magna id arcu docet ves.",
+  title: "Lorem ipsum"
+}
+NoImage.argTypes = {
+  onClick: { action: "Leaf clicked" },
+}

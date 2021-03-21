@@ -50,13 +50,11 @@ const LeafWrapperStyled = styled.div`
 
   article {
     display: grid;
-    grid-template-columns: calc(var(--image-width,0) * 0.5) 1fr;
+    grid-template-columns: ${props => props.image ? "calc(var(--image-width,0) * 0.5) 1fr" : "unset"};
   }
 
   figure {
     height: var(--image-height, 215px);
-    margin-block-end: ${themeGet("space.12")}px;
-    margin-block-start: ${themeGet("space.12")}px;
     margin-inline-end: unset;
     margin-inline-start: unset;
     position: relative;
@@ -69,12 +67,18 @@ const LeafWrapperStyled = styled.div`
     }
   }
 
+  figure,
+  .content {
+    margin-block-end: ${themeGet("space.12")}px;
+    margin-block-start: ${themeGet("space.12")}px;
+  }
+
   .leaf {
     align-items: center;
     border-radius: 67px 0 67px 0;
-    display: flex;
+    display: grid;
     max-width: 98ch;
-    padding-inline-start: calc(var(--image-width, 0) * 0.5);
+    padding-inline-start: ${props => props.image ? "calc(var(--image-width, 0) * 0.5)" : "unset"};
 
     ${mediaQueries.md} {
       border-radius: 100px 0 100px 0;
@@ -185,7 +189,7 @@ export const Leaf: React.FC<LeafProps> = (props) => {
     </React.Fragment>
   )
   return (
-    <LeafWrapperStyled className={clsx(props.layout)}>
+    <LeafWrapperStyled className={clsx(props.layout)} {...props}>
       <div className={clsx("leaf-container")}>
         <article>
           {props.image && (
