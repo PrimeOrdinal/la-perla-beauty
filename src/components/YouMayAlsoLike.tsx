@@ -48,6 +48,7 @@ export const YouMayAlsoLike: React.FC<YouMayAlsoLikeProps> = props => {
         <Carousel visibleItems={4} showArrows>
           {props.featuredProducts?.map((product, index) => (
             <ProductCard
+              className="item"
               key={index}
               product={product}
               variantType={props.variantType}
