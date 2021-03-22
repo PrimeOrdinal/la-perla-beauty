@@ -134,6 +134,7 @@ export type BagProductProps = ColorProps &
   VariantProps & {
     layout: "compact" | "full"
     product: Product
+    quantity: number
   }
 
 export const BagProduct: React.FC<BagProductProps> = ({
@@ -187,7 +188,7 @@ export const BagProduct: React.FC<BagProductProps> = ({
             <button className="quantity-icon icon">
               <MinusIcon />
             </button>
-            <input className="total" name="quantity" type="number" value="0" />
+            <input className="total" name="quantity" type="number" value={props.quantity} />
             <button className="quantity-icon icon">
               <PlusIcon />
             </button>

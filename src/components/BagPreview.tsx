@@ -36,11 +36,6 @@ export type BagPreviewProps = ColorProps &
   }
 
 export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
-  &:disabled {
-    color: "disabled";
-    cursor: "not-allowed";
-  }
-
   background-color: ${themeGet("colors.background")};
   border-radius: ${themeGet("radii.4")}px;
   border-style: solid;
@@ -52,6 +47,11 @@ export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
 
   ${mediaQueries.md} {
     margin-block-start: 2rem;
+  }
+
+  &:disabled {
+    color: "disabled";
+    cursor: "not-allowed";
   }
 
   .items {
@@ -104,12 +104,7 @@ export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
 export const BagPreview: React.FC<BagPreviewProps> = props => (
   <BagPreviewStyled {...props}>
     <section className="items">
-      <BagProduct layout="compact" />
-      <BagProduct layout="compact" />
-      <BagProduct layout="compact" />
-      <BagProduct layout="compact" />
-      <BagProduct layout="compact" />
-      <BagProduct layout="compact" />
+      {props.items.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
     </section>
     <section className="checkout-section">
       <div className="grid-wrapper">

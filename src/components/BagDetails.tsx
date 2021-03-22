@@ -1,6 +1,24 @@
+import type { Product } from "schema-dts"
+
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
+import {
+  color,
+  compose,
+  flexbox,
+  grid,
+  layout,
+  position,
+  space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
 
 import applepay from "../../static/icons/applepay.svg"
 import googlepay from "../../static/icons/googlepay.svg"
@@ -11,6 +29,16 @@ import { mediaQueries } from "../theme"
 
 import { Button } from "./Button"
 import { BagProduct } from "./BagProduct"
+
+export type BagDetailsProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
+    items: Product[]
+  }
 
 
 const GridStyled = styled.div`
@@ -134,20 +162,17 @@ const GridStyled = styled.div`
       font-weight: lighter;
     }
   }
+
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const BagDetails: React.FC = () => {
+export const BagDetails: React.FC<BagDetailsProps> = props => {
   return (
     <div className="container">
       <GridStyled>
         <section className="column-1">
           <h1>Your bag</h1>
-          <BagProduct />
-          <BagProduct />
-          <BagProduct />
-          <BagProduct />
-          <BagProduct />
-          <BagProduct />
+          {props.items.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
         </section>
         <section className="column-2">
           <div className="column-2-wrapper">
