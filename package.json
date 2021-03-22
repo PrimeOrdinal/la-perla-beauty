@@ -151,7 +151,7 @@
     "build": "gatsby build",
     "build-storybook": "NODE_ENV=production build-storybook",
     "build:debug": "node --nolazy --inspect-brk node_modules/.bin/gatsby build",
-    "chromatic": "npx chromatic --project-token=dzp7tbz8xd7 --storybook-build-dir=storybook-static",
+    "chromatic": "npx chromatic --project-token=3a8b2c3e3528 --storybook-build-dir=storybook-static",
     "clean": "gatsby clean",
     "copy-static-queries": "mkdir -p public/static/d/ && cp -R public/page-data/sq/d/. public/static/d/",
     "develop": "gatsby develop -p 8000",
