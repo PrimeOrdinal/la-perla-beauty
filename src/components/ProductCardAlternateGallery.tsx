@@ -3,7 +3,8 @@ import type { Product } from "schema-dts"
 import type { Colour as ColourProp } from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
-import React, { useContext } from "react"
+import clsx from "clsx"
+import React from "react"
 import styled from "styled-components"
 import {
   color,
@@ -21,10 +22,6 @@ import {
   SpaceProps,
   VariantProps,
 } from "styled-system"
-
-import { SiteContext } from "../components/Layout"
-
-import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
 
 import { Carousel } from "./Carousel"
 import { ProductCardAlternate } from "./ProductCardAlternate"
@@ -53,29 +50,28 @@ export type ProductCardAlternateGalleryProps = ColorProps &
   SpaceProps &
   VariantProps & {
     colour?: ColourProp
+    items: Product[]
     variantType: "color" | "size"
   }
 
 export const ProductCardAlternateGallery: React.FC<ProductCardAlternateGalleryProps> = props => {
-  const site = useContext(SiteContext)
-
-  const items = site?.featuredProducts?.edges?.map(({node: productFormatBigCommerce}) =>
-    standardiseBigCommerceProduct({
-      productFormatBigCommerce,
-    })
-  )
+  const itemGap = 2
+  const visibleItems = 4
 
   return (
-    <ProductCardAlternateGalleryStyled {...props}>
-      <Carousel columns={4} showArrows showPickers>
-        {items?.map((product, index) => (
-          <ProductCardAlternate
-            key={index}
-            product={product}
-            variantType={props.variantType}
-          />
-        ))}
-      </Carousel>
+    <ProductCardAlternateGalleryStyled itemGap={itemGap} visibleItems={visibleItems} {...props }>
+      <div className={clsx("container", "contents")}>
+        <Carousel showArrows showPickers visibleItems={visibleItems}>
+          {props.items?.map((product, index) => (
+            <ProductCardAlternate
+              className="item"
+              key={index}
+              product={product}
+              variantType={props.variantType}
+            />
+          ))}
+        </Carousel>
+      </div>
     </ProductCardAlternateGalleryStyled>
   )
 }
