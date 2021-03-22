@@ -47,9 +47,10 @@ export const ArticleCardGallery: React.FC<ArticleCardGalleryProps> = props => (
     <Carousel visibleItems={3} showArrows>
       {props.items?.map((item, index) => (
         <ArticleCard
-          {...item}
+          className="item"
           key={index}
           titlePosition={index % 2 == 0 ? "bottom" : "top"}
+          {...item}
         />
       ))}
     </Carousel>
