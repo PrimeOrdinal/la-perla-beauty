@@ -6,7 +6,7 @@ import { mediaQueries } from "../../theme"
 import { AccountLayout } from "../../components/AccountLayout"
 import { Layout } from "../../components/Layout"
 import { ListPlain } from "../../components/ListPlain"
-import { OrdersItem } from "../../components/OrdersItem"
+import { OrderItem } from "../../components/OrderItem"
 import { SEO } from "../../components/SEO"
 
 const OrdersColumn = styled.section`
@@ -55,7 +55,7 @@ const OrdersPage: React.FC = () => (
           <h2>Current orders</h2>
           <ListPlain className="grid-item">
             <li>
-              <OrdersItem current />
+              <OrderItem current />
             </li>
           </ListPlain>
         </div>
@@ -63,19 +63,19 @@ const OrdersPage: React.FC = () => (
           <h2>Previous Orders</h2>
           <ListPlain className="grid-item">
             <li>
-              <OrdersItem previous />
+              <OrderItem previous />
             </li>
             <li>
-              <OrdersItem previous />
+              <OrderItem previous />
             </li>
             <li>
-              <OrdersItem previous />
+              <OrderItem previous />
             </li>
             <li>
-              <OrdersItem previous />
+              <OrderItem previous />
             </li>
             <li>
-              <OrdersItem previous />
+              <OrderItem previous />
             </li>
           </ListPlain>
         </div>

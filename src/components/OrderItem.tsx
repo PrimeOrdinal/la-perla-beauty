@@ -23,7 +23,7 @@ import { mediaQueries } from "../theme"
 import { Button, Link } from "./Button"
 import { ListPlain } from "./ListPlain"
 
-export type OrdersItemProps = ColorProps &
+export type OrderItemProps = ColorProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
@@ -129,7 +129,7 @@ const SecondColumnStyled = styled(ListPlain)`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const OrdersItem: React.FC<OrdersItemProps> = (props) => {
+export const OrderItem: React.FC<OrderItemProps> = props => {
   return (
     <OrderItemStyled>
       <img src="https://picsum.photos/220" alt="image" />
