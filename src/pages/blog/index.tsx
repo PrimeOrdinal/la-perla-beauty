@@ -15,7 +15,7 @@ import { ImageGallery } from "../../components/ImageGallery"
 import { Layout } from "../../components/Layout"
 import { MenuCategory } from "../../components/MenuCategory"
 import { ArticleCardGrid } from "../../components/ArticleCardGrid"
-import { ArticleSlider } from "../../components/ArticleSlider"
+import { ArticleCardGallery } from "../../components/ArticleCardGallery"
 import { ProductCardAlternateGallery } from "../../components/ProductCardAlternateGallery"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
@@ -138,7 +138,7 @@ const MainStyled = styled.main`
   }
 
   .fourth {
-    background-color: ${themeGet("lightgreen")};
+    background-color: ${themeGet("colors.lightgreen")};
     margin-block-end: 1rem;
     padding-block-end: 1rem;
     padding-block-start: 1rem;
@@ -244,7 +244,7 @@ const BlogLandingPage: React.FC<
             aspectRatio="3/2"
           />
         </section>
-        <ArticleSlider />
+        <ArticleCardGallery />
       </MainStyled>
     </Layout>
   )

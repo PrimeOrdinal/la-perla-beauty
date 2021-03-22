@@ -1,4 +1,7 @@
-import type { Image as ImageProp, Link as LinkProp } from "../../types/components"
+import type {
+  Image as ImageProp,
+  Link as LinkProp,
+} from "../../types/components"
 
 import { themeGet } from "@styled-system/theme-get"
 import React from "react"
@@ -46,8 +49,7 @@ const ArticleCardStyled = styled.article`
   }
 
   figure {
-    aspect-ratio: ${props => props.aspectRatio ? props.aspectRatio : "3/4"};
-    margin: unset;
+    aspect-ratio: ${props => (props.aspectRatio ? props.aspectRatio : "3/4")};
   }
 
   img {
@@ -80,16 +82,15 @@ const ArticleCardStyled = styled.article`
 export const ArticleCard: React.FC<ArticleCardProps> = props => (
   <ArticleCardStyled {...props}>
     <header>
-      <figure>
-        <img
-          alt={props.image?.title}
-          src={props.image?.src}
-        />
-      </figure>
-      <h1 className="title">{props.title}</h1>
+      {props.image && (
+        <figure>
+          <img alt={props.image?.title} src={props.image?.src} />
+        </figure>
+      )}
+      {props.title && <h1 className="title">{props.title}</h1>}
     </header>
     {props.tag && <span>{props.tag}</span>}
-    {props.summary && <p>{props.summary}</p>}
+    {props.summary && <span className="summary">{props.summary}</span>}
     {props.link && <Link to={props.link?.href}>{props.link?.title}</Link>}
     {props.url && <Link to={props.url}>Read more</Link>}
   </ArticleCardStyled>
