@@ -16,4 +16,5 @@ export const Example = Template.bind({})
 Example.args = {
   toggleBagPreviewVisibility: false,
   toggleQuickSearchVisibility: false,
+  width: { _: 1, sm: 1/2, md: 1/2, lg: 1/6 },
 }
