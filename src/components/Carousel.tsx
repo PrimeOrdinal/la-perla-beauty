@@ -26,18 +26,19 @@ import { ReactComponent as Arrow } from "../../static/icons/Arrow.svg"
 import { Button } from "./Button"
 
 const CarouselStyled = styled.section`
-  --item-gap: ${props => props.visibleItems > 1 ? (1 / props.visibleItems) * 2 : "0"}rem;
+  --item-gap: ${props => props.itemGap ? props.itemGap : 1}rem;
   --item-size: ${props => props.visibleItems ? 100 / props.visibleItems : 100}%;
-
+  
   display: grid;
   grid-auto-flow: column;
   position: relative;
 
   .scrollable-container {
     max-height: ${props => props.orientation === "vertical" ? "var(--item-size, 100%)" : "unset"};
-    max-width: ${props => props.orientation !== "vertical" ? "var(--item-size, 100%)" : "unset"};
+    max-width: ${props => props.orientation !== "vertical" ? `calc(${props.visibleItems ? props.visibleItems : 1} * var(--item-size, 100%))` : "unset"};
     overflow-x: ${props => props.orientation !== "vertical" ? "scroll" : "hidden"};
     overflow-y: ${props => props.orientation === "vertical" ? "scroll" : "hidden"};
+    padding-block-end: ${props => props.showPickers ? "3rem" : "unset"};
     scroll-behavior: smooth;
     scroll-snap-type: ${props => props.orientation === "vertical" ? "y mandatory" : "x mandatory"};
     transition-delay: 125ms;
@@ -55,15 +56,15 @@ const CarouselStyled = styled.section`
 
   .items {
     display: grid;
-    gap: 1rem;
+    gap: var(--item-gap, 1rem);
     ${props => props.orientation === "vertical" ? `
       grid-auto-rows: calc(var(--item-size, 100%) - var(--item-gap, 1rem));
       grid-auto-flow: row;
       grid-template-rows: repeat(auto-fill, calc(var(--item-size, 100%) - var(--item-gap, 1rem)));
     ` : `
-      grid-auto-visibleItems: calc(var(--item-size, 100%) - var(--item-gap, 1rem));
+      grid-auto-columns: calc(var(--item-size, 100%) - var(--item-gap, 1rem));
       grid-auto-flow: column;
-      grid-template-visibleItems: repeat(auto-fill, calc(var(--item-size, 100%) - var(--item-gap, 1rem)));
+      grid-template-columns: repeat(auto-fill, calc(var(--item-size, 100%) - var(--item-gap, 1rem)));
     `}
   }
 
@@ -103,26 +104,28 @@ const CarouselStyled = styled.section`
   }
 
   .ui-button {
-    &:not(.active) {
-      opacity: 0.25;
-    }
-  }
-
-  .ui-button {
     display: ${props => props.showArrows ? "flex" : "none"};
     height: var(--button-height, 24px);
     position: absolute;
     top: calc(50% - (var(--button-height, 24px) * 0.5));
     z-index: 1;
+
+    &:not(.active) {
+      opacity: 0.25;
+    }
+
+    svg {
+      margin-inline-start: unset !important;
+    }
   }
 
   .ui-button-previous {
-    left: -60px;
+    left: -50px;
     transform: rotate(180deg);
   }
 
   .ui-button-next {
-    right: -60px;
+    right: -50px;
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}
@@ -136,6 +139,7 @@ export type CarouselProps = ColorProps &
   SpaceProps &
   VariantProps & {
     children: React.ReactNode
+    itemGap: number
     layout?: "overlay" | "chrome"
     orientation?: "horizontal" | "vertical"
     pickerColour: "dark" | "light"
