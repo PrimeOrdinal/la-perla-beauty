@@ -38,9 +38,9 @@ export const BannerGalleryStyled: React.FC<BannerGalleryProps> = styled.section`
 
 export const BannerGallery: React.FC<BannerGalleryProps> = props => (
   <BannerGalleryStyled {...props}>
-    <Carousel visibleItems={1} layout="overlay" showPickers>
+    <Carousel {...props}>
       {props.items?.map((item, index) => (
-        <Banner key={index} layout="image" {...item} />
+        <Banner className="item" key={index} layout={props.layout} {...item} />
       ))}
     </Carousel>
   </BannerGalleryStyled>
