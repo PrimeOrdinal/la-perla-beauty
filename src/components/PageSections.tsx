@@ -25,7 +25,7 @@ export type PageSectionsProps = {
   sections: Section[]
 }
 
-export const PageSections: React.FC<PageSectionsProps> = (props) => (
+export const PageSections: React.FC<PageSectionsProps> = props => (
   <React.Fragment>
     {props.sections?.map(section => {
       const SectionStyled = styled.section`

@@ -180,7 +180,7 @@ const LeafWrapperStyled = styled.div`
   }
 `
 
-export const Leaf: React.FC<LeafProps> = (props) => {
+export const Leaf: React.FC<LeafProps> = props => {
   const content = (
     <React.Fragment>
       {props.title && <h2>{props.title}</h2>}

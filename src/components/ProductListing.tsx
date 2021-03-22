@@ -49,7 +49,7 @@ export type ProductListingProps = ColorProps &
     view: "grid" | "list"
   }
 
-export const ProductListing: React.FC<ProductListingProps> = (props) => {
+export const ProductListing: React.FC<ProductListingProps> = props => {
   const gridItems = props.items?.map((product: Product, index) => (
     <li className="product" key={`product-${index}`}>
       <ProductCard key={index} product={product} />

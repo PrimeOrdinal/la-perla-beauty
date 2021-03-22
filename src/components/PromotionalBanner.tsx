@@ -52,7 +52,7 @@ export const PromotionalBannerStyled: React.FC<PromotionalBannerProps> = styled.
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const PromotionalBanner: React.FC<PromotionalBannerProps> = (props) => (
+export const PromotionalBanner: React.FC<PromotionalBannerProps> = props => (
   <PromotionalBannerStyled {...props}>
     <Link to={props.href}>{props.title}</Link>
   </PromotionalBannerStyled>

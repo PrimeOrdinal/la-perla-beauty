@@ -89,7 +89,7 @@ export const FallbackShareOptions = styled.div`
   }
 `
 
-export const ShareOverlay: React.FC<ShareOverlayProps> = (props) => {
+export const ShareOverlay: React.FC<ShareOverlayProps> = props => {
   const onButtonClick = async () => {
     const shareData = {
       text: "Beauty by La Perla",

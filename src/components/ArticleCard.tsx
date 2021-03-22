@@ -77,7 +77,7 @@ const ArticleCardStyled = styled.article`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const ArticleCard: React.FC<ArticleCardProps> = (props) => (
+export const ArticleCard: React.FC<ArticleCardProps> = props => (
   <ArticleCardStyled {...props}>
     <header>
       <figure>

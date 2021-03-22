@@ -49,7 +49,7 @@ export type ArticleCardGridProps = ColorProps &
   }
 
 
-export const ArticleCardGrid: React.FC<ArticleCardGridProps> = (props) => (
+export const ArticleCardGrid: React.FC<ArticleCardGridProps> = props => (
     <GridStyled>
       {props.items?.map((item, index) => <ArticleCard
         key={index}

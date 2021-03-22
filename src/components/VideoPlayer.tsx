@@ -38,7 +38,7 @@ export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const VideoPlayer: React.FC<VideoPlayerProps> = (props) => (
+export const VideoPlayer: React.FC<VideoPlayerProps> = props => (
   <LayoutStyled layout="video" {...props}>
     <VideoPlayerStyled aspect-ratio={props.aspectRatio} className="media">
       <ReactPlayer

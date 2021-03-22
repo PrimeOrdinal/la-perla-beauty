@@ -42,7 +42,7 @@ export type MenuStoreProps = ColorProps &
     currentLocale: string
   }
 
-export const MenuStore: React.FC<MenuStoreProps> = (props) => {
+export const MenuStore: React.FC<MenuStoreProps> = props => {
   const [modalIsOpen, setIsOpen] = useState(false)
 
   function closeModal() {
