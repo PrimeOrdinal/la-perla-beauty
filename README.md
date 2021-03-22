@@ -137,3 +137,17 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 | TypeScript Global Types             | /types                       |
 | Dynamically-Generated GraphQL Types | /graphql-types.ts            |
 | Netlify Configuration               | /netlify.toml                |
+
+# Tools
+
+## Browser Extensions
+
+https://www.gatsbyjs.com/docs/conceptual/making-your-site-accessible/
+
+https://developers.google.com/web/tools/lighthouse/
+
+https://www.deque.com/axe/
+
+https://accessibilityinsights.io/docs/en/web/overview/
+
+https://chrome.google.com/webstore/detail/schema-builder-tester-for/klohjdodjjeocpbpadmkcndjoadijgjg
