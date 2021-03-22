@@ -1,6 +1,7 @@
 import type {
   Colour as ColourProp,
   Image as ImageProp,
+  Justify as JustifyProp,
   Link as LinkProp,
 } from "../../types/components"
 
@@ -38,7 +39,9 @@ export const LayoutStyled = styled.aside`
     aspect-ratio: ${props =>
       ["short-hero"].includes(props.layout) ? "21/9" : undefined};
     aspect-ratio: ${props =>
-        ["image"].includes(props.layout) ? "3/4" : undefined};
+      ["image", "imageAndTextOutside"].includes(props.layout)
+        ? "3/4"
+        : undefined};
 
     ${mediaQueries.md} {
       aspect-ratio: ${props =>
@@ -46,7 +49,9 @@ export const LayoutStyled = styled.aside`
       aspect-ratio: ${props =>
         ["short-hero"].includes(props.layout) ? "3/1" : undefined};
       aspect-ratio: ${props =>
-        ["image"].includes(props.layout) ? "3/4" : undefined};
+        ["image", "imageAndTextOutside"].includes(props.layout)
+          ? "3/4"
+          : undefined};
     }
   }
 
@@ -58,16 +63,18 @@ export const LayoutStyled = styled.aside`
     }
   }
 
-  align-items: ${props => (props.layout === "column" ? "center" : "unset")};
+  align-items: ${props => (props.layout === "cardColumn" ? "center" : "unset")};
   background-color: ${props =>
-    ["column", "row"].includes(props.layout)
+    ["cardColumn", "cardRow"].includes(props.layout)
       ? themeGet(
           `colors.${props.colour ? props.colour : themeGet("colors.pink")}`
-        ) : "transparent"};
+        )
+      : "transparent"};
   border-radius: ${props =>
     ["hero"].includes(props.layout) ? "0" : themeGet("radii.4")}px;
   display: grid;
-  grid-auto-flow: ${props => (props.layout === "column" ? "column" : "row")};
+  grid-auto-flow: ${props =>
+    props.layout === "cardColumn" ? "column" : "row"};
   overflow: hidden;
   position: relative;
 
@@ -75,7 +82,12 @@ export const LayoutStyled = styled.aside`
     height: 100%;
     left: 0;
     object-fit: cover;
-    position: ${props => ["hero", "image", "overlay", "video"].includes(props.layout) ? "absolute" : "static"};
+    position: ${props =>
+      ["hero", "image", "imageAndTextOutside", "overlay", "video"].includes(
+        props.layout
+      )
+        ? "absolute"
+        : "static"};
     top: 0;
     width: 100%;
   }
@@ -84,11 +96,14 @@ export const LayoutStyled = styled.aside`
     align-items: end;
     bottom: 0;
     color: ${props =>
-      ["hero", "image", "overlay", "video"].includes(props.layout)
+      ["hero", "image", "imageAndTextOutside", "overlay", "video"].includes(
+        props.layout
+      )
         ? themeGet("colors.white")
         : "inherit"};
     display: grid;
-    justify-items: start;
+    justify-items: ${props =>
+      props.justifyItems ? props.justifyItems : "start"};
     left: 0;
     min-height: 20%;
     padding-block-end: ${themeGet("space.4")}px;
@@ -97,7 +112,9 @@ export const LayoutStyled = styled.aside`
     padding-inline-start: ${themeGet("space.9")}px;
     pointer-events: none;
     position: ${props =>
-      ["hero", "overlay", "video"].includes(props.layout) ? "absolute" : "static"};
+      ["hero", "overlay", "video"].includes(props.layout)
+        ? "absolute"
+        : "static"};
     right: 0;
 
     ${mediaQueries.md} {
@@ -167,26 +184,22 @@ export const LayoutStyled = styled.aside`
 export const BannerStyled = styled(LayoutStyled)``
 
 enum LayoutProp {
-  column, // two columns - image & content
+  cardColumn, // card with two columns - image & content
+  cardRow, // card with two rows - image & content
   hero, // content overlaid on the background image, no rounded corners
-  image, // background image, rounded corners
+  image, // background image with rounded corners
+  imageAndTextOutside, // background image with rounded corners succeed by text
   overlay, // content overlaid on the background image, rounded corners
-  row, // two rows - image & content
   video, // content overlaid on the background video
 }
 
 export const getContent: React.FC<BannerProps> = props => (
-  <div
-    className={clsx(
-      "content",
-      ["hero", "overlay", "video"].includes(props.layout) && "image-overlay-gradient"
-    )}
-  >
+  <React.Fragment>
     {props?.title && <h1 className="title">{props?.title}</h1>}
     {props?.tag && <h2 className="tag">{props?.tag}</h2>}
     {props?.text && <span className="text">{props?.text}</span>}
     {props?.link && <Link to={props?.link?.href}>{props?.link?.title}</Link>}
-  </div>
+  </React.Fragment>
 )
 
 export type BannerProps = ColorProps &
@@ -198,6 +211,7 @@ export type BannerProps = ColorProps &
   VariantProps & {
     colour: ColourProp
     image: ImageProp
+    justifyItems: JustifyProp
     layout: LayoutProp
     link: LinkProp
     tag: String
@@ -206,18 +220,32 @@ export type BannerProps = ColorProps &
   }
 
 export const Banner: React.FC<BannerProps> = props => (
-  <BannerStyled {...props}>
-    {props?.image && (
-      <img
-        alt={props?.image?.alt as string}
-        className={clsx("img-bl", "media")}
-        src={props?.image?.src as string}
-        title={props?.image?.title as string}
-      />
+  <React.Fragment>
+    <BannerStyled {...props}>
+      {props?.image && (
+        <img
+          alt={props?.image?.alt as string}
+          className={clsx("img-bl", "media")}
+          src={props?.image?.src as string}
+          title={props?.image?.title as string}
+        />
+      )}
+      {props.layout !== "imageAndTextOutside" && (
+        <div
+          className={clsx(
+            "content",
+            "inside",
+            ["hero", "overlay", "video"].includes(props.layout) &&
+              "image-overlay-gradient"
+          )}
+        >
+          {(props?.tag || props?.text || props?.title || props?.link) &&
+            getContent(props)}
+        </div>
+      )}
+    </BannerStyled>
+    {props.layout === "imageAndTextOutside" && (
+      <div className={clsx("content", "outside")}>{getContent(props)}</div>
     )}
-    {((props?.tag ||
-      props?.text ||
-      props?.title ||
-      props?.link) && getContent(props))}
-  </BannerStyled>
+  </React.Fragment>
 )

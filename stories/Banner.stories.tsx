@@ -5,7 +5,7 @@ import React from "react"
 import { Banner, BannerProps } from "../src/components/Banner"
 
 import { getColour, getImage, getLink } from "./utils/args"
-import { backgroundPositionPreset, colourPreset } from "./utils/argTypes"
+import { backgroundPositionPreset, colourPreset, justifyPreset } from "./utils/argTypes"
 
 export default {
   title: "Banner",
@@ -13,6 +13,7 @@ export default {
   argTypes: {
     backgroundPosition: backgroundPositionPreset,
     colour: colourPreset,
+    justifyItems: justifyPreset,
   },
 } as Meta
 
@@ -26,14 +27,22 @@ Base.args = {
   link: getLink(),
   tag: faker.lorem.word(),
   text: faker.lorem.paragraph(),
+  justifyItems: "center",
   title: faker.lorem.sentence(),
 }
 
-export const Column = Template.bind({});
-Column.args = {
+export const CardColumn = Template.bind({});
+CardColumn.args = {
   ...Base.args,
-  label: "Column",
-  layout: "column",
+  label: "Card (column)",
+  layout: "cardColumn",
+}
+
+export const CardRow = Template.bind({});
+CardRow.args = {
+  ...Base.args,
+  label: "Card (row)",
+  layout: "cardRow",
 }
 
 export const Hero = Template.bind({});
@@ -50,18 +59,18 @@ Image.args = {
   layout: "image",
 }
 
+export const ImageAndTextOutside = Template.bind({});
+ImageAndTextOutside.args = {
+  ...Base.args,
+  label: "Image succeed by text",
+  layout: "imageAndTextOutside",
+}
+
 export const Overlay = Template.bind({});
 Overlay.args = {
   ...Base.args,
   label: "Overlay",
   layout: "overlay",
-}
-
-export const Row = Template.bind({});
-Row.args = {
-  ...Base.args,
-  label: "Row",
-  layout: "row",
 }
 
 // export const Video = Template.bind({});
