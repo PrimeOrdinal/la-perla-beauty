@@ -37,6 +37,7 @@ Please see https://docs.google.com/spreadsheets/d/12t6VzoMRThSGNqsFaFbnvhcAuE5pZ
 | Component Explorer      | Storybook         | https://storybook.js.org/                        |
 | Serverless Functions    | Netlify Functions | https://docs.netlify.com/functions/overview/     |
 | Theme Specification     | Theme UI          | https://github.com/system-ui/theme-specification |
+| Build Tool              | Netlify CLI       | https://cli.netlify.com/                         |
 
 # Repository Settings
 
@@ -140,7 +141,7 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 
 # Tools
 
-## Browser Extensions
+## Useful Browser Extensions
 
 https://www.gatsbyjs.com/docs/conceptual/making-your-site-accessible/
 
