@@ -11,6 +11,7 @@ import { button } from "./button"
 import { container } from "./container"
 import { dl } from "./dl"
 import { field } from "./field"
+import { figure } from "./figure"
 import { fonts } from "./fonts"
 import { form } from "./form"
 import { formCheckboxContainer } from "./formCheckboxContainer"
@@ -40,6 +41,7 @@ export const GlobalStyle = createGlobalStyle`
     ${container}
     ${dl}
     ${field}
+    ${figure}
     ${fonts}
     ${form}
     ${formCheckboxContainer}

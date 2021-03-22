@@ -55,8 +55,6 @@ const LeafWrapperStyled = styled.div`
 
   figure {
     height: var(--image-height, 215px);
-    margin-inline-end: unset;
-    margin-inline-start: unset;
     position: relative;
     width: var(--image-width, 160px);
 
