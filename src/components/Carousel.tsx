@@ -218,7 +218,7 @@ export const Carousel: React.FC<CarouselProps> = props => {
   }
 
   return (
-    <CarouselStyled {...props}>
+    <CarouselStyled className={clsx("carousel")} {...props}>
       <div className="scrollable-container">
         <div className="items" ref={itemsRef}>
           {props.children}
