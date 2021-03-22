@@ -1,3 +1,5 @@
+export type AspectRatio = "1/1" |"2/3" |"3/2" |"3/4" |"16/9"
+
 export type Colour = "beige" | "lightgreen" | "lightgrey" | "lilac" | "orange" | "pink"
 
 export type Icon =

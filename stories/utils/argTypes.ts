@@ -1,3 +1,17 @@
+export const availabilityPreset = {
+  control: {
+    options: [
+      "https://schema.org/InStock",
+      "https://schema.org/LimitedAvailability",
+      "https://schema.org/OnlineOnly",
+      "https://schema.org/OutOfStock",
+      "https://schema.org/PreOrder",
+      "https://schema.org/SoldOut",
+    ],
+    type: "inline-radio",
+  },
+}
+
 export const backgroundPositionPreset = {
   control: {
     options: [
@@ -22,16 +36,9 @@ export const colourPreset = {
   },
 }
 
-export const availabilityPreset = {
+export const justifyPreset = {
   control: {
-    options: [
-      "https://schema.org/InStock",
-      "https://schema.org/LimitedAvailability",
-      "https://schema.org/OnlineOnly",
-      "https://schema.org/OutOfStock",
-      "https://schema.org/PreOrder",
-      "https://schema.org/SoldOut",
-    ],
+    options: ["center", "end", "start", "stretch"],
     type: "inline-radio",
   },
 }

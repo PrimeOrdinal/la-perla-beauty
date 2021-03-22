@@ -1,12 +1,15 @@
 import type { ItemAvailability, Offer, Product } from "schema-dts"
 
 import type {
+  AspectRatio as AspectRatioProp,
   Colour as ColourProp,
   Image as ImageProp,
   Link as LinkProp,
 } from "../../types/components"
 
 import faker from "faker"
+
+export const aspectRatio: AspectRatioProp[] = ["1/1", "2/3", "3/2", "3/4", "16/9"]
 
 export const colours: ColourProp[] = ["beige", "lightgreen", "lightgrey", "lilac", "orange", "pink"]
 

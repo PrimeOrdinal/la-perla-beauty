@@ -65,5 +65,4 @@ Example.args = {
       title: "Promo banner",
     },
   ],
-  showPlayButton: false
 }
