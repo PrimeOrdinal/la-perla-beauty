@@ -104,7 +104,7 @@ export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
 export const BagPreview: React.FC<BagPreviewProps> = props => (
   <BagPreviewStyled {...props}>
     <section className="items">
-      {props.items.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
+      {props.items?.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
     </section>
     <section className="checkout-section">
       <div className="grid-wrapper">

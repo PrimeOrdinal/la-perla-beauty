@@ -172,7 +172,7 @@ export const BagDetails: React.FC<BagDetailsProps> = props => {
       <GridStyled>
         <section className="column-1">
           <h1>Your bag</h1>
-          {props.items.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
+          {props.items?.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
         </section>
         <section className="column-2">
           <div className="column-2-wrapper">
