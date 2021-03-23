@@ -5,7 +5,7 @@ import type {
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import {
   color,
@@ -23,6 +23,8 @@ import {
   SpaceProps,
   VariantProps,
 } from "styled-system"
+
+import { useMediaQuery } from "../hooks/useMediaQuery"
 
 import { colourClasses } from "../styles/colourClasses"
 import { iconClasses } from "../styles/iconClasses"
@@ -110,6 +112,8 @@ export const IconListStyled: React.FC<IconListProps> = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 export const IconList: React.FC<IconListProps> = props => {
+  const isMobile = useMediaQuery(mediaQueries.smDown)
+
   const items = props.items?.map((item, index) => (
     <div className="item" key={index}>
       {item.icon && (
@@ -124,12 +128,9 @@ export const IconList: React.FC<IconListProps> = props => {
     </div>
   ))
 
-  const mql = window.matchMedia(mediaQueries.smDown)
-  console.log(mediaQueries.smDown, mql)
-
   return (
     <IconListStyled {...props}>
-      {mql.matches && props.mobileView === "swipe" ? (
+      {isMobile && props.mobileView === "swipe" ? (
         <Carousel className="carousel" orientation="vertical" showPickers>
           {items}
         </Carousel>
