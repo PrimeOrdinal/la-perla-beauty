@@ -39,6 +39,31 @@ Please see https://docs.google.com/spreadsheets/d/12t6VzoMRThSGNqsFaFbnvhcAuE5pZ
 | Theme Specification     | Theme UI          | https://github.com/system-ui/theme-specification |
 | Build Tool              | Netlify CLI       | https://cli.netlify.com/                         |
 
+# Prerequisites
+
+Before attempting to run the project, you will require API credentials for BigCommerce and Contentstack.
+
+## Environment Variables
+
+Ensure that the following envionrment variables are set before attempting to run Gatsby locally:
+
+- BIGCOMMERCE_ACCESS_TOKEN
+- BIGCOMMERCE_CLIENT_ID
+- BIGCOMMERCE_CLIENT_SECRET
+- BIGCOMMERCE_STORE_HASH
+- BIGCOMMERCE_STORE_SUBDOMAIN
+- BIGCOMMERCE_STOREFRONT_TOKEN
+- CONTENTSTACK_API_KEY
+- CONTENTSTACK_DELIVERY_TOKEN
+- CONTENTSTACK_ENVIRONMENT
+- CONTENTSTACK_MANAGEMENT_TOKEN
+- GATSBY_SITE_URL
+- SITE_AUTHOR
+- SITE_DESCRIPTION
+- SITE_TITLE
+
+Place these into a `.env` file in the project root in order for Netlify Dev to set the environment variables. Please see the [.example-env](./.example-env) file in this repository for an example of the values for these variables.
+
 # Repository Settings
 
 ## Repository Settings
