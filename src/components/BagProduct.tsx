@@ -137,48 +137,39 @@ export type BagProductProps = ColorProps &
     quantity: number
   }
 
-export const BagProduct: React.FC<BagProductProps> = ({
-  product,
-  ...props
-}) => {
-  const offers = product?.offers as Offer
-
-  const primaryOffer = Array.isArray(offers) ? offers?.[0] : offers
-
-  const thumbnail = product?.image?.[0]
-
-  const image = thumbnail ? (
+export const BagProduct: React.FC<BagProductProps> = (props) => {
+  const image = props.image_url ? (
     <img
-      alt={product?.name}
+      alt={props.name}
       className="image"
       itemProp="image"
-      src={thumbnail?.contentUrl}
+      src={props.image_url}
     />
   ) : undefined
 
   return (
-    <BagProductStyled {...props}>
+    <BagProductStyled {...props} id={props.id} sku={props.sku}>
       {image}
-      <aside className="details">
+      <div className="details">
         <div>
           <div className="title-wrapper">
-            <h1>{product?.name}</h1>
+            <h1>{props.name}</h1>
             <button className="close-icon icon">
               <CloseIcon />
             </button>
           </div>
           <div className="variants">
-            {"color" in product && (
+            {"color" in props && (
               <div className={clsx("variant", "color")}>
                 <span className={clsx("label", "sr-only")}>Colour</span>
-                <span className="value">{product?.color}</span>
+                <span className="value">{props.color}</span>
               </div>
             )}
-            {"size" in product && (
+            {"size" in props && (
               <div className={clsx("variant", "size")}>
                 <span className={clsx("label", "sr-only")}>Size</span>
-                <span className="value">{product?.size?.value}</span>
-                <span className="unitText">{product?.size?.unitText}</span>
+                <span className="value">{props.size?.value}</span>
+                <span className="unitText">{props.size?.unitText}</span>
               </div>
             )}
           </div>
@@ -193,9 +184,10 @@ export const BagProduct: React.FC<BagProductProps> = ({
               <PlusIcon />
             </button>
           </div>
-          <Price className="price" offer={primaryOffer} />
+          {/* <Price className="price" offer={primaryOffer} /> */}
+          {props.sale_price}
         </form>
-      </aside>
+      </div>
     </BagProductStyled>
   )
 }

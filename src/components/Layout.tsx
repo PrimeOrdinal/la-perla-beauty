@@ -5,19 +5,21 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import type {
-  BigCommerceGql_Product,
-  LayoutQuery,
-} from "../../graphql-types"
+import type { Context } from "react"
+
+import type { BigCommerceGql_Product, LayoutQuery } from "../../graphql-types"
 
 import { graphql, useStaticQuery } from "gatsby"
-import React from "react"
+import React, { useContext, useState } from "react"
 import styled, { ThemeProvider } from "styled-components"
 
 import { GlobalStyle } from "../styles/GlobalStyle"
 
 import { theme } from "../theme"
 
+import type { Bag } from "../../types/BigCommerce"
+
+import { BagContext } from "./Bag"
 import { PromotionalBanner } from "./PromotionalBanner"
 import { GlobalFooter } from "./GlobalFooter"
 import { GlobalHeader } from "./GlobalHeader"
@@ -55,20 +57,19 @@ const siteContextDefault: {
     edges: Array<{
       node: BigCommerceGql_Product
     }>
-  },
+  }
   featuredProducts?: {
     edges: Array<{
       node: BigCommerceGql_Product
     }>
-  },
+  }
 } = {}
 
-export const SiteContext = React.createContext(siteContextDefault);
+export const SiteContext: Context<Site> = React.createContext(
+  siteContextDefault
+)
 
-export const Layout: React.FC<LayoutProps> = ({
-  children,
-  ...props
-}) => {
+export const Layout: React.FC<LayoutProps> = ({ children, ...props }) => {
   const data: LayoutQuery = useStaticQuery(graphql`
     query Layout {
       site {
@@ -135,45 +136,53 @@ export const Layout: React.FC<LayoutProps> = ({
   //   navigate("/maintenance")
   // }
 
+  // const { bag, setBag } = useContext(BagContext)
+  const [bagContents, setBagContents] = useState({} as Bag);
+  const setBag = (bag: Bag) => setBagContents(bag);
+  // console.log("bagContents", bagContents)
+
   return (
-    <ThemeProvider theme={theme} {...props}>
-      <StyledSiteContainer>
-        <GlobalStyle theme={theme} />
+    <ThemeProvider theme={theme}>
+      <BagContext.Provider value={{ bag: bagContents, setBag }}>
+        <StyledSiteContainer {...props}>
+          <GlobalStyle theme={theme} />
 
-        <SiteSelector />
+          <SiteSelector />
 
-        {props.type === "compact" ? (
-          <StyledPageContainer>
-            <StyledContentArea className="flex">{children}</StyledContentArea>
-          </StyledPageContainer>
-        ) : (
-          <React.Fragment>
-            {data?.contentstackPromotionalBannerComponent?.title && (
-              <PromotionalBanner
-                {...data?.contentstackPromotionalBannerComponent?.link}
-                variant="primary"
-              />
-            )}
-
-            <GlobalHeader
-              data={data}
-              siteTitle={data?.site?.siteMetadata?.title || `Title`}
-              transparent={props.transparent}
-            />
-
+          {props.type === "compact" ? (
             <StyledPageContainer>
-              <SiteContext.Provider value={data?.bigCommerceGQL?.site}>
-                <StyledContentArea>{children}</StyledContentArea>
-              </SiteContext.Provider>
+              <StyledContentArea className="flex">{children}</StyledContentArea>
             </StyledPageContainer>
+          ) : (
+            <React.Fragment>
+              {data?.contentstackPromotionalBannerComponent?.title && (
+                <PromotionalBanner
+                  {...data?.contentstackPromotionalBannerComponent?.link}
+                  variant="primary"
+                />
+              )}
 
-            <GlobalFooter
-              data={data}
-              siteTitle={data?.site?.siteMetadata?.title || `Title`}
-            />
-          </React.Fragment>
-        )}
-      </StyledSiteContainer>
+              <GlobalHeader
+                // bag={bag}
+                data={data}
+                siteTitle={data?.site?.siteMetadata?.title || `Title`}
+                transparent={props.transparent}
+              />
+
+              <StyledPageContainer>
+                <SiteContext.Provider value={data?.bigCommerceGQL?.site}>
+                  <StyledContentArea>{children}</StyledContentArea>
+                </SiteContext.Provider>
+              </StyledPageContainer>
+
+              <GlobalFooter
+                data={data}
+                siteTitle={data?.site?.siteMetadata?.title || `Title`}
+              />
+            </React.Fragment>
+          )}
+        </StyledSiteContainer>
+      </BagContext.Provider>
     </ThemeProvider>
   )
 }

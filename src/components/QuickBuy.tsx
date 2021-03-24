@@ -1,9 +1,12 @@
+// import type {  Dispatch, SetStateAction } from "React"
 import type { Offer, Product } from "schema-dts"
+
+import type { Bag } from "../../types/BigCommerce"
 
 import clsx from "clsx"
 import getSymbolFromCurrency from "currency-symbol-map"
 import { Formik, Form, FormikHelpers } from "formik"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
 import {
   color,
@@ -22,8 +25,11 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { functions as functionsPath } from "../utils/paths"
+
+import { BagContext } from "./Bag"
 import { Button } from "./Button"
-import { ProductSelectorColour } from "../components/ProductSelectorColour"
+import { ProductSelectorColour } from "./ProductSelectorColour"
 import { ProductSelectorSize } from "./ProductSelectorSize"
 
 export type QuickBuyProps = ColorProps &
@@ -32,7 +38,7 @@ export type QuickBuyProps = ColorProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & { product: Product; showPrice: boolean; showVariants: boolean; }
+  VariantProps & { product: Product; showPrice: boolean; showVariants: boolean }
 
 interface Values {
   identifier: string
@@ -43,15 +49,18 @@ export const QuickBuyStyled: React.FC<QuickBuyProps> = styled.div`
 `
 
 export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
+  const { bag, setBag } = useContext(BagContext)
+
   const [isInBag, setIsInBag] = useState(false)
 
   const offer = product?.offers as Offer
 
-  const path = `/.netlify/functions/carts`
+  const path = `${functionsPath}/carts`
 
   const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
   useEffect(() => {
+    console.log("bag", bag)
     ;(async function getCarts() {
       const response = await fetch(url.toString(), {
         headers: {
@@ -60,14 +69,10 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
         method: "GET",
       })
 
-      console.log(response)
-
       if (response.ok) {
-        const carts = await response.json()
+        const bags = await response.json()
 
-        const present = carts.items.find(
-          item => (item.id = product?.identifier)
-        )
+        const present = bags.items.find(item => (item.id = product?.identifier))
 
         setIsInBag(present)
       }
@@ -75,7 +80,7 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
   }, [])
 
   return (
-    <QuickBuyStyled {...props}>
+    <QuickBuyStyled {...props}>      
       <Formik
         className={clsx("container", "form-container")}
         initialValues={{
@@ -85,12 +90,13 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          const path = `/.netlify/functions/carts`
+          const path = `${functionsPath}/carts`
 
           const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
           const response = await fetch(url.toString(), {
             body: JSON.stringify(values),
+            credentials: "include",
             headers: {
               Accept: "application/json",
             },
@@ -99,7 +105,14 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
 
           setSubmitting(false)
 
-          console.log(response)
+          const data: Bag = await response.json()
+
+          setBag(data)
+
+          // console.log(response)
+          // console.log(response.headers)
+          console.log(data)
+          // console.log(bag)
         }}
       >
         <Form className={clsx("quick-buy")}>
@@ -118,7 +131,12 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
                 product={product}
               />
             ))}
-          <Button type="submit" variant="primary" py={{ md: 4 }} px={{ md: 9 }}>
+          <Button
+            type="submit"
+            variant="primary"
+            py={{ md: 4 }}
+            px={{ md: 9 }}
+          >
             {props.showPrice && (
               <React.Fragment>
                 <span

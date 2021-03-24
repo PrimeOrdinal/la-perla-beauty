@@ -1,7 +1,9 @@
 import type { Product } from "schema-dts"
 
+import type { Bag } from "../../types/BigCommerce"
+
 import { themeGet } from "@styled-system/theme-get"
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import {
   color,
@@ -29,6 +31,7 @@ import { mediaQueries } from "../theme"
 
 import { Button } from "./Button"
 import { BagProduct } from "./BagProduct"
+import { BagContext } from "./Bag"
 
 export type BagDetailsProps = ColorProps &
   FlexboxProps &
@@ -167,6 +170,10 @@ const GridStyled = styled.div`
 `
 
 export const BagDetails: React.FC<BagDetailsProps> = props => {
+  const { bag, setBag } = useContext(BagContext)
+
+  console.log("bag", bag)
+
   return (
     <div className="container">
       <GridStyled>
@@ -177,6 +184,7 @@ export const BagDetails: React.FC<BagDetailsProps> = props => {
         <section className="column-2">
           <div className="column-2-wrapper">
             <h1>Order Summary</h1>
+            {JSON.stringify(bag)}
             <section className="promo-section">
               <h2>promotional code</h2>
               <form>

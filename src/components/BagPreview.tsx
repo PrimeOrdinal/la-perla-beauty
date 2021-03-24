@@ -1,7 +1,10 @@
+// import type { Context } from "react"
 import type { Product } from "schema-dts"
 
+import type { Bag } from "../../types/BigCommerce"
+
 import { themeGet } from "@styled-system/theme-get"
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import {
   color,
@@ -22,8 +25,9 @@ import {
 
 import { mediaQueries } from "../theme"
 
-import { LinkButton } from "./Button"
+import { BagContext } from "./Bag"
 import { BagProduct } from "./BagProduct"
+import { LinkButton } from "./Button"
 
 export type BagPreviewProps = ColorProps &
   FlexboxProps &
@@ -32,6 +36,7 @@ export type BagPreviewProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
+    bag: Bag
     items: Product[]
   }
 
@@ -101,22 +106,29 @@ export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
   ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const BagPreview: React.FC<BagPreviewProps> = props => (
-  <BagPreviewStyled {...props}>
-    <section className="items">
-      {props.items?.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
-    </section>
-    <section className="checkout-section">
-      <div className="grid-wrapper">
-        <span className="title">Total (inc vat)</span>
-        <span className="price">£100</span>
-      </div>
-      <LinkButton to="/bag" variant="secondary">
-        View Bag
-      </LinkButton>
-      <LinkButton to="/checkout" variant="primary">
-        Checkout
-      </LinkButton>
-    </section>
-  </BagPreviewStyled>
-)
+export const BagPreview: React.FC<BagPreviewProps> = props => {
+  const { bag }: { bag: Bag } = useContext(BagContext)
+
+  return (
+    <BagPreviewStyled {...props}>
+      <section className="items">
+        {bag.line_items?.physical_items?.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
+        {props.items?.map((item, index) => (
+          <BagProduct key={index} layout="compact" {...item} />
+        ))}
+      </section>
+      <section className="checkout-section">
+        <div className="grid-wrapper">
+          <span className="title">Total (inc vat)</span>
+          <span className="price">{bag.cart_amount}</span>
+        </div>
+        <LinkButton to="/bag" variant="secondary">
+          View Bag
+        </LinkButton>
+        <LinkButton to="/checkout" variant="primary">
+          Checkout
+        </LinkButton>
+      </section>
+    </BagPreviewStyled>
+  )
+}
