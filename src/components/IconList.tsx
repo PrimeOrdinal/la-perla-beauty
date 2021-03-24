@@ -5,7 +5,7 @@ import type {
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
-import React, { useRef } from "react"
+import React from "react"
 import styled from "styled-components"
 import {
   color,

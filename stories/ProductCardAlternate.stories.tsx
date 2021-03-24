@@ -1,5 +1,3 @@
-import type { Product } from "schema-dts"
-
 import { Story, Meta } from "@storybook/react"
 import React from "react"
 

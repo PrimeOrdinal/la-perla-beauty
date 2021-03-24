@@ -21,11 +21,6 @@ import {
   VariantProps,
 } from "styled-system"
 
-import {
-  availabilitySchemaToHumanReadableText,
-  availabilitySchemaToShortName,
-} from "../utils/schema-org"
-
 import { Link } from "./Button"
 import { ItemAvailabilityLabel } from "./ItemAvailabilityLabel"
 import { Price } from "./Price"

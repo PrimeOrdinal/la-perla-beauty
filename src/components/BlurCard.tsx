@@ -3,8 +3,8 @@ import type {
   Link as LinkProp,
 } from "../../types/components"
 
+import clsx from "clsx"
 import React from "react"
-
 import styled from "styled-components"
 import {
   color,
@@ -24,7 +24,6 @@ import {
 } from "styled-system"
 
 import { Link } from "./Button"
-import clsx from "clsx"
 
 export type BlurCardProps = ColorProps &
   FlexboxProps &

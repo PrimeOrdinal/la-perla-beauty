@@ -1,5 +1,3 @@
-import { theme } from "../theme"
-
 export const picker = `
     .picker {
         font-size: 0.75rem;
