@@ -1,5 +1,6 @@
 import type { SetStateAction } from "react"
 
+import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import { Formik, Field, Form, FormikHelpers } from "formik"
 import React from "react"
@@ -21,7 +22,6 @@ import {
   VariantProps,
 } from "styled-system"
 
-import { themeGet } from "@styled-system/theme-get"
 import { functions as functionsPath } from "../utils/paths"
 
 import { mediaQueries } from "../theme"

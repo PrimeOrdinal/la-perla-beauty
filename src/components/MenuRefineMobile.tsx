@@ -1,5 +1,6 @@
 import type { SetStateAction } from "react"
 
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import clsx from "clsx"
 import styled from "styled-components"
@@ -21,10 +22,10 @@ import {
 } from "styled-system"
 import { Formik, Field, Form, FormikHelpers } from "formik"
 
-import { mediaQueries } from "../theme"
-import { themeGet } from "@styled-system/theme-get"
-
 import { ReactComponent as Minus } from "../../static/icons/Minus.svg"
+
+import { mediaQueries } from "../theme"
+
 import { functions as functionsPath } from "../utils/paths"
 
 import { Button } from "./Button"
