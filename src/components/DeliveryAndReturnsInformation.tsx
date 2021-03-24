@@ -25,6 +25,8 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { functions as functionsPath } from "../utils/paths"
+
 import { Button } from "./Button"
 
 export type DeliveryAndReturnsInformationProps = ColorProps &
@@ -102,7 +104,7 @@ export const DeliveryAndReturnsInformation: React.FC<DeliveryAndReturnsInformati
             values: Values,
             { setSubmitting }: FormikHelpers<Values>
           ) => {
-            const path = `/.netlify/functions/sign-up-to-our-newsletter`
+            const path = `${functionsPath}/sign-up-to-our-newsletter`
 
             const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 

@@ -22,6 +22,8 @@ import {
 } from "styled-system"
 
 import { themeGet } from "@styled-system/theme-get"
+import { functions as functionsPath } from "../utils/paths"
+
 import { mediaQueries } from "../theme"
 
 import { Button } from "./Button"
@@ -115,7 +117,7 @@ export const MenuRefine: React.FC<MenuRefineProps> = ({
     values: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
-    const path = `/.netlify/functions/sign-up-to-our-newsletter`
+    const path = `${functionsPath}/sign-up-to-our-newsletter`
 
     const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 

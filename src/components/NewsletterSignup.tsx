@@ -22,6 +22,8 @@ import {
 
 import { mediaQueries } from "../theme"
 
+import { functions as functionsPath } from "../utils/paths"
+
 import { Button } from "./Button"
 
 const NewsletterStyled = styled.div`
@@ -123,7 +125,7 @@ export const NewsletterSignup: React.FC = () => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          const path = `${location.origin}/.netlify/functions/subscribe-to-our-newsletter`
+          const path = `${functionsPath}/subscribe-to-our-newsletter`
 
           const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 

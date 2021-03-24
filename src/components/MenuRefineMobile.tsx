@@ -25,6 +25,8 @@ import { mediaQueries } from "../theme"
 import { themeGet } from "@styled-system/theme-get"
 
 import { ReactComponent as Minus } from "../../static/icons/Minus.svg"
+import { functions as functionsPath } from "../utils/paths"
+
 import { Button } from "./Button"
 import { Accordion } from "./Accordion"
 
@@ -144,7 +146,7 @@ export const MenuRefineMobile: React.FC<MenuRefineProps> = ({
     values: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
-    const path = `/.netlify/functions/sign-up-to-our-newsletter`
+    const path = `${functionsPath}/sign-up-to-our-newsletter`
 
     const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 

@@ -21,6 +21,8 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { functions as functionsPath } from "../utils/paths"
+
 import { ReactComponent as WishlistAbsentIcon } from "../../static/icons/WishlistAbsent.svg"
 import { ReactComponent as WishlistPresentIcon } from "../../static/icons/WishlistPresent.svg"
 
@@ -48,7 +50,7 @@ export const QuickWishlist: React.FC<QuickWishlistProps> = ({
 }) => {
   const [isInWishlist, setIsInWishlist] = useState(false)
 
-  const path = `/.netlify/functions/wishlists`
+  const path = `${functionsPath}/wishlists`
 
   const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
