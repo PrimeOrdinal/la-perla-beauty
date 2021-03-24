@@ -3,6 +3,7 @@ import type {
   Link as LinkProp,
 } from "../../types/components"
 
+import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
@@ -42,32 +43,33 @@ export type BlurCardProps = ColorProps &
   }
 
 const BlurCardStyled = styled.article`
-  background-color: beige;
-  background-image: url(${`https://picsum.photos/405/712?${
-    Math.floor(Math.random() * 10) + 1
-  }`});
-  border-radius: 10px;
-  padding-inline-start: 78px;
-  padding-inline-end: 78px;
-  padding-block-start: 50px;
-  padding-block-end: 50px;
-  text-align: center;
+  border-radius: ${themeGet("radii.4")}px;
   min-height: 400px;
-  display: inline-grid;
+  overflow: hidden;
+  position: relative;
+
+  figure {
+    img {
+      filter: blur(10px);
+    }
+  }
 
   .content {
+    color: ${themeGet("colors.white")};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: whitesmoke;
+    padding: ${themeGet("space.7")}px;
+    position: absolute;
+    text-align: center;
+
     a {
-      text-transform: uppercase;
       font-weight: bold;
+      text-transform: uppercase;
     }
 
     h2 {
       font-size: 32px;
-      max-width: 9ch;
       margin: 0 auto;
     }
 
@@ -82,10 +84,15 @@ const BlurCardStyled = styled.article`
 
 export const BlurCard: React.FC<BlurCardProps> = props => (
   <BlurCardStyled>
+    {props.image && (
+        <figure>
+          <img alt={props.image?.title} src={props.image?.src} />
+        </figure>
+      )}
     <div className={clsx("content")}>
-      <Link>Click to watch</Link>
-      <h2>What's behind the scent?</h2>
-      <span>The signature fragrance</span>
+      {props.link && <Link to={props.link?.href}>{props.link?.title}</Link>}
+      {props.title && <h2 className="title">{props.title}</h2>}
+      {props.summary && <span className="summary">{props.summary}</span>}
     </div>
   </BlurCardStyled>
 )
