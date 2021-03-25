@@ -11,7 +11,6 @@ export const fonts = `
     .small {
         font-size: var(--font-size-sm, 12px);
         letter-spacing: 0.7px;
-        line-height: 15px;
     }
 
     .tiempos {

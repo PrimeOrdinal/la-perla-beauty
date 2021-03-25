@@ -17,7 +17,6 @@ export const blockquote = `
 
         font-family: "Tiempos", serif;
         font-size: var(--font-size-heading-4, 16px);
-        line-height: ${theme.space[7]}px;
         margin: unset;
         padding-block-end: var(--blockquote-symbol-height, 37px);
         padding-block-start: var(--blockquote-symbol-height, 37px);
@@ -29,7 +28,6 @@ export const blockquote = `
     
         ${mediaQueries.md} {
             font-size: var(--font-size-heading-3, 18px);
-            line-height: ${theme.space[8]}px;
         }
     
         &::before,
