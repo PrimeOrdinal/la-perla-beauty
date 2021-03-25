@@ -21,16 +21,24 @@ import { mediaQueries } from "../theme"
 
 import { ArticleCard, ArticleCardProps } from "./ArticleCard"
 
-const GridStyled = styled.section`
+const ArticleCardGridStyled = styled.section`
+  --margin-top: 2rem;
+
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  article:nth-child(even) {
-    margin-top: 2rem;
-  }
+
   ${mediaQueries.md} {
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
+  }
+
+  article:nth-child(even) {
+    margin-top: var(--margin-top, 2rem);
+
+    ${mediaQueries.md} {
+      --margin-top: 4rem;
+    }
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}
@@ -50,13 +58,13 @@ export type ArticleCardGridProps = ColorProps &
 
 
 export const ArticleCardGrid: React.FC<ArticleCardGridProps> = props => (
-    <GridStyled>
+    <ArticleCardGridStyled>
       {props.items?.map((item, index) => <ArticleCard
         key={index}
         titlePosition="bottom"
         {...item}
       />)}
-    </GridStyled>
+    </ArticleCardGridStyled>
   )
 
 export default ArticleCardGrid
