@@ -57,17 +57,22 @@ const ArticleCardStyled = styled.article`
     width: 100%;
   }
 
+  .content {
+    padding-inline-end: 1rem;
+    padding-inline-start: 1rem;
+  }
+
   .title {
     font-size: ${themeGet("fontSizes.7")}px;
     margin-block-end: 1rem;
-    margin-block-start: 0.5rem;
+    margin-block-start: 1rem;
     order: ${props => (props.titlePosition === "top" ? "-1" : "unset")};
   }
 
-  span {
+  .summary {
     display: block;
-    text-transform: uppercase;
-    margin: 8px 0;
+    margin-block-end: 1rem;
+    margin-block-start: 1rem;
   }
 
   a {
@@ -87,11 +92,13 @@ export const ArticleCard: React.FC<ArticleCardProps> = props => (
           <img alt={props.image?.title} src={props.image?.src} />
         </figure>
       )}
-      {props.title && <h1 className="title">{props.title}</h1>}
     </header>
-    {props.tag && <span>{props.tag}</span>}
-    {props.summary && <span className="summary">{props.summary}</span>}
-    {props.link && <Link to={props.link?.href}>{props.link?.title}</Link>}
-    {props.url && <Link to={props.url}>Read more</Link>}
+    <div className="content">
+      {props.title && <h1 className="title">{props.title}</h1>}
+      {props.tag && <span className="tag">{props.tag}</span>}
+      {props.summary && <span className="summary">{props.summary}</span>}
+      {props.link && <Link to={props.link?.href}>{props.link?.title}</Link>}
+      {props.url && <Link to={props.url}>Read more</Link>}
+    </div>
   </ArticleCardStyled>
 )
