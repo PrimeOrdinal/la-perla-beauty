@@ -66,7 +66,7 @@ export const WYSIWYGStyled: React.FC<WYSIWYGProps> = styled.section`
   }
 
   p {
-    max-width: 80ch;
+    max-width: 90ch;
   }
 
   ${compose(color, flexbox, grid, layout, position, space)}
