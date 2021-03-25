@@ -65,14 +65,8 @@ export const IconListStyled: React.FC<IconListProps> = styled.div`
   }
 
   ${mediaQueries.md} {
-    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   }
-
-  /*
-  .carousel {
-    height: var(--item-height, 40px);
-  }
-  */
 
   .item {
     align-content: center;
