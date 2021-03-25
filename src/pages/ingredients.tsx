@@ -1,18 +1,19 @@
-import React from "react"
 import type {
   BigCommerceGql_Category,
   IngredientsPageQuery,
 } from "../../graphql-types"
-import { PageProps } from "gatsby"
 
-import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
+import { PageProps } from "gatsby"
+import React from "react"
+import styled from "styled-components"
+
 import { mediaQueries } from "../theme"
 
+import { Breadcrumb } from "../components/Breadcrumb"
+import { Button } from "../components/Button"
 import { Layout } from "../components/Layout"
 import { ListPlain } from "../components/ListPlain"
-import { Button } from "../components/Button"
-import { Breadcrumb } from "../components/Breadcrumb"
 
 type PageContextCategory = PageContextTypeBreadcrumb & {
   category: BigCommerceGql_Category
