@@ -22,62 +22,73 @@ import { mediaQueries } from "../theme"
 
 const SectionOne = styled.section`
   padding-block-start: 40px;
+
   .contents {
     text-align: center;
+
     span {
       display: inline-block;
     }
+
     h2 {
       font-size: var(--font-size-xl, 24px);
-      margin-block-start: 10px;
       margin-block-end: 10px;
+      margin-block-start: 10px;
     }
+
     p {
-      max-width: 85ch;
       margin-left: auto;
       margin-right: auto;
-      line-height: 1.6;
     }
+
     a {
+      display: inline-block;
       font-weight: bold;
       text-transform: uppercase;
-      display: inline-block;
     }
   }
+
   .bottleSection {
     background: linear-gradient(to top, #efeee9, transparent);
-    margin-block-start: 3rem;
     display: flex;
     justify-content: center;
+    margin-block-start: 3rem;
     position: relative;
+
     .pattern {
-      position: absolute;
       max-width: 40%;
+      position: absolute;
+
       &:nth-child(1) {
-        top: 0;
         left: 0;
+        top: 0;
       }
+
       &:nth-child(2) {
         left: 0;
         top: 50%;
         transform: translateY(-50%);
       }
+
       &:nth-child(3) {
+        bottom: 0;
         left: 0;
-        bottom: 0;
       }
+
       &:nth-child(4) {
-        right: 0;
         bottom: 0;
+        right: 0;
       }
+
       &:nth-child(5) {
         right: 0;
         top: 50%;
         transform: translateY(-50%);
       }
+
       &:nth-child(6) {
-        right: 0;
         bottom: 0;
+        right: 0;
       }
     }
     .bottle {
@@ -89,19 +100,18 @@ const SectionOne = styled.section`
 `
 const SectionTwo = styled.section`
   background-color: #efeee9;
-  text-align: center;
   padding-block-start: 40px;
+  text-align: center;
 
   h2 {
     font-size: var(--font-size-xl, 24px);
     margin-top: 0;
   }
+
   p {
-    max-width: 85ch;
+    margin-bottom: 0;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.6;
-    margin-bottom: 0;
     padding-block-end: 40px;
   }
 `
@@ -111,49 +121,54 @@ const SectionThree = styled.section`
 
   aside {
     border-radius: 0;
+
     ${mediaQueries.md} {
+      --app-gutter-x: 2rem;
+
+      border-radius: 10px;
       margin-inline-end: auto;
       margin-inline-start: auto;
+      max-width: 68rem;
       padding-inline-end: var(--app-gutter-x, 0.75rem);
       padding-inline-start: var(--app-gutter-x, 0.75rem);
-      --app-gutter-x: 2rem;
-      max-width: 68rem;
-      border-radius: 10px;
     }
+
     div {
-      margin-inline-start: 0;
       margin-inline-end: 0;
+      margin-inline-start: 0;
       text-align: center;
+
       h1 {
         width: 100%;
       }
     }
   }
+
   .blurWrapper {
-    padding-block-start: 6rem;
-    padding-block-end: 2rem;
     display: grid;
-    grid-auto-flow: column;
     gap: 2rem;
+    grid-auto-flow: column;
     overflow: scroll;
+    padding-block-end: 2rem;
+    padding-block-start: 6rem;
   }
 `
 const SectionFour = styled.section`
   background-color: #efeee9;
   padding-block-start: 40px;
+  
   .sectionTitle {
-    text-align: center;
     font-size: var(--font-size-xl, 24px);
     margin-top: 0;
-  }
-  .sectionPara {
     text-align: center;
-    max-width: 85ch;
+  }
+  
+  .sectionPara {
+    margin-bottom: 0;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.6;
-    margin-bottom: 0;
     padding-block-end: 40px;
+    text-align: center;
   }
 `
 
