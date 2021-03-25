@@ -120,17 +120,6 @@ theme.border = {
   width: "1px",
 }
 
-// theme.banners = {
-//   primary: {
-//     backgroundColor: theme.colors.pink,
-//     color: theme.colors.darkgrey,
-//   },
-//   secondary: {
-//     backgroundColor: theme.colors.lilac,
-//     color: theme.colors.darkgrey,
-//   },
-// }
-
 theme.buttons = {
   primary: {
     backgroundColor: theme.colors.black,
