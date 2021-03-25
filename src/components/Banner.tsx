@@ -141,13 +141,14 @@ export const LayoutStyled = styled.aside`
     }
 
     .title {
-      font-size: var(--font-size-lg, 18px);
-      margin-block-start: unset;
+      font-size: var(--font-size-heading-1, 24px);
+      margin-block-end: unset;
     }
 
     .tag {
       font-family: "Quicksand", sans-serif;
       font-size: var(--font-size-sm, 12px);
+      margin-block-end: unset;
       order: -1;
       text-transform: uppercase;
     }
@@ -155,6 +156,7 @@ export const LayoutStyled = styled.aside`
     .text {
       color: inherit;
       font-size: ${themeGet("fontSizes.2")}px;
+      margin-block-start: 1rem;
 
       ${mediaQueries.md} {
         font-size: ${themeGet("fontSizes.3")}px;
