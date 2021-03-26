@@ -179,12 +179,12 @@ export const BagDetails: React.FC<BagDetailsProps> = props => {
       <GridStyled>
         <section className="column-1">
           <h1>Your bag</h1>
-          {props.items?.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
+          {bag?.line_items?.physical_items?.map((item, index) => <BagProduct key={index} layout="full" {...item} />)}
+          {props.items?.map((item, index) => <BagProduct key={index} layout="full" {...item} />)}
         </section>
         <section className="column-2">
           <div className="column-2-wrapper">
             <h1>Order Summary</h1>
-            {JSON.stringify(bag)}
             <section className="promo-section">
               <h2>promotional code</h2>
               <form>
@@ -195,7 +195,9 @@ export const BagDetails: React.FC<BagDetailsProps> = props => {
             <section className="productTotal-section">
               <div className="grid-wrapper">
                 <span className="title">subtotal</span>
-                <span className="price">£100</span>
+                <span className="price">
+                  {bag?.cart_amount && new Intl.NumberFormat(bag?.locale, { style: 'currency', currency: bag?.currency?.code }).format(bag?.cart_amount as number)}
+                </span>
               </div>
               <div className="grid-wrapper">
                 <span>shipping</span>

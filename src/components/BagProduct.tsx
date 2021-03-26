@@ -27,8 +27,6 @@ import { ReactComponent as PlusIcon } from "../../static/icons/Plus.svg"
 
 import { mediaQueries } from "../theme"
 
-import { Price } from "./Price"
-
 const BagProductStyled = styled.div`
   display: grid;
   gap: 1.5rem;
@@ -60,16 +58,18 @@ const BagProductStyled = styled.div`
     .title-wrapper {
       align-content: center;
       display: grid;
+      gap: 1rem;
       grid-auto-flow: column;
       justify-content: space-between;
       margin-block-end: 8px;
       padding-block-start: 1rem;
 
-      h1 {
+      .title {
         font-size: ${themeGet("fontSizes.4")}px;
-        font-weight: lighter;
         margin: 0;
+        text-align: start;
       }
+
       .close-icon {
         height: 18px;
         padding: 0;
@@ -153,8 +153,8 @@ export const BagProduct: React.FC<BagProductProps> = (props) => {
       <div className="details">
         <div>
           <div className="title-wrapper">
-            <h1>{props.name}</h1>
-            <button className="close-icon icon">
+            <h1 className="title">{props.name}</h1>
+            <button className={clsx("close-icon", "icon")}>
               <CloseIcon />
             </button>
           </div>
@@ -176,15 +176,14 @@ export const BagProduct: React.FC<BagProductProps> = (props) => {
         </div>
         <form className="quantity-wrapper">
           <div className="button-wrapper">
-            <button className="quantity-icon icon">
+            <button className={clsx("quantity-icon", "icon")}>
               <MinusIcon />
             </button>
             <input className="total" name="quantity" type="number" value={props.quantity} />
-            <button className="quantity-icon icon">
+            <button className={clsx("quantity-icon", "icon")}>
               <PlusIcon />
             </button>
           </div>
-          {/* <Price className="price" offer={primaryOffer} /> */}
           {props.sale_price}
         </form>
       </div>

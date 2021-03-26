@@ -1,6 +1,5 @@
 import type { APIGatewayEvent, Handler } from "aws-lambda"
 
-import * as cookie from "cookie"
 import fetch from "node-fetch"
 
 // https://github.com/DavidWells/netlify-functions-workshop/blob/master/lessons-code-complete/use-cases/1-rest-api/functions/api.js
@@ -41,10 +40,10 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
   const options = {
     credentials: "include",
     headers,
-    method: event.httpMethod
+    method: event.httpMethod,
   }
 
-  const createCart = async (event) => {
+  const createCart = async event => {
     console.info("createCart")
 
     const path = "carts"
@@ -53,40 +52,45 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
 
     url.searchParams.append("include", "redirect_urls")
 
-    const data = {
-      line_items: [
+    const payload: {
+      line_items?: Array<{
+        product_id: number
+        quantity: number
+      }>
+    } = {}
+
+    if (event.body) {
+      const body = JSON.parse(event.body)
+
+      payload.line_items = [
         {
-          quantity: 1,
-          product_id: 145,
+          product_id: parseInt(body?.identifier),
+          quantity: body?.quantity ? body?.quantity : 1,
         },
-      ],
+      ]
     }
 
-    const response = await fetch(url, {...options, body: JSON.stringify(data), method: "POST"})
+    const response = await fetch(url, {
+      ...options,
+      body: JSON.stringify(payload),
+      method: "POST",
+    })
 
     if (response.ok) {
       const { data } = await response.json()
-      console.log("data", data)
-
-      const { id } = data
-
-      const cookieHeader = cookie.serialize("cartId", id, {
-        maxAge: 60 * 60 * 24 * 28, // 4 weeks
-      })
 
       return {
         body: JSON.stringify(data),
-        cookieHeader,
         statusCode: response.status,
       }
     }
 
     return {
-      statusCode: 500,
+      statusCode: response.status,
     }
   }
 
-  const getCart = async (event) => {
+  const getCart = async event => {
     console.info("getCart")
 
     const cartId = event.queryStringParameters?.cartId
@@ -100,82 +104,82 @@ export const handler: Handler = async (event: APIGatewayEvent) => {
     const response = await fetch(url, options)
 
     if (response.ok) {
-      const body = await response.text()
-
-      const { id } = await response.json()
-
-      const cookieHeader = cookie.serialize("cartId", id, {
-        maxAge: 60 * 60 * 24 * 28, // 4 weeks
-      })
+      const { data } = await response.json()
 
       return {
-        body,
-        cookieHeader,
+        body: JSON.stringify(data),
         statusCode: response.status,
       }
     }
 
     return {
-      statusCode: 500,
+      statusCode: response.status,
     }
   }
 
-  const updateCart = async (event) => {
-    console.info("updateCart")
+  const addCartLineItems = async event => {
+    console.info("addCartLineItems")
 
     const cartId = event.queryStringParameters?.cartId
 
-    const path = `carts/${cartId}`
+    const path = `carts/${cartId}/items`
 
     const url = new URL(path, `${apiURL}`)
+    console.log("url", url)
 
     url.searchParams.append("include", "redirect_urls")
 
-    const data = {
-      line_items: [
+    const payload: {
+      line_items?: Array<{
+        product_id: number
+        quantity: number
+      }>
+    } = {}
+
+    if (event.body) {
+      const body = JSON.parse(event.body)
+
+      payload.line_items = [
         {
-          quantity: 1,
-          product_id: 104,
+          product_id: parseInt(body?.identifier),
+          quantity: body?.quantity ? body?.quantity : 1,
         },
-      ],
+      ]
     }
 
-    const response = await fetch(url, {...options, body: JSON.stringify(data), method: "POST"})
+    console.log("payload", payload)
+
+    const response = await fetch(url, {
+      ...options,
+      body: JSON.stringify(payload),
+      method: "POST",
+    })
 
     if (response.ok) {
-      const body = await response.text()
-
-      const { id } = await response.json()
-
-      const cookieHeader = cookie.serialize("cartId", id, {
-        maxAge: 60 * 60 * 24 * 28, // 4 weeks
-      })
+      const { data } = await response.json()
 
       return {
-        body,
-        cookieHeader,
+        body: JSON.stringify(data),
         statusCode: response.status,
       }
     }
 
     return {
-      statusCode: 500,
+      statusCode: response.status,
     }
   }
 
   try {
-    // console.log(event)
-
-    if (event.httpMethod === "GET" && event.queryStringParameters?.cartId) {
+    if (event.httpMethod === "GET" && event.queryStringParameters?.cartId && event.queryStringParameters?.action === "getCart") {
       return await getCart(event)
     }
 
-    if (event.httpMethod === "POST") {
-      if (event.queryStringParameters?.cartId) {
-        return await updateCart(event)
-      } else {
-        return await createCart(event)
-      }
+    if (event.httpMethod === "POST" && event.queryStringParameters?.action === "createCart") {
+      return await createCart(event)
+    }
+
+    if (event.httpMethod === "POST" && event.queryStringParameters?.cartId && event.queryStringParameters?.action === "addCartLineItems") {
+      return await addCartLineItems(event)
     }
   } catch (error) {
     console.error(error)

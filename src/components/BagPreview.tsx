@@ -48,6 +48,7 @@ export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
   grid-auto-flow: row;
   grid-template-rows: 1fr auto;
   max-height: 60vh;
+  min-width: 32rem;
   padding: 1rem;
 
   ${mediaQueries.md} {
@@ -63,14 +64,12 @@ export const BagPreviewStyled: React.FC<BagPreviewProps> = styled.div`
     display: grid;
     gap: 2rem;
     grid-auto-flow: row;
-    justify-items: start;
     margin-block-end: 1rem;
     overflow-y: auto;
-    padding-block-end: 1rem;
+    place-content: stretch;
 
-    h1 {
-      font-size: var(--font-size-xl, 24px);
-      margin: 0;
+    .title {
+      max-width: 40ch;
     }
   }
 
@@ -112,20 +111,24 @@ export const BagPreview: React.FC<BagPreviewProps> = props => {
   return (
     <BagPreviewStyled {...props}>
       <section className="items">
-        {bag.line_items?.physical_items?.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
+        {bag?.line_items?.physical_items?.map((item, index) => <BagProduct key={index} layout="compact" {...item} />)}
         {props.items?.map((item, index) => (
           <BagProduct key={index} layout="compact" {...item} />
         ))}
+
+        {!props.items && !bag?.cart_amount && <span>No items in shopping bag</span>}
       </section>
       <section className="checkout-section">
         <div className="grid-wrapper">
           <span className="title">Total (inc vat)</span>
-          <span className="price">{bag.cart_amount}</span>
+          <span className="price">
+            {bag?.cart_amount && new Intl.NumberFormat(bag?.locale, { style: 'currency', currency: bag?.currency?.code }).format(bag?.cart_amount as number)}
+          </span>
         </div>
         <LinkButton to="/bag" variant="secondary">
           View Bag
         </LinkButton>
-        <LinkButton to="/checkout" variant="primary">
+        <LinkButton to={bag?.redirect_urls?.checkout_url ? bag?.redirect_urls?.checkout_url : "/checkout"} variant="primary">
           Checkout
         </LinkButton>
       </section>

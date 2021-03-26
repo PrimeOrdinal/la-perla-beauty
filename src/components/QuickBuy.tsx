@@ -49,19 +49,19 @@ export const QuickBuyStyled: React.FC<QuickBuyProps> = styled.div`
 `
 
 export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
+  console.log("product", product)
   const { bag, setBag } = useContext(BagContext)
 
   const [isInBag, setIsInBag] = useState(false)
 
   const offer = product?.offers as Offer
 
-  const path = `${functionsPath}/carts`
-
-  const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
-
   useEffect(() => {
-    console.log("bag", bag)
     ;(async function getCarts() {
+      const path = `${functionsPath}/carts`
+
+      const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
+    
       const response = await fetch(url.toString(), {
         headers: {
           Accept: "application/json",
@@ -80,7 +80,7 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
   }, [])
 
   return (
-    <QuickBuyStyled {...props}>      
+    <QuickBuyStyled {...props}>
       <Formik
         className={clsx("container", "form-container")}
         initialValues={{
@@ -90,13 +90,21 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          const path = `${functionsPath}/carts`
+          let path = `${functionsPath}/carts?action=createCart`
+
+          const cartId = window.localStorage.getItem("cartId")
+          console.log("cartId", cartId)
+
+          if (cartId) {
+            path = `${functionsPath}/carts?action=addCartLineItems&cartId=${cartId}`
+          }
 
           const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
           const response = await fetch(url.toString(), {
             body: JSON.stringify(values),
-            credentials: "include",
+            // credentials: "include",
+            credentials: "same-origin",
             headers: {
               Accept: "application/json",
             },
@@ -105,14 +113,13 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
 
           setSubmitting(false)
 
-          const data: Bag = await response.json()
+          if (response.ok) {
+            const data: Bag = await response.json()
 
-          setBag(data)
+            setBag(data)
 
-          // console.log(response)
-          // console.log(response.headers)
-          console.log(data)
-          // console.log(bag)
+            console.log("data", data)
+          }
         }}
       >
         <Form className={clsx("quick-buy")}>
@@ -131,12 +138,7 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
                 product={product}
               />
             ))}
-          <Button
-            type="submit"
-            variant="primary"
-            py={{ md: 4 }}
-            px={{ md: 9 }}
-          >
+          <Button type="submit" variant="primary" py={{ md: 4 }} px={{ md: 9 }}>
             {props.showPrice && (
               <React.Fragment>
                 <span
