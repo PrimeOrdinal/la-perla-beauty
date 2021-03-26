@@ -161,6 +161,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...props }) => {
         const cartId = window.localStorage.getItem("cartId")
         console.log("cartId", cartId)
 
+        if (!cartId) {
+          return
+        }
+
         const path = `${functionsPath}/carts?action=getCart&cartId=${cartId}`
         console.log("path", path)
 
