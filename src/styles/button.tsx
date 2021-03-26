@@ -5,7 +5,7 @@ export const styles = `
     appearance: unset;
     background-color: unset;
     border-radius: ${theme.radii[3]}px;
-    border: unset;
+    border-style: unset;
     cursor: pointer;
     display: flex;
     font-family: "Quicksand", sans-serif;
