@@ -8,10 +8,6 @@ A Gatsby project built in TypeScript
 
 # Overview
 
-## Site Deployments
-
-Please see https://docs.google.com/spreadsheets/d/12t6VzoMRThSGNqsFaFbnvhcAuE5pZFUtOiMamb8slxI/edit#gid=0
-
 ## Services
 
 | Service              | Provider          | Hosting | Administration URL                                                                         |
@@ -64,27 +60,31 @@ Ensure that the following envionrment variables are set before attempting to run
 
 Place these into a `.env` file in the project root in order for Netlify Dev to set the environment variables. Please see the [.example-env](./.example-env) file in this repository for an example of the values for these variables.
 
-# Repository Settings
+## git Configuration
 
-## Repository Settings
+If you will be developing on a MacOS or Windows environment, you are highly advised to run `git config core.ignorecase false` in order to use the checkout of this repository with case sensitive file names. Failure to do so may result in diferences in behaviour to the Linux-based deployment pipelines and runtimes on Gatsby Cloud and Netlify.
 
-On a MacOS or Windows environment, run `git config core.ignorecase false` in order to use this repository with case sensitive file names which otherwise may result in diferences in behaviour to the Linux-based deployment tools.
+# Developing with Gatsby
 
-## 🚀 Quick start
+## Quick start
 
-1.  **Create a Gatsby site.**
+1.  **Install dependencies.**
 
-    Clone repository
+    Navigate into the site’s directory and install dependencies.
 
-1.  **Start developing.**
+    ```shell
+    npm install
+    ```
 
-    Navigate into the site’s directory and start it up.
+1.  **Start Gatsby.**
+
+    Navigate into the site’s directory and start Gatsby.
 
     ```shell
     npm start
     ```
 
-1.  **Open the source code and start editing!**
+1.  **View the site.**
 
     Your site should now be running at `http://localhost:8888`
 
@@ -132,6 +132,8 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 
 12. **`README.md`**: A text file containing useful reference information about the project.
 
+Please see the "Application Structure" section of this document for additional key paths.
+
 ## Learning Gatsby
 
 Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/). Here are some places to start:
@@ -139,6 +141,38 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 - **For most developers, we recommend starting with Gatsby's [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
 
 - **To dive straight into code samples, head [to Gatsby's documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
+
+# Developing with Storybook and Chromatic
+
+Storybook is an open source tool for developing UI components in isolation for React, Vue, Angular, and more. It makes building UIs organized and efficient.
+
+Chromatic is a web-based tool that automates gathering UI feedback, visual testing, and documentation, so developers can iterate faster with less manual work.
+
+## Exploring Components with Storybook
+
+1.  **Start Storybook.**
+
+    Navigate into the site’s directory and start Storybook.
+
+    ```shell
+    npm run-script storybook
+    ```
+
+1.  **View the site.**
+
+    Your Storybook instance should now be running at `http://localhost:6006`
+
+## Deploying Components to Chromatic
+
+Navigate into the site’s directory and start Storybook.
+
+    ```shell
+    npm run-script chromatic
+    ```
+
+_Note: There is currently an issue with the Chromatic deployment script:_ `npm run-script chromatic` will fail to build the Storybook locally.
+
+As a workaround, the `--storybook-build-dir=storybook-static` flag has been added to the `npm run-script chromatic` script, which will require that `npm run-script build-storybook` is run manually before deploying to Chromatic.
 
 ## Application Structure
 
@@ -163,6 +197,23 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 | TypeScript Global Types             | /types                       |
 | Dynamically-Generated GraphQL Types | /graphql-types.ts            |
 | Netlify Configuration               | /netlify.toml                |
+
+# Deployments
+
+| User           | User Action                                            | Contentstack Stack | Contentstack Enviornment | GitHub repository branch | Deployment URL(s)                                     | Notes                      |
+| -------------- | ------------------------------------------------------ | ------------------ | ------------------------ | ------------------------ | ----------------------------------------------------- | -------------------------- |
+| Developer      | Push code to staging branch in GitHub repository       | US                 | Staging                  | staging                  | https://staging.us.beautybylaperla.com/               |                            |
+| Developer      | Push code to staging branch in GitHub repository       | RoW                | Staging                  | staging                  | https://staging.www.beautybylaperla.com/              |                            |
+| Developer      | Push code to main branch in GitHub repository          | US                 | Production               | main                     | https://us.beautybylaperla.com/                       |                            |
+| Developer      | Push code to main branch in GitHub repository          | RoW                | Production               | main                     | https://www.beautybylaperla.com/                      |                            |
+| Content Editor | Publish content to Contentstack localhost Environment  | US                 | localhost                | N/A                      | http://localhost:8888                                 | RoW/US toggled via API key |
+| Content Editor | Publish content to Contentstack Preview Environment    | US                 | Preview                  | staging                  | https://preview-beautybylaperlacomstagingus.gtsb.io/  |                            |
+| Content Editor | Publish content to Contentstack Staging Environment    | US                 | Staging                  | staging                  | https://staging.us.beautybylaperla.com/               |                            |
+| Content Editor | Publish content to Contentstack Production Environment | US                 | Production               | main                     | https://us.beautybylaperla.com/                       |                            |
+| Content Editor | Publish content to Contentstack localhost Environment  | RoW                | localhost                | N/A                      | http://localhost:8888                                 | RoW/US toggled via API key |
+| Content Editor | Publish content to Contentstack Preview Environment    | RoW                | Preview                  | staging                  | https://preview-beautybylaperlacomstagingrow.gtsb.io/ |                            |
+| Content Editor | Publish content to Contentstack Staging Environment    | RoW                | Staging                  | staging                  | https://staging.www.beautybylaperla.com/              |                            |
+| Content Editor | Publish content to Contentstack Production Environment | RoW                | Production               | main                     | https://www.beautybylaperla.com/                      |                            |
 
 # Tools
 
