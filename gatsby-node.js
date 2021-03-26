@@ -4,9 +4,25 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
+const child_process = require("child_process");
 const path = require("path")
+const util = require("util");
+
+const exec = util.promisify(child_process.exec);
 
 const stripSlashes = text => text.replace(/([^:]\/)\/+/g, "$1")
+
+exports.onPostBuild = async (gatsbyNodeHelpers) => {
+  const { reporter } = gatsbyNodeHelpers;
+
+  const reportOut = (report) => {
+    const { stderr, stdout } = report;
+    if (stderr) reporter.error(stderr);
+    if (stdout) reporter.info(stdout);
+  };
+
+  reportOut(await exec("npm run-script build:lambda"));
+};
 
 // exports.onCreatePage = ({ page, actions }) => {
 //   const { createPage, deletePage } = actions
