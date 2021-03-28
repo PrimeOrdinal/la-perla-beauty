@@ -10,7 +10,7 @@ import type { Context } from "react"
 import type { BigCommerceGql_Product, LayoutQuery } from "../../graphql-types"
 
 import * as cookie from "cookie"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, navigate, useStaticQuery } from "gatsby"
 import React, { useEffect, useState } from "react"
 import styled, { ThemeProvider } from "styled-components"
 
@@ -134,11 +134,6 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...props }) => {
     }
   `)
 
-  // TODO: Uncomment the following if statement to show a maintenance when the BigCommerce store is not available
-  // if (data.bigCommerceGQL.site.settings.status === "PRE_LAUNCH") {
-  //   navigate("/maintenance")
-  // }
-
   // const { bag, setBag } = useContext(BagContext)
   const [bagContents, setBagContents] = useState({} as Bag);
   const setBag = (bag: Bag) => {
@@ -150,6 +145,13 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...props }) => {
   // console.log("bagContents", bagContents)
 
   useEffect(() => {
+    function redirectToMaintenancePage() {
+      // Show a maintenance page when the BigCommerce store is not available
+      if (process.env.GATSBY_SHOW_PRE_LAUNCH === "true" && data.bigCommerceGQL.site.settings.status === "PRE_LAUNCH") {
+        navigate("/maintenance")
+      }
+    }
+
     async function getBagContents() {
         // console.log("document.cookie", document.cookie)
 
@@ -186,7 +188,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...props }) => {
           setBagContents(data)
         }
     }
-
+    
+    redirectToMaintenancePage()
     getBagContents()
   }, [])
 

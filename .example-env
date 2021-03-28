@@ -19,3 +19,4 @@ GRAPHQL_CODEGEN=true
 SITE_AUTHOR=@laperlabeauty
 SITE_DESCRIPTION="Lorem ipsum dolor sit amet"
 SITE_TITLE="La Perla Beauty"
+GATSBY_SHOW_PRE_LAUNCH=true
