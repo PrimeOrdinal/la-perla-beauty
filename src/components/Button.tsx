@@ -48,10 +48,9 @@ export const baseStyles = css`
 
   svg,
   svg * {
-    fill: ${props =>
-      props.active && (props.active === "active"
-      ? themeGet("colors.black", "black")
-      : themeGet("colors.lightgrey", "lightgrey"))} !important;
+    ${props => props.active && 
+      `fill: ${props.active === "active" ? themeGet("colors.black") : themeGet("colors.lightgrey", "lightgrey")} !important;`
+    }
   }
 
   ${variant({
