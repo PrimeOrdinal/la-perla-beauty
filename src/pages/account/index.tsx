@@ -137,45 +137,49 @@ const AccountPage: React.FC = () => {
             <IconList
               items={[
                 {
-                  color: "purple",
+                  colour: "orange",
                   icon: "recycle",
-                  body:
+                  text:
                     "some pseudo text here to populate the body of this usp section.",
                 },
               ]}
+              mobileView="stack"
               orientation="horizontal"
             />
             <IconList
               items={[
                 {
-                  color: "orange",
+                  colour: "lightgreen",
                   icon: "plant",
-                  body:
+                  text:
                     "some pseudo text here to populate the body of this usp section.",
                 },
               ]}
+              mobileView="stack"
               orientation="horizontal"
             />
             <IconList
               items={[
                 {
-                  color: "pink",
+                  colour: "pink",
                   icon: "nib",
-                  body:
+                  text:
                     "some pseudo text here to populate the body of this usp section.",
                 },
               ]}
+              mobileView="stack"
               orientation="horizontal"
             />
             <IconList
               items={[
                 {
-                  color: "green",
+                  colour: "lilac",
                   icon: "tracking",
-                  body:
+                  text:
                     "some pseudo text here to populate the body of this usp section.",
                 },
               ]}
+              mobileView="stack"
               orientation="horizontal"
             />
             <Button variant="primary" py={5}>
