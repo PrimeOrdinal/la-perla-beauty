@@ -5,6 +5,7 @@ import styled from "styled-components"
 
 const BreadcrumbStyled = styled.div`
   margin-block-end: ${themeGet("space.8")}px;
+  margin-block-start: ${themeGet("space.8")}px;
 
   .breadcrumb__title {
     text-decoration: none;
