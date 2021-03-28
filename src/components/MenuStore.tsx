@@ -28,7 +28,7 @@ const MenuStoreStyled = styled(ListPlain)`
 `
 
 const ChevronIconStyled = styled(ChevronIcon)`
-  width: 14px;
+  width: 14px !important;
 `
 
 export type MenuStoreProps = ColorProps &
