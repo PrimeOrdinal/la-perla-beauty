@@ -143,6 +143,7 @@ export const LayoutStyled = styled.aside`
     .title {
       font-size: var(--font-size-heading-1, 24px);
       margin-block-end: unset;
+      margin-block-start: ${themeGet("space.6")}px;
     }
 
     .tag {
