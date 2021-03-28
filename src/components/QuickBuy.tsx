@@ -97,6 +97,10 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
           const cartId = window.localStorage.getItem("cartId")
           console.log("cartId", cartId)
 
+          // if (!cartId) {
+          //   return
+          // }
+
           if (cartId) {
             path = `${functionsPath}/carts?action=addCartLineItems&cartId=${cartId}`
           }
