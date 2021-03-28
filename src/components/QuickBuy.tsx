@@ -31,6 +31,7 @@ import { BagContext } from "./Bag"
 import { Button } from "./Button"
 import { ProductSelectorColour } from "./ProductSelectorColour"
 import { ProductSelectorSize } from "./ProductSelectorSize"
+import { SnackbarContext } from "./Snackbar"
 
 export type QuickBuyProps = ColorProps &
   FlexboxProps &
@@ -51,7 +52,8 @@ export const QuickBuyStyled: React.FC<QuickBuyProps> = styled.div`
 export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
   console.log("product", product)
   const { bag, setBag } = useContext(BagContext)
-
+  const { labelText, setSnackbar } = useContext(SnackbarContext)
+  
   const [isInBag, setIsInBag] = useState(false)
 
   const offer = product?.offers as Offer
@@ -119,6 +121,8 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
             setBag(data)
 
             console.log("data", data)
+          } else {
+            setSnackbar(response.statusText)
           }
         }}
       >

@@ -27,6 +27,7 @@ import { PromotionalBanner } from "./PromotionalBanner"
 import { GlobalFooter } from "./GlobalFooter"
 import { GlobalHeader } from "./GlobalHeader"
 import { SiteSelector } from "./SiteSelector"
+import { Snackbar, SnackbarContext } from "./Snackbar"
 
 const StyledSiteContainer = styled.div`
   display: flex;
@@ -135,12 +136,19 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...props }) => {
   `)
 
   // const { bag, setBag } = useContext(BagContext)
-  
-  const [snackbarLabelText, setSnackbarLabelText] = useState<string | undefined>(undefined)
+
+  const [snackbarLabelText, setSnackbarLabelText] = useState<
+    string | undefined
+  >(undefined)
+  const setSnackbar = (labelText: string | undefined) => {
+    console.log("labelText", labelText)
+    setSnackbarLabelText(labelText)
+  }
+
   const [bagContents, setBagContents] = useState({} as Bag)
   const setBag = (bag: Bag) => {
     console.log("bag", bag)
-    bag.id && localStorage.setItem('cartId', bag.id)
+    bag.id && localStorage.setItem("cartId", bag.id)
 
     setBagContents(bag)
   }
@@ -154,44 +162,51 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...props }) => {
   return (
     <ThemeProvider theme={theme}>
       <BagContext.Provider value={{ bag: bagContents, setBag }}>
-        <StyledSiteContainer {...props}>
-          <GlobalStyle theme={theme} />
+        <SnackbarContext.Provider
+          value={{ labelText: snackbarLabelText, setSnackbar }}
+        >
+          <StyledSiteContainer {...props}>
+            <GlobalStyle theme={theme} />
 
-          <SiteSelector />
+            <SiteSelector />
 
-          {props.type === "compact" ? (
-            <StyledPageContainer>
-              <StyledContentArea className="flex">{children}</StyledContentArea>
-            </StyledPageContainer>
-          ) : (
-            <React.Fragment>
-              {data?.contentstackPromotionalBannerComponent?.title && (
-                <PromotionalBanner
-                  {...data?.contentstackPromotionalBannerComponent?.link}
-                  variant="primary"
-                />
-              )}
-
-              <GlobalHeader
-                // bag={bag}
-                data={data}
-                siteTitle={data?.site?.siteMetadata?.title || `Title`}
-                transparent={props.transparent}
-              />
-
+            {props.type === "compact" ? (
               <StyledPageContainer>
-                <SiteContext.Provider value={data?.bigCommerceGQL?.site}>
-                  <StyledContentArea>{children}</StyledContentArea>
-                </SiteContext.Provider>
+                <StyledContentArea className="flex">
+                  {children}
+                </StyledContentArea>
               </StyledPageContainer>
+            ) : (
+              <React.Fragment>
+                {data?.contentstackPromotionalBannerComponent?.title && (
+                  <PromotionalBanner
+                    {...data?.contentstackPromotionalBannerComponent?.link}
+                    variant="primary"
+                  />
+                )}
 
-              <GlobalFooter
-                data={data}
-                siteTitle={data?.site?.siteMetadata?.title || `Title`}
-              />
-            </React.Fragment>
-          )}
-        </StyledSiteContainer>
+                <GlobalHeader
+                  // bag={bag}
+                  data={data}
+                  siteTitle={data?.site?.siteMetadata?.title || `Title`}
+                  transparent={props.transparent}
+                />
+
+                <StyledPageContainer>
+                  <SiteContext.Provider value={data?.bigCommerceGQL?.site}>
+                    <StyledContentArea>{children}</StyledContentArea>
+                  </SiteContext.Provider>
+                </StyledPageContainer>
+
+                <GlobalFooter
+                  data={data}
+                  siteTitle={data?.site?.siteMetadata?.title || `Title`}
+                />
+              </React.Fragment>
+            )}
+            <Snackbar labelText={snackbarLabelText} setSnackbar={setSnackbar} />
+          </StyledSiteContainer>
+        </SnackbarContext.Provider>
       </BagContext.Provider>
     </ThemeProvider>
   )
