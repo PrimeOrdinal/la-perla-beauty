@@ -39,6 +39,7 @@ export const WYSIWYGStyled: React.FC<WYSIWYGProps> = styled.section`
   h5,
   h6 {
     font-family: ${themeGet("fontFamily", "Tiempos")};
+    margin-block-start: 0.5rem;
   }
 
   h1 {
