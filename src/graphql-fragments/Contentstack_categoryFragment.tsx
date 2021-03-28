@@ -9,9 +9,9 @@ export const Contentstack_categoryFragment = graphql`
       banner {
         colour
         image {
-          description
+          alt: description
           title
-          url
+          src: url
         }
         layout
         link {

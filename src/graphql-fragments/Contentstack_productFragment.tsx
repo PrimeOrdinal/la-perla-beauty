@@ -29,7 +29,9 @@ export const Contentstack_productFragment = graphql`
     leaf {
       colour
       image {
-        url
+        alt: description
+        title
+        src: url
       }
       justify
       layout
@@ -47,7 +49,9 @@ export const Contentstack_productFragment = graphql`
     title
     video {
       image {
-        url
+        alt: description
+        title
+        src: url
       }
       tag
       text

@@ -17,8 +17,9 @@ export const Contentstack_menu_componentFragment = graphql`
         id
         images {
           image {
+            alt: description
             title
-            url
+            src: url
           }
           link {
             href

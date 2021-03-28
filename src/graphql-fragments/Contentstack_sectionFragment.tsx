@@ -163,6 +163,8 @@ export const Contentstack_sectionFragment = graphql`
       video {
         video {
           image {
+            alt: description
+            title
             src: url
           }
           tag
