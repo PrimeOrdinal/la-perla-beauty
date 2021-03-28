@@ -36,7 +36,7 @@ export type AddToBagMobileProps = ColorProps &
   }
 
 const AddToBagMobileStyled = styled.div`
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
   height: 100vh;
   position: relative;
 
