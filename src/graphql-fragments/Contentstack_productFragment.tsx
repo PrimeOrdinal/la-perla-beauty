@@ -23,13 +23,7 @@ export const Contentstack_productFragment = graphql`
     id
     ingredients {
       ingredient {
-        image {
-          url
-        }
-        information
-        summary
-        title
-        url
+        ...Contentstack_ingredientFragment
       }
     }
     leaf {
