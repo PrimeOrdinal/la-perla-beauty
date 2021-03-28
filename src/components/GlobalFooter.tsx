@@ -20,17 +20,6 @@ const SocialContainerStyled = styled.div`
     align-items: center;
     display: flex;
   }
-
-  span {
-    display: none;
-
-    ${mediaQueries.md} {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: bold;
-      margin-inline-end: 1rem;
-    }
-  }
 `
 
 const SocialLinkListStyled = styled(ListPlain)`
@@ -87,7 +76,7 @@ const GlobalFooterStyle = styled.footer`
 
     span {
       display: none;
-
+  
       ${mediaQueries.md} {
         display: block;
         font-family: "Tiempos", serif;
@@ -102,6 +91,7 @@ const GlobalFooterStyle = styled.footer`
   .footer-nav-desktop {
     display: none;
 
+
     ${mediaQueries.md} {
       border-top-style: solid;
       display: grid;
@@ -113,8 +103,8 @@ const GlobalFooterStyle = styled.footer`
       h3 {
         font-family: ${themeGet("fontFamily", "Quicksand")};
         font-size: var(--font-size-heading-5, 14px);
-        padding-block-end: ${themeGet("space.8")}px;
         font-weight: bold;
+        padding-block-end: ${themeGet("space.8")}px;
       }
 
       ul {
@@ -122,13 +112,14 @@ const GlobalFooterStyle = styled.footer`
         gap: 1.5rem;
         list-style: none;
         padding: 0;
+
         li {
           font-size: var(--font-size-heading-5, 14px);
 
           a {
-            text-decoration: none;
             color: inherit;
             font-size: inherit;
+            text-decoration: none;
           }
         }
       }
@@ -136,6 +127,7 @@ const GlobalFooterStyle = styled.footer`
   }
 
   .footer-nav-mobile {
+
     ${mediaQueries.md} {
       display: none;
     }
@@ -153,9 +145,10 @@ const GlobalFooterStyle = styled.footer`
       padding-block-end: ${themeGet("space.7")}px;
       padding-block-start: ${themeGet("space.11")}px;
 
+  
       ${mediaQueries.md} {
-        display: grid;
         align-items: center;
+        display: grid;
         gap: ${themeGet("space.6")}px;
         grid-auto-flow: column;
         justify-content: space-between;
@@ -165,19 +158,23 @@ const GlobalFooterStyle = styled.footer`
     section {
       display: grid;
       grid-auto-flow: row;
+  
       ${mediaQueries.md} {
         align-items: center;
         grid-auto-flow: column;
         gap: ${themeGet("space.9")}px;
       }
+
       h3 {
         display: none;
+    
         ${mediaQueries.md} {
           display: block;
           font-size: var(--font-size-heading-5, 14px);
           font-weight: bold;
         }
       }
+
       ul {
         padding: 0;
       }
@@ -187,25 +184,27 @@ const GlobalFooterStyle = styled.footer`
 
 const ContainerStyled = styled.div`
   h2 {
-    margin-block-end: 1.25rem;
+    margin-block-end: ${themeGet("space.7")}px;
     font-family: ${themeGet("fontFamily", "Tiempos")};
     font-size: var(--font-size-heading-3, 18px);
     font-weight: 100;
     text-transform: capitalize;
+
     ${mediaQueries.md} {
       display: none;
     }
   }
 
   p {
-    text-align: center;
-    text-transform: uppercase;
     font-weight: bold;
     margin-block-start: ${themeGet("space.7")}px;
+    text-align: center;
+    text-transform: uppercase;
+
     ${mediaQueries.md} {
       font-size: 0.75rem;
-      text-align: left;
       margin-block-start: revert;
+      text-align: left;
     }
   }
 `
@@ -305,7 +304,7 @@ export const GlobalFooter: React.FC<GlobalFooterProps> = (
                   {menu?.links?.map((link, index) => (
                     <li key={index}>
                       <a href={link?.link?.href}>
-                        {link?.link?.title && <span>{link?.link?.title}</span>}
+                        {link?.link?.title && <span className="sr-only">{link?.link?.title}</span>}
                         {link?.icon && (
                           <img
                             src={link?.icon?.url}
