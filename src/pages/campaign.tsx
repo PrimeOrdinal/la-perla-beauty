@@ -206,8 +206,8 @@ const CampaignPage: React.FC = () => {
       <SEO title="Campaign Landing Page" />
       <VideoPlayer
         style={{
-          objectFit: "cover",
           marginTop: "calc(var(--header-min-height) * -1.12)",
+          objectFit: "cover",
         }}
         alt="something"
         url={hero}
