@@ -9,18 +9,18 @@ import type { Context } from "react"
 
 import type { BigCommerceGql_Product, LayoutQuery } from "../../graphql-types"
 
-import * as cookie from "cookie"
-import { graphql, navigate, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import React, { useEffect, useState } from "react"
 import styled, { ThemeProvider } from "styled-components"
 
+import type { Bag } from "../../types/BigCommerce"
+
 import { GlobalStyle } from "../styles/GlobalStyle"
 
-import { functions as functionsPath } from "../utils/paths"
+import { getCartContents } from "../utils/carts"
+import { redirectToMaintenancePage } from "../utils/maintenance"
 
 import { theme } from "../theme"
-
-import type { Bag } from "../../types/BigCommerce"
 
 import { BagContext } from "./Bag"
 import { PromotionalBanner } from "./PromotionalBanner"
@@ -135,62 +135,20 @@ export const Layout: React.FC<LayoutProps> = ({ children, ...props }) => {
   `)
 
   // const { bag, setBag } = useContext(BagContext)
-  const [bagContents, setBagContents] = useState({} as Bag);
+  
+  const [snackbarLabelText, setSnackbarLabelText] = useState<string | undefined>(undefined)
+  const [bagContents, setBagContents] = useState({} as Bag)
   const setBag = (bag: Bag) => {
     console.log("bag", bag)
     bag.id && localStorage.setItem('cartId', bag.id)
 
     setBagContents(bag)
-  };
+  }
   // console.log("bagContents", bagContents)
 
   useEffect(() => {
-    function redirectToMaintenancePage() {
-      // Show a maintenance page when the BigCommerce store is not available
-      if (process.env.GATSBY_SHOW_PRE_LAUNCH === "true" && data.bigCommerceGQL.site.settings.status === "PRE_LAUNCH") {
-        navigate("/maintenance")
-      }
-    }
-
-    async function getBagContents() {
-        // console.log("document.cookie", document.cookie)
-
-        // const cookies = cookie.parse(document.cookie)
-        // console.log("cookies", cookies)
-
-        // const { cartId } = cookies
-
-        const cartId = window.localStorage.getItem("cartId")
-        console.log("cartId", cartId)
-
-        if (!cartId) {
-          return
-        }
-
-        const path = `${functionsPath}/carts?action=getCart&cartId=${cartId}`
-        console.log("path", path)
-
-        const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
-    
-        const response = await fetch(url.toString(), {
-          // credentials: "same-origin",
-          headers: {
-            Accept: "application/json",
-          },
-          method: "GET",
-        })
-    
-        if (response.ok) {
-          const data: Bag = await response.json()
-    
-          console.log("data", data)
-    
-          setBagContents(data)
-        }
-    }
-    
-    redirectToMaintenancePage()
-    getBagContents()
+    redirectToMaintenancePage(data.bigCommerceGQL.site.settings.status)
+    getCartContents(setBagContents)
   }, [])
 
   return (
