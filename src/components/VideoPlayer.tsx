@@ -1,6 +1,7 @@
 import { IconContext } from "@react-icons/all-files"
 import { FiPlay } from "@react-icons/all-files/fi/FiPlay"
 import React from "react"
+import { Helmet } from "react-helmet"
 import ReactPlayer from "react-player/lazy"
 import styled from "styled-components"
 import {
@@ -58,6 +59,21 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = props => (
         width="100%"
         {...props}
       />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": props.video?.title,
+            "description": props.video?.text,
+            "thumbnailUrl": [
+              props.image?.src
+            ],
+            "uploadDate": props.publish_details?.time,
+            "contentUrl": props.video?.url
+          })}
+        </script>
+      </Helmet>
     </VideoPlayerStyled>
     {getContent({...props, layout: "video"})}
   </LayoutStyled>
