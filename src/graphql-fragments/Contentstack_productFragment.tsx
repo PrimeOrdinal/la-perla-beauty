@@ -48,18 +48,7 @@ export const Contentstack_productFragment = graphql`
     }
     title
     video {
-      image {
-        alt: description
-        title
-        src: url
-      }
-      tag
-      text
-      text_justification
-      title
-      video {
-        url
-      }
+      ...Contentstack_video_componentFragment
     }
   }
 `

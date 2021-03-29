@@ -7,6 +7,9 @@ export const BigCommerceGQL_ProductFragment = graphql`
       description
       status
     }
+    brand {
+      name
+    }
     categories {
       edges {
         cursor
@@ -22,6 +25,7 @@ export const BigCommerceGQL_ProductFragment = graphql`
     }
     description
     entityId
+    gtin
     id
     images {
       edges {
