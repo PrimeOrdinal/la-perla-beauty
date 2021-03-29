@@ -42,7 +42,7 @@ export function standardiseBigCommerceProduct({
     })),
     depth: productFormatBigCommerce?.depth,
     description: productFormatBigCommerce?.description,
-    // gtin: productFormatBigCommerce?.gtin,
+    gtin: productFormatBigCommerce?.gtin,
     height: productFormatBigCommerce?.height,
     identifier: productFormatBigCommerce?.entityId?.toString(),
     image: (productFormatBigCommerce?.images
@@ -101,7 +101,7 @@ export function standardiseBigCommerceVariant({
     })),
     depth: productFormatBigCommerce?.depth,
     description: productFormatBigCommerce?.description,
-    // gtin: productFormatBigCommerce?.gtin,
+    gtin: productFormatBigCommerce?.gtin,
     height: productFormatBigCommerce?.height,
     identifier: productFormatBigCommerce?.entityId.toString(),
     image: (productFormatBigCommerce?.images
