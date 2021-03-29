@@ -86,51 +86,119 @@ const renderFullscreenButton = (onClick, isFullscreen) => {
 
 export const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({showPlayButton=false, ...props}) => {
   let [isFullScreen, setIsFullScreen] = useState(false)
-  let [hasRegistered, setHasRegistered] = useState(false)
+  let [zoomed, setZoomed] = useState(false)
+  let [dragged, setDragged] = useState(0)
 
-  let image = useRef() as MutableRefObject<HTMLDivElement>
+  let imageContainer = useRef() as MutableRefObject<HTMLDivElement>
 
   function handleClick(event) {
+    addDragBehaviour(event)
+    setScrollPosition(event)
+  }
+
+  function setScrollPosition(event) {
+    if (!isFullScreen) {
+      return
+    }
+
+    if (dragged > 0) {
+      return
+    }
+
+    const img = event.target
+
+    imageContainer.current = img
+
+    img.className = "tile"
+
+    if (imageContainer?.current) {
+      const containerRect = imageContainer.current.getBoundingClientRect()
+      const imageRect = imageContainer.current.firstElementChild?.getBoundingClientRect() as DOMRect
+
+      const offsetX = event.clientX - containerRect.left // x position within the element bounds
+      const offsetY = event.clientY - containerRect.top // y position within the element bounds
+
+      const posX = offsetX + imageContainer.current.scrollTop // x click position within entire element
+      const posY = offsetY + imageContainer.current.scrollTop // x click position within entire element
+
+      const percentX = (posX / imageRect.width) * 100 // x click position within entire element as percentage
+      const percentY = (posY / imageRect.height) * 100 // x click position within entire element as percentage
+
+      const scrollX =
+        (imageRect.width / 100) * percentX * (zoomed ? 0.5 : 2)
+      const scrollY =
+        (imageRect.height / 100) * percentY * (zoomed ? 0.5 : 2)
+
+      const scrollXoffset = scrollX - containerRect.width * 0.5
+      const scrollYoffset = scrollY - containerRect.height * 0.5
+
+      setZoomed(!zoomed)
+
+      setTimeout(() => {
+        imageContainer.current.scroll({
+          left: scrollXoffset,
+          top: scrollYoffset,
+        })
+      }, 5)
+    }
+  }
+
+  function addDragBehaviour(event) {
+    // console.log("event", event)
+
     if (!isFullScreen) {
       return
     }
 
     const img = event.target
 
-    image.current = img
+    imageContainer.current = img
 
-    img.className = "tile"
+    img.className = "drag"
 
-    if (image?.current) {
-      const containerRect = image.current.getBoundingClientRect()
-      const imageRect = image.current.firstElementChild?.getBoundingClientRect() as DOMRect
+    // const slider = document.querySelector('.items')
+    const slider = imageContainer.current
+    let isDown = false
+    let startY
+    let scrollTop
 
-      const offsetX = event.clientX - containerRect.left // x position within the element bounds
-      const offsetY = event.clientY - containerRect.top // y position within the element bounds
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true
+      slider.classList.add('active')
+      startY = e.pageY - slider.offsetTop
+      scrollTop = slider.scrollTop
 
-      const posX = offsetX + image.current.scrollLeft // x click position within entire element
-      const posY = offsetY + image.current.scrollTop // x click position within entire element
+      setDragged(0)
+    })
 
-      const percentX = (posX / imageRect.width) * 100 // x click position within entire element as percentage
-      const percentY = (posY / imageRect.height) * 100 // x click position within entire element as percentage
+    slider.addEventListener('mouseleave', () => {
+      isDown = false
+      slider.classList.remove('active')
+    })
 
-      const scrollX =
-        (imageRect.width / 100) * percentX * (hasRegistered ? 0.5 : 2)
-      const scrollY =
-        (imageRect.height / 100) * percentY * (hasRegistered ? 0.5 : 2)
+    slider.addEventListener('mouseup', () => {
+      isDown = false
+      slider.classList.remove('active')
+    })
 
-      const scrollXoffset = scrollX - containerRect.width * 0.5
-      const scrollYoffset = scrollY - containerRect.height * 0.5
+    slider.addEventListener('mousemove', (e) => {
+      if(!isDown) {
+        return
+      }
 
-      setHasRegistered(!hasRegistered)
+      e.preventDefault()
 
-      setTimeout(() => {
-        image.current.scroll({
-          left: scrollXoffset,
-          top: scrollYoffset,
-        })
-      }, 5)
-    }
+      const x = e.pageY - slider.offsetTop
+      const walk = (x - startY) * 3 //scroll-fast
+
+      const difference = scrollTop - walk
+
+      slider.scrollTop = difference
+
+      setDragged(difference)
+
+      // console.log(walk)
+    });
   }
 
   function onScreenChange(fullScreenElem) {
@@ -143,7 +211,7 @@ export const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({showPla
 
   return (
     <ProductImageGalleryStyled
-      additionalClass={hasRegistered ? "zoomed" : undefined}
+      additionalClass={zoomed ? "zoomed" : undefined}
       onClick={handleClick}
       onScreenChange={onScreenChange}
       renderLeftNav={renderLeftNav}
