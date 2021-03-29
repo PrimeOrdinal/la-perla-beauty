@@ -1,4 +1,5 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 import styled from "styled-components"
 import {
   color,
@@ -60,5 +61,15 @@ export const LogotypeLink: React.FC<LogotypeLinkProps> = (siteTitle, ...props) =
     {...props}
   >
     <LogotypeStyled />
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "url": process.env.GATSBY_SITE_URL,
+          "logo": `${process.env.GATSBY_SITE_URL}/icons/Logotype.svg`
+        })}
+      </script>
+    </Helmet>
   </LogotypeLinkStyled>
 )
