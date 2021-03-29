@@ -32,6 +32,7 @@ export function standardiseBigCommerceProduct({
   const data: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",
+    brand: productFormatBigCommerce?.brand?.name,
     category: (productFormatBigCommerce?.categories
       ?.edges as BigCommerceGql_CategoryEdge[])?.map(({ node: category }) => ({
       "@type": "Thing",
@@ -90,6 +91,7 @@ export function standardiseBigCommerceVariant({
   const variant: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",
+    brand: productFormatBigCommerce?.brand?.name,
     category: (productFormatBigCommerce?.categories
       ?.edges as BigCommerceGql_CategoryEdge[])?.map(({ node: category }) => ({
       "@type": "Thing",
