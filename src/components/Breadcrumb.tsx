@@ -1,6 +1,7 @@
 import { themeGet } from "@styled-system/theme-get"
 import { Breadcrumb as GatsbyPluginBreadcrumb } from "gatsby-plugin-breadcrumb"
 import React from "react"
+import { Helmet } from "react-helmet"
 import styled from "styled-components"
 
 const BreadcrumbStyled = styled.div`
@@ -53,56 +54,28 @@ const BreadcrumbStyled = styled.div`
 
 export type BreadcrumbProps = {
   crumbs: {
+    crumbLabel: string
     pathname: string
-    location: Record<string, unknown>
   }[]
   crumbSeparator?: string
 }
 
-export const Breadcrumb: React.FC<BreadcrumbProps> = props => {
-  // return (
-  //   <StyledOrderedList itemScope itemType="https://schema.org/BreadcrumbList">
-  //     <li
-  //       itemProp="itemListElement"
-  //       itemScope
-  //       itemType="https://schema.org/ListItem"
-  //     >
-  //       <a itemProp="item" href="https://example.com/books">
-  //         <span itemProp="name">Books</span>
-  //       </a>
-  //       <meta itemProp="position" content="1" />
-  //     </li>
-  //     ›
-  //     <li
-  //       itemProp="itemListElement"
-  //       itemScope
-  //       itemType="https://schema.org/ListItem"
-  //     >
-  //       <a
-  //         itemScope
-  //         itemType="https://schema.org/WebPage"
-  //         itemProp="item"
-  //         itemID="https://example.com/books/sciencefiction"
-  //         href="https://example.com/books/sciencefiction"
-  //       >
-  //         <span itemProp="name">Science Fiction</span>
-  //       </a>
-  //       <meta itemProp="position" content="2" />
-  //     </li>
-  //     <li
-  //       itemProp="itemListElement"
-  //       itemScope
-  //       itemType="https://schema.org/ListItem"
-  //     >
-  //       <span itemProp="name">Award winners</span>
-  //       <meta itemProp="position" content="3" />
-  //     </li>
-  //   </StyledOrderedList>
-  // )
-
-  return (
-    <BreadcrumbStyled className="container">
-      <GatsbyPluginBreadcrumb crumbSeparator="|" {...props} />
-    </BreadcrumbStyled>
-  )
-}
+export const Breadcrumb: React.FC<BreadcrumbProps> = props => (
+  <BreadcrumbStyled className="container">
+    <GatsbyPluginBreadcrumb crumbSeparator="|" {...props} />
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: props.crumbs?.map((crumb, index) => ({
+            "@type": "ListItem",
+            position: index,
+            name: crumb?.crumbLabel,
+            item: process.env.GATSBY_SITE_URL + crumb?.pathname,
+          })),
+        })}
+      </script>
+    </Helmet>
+  </BreadcrumbStyled>
+)
