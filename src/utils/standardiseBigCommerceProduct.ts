@@ -63,7 +63,7 @@ export function standardiseBigCommerceProduct({
     productID: productFormatBigCommerce?.entityId?.toString(),
     sku: productFormatBigCommerce?.sku,
     // upc: productFormatBigCommerce?.upc,
-    url: productFormatBigCommerce?.path,
+    url: process.env.GATSBY_SITE_URL + productFormatBigCommerce?.path,
     weight: productFormatBigCommerce?.weight,
     width: productFormatBigCommerce?.width,
   } as WithContext<Product>
@@ -118,11 +118,12 @@ export function standardiseBigCommerceVariant({
       availability,
       price: productFormatBigCommerce?.prices?.price.value,
       priceCurrency: productFormatBigCommerce?.prices?.price.currencyCode,
+      url: process.env.GATSBY_SITE_URL + productFormatBigCommerce?.path,
     },
     productID: productFormatBigCommerce?.entityId.toString(),
     sku: productFormatBigCommerce?.sku,
     // upc: productFormatBigCommerce?.upc,
-    url: productFormatBigCommerce?.path,
+    url: process.env.GATSBY_SITE_URL + productFormatBigCommerce?.path,
     weight: productFormatBigCommerce?.weight,
     width: productFormatBigCommerce?.width,
   } as WithContext<Product>
@@ -172,5 +173,6 @@ export function standardiseBigCommerceProductGroup({
     "@type": "ProductGroup",
     hasVariant,
     productGroupID,
+    url: process.env.GATSBY_SITE_URL + productFormatBigCommerce?.path,
   }
 }
