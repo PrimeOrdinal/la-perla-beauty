@@ -203,7 +203,7 @@ module.exports = {
         // ],
         // trailingSlashes: optional, will add trailing slashes to the end
         // of crumb pathnames. default is false
-        trailingSlashes: true,
+        // trailingSlashes: true,
         // usePathPrefix: optional, if you are using pathPrefix above
         // usePathPrefix: "/blog",
       },
