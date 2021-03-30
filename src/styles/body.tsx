@@ -36,7 +36,7 @@ export const body = `
 
         ${mediaQueries.md} {
          
-            --header-min-height: 112px;
+            --header-min-height: 124px;
         }
     }
 `
