@@ -71,7 +71,7 @@ export const LayoutStyled = styled.aside`
         )
       : "transparent"};
   border-radius: ${props =>
-    ["hero"].includes(props.layout) ? "0" : themeGet("radii.4")}px;
+    ["hero", "short-hero"].includes(props.layout) ? "0" : themeGet("radii.4")}px;
   display: grid;
   grid-auto-flow: ${props =>
     props.layout === "cardColumn" ? "column" : "row"};
