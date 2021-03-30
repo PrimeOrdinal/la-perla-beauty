@@ -73,6 +73,13 @@ Overlay.args = {
   layout: "overlay",
 }
 
+export const ShortHero = Template.bind({});
+ShortHero.args = {
+  ...Base.args,
+  label: "Short Hero",
+  layout: "short-hero",
+}
+
 // export const Video = Template.bind({});
 // Video.args = {
 //   ...Base.args,
