@@ -28,6 +28,7 @@ import { picker } from "./picker"
 import { select } from "./select"
 import { svg } from "./svg"
 import { table } from "./table"
+import { video } from "./video"
 
 export const GlobalStyle = createGlobalStyle`
     ${accessibility}
@@ -58,4 +59,5 @@ export const GlobalStyle = createGlobalStyle`
     ${select}
     ${svg}
     ${table}
+    ${video}
 `
