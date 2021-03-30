@@ -7,5 +7,6 @@ export const headings = `
     h6 {
         font-family: "Tiempos", Times, serif;
         font-weight: lighter;
+        margin-block-start: 0.25em;
     }
 `
