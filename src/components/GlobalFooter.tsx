@@ -44,14 +44,13 @@ const SocialLinkListStyled = styled(ListPlain)`
 const GlobalFooterStyle = styled.footer`
   border-top-style: solid;
   border-bottom-style: solid;
-  margin-block-start: ${themeGet("space.9")}px;
   margin-block-end: ${themeGet("space.9")}px;
   padding-block-start: 1.5rem;
 
   ${mediaQueries.md} {
     padding-block-start: 2.25rem;
     border-bottom: none;
-    margin-block-end: initial;
+    margin-block-end: unset;
   }
 
   h1,
