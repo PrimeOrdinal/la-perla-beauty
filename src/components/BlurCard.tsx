@@ -33,13 +33,11 @@ export type BlurCardProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
-    aspectRatio: string
     image: ImageProp
     link: LinkProp
     tag: string
     text: string
     title: string
-    titlePosition: "bottom" | "top"
   }
 
 const BlurCardStyled = styled.article`
@@ -49,33 +47,38 @@ const BlurCardStyled = styled.article`
   position: relative;
 
   figure {
-    img {
-      filter: blur(10px);
-    }
+
+  }
+
+  img {
+    filter: blur(10px);
   }
 
   .content {
-    color: ${themeGet("colors.white")};
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: ${themeGet("space.7")}px;
+    align-content: space-between;
+    bottom: 0;
+    display: grid;
+    justify-content: center;
+    left: 0;
+    padding: ${themeGet("space.11")}px ${themeGet("space.14")}px;
     position: absolute;
+    right: 0;
     text-align: center;
+    top: 0;
+    z-index: 5;
+
+    * {
+      color: ${themeGet("colors.white")};
+    }
 
     a {
       font-weight: bold;
       text-transform: uppercase;
     }
 
-    h2 {
-      font-size: 32px;
+    .title {
+      font-size: var(--font-size-heading-1, 24px);
       margin: 0 auto;
-    }
-
-    span {
-      display: block;
-      text-transform: uppercase;
     }
   }
 
@@ -83,16 +86,16 @@ const BlurCardStyled = styled.article`
 `
 
 export const BlurCard: React.FC<BlurCardProps> = props => (
-  <BlurCardStyled>
+  <BlurCardStyled {...props}>
     {props.image && (
-        <figure>
-          <img alt={props.image?.title} src={props.image?.src} />
+        <figure aspect-ratio="2/3">
+          <img alt={props.image?.title} className="img-bl" src={props.image?.src} />
         </figure>
       )}
     <div className={clsx("content")}>
       {props.link && <Link to={props.link?.href}>{props.link?.title}</Link>}
       {props.title && <h2 className="title">{props.title}</h2>}
-      {props.summary && <span className="summary">{props.summary}</span>}
+      {props.tag && <span className="tag">{props.tag}</span>}
     </div>
   </BlurCardStyled>
 )
