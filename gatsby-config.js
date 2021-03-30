@@ -156,9 +156,11 @@ module.exports = {
         resolvers: {
           // List how to resolve the fields" values
           BigCommerceProducts: {
-            // BigCommerceGql_Product: {
-            image_url: function (node) {
-              return node.image_url
+            image: function (node) {
+              return {
+                alt: node.name,
+                src: node.image_url,
+              }
               // return node.image[0]
             },
             path: function (node) {
