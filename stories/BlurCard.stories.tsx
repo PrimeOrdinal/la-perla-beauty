@@ -25,9 +25,10 @@ Base.args = {
   backgroundPosition: "center center",
   colour: getColour(),
   image: getImage(),
+  justifyItems: "center",
   link: getLink(),
   tag: faker.lorem.word(),
   text: faker.lorem.paragraph(),
-  justifyItems: "center",
   title: faker.lorem.sentence(),
+  width: { _: 1, sm: 1/2, md: 1/3, lg: 1/4 },
 }
