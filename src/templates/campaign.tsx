@@ -16,11 +16,6 @@ import { Layout } from "../components/Layout"
 import { SEO } from "../components/SEO"
 import { VideoPlayer } from "../components/VideoPlayer"
 
-import hero from "../videos/hero.mp4"
-import bottle from "../images/bottle.png"
-import flower from "../images/flowerPattern.svg"
-import { mediaQueries } from "../theme"
-
 const HeaderStyled = styled.header`
   margin-top: calc(var(--header-min-height, 38px) * -1);
 `
@@ -42,9 +37,7 @@ const MainStyled = styled.main`
     }
 
     &.section-leaf {
-      background-image: url("https://picsum.photos/1600/900?${
-        Math.floor(Math.random() * 10) + 1
-      }");
+      background-image: url("/images/c0c7c497e385a154164ba79a1e9c413b23c4f17e.png");
       background-position: center;
       background-size: cover;
       padding-block-end: 48px;
@@ -180,7 +173,7 @@ const CampaignPage: React.FC = () => {
     <Layout transparent={headerIntersection?.isIntersecting}>
       <SEO title="Campaign Landing Page" />
       <HeaderStyled ref={headerRef}>
-        <VideoPlayer alt="something" layout="hero" muted={true} url={hero} />
+        <VideoPlayer alt="something" layout="hero" muted={true} url="/videos/hero.mp4" />
       </HeaderStyled>
       <MainStyled ref={mainRef}>
         <section className={clsx("section-bottle-figure")} ref={sectionOneRef}>
@@ -199,15 +192,15 @@ const CampaignPage: React.FC = () => {
           <figure className={clsx("bottle-figure")}>
             <img
               className={clsx("animated", "bottle")}
-              src={bottle}
+              src="/images/bottle.png"
               alt="bottle"
             />
-            <img className={clsx("pattern")} src={flower} alt="flower" />
-            <img className={clsx("pattern")} src={flower} alt="flower" />
-            <img className={clsx("pattern")} src={flower} alt="flower" />
-            <img className={clsx("pattern")} src={flower} alt="flower" />
-            <img className={clsx("pattern")} src={flower} alt="flower" />
-            <img className={clsx("pattern")} src={flower} alt="flower" />
+            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
+            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
+            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
+            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
+            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
+            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
           </figure>
         </section>
         <section className={clsx("container")}>
@@ -219,9 +212,7 @@ const CampaignPage: React.FC = () => {
             <BlurCard
               image={{
                 alt: "Lorem ipum",
-                src: `https://picsum.photos/900/1200?${
-                  Math.floor(Math.random() * 10) + 1
-                }`,
+                src: "/images/7f1778134449df3e8e82dd2ccf3ed285e4ff60c1.png",
               }}
               link={{ src: "/test", title: "Learn more" }}
               tag="The signature fragrance"
@@ -230,9 +221,7 @@ const CampaignPage: React.FC = () => {
             <BlurCard
               image={{
                 alt: "Lorem ipum",
-                src: `https://picsum.photos/900/1200?${
-                  Math.floor(Math.random() * 10) + 1
-                }`,
+                src: "/images/4fa74605110310e38a04cafc92e2c8afa584a837.png",
               }}
               link={{ src: "/test", title: "Learn more" }}
               tag="The signature fragrance"
@@ -241,9 +230,7 @@ const CampaignPage: React.FC = () => {
             <BlurCard
               image={{
                 alt: "Lorem ipum",
-                src: `https://picsum.photos/900/1200?${
-                  Math.floor(Math.random() * 10) + 1
-                }`,
+                src: "/images/7d241ff3ece2fdb9a7dc94c49074ce5a5562ffdd.png",
               }}
               link={{ src: "/test", title: "Learn more" }}
               tag="The signature fragrance"
@@ -253,11 +240,11 @@ const CampaignPage: React.FC = () => {
         </section>
         <section className={clsx("container")}>
           <Banner
+            backgroundPosition="center 22.5%"
             className={clsx("banner")}
             image={{
-              src: `https://picsum.photos/900/1200?${
-                Math.floor(Math.random() * 10) + 1
-              }`,
+              alt: "Model close-up",
+              src: "/images/b0a09ce98fd5953510a511cb3c486184c16051f4.png",
             }}
             justifyItems="center"
             layout="overlay"
@@ -283,13 +270,7 @@ const CampaignPage: React.FC = () => {
                 image: {
                   alt:
                     "A grey placeholder image with the dimensions overlayed in white text",
-                  src: `https://picsum.photos/900/1200?${
-                    Math.floor(Math.random() * 10) + 1
-                  }`,
-                },
-                link: {
-                  href: "/test",
-                  title: "Click to watch",
+                  src: "/images/fd2bd7af24571f3f6c5b9f3f9835be1336b0cacf.png",
                 },
                 summary:
                   "Suzanne Dalton shares the creative inspiration and artisanal craft behind the enduringly beautiful, handmade flacon.",
@@ -300,13 +281,7 @@ const CampaignPage: React.FC = () => {
                 image: {
                   alt:
                     "A grey placeholder image with the dimensions overlayed in white text",
-                  src: `https://picsum.photos/900/1200?${
-                    Math.floor(Math.random() * 10) + 1
-                  }`,
-                },
-                link: {
-                  href: "/test",
-                  title: "Click to watch",
+                  src: "/images/f713a7baa58a1abe727aa5b32667509e8de55dc7.png",
                 },
                 summary:
                   "Discover how Massimiliano Bombo captured the heart and soul of our fragrance.​",
@@ -317,13 +292,7 @@ const CampaignPage: React.FC = () => {
                 image: {
                   alt:
                     "A grey placeholder image with the dimensions overlayed in white text",
-                  src: `https://picsum.photos/900/1200?${
-                    Math.floor(Math.random() * 10) + 1
-                  }`,
-                },
-                link: {
-                  href: "/test",
-                  title: "Click to watch",
+                  src: "/images/0ba5465e8a5c652286d7bd410ddd61cf0fdc5513.png",
                 },
                 summary:
                   "See why model Malika El Maslouhi encapsulates the modern muse.",
@@ -334,13 +303,7 @@ const CampaignPage: React.FC = () => {
                 image: {
                   alt:
                     "A grey placeholder image with the dimensions overlayed in white text",
-                  src: `https://picsum.photos/900/1200?${
-                    Math.floor(Math.random() * 10) + 1
-                  }`,
-                },
-                link: {
-                  href: "/learn-more",
-                  title: "Learn more",
+                  src: "/images/bc826a7b4f2c6021df414f838c6779b4077f8d75.png",
                 },
                 summary:
                   "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
@@ -353,10 +316,8 @@ const CampaignPage: React.FC = () => {
           <Leaf
             colour="lightgrey"
             image={{
-              alt: "leaf image",
-              src: `https://picsum.photos/405/712?${
-                Math.floor(Math.random() * 10) + 1
-              }`,
+              alt: "White flowers",
+              src: "/images/c0c7c497e385a154164ba79a1e9c413b23c4f17e.png",
             }}
             layout="image-and-text-inside"
             text="The other day the grass was brown, now it’s green because I ain’t give up. Never surrender. In life there will be road blocks."

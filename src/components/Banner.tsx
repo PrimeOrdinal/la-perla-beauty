@@ -1,4 +1,5 @@
 import type {
+  BackgroundPosition as BackgroundPositionProp,
   Colour as ColourProp,
   Image as ImageProp,
   Justify as JustifyProp,
@@ -82,6 +83,7 @@ export const LayoutStyled = styled.aside`
     height: 100%;
     left: 0;
     object-fit: cover;
+    object-position: ${props => (props.backgroundPosition ? props.backgroundPosition : "center")};
     position: ${props =>
       ["hero", "image", "imageAndTextOutside", "overlay", "video"].includes(
         props.layout
@@ -206,6 +208,7 @@ export type BannerProps = ColorProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
+    backgroundPosition: BackgroundPositionProp;
     colour: ColourProp
     image: ImageProp
     justifyItems: JustifyProp
