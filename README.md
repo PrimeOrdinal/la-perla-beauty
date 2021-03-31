@@ -39,6 +39,14 @@ A Gatsby project built in TypeScript
 
 Before attempting to run the project, you will require API credentials for BigCommerce and Contentstack.
 
+## Log in to Netlify
+
+In order to source environment variables from the .env file and to use Netlify Functions, log in to Netlify
+
+    ```shell
+    npx netlify login
+    ```
+
 ## Environment Variables
 
 Ensure that the following envionrment variables are set before attempting to run Gatsby locally:
