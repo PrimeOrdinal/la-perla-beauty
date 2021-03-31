@@ -212,10 +212,7 @@ const CampaignPage: React.FC = () => {
         </section>
         <section className={clsx("container")}>
           <h2 className={clsx("heading-1")}>What's behind the scent?</h2>
-          <p>
-            Meet the makers, and explore how they brought the stories behind our
-            couture fragrance to life.
-          </p>
+          <p>The other day the grass was brown, now it’s green because I ain’tgive up. Never surrender. In life there will be road blocks.</p>
         </section>
         <section>
           <div className={clsx("blur-card-gallery", "container")}>
@@ -227,7 +224,7 @@ const CampaignPage: React.FC = () => {
                 }`,
               }}
               link={{ src: "/test", title: "Learn more" }}
-              tag="Suzanne Dalton shares the creative inspiration and artisanal craft behind the enduringly beautiful, handmade flacon."
+              tag="The signature fragrance"
               title="What’s behind the bottle?"
             />
             <BlurCard
@@ -238,7 +235,7 @@ const CampaignPage: React.FC = () => {
                 }`,
               }}
               link={{ src: "/test", title: "Learn more" }}
-              tag="​​Louise Turner, the nose behind our signature scent, describes the textures and sensations of its many layers."
+              tag="The signature fragrance"
               title="What’s behind the scent?"
             />
             <BlurCard
@@ -249,19 +246,8 @@ const CampaignPage: React.FC = () => {
                 }`,
               }}
               link={{ src: "/test", title: "Learn more" }}
-              tag="Discover how Massimiliano Bombo captured the heart and soul of our fragrance."
+              tag="The signature fragrance"
               title="What’s behind the film?"
-            />
-            <BlurCard
-              image={{
-                alt: "Lorem ipum",
-                src: `https://picsum.photos/900/1200?${
-                  Math.floor(Math.random() * 10) + 1
-                }`,
-              }}
-              link={{ src: "/test", title: "Learn more" }}
-              tag="See why model Malika El Maslouhi encapsulates the modern muse."
-              title="What’s behind the woman we see?"
             />
           </div>
         </section>
@@ -294,7 +280,6 @@ const CampaignPage: React.FC = () => {
             items={[
               {
                 backgroundPosition: "top right",
-                colour: "lightgreen",
                 image: {
                   alt:
                     "A grey placeholder image with the dimensions overlayed in white text",
@@ -302,19 +287,16 @@ const CampaignPage: React.FC = () => {
                     Math.floor(Math.random() * 10) + 1
                   }`,
                 },
-                layout: "overlay",
                 link: {
-                  href: "/learn-more",
-                  title: "Learn more",
+                  href: "/test",
+                  title: "Click to watch",
                 },
-                tag: "Sample tag",
-                text:
-                  "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
-                title: "Promo banner",
+                summary:
+                  "Suzanne Dalton shares the creative inspiration and artisanal craft behind the enduringly beautiful, handmade flacon.",
+                title: "​What’s behind the bottle?",
               },
               {
                 backgroundPosition: "top right",
-                colour: "lightgreen",
                 image: {
                   alt:
                     "A grey placeholder image with the dimensions overlayed in white text",
@@ -322,19 +304,16 @@ const CampaignPage: React.FC = () => {
                     Math.floor(Math.random() * 10) + 1
                   }`,
                 },
-                layout: "overlay",
                 link: {
-                  href: "/learn-more",
-                  title: "Learn more",
+                  href: "/test",
+                  title: "Click to watch",
                 },
-                tag: "Sample tag",
-                text:
-                  "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
-                title: "Promo banner",
+                summary:
+                  "Discover how Massimiliano Bombo captured the heart and soul of our fragrance.​",
+                title: "​​​What’s behind the film?",
               },
               {
                 backgroundPosition: "top right",
-                colour: "lightgreen",
                 image: {
                   alt:
                     "A grey placeholder image with the dimensions overlayed in white text",
@@ -342,19 +321,16 @@ const CampaignPage: React.FC = () => {
                     Math.floor(Math.random() * 10) + 1
                   }`,
                 },
-                layout: "overlay",
                 link: {
-                  href: "/learn-more",
-                  title: "Learn more",
+                  href: "/test",
+                  title: "Click to watch",
                 },
-                tag: "Sample tag",
-                text:
-                  "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
-                title: "Promo banner",
+                summary:
+                  "See why model Malika El Maslouhi encapsulates the modern muse.",
+                title: "What’s behind the woman we see?",
               },
               {
                 backgroundPosition: "top right",
-                colour: "lightgreen",
                 image: {
                   alt:
                     "A grey placeholder image with the dimensions overlayed in white text",
@@ -362,13 +338,11 @@ const CampaignPage: React.FC = () => {
                     Math.floor(Math.random() * 10) + 1
                   }`,
                 },
-                layout: "overlay",
                 link: {
                   href: "/learn-more",
                   title: "Learn more",
                 },
-                tag: "Sample tag",
-                text:
+                summary:
                   "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
                 title: "Promo banner",
               },

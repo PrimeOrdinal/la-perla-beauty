@@ -51,6 +51,7 @@ const BlurCardStyled = styled.article`
   }
 
   img {
+    background-color: ${themeGet("colors.black")};
     filter: blur(10px);
   }
 

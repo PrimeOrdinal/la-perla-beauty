@@ -140,6 +140,10 @@ export const LayoutStyled = styled.aside`
         ["hero"].includes(props.layout) ? "var(--app-gutter-x, 4rem)" : null};
     }
 
+    * {
+      max-width: 90ch;
+    }
+
     .title {
       font-size: var(--font-size-heading-1, 24px);
       margin-block-end: unset;
@@ -156,28 +160,18 @@ export const LayoutStyled = styled.aside`
 
     .text {
       color: inherit;
-      font-size: ${themeGet("fontSizes.2")}px;
       margin-block-start: 1rem;
-
-      ${mediaQueries.md} {
-        font-size: ${themeGet("fontSizes.3")}px;
-      }
     }
 
     a {
       color: inherit;
       display: block;
-      font-size: ${themeGet("fontSizes.2")}px;
       font-weight: bold;
-      margin-block-start: ${themeGet("space.6")}px;
+      margin-block-start: ${themeGet("space.8")}px;
       padding-block-end: ${themeGet("space.6")}px;
       pointer-events: auto;
       text-decoration: unset;
       text-transform: uppercase;
-
-      ${mediaQueries.md} {
-        font-size: ${themeGet("fontSizes.3")}px;
-      }
     }
   }
 
