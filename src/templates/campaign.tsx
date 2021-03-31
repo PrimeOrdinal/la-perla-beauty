@@ -226,9 +226,9 @@ const CampaignPage: React.FC = () => {
                   Math.floor(Math.random() * 10) + 1
                 }`,
               }}
-              link={{ src: "/test", title: "Dolor sit amet" }}
-              tag="Lorem ipsum dolor sit"
-              title="What's behind the woman we see?"
+              link={{ src: "/test", title: "Learn more" }}
+              tag="Suzanne Dalton shares the creative inspiration and artisanal craft behind the enduringly beautiful, handmade flacon."
+              title="What’s behind the bottle?"
             />
             <BlurCard
               image={{
@@ -237,9 +237,9 @@ const CampaignPage: React.FC = () => {
                   Math.floor(Math.random() * 10) + 1
                 }`,
               }}
-              link={{ src: "/test", title: "Dolor sit amet" }}
-              tag="Lorem ipsum dolor sit"
-              title="What's behind the woman we see?"
+              link={{ src: "/test", title: "Learn more" }}
+              tag="​​Louise Turner, the nose behind our signature scent, describes the textures and sensations of its many layers."
+              title="What’s behind the scent?"
             />
             <BlurCard
               image={{
@@ -248,9 +248,20 @@ const CampaignPage: React.FC = () => {
                   Math.floor(Math.random() * 10) + 1
                 }`,
               }}
-              link={{ src: "/test", title: "Dolor sit amet" }}
-              tag="Lorem ipsum dolor sit"
-              title="What's behind the woman we see?"
+              link={{ src: "/test", title: "Learn more" }}
+              tag="Discover how Massimiliano Bombo captured the heart and soul of our fragrance."
+              title="What’s behind the film?"
+            />
+            <BlurCard
+              image={{
+                alt: "Lorem ipum",
+                src: `https://picsum.photos/900/1200?${
+                  Math.floor(Math.random() * 10) + 1
+                }`,
+              }}
+              link={{ src: "/test", title: "Learn more" }}
+              tag="See why model Malika El Maslouhi encapsulates the modern muse."
+              title="What’s behind the woman we see?"
             />
           </div>
         </section>
@@ -264,7 +275,12 @@ const CampaignPage: React.FC = () => {
             }}
             justifyItems="center"
             layout="overlay"
-            title="What's behind the woman we see?"
+            link={{
+              href: "/test",
+              title: "Learn more"
+            }}
+            text="Have you ever felt like you had to choose between self-care and caring for the world? We're proud of our clean, responsible beauty because it's an artful synergy of luxury and sustainability."
+            title="What’s Behind Responsible Beauty?"
           />
         </section>
         <section className={clsx("container")}>
