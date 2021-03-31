@@ -26,45 +26,59 @@ const HeaderStyled = styled.header`
 `
 
 const MainStyled = styled.main`
+  background-color: ${themeGet("colors.lightgrey")};
+
   section {
+    margin-block-end: ${themeGet("space.11")}px;
+    margin-block-start: ${themeGet("space.11")}px;
     text-align: center;
 
-    p {
+    &.section-bottle-figure {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+
+    &.section-leaf {
+      background-image: url("https://picsum.photos/1600/900?${
+        Math.floor(Math.random() * 10) + 1
+      }");
+      background-position: center;
+      background-size: cover;
+      padding-block-end: 48px;
+      padding-block-start: 48px;
+    }
+
+    > .title,
+    > .text,
+    > .link {
       margin-block-end: unset;
       margin-block-start: unset;
       margin-inline-end: auto;
       margin-inline-start: auto;
       max-width: 90ch;
+    }
 
+    > p {
       &:not(:last-child) {
-        padding-block-end: ${themeGet("space.12")}px;
       }
     }
 
-    .blur-card-gallery {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(3, 1fr);
-      padding-block-end: ${themeGet("space.12")}px;
-      padding-block-start: ${themeGet("space.11")}px;
+    > .link {
+      display: inline-block;
+      font-weight: bold;
+      margin-block-start: ${themeGet("space.9")}px;
+      text-transform: uppercase;
+    }
+
+    > .title {
+      font-size: var(--font-size-heading-1, 24px);
     }
   }
-`
 
-const SectionOne = styled.section`
-  padding-block-start: ${themeGet("space.12")}px;
-
-  span {
-    display: inline-block;
-  }
-
-  a {
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .bottleSection {
-    background: linear-gradient(to top, #efeee9, transparent);
+  .bottle-figure {
     display: flex;
     justify-content: center;
     margin-block-start: ${themeGet("space.13")}px;
@@ -113,47 +127,11 @@ const SectionOne = styled.section`
       display: inline-block;
     }
   }
-`
 
-const SectionTwo = styled.section`
-  background-color: #efeee9;
-  padding-block-start: ${themeGet("space.15")}px;
-`
-
-const SectionThree = styled.section`
-  background-color: #efeee9;
-
-  aside {
-    border-radius: 0;
-
-    ${mediaQueries.md} {
-      --app-gutter-x: 2rem;
-
-      border-radius: 10px;
-      margin-inline-end: auto;
-      margin-inline-start: auto;
-      padding-inline-end: var(--app-gutter-x, 0.75rem);
-      padding-inline-start: var(--app-gutter-x, 0.75rem);
-    }
-
-  }
-`
-const SectionFour = styled.section`
-  background-color: #efeee9;
-  padding-block-start: 40px;
-
-  .sectionTitle {
-    font-size: var(--font-size-xl, 24px);
-    margin-top: 0;
-    text-align: center;
-  }
-
-  .sectionParagraph {
-    margin-bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-    padding-block-end: 40px;
-    text-align: center;
+  .blur-card-gallery {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
   }
 `
 
@@ -189,7 +167,7 @@ const CampaignPage: React.FC = () => {
 
   // useEffect(() => {
   //   const mainAnimation = mainRef.current
-  //   const elements = mainRef.current.querySelectorAll(".animateElem")
+  //   const elements = mainRef.current.querySelectorAll(".animated")
 
   //   sectionOneIntersection &&
   //     sectionOneIntersection.intersectionRatio < 0.2 &&
@@ -205,22 +183,22 @@ const CampaignPage: React.FC = () => {
         <VideoPlayer alt="something" layout="hero" muted={true} url={hero} />
       </HeaderStyled>
       <MainStyled ref={mainRef}>
-        <SectionOne ref={sectionOneRef}>
-          <span className={clsx("animateElem")}>EAU DE PARFUM</span>
-          <h2 className={clsx("animateElem", "heading-1")}>
+        <section className={clsx("section-bottle-figure")} ref={sectionOneRef}>
+          <span className={clsx("animated")}>EAU DE PARFUM</span>
+          <h2 className={clsx("animated", "heading-1")}>
             The Signature Fragrance
           </h2>
-          <p className={clsx("animateElem")}>
+          <p className={clsx("animated")}>
             An elegant floral bouquet, as radiant, layered and confident as the
             woman who wears it.
           </p>
-          <Link className={clsx("animateElem")} to="/discover-more">
+          <Link className={clsx("animated", "link")} to="/discover-more">
             Discover More
           </Link>
 
-          <figure className={clsx("bottleSection")}>
+          <figure className={clsx("bottle-figure")}>
             <img
-              className={clsx("animateElem", "bottle")}
+              className={clsx("animated", "bottle")}
               src={bottle}
               alt="bottle"
             />
@@ -231,20 +209,20 @@ const CampaignPage: React.FC = () => {
             <img className={clsx("pattern")} src={flower} alt="flower" />
             <img className={clsx("pattern")} src={flower} alt="flower" />
           </figure>
-        </SectionOne>
-        <SectionTwo className={clsx("container")}>
+        </section>
+        <section className={clsx("container")}>
           <h2 className={clsx("heading-1")}>What's behind the scent?</h2>
           <p>
             Meet the makers, and explore how they brought the stories behind our
             couture fragrance to life.
           </p>
-        </SectionTwo>
-        <SectionThree>
+        </section>
+        <section>
           <div className={clsx("blur-card-gallery", "container")}>
             <BlurCard
               image={{
                 alt: "Lorem ipum",
-                src: `https://picsum.photos/1600/900?${
+                src: `https://picsum.photos/900/1200?${
                   Math.floor(Math.random() * 10) + 1
                 }`,
               }}
@@ -255,7 +233,7 @@ const CampaignPage: React.FC = () => {
             <BlurCard
               image={{
                 alt: "Lorem ipum",
-                src: `https://picsum.photos/1600/900?${
+                src: `https://picsum.photos/900/1200?${
                   Math.floor(Math.random() * 10) + 1
                 }`,
               }}
@@ -266,7 +244,7 @@ const CampaignPage: React.FC = () => {
             <BlurCard
               image={{
                 alt: "Lorem ipum",
-                src: `https://picsum.photos/1600/900?${
+                src: `https://picsum.photos/900/1200?${
                   Math.floor(Math.random() * 10) + 1
                 }`,
               }}
@@ -275,28 +253,113 @@ const CampaignPage: React.FC = () => {
               title="What's behind the woman we see?"
             />
           </div>
-        </SectionThree>
-        <SectionFour className={clsx("container")}>
+        </section>
+        <section className={clsx("container")}>
           <Banner
+            className={clsx("banner")}
             image={{
-              src: `https://picsum.photos/1600/900?${
+              src: `https://picsum.photos/900/1200?${
                 Math.floor(Math.random() * 10) + 1
               }`,
             }}
+            justifyItems="center"
             layout="overlay"
             title="What's behind the woman we see?"
           />
-          <h2 className={clsx("heading-1", "sectionTitle")}>
-            The making of&hellip;
-          </h2>
-          <p className={clsx("sectionParagraph")}>
+        </section>
+        <section className={clsx("container")}>
+          <h2 className={clsx("heading-1", "title")}>The making of&hellip;</h2>
+          <p className={clsx("text")}>
             As it floats around us in an eternity of bliss; and then, my friend,
             when darkness overspreads my eyes, and heaven and earth seem to
             dwell in my soul and absorb its power.
           </p>
-          <ArticleCardGrid />
-        </SectionFour>
-        <section>
+          <ArticleCardGrid
+            items={[
+              {
+                backgroundPosition: "top right",
+                colour: "lightgreen",
+                image: {
+                  alt:
+                    "A grey placeholder image with the dimensions overlayed in white text",
+                  src: `https://picsum.photos/900/1200?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                },
+                layout: "overlay",
+                link: {
+                  href: "/learn-more",
+                  title: "Learn more",
+                },
+                tag: "Sample tag",
+                text:
+                  "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
+                title: "Promo banner",
+              },
+              {
+                backgroundPosition: "top right",
+                colour: "lightgreen",
+                image: {
+                  alt:
+                    "A grey placeholder image with the dimensions overlayed in white text",
+                  src: `https://picsum.photos/900/1200?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                },
+                layout: "overlay",
+                link: {
+                  href: "/learn-more",
+                  title: "Learn more",
+                },
+                tag: "Sample tag",
+                text:
+                  "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
+                title: "Promo banner",
+              },
+              {
+                backgroundPosition: "top right",
+                colour: "lightgreen",
+                image: {
+                  alt:
+                    "A grey placeholder image with the dimensions overlayed in white text",
+                  src: `https://picsum.photos/900/1200?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                },
+                layout: "overlay",
+                link: {
+                  href: "/learn-more",
+                  title: "Learn more",
+                },
+                tag: "Sample tag",
+                text:
+                  "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
+                title: "Promo banner",
+              },
+              {
+                backgroundPosition: "top right",
+                colour: "lightgreen",
+                image: {
+                  alt:
+                    "A grey placeholder image with the dimensions overlayed in white text",
+                  src: `https://picsum.photos/900/1200?${
+                    Math.floor(Math.random() * 10) + 1
+                  }`,
+                },
+                layout: "overlay",
+                link: {
+                  href: "/learn-more",
+                  title: "Learn more",
+                },
+                tag: "Sample tag",
+                text:
+                  "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
+                title: "Promo banner",
+              },
+            ]}
+          />
+        </section>
+        <section className={clsx("container", "section-leaf")}>
           <Leaf
             colour="lightgrey"
             image={{
