@@ -62,6 +62,10 @@ const ArticleCardStyled = styled.article`
     padding-inline-start: 1rem;
   }
 
+  .tag {
+    display: block;
+  }
+
   .title {
     font-size: ${themeGet("fontSizes.7")}px;
     margin-block-end: 1rem;

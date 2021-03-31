@@ -30,7 +30,7 @@ const ArticleCardGridStyled = styled.section`
 
   ${mediaQueries.md} {
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: 3rem;
   }
 
   article:nth-child(even) {
