@@ -58,8 +58,11 @@ const ArticleCardStyled = styled.article`
   }
 
   .content {
+    display: grid;
+    justify-content: start;
     padding-inline-end: 1rem;
     padding-inline-start: 1rem;
+    text-align: start;
   }
 
   .tag {
