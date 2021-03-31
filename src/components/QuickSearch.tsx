@@ -107,7 +107,6 @@ export const QuickSearch: React.FC<QuickSearchProps> = ({
           id="quick-search"
           onChange={search}
           placeholder="Search site"
-          ref={searchInputRef}
           type="text"
           value={query}
         />
