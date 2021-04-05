@@ -2,14 +2,14 @@ import type { MutableRefObject } from "react"
 
 import { themeGet } from "@styled-system/theme-get"
 import clsx from "clsx"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 
 import { useIntersection } from "../hooks/useIntersection"
 
 import { ArticleCardGrid } from "../components/ArticleCardGrid"
 import { Banner } from "../components/Banner"
-import { BlurCard } from "../components/BlurCard"
+import { BlurCardGallery } from "../components/BlurCardGallery"
 import { Leaf } from "../components/Leaf"
 import { Link } from "../components/Button"
 import { Layout } from "../components/Layout"
@@ -120,12 +120,6 @@ const MainStyled = styled.main`
       display: inline-block;
     }
   }
-
-  .blur-card-gallery {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(3, 1fr);
-  }
 `
 
 const CampaignPage: React.FC = () => {
@@ -173,7 +167,12 @@ const CampaignPage: React.FC = () => {
     <Layout transparent={headerIntersection?.isIntersecting}>
       <SEO title="Campaign Landing Page" />
       <HeaderStyled ref={headerRef}>
-        <VideoPlayer alt="something" layout="hero" muted={true} url="/videos/hero.mp4" />
+        <VideoPlayer
+          alt="something"
+          layout="hero"
+          muted={true}
+          url="/videos/hero.mp4"
+        />
       </HeaderStyled>
       <MainStyled ref={mainRef}>
         <section className={clsx("section-bottle-figure")} ref={sectionOneRef}>
@@ -195,48 +194,77 @@ const CampaignPage: React.FC = () => {
               src="/images/bottle.png"
               alt="bottle"
             />
-            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
-            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
-            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
-            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
-            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
-            <img className={clsx("pattern")} src="/images/flowerPattern.svg" alt="flower" />
+            <img
+              className={clsx("pattern")}
+              src="/images/flowerPattern.svg"
+              alt="flower"
+            />
+            <img
+              className={clsx("pattern")}
+              src="/images/flowerPattern.svg"
+              alt="flower"
+            />
+            <img
+              className={clsx("pattern")}
+              src="/images/flowerPattern.svg"
+              alt="flower"
+            />
+            <img
+              className={clsx("pattern")}
+              src="/images/flowerPattern.svg"
+              alt="flower"
+            />
+            <img
+              className={clsx("pattern")}
+              src="/images/flowerPattern.svg"
+              alt="flower"
+            />
+            <img
+              className={clsx("pattern")}
+              src="/images/flowerPattern.svg"
+              alt="flower"
+            />
           </figure>
         </section>
         <section className={clsx("container")}>
           <h2 className={clsx("heading-1")}>What's behind the scent?</h2>
-          <p>The other day the grass was brown, now it’s green because I ain’tgive up. Never surrender. In life there will be road blocks.</p>
+          <p>
+            The other day the grass was brown, now it’s green because I
+            ain’tgive up. Never surrender. In life there will be road blocks.
+          </p>
         </section>
         <section>
-          <div className={clsx("blur-card-gallery", "container")}>
-            <BlurCard
-              image={{
-                alt: "Lorem ipum",
-                src: "/images/7f1778134449df3e8e82dd2ccf3ed285e4ff60c1.png",
-              }}
-              link={{ src: "/test", title: "Learn more" }}
-              tag="The signature fragrance"
-              title="What’s behind the bottle?"
-            />
-            <BlurCard
-              image={{
-                alt: "Lorem ipum",
-                src: "/images/4fa74605110310e38a04cafc92e2c8afa584a837.png",
-              }}
-              link={{ src: "/test", title: "Learn more" }}
-              tag="The signature fragrance"
-              title="What’s behind the scent?"
-            />
-            <BlurCard
-              image={{
-                alt: "Lorem ipum",
-                src: "/images/7d241ff3ece2fdb9a7dc94c49074ce5a5562ffdd.png",
-              }}
-              link={{ src: "/test", title: "Learn more" }}
-              tag="The signature fragrance"
-              title="What’s behind the film?"
-            />
-          </div>
+          <BlurCardGallery
+            items={[
+              {
+                image: {
+                  alt: "Lorem ipum",
+                  src: "/images/7f1778134449df3e8e82dd2ccf3ed285e4ff60c1.png",
+                },
+                link: { src: "/test", title: "Learn more" },
+                tag: "The signature fragrance",
+                title: "What’s behind the bottle?",
+              },
+              {
+                image: {
+                  alt: "Lorem ipum",
+                  src: "/images/4fa74605110310e38a04cafc92e2c8afa584a837.png",
+                },
+                link: { src: "/test", title: "Learn more" },
+                tag: "The signature fragrance",
+                title: "What’s behind the scent?",
+              },
+              {
+                image: {
+                  alt: "Lorem ipum",
+                  src: "/images/7d241ff3ece2fdb9a7dc94c49074ce5a5562ffdd.png",
+                },
+                link: { src: "/test", title: "Learn more" },
+                tag: "The signature fragrance",
+                title: "What’s behind the film?",
+              },
+            ]}
+          />
         </section>
         <section className={clsx("container")}>
           <Banner
@@ -250,7 +278,7 @@ const CampaignPage: React.FC = () => {
             layout="overlay"
             link={{
               href: "/test",
-              title: "Learn more"
+              title: "Learn more",
             }}
             text="Have you ever felt like you had to choose between self-care and caring for the world? We're proud of our clean, responsible beauty because it's an artful synergy of luxury and sustainability."
             title="What’s Behind Responsible Beauty?"
