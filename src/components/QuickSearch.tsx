@@ -1,17 +1,18 @@
 import { themeGet } from "@styled-system/theme-get"
 // import type { Dispatch, SetStateAction } from "react"
 import { Index } from "elasticlunr"
-import { Link } from "gatsby"
 import React, { useState } from "react"
 import styled from "styled-components"
 import {
   color,
   compose,
+  flexbox,
   grid,
   layout,
   position,
   space,
   ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
   PositionProps,
@@ -19,31 +20,58 @@ import {
   VariantProps,
 } from "styled-system"
 
+import { Link } from "./Button"
+
 const QuickSearchStyled = styled.div`
-  align-items: center;
-  background-color: ${themeGet("colors.background", "white")};
-  display: grid;
-  padding: ${themeGet("space.2")}px;
-
-  input {
-    margin: ${themeGet("space.2")}px;
-  }
-
-  ${compose(color, grid, layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-const ResultsStyled = styled.ul`
+const InputContainerStyled = styled.div`
   align-items: center;
+  background-color: ${themeGet("colors.background", "white")};
+  border-bottom-left-radius: ${themeGet("radii.4")}px;
+  border-bottom-right-radius: ${themeGet("radii.4")}px;
   display: grid;
-  list-style: none;
-  margin: ${themeGet("space.2")}px;
+  left: 10%;
+  padding: ${themeGet("space.4")}px ${themeGet("space.8")}px;
+  position: absolute;
+  top: var(--header-min-height, 38px);
+  width: 80%;
+  z-index: 101;
 
-  li {
-    margin-block-end: 0;
+  input {
+    border-block-start-style: none;
+    border-inline-style: none;
+    border-radius: unset;
+    margin: ${themeGet("space.2")}px;
+  }
+`
+
+const ResultsContainerStyled = styled.div`
+  background-color: ${themeGet("colors.background", "white")};
+  bottom: 0;
+  left: 0;
+  padding-block-start: var(--header-min-height, 38px);
+  position: fixed;
+  right: 0;
+  top: var(--header-min-height, 38px);
+  z-index: 100;
+
+  ul {
+    align-items: center;
+    display: grid;
+    list-style: none;
+    margin: ${themeGet("space.2")}px;
+    width: 100%;
+  
+    li {
+      margin-block-end: unset;
+    } 
   }
 `
 
 export type QuickSearchProps = ColorProps &
+  FlexboxProps &
   GridProps &
   LayoutProps &
   PositionProps &
@@ -65,27 +93,34 @@ export const QuickSearch: React.FC<QuickSearchProps> = ({
     setQuery(event.target.value)
     setResults(
       index
-        .search(event.target.value, {})
+        .search(event.target.value, { expand: true })
         .map(({ ref }) => index.documentStore.getDoc(ref))
     )
   }
 
+  console.log("results", results)
+
   return (
     <QuickSearchStyled {...props}>
-      <input
-        onChange={search}
-        placeholder="Search site"
-        type="text"
-        value={query}
-      />
-      <ResultsStyled>
-        {(results as SearchResult[]).map(page => (
-          <li key={page.id}>
-            {/* <img alt={page.title} src={page.image_url} /> */}
-            <Link to={page.path}>{page.title}</Link>
-          </li>
-        ))}
-      </ResultsStyled>
+      <InputContainerStyled>
+        <input
+          id="quick-search"
+          onChange={search}
+          placeholder="Search site"
+          type="text"
+          value={query}
+        />
+      </InputContainerStyled>
+      {results?.length > 0 && <ResultsContainerStyled>
+        {(results as SearchResult[]).map(page => {
+          return (
+            <li key={page.id}>
+              <img alt={page.image?.alt} src={page.image?.src} />
+              <Link to={page.path}>{page.title}</Link>
+            </li>
+          )
+        })}
+      </ResultsContainerStyled>}
     </QuickSearchStyled>
   )
 }

@@ -1,113 +1,101 @@
-import { mediaQueries } from "../theme"
+import { mediaQueries, theme } from "../theme"
 
 export const formRadioContainer = `
-.field {
-
-} 
-
-.fancy-radio {
+  .fancy-radio {
     clip: rect(1px, 1px, 1px, 1px);
-    position: absolute !important;
     height: 1px;
-    width: 1px;
     overflow: hidden;
-}
-
-.fancy-radio-label {
-  display: block;
-  cursor: pointer;
-  position: relative;
-  width: 100%;
-  font-size: 13px;
-  ${mediaQueries.md}{
-  font-size: 14px;
+    position: absolute !important;
+    width: 1px;
   }
-  text-transform: uppercase;
-  font-weight: normal;
 
-}
-
-label.fancy-radio-label:before {
-    position: absolute;
+  .fancy-radio-label {
+    cursor: pointer;
     display: block;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #363139;
+    font-size: ${theme.fontSizes[2]}px;
+    font-weight: normal;
+    position: relative;
+    text-transform: uppercase;
+    width: 100%;
+
+    ${mediaQueries.md}{
+      font-size: ${theme.fontSizes[3]}px;
+    }
+  }
+
+  label.fancy-radio-label:before {
+    background-color: ${theme.colors.white};
     border-radius: 3px;
-    background: #FFF;
+    border-style: solid;
     content: " ";
+    display: block;
+    height: 18px;
+    position: absolute;
     right: 0px;
     top: 50%;
     transform: translateY(-50%);
+    width: 18px;
+    }
 
-
+  label.fancy-radio-label:after {
+    border-radius: 3px;
+    border: 1px solid white;
+    content: " ";
+    height: 12px;
+    opacity: 0;
+    position: absolute;
+    right: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
   }
 
-label.fancy-radio-label:after {
-  position: absolute;
-  top: 50%;
-  right: 3px;
-  width: 12px;
-  height: 12px;
-  content: " ";
-  opacity: 0;
-  background: #363139;
-  border-radius: 2px;
-  border: 1px solid white;
-  transform: translateY(-50%);
+  input:checked + label.fancy-radio-label:after {
+    opacity:1;
   }
 
-input:checked + label.fancy-radio-label:after {
-  opacity:1;
-}
-input:checked + label.fancy-radio-label {
-  font-weight: 600;
-}
+  input:checked + label.fancy-radio-label {
+    font-weight: bold;
+  }
 
+  .fancy-product {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+  }
 
+  label.product-radio-label {
+    cursor: pointer;
+    display: inline-block;
+    font-size: ${theme.fontSizes[2]}px;
+    font-weight: normal;
+    padding-block-end: 0.5rem;
+    position: relative;
+    text-transform: unset;
 
+    ${mediaQueries.md}{
+      font-size: ${theme.fontSizes[3]}px;
+    }
+  }
 
+  label.product-radio-label:after {
+    bottom: 0px;
+    content: " ";
+    display: inline-block;
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    right: 0px;
+    width: 100%;
+  }
 
-.fancy-product {
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-}
+  input:checked + label.product-radio-label:after  {
+    opacity:1;
+  }
 
-label.product-radio-label {
-display: inline-block;
-cursor: pointer;
-position: relative;
-font-size: 13px;
-${mediaQueries.md}{
-  font-size: 14px;
-}
-text-transform: unset;
-padding-block-end: 0.5rem;
-font-weight: normal;
-}
-
-
-label.product-radio-label:after {
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-  display: inline-block;
-  width: 100%;
-  height: 1px;
-  background: #363139;
-  content: " ";
-  opacity: 0;
-}
-
-
-
-input:checked + label.product-radio-label:after  {
-  opacity:1;
-}
-input:checked + label.product-radio-label  {
-  font-weight: 600;
-}
+  input:checked + label.product-radio-label  {
+    font-weight: bold;
+  }
 `

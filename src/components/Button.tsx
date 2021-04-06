@@ -4,24 +4,39 @@ import React from "react"
 import styled, { css } from "styled-components"
 import {
   buttonStyle,
-  color,
+  color, 
   compose,
-  layout,
-  space,
   flexbox,
+  grid,
+  layout,
+  position,
+  space,
   variant,
   ButtonStyleProps,
   ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-import { styles } from "../styles/button"
+import { styles as buttonStyles } from "../styles/button"
 
 export type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   ButtonStyleProps &
+  ColorProps & FlexboxProps & GridProps &
+  LayoutProps & PositionProps &
+  SpaceProps &
+  VariantProps & {
+    active: "active" | "inactive"
+  }
+
+  export type LinkProps = React.HTMLProps<HTMLAnchorElement> &
+  ButtonStyleProps &
   ColorProps &
+  GridProps &
   LayoutProps &
   SpaceProps &
   VariantProps
@@ -33,10 +48,9 @@ export const baseStyles = css`
 
   svg,
   svg * {
-    fill: ${props =>
-      props.active
-        ? themeGet("colors.black", "black")
-        : themeGet("colors.lightgrey", "lightgrey")};
+    ${props => props.active && 
+      `fill: ${props.active === "active" ? themeGet("colors.black") : themeGet("colors.lightgrey", "lightgrey")} !important;`
+    }
   }
 
   ${variant({
@@ -57,13 +71,13 @@ export const baseStyles = css`
     },
   })}
 
-  ${compose(buttonStyle, color, flexbox, layout, space)}
+  ${compose(buttonStyle, color, flexbox, grid, layout, position, space)}
 `
 
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
 // pass it only to GatsbyLink
-export const Link = ({ children, to, ...other }) => {
+export const LinkContextual = ({ children, to, ...other }) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
@@ -73,6 +87,7 @@ export const Link = ({ children, to, ...other }) => {
   if (internal) {
     return (
       <GatsbyLink
+        activeClassName="active"
         to={to}
         {...other}
       >
@@ -88,17 +103,34 @@ export const Link = ({ children, to, ...other }) => {
   )
 }
 
-export const AnchorStyled: React.FC<ButtonProps> = styled.a`
-  ${styles}
+export const Anchor: React.FC<LinkProps> = styled.a`
   ${baseStyles}
+
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const Button: React.FC<ButtonProps> = styled.button`
-  ${styles}
+  ${buttonStyles}
   ${baseStyles}
+
+  ${compose(buttonStyle, color, flexbox, grid, layout, position, space)}
 `
 
-export const LinkStyled: React.FC<ButtonProps> = styled(Link)`
-  ${styles}
+export const ButtonUnstyled: React.FC<ButtonProps> = styled.button`
   ${baseStyles}
+
+  ${compose(buttonStyle, color, flexbox, grid, layout, position, space)}
+`
+
+export const Link: React.FC<LinkProps> = styled(LinkContextual)`
+  ${baseStyles}
+
+  ${compose(color, flexbox, grid, layout, position, space)}
+`
+
+export const LinkButton: React.FC<LinkProps> = styled(LinkContextual)`
+  ${buttonStyles}
+  ${baseStyles}
+
+  ${compose(color, flexbox, grid, layout, position, space)}
 `

@@ -7,6 +7,14 @@ module.exports = {
     siteUrl: process.env.GATSBY_SITE_URL,
     title: process.env.SITE_TITLE,
   },
+  flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
+    FAST_REFRESH: true,
+    PARALLEL_SOURCING: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    PRESERVE_WEBPACK_CACHE: true,
+  },
   plugins: [
     {
       resolve: "gatsby-plugin-typescript",
@@ -16,34 +24,19 @@ module.exports = {
         allExtensions: true, // defaults to false
       },
     },
-    "gatsby-plugin-lint-queries",
     {
       resolve: "gatsby-plugin-graphql-codegen",
       options: {
-        // fileName: `./gatsby-graphql.ts`,
+        codegen: process.env.GRAPHQL_CODEGEN,
         documentPaths: [
-          './src/**/*.{tsx}',
-          // './node_modules/gatsby-*/**/*.js',
-          './node_modules/gatsby*/!(node_modules)/**/*.js',
-          './gatsby-node.js',
-          // './gatsby-node.ts',
+          "./src/**/*.tsx",
+          "./node_modules/gatsby*/!(node_modules)/**/*.js",
+          "./gatsby-node.js",
         ],
-      }
-    },
-    "gatsby-plugin-react-helmet",
-    // {
-    //   resolve: "gatsby-plugin-i18n",
-    //   options: {
-    //     langKeyDefault: "en",
-    //     useLangKeyLayout: false,
-    //   },
-    // },
-    {
-      resolve: "gatsby-plugin-styled-components",
-      options: {
-        // Add any options here
       },
     },
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-styled-components",
     // {
     //   resolve: "gatsby-source-filesystem",
     //   options: {
@@ -52,12 +45,13 @@ module.exports = {
     //   },
     // },
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: "gatsby-plugin-google-fonts",
       options: {
-        google: {
-          families: ["Quicksand:400,600"],
-        },
-      },
+        fonts: [
+          "Quicksand:400,600",
+        ],
+        display: 'swap'
+      }
     },
     "gatsby-plugin-svgr",
     "gatsby-transformer-sharp",
@@ -75,8 +69,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-sitemap",
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
     "gatsby-plugin-offline",
     {
       resolve: "gatsby-source-graphql",
@@ -86,11 +78,19 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: "bigCommerceGQL",
         // Url to query from
-        url: "https://" + process.env.BIGCOMMERCE_STORE_SUBDOMAIN + ".mybigcommerce.com/graphql",
+        url:
+          "https://" +
+          process.env.BIGCOMMERCE_STORE_SUBDOMAIN +
+          ".mybigcommerce.com/graphql",
         headers: {
           // Learn about environment variables: https://gatsby.dev/env-vars
           Authorization: "Bearer " + process.env.BIGCOMMERCE_STOREFRONT_TOKEN,
         },
+        batch: true,
+        dataLoaderOptions: {
+          maxBatchSize: 10,
+        },
+        // refetchInterval: 3600,
       },
     },
     {
@@ -111,9 +111,9 @@ module.exports = {
 
         // Multiple endpoints in an object.
         endpoints: {
-          BigCommerceBrands: "/catalog/brands",
+          // BigCommerceBrands: "/catalog/brands",
           BigCommerceCategories: "/catalog/categories",
-          BigCommerceProducts: "/catalog/products?include=images",
+          BigCommerceProducts: "/catalog/products",
         },
 
         preview: true,
@@ -145,38 +145,27 @@ module.exports = {
 
         // Optional: Specify true if you want to download all your contentstack images locally
         downloadImages: false,
-
-        // transformSchema: ({
-        //   schema,
-        //   link,
-        //   resolver,
-        //   defaultTransforms,
-        //   options,
-        // }) => {
-        //   return wrapSchema(
-        //     {
-        //       schema,
-        //       executor: linkToExecutor(link),
-        //     },
-        //     defaultTransforms
-        //   )
-        // }
       },
     },
     {
       resolve: "@gatsby-contrib/gatsby-plugin-elasticlunr-search",
       options: {
         // Fields to index
-        fields: ["title", "tags"],
+        fields: ["title", "sku"],
         // How to resolve each field"s value for a supported node type
         resolvers: {
           // List how to resolve the fields" values
           BigCommerceProducts: {
-            image_url: function (node) {
-              return node.image_url
+            image: function (node) {
+              return {
+                alt: node.name,
+                src: node.image_url,
+              }
+              // return node.image[0]
             },
             path: function (node) {
               return node.custom_url.url
+              // return node.path
             },
             sku: function (node) {
               return node.sku
@@ -216,75 +205,74 @@ module.exports = {
         // ],
         // trailingSlashes: optional, will add trailing slashes to the end
         // of crumb pathnames. default is false
-        trailingSlashes: true,
+        // trailingSlashes: true,
         // usePathPrefix: optional, if you are using pathPrefix above
         // usePathPrefix: "/blog",
       },
     },
-    {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: "YOUR_GOOGLE_TAGMANAGER_ID",
-
-        // Include GTM in development.
-        //
-        // Defaults to false meaning GTM will only be loaded in production.
-        includeInDevelopment: false,
-
-        // datalayer to be set before GTM is loaded
-        // should be an object or a function that is executed in the browser
-        //
-        // Defaults to null
-        defaultDataLayer: { platform: "gatsby" },
-
-        // Specify optional GTM environment details.
-        gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING",
-        gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME",
-        dataLayerName: "YOUR_DATA_LAYER_NAME",
-
-        // Name of the event that is triggered
-        // on every Gatsby route change.
-        //
-        // Defaults to gatsby-route-change
-        routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
-      },
-    },
     // {
-    //   resolve: 'gatsby-plugin-a11y-report',
+    //   resolve: "gatsby-plugin-google-tagmanager",
     //   options: {
-    //     showInProduction: false,
-    //     toastAutoClose: false,
-    //     query: "
-    //       {
-    //         allSitePage(
-    //           filter: {
-    //             path: { regex: "/^(?!/404/|/404.html|/dev-404-page/)/" }
-    //           }
-    //         ) {
-    //           edges {
-    //             node {
-    //               path
-    //             }
-    //           }
-    //         }
-    //       }
-    //     ",
-    //     ignoreCheck: [
-    //       '/404*',
-    //       '/tag/*'
-    //     ],
-    //     serverOptions: {
-    //       host: 'localhost',
-    //       port: '8341'
-    //     },
-    //     axeOptions: {
-    //       locale: 'en',
-    //     },
-    //     loggingOptions: {
-    //       result: ['violations', 'incomplete']
-    //     }
+    //     id: "YOUR_GOOGLE_TAGMANAGER_ID",
+
+    //     // Include GTM in development.
+    //     //
+    //     // Defaults to false meaning GTM will only be loaded in production.
+    //     includeInDevelopment: false,
+
+    //     // datalayer to be set before GTM is loaded
+    //     // should be an object or a function that is executed in the browser
+    //     //
+    //     // Defaults to null
+    //     defaultDataLayer: { platform: "gatsby" },
+
+    //     // Specify optional GTM environment details.
+    //     gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING",
+    //     gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME",
+    //     dataLayerName: "YOUR_DATA_LAYER_NAME",
+
+    //     // Name of the event that is triggered
+    //     // on every Gatsby route change.
+    //     //
+    //     // Defaults to gatsby-route-change
+    //     routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
     //   },
     // },
+    {
+      resolve: "gatsby-plugin-google-gtag",
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "UA-8274909-9", // Google Analytics / GA
+          // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
+          // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
+        ],
+        // This object gets passed directly to the gtag config command
+        // This config will be shared across all trackingIds
+        // gtagConfig: {
+        //   optimize_id: "OPT_CONTAINER_ID",
+        //   anonymize_ip: true,
+        //   cookie_expires: 0,
+        // },
+        // This object is used for configuration specific to this plugin
+        // pluginConfig: {
+        //   // Puts tracking script in the head instead of the body
+        //   head: false,
+        //   // Setting this parameter is also optional
+        //   respectDNT: true,
+        //   // Avoids sending pageview hits from custom paths
+        //   exclude: ["/preview/**", "/do-not-track/me/too/"],
+        // },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-stylelint",
+      options: {
+        emitError: false,
+        emitWarning: true,
+        files: ["**/*.{ts,tsx}"],
+      },
+    },
     "gatsby-plugin-netlify",
   ],
 }

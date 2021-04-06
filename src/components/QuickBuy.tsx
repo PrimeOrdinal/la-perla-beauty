@@ -1,50 +1,69 @@
+// import type {  Dispatch, SetStateAction } from "React"
 import type { Offer, Product } from "schema-dts"
+
+import type { Bag } from "../../types/BigCommerce"
 
 import clsx from "clsx"
 import getSymbolFromCurrency from "currency-symbol-map"
-import { Formik, Field, Form, FormikHelpers } from "formik"
-import React, { useEffect, useState } from "react"
+import { Formik, Form, FormikHelpers } from "formik"
+import React, { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-import { Button } from "./Button"
+import { functions as functionsPath } from "../utils/paths"
 
-export type QuickBuyProps = LayoutProps &
+import { BagContext } from "./Bag"
+import { Button } from "./Button"
+import { ProductSelectorColour } from "./ProductSelectorColour"
+import { ProductSelectorSize } from "./ProductSelectorSize"
+import { SnackbarContext } from "./Snackbar"
+
+export type QuickBuyProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & { product: Product }
+  VariantProps & { product: Product; showPrice: boolean; showVariants: boolean }
 
 interface Values {
   identifier: string
 }
 
 export const QuickBuyStyled: React.FC<QuickBuyProps> = styled.div`
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const QuickBuy: React.FC<QuickBuyProps> = ({
-  product,
-  ...props
-}) => {
+export const QuickBuy: React.FC<QuickBuyProps> = ({ product, ...props }) => {
+  console.log("product", product)
+  const { bag, setBag } = useContext(BagContext)
+  const { labelText, setSnackbar } = useContext(SnackbarContext)
+  
   const [isInBag, setIsInBag] = useState(false)
 
   const offer = product?.offers as Offer
 
-  const path = `/.netlify/functions/carts`
-
-  const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
-
   useEffect(() => {
     ;(async function getCarts() {
+      const path = `${functionsPath}/carts`
+
+      const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
+    
       const response = await fetch(url.toString(), {
         headers: {
           Accept: "application/json",
@@ -52,14 +71,10 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({
         method: "GET",
       })
 
-      console.log(response)
-
       if (response.ok) {
-        const carts = await response.json()
+        const bags = await response.json()
 
-        const present = carts.items.find(
-          item => (item.id = product?.identifier)
-        )
+        const present = bags.items.find(item => (item.id = product?.identifier))
 
         setIsInBag(present)
       }
@@ -69,107 +84,104 @@ export const QuickBuy: React.FC<QuickBuyProps> = ({
   return (
     <QuickBuyStyled {...props}>
       <Formik
-          className={clsx("container", "form-container")}
-          initialValues={{
-            identifier: product?.identifier,
-          }}
-          onSubmit={async (
-            values: Values,
-            { setSubmitting }: FormikHelpers<Values>
-          ) => {
-            const path = `/.netlify/functions/carts`
+        className={clsx("container", "form-container")}
+        initialValues={{
+          identifier: product?.identifier,
+        }}
+        onSubmit={async (
+          values: Values,
+          { setSubmitting }: FormikHelpers<Values>
+        ) => {
+          let path = `${functionsPath}/carts?action=createCart`
 
-            const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
+          const cartId = window.localStorage.getItem("cartId")
+          console.log("cartId", cartId)
 
-            const response = await fetch(url.toString(), {
-              body: JSON.stringify(values),
-              headers: {
-                Accept: "application/json",
-              },
-              method: "POST",
-            })
+          // if (!cartId) {
+          //   return
+          // }
 
-            setSubmitting(false)
+          if (cartId) {
+            path = `${functionsPath}/carts?action=addCartLineItems&cartId=${cartId}`
+          }
 
-            console.log(response)
-          }}
-        >
-          <Form className={clsx("quick-buy")}>
-            <legend>Sizes</legend>
-            <div className="form-fields">
-              <div className="field">
-                <Field
-                  type="radio"
-                  name="size"
-                  id="size-option-1"
-                  value="value-1"
-                  className="fancy-product"
-                />
-                <label htmlFor="size-option-1" className="product-radio-label">
-                  30 ml
-                </label>
-              </div>
-              <div className="field">
-                <Field
-                  type="radio"
-                  name="size"
-                  id="size-option-2"
-                  value="value-2"
-                  className="fancy-product"
-                />
-                <label htmlFor="size-option-2" className="product-radio-label">
-                  90 ml
-                </label>
-              </div>
-              <div className="field">
-                <Field
-                  type="radio"
-                  name="size"
-                  id="size-option-3"
-                  value="value-3"
-                  className="fancy-product"
-                />
-                <label htmlFor="size-option-3" className="product-radio-label">
-                  120 ml
-                </label>
-              </div>
-            </div>
-            <Button
-              type="submit"
-              variant="primary"
-              py={{ md: 4 }}
-              px={{ md: 9 }}
-            >
-              <span
-                itemProp="offers"
-                itemScope
-                itemType="https://schema.org/Offer"
-              >
+          const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
+
+          const response = await fetch(url.toString(), {
+            body: JSON.stringify(values),
+            // credentials: "include",
+            credentials: "same-origin",
+            headers: {
+              Accept: "application/json",
+            },
+            method: "POST",
+          })
+
+          setSubmitting(false)
+
+          if (response.ok) {
+            const data: Bag = await response.json()
+
+            setBag(data)
+
+            console.log("data", data)
+          } else {
+            setSnackbar(response.statusText)
+          }
+        }}
+      >
+        <Form className={clsx("quick-buy")}>
+          {props.showVariants &&
+            (Array.isArray(product?.hasVariant) &&
+            product?.hasVariant?.some(
+              variant => variant.variesBy === "Size"
+            ) ? (
+              <ProductSelectorSize
+                marginBottom={{ _: 2, md: 4 }}
+                product={product}
+              />
+            ) : (
+              <ProductSelectorColour
+                marginBottom={{ _: 2, md: 4 }}
+                product={product}
+              />
+            ))}
+          <Button type="submit" variant="primary" py={{ md: 4 }} px={{ md: 9 }}>
+            {props.showPrice && (
+              <React.Fragment>
                 <span
-                  className="product-price"
-                  content={offer?.priceCurrency as string}
-                  itemProp="priceCurrency"
+                  itemProp="offers"
+                  itemScope
+                  itemType="https://schema.org/Offer"
                 >
-                  {getSymbolFromCurrency(offer?.priceCurrency as string)}
-                </span>
-                <span
-                  className="product-price"
-                  content={offer?.price as number}
-                  itemProp="price"
-                >
-                  {offer?.price}
-                </span>
-                {offer?.availability && (
-                  <link
-                    href={offer?.availability as string}
-                    itemProp="availability"
-                  />
-                )}
-              </span>{" "}
-              | <span>{isInBag ? "Added to bag" : "Add to bag"}</span>
-            </Button>
-          </Form>
-        </Formik>
+                  <span
+                    className="product-price"
+                    content={offer?.priceCurrency as string}
+                    itemProp="priceCurrency"
+                  >
+                    {getSymbolFromCurrency(offer?.priceCurrency as string)}
+                  </span>
+                  <span
+                    className="product-price"
+                    content={offer?.price as number}
+                    itemProp="price"
+                  >
+                    {offer?.price}
+                  </span>
+                  {offer?.availability && (
+                    <link
+                      href={offer?.availability as string}
+                      itemProp="availability"
+                    />
+                  )}
+                </span>{" "}
+                |
+              </React.Fragment>
+            )}
+            <span>{isInBag ? "Added to bag" : "Add to bag"}</span>
+          </Button>
+        </Form>
+      </Formik>
     </QuickBuyStyled>
   )
 }

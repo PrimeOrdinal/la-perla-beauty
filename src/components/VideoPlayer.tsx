@@ -1,29 +1,80 @@
+import { IconContext } from "@react-icons/all-files"
+import { FiPlay } from "@react-icons/all-files/fi/FiPlay"
 import React from "react"
+import { Helmet } from "react-helmet"
 import ReactPlayer from "react-player/lazy"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-export type VideoPlayerProps = 
+import { getContent, LayoutStyled } from "./Banner"
+
+export type VideoPlayerProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
   PositionProps &
   SpaceProps &
-  VariantProps & {
-      
+  VariantProps & ReactPlayer & {
+    aspectRatio: string
   }
 
 export const VideoPlayerStyled: React.FC<VideoPlayerProps> = styled.div`
-  ${compose(layout, position, space)}
+  position: relative;
+
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = props => (
-  <ReactPlayer {...props} />
+  <LayoutStyled layout="video" {...props}>
+    <VideoPlayerStyled aspect-ratio={props.aspectRatio} className="media">
+      <ReactPlayer
+        className="react-player"
+        controls={false}
+        height="100%"
+        light={props.image?.url}
+        loop={true}
+        playIcon={
+          <IconContext.Provider value={{ color: "white", size: "2rem" }}>
+            <FiPlay />
+          </IconContext.Provider>
+        }
+        playing={true}
+        playsinline={true}
+        url={props.video?.url}
+        width="100%"
+        {...props}
+      />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": props.video?.title,
+            "description": props.video?.text,
+            "thumbnailUrl": [
+              props.image?.src
+            ],
+            "uploadDate": props.publish_details?.time,
+            "contentUrl": props.video?.url
+          })}
+        </script>
+      </Helmet>
+    </VideoPlayerStyled>
+    {getContent({...props, layout: "video"})}
+  </LayoutStyled>
 )

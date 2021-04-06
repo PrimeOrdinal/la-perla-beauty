@@ -1,32 +1,24 @@
 export const fonts = `
     @font-face {
-        font-family: "Tiempos";
+        font-family: "Tiempos", serif;
         font-style: normal;
-        font-weight: 300;
+        font-weight: lighter;
         src: url("../fonts/tiempos-fine-web-light.woff2") format("woff2"),
             url("../fonts/tiempos-fine-web-light.woff") format("woff");
     }
 
-    @font-face {
-        font-family: "Tiempos";
-        font-style: normal;
-        font-weight: normal;
-        src: url("../fonts/tiempos-text-web-regular.woff2") format("woff2"),
-            url("../fonts/tiempos-text-web-regular.woff") format("woff");
-    }
-
     small,
     .small {
-        font-size: 11px;
+        font-size: var(--font-size-sm, 12px);
         letter-spacing: 0.7px;
-        line-height: 15px;
     }
 
     .tiempos {
-        font-family: "Tiempos";
+        font-family: "Tiempos", serif;
+        font-weight: lighter;
     }
 
     .quicksand {
-        font-family: "Quicksand";
+        font-family: "Quicksand", sans-serif;
     }
 `

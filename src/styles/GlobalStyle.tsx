@@ -2,42 +2,62 @@ import { createGlobalStyle } from "styled-components"
 
 import { accessibility } from "./accessibility"
 import { anchor } from "./anchor"
+import { aspectRatio } from "./aspectRatio"
 import { body } from "./body"
+import { blockquote } from "./blockquote"
 import { border } from "./border"
 import { boxSizing } from "./boxSizing"
 import { button } from "./button"
 import { container } from "./container"
+import { dl } from "./dl"
 import { field } from "./field"
+import { figure } from "./figure"
 import { fonts } from "./fonts"
 import { form } from "./form"
 import { formCheckboxContainer } from "./formCheckboxContainer"
 import { formField } from "./formField"
 import { formRadioContainer } from "./formRadioContainer"
+import { gradients } from "./gradients"
 import { headings } from "./headings"
+import { hr } from "./hr"
 import { html } from "./html"
+import { img } from "./img"
 import { input } from "./input"
 import { label } from "./label"
+import { picker } from "./picker"
 import { select } from "./select"
 import { svg } from "./svg"
+import { table } from "./table"
+import { video } from "./video"
 
 export const GlobalStyle = createGlobalStyle`
     ${accessibility}
     ${anchor}
-    ${html}
+    ${aspectRatio}
+    ${blockquote}
     ${body}
     ${border}
     ${boxSizing}
     ${button}
     ${container}
+    ${dl}
     ${field}
+    ${figure}
     ${fonts}
     ${form}
+    ${formCheckboxContainer}
     ${formField}
-    ${label}
+    ${formRadioContainer}
+    ${gradients}
     ${headings}
+    ${hr}
+    ${html}
+    ${img}
     ${input}
+    ${label}
+    ${picker}
     ${select}
     ${svg}
-    ${formRadioContainer}
-    ${formCheckboxContainer}
+    ${table}
+    ${video}
 `

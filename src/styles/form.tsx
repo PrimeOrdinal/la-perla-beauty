@@ -22,4 +22,8 @@ export const form = `
       grid-auto-flow: column;
     }
   }
+
+  .error {
+    color: ${theme.colors.red};
+  }
 `

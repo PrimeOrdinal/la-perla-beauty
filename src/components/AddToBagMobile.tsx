@@ -1,60 +1,93 @@
+import type { Product } from "schema-dts"
+
+import { themeGet } from "@styled-system/theme-get"
 import React from "react"
 import styled from "styled-components"
+import {
+  color,
+  compose,
+  flexbox,
+  grid,
+  layout,
+  position,
+  space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
 
-import { ReactComponent as CloseIcon } from "../images/Close.svg"
+import { ReactComponent as CloseIcon } from "../../static/icons/Close.svg"
 
-import { Button } from "./Button"
+import { Button, ButtonUnstyled } from "./Button"
 
-const ContainerStyled = styled.div`
-  border: 1px solid;
-  background: white;
-  border-radius: 13px;
-  padding-block-end: 1rem;
-  display: grid;
-  grid-auto-flow: row;
-  gap: 1rem;
-  width: 100%;
-  position: absolute;
-  bottom: 0px;
-  .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-block-end: 1rem;
-    padding-block-start: 1rem;
+export type AddToBagMobileProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
+    product: Product
+    visible: boolean
   }
 
-  .close {
-    padding: 0;
-    height: 20px;
-    object-fit: contain;
-    svg,
-    svg * {
-      fill: black;
+const AddToBagMobileStyled = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  position: relative;
+
+  .container {
+    background-color: ${themeGet("colors.background")};
+    border-top-left-radius: ${themeGet("radii.3")}px;
+    border-top-right-radius: ${themeGet("radii.3")}px;
+    border-style: solid;
+    bottom: 0px;
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: row;
+    padding-block-end: 1rem;
+    position: absolute;
+    width: 100%;
+
+    .panel {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      padding-block-end: 1rem;
+      padding-block-start: 1rem;
+
+      span {
+        text-transform: uppercase;
+      }
+    }
+
+    .close {
+      height: 20px;
+      object-fit: contain;
+      padding: 0;
     }
   }
+
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-const Backdrop = styled.div`
-  background-color: rgba(0, 0, 0, 0.6);
-  height: 50vh;
-  position: relative;
-`
+export const AddToBagMobile: React.FC<AddToBagMobileProps> = () => (
+  <AddToBagMobileStyled>
+    <div className="container">
+      <div className="panel">
+        <span>Item added to bag</span>
 
-export const AddToBagMobile: React.FC = () => {
-  return (
-    <Backdrop>
-      <ContainerStyled className="container">
-        <div className="title">
-          <span>ITEM ADDED TO BAG</span>
-          <button className="close">
-            <CloseIcon />
-          </button>
-        </div>
+        <ButtonUnstyled className="close">
+          <CloseIcon />
+        </ButtonUnstyled>
+      </div>
 
-        <Button variant="primary">View bag</Button>
-        <Button variant="tertiary">Continue shopping</Button>
-      </ContainerStyled>
-    </Backdrop>
-  )
-}
+      <Button variant="primary">View bag</Button>
+      <Button variant="tertiary">Continue shopping</Button>
+    </div>
+  </AddToBagMobileStyled>
+)

@@ -1,6 +1,5 @@
-import { Link } from "gatsby"
-import React from "react"
 import { Story, Meta } from "@storybook/react"
+import React from "react"
 
 import { Leaf, LeafProps } from "../src/components/Leaf"
 
@@ -9,10 +8,10 @@ export default {
   component: Leaf,
   argTypes: {
     backgroundColor: { control: "color" },
-    variant: {
+    layout: {
       control: {
         type: "inline-radio",
-        options: ["primary", "secondary", "tertiary"],
+        options: ["image-and-text-inside", "image-and-text-outside", "text-inside-and-image", "text-outside-and-image"],
       },
     },
   },
@@ -20,28 +19,93 @@ export default {
 
 const Template: Story<LeafProps> = args => <Leaf {...args} />
 
-export const Image = Template.bind({})
-Image.args = {
-  children: <React.Fragment>
-      <img src="https://via.placeholder.com/300x400" alt="Placeholder" />
-  </React.Fragment>,
-  variant: "primary",
+export const ImageAndTextInside = Template.bind({})
+ImageAndTextInside.args = {
+  colour: "beige",
+  image: {
+    alt: "Test",
+    src: "https://picsum.photos/200/300"
+  },
+  layout: "image-and-text-inside",
+  link: {
+    href: "/test",
+    title: "Test"
+  },
+  text: "Etiam aliquet metus mauris, in tempus ves odio feugiat non. Docet praesent eu magna id arcu docet ves.",
+  title: "Lorem ipsum"
 }
-Image.argTypes = {
+ImageAndTextInside.argTypes = {
   onClick: { action: "Leaf clicked" },
 }
 
-export const Text = Template.bind({})
-Text.args = {
-  children: <React.Fragment>
-      <h1>Risk free purchase</h1>
-      <p>Phasellus hendrerit nisl justo, non visto sollicitudin justo in. Quisque eu tincidunt arcu. Aenean ullamcorper augue vel ex iaculis.</p>
-      <Link to="/test">Lorem ipsum</Link>
-  </React.Fragment>,
-  maxWidth: 640,
-  variant: "primary",
-  width: { _: 1, md: 1/2},
+export const TextInsideAndImage = Template.bind({})
+TextInsideAndImage.args = {
+  colour: "lightgreen",
+  image: {
+    alt: "Test",
+    src: "https://picsum.photos/200/300"
+  },
+  layout: "text-inside-and-image",
+  link: {
+    href: "/test",
+    title: "Test"
+  },
+  text: "Etiam aliquet metus mauris, in tempus ves odio feugiat non. Docet praesent eu magna id arcu docet ves.",
+  title: "Lorem ipsum"
 }
-Text.argTypes = {
+TextInsideAndImage.argTypes = {
+  onClick: { action: "Leaf clicked" },
+}
+
+export const ImageAndTextOutside = Template.bind({})
+ImageAndTextOutside.args = {
+  colour: "pink",
+  image: {
+    alt: "Test",
+    src: "https://picsum.photos/200/300"
+  },
+  layout: "image-and-text-outside",
+  link: {
+    href: "/test",
+    title: "Test"
+  },
+  text: "Etiam aliquet metus mauris, in tempus ves odio feugiat non. Docet praesent eu magna id arcu docet ves.",
+  title: "Lorem ipsum"
+}
+ImageAndTextOutside.argTypes = {
+  onClick: { action: "Leaf clicked" },
+}
+
+export const TextOutsideAndImage = Template.bind({})
+TextOutsideAndImage.args = {
+  colour: "lilac",
+  image: {
+    alt: "Test",
+    src: "https://picsum.photos/200/300"
+  },
+  layout: "text-outside-and-image",
+  link: {
+    href: "/test",
+    title: "Test"
+  },
+  text: "Etiam aliquet metus mauris, in tempus ves odio feugiat non. Docet praesent eu magna id arcu docet ves.",
+  title: "Lorem ipsum"
+}
+TextOutsideAndImage.argTypes = {
+  onClick: { action: "Leaf clicked" },
+}
+
+export const NoImage = Template.bind({})
+NoImage.args = {
+  colour: "beige",
+  layout: "image-and-text-inside",
+  link: {
+    href: "/test",
+    title: "Test"
+  },
+  text: "Etiam aliquet metus mauris, in tempus ves odio feugiat non. Docet praesent eu magna id arcu docet ves.",
+  title: "Lorem ipsum"
+}
+NoImage.argTypes = {
   onClick: { action: "Leaf clicked" },
 }

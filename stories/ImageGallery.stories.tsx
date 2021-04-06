@@ -17,29 +17,52 @@ export const Example = Template.bind({})
 Example.args = {
   items: [
     {
-      original: "https://picsum.photos/id/1018/600/600/",
-      thumbnail: "https://picsum.photos/id/1018/100/100/",
+      backgroundPosition: "top right",
+      colour: "lightgreen",
+      image: {
+        alt: "A grey placeholder image with the dimensions overlayed in white text",
+        src: "https://via.placeholder.com/282",
+      },
+      layout: "overlay",
+      link: {
+        href: "/learn-more",
+        title: "Learn more",
+      },
+      tag: "Sample tag",
+      text: "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
+      title: "Promo banner",
     },
     {
-      original: "https://picsum.photos/id/1015/600/600/",
-      thumbnail: "https://picsum.photos/id/1015/100/100/",
+      backgroundPosition: "top right",
+      colour: "lightgreen",
+      image: {
+        alt: "A grey placeholder image with the dimensions overlayed in white text",
+        src: "https://via.placeholder.com/282",
+      },
+      layout: "overlay",
+      link: {
+        href: "/learn-more",
+        title: "Learn more",
+      },
+      tag: "Sample tag",
+      text: "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
+      title: "Promo banner",
     },
     {
-      original: "https://picsum.photos/id/1014/600/600/",
-      thumbnail: "https://picsum.photos/id/1014/100/100/",
-    },
-    {
-      original: "https://picsum.photos/id/1016/600/600/",
-      thumbnail: "https://picsum.photos/id/1016/100/100/",
-    },
-    {
-      original: "https://picsum.photos/id/1015/600/600/",
-      thumbnail: "https://picsum.photos/id/1015/100/100/",
-    },
-    {
-      original: "https://picsum.photos/id/1019/600/600/",
-      thumbnail: "https://picsum.photos/id/1019/100/100/",
+      backgroundPosition: "top right",
+      colour: "lightgreen",
+      image: {
+        alt: "A grey placeholder image with the dimensions overlayed in white text",
+        src: "https://via.placeholder.com/282",
+      },
+      layout: "overlay",
+      link: {
+        href: "/learn-more",
+        title: "Learn more",
+      },
+      tag: "Sample tag",
+      text: "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt",
+      title: "Promo banner",
     },
   ],
-  showPlayButton: true
 }

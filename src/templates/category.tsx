@@ -1,0 +1,168 @@
+import type {
+  BigCommerceGql_Category,
+  CategoryPageQuery,
+} from "../../graphql-types"
+
+import { themeGet } from "@styled-system/theme-get"
+import clsx from "clsx"
+import { PageProps, graphql } from "gatsby"
+import React, { useState } from "react"
+import styled from "styled-components"
+
+import { Breadcrumb } from "../components/Breadcrumb"
+import { Link } from "../components/Button"
+import { Layout } from "../components/Layout"
+import { ProductListing } from "../components/ProductListing"
+import { MenuProductListing } from "../components/MenuProductListing"
+import { SEO } from "../components/SEO"
+import { MenuCategory } from "../components/MenuCategory"
+
+import { mediaQueries } from "../theme"
+
+import { standardiseBigCommerceProduct } from "../utils/standardiseBigCommerceProduct"
+// import { standardiseContentstackProduct } from "../utils/standardiseContentstackProduct"
+
+type PageContextCategory = PageContextTypeBreadcrumb & {
+  category: BigCommerceGql_Category
+}
+
+const CategoryHeaderStyled = styled.header`
+  display: grid;
+  justify-items: center;
+  margin-block-end: ${themeGet("space.7")}px;
+  text-align: center;
+
+  span {
+    font-size: ${themeGet("fontSizes.1")}px;
+  }
+
+  ${mediaQueries.md} {
+    text-align: center;
+    span {
+      font-size: revert;
+    }
+  }
+`
+
+const CategoryPage: React.FC<
+  PageProps<CategoryPageQuery, PageContextCategory>
+> = ({ data, pageContext }) => {
+  const {
+    breadcrumb: { crumbs },
+    category,
+    page,
+  } = pageContext
+
+  const [view, setView] = useState("grid")
+
+  const products = data?.bigCommerceGQL?.site?.products?.edges.map(
+    ({ node: productFormatBigCommerce }) =>
+      standardiseBigCommerceProduct({
+        productFormatBigCommerce,
+      })
+  )
+
+  const promotionalBanners =
+    data.allContentstackCategory?.edges?.[0]?.node?.banners
+
+  const tabs = data.bigCommerceGQL?.site?.categoryTree?.find(
+    (categoryTreeItem: BigCommerceGql_Category) =>
+      categoryTreeItem?.entityId === category?.entityId
+  )?.children
+
+  return (
+    <Layout>
+      <SEO title={page?.title} />
+
+      <Breadcrumb crumbs={crumbs} />
+
+      <div className={clsx("container")} category-id={category?.entityId}>
+
+        <CategoryHeaderStyled>
+          <h1>{category?.name}</h1>
+          {category?.description && <div
+            dangerouslySetInnerHTML={{
+              __html: category?.description as string,
+            }}
+          ></div>}
+        </CategoryHeaderStyled>
+      </div>
+
+      {tabs?.length && (
+        <MenuCategory marginTop={{ _: 4, sm: 4, md: 6, lg: 8 }}>
+          {tabs.map(category => (
+            <Link
+              id={category?.entityId}
+              key={category?.entityId}
+              title={category?.name}
+              to={category?.path}
+            >
+              {category?.name}
+            </Link>
+          ))}
+        </MenuCategory>
+      )}
+
+      <MenuProductListing
+        productCount={products.length}
+        setView={setView}
+        view={view}
+      />
+
+      <main className={clsx("container")}>
+        <ProductListing
+          items={products}
+          promotionalBanners={promotionalBanners}
+          view={view}
+        />
+      </main>
+
+    </Layout>
+  )
+}
+
+export default CategoryPage
+
+export const query = graphql`
+  query CategoryPage($id: Int) {
+    allContentstackCategory(filter: { bigcommerce_id: { eq: $id } }) {
+      edges {
+        node {
+          ...Contentstack_categoryFragment
+        }
+      }
+    }
+    allContentstackProduct {
+      edges {
+        node {
+          ...Contentstack_productFragment
+        }
+      }
+    }
+    bigCommerceGQL {
+      site {
+        categoryTree {
+          children {
+            entityId
+            name
+            path
+            productCount
+            description
+          }
+          description
+          entityId
+          name
+          path
+          productCount
+        }
+        products(first: 50) {
+          edges {
+            node {
+              ...BigCommerceGQL_ProductFragment
+            }
+          }
+        }
+      }
+    }
+  }
+`

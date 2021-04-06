@@ -1,25 +1,37 @@
 import type { Product } from "schema-dts"
 
+import clsx from "clsx"
 import { Formik, Form, FormikHelpers } from "formik"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-import { ReactComponent as WishlistAbsentIcon } from "../images/WishlistAbsent.svg"
-import { ReactComponent as WishlistPresentIcon } from "../images/WishlistPresent.svg"
+import { functions as functionsPath } from "../utils/paths"
+
+import { ReactComponent as WishlistAbsentIcon } from "../../static/icons/WishlistAbsent.svg"
+import { ReactComponent as WishlistPresentIcon } from "../../static/icons/WishlistPresent.svg"
 
 import { Button } from "./Button"
 
-export type QuickWishlistProps = LayoutProps &
+export type QuickWishlistProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & { product: Product }
@@ -29,7 +41,7 @@ interface Values {
 }
 
 export const QuickWishlistStyled: React.FC<QuickWishlistProps> = styled.div`
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
 export const QuickWishlist: React.FC<QuickWishlistProps> = ({
@@ -38,7 +50,7 @@ export const QuickWishlist: React.FC<QuickWishlistProps> = ({
 }) => {
   const [isInWishlist, setIsInWishlist] = useState(false)
 
-  const path = `/.netlify/functions/wishlists`
+  const path = `${functionsPath}/wishlists`
 
   const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
@@ -99,9 +111,9 @@ export const QuickWishlist: React.FC<QuickWishlistProps> = ({
         }}
       >
         <Form>
-          <Button type="submit" active>
-            <span className="sr-only">Add to Wishlist</span>
-            {isInWishlist ? <WishlistPresentIcon /> : <WishlistAbsentIcon />}
+          <Button type="submit" variant={props.type === "text" && "primary"}>
+            <span className={clsx(props.type !== "text" && "sr-only")}>Add to Wishlist</span>
+            {props.type !== "text" && (isInWishlist ? <WishlistPresentIcon /> : <WishlistAbsentIcon />)}
           </Button>
         </Form>
       </Formik>

@@ -9,27 +9,37 @@ import {
 } from "react-accessible-accordion"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
   VariantProps,
 } from "styled-system"
 
-import MinusIcon from "../images/Minus.svg"
-import PlusIcon from "../images/Plus.svg"
+import MinusIcon from "../../static/icons/Minus.svg"
+import PlusIcon from "../../static/icons/Plus.svg"
 
-export type AccordionProps = LayoutProps &
+export type AccordionProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps & {
     allowMultipleExpanded: boolean
+    allowZeroExpanded: boolean
     items: Array<{
-      heading: string
-      panel: React.ReactNode
+      panel: string
+      title: string
     }>
   }
 
@@ -77,39 +87,42 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
     background-image: url(${PlusIcon});
   }
 
-  .accordion__button[aria-expanded="true"]::after,
-  .accordion__button[aria-selected="true"]::after {
-  }
-
-  .accordion__button[aria-expanded="false"]::after,
-  .accordion__button[aria-selected="false"]::after {
-  }
-
   [hidden] {
     display: none;
   }
 
   .accordion__panel {
-    padding: 0;
     animation: fadein 0.35s ease-in;
+    padding-block-end: 16px;
+  }
+
+  .accordion__panel :first-child {
+    margin-block-start: unset;
   }
 
   .accordion__panel ul {
-    font-size: 13px;
+    font-size: ${themeGet("fontSizes.2")}px;
     list-style: none;
     margin: 0;
     padding-block-end: 12px;
     padding: 0;
   }
+
   .accordion__panel ul li {
     padding: 8px 0;
   }
+
   .accordion__panel ul li a {
-    color: #363139;
+    color: ${themeGet("colors.black")};
     text-decoration: none;
   }
+
   .accordion__panel ul li:last-child {
     padding-block-end: 16px;
+  }
+
+  .accordion__panel img {
+    width: 100%;
   }
 
   /* -------------------------------------------------- */
@@ -126,22 +139,34 @@ export const AccordionStyled: React.FC<AccordionProps> = styled(
     }
   }
 
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export const Accordion: React.FC<AccordionProps> = ({ items, ...props }) => (
-  <AccordionStyled {...props}>
-    {items?.length &&
-      items.map((item, index) => (
+export const Accordion: React.FC<AccordionProps> = props => (
+  <AccordionStyled
+    allowMultipleExpanded={true}
+    allowZeroExpanded={true}
+    {...props}
+  >
+    {props.items?.length &&
+      props.items.map((item, index) => (
         <ReactAccessibleAccordionItem key={index}>
           <ReactAccessibleAccordionItemHeading>
             <ReactAccessibleAccordionItemButton>
-              {item.heading}
+              {item?.title}
             </ReactAccessibleAccordionItemButton>
           </ReactAccessibleAccordionItemHeading>
-          <ReactAccessibleAccordionItemPanel>
-            {item.panel}
-          </ReactAccessibleAccordionItemPanel>
+          {React.isValidElement(item?.panel) ? (
+            <ReactAccessibleAccordionItemPanel>
+              {item?.panel}
+            </ReactAccessibleAccordionItemPanel>
+          ) : (
+            <ReactAccessibleAccordionItemPanel
+              dangerouslySetInnerHTML={{
+                __html: item?.panel as string,
+              }}
+            />
+          )}
         </ReactAccessibleAccordionItem>
       ))}
   </AccordionStyled>

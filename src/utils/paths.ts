@@ -10,6 +10,8 @@ export const signIn = "/sign-in"
 
 export const signUp = "/sign-up"
 
+export const functions = "/.netlify/functions"
+
 export const functionCarts = "/.netlify/functions/carts"
 
 export const functionSignIn = "/.netlify/functions/sign-in"

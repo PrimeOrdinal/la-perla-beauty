@@ -1,23 +1,30 @@
 import { themeGet } from "@styled-system/theme-get"
-import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
   grid,
   layout,
+  position,
   space,
+  ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
+  VariantProps,
 } from "styled-system"
 
-import { ReactComponent as Basket } from "../images/Basket.svg"
-import { ReactComponent as Profile } from "../images/Profile.svg"
-import { ReactComponent as Search } from "../images/Search.svg"
+import { ReactComponent as Basket } from "../../static/icons/Basket.svg"
+import { ReactComponent as Profile } from "../../static/icons/Profile.svg"
+import { ReactComponent as Search } from "../../static/icons/Search.svg"
 
 import { mediaQueries } from "../theme"
 
+import { Link } from "./Button"
 import { ListPlain } from "./ListPlain"
 
 import {
@@ -29,13 +36,13 @@ import {
 export const MenuActionsStyle = styled(ListPlain)`
   align-items: center;
   display: grid;
-  gap: ${themeGet("space.3")}px;
+  gap: ${themeGet("space.4")}px;
   grid-auto-flow: column;
   justify-content: end;
-  padding: ${themeGet("space.2")}px;
 
   ${mediaQueries.md} {
     gap: ${themeGet("space.7")}px;
+    padding: ${themeGet("space.2")}px;
   }
 
   li {
@@ -48,29 +55,33 @@ export const MenuActionsStyle = styled(ListPlain)`
         object-fit: contain;
         object-position: center;
       }
+    }
 
-      .profile {
-        display: none;
+    &.profile {
+      display: none;
 
-        ${mediaQueries.md} {
-          display: block;
-        }
+      ${mediaQueries.md} {
+        display: block;
       }
     }
   }
 
-  ${compose(grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type MenuActionsProps = GridProps &
+export type MenuActionsProps = ColorProps &
+  FlexboxProps &
+  GridProps &
   LayoutProps &
-  SpaceProps & {
-    toggleMiniBagVisibility: React.DispatchWithoutAction
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
+    toggleBagPreviewVisibility: React.DispatchWithoutAction
     toggleQuickSearchVisibility: React.DispatchWithoutAction
   }
 
 export const MenuActions: React.FC<MenuActionsProps> = ({
-  toggleMiniBagVisibility,
+  toggleBagPreviewVisibility,
   toggleQuickSearchVisibility,
   ...props
 }) => (
@@ -87,8 +98,8 @@ export const MenuActions: React.FC<MenuActionsProps> = ({
         <Search />
       </Link>
     </li>
-    <li>
-      <Link className="profile" to={myAccountPath}>
+    <li className="profile">
+      <Link to={myAccountPath}>
         <Profile />
       </Link>
     </li>
@@ -97,7 +108,7 @@ export const MenuActions: React.FC<MenuActionsProps> = ({
         to={bagPath}
         onClick={event => {
           // TODO: Only intercept link on desktop
-          toggleMiniBagVisibility()
+          toggleBagPreviewVisibility()
           event?.preventDefault()
         }}
       >

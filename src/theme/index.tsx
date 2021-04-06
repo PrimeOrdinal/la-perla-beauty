@@ -15,17 +15,23 @@ type FontSizesProp = Array<number> & {
   heading2Desktop?: number
   heading3Desktop?: number
   heading4Desktop?: number
+  heading5Desktop?: number
+  heading6Desktop?: number
   heading1Mobile?: number
   heading2Mobile?: number
   heading3Mobile?: number
   heading4Mobile?: number
+  heading5Mobile?: number
+  heading6Mobile?: number
+  smallDesktop?: number
+  smallMobile?: number
 }
 
 export const breakpoints: BreakpointsProp = [
-  "40rem",
-  "60rem",
-  "72rem",
-  "100rem",
+  "640px",
+  "960px",
+  "1280px",
+  "1440px",
 ]
 
 // aliases
@@ -34,29 +40,37 @@ breakpoints.md = breakpoints[1]
 breakpoints.lg = breakpoints[2]
 breakpoints.xl = breakpoints[3]
 
-export const fontSizes: FontSizesProp = [11, 12, 13, 14, 16, 18, 24, 32]
+export const fontSizes: FontSizesProp = [11, 12, 13, 14, 16, 18, 20, 24, 32]
 
 fontSizes.small = fontSizes[0]
+fontSizes.smallDesktop = fontSizes[1]
+fontSizes.smallMobile = fontSizes[0]
 fontSizes.bodyDesktop = fontSizes[3]
 fontSizes.bodyMobile = fontSizes[2]
-fontSizes.heading4Desktop = fontSizes[2]
-fontSizes.heading3Desktop = fontSizes[3]
-fontSizes.heading2Desktop = fontSizes[4]
-fontSizes.heading1Desktop = fontSizes[5]
-fontSizes.heading4Mobile = fontSizes[0]
-fontSizes.heading3Mobile = fontSizes[3]
-fontSizes.heading2Mobile = fontSizes[4]
-fontSizes.heading1Mobile = fontSizes[5]
+fontSizes.heading6Desktop = fontSizes[2]
+fontSizes.heading5Desktop = fontSizes[3]
+fontSizes.heading4Desktop = fontSizes[4]
+fontSizes.heading3Desktop = fontSizes[5]
+fontSizes.heading2Desktop = fontSizes[7]
+fontSizes.heading1Desktop = fontSizes[8]
+fontSizes.heading6Mobile = fontSizes[0]
+fontSizes.heading5Mobile = fontSizes[3]
+fontSizes.heading4Mobile = fontSizes[4]
+fontSizes.heading3Mobile = fontSizes[5]
+fontSizes.heading2Mobile = fontSizes[6]
+fontSizes.heading1Mobile = fontSizes[7]
 
 export const mediaQueries = {
   sm: `@media screen and (min-width: ${breakpoints[0]})`,
   md: `@media screen and (min-width: ${breakpoints[1]})`,
   lg: `@media screen and (min-width: ${breakpoints[2]})`,
   xl: `@media screen and (min-width: ${breakpoints[3]})`,
+  smDown: `@media screen and (max-width: calc(${breakpoints[1]} - 1px))`,
+  mdDown: `@media screen and (max-width: calc(${breakpoints[2]} - 1px))`,
+  lgDown: `@media screen and (max-width: calc(${breakpoints[3]} - 1px))`,
 }
 
 export const theme: DefaultTheme = {
-  borderRadius: "5px",
   breakpoints,
   colors: {
     black: "#363139",
@@ -71,7 +85,7 @@ export const theme: DefaultTheme = {
     darkgrey: "#858585",
     disabled: "#ccc",
     text: "#363139",
-    background: "#f5f5f5",
+    background: "#ffffff",
     modes: {
       dark: {
         text: "#ffffff",
@@ -105,17 +119,6 @@ theme.border = {
   color: theme.colors.lightgrey,
   width: "1px",
 }
-
-// theme.banners = {
-//   primary: {
-//     backgroundColor: theme.colors.pink,
-//     color: theme.colors.darkgrey,
-//   },
-//   secondary: {
-//     backgroundColor: theme.colors.lilac,
-//     color: theme.colors.darkgrey,
-//   },
-// }
 
 theme.buttons = {
   primary: {
@@ -152,16 +155,5 @@ theme.buttons = {
     },
     "&:disabled": {},
     "&:hover": {},
-  },
-}
-
-theme.leaf = {
-  primary: {
-    backgroundColor: theme.colors.lightgreen,
-    color: theme.colors.white,
-  },
-  secondary: {
-    backgroundColor: theme.colors.lilac,
-    color: theme.colors.white,
   },
 }

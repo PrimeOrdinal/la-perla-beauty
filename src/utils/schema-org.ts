@@ -1,25 +1,27 @@
-export const availabilitySchemaToHumanReadableText = availability => {
+export const availabilitySchemaToHumanReadableText = (availability: string) => {
   // TODO:  Integrate translations
 
-  let humanReadableText = "sold out"
+  const itemAvailability = availability.replace("https://schema.org/", "")
 
-  switch (availability) {
-    case "https://schema.org/InStock":
+  let humanReadableText = "in stock"
+
+  switch (itemAvailability) {
+    case "InStock":
       humanReadableText = "in stock"
       break
-    case "https://schema.org/LimitedAvailability":
+    case "LimitedAvailability":
       humanReadableText = "limited availability"
       break
-    case "https://schema.org/OnlineOnly":
+    case "OnlineOnly":
       humanReadableText = "online only"
       break
-    case "https://schema.org/OutOfStock":
+    case "OutOfStock":
       humanReadableText = "out of stock"
       break
-    case "https://schema.org/PreOrder":
+    case "PreOrder":
       humanReadableText = "pre-order"
       break
-    case "https://schema.org/SoldOut":
+    case "SoldOut":
       humanReadableText = "sold out"
       break
   }

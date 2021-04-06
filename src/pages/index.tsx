@@ -26,7 +26,7 @@ const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
     <Layout>
       <SEO title={page?.title} />
 
-      <div className={clsx("container")}>
+      <main className={clsx("container")}>
         
         <header>
           <h1>{data?.site?.siteMetadata?.title}</h1>
@@ -48,7 +48,7 @@ const IndexPage: React.FC<PageProps<IndexPageQuery, PageContextPage>> = ({
 
         </header>
 
-      </div>
+      </main>
 
     </Layout>
   )
@@ -58,39 +58,6 @@ export default IndexPage
 
 export const query = graphql`
   query IndexPage {
-    allBigCommerceCategories {
-      edges {
-        node {
-          bigcommerce_id
-          custom_url {
-            url
-          }
-          description
-          id
-          is_visible
-          name
-          page_title
-        }
-      }
-    }
-    allBigCommerceProducts {
-      edges {
-        node {
-          ...BigCommerceProductsFragment
-        }
-      }
-    }
-    allContentstackProducts {
-      edges {
-        node {
-          id
-          product_id
-          rich_text_editor
-          title
-          url
-        }
-      }
-    }
     site {
       siteMetadata {
         title

@@ -5,20 +5,29 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import type { LayoutQuery } from "../../graphql-types"
+import type { Context } from "react"
+
+import type { BigCommerceGql_Product, LayoutQuery } from "../../graphql-types"
 
 import { graphql, useStaticQuery } from "gatsby"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled, { ThemeProvider } from "styled-components"
+
+import type { Bag } from "../../types/BigCommerce"
 
 import { GlobalStyle } from "../styles/GlobalStyle"
 
+import { getCartContents } from "../utils/carts"
+import { redirectToMaintenancePage } from "../utils/maintenance"
+
 import { theme } from "../theme"
 
-import { Banner } from "./Banner"
-import { Footer } from "./Footer"
-import { Header } from "./Header"
+import { BagContext } from "./Bag"
+import { PromotionalBanner } from "./PromotionalBanner"
+import { GlobalFooter } from "./GlobalFooter"
+import { GlobalHeader } from "./GlobalHeader"
 import { SiteSelector } from "./SiteSelector"
+import { Snackbar, SnackbarContext } from "./Snackbar"
 
 const StyledSiteContainer = styled.div`
   display: flex;
@@ -43,14 +52,28 @@ const StyledContentArea = styled.div`
 
 export type LayoutProps = {
   children?: React.ReactNode
-  type?: "full" | "minimal"
+  type?: "compact" | "full"
+  transparent?: boolean
 }
 
-export const Layout: React.FC<LayoutProps> = ({
-  children,
-  type = "full",
-  ...props
-}) => {
+const siteContextDefault: {
+  bestSellingProducts?: {
+    edges: Array<{
+      node: BigCommerceGql_Product
+    }>
+  }
+  featuredProducts?: {
+    edges: Array<{
+      node: BigCommerceGql_Product
+    }>
+  }
+} = {}
+
+export const SiteContext: Context<Site> = React.createContext(
+  siteContextDefault
+)
+
+export const Layout: React.FC<LayoutProps> = ({ children, ...props }) => {
   const data: LayoutQuery = useStaticQuery(graphql`
     query Layout {
       site {
@@ -58,25 +81,7 @@ export const Layout: React.FC<LayoutProps> = ({
           title
         }
       }
-      allBigCommerceCategories {
-        edges {
-          node {
-            custom_url {
-              url
-            }
-            description
-            id
-            is_visible
-            meta_description
-            meta_keywords
-            name
-            page_title
-            parent_id
-            search_keywords
-          }
-        }
-      }
-      allContentstackMenus(
+      allContentstackMenuComponent(
         filter: {
           slot: {
             in: [
@@ -92,58 +97,117 @@ export const Layout: React.FC<LayoutProps> = ({
       ) {
         edges {
           node {
-            ...Contentstack_menusFragment
+            ...Contentstack_menu_componentFragment
           }
         }
       }
-      siteSearchIndex {
-        index
-      }
       bigCommerceGQL {
         site {
+          bestSellingProducts {
+            edges {
+              node {
+                ...BigCommerceGQL_ProductFragment
+              }
+            }
+          }
+          featuredProducts {
+            edges {
+              node {
+                ...BigCommerceGQL_ProductFragment
+              }
+            }
+          }
           settings {
             status
           }
         }
       }
+      contentstackPromotionalBannerComponent {
+        link {
+          href
+          title
+        }
+        title
+      }
+      siteSearchIndex {
+        index
+      }
     }
   `)
 
-  // TODO: Uncomment the following if statement to show a maintenance when the BigCommerce store is not available
-  // if (data.bigCommerceGQL.site.settings.status === "PRE_LAUNCH") {
-  //   navigate("/maintenance")
-  // }
+  // const { bag, setBag } = useContext(BagContext)
+
+  const [snackbarLabelText, setSnackbarLabelText] = useState<
+    string | undefined
+  >(undefined)
+  const setSnackbar = (labelText: string | undefined) => {
+    console.log("labelText", labelText)
+    setSnackbarLabelText(labelText)
+  }
+
+  const [bagContents, setBagContents] = useState({} as Bag)
+  const setBag = (bag: Bag) => {
+    console.log("bag", bag)
+    bag.id && localStorage.setItem("cartId", bag.id)
+
+    setBagContents(bag)
+  }
+  // console.log("bagContents", bagContents)
+
+  useEffect(() => {
+    redirectToMaintenancePage(data.bigCommerceGQL.site.settings.status)
+    getCartContents(setBagContents)
+  }, [])
 
   return (
-    <ThemeProvider theme={theme} {...props}>
-      <StyledSiteContainer>
-        <GlobalStyle theme={theme} />
-        <SiteSelector />
+    <ThemeProvider theme={theme}>
+      <BagContext.Provider value={{ bag: bagContents, setBag }}>
+        <SnackbarContext.Provider
+          value={{ labelText: snackbarLabelText, setSnackbar }}
+        >
+          <StyledSiteContainer {...props}>
+            <GlobalStyle theme={theme} />
 
-        {type === "full" ? (
-          <React.Fragment>
-            <Banner to="/shipping" variant="primary">
-              Standard Shipping &amp; Returns Lorem Ipsum
-            </Banner>
-            <Header
-              siteTitle={data?.site?.siteMetadata?.title || `Title`}
-              data={data}
-            />
-            <StyledPageContainer>
-              <StyledContentArea>{children}</StyledContentArea>
-            </StyledPageContainer>
-            <Footer
-              siteTitle={data?.site?.siteMetadata?.title || `Title`}
-              data={data}
-            />
-          </React.Fragment>
-        ) : (
-          <StyledPageContainer>
-            <StyledContentArea className="flex">{children}</StyledContentArea>
-          </StyledPageContainer>
-        )}
+            <SiteSelector />
 
-      </StyledSiteContainer>
+            {props.type === "compact" ? (
+              <StyledPageContainer>
+                <StyledContentArea className="flex">
+                  {children}
+                </StyledContentArea>
+              </StyledPageContainer>
+            ) : (
+              <React.Fragment>
+                {data?.contentstackPromotionalBannerComponent?.title && (
+                  <PromotionalBanner
+                    {...data?.contentstackPromotionalBannerComponent?.link}
+                    variant="primary"
+                  />
+                )}
+
+                <GlobalHeader
+                  // bag={bag}
+                  data={data}
+                  siteTitle={data?.site?.siteMetadata?.title || `Title`}
+                  transparent={props.transparent}
+                />
+
+                <StyledPageContainer>
+                  <SiteContext.Provider value={data?.bigCommerceGQL?.site}>
+                    <StyledContentArea>{children}</StyledContentArea>
+                  </SiteContext.Provider>
+                </StyledPageContainer>
+
+                <GlobalFooter
+                  data={data}
+                  siteTitle={data?.site?.siteMetadata?.title || `Title`}
+                />
+              </React.Fragment>
+            )}
+            <Snackbar labelText={snackbarLabelText} setSnackbar={setSnackbar} />
+          </StyledSiteContainer>
+        </SnackbarContext.Provider>
+      </BagContext.Provider>
     </ThemeProvider>
   )
 }

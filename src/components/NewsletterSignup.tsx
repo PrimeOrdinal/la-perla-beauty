@@ -1,13 +1,19 @@
 import { themeGet } from "@styled-system/theme-get"
 import { Formik, Field, Form, FormikHelpers } from "formik"
 import fetch from "node-fetch"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
+  grid,
   layout,
   position,
   space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -15,6 +21,8 @@ import {
 } from "styled-system"
 
 import { mediaQueries } from "../theme"
+
+import { functions as functionsPath } from "../utils/paths"
 
 import { Button } from "./Button"
 
@@ -31,12 +39,9 @@ const NewsletterStyled = styled.div`
     }
   }
 
-  .information {
-    display: none;
-  }
-
   input {
     height: 100%;
+
     ${themeGet("mediaQueries.md")} {
       min-width: 14rem;
     }
@@ -59,26 +64,36 @@ const NewsletterStyled = styled.div`
     }
 
     p {
+      font-size: var(--font-size-sm, 12px);
+      font-weight: lighter;
       text-align: left;
-      font-size: ${themeGet("fontSizes.small")}px;
-      font-weight: 300;
       text-transform: unset;
     }
   }
 
+  .information {
+    display: grid;
+    justify-content: end;
+    margin-block-start: 1rem;
+  }
+
   &:focus-within button {
-    background: ${themeGet("colors.black")};
+    background-color: ${themeGet("colors.black")};
     color: ${themeGet("colors.white")};
   }
 
   &:focus-within input {
-    border: 1px solid ${themeGet("colors.black")};
+    border-color: ${themeGet("colors.black")};
+    border-style: solid;
   }
 
-  ${compose(layout, position, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-export type NewsletterSignupProps = LayoutProps &
+export type NewsletterSignupProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
   PositionProps &
   SpaceProps &
   VariantProps
@@ -97,55 +112,61 @@ const validate = value => {
   return errorMessage
 }
 
-export const NewsletterSignup: React.FC = () => (
-  <NewsletterStyled>
-    <Formik
-      initialValues={{
-        emailAddress: "",
-      }}
-      onSubmit={async (
-        values: Values,
-        { setSubmitting }: FormikHelpers<Values>
-      ) => {
-        const path = `/.netlify/functions/sign-up-to-our-newsletter`
+export const NewsletterSignup: React.FC = () => {
+  const [message, setMessage] = useState(null)
 
-        const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
+  return (
+    <NewsletterStyled>
+      <Formik
+        initialValues={{
+          emailAddress: "",
+        }}
+        onSubmit={async (
+          values: Values,
+          { setSubmitting }: FormikHelpers<Values>
+        ) => {
+          const path = `${functionsPath}/subscribe-to-our-newsletter`
 
-        const response = await fetch(url, {
-          body: JSON.stringify(values),
-          headers: {
-            Accept: "application/json",
-          },
-          method: "POST",
-        })
+          const url = new URL(path, `${process.env.GATSBY_SITE_URL}`)
 
-        setSubmitting(false)
+          const response = await fetch(url, {
+            body: JSON.stringify(values),
+            headers: {
+              Accept: "application/json",
+            },
+            method: "POST",
+          })
 
-        console.log(response)
-      }}
-    >
-      <Form>
-        <label htmlFor="emailAddress">Sign up to our newsletter</label>
-        <Field
-          as="input"
-          id="emailAddress"
-          name="emailAddress"
-          placeholder="Enter your email address"
-          type="email"
-          validate={validate}
-        />
-        <Button type="submit" variant="secondary" py={{ md: 4 }} px={{ md: 9 }}>
-          Sign up
-        </Button>
-        <div className="information">
-          <p>Lorem ipsum dolor sit amet.</p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste amet
-            minima blanditiis reprehenderit mollitia doloribus, voluptates omnis
-            ex dolorem veritatis!
-          </p>
-        </div>
-      </Form>
-    </Formik>
-  </NewsletterStyled>
-)
+          setSubmitting(false)
+
+          console.log(response)
+
+          if (response.ok) {
+            setMessage(response.statusText)
+          }
+        }}
+      >
+        <Form>
+          <label htmlFor="emailAddress">Sign up to our newsletter</label>
+          <Field
+            as="input"
+            id="emailAddress"
+            name="emailAddress"
+            placeholder="Enter your email address"
+            type="email"
+            validate={validate}
+          />
+          <Button
+            type="submit"
+            variant="secondary"
+            py={{ md: 4 }}
+            px={{ md: 9 }}
+          >
+            Sign up
+          </Button>
+        </Form>
+      </Formik>
+      {message && <div className="information">{message}</div>}
+    </NewsletterStyled>
+  )
+}

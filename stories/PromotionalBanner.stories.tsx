@@ -3,28 +3,25 @@ import { Story, Meta } from "@storybook/react"
 
 import { PromotionalBanner, PromotionalBannerProps } from "../src/components/PromotionalBanner"
 
+import { colourPreset } from "./utils/argTypes"
+
 export default {
   title: "PromotionalBanner",
   component: PromotionalBanner,
   argTypes: {
-    backgroundColor: { control: "color" },
-    showImage: { control: "boolean" }
+    // backgroundColor: { control: "color" },
+    backgroundColor: colourPreset,
   },
 } as Meta
 
 const Template: Story<PromotionalBannerProps> = args => <PromotionalBanner {...args} />
 
-export const Primary = Template.bind({})
-Primary.args = {
-  description: "Nullam sit amet laoreet urna. Donec quis erat feugiat, ultrices eros nec, tincidunt.",
-  image: {
-    alt: "A grey placeholder image with the dimensions overlayed in white text",
-    src: "https://via.placeholder.com/282",
-  },
-  link: {
-    href: "/learn-more",
-    text: "Learn more",
-  },
-  title: "Promo Banner",
-  width: { _: 1, md: 1/2 },
+export const Example = Template.bind({})
+Example.args = {
+  href: "/test",
+  "title": "Lorem ipsum",
+  variant: "primary",
+}
+Example.argTypes = {
+  onClick: { action: "PromotionalBanner clicked" },
 }

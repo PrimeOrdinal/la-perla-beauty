@@ -1,68 +1,136 @@
+import type {
+  Colour as ColourProp,
+  Icon as IconProp,
+} from "../../types/components"
+
+import { themeGet } from "@styled-system/theme-get"
+import clsx from "clsx"
 import React from "react"
 import styled from "styled-components"
-import { themeGet } from "@styled-system/theme-get"
-import { ReactComponent as WishlistUSP } from "../images/WishlistUSP.svg"
-import { ReactComponent as Checkout } from "../images/Checkout.svg"
-import { ReactComponent as Diamond } from "../images/Diamond.svg"
-import { ReactComponent as Tracking } from "../images/Tracking.svg"
+import {
+  color,
+  compose,
+  flexbox,
+  grid,
+  layout,
+  position,
+  space,
+  ColorProps,
+  FlexboxProps,
+  GridProps,
+  LayoutProps,
+  PositionProps,
+  SpaceProps,
+  VariantProps,
+} from "styled-system"
 
-const IconContainerStyled = styled.div`
+import { useMediaQuery } from "../hooks/useMediaQuery"
+
+import { colourClasses } from "../styles/colourClasses"
+import { iconClasses } from "../styles/iconClasses"
+
+import { mediaQueries } from "../theme"
+
+import { Carousel } from "./Carousel"
+
+export type IconListProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
+    items: Array<{
+      colour: ColourProp
+      icon: IconProp
+      text: string
+      title: string
+    }>
+    mobileView: "stack" | "swipe"
+    orientation: "horizontal" | "vertical"
+  }
+
+export const IconListStyled: React.FC<IconListProps> = styled.div`
+  --item-height: 40px;
+
   display: grid;
-  grid-auto-flow: row;
-  justify-items: flex-start;
-  gap: ${themeGet("space.7")}px;
-  .iconWrapper {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 1rem;
+  gap: ${themeGet("space.4")}px;
+
+  ${colourClasses}
+  ${iconClasses}
+
+  ${mediaQueries.smDown} {
+    max-height: ${props =>
+      props.mobileView == "stack" ? "var(--item-height, 40px)" : "unset"};
+  }
+
+  ${mediaQueries.md} {
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  }
+
+  .item {
+    align-content: center;
     align-items: center;
-    h3 {
-      font-family: "Quicksand";
-      text-transform: uppercase;
-      font-size: ${themeGet("fontSizes.heading3Desktop")}px;
-      display: ${props => (props.withTitle ? "initial" : "none")};
-      text-align: ${props => (props.withTitle ? "center" : "left")};
-    }
-    span {
-      display: ${props => (props.withTitle ? "block" : "initial")};
+    display: grid;
+    gap: 1rem;
+    justify-content: start;
+    scroll-snap-align: start;
+
+    ${mediaQueries.smDown} {
+      grid-auto-flow: column;
     }
 
-    svg {
-      height: 40px;
-    }
-    p {
-      text-align: ${props => (props.withTitle ? "center" : "left")};
+    ${mediaQueries.md} {
+      grid-auto-flow: ${props =>
+        props.orientation === "horizontal" ? "column" : "row"};
+      justify-content: ${props =>
+        props.orientation === "horizontal" ? "start" : "center"};
+      justify-items: center;
+      text-align: ${props =>
+        props.orientation === "horizontal" ? "left" : "center"};
     }
   }
+
+  .title {
+    margin: unset;
+  }
+
+  .icon {
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    height: var(--item-height, 40px);
+    width: var(--item-height, 40px);
+  }
+
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
+export const IconList: React.FC<IconListProps> = props => {
+  const isMobile = useMediaQuery(mediaQueries.smDown)
 
-export type IconListProps = {
-  layout: "withTitle"
-}
+  const items = props.items?.map((item, index) => (
+    <div className="item" key={index}>
+      {item.icon && (
+        <div className={clsx("icon", item.colour, item.icon)}>
+          <span className="sr-only">{item.icon}</span>
+        </div>
+      )}
+      <div>
+        {item.title && <h3 className="title">{item.title}</h3>}
+        {item.text}
+      </div>
+    </div>
+  ))
 
-export const IconList: React.FC<IconListProps> = () => {
   return (
-    <IconContainerStyled>
-      <div className="iconWrapper">
-        <Checkout />
-        <h3>Title</h3>
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing.</span>
-      </div>
-      <div className="iconWrapper">
-        <Diamond />
-        <h3>Title</h3>
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing.</span>
-      </div>
-      <div className="iconWrapper">
-        <Tracking />
-        <h3>Title</h3>
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing.</span>
-      </div>
-      <div className="iconWrapper">
-        <WishlistUSP />
-        <h3>Title</h3>
-        <span>Lorem ipsum dolor sit amet, consectetur adipisicing.</span>
-      </div>
-    </IconContainerStyled>
+    <IconListStyled {...props}>
+      {isMobile && props.mobileView === "swipe" ? (
+        <Carousel className="carousel" orientation="vertical" showPickers>
+          {items}
+        </Carousel>
+      ) : (
+        items
+      )}
+    </IconListStyled>
   )
 }

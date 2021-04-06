@@ -1,34 +1,50 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import {
+  color,
   compose,
+  flexbox,
   grid,
   layout,
+  position,
   space,
+  ColorProps,
+  FlexboxProps,
   GridProps,
   LayoutProps,
+  PositionProps,
   SpaceProps,
+  VariantProps,
 } from "styled-system"
 
-import { ReactComponent as DownArrowIcon } from "../images/DownArrow.svg"
+import { ReactComponent as ChevronIcon } from "../../static/icons/Chevron.svg"
 
 import { Button } from "./Button"
 import { ListPlain } from "./ListPlain"
-import { SiteSettingsOverlay } from "./SiteSettingsOverlay"
+import { ModalSiteSettings } from "./ModalSiteSettings"
 
 const MenuStoreStyled = styled(ListPlain)`
-  ${compose(grid, layout, space)}
+  ${compose(color, flexbox, grid, layout, position, space)}
 `
 
-const DownArrowIconStyled = styled(DownArrowIcon)`
-  width: 14px;
+const ChevronIconStyled = styled(ChevronIcon)`
+  width: 14px !important;
 `
 
-export type MenuStoreProps = GridProps & LayoutProps & SpaceProps
+export type MenuStoreProps = ColorProps &
+  FlexboxProps &
+  GridProps &
+  LayoutProps &
+  PositionProps &
+  SpaceProps &
+  VariantProps & {
+    currentCurrency: string
+    currentLocale: string
+  }
 
 export const MenuStore: React.FC<MenuStoreProps> = props => {
   const [modalIsOpen, setIsOpen] = useState(false)
-  
+
   function closeModal() {
     setIsOpen(false)
   }
@@ -39,12 +55,13 @@ export const MenuStore: React.FC<MenuStoreProps> = props => {
 
   return (
     <MenuStoreStyled {...props}>
-      <Button onClick={openModal} active>
-        UK | ENGLISH | £
-        <DownArrowIconStyled />
+      <Button onClick={openModal}>
+        <span>UK | ENGLISH | £</span>
+        {/* <span>{props.currentLocale} | {props.currentCurrency}</span> */}
+        <ChevronIconStyled />
       </Button>
 
-      <SiteSettingsOverlay closeModal={closeModal} modalIsOpen={modalIsOpen} />
+      <ModalSiteSettings closeModal={closeModal} modalIsOpen={modalIsOpen} />
     </MenuStoreStyled>
   )
 }

@@ -1,84 +1,178 @@
-import type { ImageObject, Product, Thing, WithContext } from "schema-dts"
+import type { Product, ProductGroup, WithContext } from "schema-dts"
 
-import type { BigCommerceProducts, BigCommerceProductsImages } from "../../graphql-types"
-
-// import getSymbolFromCurrency from "currency-symbol-map"
+import type {
+  BigCommerceGql_CategoryEdge,
+  BigCommerceGql_ImageEdge,
+  BigCommerceGql_OptionEdge,
+  BigCommerceGql_OptionValueEdge,
+  BigCommerceGql_Product,
+  BigCommerceGql_Variant,
+  BigCommerceGql_VariantEdge,
+} from "../../graphql-types"
 
 export function standardiseBigCommerceProduct({
-  node,
-  categories,
+  productFormatBigCommerce,
 }: {
-  node: BigCommerceProducts
-  categories: Array<{
-    entityId: number
-    name: string
-    path: string
-  }>
+  productFormatBigCommerce: BigCommerceGql_Product
 }): WithContext<Product> {
   let availability = "https://schema.org/InStock"
 
-  if (
-    node?.availability &&
-    typeof node?.inventory_level === "number" &&
-    typeof node?.inventory_warning_level === "number" &&
-    node?.inventory_level <= node?.inventory_warning_level
-  ) {
-    availability = "https://schema.org/LimitedAvailability"
-  }
+  // if (
+  //   typeof node?.inventory?.aggregated?.warningLevel === "number" &&
+  //   typeof node?.inventory?.aggregated?.warningLevel === "number" &&
+  //   node?.inventory_level <= node?.inventory?.aggregated?.warningLevel
+  // ) {
+  //   availability = "https://schema.org/LimitedAvailability"
+  // }
 
-  if (node?.inventory_level === 0) {
+  if (productFormatBigCommerce?.inventory?.isInStock === false) {
     availability = "https://schema.org/OutOfStock"
-  }
-
-  let category
-
-  if (Array.isArray(node?.categories)) {
-    category = node?.categories.map((categoryId) => {
-      const category = categories.find((category) => category.entityId === categoryId)
-
-      return {
-        "identifier": category?.entityId,
-        "name": category?.name,
-        "url": category?.path
-      }
-    }) as Array<Thing>
   }
 
   const data: WithContext<Product> = {
     "@context": "https://schema.org",
     "@type": "Product",
-    // category: node?.categories?.[0] as string | undefined,
-    category,
-    depth: node?.depth as string | undefined,
-    description: node?.description as string | undefined,
-    gtin: node?.gtin as string | undefined,
-    height: node?.height as string | undefined,
-    identifier: node?.id as string | undefined,
-    image: (node?.images as BigCommerceProductsImages[])
-      ?.sort((a: BigCommerceProductsImages, b: BigCommerceProductsImages) => a?.sort_order as number - b?.sort_order as number)
-      .map(
-        image =>
-          ({
-            caption: image?.description,
-            contentUrl: image?.url_standard,
-            identifier: image?.id,
-            representativeOfPage: image?.is_thumbnail,
-          } as ImageObject)
-      ),
-    mpn: node?.mpn as string | undefined,
-    name: node?.name as string | undefined,
+    brand: productFormatBigCommerce?.brand?.name,
+    category: (productFormatBigCommerce?.categories
+      ?.edges as BigCommerceGql_CategoryEdge[])?.map(({ node: category }) => ({
+      "@type": "Thing",
+      identifier: category?.entityId?.toString() as string | undefined,
+      name: category?.name,
+      url: category?.path,
+    })),
+    depth: productFormatBigCommerce?.depth,
+    description: productFormatBigCommerce?.description,
+    gtin: productFormatBigCommerce?.gtin,
+    height: productFormatBigCommerce?.height,
+    identifier: productFormatBigCommerce?.entityId?.toString(),
+    image: (productFormatBigCommerce?.images
+      ?.edges as BigCommerceGql_ImageEdge[])?.map(({ node: image }) => ({
+      "@type": "ImageObject",
+      caption: image?.altText,
+      contentUrl: image?.urlOriginal,
+      representativeOfPage: image?.isDefault,
+    })),
+    // mpn: productFormatBigCommerce?.mpn,
+    name: productFormatBigCommerce?.name,
     offers: {
       "@type": "Offer",
       availability,
-      price: node?.calculated_price,
-      priceCurrency: "EUR",
+      price: productFormatBigCommerce?.prices?.price.value,
+      priceCurrency: productFormatBigCommerce?.prices?.price.currencyCode,
     },
-    sku: node?.sku as string | undefined,
-    upc: node?.upc as string | undefined,
-    url: node?.custom_url?.url as string | undefined,
-    weight: node?.weight as string | undefined,
-    width: node?.width as string | undefined,
+    productID: productFormatBigCommerce?.entityId?.toString(),
+    sku: productFormatBigCommerce?.sku,
+    // upc: productFormatBigCommerce?.upc,
+    url: process.env.GATSBY_SITE_URL + productFormatBigCommerce?.path,
+    weight: productFormatBigCommerce?.weight,
+    width: productFormatBigCommerce?.width,
   } as WithContext<Product>
 
   return data
+}
+
+export function standardiseBigCommerceVariant({
+  productFormatBigCommerce,
+  variantFormatBigCommerce,
+}: {
+  productFormatBigCommerce: BigCommerceGql_Product
+  variantFormatBigCommerce: BigCommerceGql_Variant
+}): WithContext<Product> {
+  const product = standardiseBigCommerceProduct({
+    productFormatBigCommerce,
+  }) as WithContext<ProductGroup>
+
+  let availability = "https://schema.org/InStock"
+
+  if (variantFormatBigCommerce?.inventory?.isInStock === false) {
+    availability = "https://schema.org/OutOfStock"
+  }
+
+  const variant: WithContext<Product> = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    brand: productFormatBigCommerce?.brand?.name,
+    category: (productFormatBigCommerce?.categories
+      ?.edges as BigCommerceGql_CategoryEdge[])?.map(({ node: category }) => ({
+      "@type": "Thing",
+      identifier: category?.entityId as number | undefined,
+      name: category?.name,
+      url: category?.path,
+    })),
+    depth: productFormatBigCommerce?.depth,
+    description: productFormatBigCommerce?.description,
+    gtin: productFormatBigCommerce?.gtin,
+    height: productFormatBigCommerce?.height,
+    identifier: productFormatBigCommerce?.entityId.toString(),
+    image: (productFormatBigCommerce?.images
+      ?.edges as BigCommerceGql_ImageEdge[])?.map(({ node: image }) => ({
+      "@type": "ImageObject",
+      caption: image?.altText,
+      contentUrl: image?.urlOriginal,
+      representativeOfPage: image?.isDefault,
+    })),
+    // mpn: productFormatBigCommerce?.mpn,
+    name: productFormatBigCommerce?.name,
+    offers: {
+      "@type": "Offer",
+      availability,
+      price: productFormatBigCommerce?.prices?.price.value,
+      priceCurrency: productFormatBigCommerce?.prices?.price.currencyCode,
+      url: process.env.GATSBY_SITE_URL + productFormatBigCommerce?.path,
+    },
+    productID: productFormatBigCommerce?.entityId.toString(),
+    sku: productFormatBigCommerce?.sku,
+    // upc: productFormatBigCommerce?.upc,
+    url: process.env.GATSBY_SITE_URL + productFormatBigCommerce?.path,
+    weight: productFormatBigCommerce?.weight,
+    width: productFormatBigCommerce?.width,
+  } as WithContext<Product>
+
+  return { ...product, ...variant }
+}
+
+export function standardiseBigCommerceProductGroup({
+  productFormatBigCommerce,
+}: {
+  productFormatBigCommerce: BigCommerceGql_Product
+}): WithContext<ProductGroup> {
+  const data = standardiseBigCommerceProduct({
+    productFormatBigCommerce,
+  }) as WithContext<ProductGroup>
+
+  const productGroupID = productFormatBigCommerce?.id
+
+  const hasVariant: Product[] = (productFormatBigCommerce?.variants
+    ?.edges as BigCommerceGql_VariantEdge[])?.map(({ node }) => {
+    const product = standardiseBigCommerceVariant({
+      productFormatBigCommerce,
+      variantFormatBigCommerce: node,
+    })
+
+    const size = (node?.options
+      ?.edges as BigCommerceGql_OptionEdge[])?.flatMap(({ node: option }) =>
+      (option?.values?.edges as BigCommerceGql_OptionValueEdge[])?.flatMap(
+        ({ node: value }) => value?.label
+      )
+    )?.[0]
+
+    const variesBy = (node?.options
+      ?.edges as BigCommerceGql_OptionEdge[])?.flatMap(
+      ({ node: option }) => option?.displayName
+    )?.[0]
+
+    return {
+      ...product,
+      size,
+      variesBy,
+    }
+  }) as Product[]
+
+  return {
+    ...data,
+    "@type": "ProductGroup",
+    hasVariant,
+    productGroupID,
+    url: process.env.GATSBY_SITE_URL + productFormatBigCommerce?.path,
+  }
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import { Story, Meta } from "@storybook/react"
 
-import { ViewSelector } from "../src/components/ViewSelector"
+import { ViewSelector, ViewSelectorProps } from "../src/components/ViewSelector"
 
 export default {
   title: "ViewSelector",
@@ -11,7 +11,12 @@ export default {
   },
 } as Meta
 
-const Template: Story = args => <ViewSelector {...args} />
+const Template: Story<ViewSelectorProps> = args => <ViewSelector {...args} />
 
 export const Example = Template.bind({})
-Example.args = {}
+Example.args = {
+  view: "grid"
+}
+Example.argTypes = {
+  setView: { action: "Button clicked" },
+}
